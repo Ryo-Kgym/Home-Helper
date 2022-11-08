@@ -12,8 +12,13 @@ repositories {
 }
 
 dependencies {
+    // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    // Unit Test
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
+    testImplementation("org.hamcrest:hamcrest-all:1.3")
 }
 
 tasks.withType<KotlinCompile> {
