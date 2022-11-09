@@ -5,7 +5,7 @@
 package home.helper.core.domain.model.help
 
 /**
- * お手伝いアイテムを保持するクラスです。
+ * お手伝い項目を保持するクラスです。
  */
 data class HelpItem(
     val name: String,
