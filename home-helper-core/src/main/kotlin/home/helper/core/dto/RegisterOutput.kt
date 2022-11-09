@@ -4,12 +4,12 @@
 
 package home.helper.core.dto
 
-import home.helper.core.domain.model.message.HomeMessage
+import home.helper.core.domain.model.message.HomeHelperMessage
 
 data class RegisterOutput(
-    val messageList: List<HomeMessage>,
+    val messageList: List<HomeHelperMessage>,
 ) {
-    constructor(vararg homeMessage: HomeMessage)
-            : this(homeMessage.toList())
+    constructor(vararg homeHelperMessage: HomeHelperMessage)
+            : this(homeHelperMessage.toList())
 
 }

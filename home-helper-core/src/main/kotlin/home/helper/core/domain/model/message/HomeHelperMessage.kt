@@ -4,6 +4,6 @@
 
 package home.helper.core.domain.model.message
 
-data class HomeMessage(
+data class HomeHelperMessage(
     val message: String
 )
