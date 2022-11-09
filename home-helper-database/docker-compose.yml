@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mysql_ci:
+    platform: linux/x86_64
+    container_name: home_helper_db_ci
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: home_helper_db_ci
+      MYSQL_USER: home_helper
+      MYSQL_PASSWORD: home_helper
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 23306:3306
+    volumes:
+      - ./full:/docker-entrypoint-initdb.d
+      - ./docker/data/ci:/var/lib/mysql
+      - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
+volumes:
+  database:
+    driver: local
