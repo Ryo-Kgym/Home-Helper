@@ -26,6 +26,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework:spring-webflux")
 	testImplementation("org.springframework.graphql:spring-graphql-test")
+	// Mockito
+	testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 
 	implementation(project(":home-helper-core"))
 }
