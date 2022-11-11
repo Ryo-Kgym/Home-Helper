@@ -19,6 +19,8 @@ dependencies {
     // Unit Test
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.0")
     testImplementation("org.hamcrest:hamcrest-all:1.3")
+    // Mockito
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 }
 
 tasks.withType<KotlinCompile> {
