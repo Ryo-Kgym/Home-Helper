@@ -4,7 +4,7 @@
 
 package home.helper.core.gateway
 
-import home.helper.core.dto.SaveOutput
+import home.helper.core.dto.save.SaveOutput
 
 /**
  * 保存用のデフォルトゲートウェイ インターフェースです。
