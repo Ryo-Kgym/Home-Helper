@@ -16,13 +16,20 @@ repositories {
 }
 
 dependencies {
+	// Spring GraphQL
 	implementation("org.springframework.boot:spring-boot-starter-graphql")
+	// Kotlin
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	// MyBatis
+	implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.4.0")
 	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
+
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	// MySQL
 	runtimeOnly("com.mysql:mysql-connector-j")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework:spring-webflux")
 	testImplementation("org.springframework.graphql:spring-graphql-test")
@@ -41,4 +48,46 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+
+val mybatisMapperVersion = "4.1.5"
+val mybatisGeneratorVersion = "1.4.0"
+val mysqlConnectorJavaVersion = "8.0.22"
+
+val mybatisGenerator by configurations.creating
+
+dependencies {
+	mybatisGenerator(
+		group = "org.mybatis.generator",
+		name = "mybatis-generator-core",
+		version = mybatisGeneratorVersion
+	)
+	mybatisGenerator(
+		group = "mysql",
+		name = "mysql-connector-java",
+		version = mysqlConnectorJavaVersion
+	)
+	mybatisGenerator(
+		group = "tk.mybatis",
+		name = "mapper",
+		version = mybatisMapperVersion
+	)
+}
+task("mybatisGenerator") {
+	doLast {
+		ant.withGroovyBuilder {
+			"taskdef"(
+				"name" to "mbgenerator",
+				"classname" to "org.mybatis.generator.ant.GeneratorAntTask",
+				"classpath" to mybatisGenerator.asPath
+			)
+		}
+		ant.withGroovyBuilder {
+			"mbgenerator"(
+				"overwrite" to true, "configfile" to
+						"src/main/resources/mbg-config.xml", "verbose" to true
+			)
+		}
+	}
 }
