@@ -4,7 +4,9 @@
 
 package home.helper.api.persistence.database.mysql.help_point
 
+import home.helper.api.gateway.id.IdGateway
 import home.helper.api.persistence.database.MultipleConvertSaveRepository
+import home.helper.api.persistence.database.mysql.id.HelpPointEarnedAchievementId
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailMapper
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailRecord
 import home.helper.api.persistence.database.mysql.table.insertSelective
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class HelpPointEarnedDetailInsertRepository(
+    private val helpPointEarnedAchievementIdGateway: IdGateway<HelpPointEarnedAchievementId>,
     private val dbHelpPointEarnedDetailMapper: DbHelpPointEarnedDetailMapper,
 ) :
     MultipleConvertSaveRepository<RegisterHelpPointOutput, DbHelpPointEarnedDetailRecord> {
@@ -20,7 +23,7 @@ class HelpPointEarnedDetailInsertRepository(
     override fun convert(target: RegisterHelpPointOutput): List<DbHelpPointEarnedDetailRecord> {
         return target.helpItemList.map {
             DbHelpPointEarnedDetailRecord(
-                achievementId = 1, // TODO
+                achievementId = helpPointEarnedAchievementIdGateway.getId().id.toInt(),
                 itemId = it.helpItemId.id,
             )
         }
