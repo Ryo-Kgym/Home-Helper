@@ -10,11 +10,13 @@ import home.helper.core.dto.RegisterOutput
 import home.helper.core.dto.help.RegisterHelpPointInput
 import home.helper.core.dto.help.RegisterHelpPointOutput
 import home.helper.core.gateway.SaveDefaultGateway
+import home.helper.core.gateway.message.SaveMessageGateway
 import home.helper.core.gateway.operation.OperationGateway
 
 class RegisterHelpPointInteractor(
     private val operationGateway: OperationGateway,
     private val helpPointSaveGateway: SaveDefaultGateway<RegisterHelpPointOutput>,
+    private val saveMessageGateway: SaveMessageGateway,
 ) : RegisterHelpPointUseCase {
 
     override fun register(input: RegisterHelpPointInput): RegisterOutput {
@@ -29,7 +31,9 @@ class RegisterHelpPointInteractor(
             )
         )
 
-        return RegisterOutput()
+        val message = saveMessageGateway.getMessage(saveOutput)
+
+        return RegisterOutput(message)
     }
 
 }

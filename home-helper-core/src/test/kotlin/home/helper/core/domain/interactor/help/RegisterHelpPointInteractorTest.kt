@@ -16,7 +16,7 @@ import home.helper.core.dto.help.RegisterHelpPointInput
 import home.helper.core.dto.help.RegisterHelpPointOutput
 import home.helper.core.dto.save.SaveOutput
 import home.helper.core.gateway.SaveDefaultGateway
-import home.helper.core.gateway.message.RegisterMessageGateway
+import home.helper.core.gateway.message.SaveMessageGateway
 import home.helper.core.gateway.operation.OperationGateway
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -29,12 +29,12 @@ internal class RegisterHelpPointInteractorTest {
 
     private val saveGateway: SaveDefaultGateway<RegisterHelpPointOutput> = mock()
     private val operationGateway: OperationGateway = mock()
-    private val registerMessageGateway: RegisterMessageGateway = mock()
+    private val registerMessageGateway: SaveMessageGateway = mock()
 
     private val target = RegisterHelpPointInteractor(
         helpPointSaveGateway = saveGateway,
         operationGateway = operationGateway,
-        registerMessageGateway = registerMessageGateway,
+        saveMessageGateway = registerMessageGateway,
     )
 
     @Test
