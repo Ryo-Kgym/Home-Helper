@@ -4,6 +4,7 @@
 
 package home.helper.api.persistence.database
 
+import home.helper.core.domain.model.save.SaveUseCaseEnum
 import home.helper.core.dto.save.SaveOutput
 import home.helper.core.gateway.SaveDefaultGateway
 
@@ -14,11 +15,14 @@ interface MultipleConvertSaveRepository<T, E> : SaveDefaultGateway<T> {
             .sumOf { it }
 
         return SaveOutput(
-            result = result
+            result = result,
+            useCase = getUseCase(),
         )
     }
 
     fun convert(target: T): List<E>
 
     fun internalSave(entity: E): Int
+
+    fun getUseCase(): SaveUseCaseEnum
 }

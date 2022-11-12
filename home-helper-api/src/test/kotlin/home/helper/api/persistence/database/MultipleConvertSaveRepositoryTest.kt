@@ -4,6 +4,7 @@
 
 package home.helper.api.persistence.database
 
+import home.helper.core.domain.model.save.SaveUseCaseEnum
 import home.helper.core.dto.save.SaveOutput
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -19,6 +20,10 @@ internal class MultipleConvertSaveRepositoryTest {
         override fun internalSave(entity: TestEntity): Int {
             return 1
         }
+
+        override fun getUseCase(): SaveUseCaseEnum {
+            return SaveUseCaseEnum.REGISTER_HELP_POINT
+        }
     }
 
     @Test
@@ -30,7 +35,11 @@ internal class MultipleConvertSaveRepositoryTest {
                 TestElement(3, "id3"),
             )
         )
-        assertThat(actual, `is`(SaveOutput(3)))
+        val expected = SaveOutput(
+            result = 3,
+            useCase = SaveUseCaseEnum.REGISTER_HELP_POINT
+        )
+        assertThat(actual, `is`(expected))
     }
 
     private data class TestElement(

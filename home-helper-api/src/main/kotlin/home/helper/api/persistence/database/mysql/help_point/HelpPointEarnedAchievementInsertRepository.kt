@@ -10,6 +10,7 @@ import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedAchieve
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedAchievementRecord
 import home.helper.api.persistence.database.mysql.table.insertSelective
 import home.helper.api.persistence.database.mysql.id.HelpPointEarnedAchievementId
+import home.helper.core.domain.model.save.SaveUseCaseEnum
 import home.helper.core.dto.help.RegisterHelpPointOutput
 import org.springframework.stereotype.Repository
 
@@ -30,5 +31,9 @@ class HelpPointEarnedAchievementInsertRepository(
 
     override fun internalSave(entity: DbHelpPointEarnedAchievementRecord): Int {
         return dbHelpPointEarnedAchievementMapper.insertSelective(entity)
+    }
+
+    override fun getUseCase(): SaveUseCaseEnum {
+        return SaveUseCaseEnum.REGISTER_HELP_POINT
     }
 }

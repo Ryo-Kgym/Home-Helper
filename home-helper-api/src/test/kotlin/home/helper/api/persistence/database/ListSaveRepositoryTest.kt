@@ -6,6 +6,7 @@ package home.helper.api.persistence.database
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
+import home.helper.core.domain.model.save.SaveUseCaseEnum
 import home.helper.core.dto.save.SaveOutput
 import home.helper.core.gateway.SaveDefaultGateway
 import org.hamcrest.CoreMatchers.`is`
@@ -25,16 +26,20 @@ internal class ListSaveRepositoryTest {
 
     @BeforeEach
     internal fun setUp() {
-        `when`(gateway1.save(any())).thenReturn(SaveOutput(result = 1))
-        `when`(gateway2.save(any())).thenReturn(SaveOutput(result = 2))
-        `when`(gateway3.save(any())).thenReturn(SaveOutput(result = 3))
+        `when`(gateway1.save(any())).thenReturn(SaveOutput(result = 1, useCase = SaveUseCaseEnum.REGISTER_HELP_POINT))
+        `when`(gateway2.save(any())).thenReturn(SaveOutput(result = 2, useCase = SaveUseCaseEnum.REGISTER_HELP_POINT))
+        `when`(gateway3.save(any())).thenReturn(SaveOutput(result = 3, useCase = SaveUseCaseEnum.REGISTER_HELP_POINT))
     }
 
     @Test
     fun save() {
         val actual = target.save(TestTarget(1, "名前"))
+        val expected = SaveOutput(
+            result = 2,
+            useCase = SaveUseCaseEnum.REGISTER_HELP_POINT
+        )
 
-        assertThat(actual, `is`(SaveOutput(2)))
+        assertThat(actual, `is`(expected))
     }
 
     private data class TestTarget(
@@ -43,9 +48,9 @@ internal class ListSaveRepositoryTest {
     )
 
     private class TestListSaveRepository(
-        private val gateway1: SaveDefaultGateway<TestTarget>,
-        private val gateway2: SaveDefaultGateway<TestTarget>,
-        private val gateway3: SaveDefaultGateway<TestTarget>,
+        gateway1: SaveDefaultGateway<TestTarget>,
+        gateway2: SaveDefaultGateway<TestTarget>,
+        gateway3: SaveDefaultGateway<TestTarget>,
     ) : ListSaveRepository<TestTarget>(
         gateway1,
         gateway2,
