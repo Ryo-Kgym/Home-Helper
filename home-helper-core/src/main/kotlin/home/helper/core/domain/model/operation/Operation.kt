@@ -14,6 +14,12 @@ data class Operation(
     val operatorId: OperatorId,
     val datetime: LocalDateTime,
 ) {
+    constructor(id: Int, date: LocalDate) :
+            this(
+                operatorId = OperatorId(id),
+                datetime = date.atStartOfDay()
+            )
+
     /**
      * 操作日を返します。
      * @return 操作日
