@@ -33,10 +33,13 @@
                 targetProject="src/main/kotlin">
         </javaClientGenerator>
 
-        <table tableName="help_point_earned_achievement" modelType="flat" mapperName="DbHelpPointEarnedAchievementMapper" domainObjectName="DbHelpPointEarnedAchievement">
-        </table>
-        <table tableName="help_point_earned_detail" modelType="flat" mapperName="DbHelpPointEarnedDetailMapper" domainObjectName="DbHelpPointEarnedDetail">
-        </table>
+<!--        <table tableName="help_point_earned_achievement" modelType="flat" mapperName="DbHelpPointEarnedAchievementMapper" domainObjectName="DbHelpPointEarnedAchievement">-->
+<!--        </table>-->
+<!--        <table tableName="help_point_earned_detail" modelType="flat" mapperName="DbHelpPointEarnedDetailMapper" domainObjectName="DbHelpPointEarnedDetail">-->
+<!--        </table>-->
+<!--        <table tableName="id_holder" modelType="flat" mapperName="DbIdHolderMapper" domainObjectName="DbIdHolder">-->
+<!--            <columnOverride column="id_type" javaType="home.helper.api.persistence.database.mysql.id.IdType"/>-->
+<!--        </table>-->
 
     </context>
 </generatorConfiguration>
