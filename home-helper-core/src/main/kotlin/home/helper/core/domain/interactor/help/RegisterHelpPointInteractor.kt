@@ -10,9 +10,11 @@ import home.helper.core.dto.RegisterOutput
 import home.helper.core.dto.help.RegisterHelpPointInput
 import home.helper.core.dto.help.RegisterHelpPointOutput
 import home.helper.core.gateway.SaveDefaultGateway
+import home.helper.core.gateway.operation.OperationGateway
 
 class RegisterHelpPointInteractor(
-    private val helpPointSaveGateway: SaveDefaultGateway<RegisterHelpPointOutput>
+    private val operationGateway: OperationGateway,
+    private val helpPointSaveGateway: SaveDefaultGateway<RegisterHelpPointOutput>,
 ) : RegisterHelpPointUseCase {
 
     override fun register(input: RegisterHelpPointInput): RegisterOutput {
@@ -22,6 +24,8 @@ class RegisterHelpPointInteractor(
             RegisterHelpPointOutput(
                 helpItemList = input.helpItemList,
                 totalHelpPoint = totalHelpPoint,
+                userId = input.userId,
+                earnedDate = operationGateway.load().getDate(),
             )
         )
 
