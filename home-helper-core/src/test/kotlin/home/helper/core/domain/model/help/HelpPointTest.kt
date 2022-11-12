@@ -42,10 +42,10 @@ internal class HelpPointTest {
     fun sumItemList() {
         val actual = HelpPoint.sumItem(
             listOf(
-                HelpItem("アイテム1",100),
-                HelpItem("アイテム2",300),
-                HelpItem("アイテム3",500),
-                HelpItem("アイテム4",200),
+                HelpItem(1,"アイテム1",100),
+                HelpItem(2,"アイテム2",300),
+                HelpItem(3,"アイテム3",500),
+                HelpItem(4,"アイテム4",200),
             )
         )
         val expected = HelpPoint(1100)

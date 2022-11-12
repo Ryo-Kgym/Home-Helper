@@ -16,6 +16,8 @@ repositories {
 }
 
 dependencies {
+	// Sprint Web
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	// Spring GraphQL
 	implementation("org.springframework.boot:spring-boot-starter-graphql")
 	// Kotlin
@@ -33,6 +35,10 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework:spring-webflux")
 	testImplementation("org.springframework.graphql:spring-graphql-test")
+	testImplementation("org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.2")
+	testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
+	testImplementation("org.dbunit:dbunit:2.7.3")
+
 	// Mockito
 	testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 
