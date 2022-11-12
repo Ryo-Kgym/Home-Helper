@@ -13,7 +13,6 @@ import org.springframework.boot.runApplication
     basePackages = [
         "home.helper.api.persistence.database.mysql.**"
     ],
-    sqlSessionFactoryRef = "sqlSessionFactoryPrimary"
 )
 class HomeHelperApiApplication
 
