@@ -1,0 +1,38 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:23306/home_helper_db_ci
+    username: home_helper
+    password: home_helper
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+mock:
+  datetime: true
+  user: true
+  mask: true
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case:
+      true
+
+logging:
+  level:
+    org:
+      springframework: WARN
+    home:
+      helper:
+        api:
+          persistence:
+            database:
+              mysql:
+                DEBUG
+
+cors:
+  allowed:
+    protocols:
+      http
+    ips:
+      localhost
+    ports:
+      3000
