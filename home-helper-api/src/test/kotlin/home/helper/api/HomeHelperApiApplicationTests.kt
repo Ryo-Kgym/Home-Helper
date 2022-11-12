@@ -1,13 +1,10 @@
 package home.helper.api
 
-import org.junit.jupiter.api.Test
-import org.springframework.boot.test.context.SpringBootTest
-
-@SpringBootTest
+//@SpringBootTest
 class HomeHelperApiApplicationTests {
 
-	@Test
-	fun contextLoads() {
-	}
+    //    @Test
+    fun contextLoads() {
+    }
 
 }
