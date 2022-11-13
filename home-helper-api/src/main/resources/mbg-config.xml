@@ -37,6 +37,8 @@
 <!--        </table>-->
 <!--        <table tableName="help_point_earned_detail" modelType="flat" mapperName="DbHelpPointEarnedDetailMapper" domainObjectName="DbHelpPointEarnedDetail">-->
 <!--        </table>-->
+<!--        <table tableName="m_help_item" modelType="flat" mapperName="DbMHelpItemMapper" domainObjectName="DbMHelpItem">-->
+<!--        </table>-->
 <!--        <table tableName="id_holder" modelType="flat" mapperName="DbIdHolderMapper" domainObjectName="DbIdHolder">-->
 <!--            <columnOverride column="id_type" javaType="home.helper.api.persistence.database.mysql.id.IdType"/>-->
 <!--        </table>-->

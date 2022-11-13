@@ -17,24 +17,25 @@ drop table if exists m_help_item;
 create table m_help_item (
     id         serial primary key not null comment 'ID',
     item_name  varchar(32)        not null comment '項目名',
-    help_point int                not null comment 'お手伝いポイント'
-) comment 'お手伝い項目';
+    help_point int                not null comment 'お手伝いポイント',
+    memo       varchar(1024)      null comment 'メモ'
+) comment 'お手伝い項目マスタ';
 
 drop table if exists m_exchange_item;
 create table m_exchange_item (
     id             serial primary key not null comment 'ID',
     item_name      varchar(32)        not null comment '品名',
     exchange_point int                not null comment '交換ポイント'
-) comment '交換品';
+) comment '交換品マスタ';
 
 drop table if exists m_user;
 create table m_user (
     id   serial primary key not null comment 'ID',
     name varchar(32)        not null comment '氏名'
-) comment 'ユーザ';
+) comment 'ユーザマスタ';
 
 drop table if exists id_holder;
 create table id_holder (
     id_type    enum ('HELP_POINT_EARNED_ACHIEVEMENT_ID') primary key not null comment 'IDタイプ',
-    current_id bigint                             not null comment '現在ID'
+    current_id bigint                                                not null comment '現在ID'
 ) comment 'IDホルダ';
