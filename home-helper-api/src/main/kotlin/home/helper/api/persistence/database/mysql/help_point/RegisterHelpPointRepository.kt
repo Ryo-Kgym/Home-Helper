@@ -24,4 +24,8 @@ class RegisterHelpPointRepository(
         helpPointEarnedAchievementIdGateway.increment()
         return super.save(target)
     }
+
+    override fun getIndex(): Int {
+        return 1
+    }
 }
