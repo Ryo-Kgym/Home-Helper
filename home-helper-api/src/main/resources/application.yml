@@ -6,6 +6,18 @@ spring:
     password: home_helper
     driverClassName: com.mysql.cj.jdbc.Driver
 
+graphql:
+  servlet:
+    enabled: true
+    mapping: /graphql
+    corsEnabled: true
+
+graphiql:
+  enabled: true
+  mapping: /graphiql
+  endpoint:
+    graphql: /graphql
+
 mock:
   datetime: true
   user: true

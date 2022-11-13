@@ -16,10 +16,11 @@ repositories {
 }
 
 dependencies {
-	// Sprint Web
-	implementation("org.springframework.boot:spring-boot-starter-web")
 	// Spring GraphQL
-	implementation("org.springframework.boot:spring-boot-starter-graphql")
+	implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:11.0.0")
+	implementation("com.graphql-java-kickstart:altair-spring-boot-starter:11.1.0")
+	implementation("com.graphql-java-kickstart:graphiql-spring-boot-starter:11.1.0")
+	implementation("com.graphql-java-kickstart:voyager-spring-boot-starter:11.1.0")
 	// Kotlin
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
