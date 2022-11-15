@@ -1,0 +1,9 @@
+mutation {
+    registerHelpItem(
+        param: {
+            name: "テスト",
+            point: 200,
+            memo: "これはテストです。"
+        }
+    )
+}
