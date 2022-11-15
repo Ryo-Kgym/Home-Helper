@@ -1,0 +1,4 @@
+query search_help_item {
+    searchHelpItem(param: {})
+}
+

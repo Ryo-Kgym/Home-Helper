@@ -38,7 +38,9 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework:spring-webflux")
+	testImplementation("com.graphql-java-kickstart:graphql-spring-boot-starter-test:11.0.0")
 	testImplementation("org.springframework.graphql:spring-graphql-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-webflux")
 	testImplementation("org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.2")
 	testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
 	testImplementation("org.dbunit:dbunit:2.7.3")
