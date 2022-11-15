@@ -28,6 +28,9 @@ dependencies {
 	// MyBatis
 	implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.4.0")
 	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
+	// Jackson
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	// MySQL

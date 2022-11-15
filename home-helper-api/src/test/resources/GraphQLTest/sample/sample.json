@@ -1,0 +1,15 @@
+{
+  "ID": 1,
+  "Name": "Suzuki Seiya",
+  "Gender": "Man",
+  "Age": 24,
+  "Physical": {
+    "Height": 180.5,
+    "Weight": 83.2
+  },
+  "Grades":[
+    {"Year":2019,"Homerun":30},
+    {"Year":2020,"Homerun":25},
+    {"Year":2021,"Homerun":38}
+  ]
+}
