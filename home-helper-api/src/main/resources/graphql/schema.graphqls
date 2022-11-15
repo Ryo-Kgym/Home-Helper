@@ -1,0 +1,21 @@
+type Query {
+    # Help Item
+    searchHelpItem(param: SearchHelpItemParam): [String]
+}
+
+type Mutation {
+    # Help Item
+    registerHelpItem(param: RegisterHelpItemParam): [String]
+}
+
+# Help Item
+input SearchHelpItemParam {
+    pointFrom: Int
+    pointTo: Int
+}
+
+input RegisterHelpItemParam {
+    name: String!
+    point: Int!
+    memo: String
+}

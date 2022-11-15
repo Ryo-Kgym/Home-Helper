@@ -16,10 +16,11 @@ repositories {
 }
 
 dependencies {
-	// Sprint Web
-	implementation("org.springframework.boot:spring-boot-starter-web")
 	// Spring GraphQL
-	implementation("org.springframework.boot:spring-boot-starter-graphql")
+	implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:11.0.0")
+	implementation("com.graphql-java-kickstart:altair-spring-boot-starter:11.1.0")
+	implementation("com.graphql-java-kickstart:graphiql-spring-boot-starter:11.1.0")
+	implementation("com.graphql-java-kickstart:voyager-spring-boot-starter:11.1.0")
 	// Kotlin
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -27,6 +28,9 @@ dependencies {
 	// MyBatis
 	implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.4.0")
 	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
+	// Jackson
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	// MySQL
@@ -34,7 +38,9 @@ dependencies {
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework:spring-webflux")
+	testImplementation("com.graphql-java-kickstart:graphql-spring-boot-starter-test:11.0.0")
 	testImplementation("org.springframework.graphql:spring-graphql-test")
+	testImplementation("org.springframework.boot:spring-boot-starter-webflux")
 	testImplementation("org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.2")
 	testImplementation("com.github.springtestdbunit:spring-test-dbunit:1.3.0")
 	testImplementation("org.dbunit:dbunit:2.7.3")
