@@ -5,9 +5,9 @@
 package home.helper.api.resolver.help_item
 
 import graphql.kickstart.tools.GraphQLMutationResolver
-import home.helper.core.domain.model.help.HelpPoint
-import home.helper.core.domain.use_case.help.RegisterHelpItemUseCase
-import home.helper.core.dto.help.RegisterHelpItemInput
+import home.helper.core.domain.model.help_point.HelpPoint
+import home.helper.core.domain.use_case.help_item.RegisterHelpItemUseCase
+import home.helper.core.dto.help_item.RegisterHelpItemInput
 import org.springframework.stereotype.Component
 
 @Component

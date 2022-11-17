@@ -4,14 +4,14 @@
 
 package home.helper.api.persistence.database.mysql.help_point.search
 
-import home.helper.core.domain.model.help.HelpItem
-import home.helper.core.domain.model.help.HelpItemId
-import home.helper.core.domain.model.help.HelpPoint
+import home.helper.core.domain.model.help_item.HelpItem
+import home.helper.core.domain.model.help_item.HelpItemId
+import home.helper.core.domain.model.help_point.HelpPoint
 import home.helper.core.domain.model.help_point.earned.HelpPointEarnedAchievement
 import home.helper.core.domain.model.help_point.earned.HelpPointEarnedAchievementId
 import home.helper.core.domain.model.user.UserId
-import home.helper.core.dto.help_point.earned.SearchHelpPointEarnedCriteria
-import home.helper.core.gateway.help_point.earned.SearchHelpPointEarnedAchievementGateway
+import home.helper.core.dto.help_point.SearchHelpPointEarnedCriteria
+import home.helper.core.gateway.help_point.SearchHelpPointEarnedAchievementGateway
 import org.springframework.stereotype.Repository
 
 @Repository

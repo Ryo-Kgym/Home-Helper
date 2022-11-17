@@ -6,9 +6,9 @@ package home.helper.api.resolver.help_point
 
 import graphql.kickstart.tools.GraphQLMutationResolver
 import home.helper.api.resolver.help_item.HelpItem as HelpItemGqo
-import home.helper.core.domain.model.help.HelpItem
-import home.helper.core.dto.help_point.earned.SearchHelpPointEarnedCriteria
-import home.helper.core.gateway.help_point.earned.SearchHelpPointEarnedAchievementGateway
+import home.helper.core.domain.model.help_item.HelpItem
+import home.helper.core.dto.help_point.SearchHelpPointEarnedCriteria
+import home.helper.core.gateway.help_point.SearchHelpPointEarnedAchievementGateway
 import org.springframework.stereotype.Component
 import java.time.LocalDate
 

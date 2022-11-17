@@ -4,7 +4,7 @@
 
 package home.helper.core.gateway.help_item
 
-import home.helper.core.domain.model.help.HelpItem
+import home.helper.core.domain.model.help_item.HelpItem
 import home.helper.core.dto.help_item.SearchHelpItemCriteria
 
 interface SearchHelpItemGateway {
