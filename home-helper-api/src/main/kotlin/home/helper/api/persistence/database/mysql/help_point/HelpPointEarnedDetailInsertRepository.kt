@@ -24,7 +24,7 @@ class HelpPointEarnedDetailInsertRepository(
     override fun convert(target: RegisterHelpPointOutput): List<DbHelpPointEarnedDetailRecord> {
         return target.helpItemList.map {
             DbHelpPointEarnedDetailRecord(
-                achievementId = helpPointEarnedAchievementIdGateway.getId().id.toInt(),
+                achievementId = helpPointEarnedAchievementIdGateway.getId().id,
                 itemId = it.helpItemId.id,
             )
         }
