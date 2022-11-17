@@ -10,8 +10,8 @@ object DbHelpPointEarnedDetailDynamicSqlSupport {
     object DbHelpPointEarnedDetail : SqlTable("help_point_earned_detail") {
         val id = column<Long>("id", JDBCType.BIGINT)
 
-        val achievementId = column<Int>("achievement_id", JDBCType.INTEGER)
+        val achievementId = column<Long>("achievement_id", JDBCType.BIGINT)
 
-        val itemId = column<Int>("item_id", JDBCType.INTEGER)
+        val itemId = column<Long>("item_id", JDBCType.BIGINT)
     }
 }

@@ -3,7 +3,14 @@
  */
 package home.helper.api.persistence.database.mysql.table
 
-import org.apache.ibatis.annotations.*
+import org.apache.ibatis.annotations.DeleteProvider
+import org.apache.ibatis.annotations.InsertProvider
+import org.apache.ibatis.annotations.Mapper
+import org.apache.ibatis.annotations.Result
+import org.apache.ibatis.annotations.ResultMap
+import org.apache.ibatis.annotations.Results
+import org.apache.ibatis.annotations.SelectProvider
+import org.apache.ibatis.annotations.UpdateProvider
 import org.apache.ibatis.type.JdbcType
 import org.mybatis.dynamic.sql.delete.render.DeleteStatementProvider
 import org.mybatis.dynamic.sql.insert.render.InsertStatementProvider
@@ -34,9 +41,9 @@ interface DbHelpPointEarnedAchievementMapper {
     @Results(
         id = "DbHelpPointEarnedAchievementRecordResult", value = [
             Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
-            Result(column = "user_id", property = "userId", jdbcType = JdbcType.INTEGER),
+            Result(column = "user_id", property = "userId", jdbcType = JdbcType.BIGINT),
             Result(column = "earned_date", property = "earnedDate", jdbcType = JdbcType.DATE),
-            Result(column = "earned_point", property = "earnedPoint", jdbcType = JdbcType.INTEGER)
+            Result(column = "earned_point", property = "earnedPoint", jdbcType = JdbcType.BIGINT)
         ]
     )
     fun selectMany(selectStatement: SelectStatementProvider): List<DbHelpPointEarnedAchievementRecord>
