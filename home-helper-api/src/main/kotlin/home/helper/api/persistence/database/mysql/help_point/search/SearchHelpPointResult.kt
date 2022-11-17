@@ -10,6 +10,6 @@ data class SearchHelpPointResult(
     var id: Long? = null,
     var userId: Long? = null,
     var earnedDate: LocalDate? = null,
-    var earnedPoint: Int? = null,
+    var earnedPoint: Long? = null,
     var detailList: List<HelpItemResult>? = null,
 )

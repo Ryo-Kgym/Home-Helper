@@ -8,7 +8,7 @@ package home.helper.core.domain.model.help
  * お手伝いポイントを保持するクラスです。
  */
 data class HelpPoint(
-    val value: Int,
+    val value: Long,
 ) {
 
     companion object {
