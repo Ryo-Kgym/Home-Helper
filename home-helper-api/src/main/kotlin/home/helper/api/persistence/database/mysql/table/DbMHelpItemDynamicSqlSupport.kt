@@ -12,7 +12,7 @@ object DbMHelpItemDynamicSqlSupport {
 
         val itemName = column<String>("item_name", JDBCType.VARCHAR)
 
-        val helpPoint = column<Int>("help_point", JDBCType.INTEGER)
+        val helpPoint = column<Long>("help_point", JDBCType.BIGINT)
 
         val memo = column<String>("memo", JDBCType.VARCHAR)
     }

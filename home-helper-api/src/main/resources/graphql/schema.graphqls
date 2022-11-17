@@ -1,20 +1,37 @@
 type Query {
-    # Help Item
-    searchHelpItem(param: SearchHelpItemParam): [String]
+    searchHelpItem(param: SearchHelpItemParam): [HelpItem]
 }
 
 type Mutation {
-    # Help Item
     registerHelpItem(param: RegisterHelpItemParam): [String]
+    searchHelpPoint(param: SearchHelpPointParam): [SearchHelpPointViewModel]
 }
 
-# Help Item
 input SearchHelpItemParam {
     pointFrom: Int
     pointTo: Int
 }
 
 input RegisterHelpItemParam {
+    name: String!
+    point: Int!
+    memo: String
+}
+
+input SearchHelpPointParam {
+    userId: ID
+}
+
+type SearchHelpPointViewModel{
+    id: ID!,
+    userId: Int!,
+    earnedDate: String!,
+    earnedPoint: Int!,
+    items: [HelpItem],
+}
+
+type HelpItem {
+    id: ID!
     name: String!
     point: Int!
     memo: String

@@ -5,5 +5,5 @@
 package home.helper.core.domain.model.user
 
 data class UserId(
-    val id: Int
+    val id: Long
 )

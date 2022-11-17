@@ -2,6 +2,7 @@
  * Auto-generated file. Created by MyBatis Generator
  */
 @file:Suppress("DEPRECATION")
+
 package home.helper.api.persistence.database.mysql.table
 
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail
@@ -9,8 +10,19 @@ import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailD
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail.id
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail.itemId
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
-import org.mybatis.dynamic.sql.util.kotlin.*
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.*
+import org.mybatis.dynamic.sql.util.kotlin.CountCompleter
+import org.mybatis.dynamic.sql.util.kotlin.DeleteCompleter
+import org.mybatis.dynamic.sql.util.kotlin.KotlinUpdateBuilder
+import org.mybatis.dynamic.sql.util.kotlin.SelectCompleter
+import org.mybatis.dynamic.sql.util.kotlin.UpdateCompleter
+import org.mybatis.dynamic.sql.util.kotlin.mybatis3.countFrom
+import org.mybatis.dynamic.sql.util.kotlin.mybatis3.deleteFrom
+import org.mybatis.dynamic.sql.util.kotlin.mybatis3.insert
+import org.mybatis.dynamic.sql.util.kotlin.mybatis3.insertMultiple
+import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectDistinct
+import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectList
+import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectOne
+import org.mybatis.dynamic.sql.util.kotlin.mybatis3.update
 
 fun DbHelpPointEarnedDetailMapper.count(completer: CountCompleter) =
     countFrom(this::count, DbHelpPointEarnedDetail, completer)

@@ -1,0 +1,16 @@
+mutation {
+    searchHelpPoint(param: {
+        userId: 0
+    }) {
+        id
+        userId
+        earnedDate
+        earnedPoint
+        items {
+            id
+            name
+            point
+            memo
+        }
+    }
+}

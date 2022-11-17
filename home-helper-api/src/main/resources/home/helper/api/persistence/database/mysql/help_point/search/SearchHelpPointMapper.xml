@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="home.helper.api.persistence.database.mysql.help_point.search.SearchHelpPointMapper">
+
+    <resultMap id="searchResultMap"
+               type="home.helper.api.persistence.database.mysql.help_point.search.SearchHelpPointResult">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="earned_date" property="earnedDate"/>
+        <result column="earned_point" property="earnedPoint"/>
+        <collection property="detailList"
+                    ofType="home.helper.api.persistence.database.mysql.help_point.search.HelpItemResult">
+            <id column="item_id" property="itemId"/>
+            <result column="item_name" property="itemName"/>
+            <result column="help_point" property="helpPoint"/>
+            <result column="memo" property="memo"/>
+        </collection>
+    </resultMap>
+
+    <select id="search"
+            parameterType="home.helper.api.persistence.database.mysql.help_point.search.SearchHelpPointParam"
+            resultMap="searchResultMap">
+        select
+            achi.id,
+            achi.user_id,
+            achi.earned_date,
+            achi.earned_point,
+            hped.item_id,
+            mhi.item_name,
+            mhi.help_point,
+            mhi.memo
+        from
+            help_point_earned_achievement achi
+            left outer join help_point_earned_detail hped
+            on achi.id = hped.achievement_id
+            left outer join m_help_item mhi
+            on hped.item_id = mhi.id
+        order by
+            achi.earned_date,
+            achi.id,
+            hped.item_id
+    </select>
+</mapper>

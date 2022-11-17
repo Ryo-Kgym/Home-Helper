@@ -42,7 +42,7 @@ interface DbMHelpItemMapper {
         id = "DbMHelpItemRecordResult", value = [
             Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
             Result(column = "item_name", property = "itemName", jdbcType = JdbcType.VARCHAR),
-            Result(column = "help_point", property = "helpPoint", jdbcType = JdbcType.INTEGER),
+            Result(column = "help_point", property = "helpPoint", jdbcType = JdbcType.BIGINT),
             Result(column = "memo", property = "memo", jdbcType = JdbcType.VARCHAR)
         ]
     )

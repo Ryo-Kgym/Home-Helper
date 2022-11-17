@@ -1,0 +1,9 @@
+query {
+    searchHelpItem(param: {}) {
+        id
+        name
+        point
+        memo
+    }
+}
+
