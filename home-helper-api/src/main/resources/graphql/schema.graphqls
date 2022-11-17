@@ -1,5 +1,5 @@
 type Query {
-    searchHelpItem(param: SearchHelpItemParam): [String]
+    searchHelpItem(param: SearchHelpItemParam): [HelpItem]
 }
 
 type Mutation {
