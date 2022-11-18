@@ -29,12 +29,12 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
     TransactionDbUnitTestExecutionListener::class
 )
 @DbUnitConfiguration(dataSetLoader = CsvDataSetLoader::class)
-internal class SearchHelpPointMutationResolverTest {
+internal class SearchHelpPointEarnedAchievementResolverTest {
     @Autowired
     private val graphQLTestTemplate: GraphQLTestTemplate? = null
 
     companion object {
-        private const val ROOT = "/GraphQLTest/SearchHelpPointMutationResolver/"
+        private const val ROOT = "/GraphQLTest/SearchHelpPointEarnedAchievement/"
     }
 
     @Test

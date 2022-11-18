@@ -13,7 +13,7 @@ import home.helper.api.resolver.help_item.HelpItem as HelpItemGqo
 import home.helper.api.resolver.help_point.HelpPointEarnedAchievement as HelpPointEarnedAchievementGqo
 
 @Component
-class SearchHelpPointMutationResolver(
+class SearchHelpPointEarnedAchievementResolver(
     private val searchHelpPointEarnedAchievementGateway: SearchHelpPointEarnedAchievementGateway,
 ) : GraphQLQueryResolver {
 
