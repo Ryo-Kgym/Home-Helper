@@ -5,6 +5,8 @@
 package home.helper.api.resolver.help_item
 
 import graphql.kickstart.tools.GraphQLQueryResolver
+import home.helper.core.domain.model.help_item.HelpItemId
+import home.helper.core.dto.help_item.SearchHelpItemCriteria
 import home.helper.core.gateway.help_item.SearchHelpItemGateway
 import org.springframework.stereotype.Component
 import  home.helper.api.resolver.help_item.HelpItem as HelpItemGqo
@@ -20,7 +22,11 @@ class SearchHelpItemResolver(
      * @return お手伝い項目
      */
     fun searchHelpItem(param: SearchHelpItemParam): List<HelpItemGqo> {
-        val output = searchHelpItemGateway.search()
+        val criteria = SearchHelpItemCriteria(
+            helpItemId = param.id?.let { HelpItemId(it) },
+        )
+
+        val output = searchHelpItemGateway.search(criteria)
         return output.map {
             HelpItemGqo(
                 id = it.helpItemId.id,
@@ -33,6 +39,7 @@ class SearchHelpItemResolver(
 }
 
 data class SearchHelpItemParam(
+    val id: Long?,
     val pointFrom: Int?,
     val pointTo: Int?,
 )
