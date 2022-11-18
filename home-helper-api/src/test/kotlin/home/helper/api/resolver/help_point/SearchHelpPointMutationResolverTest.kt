@@ -12,12 +12,10 @@ import com.github.springtestdbunit.assertion.DatabaseAssertionMode
 import com.graphql.spring.boot.test.GraphQLTestTemplate
 import home.helper.api.persistence.database.CsvDataSetLoader
 import home.helper.api.utils.JsonTestUtils
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
-import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
@@ -50,7 +48,7 @@ internal class SearchHelpPointMutationResolverTest {
             .rawResponse.body
         val expected = JsonTestUtils.load(ROOT + "response.json").toString()
 
-        MatcherAssert.assertThat(actual, CoreMatchers.`is`(expected))
+        assertThat(actual, `is`(expected))
     }
 
     @Test
