@@ -1,34 +1,25 @@
-import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Card from "../components/ui/Card";
+import Layout from "../components/page/Layout";
 
 const pageList = [
     {href: '/homeHelper', label: 'お手伝いアプリ'},
     {href: '/household', label: '家計簿アプリ'},
 ]
 
-export default function index() {
+const index = () => {
     return (
-        <div className={styles.container}>
-            <HomeHeader/>
-
-            <main className={styles.main}>
-                <HomeTitle/>
-                <HomeLink/>
-            </main>
-        </div>
+        <Layout
+            main={
+                <>
+                    <HomeTitle/>
+                    <HomeLink/>
+                </>
+            }
+        />
     )
 }
-
-const HomeHeader = () => {
-    return (
-        <Head>
-            <title>うちのアプリ</title>
-            <meta name="description" content="これは、うちの支援アプリです。"/>
-            <link rel="icon" href="/favicon.ico"/>
-        </Head>
-    )
-}
+export default index
 
 const HomeTitle = () => {
     return (
@@ -51,6 +42,5 @@ const HomeLink = () => {
                 )
             })}
         </div>
-
     )
 }
