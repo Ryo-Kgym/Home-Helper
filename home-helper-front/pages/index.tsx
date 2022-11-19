@@ -1,6 +1,6 @@
-import styles from '../styles/Home.module.css'
-import Card from "../components/ui/Card";
+import {CardLinkList} from "../components/ui/Card";
 import Layout from "../components/page/Layout";
+import MainTitle from "../components/page/MainTitle";
 
 const pageList = [
     {href: '/homeHelper', label: 'お手伝いアプリ'},
@@ -12,35 +12,15 @@ const index = () => {
         <Layout
             main={
                 <>
-                    <HomeTitle/>
-                    <HomeLink/>
+                    <MainTitle
+                        label={'うちのアプリへようこそ！'}
+                    />
+                    <CardLinkList
+                        pageList={pageList}
+                    />
                 </>
             }
         />
     )
 }
 export default index
-
-const HomeTitle = () => {
-    return (
-        <h1 className={styles.title}>
-            うちのアプリへようこそ！
-        </h1>
-    )
-}
-
-const HomeLink = () => {
-    return (
-        <div className={styles.grid}>
-            {pageList.map((e, i) => {
-                return (
-                    <Card
-                        href={e.href}
-                        label={e.label}
-                        key={'card' + i}
-                    />
-                )
-            })}
-        </div>
-    )
-}
