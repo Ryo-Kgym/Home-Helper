@@ -1,4 +1,4 @@
-mutation {
+query {
     searchHelpPoint(param: {
         userId: 0
     }) {
@@ -6,7 +6,7 @@ mutation {
         userId
         earnedDate
         earnedPoint
-        items {
+        helpItems {
             id
             name
             point

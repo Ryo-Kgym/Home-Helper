@@ -2,7 +2,7 @@
  * Copyright (c) 2022 Ryo-Kgym.
  */
 
-package home.helper.api.resolver.help_point
+package home.helper.api.resolver.help_item
 
 import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener
 import com.github.springtestdbunit.annotation.DatabaseSetup
@@ -11,13 +11,11 @@ import com.github.springtestdbunit.annotation.ExpectedDatabase
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode
 import com.graphql.spring.boot.test.GraphQLTestTemplate
 import home.helper.api.persistence.database.CsvDataSetLoader
-import home.helper.api.utils.JsonTestUtils
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
-import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
+import home.helper.api.utils.JsonTestUtils.Companion.load
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
@@ -31,12 +29,12 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
     TransactionDbUnitTestExecutionListener::class
 )
 @DbUnitConfiguration(dataSetLoader = CsvDataSetLoader::class)
-internal class SearchHelpPointMutationResolverTest {
+internal class FindHelpItemResolverTest {
     @Autowired
     private val graphQLTestTemplate: GraphQLTestTemplate? = null
 
     companion object {
-        private const val ROOT = "/GraphQLTest/SearchHelpPointMutationResolver/"
+        private const val ROOT = "/GraphQLTest/FindHelpItemResolver/"
     }
 
     @Test
@@ -48,9 +46,9 @@ internal class SearchHelpPointMutationResolverTest {
     fun test02() {
         val actual = graphQLTestTemplate?.postForResource(ROOT + "request.query")!!
             .rawResponse.body
-        val expected = JsonTestUtils.load(ROOT + "response.json").toString()
+        val expected = load(ROOT + "response.json").toString()
 
-        MatcherAssert.assertThat(actual, CoreMatchers.`is`(expected))
+        assertThat(actual, `is`(expected))
     }
 
     @Test

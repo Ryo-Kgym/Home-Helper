@@ -6,7 +6,7 @@
         "userId": 1,
         "earnedDate": "2022-11-06",
         "earnedPoint": 500,
-        "items": [
+        "helpItems": [
           {
             "id": "1",
             "name": "テスト項目1",
@@ -26,7 +26,7 @@
         "userId": 1,
         "earnedDate": "2022-11-13",
         "earnedPoint": 300,
-        "items": [
+        "helpItems": [
           {
             "id": "2",
             "name": "テスト項目2",
