@@ -2,6 +2,7 @@ import Layout from "../../components/page/Layout";
 import {CardLinkList} from "../../components/ui/Card";
 import Image from 'next/image'
 import thisStyle from '../../styles/UserPoint.module.css'
+import Countup from "react-countup";
 
 const pageList = [
     {href: '/homeHelper', label: '戻る', back: true,},
@@ -32,9 +33,10 @@ const Point = (props: UserPoint) => {
     return (
         <>
             <div>{props.name} さんの今のポイント</div>
+
             <div className={thisStyle.frame}>
                 <div className={thisStyle.point}>
-                    {props.point}
+                    <Countup end={props.point} duration={1} />
                 </div>
                 <div className={thisStyle.pointUnit}>
                     kgp
