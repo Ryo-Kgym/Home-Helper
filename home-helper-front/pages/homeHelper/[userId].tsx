@@ -1,20 +1,13 @@
 import Layout from "../../components/page/Layout";
 import {CardLinkList} from "../../components/ui/Card";
+import Image from 'next/image'
+import thisStyle from '../../styles/UserPoint.module.css'
 
 const pageList = [
     {href: '/homeHelper', label: '戻る', back: true,},
     {href: '/homeHelper/chargePoint', label: 'ためる',},
     {href: '/homeHelper/usePoint', label: 'つかう',},
 ]
-
-const pointStyle = {
-    borderRadius: '10px',
-    border: 'solid 2px gray',
-    width: '800px',
-    height: '200px',
-    fontSize: '150px',
-    textAlign: 'center',
-}
 
 const index = (props: { data: UserPoint }) => {
 
@@ -39,8 +32,16 @@ const Point = (props: UserPoint) => {
     return (
         <>
             <div>{props.name} さんの今のポイント</div>
-            <div style={pointStyle}>
-                {props.point}
+            <div className={thisStyle.frame}>
+                <div className={thisStyle.point}>
+                    {props.point}
+                </div>
+                <div className={thisStyle.pointUnit}>
+                    kgp
+                </div>
+                <div className={thisStyle.piggy}>
+                    <Image src="/piggy_bank.svg" alt="Piggy Bank" width={100} height={100}/>
+                </div>
             </div>
 
         </>
@@ -53,7 +54,7 @@ export async function getServerSideProps(context: any) {
     // const res = await fetch(`https://.../data`)
     const data = {
         id: userId,
-        name: 'ユーザ1',
+        name: 'ユーザ' + userId,
         point: 3000,
     }
 
