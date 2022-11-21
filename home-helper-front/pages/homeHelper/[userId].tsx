@@ -3,6 +3,7 @@ import {CardLinkList} from "../../components/ui/Card";
 import Image from 'next/image'
 import thisStyle from '../../styles/UserPoint.module.css'
 import Countup from "react-countup";
+import { Box } from '@mantine/core';
 
 const pageList = [
     {href: '/homeHelper', label: '戻る', back: true,},
@@ -32,19 +33,19 @@ export default index
 const Point = (props: UserPoint) => {
     return (
         <>
-            <div>{props.name} さんの今のポイント</div>
+            <Box>{props.name} さんの今のポイント</Box>
 
-            <div className={thisStyle.frame}>
-                <div className={thisStyle.point}>
+            <Box className={thisStyle.frame}>
+                <Box className={thisStyle.point}>
                     <Countup end={props.point} duration={1} />
-                </div>
-                <div className={thisStyle.pointUnit}>
+                </Box>
+                <Box className={thisStyle.pointUnit}>
                     kgp
-                </div>
-                <div className={thisStyle.piggy}>
+                </Box>
+                <Box className={thisStyle.piggy}>
                     <Image src="/piggy_bank.svg" alt="Piggy Bank" width={100} height={100}/>
-                </div>
-            </div>
+                </Box>
+            </Box>
 
         </>
     )
