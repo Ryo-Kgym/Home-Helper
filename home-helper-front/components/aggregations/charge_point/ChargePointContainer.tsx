@@ -17,7 +17,7 @@ export const ChargePointContainer:
 
     return <ChargePointPresenter
         fromDate={props.fromDate}
-        elements={props.helpItems}
+        helpItems={props.helpItems}
         handleClickCount={handleClickCount}
         totalPoint={totalPoint}
     />
