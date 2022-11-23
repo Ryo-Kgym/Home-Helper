@@ -1,5 +1,5 @@
-import {DeclareTerm} from "../../components/page/charge_point/declareTerm";
-import {HelpItemList} from "../../components/page/charge_point/helpItemList";
+import {DeclareTerm} from "../../components/aggregations/charge_point/declareTerm";
+import {HelpItemList} from "../../components/aggregations/charge_point/helpItemList";
 
 // TODO change structure
 const index = (props: {
