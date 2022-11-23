@@ -8,4 +8,4 @@
 1. Kotlin, SpringBoot FW
 1. GraphQL
 1. MySQL, MyBatisFW
-1. Next.js
+1. Next.js, Container / Presentational Structure
