@@ -1,5 +1,5 @@
 import {CardLinkList} from "../components/ui/Card";
-import Layout from "../components/page/Layout";
+import {Layout} from "../components/page/Layout";
 import MainTitle from "../components/page/MainTitle";
 
 const pageList = [

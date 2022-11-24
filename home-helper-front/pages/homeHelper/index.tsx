@@ -1,4 +1,4 @@
-import Layout from "../../components/page/Layout";
+import {Layout} from "../../components/page/Layout";
 import {CardLinkList} from "../../components/ui/Card";
 import MainTitle from "../../components/page/MainTitle";
 

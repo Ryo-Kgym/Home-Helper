@@ -2,7 +2,7 @@ import styles from "../../styles/Home.module.css";
 import {ReactElement} from "react";
 import Head from "next/head";
 
-const Layout = (props: {
+export const Layout = (props: {
     main: ReactElement,
 }) => {
     return (
@@ -16,7 +16,6 @@ const Layout = (props: {
 
     )
 }
-export default Layout
 
 // TODO フォントをシネキャプションにする
 const AppHeader = () => {
