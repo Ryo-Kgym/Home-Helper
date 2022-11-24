@@ -1,0 +1,40 @@
+$fontSize: 120px;
+
+.pointFrame {
+  font-size: $fontSize;
+  width: 6.1em;
+  height: 2.7em;
+  position: relative;
+}
+
+.pointArea {
+  border: double 10px black;
+  border-radius: 15px;
+  font-size: $fontSize;
+  width: 6.0em;
+  height: 2.2em;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0.17em;
+  padding: 0.4em;
+
+  * {
+    margin: 0.1em;
+  }
+}
+
+.pointTitle {
+  background-color: white;
+  font-size: $fontSize / 3;
+  position: absolute;
+  z-index: 5;
+  left: 1em;
+}
+
+.piggy {
+  width: 1em;
+  height: 1em;
+  position: absolute;
+  right: 0.3em;
+  bottom: 0;
+}

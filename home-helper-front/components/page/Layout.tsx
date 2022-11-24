@@ -17,6 +17,13 @@ export const Layout = (props: {
     )
 }
 
+export const Template = (props: {
+    body: ReactElement
+}) =>
+    <>
+        {props.body}
+    </>
+
 // TODO フォントをシネキャプションにする
 const AppHeader = () => {
     return (
