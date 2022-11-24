@@ -2,22 +2,20 @@ import {Layout} from "../../components/page/Layout";
 import {CardLinkList} from "../../components/ui/Card";
 import MainTitle from "../../components/page/MainTitle";
 
-const pageList = [
-    {href: '/', label: 'ホーム', back: true,},
-    {href: '/homeHelper/1', label: 'ユーザ1', },
-    {href: '/homeHelper/2', label: 'ユーザ2', },
-]
-
-const index = () => {
+const index = (props: {
+    data: {
+        pageList: any[],
+    }
+}) => {
     return (
         <Layout
             main={
                 <>
                     <MainTitle
-                        label={'お手伝いアプリ！'}
+                        label={'お手伝いアプリ'}
                     />
                     <CardLinkList
-                        pageList={pageList}
+                        pageList={props.data.pageList}
                     />
                 </>
             }
@@ -25,3 +23,28 @@ const index = () => {
     )
 }
 export default index
+
+export async function getStaticProps() {
+    const pageList = [
+        {href: '/', label: 'ホーム', back: true,},
+    ]
+
+    const userList = [
+        {id: '1', name: 'ユーザ1',},
+        {id: '2', name: 'ユーザ2',},
+    ]
+
+    userList.map(user => {
+        pageList.push({
+            href: '/homeHelper/' + user.id,
+            label: user.name,
+            back: false,
+        })
+    })
+
+    const data = {
+        pageList: pageList,
+    }
+
+    return {props: {data}}
+}
