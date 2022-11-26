@@ -1,43 +1,18 @@
-import { NonHeaderLayout } from "../../components/presenter/Layout";
-import { CardLinkList } from "../../components/ui/Card";
-import MainTitle from "../../components/ui/MainTitle";
+import { Page } from "../../components/page/home_helper/HomeHelperTemplate";
 
-const index = (props: {
-  data: {
-    pageList: any[];
-  };
-}) => {
-  return (
-    <NonHeaderLayout
-      main={
-        <>
-          <MainTitle label={"お手伝いアプリ"} />
-          <CardLinkList pageList={props.data.pageList} />
-        </>
-      }
-    />
-  );
+const index = (props: any) => {
+  return <Page data={props.data} />;
 };
 export default index;
 
 export async function getStaticProps() {
-  const pageList = [{ href: "/", label: "ホーム", back: true }];
-
   const userList = [
     { id: "1", name: "ユーザ1" },
     { id: "2", name: "ユーザ2" },
   ];
 
-  userList.map((user) => {
-    pageList.push({
-      href: "/homeHelper/" + user.id,
-      label: user.name,
-      back: false,
-    });
-  });
-
   const data = {
-    pageList: pageList,
+    userList: userList,
   };
 
   return { props: { data } };
