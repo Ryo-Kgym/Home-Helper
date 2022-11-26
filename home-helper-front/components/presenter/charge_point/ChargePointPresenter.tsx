@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Flex, Table } from "@mantine/core";
 import styles from "./styles.module.scss";
-import { PopOver } from "@components/ui/popOver";
 import { Layout } from "@components/presenter/Layout";
 import { BackCardLinkList } from "@components/ui/Card";
 import { Counter } from "@components/ui/Counter";
@@ -11,6 +10,7 @@ type ChargePointPresenterProps = {
   helpItems: any[];
   totalPoint: number;
   handleCalcTotal: (point: number) => void;
+  handleRegisterHelpItems: () => void;
 };
 
 export const ChargePointPresenter: FC<ChargePointPresenterProps> = (props) => {
@@ -23,7 +23,10 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = (props) => {
             helpItems={props.helpItems}
             handleSetValue={props.handleCalcTotal}
           />
-          <Total total={props.totalPoint} />
+          <Total
+            total={props.totalPoint}
+            handleRegisterHelpItems={props.handleRegisterHelpItems}
+          />
           <BackCardLinkList href={"../homeHelper/possessionPoint"} />
         </>
       }
@@ -76,10 +79,11 @@ const Title = (props: { fromDate: string }) => {
   );
 };
 
-const Total = (props: { total: number }) => {
-  const handleClickDecide = () => {
-    alert(props.total.toLocaleString() + "ポイント 獲得！");
-  };
+const Total = (props: {
+  total: number;
+  handleRegisterHelpItems: () => void;
+}) => {
+  const message = props.total.toLocaleString() + "ポイント 獲得！";
 
   return (
     <Flex
@@ -91,9 +95,7 @@ const Total = (props: { total: number }) => {
       <Flex>合計</Flex>
       <Flex className={styles.point}>{props.total.toLocaleString()}</Flex>
       <Flex className={styles.unit}>pt</Flex>
-      <Flex>
-        <PopOver handleClick={handleClickDecide} />
-      </Flex>
+      <Flex></Flex>
     </Flex>
   );
 };

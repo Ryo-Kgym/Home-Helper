@@ -13,12 +13,17 @@ export const ChargePointContainer: FC<ChargePointContainerProps> = (props) => {
     setTotalPoint(totalPoint + point);
   };
 
+  const handleRegisterHelpItems = () => {
+    console.log(totalPoint + "を登録します。");
+  };
+
   return (
     <ChargePointPresenter
       fromDate={props.fromDate}
       helpItems={props.helpItems}
       totalPoint={totalPoint}
       handleCalcTotal={handleCalcTotal}
+      handleRegisterHelpItems={handleRegisterHelpItems}
     />
   );
 };
