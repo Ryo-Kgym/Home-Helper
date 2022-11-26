@@ -8,7 +8,6 @@ import Image from "next/image";
 import piggy from "@public/piggy_bank.svg";
 
 type PossessionPointPresenterProps = {
-  id: number;
   name: string;
   point: number;
 };
@@ -19,23 +18,30 @@ const cardListProps = [
   { href: "/homeHelper/usePoint", label: "つかう" },
 ];
 
-export const PossessionPointPresenter: FC<
-  PossessionPointPresenterProps
-> = (props: { id: number; name: string; point: number }) => (
-  <Layout
-    main={
-      <>
-        <Point id={props.id} name={props.name} point={props.point} />
-        <CardLinkList props={cardListProps} />
-      </>
-    }
-  />
-);
+export const PossessionPointPresenter: FC<PossessionPointPresenterProps> = (
+  props
+) => {
+  const pointProps = {
+    name: props.name,
+    point: props.point,
+  };
 
-const Point = (props: { id: number; name: string; point: number }) => (
+  return (
+    <Layout
+      main={
+        <>
+          <Point props={pointProps} />
+          <CardLinkList props={cardListProps} />
+        </>
+      }
+    />
+  );
+};
+
+const Point = ({ props }: { props: { name: string; point: number } }) => (
   <>
     <Flex className={styles.pointFrame} wrap={"wrap"}>
-      <Flex className={styles.pointTitle}>今のポイント</Flex>
+      <Flex className={styles.pointTitle}>{props.name} の今のポイント</Flex>
       <Flex className={styles.pointArea}>
         <Countup
           end={props.point}

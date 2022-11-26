@@ -18,7 +18,7 @@ export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = (props) => {
   ];
   props.userList.map((user) => {
     return propList.push({
-      href: "/homeHelper/" + user.id,
+      href: "/homeHelper/possessionPoint",
       label: user.name,
       back: false,
       handleClick: () => {
