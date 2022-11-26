@@ -1,16 +1,16 @@
-import { Flex, Table } from "@mantine/core";
 import { FC } from "react";
-import { PopOver } from "../../ui/popOver";
+import { Flex, Table } from "@mantine/core";
 import styles from "./styles.module.scss";
-import { Layout } from "../Layout";
+import { PopOver } from "@components/ui/popOver";
+import { Layout } from "@components/presenter/Layout";
 import { BackCardLinkList } from "@components/ui/Card";
 import { Counter } from "@components/ui/Counter";
 
 type ChargePointPresenterProps = {
   fromDate: string;
   helpItems: any[];
-  handleClickCount: (point: number, count: number) => void;
   totalPoint: number;
+  handleCalcTotal: (point: number) => void;
 };
 
 export const ChargePointPresenter: FC<ChargePointPresenterProps> = (props) => {
@@ -21,7 +21,7 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = (props) => {
           <Title fromDate={props.fromDate} />
           <HelpItemTable
             helpItems={props.helpItems}
-            handleClickCount={props.handleClickCount}
+            handleSetValue={props.handleCalcTotal}
           />
           <Total total={props.totalPoint} />
           <BackCardLinkList href={"../homeHelper/possessionPoint"} />
@@ -33,7 +33,7 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = (props) => {
 
 const HelpItemTable = (props: {
   helpItems: any[];
-  handleClickCount: (point: number, count: number) => void;
+  handleSetValue: (point: number) => void;
 }) => (
   <Table striped highlightOnHover>
     <thead>
@@ -46,17 +46,16 @@ const HelpItemTable = (props: {
     </thead>
     <tbody>
       {props.helpItems.map((helpItem) => (
-        <tr
-          key={helpItem.name}
-          onClick={() => {
-            props.handleClickCount(helpItem.point, helpItem.count);
-          }}
-        >
+        <tr key={helpItem.id}>
           <td>{helpItem.id}</td>
           <td>{helpItem.name}</td>
           <td>{helpItem.point}</td>
           <td>
-            <Counter defaultValue={helpItem.count} />
+            <Counter
+              defaultValue={0}
+              value={helpItem.point}
+              handleSetValue={props.handleSetValue}
+            />
           </td>
         </tr>
       ))}

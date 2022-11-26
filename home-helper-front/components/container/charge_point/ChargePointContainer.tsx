@@ -9,16 +9,16 @@ type ChargePointContainerProps = {
 export const ChargePointContainer: FC<ChargePointContainerProps> = (props) => {
   const [totalPoint, setTotalPoint] = useState(0);
 
-  const handleClickCount = (point: number, count: number) => {
-    setTotalPoint(totalPoint + point * count);
+  const handleCalcTotal = (point: number) => {
+    setTotalPoint(totalPoint + point);
   };
 
   return (
     <ChargePointPresenter
       fromDate={props.fromDate}
       helpItems={props.helpItems}
-      handleClickCount={handleClickCount}
       totalPoint={totalPoint}
+      handleCalcTotal={handleCalcTotal}
     />
   );
 };

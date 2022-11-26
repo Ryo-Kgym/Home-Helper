@@ -6,6 +6,8 @@ type CounterProps = {
   defaultValue: number;
   min?: number;
   max?: number;
+  value: number;
+  handleSetValue: (point: number) => void;
 };
 
 export const Counter: FC<CounterProps> = (props) => {
@@ -14,11 +16,17 @@ export const Counter: FC<CounterProps> = (props) => {
   const max = props.max ?? 9999;
 
   const handleIncrement = () => {
-    if (value < max) setValue(value + 1);
+    if (value < max) {
+      setValue(value + 1);
+      props.handleSetValue(props.value);
+    }
   };
 
   const handleDecrement = () => {
-    if (value > min) setValue(value - 1);
+    if (value > min) {
+      setValue(value - 1);
+      props.handleSetValue(-props.value);
+    }
   };
 
   return (
