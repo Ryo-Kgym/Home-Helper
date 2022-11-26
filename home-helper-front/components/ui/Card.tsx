@@ -1,43 +1,41 @@
 import Link from "next/link";
-import styles from "../../styles/Home.module.css";
+import styles from "./ui.module.scss";
 
-const Card = (props: CardProps) => {
-    const label = props.back
-        ? <h2>&larr; {props.label}</h2>
-        : <h2> {props.label} &rarr;</h2>
+const Card = ({ props }: { props: CardProps }) => {
+  const label = props.back ? (
+    <h2>&larr; {props.label}</h2>
+  ) : (
+    <h2> {props.label} &rarr;</h2>
+  );
 
-    return (
-        <>
-            <Link href={props.href} className={styles.card}>
-                {label}
-            </Link>
-        </>
-    )
-}
+  return (
+    <>
+      <Link
+        href={props.href}
+        className={styles.card}
+        onClick={props.handleClick}
+      >
+        {label}
+      </Link>
+    </>
+  );
+};
 
-export default Card
+export default Card;
 
-export const CardLinkList = (props: {
-    pageList: CardProps[]
-}) => {
-    return (
-        <div className={styles.grid}>
-            {props.pageList.map((e, i) => {
-                return (
-                    <Card
-                        href={e.href}
-                        label={e.label}
-                        back={e.back}
-                        key={'card' + i}
-                    />
-                )
-            })}
-        </div>
-    )
-}
+export const CardLinkList = ({ props }: { props: CardProps[] }) => {
+  return (
+    <div className={styles.grid}>
+      {props.map((p, i) => {
+        return <Card props={p} key={"card" + i} />;
+      })}
+    </div>
+  );
+};
 
-export interface CardProps {
-    href: string
-    label: string
-    back?: boolean
-}
+export type CardProps = {
+  href: string;
+  label: string;
+  back?: boolean;
+  handleClick?: () => void;
+};

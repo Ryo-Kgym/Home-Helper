@@ -6,5 +6,14 @@ type HomeHelperContainerProps = {
 };
 
 export const HomeHelperContainer: FC<HomeHelperContainerProps> = (props) => {
-  return <HomeHelperPresenter userList={props.userList} />;
+  const handleClickUser = (userId: string) => {
+    sessionStorage.setItem("userId", userId);
+  };
+
+  return (
+    <HomeHelperPresenter
+      userList={props.userList}
+      handleClickUser={handleClickUser}
+    />
+  );
 };

@@ -13,7 +13,7 @@ type PossessionPointPresenterProps = {
   point: number;
 };
 
-const pageList = [
+const cardListProps = [
   { href: "/homeHelper", label: "戻る", back: true },
   { href: "/homeHelper/chargePoint", label: "ふやす" },
   { href: "/homeHelper/usePoint", label: "つかう" },
@@ -26,7 +26,7 @@ export const PossessionPointPresenter: FC<
     main={
       <>
         <Point id={props.id} name={props.name} point={props.point} />
-        <CardLinkList pageList={pageList} />
+        <CardLinkList props={cardListProps} />
       </>
     }
   />

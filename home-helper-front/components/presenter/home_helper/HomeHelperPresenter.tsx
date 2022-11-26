@@ -1,14 +1,15 @@
 import { FC } from "react";
 import MainTitle from "../../ui/MainTitle";
-import { CardLinkList } from "../../ui/Card";
+import { CardLinkList, CardProps } from "../../ui/Card";
 import { NonHeaderLayout } from "../Layout";
 
 type HomeHelperPresenterProps = {
   userList: any[];
+  handleClickUser: (userId: string) => void;
 };
 
 export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = (props) => {
-  const pageList = [
+  const propList: CardProps[] = [
     {
       href: "/",
       label: "戻る",
@@ -16,10 +17,13 @@ export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = (props) => {
     },
   ];
   props.userList.map((user) => {
-    pageList.push({
+    return propList.push({
       href: "/homeHelper/" + user.id,
       label: user.name,
       back: false,
+      handleClick: () => {
+        props.handleClickUser(user.id);
+      },
     });
   });
 
@@ -28,7 +32,7 @@ export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = (props) => {
       main={
         <>
           <MainTitle label={"お手伝いアプリ"} />
-          <CardLinkList pageList={pageList} />
+          <CardLinkList props={propList} />
         </>
       }
     />
