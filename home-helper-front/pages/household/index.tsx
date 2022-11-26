@@ -1,4 +1,4 @@
-import { Page } from "../../components/page/house_hold/HouseHoldPage";
+import { Page } from "@components/page/house_hold/HouseHoldPage";
 
 const index = () => {
   return <Page />;

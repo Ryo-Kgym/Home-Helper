@@ -1,7 +1,7 @@
 import { FC } from "react";
-import MainTitle from "../../ui/MainTitle";
-import { CardLinkList, CardProps } from "../../ui/Card";
-import { NonHeaderLayout } from "../Layout";
+import { MainTitle } from "@components/ui/MainTitle";
+import { CardLinkList, CardProps } from "@components/ui/Card";
+import { NonHeaderLayout } from "@components/presenter/Layout";
 
 type HomeHelperPresenterProps = {
   userList: any[];

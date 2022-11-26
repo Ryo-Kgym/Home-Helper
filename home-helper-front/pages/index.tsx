@@ -1,4 +1,4 @@
-import { Page } from "../components/page/top/TopPage";
+import { Page } from "@components/page/top/TopPage";
 
 const index = () => {
   return <Page />;

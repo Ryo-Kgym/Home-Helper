@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { PossessionPointPresenter } from "../../presenter/possession_point/PossessionPointPresenter";
+import { PossessionPointPresenter } from "@components/presenter/possession_point/PossessionPointPresenter";
 
 type PossessionPointContainerProps = {
   id: number;

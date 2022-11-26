@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { UsePointPresenter } from "../../presenter/use_point/UsePointPresenter";
+import { UsePointPresenter } from "@components/presenter/use_point/UsePointPresenter";
 
 type UsePointContainerProps = {
   exchangeItems: any[];

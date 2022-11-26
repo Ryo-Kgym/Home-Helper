@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { HomeHelperContainer } from "../../container/home_helper/HomeHelperContainer";
+import { HomeHelperContainer } from "@components/container/home_helper/HomeHelperContainer";
 
 type HomeHelperPageProps = {
   data: any;

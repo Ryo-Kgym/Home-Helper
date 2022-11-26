@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { Layout } from "../Layout";
-import { CardLinkList } from "../../ui/Card";
+import { Layout } from "@components/presenter/Layout";
+import { CardLinkList } from "@components/ui/Card";
 import { Flex } from "@mantine/core";
 import Countup from "react-countup";
 import styles from "./styles.module.scss";
 import Image from "next/image";
-import piggy from "../../../public/piggy_bank.svg";
+import piggy from "@public/piggy_bank.svg";
 
 type PossessionPointPresenterProps = {
   id: number;

@@ -1,9 +1,5 @@
-/*
- * Copyright (c) 2022 Ryo-Kgym.
- */
-
 import { FC, useState } from "react";
-import { ChargePointPresenter } from "../../presenter/charge_point/ChargePointPresenter";
+import { ChargePointPresenter } from "@components/presenter/charge_point/ChargePointPresenter";
 
 type ChargePointContainerProps = {
   fromDate: string;

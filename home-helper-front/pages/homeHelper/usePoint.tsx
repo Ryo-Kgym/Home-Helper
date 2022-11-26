@@ -1,4 +1,4 @@
-import { Page } from "../../components/page/use_point/UsePointPage";
+import { Page } from "@components/page/use_point/UsePointPage";
 
 const index = (props: any) => {
   return <Page data={props.data} />;

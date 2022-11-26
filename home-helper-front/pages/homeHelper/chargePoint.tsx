@@ -1,4 +1,4 @@
-import { Page } from "../../components/page/charge_point/ChargePointPage";
+import { Page } from "@components/page/charge_point/ChargePointPage";
 
 const index = (props: any) => {
   return <Page data={props.data} />;

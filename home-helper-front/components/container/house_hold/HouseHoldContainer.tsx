@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { HouseHoldPresenter } from "../../presenter/house_hold/HouseHoldPresenter";
+import { HouseHoldPresenter } from "@components/presenter/house_hold/HouseHoldPresenter";
 
 export const HouseHoldContainer: FC = () => {
   return <HouseHoldPresenter />;

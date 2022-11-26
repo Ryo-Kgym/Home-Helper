@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { HomeHelperPresenter } from "../../presenter/home_helper/HomeHelperPresenter";
+import { HomeHelperPresenter } from "@components/presenter/home_helper/HomeHelperPresenter";
 
 type HomeHelperContainerProps = {
   userList: any[];

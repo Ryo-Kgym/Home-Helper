@@ -1,4 +1,4 @@
-import { Page } from "../../components/page/home_helper/HomeHelperTemplate";
+import { Page } from "@components/page/home_helper/HomeHelperTemplate";
 
 const index = (props: any) => {
   return <Page data={props.data} />;

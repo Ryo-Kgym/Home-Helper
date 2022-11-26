@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { UsePointContainer } from "../../container/use_point/UsePointContainer";
+import { UsePointContainer } from "@components/container/use_point/UsePointContainer";
 
 type UsePointPageProps = {
   data: {

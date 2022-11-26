@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { ChargePointContainer } from "../../container/charge_point/ChargePointContainer";
+import { ChargePointContainer } from "@components/container/charge_point/ChargePointContainer";
 
 type ChargePointPageProps = {
   data: {

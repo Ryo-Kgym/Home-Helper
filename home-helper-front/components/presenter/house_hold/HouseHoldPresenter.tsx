@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { NonHeaderLayout } from "../Layout";
-import MainTitle from "../../ui/MainTitle";
-import { CardLinkList } from "../../ui/Card";
+import { NonHeaderLayout } from "@components/presenter/Layout";
+import { MainTitle } from "@components/ui/MainTitle";
+import { CardLinkList } from "@components/ui/Card";
 
 export const HouseHoldPresenter: FC = () => {
   const cardLinkProps = [

@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Table } from "@mantine/core";
 import { FC } from "react";
 import styles from "./styles.module.scss";
-import { Layout } from "../Layout";
+import { Layout } from "@components/presenter/Layout";
 
 type UsePointPresenterProps = {
   exchangeItems: any[];
