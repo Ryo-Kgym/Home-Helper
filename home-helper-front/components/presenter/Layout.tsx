@@ -1,23 +1,30 @@
-import styles from "../../styles/Home.module.css";
+import homeStyle from "../../styles/Home.module.css";
+import styles from "./styles.module.scss";
 import { ReactElement } from "react";
 import Head from "next/head";
 
 export const NonHeaderLayout = (props: { main: ReactElement }) => {
   return (
-    <div className={styles.container}>
+    <div>
       <AppHeader />
-
-      <main className={styles.main}>{props.main}</main>
+      <div className={homeStyle.container}>
+        <div className={styles.headerLine} />
+        <main className={styles.main}>{props.main}</main>
+        <div className={styles.footerLine} />
+      </div>
     </div>
   );
 };
 
 export const Layout = (props: { main: ReactElement }) => {
   return (
-    <div className={styles.container}>
+    <div>
       <AppHeader />
-
-      <main className={styles.main}>{props.main}</main>
+      <div className={homeStyle.container}>
+        <div className={styles.headerLine} />
+        <main className={styles.main}>{props.main}</main>
+        <div className={styles.footerLine} />
+      </div>
     </div>
   );
 };
