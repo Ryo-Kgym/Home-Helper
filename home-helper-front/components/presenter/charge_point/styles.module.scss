@@ -1,11 +1,25 @@
 
 .totalPoint {
-  font-size: 30px;
+  font-size: 50px;
   margin: 5px;
+  justify-content: flex-end;
 }
 
-.declareTerm {
+.point {
+  width: 4em;
+  justify-content: end;
+  margin-right: 20px;
+}
+
+.unit {
+  margin-right: 20px;
+}
+
+.title {
+  font-size: 50px;
+  justify-content: start;
+}
+
+.message{
   font-size: 30px;
-  margin: 5px;
-  max-width: 500px;
 }

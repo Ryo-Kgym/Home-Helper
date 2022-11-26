@@ -33,6 +33,18 @@ export const CardLinkList = ({ props }: { props: CardProps[] }) => {
   );
 };
 
+export const BackCardLinkList = ({ href }: { href: string }) => {
+  const props: CardProps[] = [
+    {
+      href: href,
+      label: "戻る",
+      back: true,
+    },
+  ];
+
+  return <CardLinkList props={props} />;
+};
+
 export type CardProps = {
   href: string;
   label: string;
