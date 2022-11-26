@@ -1,4 +1,4 @@
-import { Layout } from "../../components/ui/Layout";
+import { NonHeaderLayout } from "../../components/presenter/Layout";
 import { CardLinkList } from "../../components/ui/Card";
 import MainTitle from "../../components/ui/MainTitle";
 
@@ -8,7 +8,7 @@ const index = (props: {
   };
 }) => {
   return (
-    <Layout
+    <NonHeaderLayout
       main={
         <>
           <MainTitle label={"お手伝いアプリ"} />

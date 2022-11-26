@@ -1,5 +1,5 @@
 import { CardLinkList } from "../components/ui/Card";
-import { Layout } from "../components/ui/Layout";
+import { NonHeaderLayout } from "../components/presenter/Layout";
 import MainTitle from "../components/ui/MainTitle";
 
 const pageList = [
@@ -9,7 +9,7 @@ const pageList = [
 
 const index = () => {
   return (
-    <Layout
+    <NonHeaderLayout
       main={
         <>
           <MainTitle label={"うちのアプリへようこそ！"} />

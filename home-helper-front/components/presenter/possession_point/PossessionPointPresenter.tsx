@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Template } from "../../ui/Layout";
+import { Layout } from "../Layout";
 import { CardLinkList } from "../../ui/Card";
 import { Flex } from "@mantine/core";
 import Countup from "react-countup";
@@ -22,8 +22,8 @@ const pageList = [
 export const PossessionPointPresenter: FC<
   PossessionPointPresenterProps
 > = (props: { id: number; name: string; point: number }) => (
-  <Template
-    body={
+  <Layout
+    main={
       <>
         <Point id={props.id} name={props.name} point={props.point} />
         <CardLinkList pageList={pageList} />
