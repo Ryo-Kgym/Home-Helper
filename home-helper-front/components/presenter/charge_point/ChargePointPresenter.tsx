@@ -4,6 +4,7 @@ import { PopOver } from "../../ui/popOver";
 import styles from "./styles.module.scss";
 import { Layout } from "../Layout";
 import { BackCardLinkList } from "@components/ui/Card";
+import { Counter } from "@components/ui/Counter";
 
 type ChargePointPresenterProps = {
   fromDate: string;
@@ -54,7 +55,9 @@ const HelpItemTable = (props: {
           <td>{helpItem.id}</td>
           <td>{helpItem.name}</td>
           <td>{helpItem.point}</td>
-          <td>{helpItem.count}</td>
+          <td>
+            <Counter defaultValue={helpItem.count} />
+          </td>
         </tr>
       ))}
     </tbody>
