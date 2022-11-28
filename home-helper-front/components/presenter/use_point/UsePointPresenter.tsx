@@ -2,9 +2,10 @@ import { Box, Button, Flex, Table } from "@mantine/core";
 import { FC } from "react";
 import styles from "./styles.module.scss";
 import { Layout } from "@components/presenter/Layout";
+import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
 
 type UsePointPresenterProps = {
-  exchangeItems: any[];
+  exchangeItems: ExchangeItem[];
   currentPoint: number;
   totalUsePoint: number;
   handleCalcTotalUsePoint: any;
@@ -36,7 +37,7 @@ export const UsePointPresenter: FC<UsePointPresenterProps> = (props) => {
                       props.handleCalcTotalUsePoint(exchangeItem.point);
                     }}
                   >
-                    {exchangeItem.count}
+                    {0}
                   </td>
                 </tr>
               ))}
