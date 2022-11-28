@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { UsePointPresenter } from "@components/presenter/use_point/UsePointPresenter";
 import { useUsePoint } from "@hooks/useUsePoint";
 import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
+import { loadUserId } from "@hooks/loadUserId";
 
 export const UsePointContainer = () => {
   const [exchangeItems, setExchangeItems] = useState<ExchangeItem[]>([]);
@@ -9,7 +10,7 @@ export const UsePointContainer = () => {
   const [totalUsePoint, setTotalUsePoint] = useState(0);
 
   useEffect(() => {
-    const userId = sessionStorage.getItem("userId") ?? "0";
+    const userId = loadUserId();
     useUsePoint(userId).then((r) => {
       setExchangeItems(r.exchangeItems);
       setCurrentPoint(r.user.currentPoint);
