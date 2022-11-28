@@ -1,27 +1,19 @@
-import Layout from "../../components/page/Layout";
-import {CardLinkList} from "../../components/ui/Card";
-import MainTitle from "../../components/page/MainTitle";
+import { Page } from "@components/page/home_helper/HomeHelperTemplate";
 
-const pageList = [
-    {href: '/', label: 'ホーム', back: true,},
-    {href: '/homeHelper/1', label: 'ユーザ1', },
-    {href: '/homeHelper/2', label: 'ユーザ2', },
-]
+const index = (props: any) => {
+  return <Page data={props.data} />;
+};
+export default index;
 
-const index = () => {
-    return (
-        <Layout
-            main={
-                <>
-                    <MainTitle
-                        label={'お手伝いアプリ！'}
-                    />
-                    <CardLinkList
-                        pageList={pageList}
-                    />
-                </>
-            }
-        />
-    )
+export async function getStaticProps() {
+  const userList = [
+    { id: "1", name: "ユーザ1" },
+    { id: "2", name: "ユーザ2" },
+  ];
+
+  const data = {
+    userList: userList,
+  };
+
+  return { props: { data } };
 }
-export default index
