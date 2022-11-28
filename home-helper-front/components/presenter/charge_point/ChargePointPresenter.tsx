@@ -4,13 +4,15 @@ import styles from "./styles.module.scss";
 import { Layout } from "@components/presenter/Layout";
 import { BackCardLinkList } from "@components/ui/Card";
 import { Counter } from "@components/ui/Counter";
+import { UpdateNotification } from "@components/ui/UpdateNotification";
 
 type ChargePointPresenterProps = {
   fromDate: string;
   helpItems: any[];
   totalPoint: number;
   handleCalcTotal: (point: number) => void;
-  handleRegisterHelpItems: () => void;
+  handleRegisterHelps: () => void;
+  handleReset: () => void;
 };
 
 export const ChargePointPresenter: FC<ChargePointPresenterProps> = (props) => {
@@ -25,7 +27,8 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = (props) => {
           />
           <Total
             total={props.totalPoint}
-            handleRegisterHelpItems={props.handleRegisterHelpItems}
+            handleRegisterHelps={props.handleRegisterHelps}
+            handleReset={props.handleReset}
           />
           <BackCardLinkList href={"../homeHelper/possessionPoint"} />
         </>
@@ -79,11 +82,16 @@ const Title = (props: { fromDate: string }) => {
   );
 };
 
-const Total = (props: {
+const Total = ({
+  total,
+  handleRegisterHelps,
+  handleReset,
+}: {
   total: number;
-  handleRegisterHelpItems: () => void;
+  handleRegisterHelps: () => void;
+  handleReset: () => void;
 }) => {
-  const message = props.total.toLocaleString() + "ポイント 獲得！";
+  const message = total.toLocaleString() + "ポイント 獲得！";
 
   return (
     <Flex
@@ -93,9 +101,19 @@ const Total = (props: {
       align={"center"}
     >
       <Flex>合計</Flex>
-      <Flex className={styles.point}>{props.total.toLocaleString()}</Flex>
+      <Flex className={styles.point}>{total.toLocaleString()}</Flex>
       <Flex className={styles.unit}>pt</Flex>
-      <Flex></Flex>
+      <Flex>
+        <UpdateNotification
+          label={"お手伝い申請"}
+          showTitle={"お手伝いを申請中だよ！"}
+          showMessage={""}
+          updateTitle={"お手伝いの申請が完了したよ！"}
+          updateMessage={""}
+          handleClick={handleRegisterHelps}
+          handleAfterProcess={handleReset}
+        />
+      </Flex>
     </Flex>
   );
 };
