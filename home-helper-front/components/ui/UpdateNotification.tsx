@@ -1,7 +1,8 @@
-import { Group, Button } from "@mantine/core";
-import { showNotification, updateNotification } from "@mantine/notifications";
-import { IconCheck } from "@tabler/icons";
 import { FC } from "react";
+import { Group, Button } from "@mantine/core";
+import { IconCheck } from "@tabler/icons";
+import { showNotification, updateNotification } from "@mantine/notifications";
+import styles from "./ui.module.scss";
 
 type UpdateNotificationProps = {
   label: string;
@@ -15,36 +16,46 @@ type UpdateNotificationProps = {
   autoClose?: number;
 };
 
-export const UpdateNotification: FC<UpdateNotificationProps> = (props) => {
+export const UpdateNotification: FC<UpdateNotificationProps> = ({
+  label,
+  showTitle,
+  showMessage,
+  updateTitle,
+  updateMessage,
+  handleClick,
+  handleAfterProcess,
+  updateTime,
+  autoClose,
+}) => {
   return (
-    <Group position="center">
+    <Group position="center" className={styles.updateNotification}>
       <Button
         onClick={() => {
           showNotification({
             id: "load-data",
             loading: true,
-            title: props.showTitle,
-            message: props.showMessage,
+            title: showTitle,
+            message: showMessage,
             autoClose: false,
             disallowClose: true,
           });
 
-          props.handleClick();
+          handleClick();
 
           setTimeout(() => {
             updateNotification({
               id: "load-data",
               color: "teal",
-              title: props.updateTitle,
-              message: props.updateMessage,
+              title: updateTitle,
+              message: updateMessage,
               icon: <IconCheck size={16} />,
-              autoClose: props.autoClose ?? 2000,
+              autoClose: autoClose ?? 2000,
             });
-            props.handleAfterProcess();
-          }, props.updateTime ?? 3000);
+            handleAfterProcess();
+          }, updateTime ?? 3000);
         }}
       >
-        {props.label}
+        {label}
       </Button>
     </Group>
   );
