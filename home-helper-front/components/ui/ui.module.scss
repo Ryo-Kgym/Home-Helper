@@ -72,6 +72,34 @@
   }
 }
 
-.counterBox {
-  background-color: gray;
+.counter {
+  .counterBox {
+    background-color: yellowgreen;
+    width: 1.5em;
+    height: 1.5em;
+    font-size: 50px;
+  }
+
+  .counterBox:hover {
+    background-color: green;
+  }
+
+  .count {
+    alignment: center;
+    width: 3em;
+    font-size: 30px;
+    justify-content: center;
+  }
+
+  .blank {
+    alignment: center;
+    width: 2em;
+    font-size: 30px;
+    justify-content: center;
+  }
+
+  .clearBox {
+    background-color: gray;
+  }
 }
+
