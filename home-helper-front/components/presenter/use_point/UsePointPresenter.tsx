@@ -5,6 +5,7 @@ import { Layout } from "@components/presenter/Layout";
 import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
 import { BackCardLinkList } from "@components/ui/Card";
 import { Counter } from "@components/ui/Counter";
+import { UpdateNotification } from "@components/ui/UpdateNotification";
 
 type UsePointPresenterProps = {
   exchangeItems: ExchangeItem[];
@@ -14,22 +15,26 @@ type UsePointPresenterProps = {
   handleRequest: () => void;
 };
 
-export const UsePointPresenter: FC<UsePointPresenterProps> = (props) => {
+export const UsePointPresenter: FC<UsePointPresenterProps> = ({
+  exchangeItems,
+  currentPoint,
+  totalUsePoint,
+  handleCalcTotalUsePoint,
+  handleRequest,
+}) => {
   return (
     <Layout
       main={
         <>
           <ExchangeTable
-            exchangeItems={props.exchangeItems}
-            handleSetValue={props.handleCalcTotalUsePoint}
+            exchangeItems={exchangeItems}
+            handleSetValue={handleCalcTotalUsePoint}
           />
           <LeavePointBox
-            currentPoint={props.currentPoint}
-            totalUsePoint={props.totalUsePoint}
+            currentPoint={currentPoint}
+            totalUsePoint={totalUsePoint}
+            handleRequest={handleRequest}
           />
-          <Flex justify={"flex-end"}>
-            <Button onClick={props.handleRequest}>申請</Button>
-          </Flex>
           <BackCardLinkList href={"../homeHelper/possessionPoint"} />
         </>
       }
@@ -82,9 +87,11 @@ const FormulaFlex = ({ label, point }: { label: string; point: number }) => (
 const LeavePointBox = ({
   currentPoint,
   totalUsePoint,
+  handleRequest,
 }: {
   currentPoint: number;
   totalUsePoint: number;
+  handleRequest: () => void;
 }) => (
   <Flex className={styles.formula}>
     <FormulaFlex label={"今のポイント"} point={currentPoint} />
@@ -95,5 +102,16 @@ const LeavePointBox = ({
       label={"残りのポイント"}
       point={currentPoint - totalUsePoint}
     />
+    <Flex style={{ marginLeft: "50px" }}>
+      <UpdateNotification
+        label={"申請"}
+        showTitle={"ポイント交換"}
+        showMessage={"ポイントと交換中です。"}
+        updateTitle={"ポイント交換完了"}
+        updateMessage={"ポイントを交換したよ"}
+        handleClick={handleRequest}
+        handleAfterProcess={() => {}}
+      />
+    </Flex>
   </Flex>
 );
