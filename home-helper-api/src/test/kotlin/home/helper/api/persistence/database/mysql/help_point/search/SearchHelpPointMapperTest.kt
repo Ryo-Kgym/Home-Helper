@@ -41,7 +41,7 @@ class SearchHelpPointMapperTest(
         val expected = listOf(
             SearchHelpPointResult(
                 id = 1,
-                userId = 1,
+                userId = "1",
                 earnedDate = LocalDate.of(2022, 11, 6),
                 earnedPoint = 500,
                 detailList = listOf(
@@ -51,7 +51,7 @@ class SearchHelpPointMapperTest(
             ),
             SearchHelpPointResult(
                 id = 2,
-                userId = 1,
+                userId = "1",
                 earnedDate = LocalDate.of(2022, 11, 13),
                 earnedPoint = 300,
                 detailList = listOf(
@@ -60,7 +60,7 @@ class SearchHelpPointMapperTest(
             ),
             SearchHelpPointResult(
                 id = 3,
-                userId = 1,
+                userId = "1",
                 earnedDate = LocalDate.of(2022, 11, 20),
                 earnedPoint = 400,
                 detailList = listOf(
@@ -69,7 +69,7 @@ class SearchHelpPointMapperTest(
             ),
             SearchHelpPointResult(
                 id = 4,
-                userId = 1,
+                userId = "1",
                 earnedDate = LocalDate.of(2022, 11, 27),
                 earnedPoint = 100,
                 detailList = listOf(
