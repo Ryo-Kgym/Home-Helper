@@ -1,29 +1,42 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { ChargePointPresenter } from "@components/presenter/charge_point/ChargePointPresenter";
+import { loadUserId } from "@hooks/loadUserId";
+import { useChargePoint } from "@hooks/useChargePoint";
+import { HelpItem } from "@domain/model/home_helper/HelpItem";
+import { toJapanMd } from "@function/DateConverter";
 
-type ChargePointContainerProps = {
-  fromDate: string;
-  helpItems: any[];
-};
-
-export const ChargePointContainer: FC<ChargePointContainerProps> = (props) => {
+export const ChargePointContainer: FC = () => {
   const [totalPoint, setTotalPoint] = useState(0);
+  const [fromDate, setFromDate] = useState("");
+  const [helpItems, setHelpItems] = useState<HelpItem[]>([]);
+
+  useEffect(() => {
+    useChargePoint(loadUserId()).then((r) => {
+      setHelpItems(r.helpItems);
+      setFromDate(toJapanMd(r.user.lastHelp));
+    });
+  }, []);
 
   const handleCalcTotal = (point: number) => {
     setTotalPoint(totalPoint + point);
   };
 
-  const handleRegisterHelpItems = () => {
-    console.log(totalPoint + "を登録します。");
+  const handleRegisterHelps = () => {
+    console.log(totalPoint + "ポイントの申請をします。");
+  };
+
+  const handleReset = () => {
+    setTotalPoint(0);
   };
 
   return (
     <ChargePointPresenter
-      fromDate={props.fromDate}
-      helpItems={props.helpItems}
+      fromDate={fromDate}
+      helpItems={helpItems}
       totalPoint={totalPoint}
       handleCalcTotal={handleCalcTotal}
-      handleRegisterHelpItems={handleRegisterHelpItems}
+      handleRegisterHelps={handleRegisterHelps}
+      handleReset={handleReset}
     />
   );
 };

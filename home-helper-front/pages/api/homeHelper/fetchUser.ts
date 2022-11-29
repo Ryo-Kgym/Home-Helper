@@ -12,6 +12,7 @@ export default function handler(
     id: userId,
     name: `ユーザ${userId}`,
     currentPoint: point(userId),
+    lastHelp: new Date("2022-11-13"),
   });
 }
 
