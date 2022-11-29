@@ -37,7 +37,10 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = (props) => {
   );
 };
 
-const HelpItemTable = (props: {
+const HelpItemTable = ({
+  helpItems,
+  handleSetValue,
+}: {
   helpItems: any[];
   handleSetValue: (point: number) => void;
 }) => (
@@ -51,7 +54,7 @@ const HelpItemTable = (props: {
       </tr>
     </thead>
     <tbody>
-      {props.helpItems.map((helpItem) => (
+      {helpItems.map((helpItem) => (
         <tr key={helpItem.id}>
           <td>{helpItem.id}</td>
           <td>{helpItem.name}</td>
@@ -60,7 +63,7 @@ const HelpItemTable = (props: {
             <Counter
               defaultValue={0}
               value={helpItem.point}
-              handleSetValue={props.handleSetValue}
+              handleSetValue={handleSetValue}
             />
           </td>
         </tr>
@@ -69,11 +72,11 @@ const HelpItemTable = (props: {
   </Table>
 );
 
-const Title = (props: { fromDate: string }) => {
+const Title = ({ fromDate }: { fromDate: string }) => {
   return (
     <>
       <Flex direction="row" wrap="wrap" className={styles.title} align={"end"}>
-        <Flex>{props.fromDate}</Flex>
+        <Flex>{fromDate}</Flex>
         <Flex>{"　〜　"}</Flex>
         <Flex>今日</Flex>
         <Flex className={styles.message}>の登録をするよ</Flex>

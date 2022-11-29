@@ -11,8 +11,6 @@ export const ChargePointContainer: FC = () => {
   const [helpItems, setHelpItems] = useState<HelpItem[]>([]);
 
   useEffect(() => {
-    const d = new Date();
-    d.toLocaleDateString();
     useChargePoint(loadUserId()).then((r) => {
       setHelpItems(r.helpItems);
       setFromDate(toJapanMd(r.user.lastHelp));
