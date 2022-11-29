@@ -18,19 +18,15 @@ const cardListProps = [
   { href: "/homeHelper/usePoint", label: "つかう" },
 ];
 
-export const PossessionPointPresenter: FC<PossessionPointPresenterProps> = (
-  props
-) => {
-  const pointProps = {
-    name: props.name,
-    point: props.point,
-  };
-
+export const PossessionPointPresenter: FC<PossessionPointPresenterProps> = ({
+  name,
+  point,
+}) => {
   return (
     <Layout
       main={
         <>
-          <Point props={pointProps} />
+          <Point name={name} point={point} />
           <CardLinkList props={cardListProps} />
         </>
       }
@@ -38,13 +34,13 @@ export const PossessionPointPresenter: FC<PossessionPointPresenterProps> = (
   );
 };
 
-const Point = ({ props }: { props: { name: string; point: number } }) => (
+const Point = ({ name, point }: { name: string; point: number }) => (
   <>
     <Flex className={styles.pointFrame} wrap={"wrap"}>
-      <Flex className={styles.pointTitle}>{props.name} の今のポイント</Flex>
+      <Flex className={styles.pointTitle}>{name} の今のポイント</Flex>
       <Flex className={styles.pointArea}>
         <Countup
-          end={props.point}
+          end={point}
           duration={1}
           formattingFn={(n) => n.toLocaleString()}
         />
