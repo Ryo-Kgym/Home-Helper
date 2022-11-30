@@ -1,0 +1,15 @@
+query {
+    searchUser(param: {}) {
+        id
+        name
+        currentPoint
+        lastHelp
+    }
+    findUserBy(userId: "1") {
+        id
+        name
+        currentPoint
+        lastHelp
+    }
+}
+
