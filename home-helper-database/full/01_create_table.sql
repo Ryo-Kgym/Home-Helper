@@ -30,8 +30,9 @@ create table m_exchange_item (
 
 drop table if exists m_user;
 create table m_user (
-    id   varchar(32) primary key not null comment 'ID',
-    name varchar(32)        not null comment '氏名'
+    id          varchar(32)              not null comment 'ID' primary key,
+    name        varchar(32)              not null comment '氏名',
+    name_suffix varchar(8) default 'さん' null comment '名前 接尾辞'
 ) comment 'ユーザマスタ';
 
 drop table if exists id_holder;

@@ -42,6 +42,8 @@
 <!--        <table tableName="id_holder" modelType="flat" mapperName="DbIdHolderMapper" domainObjectName="DbIdHolder">-->
 <!--            <columnOverride column="id_type" javaType="home.helper.api.persistence.database.mysql.id.IdType"/>-->
 <!--        </table>-->
+<!--        <table tableName="m_user" modelType="flat" mapperName="DbMUserMapper" domainObjectName="DbMUser">-->
+<!--        </table>-->
 
     </context>
 </generatorConfiguration>
