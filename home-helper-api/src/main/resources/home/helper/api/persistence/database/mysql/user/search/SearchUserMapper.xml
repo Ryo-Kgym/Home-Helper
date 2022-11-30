@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="home.helper.api.persistence.database.mysql.user.search.SearchUserMapper">
+
+    <select id="search"
+            parameterType="home.helper.api.persistence.database.mysql.user.search.SearchUserParam"
+            resultType="home.helper.api.persistence.database.mysql.table.DbMUserRecord">
+        select
+            u.id,
+            u.name,
+            u.name_suffix
+        from
+            m_user u
+        <where>
+            <if test="id">
+                and u.id = #{id}
+            </if>
+        </where>
+        order by
+            u.id
+    </select>
+</mapper>
