@@ -3,8 +3,8 @@
  */
 package home.helper.api.persistence.database.mysql.table
 
-import org.mybatis.dynamic.sql.SqlTable
 import java.sql.JDBCType
+import org.mybatis.dynamic.sql.SqlTable
 
 object DbMUserDynamicSqlSupport {
     object DbMUser : SqlTable("m_user") {

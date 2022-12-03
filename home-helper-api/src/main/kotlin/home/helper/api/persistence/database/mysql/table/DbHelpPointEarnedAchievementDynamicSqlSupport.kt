@@ -9,12 +9,12 @@ import org.mybatis.dynamic.sql.SqlTable
 
 object DbHelpPointEarnedAchievementDynamicSqlSupport {
     object DbHelpPointEarnedAchievement : SqlTable("help_point_earned_achievement") {
-        val id = column<Long>("id", JDBCType.BIGINT)
+        val id = column<String>("id", JDBCType.VARCHAR)
 
         val userId = column<String>("user_id", JDBCType.VARCHAR)
 
         val earnedDate = column<LocalDate>("earned_date", JDBCType.DATE)
 
-        val earnedPoint = column<Long>("earned_point", JDBCType.BIGINT)
+        val earnedPoint = column<Int>("earned_point", JDBCType.INTEGER)
     }
 }

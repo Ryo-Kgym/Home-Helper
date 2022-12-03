@@ -39,10 +39,12 @@
 <!--        </table>-->
 <!--        <table tableName="m_help_item" modelType="flat" mapperName="DbMHelpItemMapper" domainObjectName="DbMHelpItem">-->
 <!--        </table>-->
-<!--        <table tableName="id_holder" modelType="flat" mapperName="DbIdHolderMapper" domainObjectName="DbIdHolder">-->
-<!--            <columnOverride column="id_type" javaType="home.helper.api.persistence.database.mysql.id.IdType"/>-->
+<!--        <table tableName="m_exchange_item" modelType="flat" mapperName="DbMExchangeItemMapper" domainObjectName="DbMExchangeItem">-->
 <!--        </table>-->
 <!--        <table tableName="m_user" modelType="flat" mapperName="DbMUserMapper" domainObjectName="DbMUser">-->
+<!--        </table>-->
+<!--        <table tableName="id_holder" modelType="flat" mapperName="DbIdHolderMapper" domainObjectName="DbIdHolder">-->
+<!--            <columnOverride column="id_type" javaType="home.helper.api.persistence.database.mysql.id.IdType"/>-->
 <!--        </table>-->
 
     </context>

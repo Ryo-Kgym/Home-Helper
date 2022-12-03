@@ -1,28 +1,16 @@
 /*
  * Auto-generated file. Created by MyBatis Generator
  */
-@file:Suppress("DEPRECATION")
-
 package home.helper.api.persistence.database.mysql.table
 
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail.achievementId
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail.id
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail.itemId
+import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailRecord
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
-import org.mybatis.dynamic.sql.util.kotlin.CountCompleter
-import org.mybatis.dynamic.sql.util.kotlin.DeleteCompleter
-import org.mybatis.dynamic.sql.util.kotlin.KotlinUpdateBuilder
-import org.mybatis.dynamic.sql.util.kotlin.SelectCompleter
-import org.mybatis.dynamic.sql.util.kotlin.UpdateCompleter
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.countFrom
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.deleteFrom
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.insert
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.insertMultiple
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectDistinct
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectList
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectOne
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.update
+import org.mybatis.dynamic.sql.util.kotlin.*
+import org.mybatis.dynamic.sql.util.kotlin.mybatis3.*
 
 fun DbHelpPointEarnedDetailMapper.count(completer: CountCompleter) =
     countFrom(this::count, DbHelpPointEarnedDetail, completer)
@@ -30,7 +18,7 @@ fun DbHelpPointEarnedDetailMapper.count(completer: CountCompleter) =
 fun DbHelpPointEarnedDetailMapper.delete(completer: DeleteCompleter) =
     deleteFrom(this::delete, DbHelpPointEarnedDetail, completer)
 
-fun DbHelpPointEarnedDetailMapper.deleteByPrimaryKey(id_: Long) =
+fun DbHelpPointEarnedDetailMapper.deleteByPrimaryKey(id_: String) =
     delete {
         where(id, isEqualTo(id_))
     }
@@ -70,7 +58,7 @@ fun DbHelpPointEarnedDetailMapper.select(completer: SelectCompleter) =
 fun DbHelpPointEarnedDetailMapper.selectDistinct(completer: SelectCompleter) =
     selectDistinct(this::selectMany, columnList, DbHelpPointEarnedDetail, completer)
 
-fun DbHelpPointEarnedDetailMapper.selectByPrimaryKey(id_: Long) =
+fun DbHelpPointEarnedDetailMapper.selectByPrimaryKey(id_: String) =
     selectOne {
         where(id, isEqualTo(id_))
     }

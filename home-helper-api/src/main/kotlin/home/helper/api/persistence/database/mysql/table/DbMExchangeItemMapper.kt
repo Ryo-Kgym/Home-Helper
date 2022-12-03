@@ -20,7 +20,7 @@ import org.mybatis.dynamic.sql.update.render.UpdateStatementProvider
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter
 
 @Mapper
-interface DbMHelpItemMapper {
+interface DbMExchangeItemMapper {
     @SelectProvider(type = SqlProviderAdapter::class, method = "select")
     fun count(selectStatement: SelectStatementProvider): Long
 
@@ -28,25 +28,24 @@ interface DbMHelpItemMapper {
     fun delete(deleteStatement: DeleteStatementProvider): Int
 
     @InsertProvider(type = SqlProviderAdapter::class, method = "insert")
-    fun insert(insertStatement: InsertStatementProvider<DbMHelpItemRecord>): Int
+    fun insert(insertStatement: InsertStatementProvider<DbMExchangeItemRecord>): Int
 
     @InsertProvider(type = SqlProviderAdapter::class, method = "insertMultiple")
-    fun insertMultiple(multipleInsertStatement: MultiRowInsertStatementProvider<DbMHelpItemRecord>): Int
+    fun insertMultiple(multipleInsertStatement: MultiRowInsertStatementProvider<DbMExchangeItemRecord>): Int
 
     @SelectProvider(type = SqlProviderAdapter::class, method = "select")
-    @ResultMap("DbMHelpItemRecordResult")
-    fun selectOne(selectStatement: SelectStatementProvider): DbMHelpItemRecord?
+    @ResultMap("DbMExchangeItemRecordResult")
+    fun selectOne(selectStatement: SelectStatementProvider): DbMExchangeItemRecord?
 
     @SelectProvider(type = SqlProviderAdapter::class, method = "select")
     @Results(
-        id = "DbMHelpItemRecordResult", value = [
+        id = "DbMExchangeItemRecordResult", value = [
             Result(column = "id", property = "id", jdbcType = JdbcType.VARCHAR, id = true),
             Result(column = "item_name", property = "itemName", jdbcType = JdbcType.VARCHAR),
-            Result(column = "help_point", property = "helpPoint", jdbcType = JdbcType.INTEGER),
-            Result(column = "memo", property = "memo", jdbcType = JdbcType.VARCHAR)
+            Result(column = "exchange_point", property = "exchangePoint", jdbcType = JdbcType.INTEGER)
         ]
     )
-    fun selectMany(selectStatement: SelectStatementProvider): List<DbMHelpItemRecord>
+    fun selectMany(selectStatement: SelectStatementProvider): List<DbMExchangeItemRecord>
 
     @UpdateProvider(type = SqlProviderAdapter::class, method = "update")
     fun update(updateStatement: UpdateStatementProvider): Int
