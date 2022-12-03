@@ -4,12 +4,12 @@
 
 package home.helper.api.resolver.help_item
 
+import org.springframework.stereotype.Component
 import graphql.kickstart.tools.GraphQLQueryResolver
 import home.helper.core.domain.model.help_item.HelpItemId
 import home.helper.core.dto.help_item.SearchHelpItemCriteria
 import home.helper.core.gateway.help_item.SearchHelpItemGateway
-import org.springframework.stereotype.Component
-import  home.helper.api.resolver.help_item.HelpItem as HelpItemGqo
+import home.helper.api.resolver.help_item.HelpItem as HelpItemGqo
 
 @Component
 class SearchHelpItemResolver(
@@ -36,10 +36,22 @@ class SearchHelpItemResolver(
             )
         }
     }
+
+    /**
+     * お手伝い項目を取得するクエリです。
+     * @param id ID
+     * @return お手伝い項目
+     */
+    fun helpItem(id: Long): HelpItemGqo? {
+        val param = SearchHelpItemParam(
+            id = id,
+        )
+        return helpItems(param)[0]
+    }
 }
 
 data class SearchHelpItemParam(
-    val id: Long?,
-    val pointFrom: Int?,
-    val pointTo: Int?,
+    val id: Long? = null,
+    val pointFrom: Int? = null,
+    val pointTo: Int? = null,
 )
