@@ -11,10 +11,10 @@ export async function users(): Promise<User[]> {
   return query(param);
 }
 
-export async function user(id: string): Promise<User> {
+export async function user(userId: string): Promise<User> {
   const param = {
     query: GET_USER,
-    variable: { userId: id },
+    variables: { userId: userId },
     key: "user",
   };
   return query(param);
