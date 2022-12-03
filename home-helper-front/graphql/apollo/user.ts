@@ -3,12 +3,37 @@ import { query } from "@graphql/apollo/apollo-client";
 import { gql } from "@apollo/client";
 
 export async function users(): Promise<User[]> {
-  return query(GET_USERS).then((r) => r.users);
+  const param = {
+    query: GET_USERS,
+    key: "users",
+  };
+
+  return query(param);
+}
+
+export async function user(id: string): Promise<User> {
+  const param = {
+    query: GET_USER,
+    variable: { userId: id },
+    key: "user",
+  };
+  return query(param);
 }
 
 const GET_USERS = gql`
   query Users {
     users(param: {}) {
+      id
+      name
+      currentPoint
+      lastHelp
+    }
+  }
+`;
+
+const GET_USER = gql`
+  query User($userId: ID!) {
+    user(userId: $userId) {
       id
       name
       currentPoint
