@@ -3,9 +3,9 @@ type Query {
     findHelpItem(id: ID): HelpItem
     searchHelpPoint(param: SearchHelpPointParam): [HelpPointEarnedAchievement]
 
-    # ユーザを検索します。
-    searchUser(param: SearchUserParam): [User]
-    findUserBy(userId: ID!): User
+    # ユーザを取得します。
+    users(param: SearchUserParam): [User]
+    user(userId: ID!): User
 }
 
 type Mutation {

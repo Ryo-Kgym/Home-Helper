@@ -1,11 +1,11 @@
 query {
-    searchUser(param: {}) {
+    users(param: {}) {
         id
         name
         currentPoint
         lastHelp
     }
-    findUserBy(userId: "1") {
+    user(userId: "1") {
         id
         name
         currentPoint

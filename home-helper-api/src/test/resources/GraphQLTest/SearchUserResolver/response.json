@@ -1,6 +1,6 @@
 {
   "data": {
-    "searchUser": [
+    "users": [
       {
         "id": "1",
         "name": "ユーザ1 さん",
@@ -14,7 +14,7 @@
         "lastHelp": "2022-12-01"
       }
     ],
-    "findUserBy": {
+    "user": {
       "id": "1",
       "name": "ユーザ1 さん",
       "currentPoint": 30000,

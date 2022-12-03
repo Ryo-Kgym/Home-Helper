@@ -4,9 +4,9 @@
 
 package home.helper.api.resolver.user
 
+import home.helper.api.resolver.user.User as UserGqo
 import org.springframework.stereotype.Component
 import graphql.kickstart.tools.GraphQLQueryResolver
-import home.helper.api.resolver.user.User as UserGqo
 import home.helper.core.domain.model.user.UserId
 import home.helper.core.dto.user.SearchUserCriteria
 import home.helper.core.gateway.user.SearchUserGateway
@@ -17,7 +17,7 @@ class SearchUserResolver(
 ) : GraphQLQueryResolver {
 
     // TODO currentPoint and lastHelp
-    fun searchUser(param: SearchUserParam): List<UserGqo> {
+    fun users(param: SearchUserParam): List<UserGqo> {
         val criteria = SearchUserCriteria(
             userId = param.userId?.let { UserId(it) },
         )
@@ -34,15 +34,12 @@ class SearchUserResolver(
     }
 
     // TODO currentPoint and lastHelp
-    fun findUserBy(userId: String): UserGqo? {
-        return searchUserGateway.findBy(UserId(userId))?.let {
-            UserGqo(
-                id = it.userId.id,
-                name = it.getNameWithSuffix(),
-                currentPoint = 30000,
-                lastHelp = "2022-12-01",
-            )
-        }
+    fun user(userId: String): UserGqo? {
+        val param = SearchUserParam(
+            userId = userId,
+        )
+
+        return users(param)[0]
     }
 }
 
