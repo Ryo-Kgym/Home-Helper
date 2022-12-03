@@ -1,6 +1,6 @@
 {
   "data": {
-    "searchHelpItem": [
+    "helpItems": [
       {
         "id": "1",
         "name": "テスト項目1",
@@ -19,6 +19,12 @@
         "point": 300,
         "memo": "これもテストです。"
       }
-    ]
+    ],
+    "helpItem": {
+      "id": "1",
+      "name": "テスト項目1",
+      "point": 100,
+      "memo": "これはテストです。"
+    }
   }
 }

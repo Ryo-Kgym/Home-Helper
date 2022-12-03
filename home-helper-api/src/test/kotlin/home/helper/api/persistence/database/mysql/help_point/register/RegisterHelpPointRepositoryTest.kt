@@ -54,7 +54,7 @@ internal class RegisterHelpPointRepositoryTest {
         val source = RegisterHelpPointOutput(
             helpItemList = listOf(),
             totalHelpPoint = HelpPoint(100),
-            userId = UserId(1),
+            userId = UserId("1"),
             earnedDate = LocalDate.now(),
         )
         val actual = target.save(source)

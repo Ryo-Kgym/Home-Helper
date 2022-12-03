@@ -1,5 +1,5 @@
 query {
-    searchHelpPoint(param: {
+    helpPointEarnedAchievement(param: {
         userId: 0
     }) {
         id

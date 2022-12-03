@@ -1,7 +1,7 @@
 drop table if exists help_point_earned_achievement;
 create table help_point_earned_achievement (
     id           serial primary key not null comment 'ID',
-    user_id      bigint             not null comment 'ユーザID',
+    user_id      varchar(32)        not null comment 'ユーザID',
     earned_date  date               not null comment '獲得日付',
     earned_point bigint             not null comment '獲得ポイント'
 ) comment 'お手伝いポイント獲得実績';
@@ -30,8 +30,9 @@ create table m_exchange_item (
 
 drop table if exists m_user;
 create table m_user (
-    id   serial primary key not null comment 'ID',
-    name varchar(32)        not null comment '氏名'
+    id          varchar(32)              not null comment 'ID' primary key,
+    name        varchar(32)              not null comment '氏名',
+    name_suffix varchar(8) default 'さん' null comment '名前 接尾辞'
 ) comment 'ユーザマスタ';
 
 drop table if exists id_holder;

@@ -1,0 +1,15 @@
+query {
+    users(param: {}) {
+        id
+        name
+        currentPoint
+        lastHelp
+    }
+    user(userId: "1") {
+        id
+        name
+        currentPoint
+        lastHelp
+    }
+}
+

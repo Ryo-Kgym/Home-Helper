@@ -1,0 +1,24 @@
+{
+  "data": {
+    "users": [
+      {
+        "id": "1",
+        "name": "ユーザ1 さん",
+        "currentPoint": 30000,
+        "lastHelp": "2022-12-01"
+      },
+      {
+        "id": "2",
+        "name": "ユーザ2 くん",
+        "currentPoint": 30000,
+        "lastHelp": "2022-12-01"
+      }
+    ],
+    "user": {
+      "id": "1",
+      "name": "ユーザ1 さん",
+      "currentPoint": 30000,
+      "lastHelp": "2022-12-01"
+    }
+  }
+}

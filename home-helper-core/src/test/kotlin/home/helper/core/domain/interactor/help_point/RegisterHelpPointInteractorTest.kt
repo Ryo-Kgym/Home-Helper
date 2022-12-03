@@ -46,7 +46,7 @@ internal class RegisterHelpPointInteractorTest {
                     HelpItem(2, "項目2", 200),
                     HelpItem(3, "項目3", 300),
                 ),
-                userId = UserId(1),
+                userId = UserId("1"),
             )
         )
         val expected = RegisterOutput(
@@ -66,7 +66,7 @@ internal class RegisterHelpPointInteractorTest {
                         HelpItem(3, "項目3", 300),
                     ),
                     totalHelpPoint = HelpPoint(600),
-                    userId = UserId(1),
+                    userId = UserId("1"),
                     earnedDate = LocalDate.of(2022, 11, 12),
                 )
             )

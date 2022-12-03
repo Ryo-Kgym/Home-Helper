@@ -5,7 +5,12 @@ import { usePossessionPoint } from "@hooks/usePossessionPoint";
 import { loadUserId } from "@hooks/loadUserId";
 
 export const PossessionPointContainer: FC = () => {
-  const [user, setUser] = useState<User>({ id: "", name: "", currentPoint: 0 });
+  const [user, setUser] = useState<User>({
+    id: "",
+    name: "",
+    currentPoint: 0,
+    lastHelp: new Date(),
+  });
 
   useEffect(() => {
     const userId = loadUserId();

@@ -1,7 +1,11 @@
 type Query {
-    searchHelpItem(param: SearchHelpItemParam): [HelpItem]
-    findHelpItem(id: ID): HelpItem
-    searchHelpPoint(param: SearchHelpPointParam): [HelpPointEarnedAchievement]
+    helpItems(param: SearchHelpItemParam): [HelpItem]
+    helpItem(id: ID): HelpItem
+    helpPointEarnedAchievement(param: SearchHelpPointParam): [HelpPointEarnedAchievement]
+
+    # ユーザを取得します。
+    users(param: SearchUserParam): [User]
+    user(userId: ID!): User
 }
 
 type Mutation {
@@ -23,6 +27,10 @@ input SearchHelpPointParam {
     userId: ID
 }
 
+input SearchUserParam {
+    userId: ID
+}
+
 type HelpPointEarnedAchievement{
     id: ID!,
     userId: Int!,
@@ -36,4 +44,11 @@ type HelpItem {
     name: String!
     point: Int!
     memo: String
+}
+
+type User {
+    id: ID!
+    name: String!
+    currentPoint: Int!
+    lastHelp: String!
 }

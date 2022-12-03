@@ -8,7 +8,7 @@ import java.time.LocalDate
 
 data class SearchHelpPointResult(
     var id: Long? = null,
-    var userId: Long? = null,
+    var userId: String? = null,
     var earnedDate: LocalDate? = null,
     var earnedPoint: Long? = null,
     var detailList: List<HelpItemResult>? = null,

@@ -1,19 +1,20 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { HomeHelperPresenter } from "@components/presenter/home_helper/HomeHelperPresenter";
+import { fetchUsers } from "@hooks/user/fetchUsers";
+import { User } from "@domain/model/home_helper/User";
 
-type HomeHelperContainerProps = {
-  userList: any[];
-};
+export const HomeHelperContainer: FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
 
-export const HomeHelperContainer: FC<HomeHelperContainerProps> = (props) => {
   const handleClickUser = (userId: string) => {
     sessionStorage.setItem("userId", userId);
   };
 
+  useEffect(() => {
+    fetchUsers().then((r) => setUsers(r));
+  }, []);
+
   return (
-    <HomeHelperPresenter
-      userList={props.userList}
-      handleClickUser={handleClickUser}
-    />
+    <HomeHelperPresenter userList={users} handleClickUser={handleClickUser} />
   );
 };

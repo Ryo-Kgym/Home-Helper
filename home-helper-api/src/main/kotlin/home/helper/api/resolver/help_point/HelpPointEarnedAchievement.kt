@@ -9,7 +9,7 @@ import java.time.LocalDate
 
 data class HelpPointEarnedAchievement(
     val id: Long,
-    val userId: Long,
+    val userId: String,
     val earnedDate: LocalDate,
     val earnedPoint: Long,
     val helpItems: List<HelpItem>,

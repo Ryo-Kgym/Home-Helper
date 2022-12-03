@@ -1,5 +1,11 @@
 query {
-    searchHelpItem(param: {}) {
+    helpItems(param: {}) {
+        id
+        name
+        point
+        memo
+    }
+    helpItem(id: 1) {
         id
         name
         point
