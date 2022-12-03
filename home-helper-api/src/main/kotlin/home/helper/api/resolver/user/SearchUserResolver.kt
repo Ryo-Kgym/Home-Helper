@@ -39,7 +39,7 @@ class SearchUserResolver(
             userId = userId,
         )
 
-        return users(param)[0]
+        return users(param).firstOrNull()
     }
 }
 

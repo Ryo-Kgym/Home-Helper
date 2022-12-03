@@ -17,7 +17,7 @@ class SearchHelpItemResolver(
 ) : GraphQLQueryResolver {
 
     /**
-     * お手伝い項目を検索するクエリです。
+     * お手伝い項目を検索します。
      * @param param 検索条件
      * @return お手伝い項目
      */
@@ -46,7 +46,7 @@ class SearchHelpItemResolver(
         val param = SearchHelpItemParam(
             id = id,
         )
-        return helpItems(param)[0]
+        return helpItems(param).firstOrNull()
     }
 }
 
