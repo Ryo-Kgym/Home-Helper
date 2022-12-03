@@ -13,6 +13,13 @@ create table help_point_earned_detail (
     item_id        varchar(32) not null comment '項目ID'
 ) comment 'お手伝いポイント獲得明細';
 
+drop table if exists user_point;
+create table user_point (
+    user_id        varchar(32) not null comment 'ユーザID' primary key,
+    point          int         not null comment 'ポイント'      default 0,
+    last_help_date datetime    not null comment '最後のお手伝い日時' default '2020-01-01'
+) comment 'ユーザポイント';
+
 drop table if exists m_help_item;
 create table m_help_item (
     id         varchar(32)   not null comment 'ID' primary key,
