@@ -21,7 +21,7 @@ class SearchHelpItemResolver(
      * @param param 検索条件
      * @return お手伝い項目
      */
-    fun searchHelpItem(param: SearchHelpItemParam): List<HelpItemGqo> {
+    fun helpItems(param: SearchHelpItemParam): List<HelpItemGqo> {
         val criteria = SearchHelpItemCriteria(
             helpItemId = param.id?.let { HelpItemId(it) },
         )
