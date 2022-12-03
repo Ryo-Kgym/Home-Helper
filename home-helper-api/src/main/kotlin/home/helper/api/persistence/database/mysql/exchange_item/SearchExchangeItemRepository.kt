@@ -23,7 +23,7 @@ class SearchExchangeItemRepository(
             }
 
             override fun getSelectStatement(): String {
-                return "select"
+                return "select id, item_name, exchange_point from m_exchange_item order by id;"
             }
         })
 

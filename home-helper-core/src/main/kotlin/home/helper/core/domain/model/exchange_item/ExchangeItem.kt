@@ -8,7 +8,7 @@ package home.helper.core.domain.model.exchange_item
  * 交換品を保持するクラスです。
  */
 data class ExchangeItem(
-    val id: ExchangeItemId,
+    val exchangeItemId: ExchangeItemId,
     val name: String,
     val exchangePoint: ExchangePoint,
 ) {
@@ -17,7 +17,7 @@ data class ExchangeItem(
                 value: Int
     ) :
             this(
-                id = ExchangeItemId(id),
+                exchangeItemId = ExchangeItemId(id),
                 name = name,
                 exchangePoint = ExchangePoint(value)
             )

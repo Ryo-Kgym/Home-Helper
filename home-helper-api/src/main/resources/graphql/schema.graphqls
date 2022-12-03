@@ -1,7 +1,13 @@
 type Query {
+    # お手伝い項目を取得します。
     helpItems(param: SearchHelpItemParam): [HelpItem]
     helpItem(id: ID): HelpItem
+
+    # お手伝いポイント獲得実績を取得します。
     helpPointEarnedAchievement(param: SearchHelpPointParam): [HelpPointEarnedAchievement]
+
+    # 交換品を取得します。
+    exchangeItems(param: SearchExchangeItemParam): [ExchangeItem]
 
     # ユーザを取得します。
     users(param: SearchUserParam): [User]
@@ -9,6 +15,7 @@ type Query {
 }
 
 type Mutation {
+    # お手伝い項目を登録します。
     registerHelpItem(param: RegisterHelpItemParam): [String]
 }
 
@@ -25,6 +32,10 @@ input RegisterHelpItemParam {
 
 input SearchHelpPointParam {
     userId: ID
+}
+
+input SearchExchangeItemParam {
+    id: String
 }
 
 input SearchUserParam {
@@ -44,6 +55,12 @@ type HelpItem {
     name: String!
     point: Int!
     memo: String
+}
+
+type ExchangeItem {
+    id: ID!
+    name: String!
+    point: String!
 }
 
 type User {
