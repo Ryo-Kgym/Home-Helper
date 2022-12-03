@@ -4,26 +4,25 @@
 
 package home.helper.api.persistence.database.mysql.help_item.register
 
+import org.springframework.stereotype.Repository
+import home.helper.api.gateway.id.IdGateway
 import home.helper.api.persistence.database.ConvertSaveRepository
 import home.helper.api.persistence.database.mysql.table.DbMHelpItemMapper
 import home.helper.api.persistence.database.mysql.table.DbMHelpItemRecord
-import home.helper.api.persistence.database.mysql.table.insertSelective
-import home.helper.core.domain.model.save.SaveUseCaseEnum
-import home.helper.core.dto.help_item.RegisterHelpItemOutput
-import org.springframework.stereotype.Repository
-import home.helper.api.gateway.id.IdGateway
 import home.helper.api.persistence.database.mysql.table.insert
 import home.helper.core.domain.model.help_item.HelpItemId
+import home.helper.core.domain.model.save.SaveUseCaseEnum
+import home.helper.core.dto.help_item.RegisterHelpItemOutput
 
 @Repository
 class HelpItemInsertRepository(
     private val dbMHelpItemMapper: DbMHelpItemMapper,
-    private val idGateway: IdGateway<HelpItemId>,
+    private val helpItemIdGateway: IdGateway<HelpItemId>,
 ) : ConvertSaveRepository<RegisterHelpItemOutput, DbMHelpItemRecord> {
 
     override fun convert(target: RegisterHelpItemOutput): DbMHelpItemRecord {
         return DbMHelpItemRecord(
-            id = idGateway.getId().id,
+            id = helpItemIdGateway.getId().id,
             itemName = target.helpItemName,
             helpPoint = target.helpPoint.value,
             memo = target.memo,
