@@ -18,11 +18,11 @@ class SearchHelpPointEarnedAchievementResolver(
 ) : GraphQLQueryResolver {
 
     /**
-     * お手伝いポイント獲得実績を検索するミューテーションです。
+     * お手伝いポイント獲得実績を検索するします。
      * @param param 検索条件
      * @return お手伝いポイント獲得実績
      */
-    fun searchHelpPoint(param: SearchHelpPointParam): List<HelpPointEarnedAchievementGqo> {
+    fun helpPointEarnedAchievement(param: SearchHelpPointParam): List<HelpPointEarnedAchievementGqo> {
         val criteria = SearchHelpPointEarnedCriteria()
         val output = searchHelpPointEarnedAchievementGateway.search(criteria)
 

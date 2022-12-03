@@ -1,7 +1,7 @@
 type Query {
     helpItems(param: SearchHelpItemParam): [HelpItem]
     helpItem(id: ID): HelpItem
-    searchHelpPoint(param: SearchHelpPointParam): [HelpPointEarnedAchievement]
+    helpPointEarnedAchievement(param: SearchHelpPointParam): [HelpPointEarnedAchievement]
 
     # ユーザを取得します。
     users(param: SearchUserParam): [User]
