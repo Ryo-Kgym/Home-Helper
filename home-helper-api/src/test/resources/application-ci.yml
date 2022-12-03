@@ -7,9 +7,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
 
 mock:
-  datetime: true
-  user: true
-  mask: true
+  id: true
 
 mybatis:
   configuration:
@@ -27,12 +25,3 @@ logging:
             database:
               mysql:
                 DEBUG
-
-cors:
-  allowed:
-    protocols:
-      http
-    ips:
-      localhost
-    ports:
-      3000

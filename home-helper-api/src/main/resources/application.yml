@@ -19,9 +19,7 @@ graphiql:
     graphql: /graphql
 
 mock:
-  datetime: true
-  user: true
-  mask: true
+  id: false
 
 mybatis:
   configuration:
@@ -39,12 +37,3 @@ logging:
             database:
               mysql:
                 DEBUG
-
-cors:
-  allowed:
-    protocols:
-      http
-    ips:
-      localhost
-    ports:
-      3000
