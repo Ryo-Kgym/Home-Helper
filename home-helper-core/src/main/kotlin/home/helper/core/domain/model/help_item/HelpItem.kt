@@ -16,7 +16,7 @@ data class HelpItem(
     val memo: String? = null,
 ) {
 
-    constructor(id: Long, name: String, value: Long) :
+    constructor(id: String, name: String, value: Int) :
             this(
                 helpItemId = HelpItemId(id),
                 name = name,

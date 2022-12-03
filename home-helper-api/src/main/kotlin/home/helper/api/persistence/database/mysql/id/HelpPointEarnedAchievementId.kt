@@ -5,5 +5,5 @@
 package home.helper.api.persistence.database.mysql.id
 
 data class HelpPointEarnedAchievementId(
-    val id: Long,
+    val id: String,
 )

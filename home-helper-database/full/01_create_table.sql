@@ -38,6 +38,6 @@ create table m_user (
 -- Mock
 drop table if exists id_holder;
 create table id_holder (
-    id_type    enum ('HELP_POINT_EARNED_ACHIEVEMENT_ID') primary key not null comment 'IDタイプ',
-    current_id bigint                                                not null comment '現在ID'
+    id_type    varchar(128) not null comment 'IDタイプ' primary key,
+    current_id bigint       not null comment '現在ID'
 ) comment 'IDホルダ';

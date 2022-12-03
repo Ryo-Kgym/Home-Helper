@@ -6,5 +6,6 @@ package home.helper.api.persistence.database.mysql.id
 
 enum class IdType {
     HELP_POINT_EARNED_ACHIEVEMENT_ID,
+    HELP_ITEM_ID,
     ;
 }

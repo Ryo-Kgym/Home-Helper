@@ -42,9 +42,9 @@ internal class RegisterHelpPointInteractorTest {
         val actual = target.register(
             RegisterHelpPointInput(
                 helpItemList = listOf(
-                    HelpItem(1, "項目1", 100),
-                    HelpItem(2, "項目2", 200),
-                    HelpItem(3, "項目3", 300),
+                    HelpItem("1", "項目1", 100),
+                    HelpItem("2", "項目2", 200),
+                    HelpItem("3", "項目3", 300),
                 ),
                 userId = UserId("1"),
             )
@@ -61,9 +61,9 @@ internal class RegisterHelpPointInteractorTest {
             saveGateway.save(
                 RegisterHelpPointOutput(
                     helpItemList = listOf(
-                        HelpItem(1, "項目1", 100),
-                        HelpItem(2, "項目2", 200),
-                        HelpItem(3, "項目3", 300),
+                        HelpItem("1", "項目1", 100),
+                        HelpItem("2", "項目2", 200),
+                        HelpItem("3", "項目3", 300),
                     ),
                     totalHelpPoint = HelpPoint(600),
                     userId = UserId("1"),
