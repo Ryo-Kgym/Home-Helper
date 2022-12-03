@@ -1,22 +1,22 @@
-import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
+import { HelpItem } from "@domain/model/home_helper/HelpItem";
+import { gql } from "@apollo/client";
+import { query } from "@graphql/apollo/apollo-client";
 
-// TODO Impl
-export async function exchangeItem(): Promise<ExchangeItem[]> {
-  return [
-    {
-      id: 1,
-      point: 100,
-      name: "交換品1",
-    },
-    {
-      id: 2,
-      point: 200,
-      name: "交換品2",
-    },
-    {
-      id: 3,
-      point: 300,
-      name: "交換品3",
-    },
-  ];
+export async function exchangeItem(): Promise<HelpItem[]> {
+  const param = {
+    query: GET_EXCHANGE_ITEMS,
+    key: "exchangeItems",
+  };
+
+  return query(param);
 }
+
+const GET_EXCHANGE_ITEMS = gql`
+  query exchangeItems {
+    exchangeItems(param: {}) {
+      id
+      name
+      point
+    }
+  }
+`;
