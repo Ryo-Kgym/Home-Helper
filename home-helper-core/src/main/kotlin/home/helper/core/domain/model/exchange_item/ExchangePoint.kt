@@ -2,7 +2,7 @@
  * Copyright (c) 2022 Ryo-Kgym.
  */
 
-package home.helper.core.domain.model.exchange
+package home.helper.core.domain.model.exchange_item
 
 /**
  * 交換品のポイントを保持するクラスです。
