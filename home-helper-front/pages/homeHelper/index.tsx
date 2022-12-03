@@ -1,19 +1,7 @@
 import { Page } from "@components/page/home_helper/HomeHelperTemplate";
+import { NextPage } from "@node_modules/next";
 
-const index = (props: any) => {
-  return <Page data={props.data} />;
+const index: NextPage = () => {
+  return <Page />;
 };
 export default index;
-
-export async function getStaticProps() {
-  const userList = [
-    { id: "1", name: "ユーザ1" },
-    { id: "2", name: "ユーザ2" },
-  ];
-
-  const data = {
-    userList: userList,
-  };
-
-  return { props: { data } };
-}
