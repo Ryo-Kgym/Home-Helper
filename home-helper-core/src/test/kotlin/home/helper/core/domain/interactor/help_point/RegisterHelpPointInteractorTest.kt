@@ -4,6 +4,12 @@
 
 package home.helper.core.domain.interactor.help_point
 
+import java.time.LocalDateTime
+import org.hamcrest.CoreMatchers
+import org.hamcrest.MatcherAssert
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.mockito.Mockito
 import com.nhaarman.mockitokotlin2.mock
 import home.helper.core.domain.model.help_item.HelpItem
 import home.helper.core.domain.model.help_point.HelpPoint
@@ -18,12 +24,6 @@ import home.helper.core.dto.save.SaveOutput
 import home.helper.core.gateway.SaveDefaultGateway
 import home.helper.core.gateway.message.SaveMessageGateway
 import home.helper.core.gateway.operation.OperationGateway
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.mockito.Mockito
-import java.time.LocalDate
 
 internal class RegisterHelpPointInteractorTest {
 
@@ -67,7 +67,7 @@ internal class RegisterHelpPointInteractorTest {
                     ),
                     totalHelpPoint = HelpPoint(600),
                     userId = UserId("1"),
-                    earnedDate = LocalDate.of(2022, 11, 12),
+                    earnedDateTime = LocalDateTime.of(2022, 11, 12, 12, 23, 34),
                 )
             )
         )
@@ -79,7 +79,7 @@ internal class RegisterHelpPointInteractorTest {
             )
 
         Mockito.`when`(operationGateway.load())
-            .thenReturn(Operation(1, LocalDate.of(2022, 11, 12)))
+            .thenReturn(Operation(1, LocalDateTime.of(2022, 11, 12, 12, 23, 34)))
 
         Mockito.`when`(
             registerMessageGateway.getMessage(

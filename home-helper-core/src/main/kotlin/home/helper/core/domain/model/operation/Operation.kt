@@ -20,6 +20,12 @@ data class Operation(
                 datetime = date.atStartOfDay()
             )
 
+    constructor(id: Int, datetime: LocalDateTime) :
+            this(
+                operatorId = OperatorId(id),
+                datetime = datetime
+            )
+
     /**
      * 操作日を返します。
      * @return 操作日

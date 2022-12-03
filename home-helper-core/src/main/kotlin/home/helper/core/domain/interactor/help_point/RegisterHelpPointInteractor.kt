@@ -27,7 +27,7 @@ class RegisterHelpPointInteractor(
                 helpItemList = input.helpItemList,
                 totalHelpPoint = totalHelpPoint,
                 userId = input.userId,
-                earnedDate = operationGateway.load().getDate(),
+                earnedDateTime = operationGateway.load().datetime,
             )
         )
 

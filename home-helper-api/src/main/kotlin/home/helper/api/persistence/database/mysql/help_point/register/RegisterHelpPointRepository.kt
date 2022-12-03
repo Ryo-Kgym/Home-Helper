@@ -16,9 +16,11 @@ class RegisterHelpPointRepository(
     private val helpPointEarnedAchievementIdGateway: IdGateway<HelpPointEarnedAchievementId>,
     helpPointEarnedAchievementInsertRepository: HelpPointEarnedAchievementInsertRepository,
     helpPointEarnedDetailInsertRepository: HelpPointEarnedDetailInsertRepository,
+    totalHelpPointUpdateRepository: TotalHelpPointUpdateRepository,
 ) : ListSaveRepository<RegisterHelpPointOutput>(
     helpPointEarnedAchievementInsertRepository,
     helpPointEarnedDetailInsertRepository,
+    totalHelpPointUpdateRepository,
 ) {
     override fun save(target: RegisterHelpPointOutput): SaveOutput {
         helpPointEarnedAchievementIdGateway.increment()
