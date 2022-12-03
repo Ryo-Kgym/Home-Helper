@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { PossessionPointPresenter } from "@components/presenter/possession_point/PossessionPointPresenter";
 import { User } from "@domain/model/home_helper/User";
-import { usePossessionPoint } from "@hooks/usePossessionPoint";
+import { fetchUser } from "@hooks/user/fetchUser";
 import { loadUserId } from "@hooks/loadUserId";
 
 export const PossessionPointContainer: FC = () => {
@@ -14,8 +14,8 @@ export const PossessionPointContainer: FC = () => {
 
   useEffect(() => {
     const userId = loadUserId();
-    usePossessionPoint(userId).then((r) => {
-      setUser(r.user);
+    fetchUser(userId).then((user) => {
+      setUser(user);
     });
   }, []);
 

@@ -5,7 +5,16 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export async function query(query: DocumentNode): Promise<any> {
-  const { data } = await client.query({ query: query });
-  return data;
+export async function query<T>(param: QueryParam): Promise<T> {
+  const { data } = await client.query({
+    query: param.query,
+    variables: param.variables,
+  });
+  return data[param.key];
 }
+
+export type QueryParam = {
+  query: DocumentNode;
+  variables?: any;
+  key: string;
+};
