@@ -1,9 +1,10 @@
 import { FC, useEffect, useState } from "react";
 import { ChargePointPresenter } from "@components/presenter/charge_point/ChargePointPresenter";
 import { loadUserId } from "@hooks/loadUserId";
-import { useChargePoint } from "@hooks/useChargePoint";
 import { HelpItem } from "@domain/model/home_helper/HelpItem";
 import { toJapanMd } from "@function/DateConverter";
+import { fetchUser } from "@hooks/user/fetchUser";
+import { fetchHelpItems } from "@hooks/help_item/fetchHelpItems";
 
 export const ChargePointContainer: FC = () => {
   const [totalPoint, setTotalPoint] = useState(0);
@@ -11,10 +12,11 @@ export const ChargePointContainer: FC = () => {
   const [helpItems, setHelpItems] = useState<HelpItem[]>([]);
 
   useEffect(() => {
-    useChargePoint(loadUserId()).then((r) => {
-      setHelpItems(r.helpItems);
-      setFromDate(toJapanMd(r.user.lastHelp));
+    fetchUser(loadUserId()).then((user) => {
+      setTotalPoint(user.currentPoint);
+      setFromDate(toJapanMd(user.lastHelp));
     });
+    fetchHelpItems().then(setHelpItems);
   }, []);
 
   const handleCalcTotal = (point: number) => {
