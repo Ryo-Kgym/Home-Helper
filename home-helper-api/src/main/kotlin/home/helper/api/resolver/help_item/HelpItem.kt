@@ -5,8 +5,8 @@
 package home.helper.api.resolver.help_item
 
 data class HelpItem(
-    val id: Long,
+    val id: String,
     val name: String,
-    val point: Long,
+    val point: Int,
     val memo: String?,
 )

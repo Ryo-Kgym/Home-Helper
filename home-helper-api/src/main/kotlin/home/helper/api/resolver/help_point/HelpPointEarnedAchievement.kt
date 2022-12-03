@@ -11,6 +11,6 @@ data class HelpPointEarnedAchievement(
     val id: Long,
     val userId: String,
     val earnedDate: LocalDate,
-    val earnedPoint: Long,
+    val earnedPoint: Int,
     val helpItems: List<HelpItem>,
 )

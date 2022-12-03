@@ -4,7 +4,10 @@
 
 package home.helper.api.persistence.database.mysql.id
 
-enum class IdType {
-    HELP_POINT_EARNED_ACHIEVEMENT_ID,
+enum class IdType(
+    val length: Int
+) {
+    HELP_POINT_EARNED_ACHIEVEMENT_ID(32),
+    HELP_ITEM_ID(32),
     ;
 }

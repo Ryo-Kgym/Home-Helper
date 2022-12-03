@@ -5,11 +5,6 @@
 
 package home.helper.api.persistence.database.mysql.table
 
-import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem
-import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.helpPoint
-import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.id
-import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.itemName
-import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.memo
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
 import org.mybatis.dynamic.sql.util.kotlin.CountCompleter
 import org.mybatis.dynamic.sql.util.kotlin.DeleteCompleter
@@ -24,6 +19,11 @@ import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectDistinct
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectList
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectOne
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.update
+import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem
+import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.helpPoint
+import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.id
+import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.itemName
+import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.memo
 
 fun DbMHelpItemMapper.count(completer: CountCompleter) =
     countFrom(this::count, DbMHelpItem, completer)
@@ -31,7 +31,7 @@ fun DbMHelpItemMapper.count(completer: CountCompleter) =
 fun DbMHelpItemMapper.delete(completer: DeleteCompleter) =
     deleteFrom(this::delete, DbMHelpItem, completer)
 
-fun DbMHelpItemMapper.deleteByPrimaryKey(id_: Long) =
+fun DbMHelpItemMapper.deleteByPrimaryKey(id_: String) =
     delete {
         where(id, isEqualTo(id_))
     }
@@ -74,7 +74,7 @@ fun DbMHelpItemMapper.select(completer: SelectCompleter) =
 fun DbMHelpItemMapper.selectDistinct(completer: SelectCompleter) =
     selectDistinct(this::selectMany, columnList, DbMHelpItem, completer)
 
-fun DbMHelpItemMapper.selectByPrimaryKey(id_: Long) =
+fun DbMHelpItemMapper.selectByPrimaryKey(id_: String) =
     selectOne {
         where(id, isEqualTo(id_))
     }

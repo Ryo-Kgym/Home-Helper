@@ -40,10 +40,10 @@ interface DbHelpPointEarnedAchievementMapper {
 
     @SelectProvider(type=SqlProviderAdapter::class, method="select")
     @Results(id="DbHelpPointEarnedAchievementRecordResult", value = [
-        Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+        Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
         Result(column="user_id", property="userId", jdbcType=JdbcType.VARCHAR),
         Result(column="earned_date", property="earnedDate", jdbcType=JdbcType.DATE),
-        Result(column="earned_point", property="earnedPoint", jdbcType=JdbcType.BIGINT)
+        Result(column="earned_point", property="earnedPoint", jdbcType=JdbcType.INTEGER)
     ])
     fun selectMany(selectStatement: SelectStatementProvider): List<DbHelpPointEarnedAchievementRecord>
 

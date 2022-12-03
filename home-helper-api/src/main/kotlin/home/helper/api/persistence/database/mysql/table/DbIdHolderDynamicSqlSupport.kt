@@ -3,9 +3,9 @@
  */
 package home.helper.api.persistence.database.mysql.table
 
-import home.helper.api.persistence.database.mysql.id.IdType
-import org.mybatis.dynamic.sql.SqlTable
 import java.sql.JDBCType
+import org.mybatis.dynamic.sql.SqlTable
+import home.helper.api.persistence.database.mysql.id.IdType
 
 object DbIdHolderDynamicSqlSupport {
     object DbIdHolder : SqlTable("id_holder") {

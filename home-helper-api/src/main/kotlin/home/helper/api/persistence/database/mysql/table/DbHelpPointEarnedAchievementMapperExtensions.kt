@@ -1,7 +1,6 @@
 /*
  * Auto-generated file. Created by MyBatis Generator
  */
-@file:Suppress("DEPRECATION")
 package home.helper.api.persistence.database.mysql.table
 
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedAchievementDynamicSqlSupport.DbHelpPointEarnedAchievement
@@ -9,20 +8,10 @@ import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedAchieve
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedAchievementDynamicSqlSupport.DbHelpPointEarnedAchievement.earnedPoint
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedAchievementDynamicSqlSupport.DbHelpPointEarnedAchievement.id
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedAchievementDynamicSqlSupport.DbHelpPointEarnedAchievement.userId
+import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedAchievementRecord
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
-import org.mybatis.dynamic.sql.util.kotlin.CountCompleter
-import org.mybatis.dynamic.sql.util.kotlin.DeleteCompleter
-import org.mybatis.dynamic.sql.util.kotlin.KotlinUpdateBuilder
-import org.mybatis.dynamic.sql.util.kotlin.SelectCompleter
-import org.mybatis.dynamic.sql.util.kotlin.UpdateCompleter
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.countFrom
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.deleteFrom
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.insert
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.insertMultiple
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectDistinct
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectList
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectOne
-import org.mybatis.dynamic.sql.util.kotlin.mybatis3.update
+import org.mybatis.dynamic.sql.util.kotlin.*
+import org.mybatis.dynamic.sql.util.kotlin.mybatis3.*
 
 fun DbHelpPointEarnedAchievementMapper.count(completer: CountCompleter) =
     countFrom(this::count, DbHelpPointEarnedAchievement, completer)
@@ -30,7 +19,7 @@ fun DbHelpPointEarnedAchievementMapper.count(completer: CountCompleter) =
 fun DbHelpPointEarnedAchievementMapper.delete(completer: DeleteCompleter) =
     deleteFrom(this::delete, DbHelpPointEarnedAchievement, completer)
 
-fun DbHelpPointEarnedAchievementMapper.deleteByPrimaryKey(id_: Long) =
+fun DbHelpPointEarnedAchievementMapper.deleteByPrimaryKey(id_: String) =
     delete {
         where(id, isEqualTo(id_))
     }
@@ -73,7 +62,7 @@ fun DbHelpPointEarnedAchievementMapper.select(completer: SelectCompleter) =
 fun DbHelpPointEarnedAchievementMapper.selectDistinct(completer: SelectCompleter) =
     selectDistinct(this::selectMany, columnList, DbHelpPointEarnedAchievement, completer)
 
-fun DbHelpPointEarnedAchievementMapper.selectByPrimaryKey(id_: Long) =
+fun DbHelpPointEarnedAchievementMapper.selectByPrimaryKey(id_: String) =
     selectOne {
         where(id, isEqualTo(id_))
     }

@@ -6,21 +6,20 @@ package home.helper.api.persistence.database.mysql.id
 
 import home.helper.api.gateway.id.IdGateway
 import home.helper.api.persistence.database.mysql.table_customize.IdHolderCustomRepository
-import org.springframework.stereotype.Repository
 
-@Repository
 class HelpPointEarnedAchievementIdRepository(
     private val idHolderCustomRepository: IdHolderCustomRepository,
 ) : IdGateway<HelpPointEarnedAchievementId> {
+    private val idType = IdType.HELP_POINT_EARNED_ACHIEVEMENT_ID
 
     override fun increment() {
-        idHolderCustomRepository.incrementId(IdType.HELP_POINT_EARNED_ACHIEVEMENT_ID)
+        idHolderCustomRepository.incrementId(idType)
     }
 
     override fun getId(): HelpPointEarnedAchievementId {
-        val id = idHolderCustomRepository.getCurrentId(IdType.HELP_POINT_EARNED_ACHIEVEMENT_ID)
+        val id = idHolderCustomRepository.getCurrentId(idType)
         return HelpPointEarnedAchievementId(
-            id = id,
+            id = id.toString(),
         )
     }
 }

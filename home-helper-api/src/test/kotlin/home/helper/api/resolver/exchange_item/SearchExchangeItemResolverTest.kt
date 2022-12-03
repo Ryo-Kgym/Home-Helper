@@ -2,18 +2,10 @@
  * Copyright (c) 2022 Ryo-Kgym.
  */
 
-package home.helper.api.resolver.help_item
+package home.helper.api.resolver.exchange_item
 
-import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener
-import com.github.springtestdbunit.annotation.DatabaseSetup
-import com.github.springtestdbunit.annotation.DbUnitConfiguration
-import com.github.springtestdbunit.annotation.ExpectedDatabase
-import com.github.springtestdbunit.assertion.DatabaseAssertionMode
-import com.graphql.spring.boot.test.GraphQLTestTemplate
-import home.helper.api.persistence.database.CsvDataSetLoader
-import home.helper.api.utils.JsonTestUtils.Companion.load
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.CoreMatchers
+import org.hamcrest.MatcherAssert
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,6 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestExecutionListeners
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
+import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener
+import com.github.springtestdbunit.annotation.DatabaseSetup
+import com.github.springtestdbunit.annotation.DbUnitConfiguration
+import com.github.springtestdbunit.annotation.ExpectedDatabase
+import com.github.springtestdbunit.assertion.DatabaseAssertionMode
+import com.graphql.spring.boot.test.GraphQLTestTemplate
+import home.helper.api.persistence.database.CsvDataSetLoader
+import home.helper.api.utils.JsonTestUtils
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("ci")
@@ -29,12 +29,12 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
     TransactionDbUnitTestExecutionListener::class
 )
 @DbUnitConfiguration(dataSetLoader = CsvDataSetLoader::class)
-internal class FindHelpItemResolverTest {
+internal class SearchExchangeItemResolverTest {
     @Autowired
     private val graphQLTestTemplate: GraphQLTestTemplate? = null
 
     companion object {
-        private const val ROOT = "/GraphQLTest/FindHelpItemResolver/"
+        private const val ROOT = "/GraphQLTest/SearchExchangeItemResolver/"
     }
 
     @Test
@@ -46,9 +46,9 @@ internal class FindHelpItemResolverTest {
     fun test02() {
         val actual = graphQLTestTemplate?.postForResource(ROOT + "request.query")!!
             .rawResponse.body
-        val expected = load(ROOT + "response.json").toString()
+        val expected = JsonTestUtils.load(ROOT + "response.json").toString()
 
-        assertThat(actual, `is`(expected))
+        MatcherAssert.assertThat(actual, CoreMatchers.`is`(expected))
     }
 
     @Test

@@ -4,7 +4,7 @@
 package home.helper.api.persistence.database.mysql.table
 
 data class DbHelpPointEarnedDetailRecord(
-    var id: Long? = null,
-    var achievementId: Long? = null,
-    var itemId: Long? = null
+    var id: String? = null,
+    var achievementId: String? = null,
+    var itemId: String? = null
 )

@@ -10,7 +10,7 @@ import home.helper.core.domain.model.help_item.HelpItem
  * お手伝いポイントを保持するクラスです。
  */
 data class HelpPoint(
-    val value: Long,
+    val value: Int,
 ) {
 
     companion object {

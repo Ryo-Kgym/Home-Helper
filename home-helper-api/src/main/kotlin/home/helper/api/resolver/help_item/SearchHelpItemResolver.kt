@@ -42,7 +42,7 @@ class SearchHelpItemResolver(
      * @param id ID
      * @return お手伝い項目
      */
-    fun helpItem(id: Long): HelpItemGqo? {
+    fun helpItem(id: String): HelpItemGqo? {
         val param = SearchHelpItemParam(
             id = id,
         )
@@ -51,7 +51,7 @@ class SearchHelpItemResolver(
 }
 
 data class SearchHelpItemParam(
-    val id: Long? = null,
+    val id: String? = null,
     val pointFrom: Int? = null,
     val pointTo: Int? = null,
 )

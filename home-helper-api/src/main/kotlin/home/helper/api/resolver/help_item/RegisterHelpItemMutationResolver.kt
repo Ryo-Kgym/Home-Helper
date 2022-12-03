@@ -34,6 +34,6 @@ class RegisterHelpItemMutationResolver(
 
 data class RegisterHelpItemParam(
     val name: String,
-    val point: Long,
+    val point: Int,
     val memo: String?,
 )

@@ -82,14 +82,14 @@ class SearchHelpPointMapperTest(
     }
 
     private val item1 = HelpItemResult(
-        itemId = 1,
+        itemId = "1",
         itemName = "テスト項目1",
         helpPoint = 100,
         memo = "これはテストです。"
     )
 
     private val item2 = HelpItemResult(
-        itemId = 2,
+        itemId = "2",
         itemName = "テスト項目2",
         helpPoint = 200,
         memo = "これもテストです。"

@@ -3,6 +3,7 @@
  */
 package home.helper.api.persistence.database.mysql.table
 
+import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailRecord
 import org.apache.ibatis.annotations.DeleteProvider
 import org.apache.ibatis.annotations.InsertProvider
 import org.apache.ibatis.annotations.Mapper
@@ -21,32 +22,30 @@ import org.mybatis.dynamic.sql.util.SqlProviderAdapter
 
 @Mapper
 interface DbHelpPointEarnedDetailMapper {
-    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
+    @SelectProvider(type=SqlProviderAdapter::class, method="select")
     fun count(selectStatement: SelectStatementProvider): Long
 
-    @DeleteProvider(type = SqlProviderAdapter::class, method = "delete")
+    @DeleteProvider(type=SqlProviderAdapter::class, method="delete")
     fun delete(deleteStatement: DeleteStatementProvider): Int
 
-    @InsertProvider(type = SqlProviderAdapter::class, method = "insert")
+    @InsertProvider(type=SqlProviderAdapter::class, method="insert")
     fun insert(insertStatement: InsertStatementProvider<DbHelpPointEarnedDetailRecord>): Int
 
-    @InsertProvider(type = SqlProviderAdapter::class, method = "insertMultiple")
+    @InsertProvider(type=SqlProviderAdapter::class, method="insertMultiple")
     fun insertMultiple(multipleInsertStatement: MultiRowInsertStatementProvider<DbHelpPointEarnedDetailRecord>): Int
 
-    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
+    @SelectProvider(type=SqlProviderAdapter::class, method="select")
     @ResultMap("DbHelpPointEarnedDetailRecordResult")
     fun selectOne(selectStatement: SelectStatementProvider): DbHelpPointEarnedDetailRecord?
 
-    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
-    @Results(
-        id = "DbHelpPointEarnedDetailRecordResult", value = [
-            Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
-            Result(column = "achievement_id", property = "achievementId", jdbcType = JdbcType.BIGINT),
-            Result(column = "item_id", property = "itemId", jdbcType = JdbcType.BIGINT)
-        ]
-    )
+    @SelectProvider(type=SqlProviderAdapter::class, method="select")
+    @Results(id="DbHelpPointEarnedDetailRecordResult", value = [
+        Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
+        Result(column="achievement_id", property="achievementId", jdbcType=JdbcType.VARCHAR),
+        Result(column="item_id", property="itemId", jdbcType=JdbcType.VARCHAR)
+    ])
     fun selectMany(selectStatement: SelectStatementProvider): List<DbHelpPointEarnedDetailRecord>
 
-    @UpdateProvider(type = SqlProviderAdapter::class, method = "update")
+    @UpdateProvider(type=SqlProviderAdapter::class, method="update")
     fun update(updateStatement: UpdateStatementProvider): Int
 }
