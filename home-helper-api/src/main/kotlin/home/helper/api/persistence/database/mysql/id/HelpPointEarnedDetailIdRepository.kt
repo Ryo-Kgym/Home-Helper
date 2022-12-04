@@ -9,18 +9,18 @@ import home.helper.api.gateway.id.IdGateway
 import home.helper.api.persistence.database.mysql.table_customize.IdHolderCustomRepository
 
 @Repository
-class HelpPointEarnedAchievementIdRepository(
+class HelpPointEarnedDetailIdRepository(
     private val idHolderCustomRepository: IdHolderCustomRepository,
-) : IdGateway<HelpPointEarnedAchievementId> {
-    private val idType = IdType.HELP_POINT_EARNED_ACHIEVEMENT_ID
+) : IdGateway<HelpPointEarnedDetailId> {
+    private val idType = IdType.HELP_POINT_EARNED_DETAIL_ID
 
     override fun increment() {
         idHolderCustomRepository.incrementId(idType)
     }
 
-    override fun getId(): HelpPointEarnedAchievementId {
+    override fun getId(): HelpPointEarnedDetailId {
         val id = idHolderCustomRepository.getCurrentId(idType)
-        return HelpPointEarnedAchievementId(
+        return HelpPointEarnedDetailId(
             id = id.toString(),
         )
     }

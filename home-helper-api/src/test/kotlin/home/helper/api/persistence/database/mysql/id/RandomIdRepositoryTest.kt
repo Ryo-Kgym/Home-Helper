@@ -13,7 +13,8 @@ internal class RandomIdRepositoryTest {
 
     @Test
     internal fun generateId() {
-        var actual = target.getId()
+        target.increment()
+        val actual = target.getId()
 
         assertThat(actual.length, `is`(32))
     }
