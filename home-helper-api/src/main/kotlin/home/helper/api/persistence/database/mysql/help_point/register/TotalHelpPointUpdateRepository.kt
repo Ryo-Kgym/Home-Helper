@@ -36,8 +36,8 @@ class TotalHelpPointUpdateRepository(
 
             override fun getUpdateStatement(): String {
                 return "update user_point " +
-                        "set point = point + #{totalPoint} " +
-                        "where user_id = #{userId}"
+                        "set point = point + #{parameters.totalPoint, jdbcType=INTEGER} " +
+                        "where user_id = #{parameters.userId, jdbcType=VARCHAR}"
             }
         }
 
