@@ -5,6 +5,7 @@
 package home.helper.core.domain.model.help_point
 
 import home.helper.core.domain.model.help_item.HelpItem
+import home.helper.core.domain.model.help_item.MultipleHelpItem
 
 /**
  * お手伝いポイントを保持するクラスです。
@@ -40,6 +41,16 @@ data class HelpPoint(
         fun sumItem(helpItemList: List<HelpItem>): HelpPoint {
             return sum(helpItemList.map { it.helpPoint })
         }
+
+        /**
+         * お手伝いポイントの数量倍の総和を返します。
+         * @param multipleHelpItems お手伝いポイントと数量
+         * @return 合算したお手伝いポイント
+         */
+        fun sumOfProducts(multipleHelpItems: List<MultipleHelpItem>): HelpPoint {
+            return sum(multipleHelpItems.map { it.calcSubtotalPoint() })
+        }
+
     }
 
     /**
@@ -49,5 +60,14 @@ data class HelpPoint(
      */
     fun add(helpPoint: HelpPoint): HelpPoint {
         return HelpPoint(value = this.value + helpPoint.value)
+    }
+
+    /**
+     * お手伝いポイントの数量倍したものを返します。
+     * @param count 数量
+     * @return 数量倍したお手伝いポイント
+     */
+    fun times(count: Int): HelpPoint {
+        return HelpPoint(value = this.value * count)
     }
 }
