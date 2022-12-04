@@ -5,13 +5,13 @@
 package home.helper.core.domain.interactor.help_point
 
 import java.time.LocalDateTime
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import com.nhaarman.mockitokotlin2.mock
-import home.helper.core.domain.model.help_item.HelpItem
+import home.helper.core.domain.model.help_item.MultipleHelpItem
 import home.helper.core.domain.model.help_point.HelpPoint
 import home.helper.core.domain.model.message.HomeHelperMessage
 import home.helper.core.domain.model.operation.Operation
@@ -41,10 +41,10 @@ internal class RegisterHelpPointInteractorTest {
     fun register() {
         val actual = target.register(
             RegisterHelpPointInput(
-                helpItemList = listOf(
-                    HelpItem("1", "項目1", 100),
-                    HelpItem("2", "項目2", 200),
-                    HelpItem("3", "項目3", 300),
+                multipleHelpItems = listOf(
+                    MultipleHelpItem(id = "1", name = "項目1", point = 100, count = 1),
+                    MultipleHelpItem(id = "2", name = "項目2", point = 200, count = 2),
+                    MultipleHelpItem(id = "3", name = "項目3", point = 300, count = 3),
                 ),
                 userId = UserId("1"),
             )
@@ -52,7 +52,7 @@ internal class RegisterHelpPointInteractorTest {
         val expected = RegisterOutput(
             HomeHelperMessage("お手伝いポイントを3件登録したよ!")
         )
-        MatcherAssert.assertThat(actual, CoreMatchers.`is`(expected))
+        assertThat(actual, `is`(expected))
     }
 
     @BeforeEach
@@ -61,11 +61,11 @@ internal class RegisterHelpPointInteractorTest {
             saveGateway.save(
                 RegisterHelpPointOutput(
                     helpItemList = listOf(
-                        HelpItem("1", "項目1", 100),
-                        HelpItem("2", "項目2", 200),
-                        HelpItem("3", "項目3", 300),
+                        MultipleHelpItem(id = "1", name = "項目1", point = 100, count = 1),
+                        MultipleHelpItem(id = "2", name = "項目2", point = 200, count = 2),
+                        MultipleHelpItem(id = "3", name = "項目3", point = 300, count = 3),
                     ),
-                    totalHelpPoint = HelpPoint(600),
+                    totalHelpPoint = HelpPoint(100 * 1 + 200 * 2 + 300 * 3),
                     userId = UserId("1"),
                     earnedDateTime = LocalDateTime.of(2022, 11, 12, 12, 23, 34),
                 )

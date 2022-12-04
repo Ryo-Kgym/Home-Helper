@@ -20,11 +20,11 @@ class RegisterHelpPointInteractor(
 ) : RegisterHelpPointUseCase {
 
     override fun register(input: RegisterHelpPointInput): RegisterOutput {
-        val totalHelpPoint = HelpPoint.sumItem(input.helpItemList)
+        val totalHelpPoint = HelpPoint.sumOfProducts(input.multipleHelpItems)
 
         val saveOutput = helpPointSaveGateway.save(
             RegisterHelpPointOutput(
-                helpItemList = input.helpItemList,
+                helpItemList = input.multipleHelpItems,
                 totalHelpPoint = totalHelpPoint,
                 userId = input.userId,
                 earnedDateTime = operationGateway.load().datetime,
