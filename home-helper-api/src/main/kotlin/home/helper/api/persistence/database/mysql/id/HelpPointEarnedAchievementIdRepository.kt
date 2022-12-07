@@ -4,9 +4,11 @@
 
 package home.helper.api.persistence.database.mysql.id
 
+import org.springframework.stereotype.Repository
 import home.helper.api.gateway.id.IdGateway
 import home.helper.api.persistence.database.mysql.table_customize.IdHolderCustomRepository
 
+@Repository
 class HelpPointEarnedAchievementIdRepository(
     private val idHolderCustomRepository: IdHolderCustomRepository,
 ) : IdGateway<HelpPointEarnedAchievementId> {

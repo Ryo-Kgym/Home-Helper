@@ -9,19 +9,20 @@ import home.helper.api.provider.random.id.RandomCharacter
 
 /**
  * ランダムなIDを発行する Repository です。
+ * スレッドセーフではありません。
  * @param T IdType
  */
 abstract class RandomIdRepository<T>(
     private val idType: IdType,
 ) : IdGateway<T> {
+    var id: String = ""
 
     override fun increment() {
-        // noop
+        this.id = RandomCharacter.get(idType.length)
     }
 
     override fun getId(): T {
-        val id = RandomCharacter.get(idType.length)
-        return generateId(id)
+        return generateId(this.id)
     }
 
     abstract fun generateId(id: String): T

@@ -4,11 +4,12 @@
 
 package home.helper.core.domain.model.help_point
 
-import home.helper.core.domain.model.help_item.HelpItem
-import org.hamcrest.CoreMatchers
-import org.hamcrest.MatcherAssert
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import home.helper.core.domain.model.help_item.HelpItem
+import home.helper.core.domain.model.help_item.MultipleHelpItem
 
 internal class HelpPointTest {
 
@@ -21,7 +22,7 @@ internal class HelpPointTest {
         )
         val expected = HelpPoint(1100)
 
-        MatcherAssert.assertThat(actual, CoreMatchers.`is`(expected))
+        assertThat(actual, `is`(expected))
     }
 
     @Test
@@ -35,7 +36,7 @@ internal class HelpPointTest {
         )
         val expected = HelpPoint(1100)
 
-        MatcherAssert.assertThat(actual, CoreMatchers.`is`(expected))
+        assertThat(actual, `is`(expected))
     }
 
     @Test
@@ -51,7 +52,20 @@ internal class HelpPointTest {
         )
         val expected = HelpPoint(1100)
 
-        MatcherAssert.assertThat(actual, CoreMatchers.`is`(expected))
+        assertThat(actual, `is`(expected))
+    }
+
+    @Test
+    @DisplayName("数量倍の総和")
+    fun sumTimes() {
+        val actual = HelpPoint.sumOfProducts(
+            listOf(
+                MultipleHelpItem(id = "1", name = "項目1", point = 123, count = 2),
+                MultipleHelpItem(id = "2", name = "項目2", point = 234, count = 3),
+            )
+        )
+        val expected = HelpPoint(123 * 2 + 234 * 3)
+        assertThat(actual, `is`(expected))
     }
 
     @Test
@@ -61,6 +75,16 @@ internal class HelpPointTest {
             .add(HelpPoint(456))
         val expected = HelpPoint(579)
 
-        MatcherAssert.assertThat(actual, CoreMatchers.`is`(expected))
+        assertThat(actual, `is`(expected))
+    }
+
+    @Test
+    @DisplayName("お手伝いポイントの数量倍")
+    fun times() {
+        val actual = HelpPoint(123)
+            .times(3)
+        val expected = HelpPoint(369)
+
+        assertThat(actual, `is`(expected))
     }
 }

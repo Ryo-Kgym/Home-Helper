@@ -10,8 +10,8 @@ object DbMExchangeItemDynamicSqlSupport {
     object DbMExchangeItem : SqlTable("m_exchange_item") {
         val id = column<String>("id", JDBCType.VARCHAR)
 
-        val itemName = column<String>("item_name", JDBCType.VARCHAR)
+        val name = column<String>("name", JDBCType.VARCHAR)
 
-        val exchangePoint = column<Int>("exchange_point", JDBCType.INTEGER)
+        val point = column<Int>("point", JDBCType.INTEGER)
     }
 }

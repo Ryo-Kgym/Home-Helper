@@ -1,4 +1,4 @@
-id,achievement_id,item_id
+id,earned_achievement_id,help_item_id
 1,1,1
 2,1,2
 3,2,2

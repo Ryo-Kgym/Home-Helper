@@ -6,13 +6,13 @@
                type="home.helper.api.persistence.database.mysql.help_point.search.SearchHelpPointResult">
         <id column="id" property="id"/>
         <result column="user_id" property="userId"/>
-        <result column="earned_date" property="earnedDate"/>
+        <result column="earned_datetime" property="earnedDate"/>
         <result column="earned_point" property="earnedPoint"/>
         <collection property="detailList"
                     ofType="home.helper.api.persistence.database.mysql.help_point.search.HelpItemResult">
-            <id column="item_id" property="itemId"/>
-            <result column="item_name" property="itemName"/>
-            <result column="help_point" property="helpPoint"/>
+            <id column="help_item_id" property="itemId"/>
+            <result column="name" property="itemName"/>
+            <result column="point" property="helpPoint"/>
             <result column="memo" property="memo"/>
         </collection>
     </resultMap>
@@ -23,21 +23,21 @@
         select
             achi.id,
             achi.user_id,
-            achi.earned_date,
+            achi.earned_datetime,
             achi.earned_point,
-            hped.item_id,
-            mhi.item_name,
-            mhi.help_point,
+            hped.help_item_id,
+            mhi.name,
+            mhi.point,
             mhi.memo
         from
             help_point_earned_achievement achi
             left outer join help_point_earned_detail hped
-            on achi.id = hped.achievement_id
+            on achi.id = hped.earned_achievement_id
             left outer join m_help_item mhi
-            on hped.item_id = mhi.id
+            on hped.help_item_id = mhi.id
         order by
-            achi.earned_date,
+            achi.earned_datetime,
             achi.id,
-            hped.item_id
+            hped.help_item_id
     </select>
 </mapper>

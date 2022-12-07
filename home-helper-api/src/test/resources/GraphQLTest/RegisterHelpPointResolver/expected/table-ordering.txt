@@ -1,0 +1,3 @@
+help_point_earned_achievement
+help_point_earned_detail
+id_holder

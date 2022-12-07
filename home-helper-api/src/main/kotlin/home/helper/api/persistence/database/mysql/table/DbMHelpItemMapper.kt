@@ -3,6 +3,7 @@
  */
 package home.helper.api.persistence.database.mysql.table
 
+import home.helper.api.persistence.database.mysql.table.DbMHelpItemRecord
 import org.apache.ibatis.annotations.DeleteProvider
 import org.apache.ibatis.annotations.InsertProvider
 import org.apache.ibatis.annotations.Mapper
@@ -21,33 +22,31 @@ import org.mybatis.dynamic.sql.util.SqlProviderAdapter
 
 @Mapper
 interface DbMHelpItemMapper {
-    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
+    @SelectProvider(type=SqlProviderAdapter::class, method="select")
     fun count(selectStatement: SelectStatementProvider): Long
 
-    @DeleteProvider(type = SqlProviderAdapter::class, method = "delete")
+    @DeleteProvider(type=SqlProviderAdapter::class, method="delete")
     fun delete(deleteStatement: DeleteStatementProvider): Int
 
-    @InsertProvider(type = SqlProviderAdapter::class, method = "insert")
+    @InsertProvider(type=SqlProviderAdapter::class, method="insert")
     fun insert(insertStatement: InsertStatementProvider<DbMHelpItemRecord>): Int
 
-    @InsertProvider(type = SqlProviderAdapter::class, method = "insertMultiple")
+    @InsertProvider(type=SqlProviderAdapter::class, method="insertMultiple")
     fun insertMultiple(multipleInsertStatement: MultiRowInsertStatementProvider<DbMHelpItemRecord>): Int
 
-    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
+    @SelectProvider(type=SqlProviderAdapter::class, method="select")
     @ResultMap("DbMHelpItemRecordResult")
     fun selectOne(selectStatement: SelectStatementProvider): DbMHelpItemRecord?
 
-    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
-    @Results(
-        id = "DbMHelpItemRecordResult", value = [
-            Result(column = "id", property = "id", jdbcType = JdbcType.VARCHAR, id = true),
-            Result(column = "item_name", property = "itemName", jdbcType = JdbcType.VARCHAR),
-            Result(column = "help_point", property = "helpPoint", jdbcType = JdbcType.INTEGER),
-            Result(column = "memo", property = "memo", jdbcType = JdbcType.VARCHAR)
-        ]
-    )
+    @SelectProvider(type=SqlProviderAdapter::class, method="select")
+    @Results(id="DbMHelpItemRecordResult", value = [
+        Result(column="id", property="id", jdbcType=JdbcType.VARCHAR, id=true),
+        Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+        Result(column="point", property="point", jdbcType=JdbcType.INTEGER),
+        Result(column="memo", property="memo", jdbcType=JdbcType.VARCHAR)
+    ])
     fun selectMany(selectStatement: SelectStatementProvider): List<DbMHelpItemRecord>
 
-    @UpdateProvider(type = SqlProviderAdapter::class, method = "update")
+    @UpdateProvider(type=SqlProviderAdapter::class, method="update")
     fun update(updateStatement: UpdateStatementProvider): Int
 }

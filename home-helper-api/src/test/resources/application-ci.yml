@@ -8,6 +8,7 @@ spring:
 
 mock:
   id: true
+  datetime: true
 
 mybatis:
   configuration:

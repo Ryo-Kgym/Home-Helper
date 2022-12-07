@@ -23,15 +23,15 @@ class SearchExchangeItemRepository(
             }
 
             override fun getSelectStatement(): String {
-                return "select id, item_name, exchange_point from m_exchange_item order by id;"
+                return "select id, name, point from m_exchange_item order by id;"
             }
         })
 
         return dbExchangeItems.map {
             ExchangeItem(
                 id = it.id!!,
-                name = it.itemName!!,
-                value = it.exchangePoint!!,
+                name = it.name!!,
+                value = it.point!!,
             )
         }.toList()
     }

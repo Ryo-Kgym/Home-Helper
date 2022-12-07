@@ -16,10 +16,15 @@ data class HelpItem(
     val memo: String? = null,
 ) {
 
-    constructor(id: String, name: String, value: Int) :
+    constructor(id: String,
+                name: String,
+                point: Int,
+                memo: String? = null
+    ) :
             this(
                 helpItemId = HelpItemId(id),
                 name = name,
-                helpPoint = HelpPoint(value)
+                helpPoint = HelpPoint(point),
+                memo = memo,
             )
 }

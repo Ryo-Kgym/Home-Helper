@@ -1,3 +1,4 @@
-id,item_name,help_point,memo
+id,name,point,memo
+1,テスト,200,これはテストです。
 2,テスト項目2,100,これはテストです。
 3,テスト項目3,200,これもテストです。

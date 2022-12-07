@@ -7,8 +7,8 @@
             resultType="home.helper.api.persistence.database.mysql.table.DbMHelpItemRecord">
         select
             hi.id,
-            hi.item_name,
-            hi.help_point,
+            hi.name,
+            hi.point,
             hi.memo
         from
             m_help_item hi

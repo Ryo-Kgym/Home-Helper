@@ -17,10 +17,8 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.annotation.Commit
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestExecutionListeners
-import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -30,12 +28,12 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
     TransactionDbUnitTestExecutionListener::class
 )
 @DbUnitConfiguration(dataSetLoader = CsvDataSetLoader::class)
-internal class RegisterHelpItemMutationResolverTest {
+internal class RegisterHelpItemResolverTest {
     @Autowired
     private val graphQLTestTemplate: GraphQLTestTemplate? = null
 
     companion object {
-        private const val ROOT = "/GraphQLTest/RegisterHelpItemMutationResolver/"
+        private const val ROOT = "/GraphQLTest/RegisterHelpItemResolver/"
     }
 
     @Test

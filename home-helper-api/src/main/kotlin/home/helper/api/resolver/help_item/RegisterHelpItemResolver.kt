@@ -11,12 +11,12 @@ import home.helper.core.dto.help_item.RegisterHelpItemInput
 import org.springframework.stereotype.Component
 
 @Component
-class RegisterHelpItemMutationResolver(
+class RegisterHelpItemResolver(
     private val registerHelpItemUseCase: RegisterHelpItemUseCase,
 ) : GraphQLMutationResolver {
 
     /**
-     * お手伝い項目を登録するミューテーションです。
+     * お手伝い項目を登録します。
      * @param param 登録内容
      * @return 登録メッセージ
      */

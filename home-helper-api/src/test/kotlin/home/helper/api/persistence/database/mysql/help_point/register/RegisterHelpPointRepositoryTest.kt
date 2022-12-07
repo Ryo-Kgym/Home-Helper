@@ -19,16 +19,19 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 internal class RegisterHelpPointRepositoryTest {
     private val helpPointEarnedAchievementIdGateway: IdGateway<HelpPointEarnedAchievementId> = mock()
     private val helpPointEarnedAchievementInsertRepository: HelpPointEarnedAchievementInsertRepository = mock()
     private val helpPointEarnedDetailInsertRepository: HelpPointEarnedDetailInsertRepository = mock()
+    private val totalHelpPointUpdateRepository: TotalHelpPointUpdateRepository = mock()
 
     private val target = RegisterHelpPointRepository(
         helpPointEarnedAchievementIdGateway = helpPointEarnedAchievementIdGateway,
         helpPointEarnedAchievementInsertRepository = helpPointEarnedAchievementInsertRepository,
         helpPointEarnedDetailInsertRepository = helpPointEarnedDetailInsertRepository,
+        totalHelpPointUpdateRepository = totalHelpPointUpdateRepository,
     )
 
     @BeforeEach
@@ -47,6 +50,13 @@ internal class RegisterHelpPointRepositoryTest {
                     useCase = SaveUseCaseEnum.REGISTER_HELP_POINT,
                 )
             )
+        Mockito.`when`(totalHelpPointUpdateRepository.save(any()))
+            .thenReturn(
+                SaveOutput(
+                    result = 1,
+                    useCase = SaveUseCaseEnum.REGISTER_HELP_POINT,
+                )
+            )
     }
 
     @Test
@@ -55,7 +65,7 @@ internal class RegisterHelpPointRepositoryTest {
             helpItemList = listOf(),
             totalHelpPoint = HelpPoint(100),
             userId = UserId("1"),
-            earnedDate = LocalDate.now(),
+            earnedDateTime = LocalDateTime.now(),
         )
         val actual = target.save(source)
         val expected = SaveOutput(

@@ -25,8 +25,8 @@ class SearchHelpItemRepository(
             .map {
                 HelpItem(
                     helpItemId = HelpItemId(it.id!!),
-                    name = it.itemName!!,
-                    helpPoint = HelpPoint(it.helpPoint!!),
+                    name = it.name!!,
+                    helpPoint = HelpPoint(it.point!!),
                     memo = it.memo,
                 )
             }

@@ -17,6 +17,8 @@ type Query {
 type Mutation {
     # お手伝い項目を登録します。
     registerHelpItem(param: RegisterHelpItemParam): [String]
+    # お手伝いポイントを登録します。
+    registerHelpPoint(param: RegisterHelpPointParam): [String]
 }
 
 input SearchHelpItemParam {
@@ -28,6 +30,17 @@ input RegisterHelpItemParam {
     name: String!
     point: Int!
     memo: String
+}
+
+input RegisterHelpPointParam {
+    details: [RegisterHelpPointDetail]
+    userId: String!
+}
+
+input RegisterHelpPointDetail {
+    id: String!
+    point: Int!
+    count: Int!
 }
 
 input SearchHelpPointParam {
