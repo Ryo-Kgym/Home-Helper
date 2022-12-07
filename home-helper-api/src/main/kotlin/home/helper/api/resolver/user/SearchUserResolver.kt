@@ -4,6 +4,7 @@
 
 package home.helper.api.resolver.user
 
+import java.time.format.DateTimeFormatter
 import home.helper.api.resolver.user.User as UserGqo
 import org.springframework.stereotype.Component
 import graphql.kickstart.tools.GraphQLQueryResolver
@@ -16,7 +17,10 @@ class SearchUserResolver(
     private val searchUserGateway: SearchUserGateway,
 ) : GraphQLQueryResolver {
 
-    // TODO currentPoint and lastHelp
+    companion object {
+        private val DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    }
+
     fun users(param: SearchUserParam): List<UserGqo> {
         val criteria = SearchUserCriteria(
             userId = param.userId?.let { UserId(it) },
@@ -27,13 +31,12 @@ class SearchUserResolver(
             UserGqo(
                 id = it.userId.id,
                 name = it.getNameWithSuffix(),
-                currentPoint = 30000,
-                lastHelp = "2022-12-01",
+                currentPoint = it.currentPoint.value,
+                lastHelp = DTF.format(it.lastHelpDateTime),
             )
         }.toList()
     }
 
-    // TODO currentPoint and lastHelp
     fun user(userId: String): UserGqo? {
         val param = SearchUserParam(
             userId = userId,

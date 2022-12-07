@@ -4,13 +4,16 @@
 
     <select id="search"
             parameterType="home.helper.api.persistence.database.mysql.user.search.SearchUserParam"
-            resultType="home.helper.api.persistence.database.mysql.table.DbMUserRecord">
+            resultType="home.helper.api.persistence.database.mysql.user.search.SearchUserResult">
         select
             u.id,
             u.name,
-            u.name_suffix
+            u.name_suffix,
+            up.point,
+            up.last_help_datetime
         from
             m_user u
+            left outer join user_point up on u.id = up.user_id
         <where>
             <if test="id">
                 and u.id = #{id}

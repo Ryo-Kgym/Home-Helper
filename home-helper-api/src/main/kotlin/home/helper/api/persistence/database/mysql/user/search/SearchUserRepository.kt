@@ -9,6 +9,7 @@ import home.helper.core.domain.model.user.UserId
 import home.helper.core.dto.user.SearchUserCriteria
 import home.helper.core.gateway.user.SearchUserGateway
 import org.springframework.stereotype.Repository
+import home.helper.core.domain.model.help_point.HelpPoint
 
 @Repository
 class SearchUserRepository(
@@ -24,9 +25,11 @@ class SearchUserRepository(
                 User(
                     id = it.id!!,
                     name = it.name!!,
-                    nameSuffix = it.nameSuffix!!
+                    nameSuffix = it.nameSuffix!!,
+                    currentPoint = HelpPoint(it.point!!),
+                    lastHelpDateTime = it.lastHelpDatetime!!
                 )
-            }.toList()
+            }
     }
 
     override fun findBy(userId: UserId): User? {
