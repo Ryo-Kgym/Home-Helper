@@ -28,8 +28,8 @@ class HelpPointEarnedDetailInsertRepository(
             helpPointEarnedDetailIdGateway.increment()
             DbHelpPointEarnedDetailRecord(
                 id = helpPointEarnedDetailIdGateway.getId().id,
-                achievementId = helpPointEarnedAchievementIdGateway.getId().id,
-                itemId = it.helpItem.helpItemId.id,
+                earnedAchievementId = helpPointEarnedAchievementIdGateway.getId().id,
+                helpItemId = it.helpItem.helpItemId.id,
             )
         }
     }

@@ -8,5 +8,5 @@ import java.time.LocalDateTime
 data class DbUserPointRecord(
     var userId: String? = null,
     var point: Int? = null,
-    var lastHelpDate: LocalDateTime? = null
+    var lastHelpDatetime: LocalDateTime? = null
 )

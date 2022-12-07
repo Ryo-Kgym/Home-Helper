@@ -4,7 +4,7 @@
 package home.helper.api.persistence.database.mysql.table
 
 import java.sql.JDBCType
-import java.time.LocalDate
+import java.time.LocalDateTime
 import org.mybatis.dynamic.sql.SqlTable
 
 object DbHelpPointEarnedAchievementDynamicSqlSupport {
@@ -13,7 +13,7 @@ object DbHelpPointEarnedAchievementDynamicSqlSupport {
 
         val userId = column<String>("user_id", JDBCType.VARCHAR)
 
-        val earnedDate = column<LocalDate>("earned_date", JDBCType.DATE)
+        val earnedDatetime = column<LocalDateTime>("earned_datetime", JDBCType.TIMESTAMP)
 
         val earnedPoint = column<Int>("earned_point", JDBCType.INTEGER)
     }

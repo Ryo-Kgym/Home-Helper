@@ -21,7 +21,7 @@ class TotalHelpPointUpdateRepository(
         return DbUserPointRecord(
             userId = target.userId.id,
             point = target.totalHelpPoint.value,
-            lastHelpDate = target.earnedDateTime,
+            lastHelpDatetime = target.earnedDateTime,
         )
     }
 

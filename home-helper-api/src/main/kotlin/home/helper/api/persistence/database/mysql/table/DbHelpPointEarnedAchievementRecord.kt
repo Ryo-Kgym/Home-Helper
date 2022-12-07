@@ -3,11 +3,11 @@
  */
 package home.helper.api.persistence.database.mysql.table
 
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 data class DbHelpPointEarnedAchievementRecord(
     var id: String? = null,
     var userId: String? = null,
-    var earnedDate: LocalDate? = null,
+    var earnedDatetime: LocalDateTime? = null,
     var earnedPoint: Int? = null
 )

@@ -23,8 +23,8 @@ class HelpItemInsertRepository(
     override fun convert(target: RegisterHelpItemOutput): DbMHelpItemRecord {
         return DbMHelpItemRecord(
             id = helpItemIdGateway.getId().id,
-            itemName = target.helpItemName,
-            helpPoint = target.helpPoint.value,
+            name = target.helpItemName,
+            point = target.helpPoint.value,
             memo = target.memo,
         )
     }

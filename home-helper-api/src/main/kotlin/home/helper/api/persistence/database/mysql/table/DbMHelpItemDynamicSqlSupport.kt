@@ -10,9 +10,9 @@ object DbMHelpItemDynamicSqlSupport {
     object DbMHelpItem : SqlTable("m_help_item") {
         val id = column<String>("id", JDBCType.VARCHAR)
 
-        val itemName = column<String>("item_name", JDBCType.VARCHAR)
+        val name = column<String>("name", JDBCType.VARCHAR)
 
-        val helpPoint = column<Int>("help_point", JDBCType.INTEGER)
+        val point = column<Int>("point", JDBCType.INTEGER)
 
         val memo = column<String>("memo", JDBCType.VARCHAR)
     }

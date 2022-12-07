@@ -24,7 +24,7 @@ class HelpPointEarnedAchievementInsertRepository(
         return DbHelpPointEarnedAchievementRecord(
             id = helpPointEarnedAchievementIdGateway.getId().id,
             userId = target.userId.id,
-            earnedDate = target.earnedDateTime.toLocalDate(),
+            earnedDatetime = target.earnedDateTime,
             earnedPoint = target.totalHelpPoint.value
         )
     }

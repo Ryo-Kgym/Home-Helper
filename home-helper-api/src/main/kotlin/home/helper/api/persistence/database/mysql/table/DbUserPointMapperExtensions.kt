@@ -1,6 +1,8 @@
 /*
  * Auto-generated file. Created by MyBatis Generator
  */
+@file:Suppress("DEPRECATION")
+
 package home.helper.api.persistence.database.mysql.table
 
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
@@ -18,7 +20,7 @@ import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectList
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectOne
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.update
 import home.helper.api.persistence.database.mysql.table.DbUserPointDynamicSqlSupport.DbUserPoint
-import home.helper.api.persistence.database.mysql.table.DbUserPointDynamicSqlSupport.DbUserPoint.lastHelpDate
+import home.helper.api.persistence.database.mysql.table.DbUserPointDynamicSqlSupport.DbUserPoint.lastHelpDatetime
 import home.helper.api.persistence.database.mysql.table.DbUserPointDynamicSqlSupport.DbUserPoint.point
 import home.helper.api.persistence.database.mysql.table.DbUserPointDynamicSqlSupport.DbUserPoint.userId
 
@@ -37,14 +39,14 @@ fun DbUserPointMapper.insert(record: DbUserPointRecord) =
     insert(this::insert, record, DbUserPoint) {
         map(userId).toProperty("userId")
         map(point).toProperty("point")
-        map(lastHelpDate).toProperty("lastHelpDate")
+        map(lastHelpDatetime).toProperty("lastHelpDatetime")
     }
 
 fun DbUserPointMapper.insertMultiple(records: Collection<DbUserPointRecord>) =
     insertMultiple(this::insertMultiple, records, DbUserPoint) {
         map(userId).toProperty("userId")
         map(point).toProperty("point")
-        map(lastHelpDate).toProperty("lastHelpDate")
+        map(lastHelpDatetime).toProperty("lastHelpDatetime")
     }
 
 fun DbUserPointMapper.insertMultiple(vararg records: DbUserPointRecord) =
@@ -54,10 +56,10 @@ fun DbUserPointMapper.insertSelective(record: DbUserPointRecord) =
     insert(this::insert, record, DbUserPoint) {
         map(userId).toPropertyWhenPresent("userId", record::userId)
         map(point).toPropertyWhenPresent("point", record::point)
-        map(lastHelpDate).toPropertyWhenPresent("lastHelpDate", record::lastHelpDate)
+        map(lastHelpDatetime).toPropertyWhenPresent("lastHelpDatetime", record::lastHelpDatetime)
     }
 
-private val columnList = listOf(userId, point, lastHelpDate)
+private val columnList = listOf(userId, point, lastHelpDatetime)
 
 fun DbUserPointMapper.selectOne(completer: SelectCompleter) =
     selectOne(this::selectOne, columnList, DbUserPoint, completer)
@@ -80,26 +82,26 @@ fun KotlinUpdateBuilder.updateAllColumns(record: DbUserPointRecord) =
     apply {
         set(userId).equalTo(record::userId)
         set(point).equalTo(record::point)
-        set(lastHelpDate).equalTo(record::lastHelpDate)
+        set(lastHelpDatetime).equalTo(record::lastHelpDatetime)
     }
 
 fun KotlinUpdateBuilder.updateSelectiveColumns(record: DbUserPointRecord) =
     apply {
         set(userId).equalToWhenPresent(record::userId)
         set(point).equalToWhenPresent(record::point)
-        set(lastHelpDate).equalToWhenPresent(record::lastHelpDate)
+        set(lastHelpDatetime).equalToWhenPresent(record::lastHelpDatetime)
     }
 
 fun DbUserPointMapper.updateByPrimaryKey(record: DbUserPointRecord) =
     update {
         set(point).equalTo(record::point)
-        set(lastHelpDate).equalTo(record::lastHelpDate)
+        set(lastHelpDatetime).equalTo(record::lastHelpDatetime)
         where(userId, isEqualTo(record::userId))
     }
 
 fun DbUserPointMapper.updateByPrimaryKeySelective(record: DbUserPointRecord) =
     update {
         set(point).equalToWhenPresent(record::point)
-        set(lastHelpDate).equalToWhenPresent(record::lastHelpDate)
+        set(lastHelpDatetime).equalToWhenPresent(record::lastHelpDatetime)
         where(userId, isEqualTo(record::userId))
     }

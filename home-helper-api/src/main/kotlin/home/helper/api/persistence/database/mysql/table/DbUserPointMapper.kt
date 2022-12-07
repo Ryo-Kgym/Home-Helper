@@ -3,6 +3,7 @@
  */
 package home.helper.api.persistence.database.mysql.table
 
+import home.helper.api.persistence.database.mysql.table.DbUserPointRecord
 import org.apache.ibatis.annotations.DeleteProvider
 import org.apache.ibatis.annotations.InsertProvider
 import org.apache.ibatis.annotations.Mapper
@@ -21,32 +22,30 @@ import org.mybatis.dynamic.sql.util.SqlProviderAdapter
 
 @Mapper
 interface DbUserPointMapper {
-    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
+    @SelectProvider(type=SqlProviderAdapter::class, method="select")
     fun count(selectStatement: SelectStatementProvider): Long
 
-    @DeleteProvider(type = SqlProviderAdapter::class, method = "delete")
+    @DeleteProvider(type=SqlProviderAdapter::class, method="delete")
     fun delete(deleteStatement: DeleteStatementProvider): Int
 
-    @InsertProvider(type = SqlProviderAdapter::class, method = "insert")
+    @InsertProvider(type=SqlProviderAdapter::class, method="insert")
     fun insert(insertStatement: InsertStatementProvider<DbUserPointRecord>): Int
 
-    @InsertProvider(type = SqlProviderAdapter::class, method = "insertMultiple")
+    @InsertProvider(type=SqlProviderAdapter::class, method="insertMultiple")
     fun insertMultiple(multipleInsertStatement: MultiRowInsertStatementProvider<DbUserPointRecord>): Int
 
-    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
+    @SelectProvider(type=SqlProviderAdapter::class, method="select")
     @ResultMap("DbUserPointRecordResult")
     fun selectOne(selectStatement: SelectStatementProvider): DbUserPointRecord?
 
-    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
-    @Results(
-        id = "DbUserPointRecordResult", value = [
-            Result(column = "user_id", property = "userId", jdbcType = JdbcType.VARCHAR, id = true),
-            Result(column = "point", property = "point", jdbcType = JdbcType.INTEGER),
-            Result(column = "last_help_date", property = "lastHelpDate", jdbcType = JdbcType.TIMESTAMP)
-        ]
-    )
+    @SelectProvider(type=SqlProviderAdapter::class, method="select")
+    @Results(id="DbUserPointRecordResult", value = [
+        Result(column="user_id", property="userId", jdbcType=JdbcType.VARCHAR, id=true),
+        Result(column="point", property="point", jdbcType=JdbcType.INTEGER),
+        Result(column="last_help_datetime", property="lastHelpDatetime", jdbcType=JdbcType.TIMESTAMP)
+    ])
     fun selectMany(selectStatement: SelectStatementProvider): List<DbUserPointRecord>
 
-    @UpdateProvider(type = SqlProviderAdapter::class, method = "update")
+    @UpdateProvider(type=SqlProviderAdapter::class, method="update")
     fun update(updateStatement: UpdateStatementProvider): Int
 }

@@ -1,4 +1,4 @@
-id,item_name,help_point,memo
+id,name,point,memo
 1,項目1,100,メモ1
 2,項目2,200,メモ2
 3,項目3,300,[null]

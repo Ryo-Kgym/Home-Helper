@@ -13,6 +13,6 @@ object DbUserPointDynamicSqlSupport {
 
         val point = column<Int>("point", JDBCType.INTEGER)
 
-        val lastHelpDate = column<LocalDateTime>("last_help_date", JDBCType.TIMESTAMP)
+        val lastHelpDatetime = column<LocalDateTime>("last_help_datetime", JDBCType.TIMESTAMP)
     }
 }
