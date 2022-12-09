@@ -7,6 +7,6 @@ package home.helper.api.resolver.user
 data class User(
     val id: String,
     val name: String,
-    val currentPoint: Long,
+    val currentPoint: Int,
     val lastHelp: String,
 )

@@ -18,7 +18,7 @@ class SearchHelpPointEarnedAchievementResolver(
 ) : GraphQLQueryResolver {
 
     /**
-     * お手伝いポイント獲得実績を検索するします。
+     * お手伝いポイント獲得実績を検索します。
      * @param param 検索条件
      * @return お手伝いポイント獲得実績
      */

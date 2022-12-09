@@ -15,6 +15,8 @@ data class HelpPoint(
 ) {
 
     companion object {
+        val ZERO = HelpPoint(0)
+
         /**
          * お手伝いポイントの総和を返します。
          * @param helpPoints お手伝いポイント（可変長引数）

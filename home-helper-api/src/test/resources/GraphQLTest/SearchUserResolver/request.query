@@ -5,7 +5,7 @@ query {
         currentPoint
         lastHelp
     }
-    user(userId: "1") {
+    user(userId: "u1") {
         id
         name
         currentPoint
