@@ -4,13 +4,8 @@
 
 package home.helper.api.persistence.database.mysql.user.search
 
-import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener
-import com.github.springtestdbunit.annotation.DatabaseSetup
-import com.github.springtestdbunit.annotation.DbUnitConfiguration
-import home.helper.api.persistence.database.CsvDataSetLoader
-import home.helper.core.domain.model.user.User
-import home.helper.core.domain.model.user.UserId
-import home.helper.core.dto.user.SearchUserCriteria
+import java.time.LocalDateTime
+import java.util.stream.Stream
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -24,7 +19,14 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestExecutionListeners
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
-import java.util.stream.Stream
+import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener
+import com.github.springtestdbunit.annotation.DatabaseSetup
+import com.github.springtestdbunit.annotation.DbUnitConfiguration
+import home.helper.api.persistence.database.CsvDataSetLoader
+import home.helper.core.domain.model.help_point.HelpPoint
+import home.helper.core.domain.model.user.User
+import home.helper.core.domain.model.user.UserId
+import home.helper.core.dto.user.SearchUserCriteria
 
 @MybatisTest
 @MapperScan(basePackages = ["home.helper.api.persistence.database.mysql.**"])
@@ -36,8 +38,8 @@ import java.util.stream.Stream
 )
 @DbUnitConfiguration(dataSetLoader = CsvDataSetLoader::class)
 internal class SearchUserRepositoryTest(
-        @Autowired
-        private val searchUserMapper: SearchUserMapper,
+    @Autowired
+    private val searchUserMapper: SearchUserMapper,
 ) {
     private var target: SearchUserRepository? = null
 
@@ -49,8 +51,16 @@ internal class SearchUserRepositoryTest(
     }
 
     companion object {
-        private val USER1 = User("1", "ユーザ1", "さん")
-        private val USER2 = User("2", "ユーザ2", "くん")
+        private val USER1 = User(
+            id = "1", name = "ユーザ1", nameSuffix = "さん",
+            currentPoint = HelpPoint(12345),
+            lastHelpDateTime = LocalDateTime.of(2022, 12, 1, 0, 0, 0)
+        )
+        private val USER2 = User(
+            id = "2", name = "ユーザ2", nameSuffix = "くん",
+            currentPoint = HelpPoint(54321),
+            lastHelpDateTime = LocalDateTime.of(2022, 12, 1, 0, 0, 0)
+        )
 
         @JvmStatic
         private fun searchProvider() = Stream.of(
@@ -99,9 +109,9 @@ internal class SearchUserRepositoryTest(
     @ParameterizedTest(name = "case {index}: {0}")
     @MethodSource("searchProvider")
     internal fun search(
-            caseName: String,
-            criteria: SearchUserCriteria,
-            expected: List<User>,
+        caseName: String,
+        criteria: SearchUserCriteria,
+        expected: List<User>,
     ) {
         val actual = target?.search(criteria)
 
@@ -112,9 +122,9 @@ internal class SearchUserRepositoryTest(
     @ParameterizedTest(name = "case {index}: {0}")
     @MethodSource("findByProvider")
     internal fun findBy(
-            caseName: String,
-            userId: UserId,
-            expected: User?,
+        caseName: String,
+        userId: UserId,
+        expected: User?,
     ) {
         val actual = target?.findBy(userId)
 
