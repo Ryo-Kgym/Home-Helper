@@ -5,12 +5,12 @@
 package home.helper.api.resolver.user
 
 import java.time.format.DateTimeFormatter
-import home.helper.api.resolver.user.User as UserGqo
 import org.springframework.stereotype.Component
 import graphql.kickstart.tools.GraphQLQueryResolver
 import home.helper.core.domain.model.user.UserId
 import home.helper.core.dto.user.SearchUserCriteria
 import home.helper.core.gateway.user.SearchUserGateway
+import home.helper.api.resolver.user.User as UserGqo
 
 @Component
 class SearchUserResolver(
@@ -21,6 +21,11 @@ class SearchUserResolver(
         private val DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     }
 
+    /**
+     * ユーザを検索します。
+     * @param param 検索条件
+     * @return ユーザ
+     */
     fun users(param: SearchUserParam): List<UserGqo> {
         val criteria = SearchUserCriteria(
             userId = param.userId?.let { UserId(it) },
@@ -37,6 +42,11 @@ class SearchUserResolver(
         }.toList()
     }
 
+    /**
+     * ユーザを取得します。
+     * @param userId ユーザID
+     * @return ユーザ
+     */
     fun user(userId: String): UserGqo? {
         val param = SearchUserParam(
             userId = userId,
