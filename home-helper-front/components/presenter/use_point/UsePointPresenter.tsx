@@ -67,7 +67,7 @@ const ExchangeTable = ({
           <td>
             <Counter
               defaultValue={0}
-              value={exchangeItem.point}
+              value={Number(exchangeItem.point)}
               handleSetValue={handleSetValue}
             />
           </td>
