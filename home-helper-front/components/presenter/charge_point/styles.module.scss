@@ -1,18 +1,29 @@
-
 .totalPoint {
   font-size: 50px;
   margin: 5px;
   justify-content: flex-end;
 }
 
-.point {
-  width: 4em;
-  justify-content: end;
-  margin-right: 20px;
+.formula {
+  font-size: 50px;
+  align-items: flex-end;
+  text-align: center;
+  justify-content: flex-end;
 }
 
-.unit {
-  margin-right: 20px;
+.formulaSub {
+  width: 4em;
+  justify-content: flex-end;
+  margin: auto 0.5em;
+}
+
+.point {
+  width: 4em;
+  justify-content: flex-end;
+}
+
+.rubi {
+  font-size: 0.3em;
 }
 
 .title {

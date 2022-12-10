@@ -28,7 +28,7 @@ export const ChargePointContainer: FC = () => {
   }, []);
 
   const handleCalcTotal = (id: string, point: number, count: number) => {
-    setTotalPoint(currentPoint + calcTotalPoint(id, point, count));
+    setTotalPoint(calcTotalPoint(id, point, count));
   };
 
   const handleRegisterHelps = () => {
@@ -40,8 +40,7 @@ export const ChargePointContainer: FC = () => {
   };
 
   const calcTotalPoint = (id: string, point: number, count: number): number => {
-    let forms = pointForms;
-    forms = forms.filter((f) => f.id !== id);
+    let forms = pointForms.filter((f) => f.id !== id);
     if (count > 0) forms.push({ id, point, count });
     setPointForms(forms);
 
@@ -56,6 +55,7 @@ export const ChargePointContainer: FC = () => {
       fromDate={fromDate}
       helpItems={helpItems}
       totalPoint={totalPoint}
+      currentPoint={currentPoint}
       handleCalcTotal={handleCalcTotal}
       handleRegisterHelps={handleRegisterHelps}
       handleReset={handleReset}

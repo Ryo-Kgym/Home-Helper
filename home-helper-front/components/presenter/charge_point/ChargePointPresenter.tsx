@@ -9,26 +9,34 @@ import { UpdateNotification } from "@components/ui/UpdateNotification";
 type ChargePointPresenterProps = {
   fromDate: string;
   helpItems: any[];
+  currentPoint: number;
   totalPoint: number;
   handleCalcTotal: (id: string, point: number, count: number) => void;
   handleRegisterHelps: () => void;
   handleReset: () => void;
 };
 
-export const ChargePointPresenter: FC<ChargePointPresenterProps> = (props) => {
+export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
+  fromDate,
+  helpItems,
+  currentPoint,
+  totalPoint,
+  handleCalcTotal,
+  handleRegisterHelps,
+  handleReset,
+}) => {
   return (
     <Layout
       main={
         <>
-          <Title fromDate={props.fromDate} />
+          <Title fromDate={fromDate} />
           <HelpItemTable
-            helpItems={props.helpItems}
-            handleSetValue={props.handleCalcTotal}
+            helpItems={helpItems}
+            handleSetValue={handleCalcTotal}
           />
-          <Total
-            total={props.totalPoint}
-            handleRegisterHelps={props.handleRegisterHelps}
-            handleReset={props.handleReset}
+          <TotalPointBox
+            currentPoint={currentPoint}
+            totalUsePoint={totalPoint}
           />
           <BackCardLinkList href={"../homeHelper/possessionPoint"} />
         </>
@@ -44,7 +52,7 @@ const HelpItemTable = ({
   helpItems: any[];
   handleSetValue: (id: string, point: number, count: number) => void;
 }) => (
-  <Table striped highlightOnHover id={"chargePointTable"}>
+  <Table striped highlightOnHover>
     <thead>
       <tr>
         <th>#</th>
@@ -86,38 +94,39 @@ const Title = ({ fromDate }: { fromDate: string }) => {
   );
 };
 
-const Total = ({
-  total,
-  handleRegisterHelps,
-  handleReset,
-}: {
-  total: number;
-  handleRegisterHelps: () => void;
-  handleReset: () => void;
-}) => {
-  const message = total.toLocaleString() + "ポイント 獲得！";
+const FormulaFlex = ({ label, point }: { label: string; point: number }) => (
+  <Flex wrap="wrap" className={styles.formulaSub}>
+    <Flex className={styles.rubi}>{label}</Flex>
+    <Flex className={styles.point}>{point.toLocaleString()}</Flex>
+  </Flex>
+);
 
-  return (
-    <Flex
-      direction="row"
-      wrap="wrap"
-      className={styles.totalPoint}
-      align={"center"}
-    >
-      <Flex>合計</Flex>
-      <Flex className={styles.point}>{total.toLocaleString()}</Flex>
-      <Flex className={styles.unit}>pt</Flex>
-      <Flex>
-        <UpdateNotification
-          label={"お手伝い申請"}
-          showTitle={"お手伝いを申請中だよ！"}
-          showMessage={""}
-          updateTitle={"お手伝いの申請が完了したよ！"}
-          updateMessage={""}
-          handleClick={handleRegisterHelps}
-          handleAfterProcess={handleReset}
-        />
-      </Flex>
+const TotalPointBox = ({
+  currentPoint,
+  totalUsePoint,
+}: {
+  currentPoint: number;
+  totalUsePoint: number;
+}) => (
+  <Flex className={styles.formula}>
+    <FormulaFlex label={"今のポイント"} point={currentPoint} />
+    <Flex>-</Flex>
+    <FormulaFlex label={"お手伝いしたポイント"} point={totalUsePoint} />
+    <Flex>=</Flex>
+    <FormulaFlex
+      label={"合計のポイント"}
+      point={currentPoint + totalUsePoint}
+    />
+    <Flex style={{ marginLeft: "50px" }}>
+      <UpdateNotification
+        label={"お手伝い申請"}
+        showTitle={"お手伝いを申請中だよ！"}
+        showMessage={""}
+        updateTitle={"お手伝いの申請が完了したよ！"}
+        updateMessage={""}
+        handleClick={() => {}}
+        handleAfterProcess={() => {}}
+      />
     </Flex>
-  );
-};
+  </Flex>
+);
