@@ -11,7 +11,7 @@ type UsePointPresenterProps = {
   exchangeItems: ExchangeItem[];
   currentPoint: number;
   totalUsePoint: number;
-  handleCalcTotalUsePoint: (userPoint: number) => void;
+  handleCalcTotalUsePoint: (id: string, point: number, count: number) => void;
   handleRequest: () => void;
 };
 
@@ -47,7 +47,7 @@ const ExchangeTable = ({
   handleSetValue,
 }: {
   exchangeItems: ExchangeItem[];
-  handleSetValue: (usePoint: number) => void;
+  handleSetValue: (id: string, point: number, count: number) => void;
 }) => (
   <Table striped highlightOnHover>
     <thead>
@@ -67,8 +67,9 @@ const ExchangeTable = ({
           <td>
             <Counter
               defaultValue={0}
-              value={Number(exchangeItem.point)}
-              handleSetValue={handleSetValue}
+              handleSetCount={(count: number) => {
+                handleSetValue(exchangeItem.id, exchangeItem.point, count);
+              }}
             />
           </td>
         </tr>
@@ -104,7 +105,7 @@ const LeavePointBox = ({
     />
     <Flex style={{ marginLeft: "50px" }}>
       <UpdateNotification
-        label={"申請"}
+        label={"交換申請"}
         showTitle={"ポイント交換"}
         showMessage={"ポイントと交換中です。"}
         updateTitle={"ポイント交換完了"}

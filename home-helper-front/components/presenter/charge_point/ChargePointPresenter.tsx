@@ -62,7 +62,7 @@ const HelpItemTable = ({
           <td>
             <Counter
               defaultValue={0}
-              handleSetValue={(count: number) => {
+              handleSetCount={(count: number) => {
                 handleSetValue(helpItem.id, helpItem.point, count);
               }}
             />

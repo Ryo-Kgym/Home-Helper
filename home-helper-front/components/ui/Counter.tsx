@@ -4,14 +4,14 @@ import styles from "./ui.module.scss";
 
 type CounterProps = {
   defaultValue: number;
-  handleSetValue: (count: number) => void;
+  handleSetCount: (count: number) => void;
   min?: number;
   max?: number;
 };
 
 export const Counter: FC<CounterProps> = ({
   defaultValue,
-  handleSetValue,
+  handleSetCount,
   min,
   max,
 }) => {
@@ -22,14 +22,14 @@ export const Counter: FC<CounterProps> = ({
   const handleIncrement = () => {
     if (count < countMax) {
       setCount(count + 1);
-      handleSetValue(count + 1);
+      handleSetCount(count + 1);
     }
   };
 
   const handleDecrement = () => {
     if (count > countMin) {
       setCount(count - 1);
-      handleSetValue(count - 1);
+      handleSetCount(count - 1);
     }
   };
 
@@ -49,7 +49,7 @@ export const Counter: FC<CounterProps> = ({
       <Flex className={styles.blank} />
       <Flex>
         <Reset
-          handleSetValue={handleSetValue}
+          handleSetValue={handleSetCount}
           handleReset={handleReset}
           count={count}
         />
