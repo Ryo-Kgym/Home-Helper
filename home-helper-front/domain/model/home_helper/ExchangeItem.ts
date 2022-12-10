@@ -1,5 +1,5 @@
 export type ExchangeItem = {
-  id: number;
+  id: string;
   point: number;
   name: string;
 };

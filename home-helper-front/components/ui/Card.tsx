@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./ui.module.scss";
 
-const Card = ({ props }: { props: CardProps }) => {
+export const Card = ({ props }: { props: CardProps }) => {
   const label = props.back ? (
     <h2>&larr; {props.label}</h2>
   ) : (
@@ -21,9 +21,7 @@ const Card = ({ props }: { props: CardProps }) => {
   );
 };
 
-export default Card;
-
-export const CardLinkList = ({ props }: { props: CardProps[] }) => {
+export const LinkList = ({ props }: { props: CardProps[] }) => {
   return (
     <div className={styles.grid}>
       {props.map((p, i) => {
@@ -33,7 +31,7 @@ export const CardLinkList = ({ props }: { props: CardProps[] }) => {
   );
 };
 
-export const BackCardLinkList = ({ href }: { href: string }) => {
+export const BackLink = ({ href }: { href: string }) => {
   const props: CardProps[] = [
     {
       href: href,
@@ -42,7 +40,7 @@ export const BackCardLinkList = ({ href }: { href: string }) => {
     },
   ];
 
-  return <CardLinkList props={props} />;
+  return <LinkList props={props} />;
 };
 
 export type CardProps = {

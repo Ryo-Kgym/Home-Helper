@@ -30,13 +30,15 @@ class TotalHelpPointUpdateRepository(
             override fun getParameters(): MutableMap<String, Any> {
                 return mutableMapOf(
                     "totalPoint" to entity.point!!,
+                    "lastHelpDatetime" to entity.lastHelpDatetime!!,
                     "userId" to entity.userId!!,
                 )
             }
 
             override fun getUpdateStatement(): String {
                 return "update user_point " +
-                        "set point = point + #{parameters.totalPoint, jdbcType=INTEGER} " +
+                        "set point = point + #{parameters.totalPoint, jdbcType=INTEGER}, " +
+                        "last_help_datetime =  #{parameters.lastHelpDatetime, jdbcType=TIMESTAMP} " +
                         "where user_id = #{parameters.userId, jdbcType=VARCHAR}"
             }
         }

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Layout } from "@components/presenter/Layout";
-import { CardLinkList } from "@components/ui/Card";
+import { LinkList } from "@components/ui/Card";
 import { Flex } from "@mantine/core";
 import Countup from "react-countup";
 import styles from "./styles.module.scss";
@@ -8,8 +8,8 @@ import Image from "next/image";
 import piggy from "@public/piggy_bank.svg";
 
 type PossessionPointPresenterProps = {
-  name: string;
-  point: number;
+  userName: string;
+  currentPoint: number;
 };
 
 const cardListProps = [
@@ -19,15 +19,15 @@ const cardListProps = [
 ];
 
 export const PossessionPointPresenter: FC<PossessionPointPresenterProps> = ({
-  name,
-  point,
+  userName,
+  currentPoint,
 }) => {
   return (
     <Layout
       main={
         <>
-          <Point name={name} point={point} />
-          <CardLinkList props={cardListProps} />
+          <Point name={userName} point={currentPoint} />
+          <LinkList props={cardListProps} />
         </>
       }
     />

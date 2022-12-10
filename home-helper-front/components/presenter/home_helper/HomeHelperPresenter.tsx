@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { MainTitle } from "@components/ui/MainTitle";
-import { CardLinkList, CardProps } from "@components/ui/Card";
+import { CardProps, LinkList } from "@components/ui/Card";
 import { NonHeaderLayout } from "@components/presenter/Layout";
 
 type HomeHelperPresenterProps = {
@@ -32,7 +32,7 @@ export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = (props) => {
       main={
         <>
           <MainTitle label={"お手伝いアプリ"} />
-          <CardLinkList props={propList} />
+          <LinkList props={propList} />
         </>
       }
     />

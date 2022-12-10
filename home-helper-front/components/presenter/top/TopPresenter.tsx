@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { NonHeaderLayout } from "@components/presenter/Layout";
 import { MainTitle } from "@components/ui/MainTitle";
-import { CardLinkList } from "@components/ui/Card";
+import { LinkList } from "@components/ui/Card";
 
 const cardLindProps = [
   { href: "/homeHelper", label: "お手伝いアプリ" },
@@ -14,7 +14,7 @@ export const TopPresenter: FC = () => {
       main={
         <>
           <MainTitle label={"うちのアプリへようこそ！"} />
-          <CardLinkList props={cardLindProps} />
+          <LinkList props={cardLindProps} />
         </>
       }
     />
