@@ -18,9 +18,8 @@ export const UsePointContainer = () => {
   const [pointForms, setPointForms] = useState<PointForm[]>([]);
 
   useEffect(() => {
-    const userId = loadUserId();
     fetchExchangeItems().then(setExchangeItems);
-    fetchUser(userId).then((user) => setCurrentPoint(user.currentPoint));
+    fetchUser().then((user) => setCurrentPoint(user.currentPoint));
   }, []);
 
   const handleCalcTotalUsePoint = (

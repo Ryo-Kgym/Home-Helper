@@ -13,8 +13,7 @@ export const PossessionPointContainer: FC = () => {
   });
 
   useEffect(() => {
-    const userId = loadUserId();
-    fetchUser(userId).then((user) => {
+    fetchUser().then((user) => {
       setUser(user);
     });
   }, []);

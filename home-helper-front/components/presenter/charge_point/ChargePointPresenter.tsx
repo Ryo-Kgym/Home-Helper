@@ -13,7 +13,7 @@ type ChargePointPresenterProps = {
   totalPoint: number;
   handleCalcTotal: (id: string, point: number, count: number) => void;
   handleRegisterHelps: () => void;
-  handleReset: () => void;
+  handleRegisterAfterProcess: () => void;
 };
 
 export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
@@ -23,7 +23,7 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
   totalPoint,
   handleCalcTotal,
   handleRegisterHelps,
-  handleReset,
+  handleRegisterAfterProcess,
 }) => {
   return (
     <Layout
@@ -37,6 +37,8 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
           <TotalPointBox
             currentPoint={currentPoint}
             totalUsePoint={totalPoint}
+            handleRegisterHelps={handleRegisterHelps}
+            handleAfterProcess={handleRegisterAfterProcess}
           />
           <BackCardLinkList href={"../homeHelper/possessionPoint"} />
         </>
@@ -104,13 +106,17 @@ const FormulaFlex = ({ label, point }: { label: string; point: number }) => (
 const TotalPointBox = ({
   currentPoint,
   totalUsePoint,
+  handleRegisterHelps,
+  handleAfterProcess,
 }: {
   currentPoint: number;
   totalUsePoint: number;
+  handleRegisterHelps: () => void;
+  handleAfterProcess: () => void;
 }) => (
   <Flex className={styles.formula}>
     <FormulaFlex label={"今のポイント"} point={currentPoint} />
-    <Flex>-</Flex>
+    <Flex>+</Flex>
     <FormulaFlex label={"お手伝いしたポイント"} point={totalUsePoint} />
     <Flex>=</Flex>
     <FormulaFlex
@@ -124,8 +130,8 @@ const TotalPointBox = ({
         showMessage={""}
         updateTitle={"お手伝いの申請が完了したよ！"}
         updateMessage={""}
-        handleClick={() => {}}
-        handleAfterProcess={() => {}}
+        handleClick={handleRegisterHelps}
+        handleAfterProcess={handleAfterProcess}
       />
     </Flex>
   </Flex>
