@@ -8,8 +8,8 @@ import Image from "next/image";
 import piggy from "@public/piggy_bank.svg";
 
 type PossessionPointPresenterProps = {
-  name: string;
-  point: number;
+  userName: string;
+  currentPoint: number;
 };
 
 const cardListProps = [
@@ -19,14 +19,14 @@ const cardListProps = [
 ];
 
 export const PossessionPointPresenter: FC<PossessionPointPresenterProps> = ({
-  name,
-  point,
+  userName,
+  currentPoint,
 }) => {
   return (
     <Layout
       main={
         <>
-          <Point name={name} point={point} />
+          <Point name={userName} point={currentPoint} />
           <LinkList props={cardListProps} />
         </>
       }
