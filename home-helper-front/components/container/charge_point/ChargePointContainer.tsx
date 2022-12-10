@@ -24,7 +24,7 @@ export const ChargePointContainer: FC = () => {
       setFromDate(toJapanMd(user.lastHelp));
     });
     fetchHelpItems().then(setHelpItems);
-  }, []);
+  });
 
   const handleCalcTotal = (id: string, point: number, count: number) => {
     setTotalPoint(calcTotalPoint(id, point, count));

@@ -20,7 +20,7 @@ export const UsePointContainer = () => {
   useEffect(() => {
     fetchExchangeItems().then(setExchangeItems);
     fetchUser().then((user) => setCurrentPoint(user.currentPoint));
-  }, []);
+  });
 
   const handleCalcTotalUsePoint = (
     id: string,
