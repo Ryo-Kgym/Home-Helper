@@ -5,10 +5,11 @@ import { Layout } from "@components/presenter/Layout";
 import { BackLink } from "@components/ui/Card";
 import { Counter } from "@components/ui/Counter";
 import { UpdateNotification } from "@components/ui/UpdateNotification";
+import { HelpItem } from "@domain/model/home_helper/HelpItem";
 
 type ChargePointPresenterProps = {
   fromDate: string;
-  helpItems: any[];
+  helpItems: HelpItem[];
   currentPoint: number;
   totalPoint: number;
   handleCalcTotal: (id: string, point: number, count: number) => void;
