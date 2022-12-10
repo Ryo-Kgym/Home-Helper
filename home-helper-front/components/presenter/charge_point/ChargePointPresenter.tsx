@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Flex, Table } from "@mantine/core";
 import styles from "./styles.module.scss";
 import { Layout } from "@components/presenter/Layout";
-import { BackCardLinkList } from "@components/ui/Card";
+import { BackLink } from "@components/ui/Card";
 import { Counter } from "@components/ui/Counter";
 import { UpdateNotification } from "@components/ui/UpdateNotification";
 
@@ -40,7 +40,7 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
             handleRegisterHelps={handleRegisterHelps}
             handleAfterProcess={handleRegisterAfterProcess}
           />
-          <BackCardLinkList href={"../homeHelper/possessionPoint"} />
+          <BackLink href={"/homeHelper/possessionPoint"} />
         </>
       }
     />

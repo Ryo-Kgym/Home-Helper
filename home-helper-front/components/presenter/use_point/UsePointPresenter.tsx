@@ -3,7 +3,7 @@ import { FC } from "react";
 import styles from "./styles.module.scss";
 import { Layout } from "@components/presenter/Layout";
 import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
-import { BackCardLinkList } from "@components/ui/Card";
+import { BackLink } from "@components/ui/Card";
 import { Counter } from "@components/ui/Counter";
 import { UpdateNotification } from "@components/ui/UpdateNotification";
 
@@ -35,7 +35,7 @@ export const UsePointPresenter: FC<UsePointPresenterProps> = ({
             totalUsePoint={totalUsePoint}
             handleRequest={handleRequest}
           />
-          <BackCardLinkList href={"../homeHelper/possessionPoint"} />
+          <BackLink href={"../homeHelper/possessionPoint"} />
         </>
       }
     />

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { NonHeaderLayout } from "@components/presenter/Layout";
 import { MainTitle } from "@components/ui/MainTitle";
-import { CardLinkList } from "@components/ui/Card";
+import { LinkList } from "@components/ui/Card";
 
 export const HouseHoldPresenter: FC = () => {
   const cardLinkProps = [
@@ -17,7 +17,7 @@ export const HouseHoldPresenter: FC = () => {
       main={
         <>
           <MainTitle label={"家計簿アプリ"} />
-          <CardLinkList props={cardLinkProps} />
+          <LinkList props={cardLinkProps} />
         </>
       }
     />

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Layout } from "@components/presenter/Layout";
-import { CardLinkList } from "@components/ui/Card";
+import { LinkList } from "@components/ui/Card";
 import { Flex } from "@mantine/core";
 import Countup from "react-countup";
 import styles from "./styles.module.scss";
@@ -27,7 +27,7 @@ export const PossessionPointPresenter: FC<PossessionPointPresenterProps> = ({
       main={
         <>
           <Point name={name} point={point} />
-          <CardLinkList props={cardListProps} />
+          <LinkList props={cardListProps} />
         </>
       }
     />
