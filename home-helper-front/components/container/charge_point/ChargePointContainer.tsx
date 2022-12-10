@@ -24,13 +24,15 @@ export const ChargePointContainer: FC = () => {
       setFromDate(toJapanMd(user.lastHelp));
     });
     fetchHelpItems().then(setHelpItems);
-  });
+  }, []);
 
   const handleCalcTotal = (id: string, point: number, count: number) => {
     setTotalPoint(calcTotalPoint(id, point, count));
   };
 
   const handleRegisterHelps = () => {
+    if (chargePointForms.length === 0) return;
+
     registerHelpPoint(chargePointForms).then((r) => {});
   };
 
