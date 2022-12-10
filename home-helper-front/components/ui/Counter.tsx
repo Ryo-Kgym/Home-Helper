@@ -4,15 +4,13 @@ import styles from "./ui.module.scss";
 
 type CounterProps = {
   defaultValue: number;
-  value: number;
-  handleSetValue: (point: number) => void;
+  handleSetValue: (count: number) => void;
   min?: number;
   max?: number;
 };
 
 export const Counter: FC<CounterProps> = ({
   defaultValue,
-  value,
   handleSetValue,
   min,
   max,
@@ -24,14 +22,14 @@ export const Counter: FC<CounterProps> = ({
   const handleIncrement = () => {
     if (count < countMax) {
       setCount(count + 1);
-      handleSetValue(value);
+      handleSetValue(count + 1);
     }
   };
 
   const handleDecrement = () => {
     if (count > countMin) {
       setCount(count - 1);
-      handleSetValue(-value);
+      handleSetValue(count - 1);
     }
   };
 
@@ -53,7 +51,6 @@ export const Counter: FC<CounterProps> = ({
         <Reset
           handleSetValue={handleSetValue}
           handleReset={handleReset}
-          value={value}
           count={count}
         />
       </Flex>
@@ -80,12 +77,10 @@ const Decrement = ({ handleClick }: { handleClick: () => void }) => {
 const Reset = ({
   handleReset,
   handleSetValue,
-  value,
   count,
 }: {
   handleReset: () => void;
-  handleSetValue: (point: number) => void;
-  value: number;
+  handleSetValue: (count: number) => void;
   count: number;
 }) => {
   return (
@@ -94,7 +89,7 @@ const Reset = ({
       onClick={() => {
         if (count > 0) {
           handleReset();
-          handleSetValue(-value * count);
+          handleSetValue(0);
         }
       }}
     >

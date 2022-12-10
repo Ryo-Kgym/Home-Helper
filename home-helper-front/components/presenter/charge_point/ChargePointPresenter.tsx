@@ -10,7 +10,7 @@ type ChargePointPresenterProps = {
   fromDate: string;
   helpItems: any[];
   totalPoint: number;
-  handleCalcTotal: (point: number) => void;
+  handleCalcTotal: (id: string, point: number, count: number) => void;
   handleRegisterHelps: () => void;
   handleReset: () => void;
 };
@@ -42,9 +42,9 @@ const HelpItemTable = ({
   handleSetValue,
 }: {
   helpItems: any[];
-  handleSetValue: (point: number) => void;
+  handleSetValue: (id: string, point: number, count: number) => void;
 }) => (
-  <Table striped highlightOnHover>
+  <Table striped highlightOnHover id={"chargePointTable"}>
     <thead>
       <tr>
         <th>#</th>
@@ -54,16 +54,17 @@ const HelpItemTable = ({
       </tr>
     </thead>
     <tbody>
-      {helpItems.map((helpItem) => (
+      {helpItems.map((helpItem, index) => (
         <tr key={helpItem.id}>
-          <td>{helpItem.id}</td>
+          <td>{index + 1}</td>
           <td>{helpItem.name}</td>
           <td>{helpItem.point}</td>
           <td>
             <Counter
               defaultValue={0}
-              value={helpItem.point}
-              handleSetValue={handleSetValue}
+              handleSetValue={(count: number) => {
+                handleSetValue(helpItem.id, helpItem.point, count);
+              }}
             />
           </td>
         </tr>
