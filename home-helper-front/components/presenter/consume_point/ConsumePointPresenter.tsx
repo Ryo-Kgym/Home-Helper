@@ -7,7 +7,7 @@ import { BackLink } from "@components/ui/Card";
 import { Counter } from "@components/ui/Counter";
 import { UpdateNotification } from "@components/ui/UpdateNotification";
 
-type UsePointPresenterProps = {
+type ConsumePointPresenterProps = {
   exchangeItems: ExchangeItem[];
   currentPoint: number;
   totalUsePoint: number;
@@ -15,7 +15,7 @@ type UsePointPresenterProps = {
   handleRequest: () => void;
 };
 
-export const UsePointPresenter: FC<UsePointPresenterProps> = ({
+export const ConsumePointPresenter: FC<ConsumePointPresenterProps> = ({
   exchangeItems,
   currentPoint,
   totalUsePoint,
