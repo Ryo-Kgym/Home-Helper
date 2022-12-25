@@ -10,6 +10,12 @@ package home.helper.core.domain.model.exchange_item
 data class ExchangePoint(
     val point: Int
 ) {
+    companion object {
+        fun valueOf(point: Int): ExchangePoint {
+            return ExchangePoint(point)
+        }
+    }
+
     /**
      * 交換ポイントの数量倍したものを返します。
      * @param count 数量
