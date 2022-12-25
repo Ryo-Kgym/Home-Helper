@@ -31,7 +31,7 @@ internal class ExchangeHelpPointInteractorTest {
 
     private val target = ExchangeHelpPointInteractor(
         operationGateway = operationGateway,
-        helpPointConsumeGateway = helpPointSaveGateway,
+        exchangeHelpPointSaveGateway = helpPointSaveGateway,
         saveMessageGateway = saveMessageGateway,
     )
 

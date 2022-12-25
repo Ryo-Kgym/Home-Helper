@@ -14,13 +14,13 @@ import home.helper.core.gateway.operation.OperationGateway
 
 class ExchangeHelpPointInteractor(
     private val operationGateway: OperationGateway,
-    private val helpPointConsumeGateway: SaveDefaultGateway<ExchangeHelpPointOutput>,
+    private val exchangeHelpPointSaveGateway: SaveDefaultGateway<ExchangeHelpPointOutput>,
     private val saveMessageGateway: SaveMessageGateway,
 ) : ExchangeHelpPointUseCase {
 
     override fun register(input: ExchangeHelpPointInput): RegisterOutput {
 
-        val saveOutput = helpPointConsumeGateway.save(
+        val saveOutput = exchangeHelpPointSaveGateway.save(
             ExchangeHelpPointOutput(
                 exchangeItems = input.exchangeItems,
                 userId = input.userId,
