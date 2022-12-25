@@ -17,19 +17,19 @@ import home.helper.core.domain.model.operation.Operation
 import home.helper.core.domain.model.save.SaveUseCaseEnum
 import home.helper.core.domain.model.user.UserId
 import home.helper.core.dto.RegisterOutput
-import home.helper.core.dto.help_point.ConsumeHelpPointInput
-import home.helper.core.dto.help_point.ConsumeHelpPointOutput
+import home.helper.core.dto.help_point.ExchangeHelpPointInput
+import home.helper.core.dto.help_point.ExchangeHelpPointOutput
 import home.helper.core.dto.save.SaveOutput
 import home.helper.core.gateway.SaveDefaultGateway
 import home.helper.core.gateway.message.SaveMessageGateway
 import home.helper.core.gateway.operation.OperationGateway
 
-internal class ConsumeHelpPointInteractorTest {
+internal class ExchangeHelpPointInteractorTest {
     private val operationGateway: OperationGateway = mock()
-    private val helpPointSaveGateway: SaveDefaultGateway<ConsumeHelpPointOutput> = mock()
+    private val helpPointSaveGateway: SaveDefaultGateway<ExchangeHelpPointOutput> = mock()
     private val saveMessageGateway: SaveMessageGateway = mock()
 
-    private val target = ConsumeHelpPointInteractor(
+    private val target = ExchangeHelpPointInteractor(
         operationGateway = operationGateway,
         helpPointConsumeGateway = helpPointSaveGateway,
         saveMessageGateway = saveMessageGateway,
@@ -39,7 +39,7 @@ internal class ConsumeHelpPointInteractorTest {
     internal fun setUp() {
         `when`(operationGateway.load())
             .thenReturn(Operation(1, LocalDateTime.of(2022, 12, 23, 0, 0, 0)))
-        `when`(helpPointSaveGateway.save(ConsumeHelpPointOutput(
+        `when`(helpPointSaveGateway.save(ExchangeHelpPointOutput(
             exchangeItems = listOf(
                 MultipleExchangeItem("Id1", "name1", 100, 2),
                 MultipleExchangeItem("Id2", "name2", 200, 3),
@@ -54,7 +54,7 @@ internal class ConsumeHelpPointInteractorTest {
 
     @Test
     fun register() {
-        val source = ConsumeHelpPointInput(
+        val source = ExchangeHelpPointInput(
             exchangeItems = listOf(
                 MultipleExchangeItem("Id1", "name1", 100, 2),
                 MultipleExchangeItem("Id2", "name2", 200, 3),
