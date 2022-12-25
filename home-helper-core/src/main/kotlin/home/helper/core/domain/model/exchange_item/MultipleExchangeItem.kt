@@ -19,4 +19,12 @@ data class MultipleExchangeItem(
         exchangeItem = ExchangeItem(id = id, name = name, point = point),
         count = count
     )
+
+    /**
+     * 交換ポイントと数量をかけた小計を返します。
+     * @return 小計ポイント
+     */
+    fun calcSubtotalPoint(): ExchangePoint {
+        return this.exchangeItem.exchangePoint.times(this.count)
+    }
 }
