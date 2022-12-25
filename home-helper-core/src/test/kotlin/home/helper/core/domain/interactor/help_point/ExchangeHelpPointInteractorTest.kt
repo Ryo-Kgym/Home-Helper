@@ -47,8 +47,8 @@ internal class ExchangeHelpPointInteractorTest {
             userId = UserId("userId"),
             consumedDateTime = LocalDateTime.of(2022, 12, 23, 0, 0, 0)
         )))
-            .thenReturn(SaveOutput(1, SaveUseCaseEnum.CONSUME_HELP_POINT))
-        `when`(saveMessageGateway.getMessage(SaveOutput(1, SaveUseCaseEnum.CONSUME_HELP_POINT)))
+            .thenReturn(SaveOutput(1, SaveUseCaseEnum.EXCHANGE_HELP_POINT))
+        `when`(saveMessageGateway.getMessage(SaveOutput(1, SaveUseCaseEnum.EXCHANGE_HELP_POINT)))
             .thenReturn(HomeHelperMessage("登録しました。"))
     }
 

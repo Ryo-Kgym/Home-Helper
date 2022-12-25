@@ -7,6 +7,6 @@ package home.helper.core.domain.model.save
 enum class SaveUseCaseEnum {
     REGISTER_HELP_POINT,
     REGISTER_HELP_ITEM,
-    CONSUME_HELP_POINT,
+    EXCHANGE_HELP_POINT,
     ;
 }
