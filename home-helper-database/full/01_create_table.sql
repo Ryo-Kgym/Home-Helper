@@ -13,20 +13,15 @@ create table help_point_earned_detail (
     help_item_id          varchar(32) not null comment 'お手伝い項目ID'
 ) comment 'お手伝いポイント獲得明細';
 
-drop table if exists help_point_consumed_achievement;
-create table help_point_consumed_achievement (
-    id                varchar(32) not null comment 'ID' primary key,
-    user_id           varchar(32) not null comment 'ユーザID',
-    consumed_datetime datetime    not null comment '消費日時',
-    consumed_point    integer     not null comment '消費ポイント'
-) comment 'お手伝いポイント消費実績';
-
-drop table if exists help_point_consumed_detail;
-create table help_point_consumed_detail (
-    id                      varchar(32) not null comment 'ID' primary key,
-    consumed_achievement_id varchar(32) not null comment '消費実績ID',
-    help_item_id            varchar(32) not null comment 'お手伝い項目ID'
-) comment 'お手伝いポイント消費明細';
+drop table if exists help_point_exchanged_achievement;
+create table help_point_exchanged_achievement (
+    id                   varchar(32) not null comment 'ID' primary key,
+    user_id              varchar(32) not null comment 'ユーザID',
+    exchange_item_id     varchar(32) not null comment '交換品ID',
+    exchange_count       integer comment '交換件数',
+    exchange_total_point integer comment '交換合計ポイント',
+    exchanged_datetime   datetime    not null comment '交換日時'
+) comment 'お手伝いポイント交換実績';
 
 drop table if exists user_point;
 create table user_point (
