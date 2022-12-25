@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.`when`
 import com.nhaarman.mockitokotlin2.mock
+import home.helper.core.domain.model.exchange_item.ExchangePoint
 import home.helper.core.domain.model.exchange_item.MultipleExchangeItem
 import home.helper.core.domain.model.message.HomeHelperMessage
 import home.helper.core.domain.model.operation.Operation
@@ -45,7 +46,8 @@ internal class ExchangeHelpPointInteractorTest {
                 MultipleExchangeItem("Id2", "name2", 200, 3),
             ),
             userId = UserId("userId"),
-            consumedDateTime = LocalDateTime.of(2022, 12, 23, 0, 0, 0)
+            consumedDateTime = LocalDateTime.of(2022, 12, 23, 0, 0, 0),
+            totalPoint = ExchangePoint.valueOf(800),
         )))
             .thenReturn(SaveOutput(1, SaveUseCaseEnum.EXCHANGE_HELP_POINT))
         `when`(saveMessageGateway.getMessage(SaveOutput(1, SaveUseCaseEnum.EXCHANGE_HELP_POINT)))

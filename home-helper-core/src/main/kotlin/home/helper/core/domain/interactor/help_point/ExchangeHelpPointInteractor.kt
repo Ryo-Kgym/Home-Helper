@@ -4,6 +4,7 @@
 
 package home.helper.core.domain.interactor.help_point
 
+import home.helper.core.domain.model.exchange_item.ExchangePoint
 import home.helper.core.domain.use_case.help_point.ExchangeHelpPointUseCase
 import home.helper.core.dto.RegisterOutput
 import home.helper.core.dto.help_point.ExchangeHelpPointInput
@@ -25,6 +26,7 @@ class ExchangeHelpPointInteractor(
                 exchangeItems = input.exchangeItems,
                 userId = input.userId,
                 consumedDateTime = operationGateway.load().datetime,
+                totalPoint = ExchangePoint.calcTotalPoint(input.exchangeItems),
             )
         )
 
