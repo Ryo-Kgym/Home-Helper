@@ -1,0 +1,3 @@
+help_point_exchanged_achievement
+id_holder
+user_point
