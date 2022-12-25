@@ -19,4 +19,5 @@ INSERT INTO m_exchange_item (id, name, point) VALUES ('e5', '交換品5', 5000);
 INSERT INTO id_holder (id_type, current_id) VALUES ('HELP_ITEM_ID', 0);
 INSERT INTO id_holder (id_type, current_id) VALUES ('HELP_POINT_EARNED_ACHIEVEMENT_ID', 0);
 INSERT INTO id_holder (id_type, current_id) VALUES ('HELP_POINT_EARNED_DETAIL_ID', 0);
+INSERT INTO id_holder (id_type, current_id) VALUES ('HELP_POINT_EXCHANGED_ACHIEVEMENT_ID', 0);
 

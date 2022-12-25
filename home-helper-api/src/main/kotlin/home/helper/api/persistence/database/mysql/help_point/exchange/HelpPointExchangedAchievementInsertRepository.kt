@@ -22,6 +22,7 @@ class HelpPointExchangedAchievementInsertRepository(
 
     override fun convert(target: ExchangeHelpPointOutput): List<DbHelpPointExchangedAchievementRecord> {
         return target.exchangeItems.map {
+            idGateway.increment()
             DbHelpPointExchangedAchievementRecord(
                 id = idGateway.getId().id,
                 userId = target.userId.id,
