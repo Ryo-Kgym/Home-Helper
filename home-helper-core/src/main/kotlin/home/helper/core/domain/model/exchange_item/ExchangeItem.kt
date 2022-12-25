@@ -14,11 +14,11 @@ data class ExchangeItem(
 ) {
     constructor(id: String,
                 name: String,
-                value: Int
+                point: Int
     ) :
             this(
                 exchangeItemId = ExchangeItemId(id),
                 name = name,
-                exchangePoint = ExchangePoint(value)
+                exchangePoint = ExchangePoint(point)
             )
 }

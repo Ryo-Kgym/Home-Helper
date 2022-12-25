@@ -31,7 +31,7 @@ class SearchExchangeItemResolver(
             ExchangeItemGqo(
                 id = it.exchangeItemId.id,
                 name = it.name,
-                point = it.exchangePoint.value,
+                point = it.exchangePoint.point,
             )
         }
     }
