@@ -17,7 +17,7 @@ data class ExchangeItem(
                 point: Int
     ) :
             this(
-                exchangeItemId = ExchangeItemId(id),
+                exchangeItemId = ExchangeItemId.valueOf(id),
                 name = name,
                 exchangePoint = ExchangePoint(point)
             )
