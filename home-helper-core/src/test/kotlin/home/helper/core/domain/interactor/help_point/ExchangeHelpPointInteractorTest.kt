@@ -39,7 +39,7 @@ internal class ExchangeHelpPointInteractorTest {
     @BeforeEach
     internal fun setUp() {
         `when`(operationGateway.load())
-            .thenReturn(Operation(1, LocalDateTime.of(2022, 12, 23, 0, 0, 0)))
+            .thenReturn(Operation("1", LocalDateTime.of(2022, 12, 23, 0, 0, 0)))
         `when`(helpPointSaveGateway.save(ExchangeHelpPointOutput(
             exchangeItems = listOf(
                 MultipleExchangeItem("Id1", "name1", 100, 2),
@@ -64,9 +64,9 @@ internal class ExchangeHelpPointInteractorTest {
             userId = UserId("userId"),
         )
 
-        var actual = target.register(source)
+        val actual = target.register(source)
 
-        var expected = RegisterOutput(
+        val expected = RegisterOutput(
             HomeHelperMessage("登録しました。"),
         )
 

@@ -70,7 +70,7 @@ internal class IdHolderCustomRepositoryTest(
     @DatabaseSetup(value = ["/DbUnit/IdHolderCustomRepository/getCurrentId/setup/"])
     fun getCurrentId() {
         val actual = target?.getCurrentId(IdType.HELP_POINT_EARNED_ACHIEVEMENT_ID)
-        val expected = 3L
+        val expected = "3"
 
         assertThat(actual, `is`(expected))
     }

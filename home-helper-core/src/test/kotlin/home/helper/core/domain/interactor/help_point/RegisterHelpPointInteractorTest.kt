@@ -79,7 +79,7 @@ internal class RegisterHelpPointInteractorTest {
             )
 
         Mockito.`when`(operationGateway.load())
-            .thenReturn(Operation(1, LocalDateTime.of(2022, 11, 12, 12, 23, 34)))
+            .thenReturn(Operation("1", LocalDateTime.of(2022, 11, 12, 12, 23, 34)))
 
         Mockito.`when`(
             registerMessageGateway.getMessage(
