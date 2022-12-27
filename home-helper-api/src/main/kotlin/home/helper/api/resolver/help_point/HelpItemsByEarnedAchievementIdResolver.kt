@@ -23,7 +23,7 @@ class HelpItemsByEarnedAchievementIdResolver(
      */
     fun helpItemsByEarnedAchievementId(param: HelpPointEarnedAchievement): List<HelpItemGqo> {
         return searchHelpItemGateway.search(SearchHelpItemCriteria(
-            earnedAchievementId = HelpPointEarnedAchievementId(param.id)
+            earnedAchievementId = HelpPointEarnedAchievementId.valueOf(param.id)
         )).map {
             HelpItemGqo(
                 id = it.helpItemId.id,

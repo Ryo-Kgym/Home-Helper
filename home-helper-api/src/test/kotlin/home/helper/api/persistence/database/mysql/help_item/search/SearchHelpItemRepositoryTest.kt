@@ -72,7 +72,7 @@ internal class SearchHelpItemRepositoryTest(
             Arguments.of(
                 "獲得実績ID指定",
                 SearchHelpItemCriteria(
-                    earnedAchievementId = HelpPointEarnedAchievementId(1),
+                    earnedAchievementId = HelpPointEarnedAchievementId.valueOf("1"),
                 ),
                 listOf(
                     ITEM1,

@@ -19,7 +19,7 @@ class SearchHelpItemRepository(
     override fun search(criteria: SearchHelpItemCriteria): List<HelpItem> {
         val param = SearchHelpItemParam(
             id = criteria.helpItemId?.id,
-            earnedAchievementId = criteria.earnedAchievementId?.id?.toString()
+            earnedAchievementId = criteria.earnedAchievementId?.id,
         )
 
         return searchHelpItemMapper.search(param)

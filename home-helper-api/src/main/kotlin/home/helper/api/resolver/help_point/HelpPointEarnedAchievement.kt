@@ -7,7 +7,7 @@ package home.helper.api.resolver.help_point
 import java.time.LocalDate
 
 data class HelpPointEarnedAchievement(
-    val id: Long,
+    val id: String,
     val userId: String,
     val earnedDate: LocalDate,
     val earnedPoint: Int,

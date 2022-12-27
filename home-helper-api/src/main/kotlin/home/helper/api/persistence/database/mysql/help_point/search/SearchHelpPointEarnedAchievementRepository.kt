@@ -27,7 +27,7 @@ class SearchHelpPointEarnedAchievementRepository(
         )
             .map {
                 HelpPointEarnedAchievement(
-                    achievementId = HelpPointEarnedAchievementId(it.id!!.toLong()),
+                    achievementId = HelpPointEarnedAchievementId.valueOf(it.id!!),
                     userId = UserId(it.userId!!),
                     earnedDate = LocalDate.from(it.earnedDatetime!!),
                     earnedPoint = HelpPoint(it.earnedPoint!!),
