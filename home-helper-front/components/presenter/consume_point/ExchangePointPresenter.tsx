@@ -13,14 +13,16 @@ type ConsumePointPresenterProps = {
   totalUsePoint: number;
   handleCalcTotalUsePoint: (id: string, point: number, count: number) => void;
   handleRequest: () => void;
+  handleRegisterAfterProcess: () => void;
 };
 
-export const ConsumePointPresenter: FC<ConsumePointPresenterProps> = ({
+export const ExchangePointPresenter: FC<ConsumePointPresenterProps> = ({
   exchangeItems,
   currentPoint,
   totalUsePoint,
   handleCalcTotalUsePoint,
   handleRequest,
+  handleRegisterAfterProcess,
 }) => {
   return (
     <Layout
@@ -34,6 +36,7 @@ export const ConsumePointPresenter: FC<ConsumePointPresenterProps> = ({
             currentPoint={currentPoint}
             totalUsePoint={totalUsePoint}
             handleRequest={handleRequest}
+            handleAfterProcess={handleRegisterAfterProcess}
           />
           <BackLink href={"../homeHelper/possessionPoint"} />
         </>
@@ -89,10 +92,12 @@ const LeavePointBox = ({
   currentPoint,
   totalUsePoint,
   handleRequest,
+  handleAfterProcess,
 }: {
   currentPoint: number;
   totalUsePoint: number;
   handleRequest: () => void;
+  handleAfterProcess: () => void;
 }) => (
   <Flex className={styles.formula}>
     <FormulaFlex label={"今のポイント"} point={currentPoint} />
@@ -111,7 +116,7 @@ const LeavePointBox = ({
         updateTitle={"ポイント交換完了"}
         updateMessage={"ポイントを交換したよ"}
         handleClick={handleRequest}
-        handleAfterProcess={() => {}}
+        handleAfterProcess={handleAfterProcess}
       />
     </Flex>
   </Flex>
