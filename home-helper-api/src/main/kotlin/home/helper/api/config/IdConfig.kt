@@ -32,7 +32,7 @@ class IdConfig {
         } else {
             object : RandomIdRepository<HelpItemId>(IdType.HELP_ITEM_ID) {
                 override fun generateId(id: String): HelpItemId {
-                    return HelpItemId(id)
+                    return HelpItemId.valueOf(id)
                 }
             }
         }

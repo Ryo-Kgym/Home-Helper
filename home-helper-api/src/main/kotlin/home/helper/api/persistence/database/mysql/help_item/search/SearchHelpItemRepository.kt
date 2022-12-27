@@ -25,7 +25,7 @@ class SearchHelpItemRepository(
         return searchHelpItemMapper.search(param)
             .map {
                 HelpItem(
-                    helpItemId = HelpItemId(it.id!!),
+                    helpItemId = HelpItemId.valueOf(it.id!!),
                     name = it.name!!,
                     helpPoint = HelpPoint(it.point!!),
                     memo = it.memo,

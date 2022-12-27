@@ -23,7 +23,7 @@ class SearchHelpItemResolver(
      */
     fun helpItems(param: SearchHelpItemParam): List<HelpItemGqo> {
         val criteria = SearchHelpItemCriteria(
-            helpItemId = param.id?.let { HelpItemId(it) },
+            helpItemId = param.id?.let { HelpItemId.valueOf(it) },
         )
 
         val output = searchHelpItemGateway.search(criteria)

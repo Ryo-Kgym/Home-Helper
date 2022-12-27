@@ -63,7 +63,7 @@ internal class SearchHelpItemRepositoryTest(
             Arguments.of(
                 "ID指定",
                 SearchHelpItemCriteria(
-                    helpItemId = HelpItemId("2"),
+                    helpItemId = HelpItemId.valueOf("2"),
                 ),
                 listOf(
                     ITEM2,
@@ -85,30 +85,30 @@ internal class SearchHelpItemRepositoryTest(
         private fun findByProvider() = Stream.of(
             Arguments.of(
                 "結果あり",
-                HelpItemId("1"),
+                HelpItemId.valueOf("1"),
                 ITEM1,
             ),
             Arguments.of(
                 "結果なし",
-                HelpItemId("4"),
+                HelpItemId.valueOf("4"),
                 null
             ),
         )
 
         private val ITEM1 = HelpItem(
-            helpItemId = HelpItemId("1"),
+            helpItemId = HelpItemId.valueOf("1"),
             name = "項目1",
             helpPoint = HelpPoint(100),
             memo = "メモ1",
         )
         private val ITEM2 = HelpItem(
-            helpItemId = HelpItemId("2"),
+            helpItemId = HelpItemId.valueOf("2"),
             name = "項目2",
             helpPoint = HelpPoint(200),
             memo = "メモ2",
         )
         private val ITEM3 = HelpItem(
-            helpItemId = HelpItemId("3"),
+            helpItemId = HelpItemId.valueOf("3"),
             name = "項目3",
             helpPoint = HelpPoint(300),
             memo = null,
