@@ -19,6 +19,7 @@ class SearchHelpItemRepository(
     override fun search(criteria: SearchHelpItemCriteria): List<HelpItem> {
         val param = SearchHelpItemParam(
             id = criteria.helpItemId?.id,
+            earnedAchievementId = criteria.earnedAchievementId?.id?.toString()
         )
 
         return searchHelpItemMapper.search(param)
@@ -30,7 +31,6 @@ class SearchHelpItemRepository(
                     memo = it.memo,
                 )
             }
-            .toList()
     }
 
     override fun findBy(id: HelpItemId): HelpItem? {

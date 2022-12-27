@@ -5,16 +5,21 @@
     <select id="search"
             parameterType="home.helper.api.persistence.database.mysql.help_item.search.SearchHelpItemParam"
             resultType="home.helper.api.persistence.database.mysql.table.DbMHelpItemRecord">
-        select
+        select distinct
             hi.id,
             hi.name,
             hi.point,
             hi.memo
         from
             m_help_item hi
+            left outer join help_point_earned_detail hped
+                on hi.id = hped.help_item_id
         <where>
             <if test="id != null">
                 and hi.id = #{id, jdbcType=BIGINT}
+            </if>
+            <if test="earnedAchievementId != null">
+                and hped.earned_achievement_id = #{earnedAchievementId, jdbcType=BIGINT}
             </if>
         </where>
         order by

@@ -26,6 +26,7 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestExecutionListeners
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener
 import java.util.stream.Stream
+import home.helper.core.domain.model.help_point.earned.HelpPointEarnedAchievementId
 
 @MybatisTest
 @MapperScan(basePackages = ["home.helper.api.persistence.database.mysql.**"])
@@ -36,7 +37,7 @@ import java.util.stream.Stream
     TransactionDbUnitTestExecutionListener::class,
 )
 @DbUnitConfiguration(dataSetLoader = CsvDataSetLoader::class)
-internal class SearchHelpItemMapperTest(
+internal class SearchHelpItemRepositoryTest(
     @Autowired
     private val searchHelpItemMapper: SearchHelpItemMapper,
 ) {
@@ -65,6 +66,16 @@ internal class SearchHelpItemMapperTest(
                     helpItemId = HelpItemId("2"),
                 ),
                 listOf(
+                    ITEM2,
+                )
+            ),
+            Arguments.of(
+                "獲得実績ID指定",
+                SearchHelpItemCriteria(
+                    earnedAchievementId = HelpPointEarnedAchievementId(1),
+                ),
+                listOf(
+                    ITEM1,
                     ITEM2,
                 )
             ),

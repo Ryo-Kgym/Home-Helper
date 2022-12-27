@@ -1,1 +1,2 @@
 m_help_item
+help_point_earned_detail
