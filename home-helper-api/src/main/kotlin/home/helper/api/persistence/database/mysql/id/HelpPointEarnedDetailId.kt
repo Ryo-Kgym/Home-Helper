@@ -4,6 +4,9 @@
 
 package home.helper.api.persistence.database.mysql.id
 
+import home.helper.core.domain.model.ValueObjectId
+
+@ValueObjectId
 data class HelpPointEarnedDetailId(
     val id: String,
 )
