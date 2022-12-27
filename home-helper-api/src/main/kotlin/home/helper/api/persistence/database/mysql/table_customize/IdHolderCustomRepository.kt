@@ -4,10 +4,10 @@
 
 package home.helper.api.persistence.database.mysql.table_customize
 
+import org.springframework.stereotype.Repository
 import home.helper.api.persistence.database.mysql.id.IdType
 import home.helper.api.persistence.database.mysql.table.DbIdHolderMapper
 import home.helper.api.persistence.database.mysql.table.selectByPrimaryKey
-import org.springframework.stereotype.Repository
 
 /**
  * IDホルダのカスタムRepositoryです。
@@ -31,7 +31,7 @@ class IdHolderCustomRepository(
      * @param idType IDタイプ
      * @return ID
      */
-    fun getCurrentId(idType: IdType): Long {
-        return dbIdHolderMapper.selectByPrimaryKey(idType)!!.currentId!!
+    fun getCurrentId(idType: IdType): String {
+        return dbIdHolderMapper.selectByPrimaryKey(idType)!!.currentId!!.toString()
     }
 }
