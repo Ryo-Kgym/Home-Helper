@@ -37,6 +37,12 @@ export const ExchangePointContainer = () => {
     exchangeHelpPoint(exchangePointForms).then((r) => {});
   };
 
+  const handleRegisterAfterProcess = () => {
+    setCurrentPoint(currentPoint - totalUsePoint);
+    setTotalUsePoint(0);
+    setExchangePointForms([]);
+  };
+
   const calcTotalPoint = (id: string, point: number, count: number): number => {
     let forms = exchangePointForms.filter((f) => f.id != id);
     forms.push({ id, point, count });
@@ -55,6 +61,7 @@ export const ExchangePointContainer = () => {
       totalUsePoint={totalUsePoint}
       handleCalcTotalUsePoint={handleCalcTotalUsePoint}
       handleRequest={handleRequest}
+      handleRegisterAfterProcess={handleRegisterAfterProcess}
     />
   );
 };
