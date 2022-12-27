@@ -73,7 +73,7 @@ type HelpPointEarnedAchievement{
     userId: Int!,
     earnedDate: String!,
     earnedPoint: Int!,
-    helpItems: [HelpItem],
+    helpItemsByEarnedAchievementId: [HelpItem],
 }
 
 type HelpItem {
