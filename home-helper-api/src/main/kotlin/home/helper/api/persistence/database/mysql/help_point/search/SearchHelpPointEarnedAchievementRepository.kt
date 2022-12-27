@@ -4,42 +4,32 @@
 
 package home.helper.api.persistence.database.mysql.help_point.search
 
-import home.helper.core.domain.model.help_item.HelpItem
-import home.helper.core.domain.model.help_item.HelpItemId
+import org.springframework.stereotype.Repository
 import home.helper.core.domain.model.help_point.HelpPoint
 import home.helper.core.domain.model.help_point.earned.HelpPointEarnedAchievement
 import home.helper.core.domain.model.help_point.earned.HelpPointEarnedAchievementId
 import home.helper.core.domain.model.user.UserId
 import home.helper.core.dto.help_point.SearchHelpPointEarnedCriteria
 import home.helper.core.gateway.help_point.SearchHelpPointEarnedAchievementGateway
-import org.springframework.stereotype.Repository
 
 @Repository
 class SearchHelpPointEarnedAchievementRepository(
-    private val searchHelpPointEarnedDetailMapper: SearchHelpPointMapper,
+    private val searchHelpPointMapper: SearchHelpPointMapper,
 ) : SearchHelpPointEarnedAchievementGateway {
 
     override fun search(criteria: SearchHelpPointEarnedCriteria): List<HelpPointEarnedAchievement> {
-        val param = SearchHelpPointParam()
+        val param = SearchHelpPointParam(
+            userId = criteria.userId.id,
+        )
 
-        return searchHelpPointEarnedDetailMapper.search(param)
+        return searchHelpPointMapper.search(param)
             .map {
                 HelpPointEarnedAchievement(
                     achievementId = HelpPointEarnedAchievementId(it.id!!),
                     userId = UserId(it.userId!!),
                     earnedDate = it.earnedDate!!,
                     earnedPoint = HelpPoint(it.earnedPoint!!),
-                    helpItemList = it.detailList?.map(::refillHelpItem) ?: listOf()
                 )
-            }.toList()
-    }
-
-    private fun refillHelpItem(s: HelpItemResult): HelpItem {
-        return HelpItem(
-            helpItemId = HelpItemId(s.itemId!!),
-            name = s.itemName!!,
-            helpPoint = HelpPoint(s.helpPoint!!),
-            memo = s.memo,
-        )
+            }
     }
 }

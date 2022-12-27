@@ -35,6 +35,11 @@
             on achi.id = hped.earned_achievement_id
             left outer join m_help_item mhi
             on hped.help_item_id = mhi.id
+        <where>
+            <if test="userId != null">
+                and achi.user_id = #{userId, jdbcType=VARCHAR}
+            </if>
+        </where>
         order by
             achi.earned_datetime,
             achi.id,

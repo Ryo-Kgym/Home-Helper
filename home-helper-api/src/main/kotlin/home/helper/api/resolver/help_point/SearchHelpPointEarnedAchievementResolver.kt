@@ -4,12 +4,11 @@
 
 package home.helper.api.resolver.help_point
 
+import org.springframework.stereotype.Component
 import graphql.kickstart.tools.GraphQLQueryResolver
-import home.helper.core.domain.model.help_item.HelpItem
+import home.helper.core.domain.model.user.UserId
 import home.helper.core.dto.help_point.SearchHelpPointEarnedCriteria
 import home.helper.core.gateway.help_point.SearchHelpPointEarnedAchievementGateway
-import org.springframework.stereotype.Component
-import home.helper.api.resolver.help_item.HelpItem as HelpItemGqo
 import home.helper.api.resolver.help_point.HelpPointEarnedAchievement as HelpPointEarnedAchievementGqo
 
 @Component
@@ -23,7 +22,9 @@ class SearchHelpPointEarnedAchievementResolver(
      * @return お手伝いポイント獲得実績
      */
     fun helpPointEarnedAchievement(param: SearchHelpPointParam): List<HelpPointEarnedAchievementGqo> {
-        val criteria = SearchHelpPointEarnedCriteria()
+        val criteria = SearchHelpPointEarnedCriteria(
+            userId = UserId.valueOf(param.userId.toString()),
+        )
         val output = searchHelpPointEarnedAchievementGateway.search(criteria)
 
         return output.map {
@@ -32,18 +33,8 @@ class SearchHelpPointEarnedAchievementResolver(
                 userId = it.userId.id,
                 earnedDate = it.earnedDate,
                 earnedPoint = it.earnedPoint.value,
-                helpItems = it.helpItemList.map(::refillHelpItem).toList(),
             )
-        }.toList()
-    }
-
-    private fun refillHelpItem(s: HelpItem): HelpItemGqo {
-        return HelpItemGqo(
-            id = s.helpItemId.id,
-            name = s.name,
-            point = s.helpPoint.value,
-            memo = s.memo,
-        )
+        }
     }
 }
 

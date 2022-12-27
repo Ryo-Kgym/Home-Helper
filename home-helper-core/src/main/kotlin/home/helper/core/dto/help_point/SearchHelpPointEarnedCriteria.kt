@@ -4,4 +4,8 @@
 
 package home.helper.core.dto.help_point
 
-class SearchHelpPointEarnedCriteria()
+import home.helper.core.domain.model.user.UserId
+
+class SearchHelpPointEarnedCriteria(
+    val userId: UserId,
+)
