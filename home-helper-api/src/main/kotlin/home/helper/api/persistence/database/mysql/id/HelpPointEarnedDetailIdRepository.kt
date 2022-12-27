@@ -20,8 +20,6 @@ class HelpPointEarnedDetailIdRepository(
 
     override fun getId(): HelpPointEarnedDetailId {
         val id = idHolderCustomRepository.getCurrentId(idType)
-        return HelpPointEarnedDetailId(
-            id = id.toString(),
-        )
+        return HelpPointEarnedDetailId.valueOf(id)
     }
 }

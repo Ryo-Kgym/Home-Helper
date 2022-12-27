@@ -7,6 +7,10 @@ package home.helper.api.persistence.database.mysql.id
 import home.helper.core.domain.model.ValueObjectId
 
 @ValueObjectId
-data class HelpPointEarnedDetailId(
+data class HelpPointEarnedDetailId private constructor(
     val id: String,
-)
+) {
+    companion object {
+        fun valueOf(id: String) = HelpPointEarnedDetailId(id)
+    }
+}
