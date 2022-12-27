@@ -19,18 +19,18 @@ class SearchHelpItemRepository(
     override fun search(criteria: SearchHelpItemCriteria): List<HelpItem> {
         val param = SearchHelpItemParam(
             id = criteria.helpItemId?.id,
+            earnedAchievementId = criteria.earnedAchievementId?.id,
         )
 
         return searchHelpItemMapper.search(param)
             .map {
                 HelpItem(
-                    helpItemId = HelpItemId(it.id!!),
+                    helpItemId = HelpItemId.valueOf(it.id!!),
                     name = it.name!!,
                     helpPoint = HelpPoint(it.point!!),
                     memo = it.memo,
                 )
             }
-            .toList()
     }
 
     override fun findBy(id: HelpItemId): HelpItem? {

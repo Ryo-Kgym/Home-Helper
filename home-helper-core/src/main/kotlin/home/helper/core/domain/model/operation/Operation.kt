@@ -14,15 +14,15 @@ data class Operation(
     val operatorId: OperatorId,
     val datetime: LocalDateTime,
 ) {
-    constructor(id: Int, date: LocalDate) :
+    constructor(id: String, date: LocalDate) :
             this(
-                operatorId = OperatorId(id),
+                operatorId = OperatorId.valueOf(id),
                 datetime = date.atStartOfDay()
             )
 
-    constructor(id: Int, datetime: LocalDateTime) :
+    constructor(id: String, datetime: LocalDateTime) :
             this(
-                operatorId = OperatorId(id),
+                operatorId = OperatorId.valueOf(id),
                 datetime = datetime
             )
 

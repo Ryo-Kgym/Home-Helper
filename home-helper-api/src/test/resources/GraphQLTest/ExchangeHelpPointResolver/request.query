@@ -1,0 +1,18 @@
+mutation {
+    exchangeHelpPoint(param: {
+        details: [
+            {
+                id: "aaa"
+                point: 100
+                count: 1
+            },
+            {
+                id: "bbb"
+                point: 100
+                count: 3
+            },
+        ]
+        userId: "u1"
+    })
+}
+

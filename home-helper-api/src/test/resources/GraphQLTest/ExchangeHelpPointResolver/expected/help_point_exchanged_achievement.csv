@@ -1,0 +1,4 @@
+id,user_id,exchange_item_id,exchange_count,exchange_total_point,exchanged_datetime
+1,u2,1,1,100,2022-12-25 23:16:18
+3,u1,aaa,1,100,2022-12-04 12:34:56.0
+4,u1,bbb,3,300,2022-12-04 12:34:56.0

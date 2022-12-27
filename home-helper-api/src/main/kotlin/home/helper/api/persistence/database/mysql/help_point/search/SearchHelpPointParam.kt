@@ -4,5 +4,6 @@
 
 package home.helper.api.persistence.database.mysql.help_point.search
 
-class SearchHelpPointParam {
-}
+data class SearchHelpPointParam(
+    var userId: String? = null,
+)

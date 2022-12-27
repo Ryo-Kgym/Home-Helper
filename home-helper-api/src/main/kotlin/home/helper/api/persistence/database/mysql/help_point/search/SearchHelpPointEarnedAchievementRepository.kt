@@ -4,42 +4,49 @@
 
 package home.helper.api.persistence.database.mysql.help_point.search
 
-import home.helper.core.domain.model.help_item.HelpItem
-import home.helper.core.domain.model.help_item.HelpItemId
+import java.time.LocalDate
+import org.mybatis.dynamic.sql.select.render.SelectStatementProvider
+import org.springframework.stereotype.Repository
+import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedAchievementMapper
 import home.helper.core.domain.model.help_point.HelpPoint
 import home.helper.core.domain.model.help_point.earned.HelpPointEarnedAchievement
 import home.helper.core.domain.model.help_point.earned.HelpPointEarnedAchievementId
 import home.helper.core.domain.model.user.UserId
 import home.helper.core.dto.help_point.SearchHelpPointEarnedCriteria
 import home.helper.core.gateway.help_point.SearchHelpPointEarnedAchievementGateway
-import org.springframework.stereotype.Repository
 
 @Repository
 class SearchHelpPointEarnedAchievementRepository(
-    private val searchHelpPointEarnedDetailMapper: SearchHelpPointMapper,
+    private val dbHelpPointEarnedAchievementMapper: DbHelpPointEarnedAchievementMapper,
 ) : SearchHelpPointEarnedAchievementGateway {
 
     override fun search(criteria: SearchHelpPointEarnedCriteria): List<HelpPointEarnedAchievement> {
-        val param = SearchHelpPointParam()
 
-        return searchHelpPointEarnedDetailMapper.search(param)
+        return dbHelpPointEarnedAchievementMapper.selectMany(
+            generateProvider(criteria)
+        )
             .map {
                 HelpPointEarnedAchievement(
-                    achievementId = HelpPointEarnedAchievementId(it.id!!),
+                    achievementId = HelpPointEarnedAchievementId.valueOf(it.id!!),
                     userId = UserId(it.userId!!),
-                    earnedDate = it.earnedDate!!,
+                    earnedDate = LocalDate.from(it.earnedDatetime!!),
                     earnedPoint = HelpPoint(it.earnedPoint!!),
-                    helpItemList = it.detailList?.map(::refillHelpItem) ?: listOf()
                 )
-            }.toList()
+            }
     }
 
-    private fun refillHelpItem(s: HelpItemResult): HelpItem {
-        return HelpItem(
-            helpItemId = HelpItemId(s.itemId!!),
-            name = s.itemName!!,
-            helpPoint = HelpPoint(s.helpPoint!!),
-            memo = s.memo,
-        )
-    }
+    private fun generateProvider(criteria: SearchHelpPointEarnedCriteria) =
+        object : SelectStatementProvider {
+            override fun getParameters(): MutableMap<String, Any> {
+                return mutableMapOf(
+                    "userId" to criteria.userId.id
+                )
+            }
+
+            override fun getSelectStatement(): String {
+                return "select * from help_point_earned_achievement " +
+                        "where user_id = #{parameters.userId} " +
+                        "order by earned_datetime, id"
+            }
+        }
 }

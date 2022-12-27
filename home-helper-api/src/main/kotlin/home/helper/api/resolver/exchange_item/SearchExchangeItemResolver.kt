@@ -23,7 +23,7 @@ class SearchExchangeItemResolver(
      */
     fun exchangeItems(param: SearchExchangeItemParam): List<ExchangeItemGqo> {
         val criteria = SearchExchangeItemCriteria(
-            exchangeItemId = param.id?.let { ExchangeItemId(it) },
+            exchangeItemId = param.id?.let { ExchangeItemId.valueOf(it) },
         )
 
         val output = searchExchangeItemGateway.search(criteria)
@@ -31,7 +31,7 @@ class SearchExchangeItemResolver(
             ExchangeItemGqo(
                 id = it.exchangeItemId.id,
                 name = it.name,
-                point = it.exchangePoint.value,
+                point = it.exchangePoint.point,
             )
         }
     }

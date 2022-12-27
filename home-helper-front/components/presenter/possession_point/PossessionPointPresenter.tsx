@@ -15,7 +15,7 @@ type PossessionPointPresenterProps = {
 const cardListProps = [
   { href: "/homeHelper", label: "戻る", back: true },
   { href: "/homeHelper/chargePoint", label: "ふやす" },
-  { href: "/homeHelper/usePoint", label: "つかう" },
+  { href: "/homeHelper/consumePoint", label: "つかう" },
 ];
 
 export const PossessionPointPresenter: FC<PossessionPointPresenterProps> = ({

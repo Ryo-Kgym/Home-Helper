@@ -19,8 +19,6 @@ class HelpItemIdRepository(
 
     override fun getId(): HelpItemId {
         val id = idHolderCustomRepository.getCurrentId(idType)
-        return HelpItemId(
-            id = id.toString(),
-        )
+        return HelpItemId.valueOf(id)
     }
 }

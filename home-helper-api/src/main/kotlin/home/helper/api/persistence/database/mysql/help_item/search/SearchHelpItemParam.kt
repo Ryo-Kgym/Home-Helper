@@ -6,4 +6,5 @@ package home.helper.api.persistence.database.mysql.help_item.search
 
 data class SearchHelpItemParam(
     var id: String? = null,
+    var earnedAchievementId: String? = null,
 )

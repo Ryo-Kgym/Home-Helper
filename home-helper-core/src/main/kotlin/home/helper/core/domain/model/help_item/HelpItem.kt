@@ -22,7 +22,7 @@ data class HelpItem(
                 memo: String? = null
     ) :
             this(
-                helpItemId = HelpItemId(id),
+                helpItemId = HelpItemId.valueOf(id),
                 name = name,
                 helpPoint = HelpPoint(point),
                 memo = memo,

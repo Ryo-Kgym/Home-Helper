@@ -34,7 +34,7 @@ internal class SearchHelpPointEarnedAchievementResolverTest {
     private val graphQLTestTemplate: GraphQLTestTemplate? = null
 
     companion object {
-        private const val ROOT = "/GraphQLTest/SearchHelpPointEarnedAchievement/"
+        private const val ROOT = "/GraphQLTest/SearchHelpPointEarnedAchievementResolver/"
     }
 
     @Test

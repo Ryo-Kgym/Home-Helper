@@ -31,7 +31,7 @@ class SearchExchangeItemRepository(
             ExchangeItem(
                 id = it.id!!,
                 name = it.name!!,
-                value = it.point!!,
+                point = it.point!!,
             )
         }.toList()
     }

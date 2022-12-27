@@ -1,3 +1,0 @@
-help_point_earned_achievement
-help_point_earned_detail
-m_help_item

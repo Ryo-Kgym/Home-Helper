@@ -1,0 +1,40 @@
+{
+  "data": {
+    "helpPointEarnedAchievement": [
+      {
+        "id": "1",
+        "userId": 1,
+        "earnedDate": "2022-11-06",
+        "earnedPoint": 500,
+        "helpItemsByEarnedAchievementId": [
+          {
+            "id": "1",
+            "name": "テスト項目1",
+            "point": 100,
+            "memo": "これはテストです。"
+          },
+          {
+            "id": "2",
+            "name": "テスト項目2",
+            "point": 200,
+            "memo": "これもテストです。"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "userId": 1,
+        "earnedDate": "2022-11-13",
+        "earnedPoint": 300,
+        "helpItemsByEarnedAchievementId": [
+          {
+            "id": "2",
+            "name": "テスト項目2",
+            "point": 200,
+            "memo": "これもテストです。"
+          }
+        ]
+      }
+    ]
+  }
+}

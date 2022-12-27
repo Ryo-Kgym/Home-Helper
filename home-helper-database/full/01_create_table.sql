@@ -13,6 +13,16 @@ create table help_point_earned_detail (
     help_item_id          varchar(32) not null comment 'お手伝い項目ID'
 ) comment 'お手伝いポイント獲得明細';
 
+drop table if exists help_point_exchanged_achievement;
+create table help_point_exchanged_achievement (
+    id                   varchar(32) not null comment 'ID' primary key,
+    user_id              varchar(32) not null comment 'ユーザID',
+    exchange_item_id     varchar(32) not null comment '交換品ID',
+    exchange_count       integer comment '交換件数',
+    exchange_total_point integer comment '交換合計ポイント',
+    exchanged_datetime   datetime    not null comment '交換日時'
+) comment 'お手伝いポイント交換実績';
+
 drop table if exists user_point;
 create table user_point (
     user_id            varchar(32) not null comment 'ユーザID' primary key,

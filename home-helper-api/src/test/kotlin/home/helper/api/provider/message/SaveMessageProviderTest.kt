@@ -39,6 +39,7 @@ internal class SaveMessageProviderTest(
         val expected = arrayListOf(
             HomeHelperMessage("お手伝いポイントを3件 獲得したよ!"),
             HomeHelperMessage("お手伝い項目を3件 登録したよ!"),
+            HomeHelperMessage("お手伝いポイントを3件 交換したよ!"),
         )
 
         assertThat(actual, `is`(expected))

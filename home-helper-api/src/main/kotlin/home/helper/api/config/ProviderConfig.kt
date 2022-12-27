@@ -26,13 +26,13 @@ class ProviderConfig {
         return if (mockDatetime) {
             object : OperationGateway {
                 override fun load(): Operation {
-                    return Operation(0, LocalDateTime.of(2022, 12, 4, 12, 34, 56))
+                    return Operation("0", LocalDateTime.of(2022, 12, 4, 12, 34, 56))
                 }
             }
         } else {
             object : OperationGateway {
                 override fun load(): Operation {
-                    return Operation(0, LocalDateTime.now())
+                    return Operation("0", LocalDateTime.now())
                 }
             }
         }

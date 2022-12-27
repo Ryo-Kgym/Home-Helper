@@ -37,6 +37,10 @@
 <!--        </table>-->
 <!--        <table tableName="help_point_earned_detail" modelType="flat" mapperName="DbHelpPointEarnedDetailMapper" domainObjectName="DbHelpPointEarnedDetail">-->
 <!--        </table>-->
+<!--        <table tableName="help_point_consumed_achievement" modelType="flat" mapperName="DbHelpPointConsumedAchievementMapper" domainObjectName="DbHelpPointConsumedAchievement">-->
+<!--        </table>-->
+<!--        <table tableName="help_point_exchanged_achievement" modelType="flat" mapperName="DbHelpPointExchangedAchievementMapper" domainObjectName="DbHelpPointExchangedAchievement">-->
+<!--        </table>-->
 <!--        <table tableName="user_point" modelType="flat" mapperName="DbUserPointMapper" domainObjectName="DbUserPoint">-->
 <!--        </table>-->
 <!--        <table tableName="m_help_item" modelType="flat" mapperName="DbMHelpItemMapper" domainObjectName="DbMHelpItem">-->
