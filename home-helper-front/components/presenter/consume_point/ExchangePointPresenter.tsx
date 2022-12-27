@@ -15,7 +15,7 @@ type ConsumePointPresenterProps = {
   handleRequest: () => void;
 };
 
-export const ConsumePointPresenter: FC<ConsumePointPresenterProps> = ({
+export const ExchangePointPresenter: FC<ConsumePointPresenterProps> = ({
   exchangeItems,
   currentPoint,
   totalUsePoint,
