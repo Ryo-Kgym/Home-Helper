@@ -1,4 +1,4 @@
-import { Page } from "@components/page/home_helper/HomeHelperTemplate";
+import { Page } from "@components/page/home_helper/HomeHelperPage";
 import { NextPage } from "next";
 
 const index: NextPage = () => {
