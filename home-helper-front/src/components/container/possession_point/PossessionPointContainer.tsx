@@ -11,7 +11,7 @@ export const PossessionPointContainer: FC = () => {
       setCurrentPoint(user.currentPoint);
       setUserName(user.name);
     });
-  });
+  }, []);
 
   return (
     <PossessionPointPresenter userName={userName} currentPoint={currentPoint} />
