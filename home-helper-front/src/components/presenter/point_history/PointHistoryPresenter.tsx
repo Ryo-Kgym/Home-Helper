@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { Layout } from "@components/presenter/Layout";
 import { Table } from "@mantine/core";
 
 type PointHistoryPresenterProps = {
@@ -14,17 +13,7 @@ export type PointHistory = {
 
 export const PointHistoryPresenter: FC<PointHistoryPresenterProps> = ({
   records,
-}) => {
-  return (
-    <Layout
-      main={
-        <>
-          <PointHistoryTable records={records} />
-        </>
-      }
-    />
-  );
-};
+}) => <PointHistoryTable records={records} />;
 
 const PointHistoryTable = ({ records }: { records: PointHistory[] }) => (
   <Table striped highlightOnHover>
