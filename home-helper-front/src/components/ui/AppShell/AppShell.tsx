@@ -7,17 +7,27 @@ type LayoutProps = {
   header?: ReactElement;
   navbar?: ReactElement;
   body: ReactElement;
+  navHidden?: boolean;
 };
 export const index: FC<LayoutProps> = ({
   header = <></>,
   navbar = <LinkList props={cardListProps} />,
   body,
+  navHidden = false,
 }) => {
+  const navDisplay = navHidden ? "none" : "display";
+  const navWidth = navHidden ? 0 : 300;
+
   return (
     <McAppShell
       padding="md"
       navbar={
-        <Navbar width={{ base: 300 }} height={500} p="xs">
+        <Navbar
+          width={{ base: navWidth }}
+          height={500}
+          p="xs"
+          display={navDisplay}
+        >
           {navbar}
         </Navbar>
       }
