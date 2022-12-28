@@ -41,8 +41,9 @@ export const index: FC<LayoutProps> = ({
 };
 
 const cardListProps = [
-  { href: "/homeHelper", label: "戻る", back: true },
+  { href: "/homeHelper/possessionPoint", label: "ホーム" },
   { href: "/homeHelper/chargePoint", label: "ふやす" },
   { href: "/homeHelper/exchangePoint", label: "つかう" },
   { href: "/homeHelper/pointHistory", label: "履歴" },
+  { href: "/homeHelper", label: "戻る", back: true },
 ];

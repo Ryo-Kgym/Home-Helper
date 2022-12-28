@@ -8,7 +8,13 @@ type HomeHelperPresenterProps = {
 };
 
 export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = (props) => {
-  const propList: CardProps[] = [];
+  const propList: CardProps[] = [
+    {
+      href: "/",
+      label: "戻る",
+      back: true,
+    },
+  ];
   props.userList.map((user) => {
     return propList.push({
       href: "/homeHelper/possessionPoint",
