@@ -2,60 +2,48 @@ import { FC } from "react";
 import { Layout } from "@components/presenter/Layout";
 import { Table } from "@mantine/core";
 
-type PointHistoryPresenterProps = {};
-
-type PointHistory = {
-  date: Date;
-  point: number;
+type PointHistoryPresenterProps = {
+  records: PointHistory[];
 };
 
-const DATA: PointHistory[] = [
-  {
-    date: new Date(),
-    point: 100,
-  },
-  {
-    date: new Date(),
-    point: 200,
-  },
-  {
-    date: new Date(),
-    point: -100,
-  },
-  {
-    date: new Date(),
-    point: 1000,
-  },
-];
+export type PointHistory = {
+  date: Date;
+  point: number;
+  itemName: string;
+};
 
-export const PointHistoryPresenter: FC<PointHistoryPresenterProps> = () => {
+export const PointHistoryPresenter: FC<PointHistoryPresenterProps> = ({
+  records,
+}) => {
   return (
     <Layout
       main={
         <>
-          <HistoryTable data={DATA} />
+          <PointHistoryTable records={records} />
         </>
       }
     />
   );
 };
 
-const HistoryTable = ({ data }: { data: PointHistory[] }) => (
+const PointHistoryTable = ({ records }: { records: PointHistory[] }) => (
   <Table striped highlightOnHover>
     <thead>
       <tr>
         <th>#</th>
         <th>日付</th>
         <th>ポイント</th>
+        <th>項目</th>
       </tr>
     </thead>
     <tbody>
-      {data.map((d, i) => {
+      {records.map((d, i) => {
         return (
           <tr key={"pointHistory" + i}>
             <td>{i}</td>
             <td>{d.date.toLocaleDateString()}</td>
             <td>{d.point.toLocaleString()}</td>
+            <td>{d.itemName}</td>
           </tr>
         );
       })}
