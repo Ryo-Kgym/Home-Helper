@@ -35,7 +35,7 @@ const AppHeader = () => {
     <Head>
       <title>うちのアプリ</title>
       <meta name="description" content="これは、うちの支援アプリです。" />
-      <link rel="icon" href="public/favicon.ico" />
+      <link rel="icon" href="@public/favicon.ico" />
     </Head>
   );
 };

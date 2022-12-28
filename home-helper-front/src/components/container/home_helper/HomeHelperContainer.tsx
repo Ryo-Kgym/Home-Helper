@@ -13,7 +13,7 @@ export const HomeHelperContainer: FC = () => {
 
   useEffect(() => {
     fetchUsers().then((r) => setUsers(r));
-  });
+  }, []);
 
   return (
     <HomeHelperPresenter userList={users} handleClickUser={handleClickUser} />
