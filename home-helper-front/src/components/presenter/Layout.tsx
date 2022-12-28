@@ -8,9 +8,7 @@ export const NonHeaderLayout = (props: { main: ReactElement }) => {
     <div>
       <AppHeader />
       <div className={homeStyle.container}>
-        <div className={styles.headerLine} />
         <main className={styles.main}>{props.main}</main>
-        <div className={styles.footerLine} />
       </div>
     </div>
   );
@@ -21,9 +19,7 @@ export const Layout = (props: { main: ReactElement }) => {
     <div>
       <AppHeader />
       <div className={homeStyle.container}>
-        <div className={styles.headerLine} />
         <main className={styles.main}>{props.main}</main>
-        <div className={styles.footerLine} />
       </div>
     </div>
   );
