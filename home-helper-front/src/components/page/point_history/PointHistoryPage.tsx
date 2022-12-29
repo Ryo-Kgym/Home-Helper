@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { PointHistoryContainer } from "@components/container/point_history/PointHistoryContainer";
-import { AppShell } from "@components/ui/AppShell";
+import { HomeHelperLayout } from "@components/ui/Layout/HomeHelperLayout";
 
-export const Page: FC = () => <AppShell body={<PointHistoryContainer />} />;
+export const Page: FC = () => (
+  <HomeHelperLayout body={<PointHistoryContainer />} />
+);

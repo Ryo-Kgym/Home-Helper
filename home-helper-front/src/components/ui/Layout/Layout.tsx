@@ -1,4 +1,4 @@
-import homeStyle from "../../styles/Home.module.css";
+import homeStyle from "../../../styles/Home.module.css";
 import styles from "./styles.module.scss";
 import { ReactElement } from "react";
 import Head from "next/head";

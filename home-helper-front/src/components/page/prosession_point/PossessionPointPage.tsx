@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { PossessionPointContainer } from "@components/container/possession_point/PossessionPointContainer";
-import { AppShell } from "@components/ui/AppShell";
+import { HomeHelperLayout } from "@components/ui/Layout/HomeHelperLayout";
 
 export const Page: FC = () => {
-  return <AppShell body={<PossessionPointContainer />} />;
+  return <HomeHelperLayout body={<PossessionPointContainer />} />;
 };

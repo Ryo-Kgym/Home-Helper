@@ -1,7 +1,5 @@
 import { FC } from "react";
 import { TopContainer } from "@components/container/top/TopContainer";
-import { AppShell } from "@components/ui/AppShell";
+import { TopLayout } from "@components/ui/Layout/TopLayout";
 
-export const Page: FC = () => (
-  <AppShell body={<TopContainer />} navHidden={true} />
-);
+export const Page: FC = () => <TopLayout body={<TopContainer />} />;

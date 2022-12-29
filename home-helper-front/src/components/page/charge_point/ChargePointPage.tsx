@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { ChargePointContainer } from "@components/container/charge_point/ChargePointContainer";
-import { AppShell } from "@components/ui/AppShell";
+import { HomeHelperLayout } from "@components/ui/Layout/HomeHelperLayout";
 
-export const Page: FC = () => <AppShell body={<ChargePointContainer />} />;
+export const Page: FC = () => (
+  <HomeHelperLayout body={<ChargePointContainer />} />
+);

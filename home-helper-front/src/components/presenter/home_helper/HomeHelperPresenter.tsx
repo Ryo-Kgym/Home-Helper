@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { MainTitle } from "@components/ui/MainTitle";
 import { CardProps, LinkList } from "@components/ui/Card";
 
 type HomeHelperPresenterProps = {
@@ -28,7 +27,6 @@ export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = (props) => {
 
   return (
     <>
-      <MainTitle label={"お手伝いアプリ"} />
       <LinkList props={propList} />
     </>
   );

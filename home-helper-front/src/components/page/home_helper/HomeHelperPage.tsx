@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { HomeHelperContainer } from "@components/container/home_helper/HomeHelperContainer";
-import { AppShell } from "@components/ui/AppShell";
+import { HomeHelperLayout } from "@components/ui/Layout/HomeHelperLayout";
 
-export const Page: FC = () => <AppShell body={<HomeHelperContainer />} />;
+export const Page: FC = () => (
+  <HomeHelperLayout body={<HomeHelperContainer />} navHidden />
+);

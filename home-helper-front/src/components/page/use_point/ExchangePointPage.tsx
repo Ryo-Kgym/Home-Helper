@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { ExchangePointContainer } from "@components/container/consume_point/ExchangePointContainer";
-import { AppShell } from "@components/ui/AppShell";
+import { HomeHelperLayout } from "@components/ui/Layout/HomeHelperLayout";
 
-export const Page: FC = () => <AppShell body={<ExchangePointContainer />} />;
+export const Page: FC = () => (
+  <HomeHelperLayout body={<ExchangePointContainer />} />
+);
