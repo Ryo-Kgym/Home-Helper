@@ -23,7 +23,7 @@ export const index: FC<LayoutProps> = ({
   return (
     <McAppShell
       padding="md"
-      navbar={<Navi nav={navbar} navHidden={navHidden} />}
+      navbar={<Navi body={navbar} hidden={navHidden} />}
       header={
         <Header height={headerHeight} p="xs" display={headerDisplay}>
           {header}
