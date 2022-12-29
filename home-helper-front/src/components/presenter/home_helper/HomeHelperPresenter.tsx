@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { CardProps, LinkList } from "@components/ui/Card";
+import { CardProps } from "@components/ui/Card";
+import { LinkList } from "@components/ui/Card/LinkList";
 
 type HomeHelperPresenterProps = {
   userList: any[];

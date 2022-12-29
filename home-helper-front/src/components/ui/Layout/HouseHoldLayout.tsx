@@ -1,6 +1,6 @@
 import { FC, ReactElement } from "react";
-import { LinkList } from "@components/ui/Card";
 import { index as AppShell } from "./";
+import { LinkList } from "@components/ui/Card/LinkList";
 
 type HouseHoldLayoutProps = {
   body: ReactElement;

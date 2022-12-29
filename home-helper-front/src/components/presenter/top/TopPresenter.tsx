@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { NonHeaderLayout } from "@components/ui/Layout/Layout";
 import { MainTitle } from "@components/ui/MainTitle";
-import { LinkList } from "@components/ui/Card";
+import { LinkList } from "@components/ui/Card/LinkList";
 
 const cardLindProps = [
   { href: "/homeHelper", label: "お手伝いアプリ" },

@@ -1,8 +1,8 @@
-import { HelpItem } from "@domain/model/home_helper/HelpItem";
 import { gql } from "@apollo/client";
 import { query } from "@graphql/apollo/apollo-client";
+import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
 
-export async function exchangeItem(): Promise<HelpItem[]> {
+export async function exchangeItem(): Promise<ExchangeItem[]> {
   const param = {
     query: GET_EXCHANGE_ITEMS,
     key: "exchangeItems",
