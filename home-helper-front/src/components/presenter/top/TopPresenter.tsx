@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { NonHeaderLayout } from "@components/ui/Layout/Layout";
 import { MainTitle } from "@components/ui/MainTitle";
 import { LinkList } from "@components/ui/Card/LinkList";
 
@@ -10,13 +9,9 @@ const cardLindProps = [
 
 export const TopPresenter: FC = () => {
   return (
-    <NonHeaderLayout
-      main={
-        <>
-          <MainTitle label={"うちのアプリへようこそ！"} />
-          <LinkList props={cardLindProps} />
-        </>
-      }
-    />
+    <>
+      <MainTitle label={"うちのアプリへようこそ！"} />
+      <LinkList props={cardLindProps} />
+    </>
   );
 };

@@ -3,17 +3,6 @@ import styles from "./styles.module.scss";
 import { ReactElement } from "react";
 import Head from "next/head";
 
-export const NonHeaderLayout = (props: { main: ReactElement }) => {
-  return (
-    <div>
-      <AppHeader />
-      <div className={homeStyle.container}>
-        <main className={styles.main}>{props.main}</main>
-      </div>
-    </div>
-  );
-};
-
 export const Layout = (props: { main: ReactElement }) => {
   return (
     <div>
