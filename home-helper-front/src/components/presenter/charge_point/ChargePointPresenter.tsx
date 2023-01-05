@@ -1,8 +1,6 @@
 import { FC } from "react";
 import { Flex, Table } from "@mantine/core";
 import styles from "./styles.module.scss";
-import { Layout } from "@components/presenter/Layout";
-import { BackLink } from "@components/ui/Card";
 import { Counter } from "@components/ui/Counter";
 import { UpdateNotification } from "@components/ui/UpdateNotification";
 import { HelpItem } from "@domain/model/home_helper/HelpItem";
@@ -27,24 +25,16 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
   handleRegisterAfterProcess,
 }) => {
   return (
-    <Layout
-      main={
-        <>
-          <Title fromDate={fromDate} />
-          <HelpItemTable
-            helpItems={helpItems}
-            handleSetValue={handleCalcTotal}
-          />
-          <TotalPointBox
-            currentPoint={currentPoint}
-            totalUsePoint={totalPoint}
-            handleRegisterHelps={handleRegisterHelps}
-            handleAfterProcess={handleRegisterAfterProcess}
-          />
-          <BackLink href={"/homeHelper/possessionPoint"} />
-        </>
-      }
-    />
+    <>
+      <Title fromDate={fromDate} />
+      <HelpItemTable helpItems={helpItems} handleSetValue={handleCalcTotal} />
+      <TotalPointBox
+        currentPoint={currentPoint}
+        totalUsePoint={totalPoint}
+        handleRegisterHelps={handleRegisterHelps}
+        handleAfterProcess={handleRegisterAfterProcess}
+      />
+    </>
   );
 };
 

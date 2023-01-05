@@ -1,9 +1,7 @@
-import { Box, Button, Flex, Table } from "@mantine/core";
+import { Flex, Table } from "@mantine/core";
 import { FC } from "react";
 import styles from "./styles.module.scss";
-import { Layout } from "@components/presenter/Layout";
 import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
-import { BackLink } from "@components/ui/Card";
 import { Counter } from "@components/ui/Counter";
 import { UpdateNotification } from "@components/ui/UpdateNotification";
 
@@ -25,23 +23,18 @@ export const ExchangePointPresenter: FC<ConsumePointPresenterProps> = ({
   handleRegisterAfterProcess,
 }) => {
   return (
-    <Layout
-      main={
-        <>
-          <ExchangeTable
-            exchangeItems={exchangeItems}
-            handleSetValue={handleCalcTotalUsePoint}
-          />
-          <LeavePointBox
-            currentPoint={currentPoint}
-            totalUsePoint={totalUsePoint}
-            handleRequest={handleRequest}
-            handleAfterProcess={handleRegisterAfterProcess}
-          />
-          <BackLink href={"../homeHelper/possessionPoint"} />
-        </>
-      }
-    />
+    <>
+      <ExchangeTable
+        exchangeItems={exchangeItems}
+        handleSetValue={handleCalcTotalUsePoint}
+      />
+      <LeavePointBox
+        currentPoint={currentPoint}
+        totalUsePoint={totalUsePoint}
+        handleRequest={handleRequest}
+        handleAfterProcess={handleRegisterAfterProcess}
+      />
+    </>
   );
 };
 

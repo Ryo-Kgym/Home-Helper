@@ -1,6 +1,4 @@
 import { FC } from "react";
-import { Layout } from "@components/presenter/Layout";
-import { LinkList } from "@components/ui/Card";
 import { Flex } from "@mantine/core";
 import Countup from "react-countup";
 import styles from "./styles.module.scss";
@@ -12,26 +10,14 @@ type PossessionPointPresenterProps = {
   currentPoint: number;
 };
 
-const cardListProps = [
-  { href: "/homeHelper", label: "戻る", back: true },
-  { href: "/homeHelper/chargePoint", label: "ふやす" },
-  { href: "/homeHelper/exchangePoint", label: "つかう" },
-  { href: "/homeHelper/pointHistory", label: "履歴" },
-];
-
 export const PossessionPointPresenter: FC<PossessionPointPresenterProps> = ({
   userName,
   currentPoint,
 }) => {
   return (
-    <Layout
-      main={
-        <>
-          <Point name={userName} point={currentPoint} />
-          <LinkList props={cardListProps} />
-        </>
-      }
-    />
+    <>
+      <Point name={userName} point={currentPoint} />
+    </>
   );
 };
 
