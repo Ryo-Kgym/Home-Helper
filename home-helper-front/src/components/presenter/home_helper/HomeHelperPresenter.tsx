@@ -1,6 +1,5 @@
 import { FC } from "react";
-import { CardProps } from "@components/ui/Card";
-import { LinkList } from "@components/ui/Card/LinkList";
+import { LinkList, LinkProps } from "@components/ui/Card";
 
 type HomeHelperPresenterProps = {
   userList: any[];
@@ -8,7 +7,7 @@ type HomeHelperPresenterProps = {
 };
 
 export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = (props) => {
-  const propList: CardProps[] = [
+  const propList: LinkProps[] = [
     {
       href: "/",
       label: "戻る",
