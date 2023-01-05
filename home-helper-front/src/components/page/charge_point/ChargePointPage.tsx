@@ -3,5 +3,7 @@ import { ChargePointContainer } from "@components/container/charge_point/ChargeP
 import { HomeHelperLayout } from "@components/ui/Layout/HomeHelperLayout";
 
 export const Page: FC = () => (
-  <HomeHelperLayout body={<ChargePointContainer />} />
+  <HomeHelperLayout>
+    <ChargePointContainer />
+  </HomeHelperLayout>
 );

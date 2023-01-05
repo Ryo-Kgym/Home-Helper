@@ -6,14 +6,14 @@ import { Navi } from "@components/ui/Navi";
 type LayoutProps = {
   header?: ReactElement;
   navbar?: ReactElement;
-  body: ReactElement;
+  children: ReactElement;
   headerHidden?: boolean;
   navHidden?: boolean;
 };
 export const index: FC<LayoutProps> = ({
   header = <></>,
   navbar = <></>,
-  body,
+  children,
   headerHidden = false,
   navHidden = false,
 }) => {
@@ -38,7 +38,7 @@ export const index: FC<LayoutProps> = ({
         },
       })}
     >
-      <Layout main={body} />
+      <Layout main={children} />
     </McAppShell>
   );
 };

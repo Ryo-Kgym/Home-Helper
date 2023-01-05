@@ -3,23 +3,20 @@ import { index as AppShell } from "./";
 import { LinkList } from "@components/ui/Card/LinkList";
 
 type HomeHelperLayoutProps = {
-  body: ReactElement;
+  children: ReactElement;
   navHidden?: boolean;
 };
 export const HomeHelperLayout: FC<HomeHelperLayoutProps> = ({
-  body,
+  children,
   navHidden,
 }) => {
   const header = <h1 className={"font-bold"}>お手伝いアプリ</h1>;
   const navbar = <LinkList props={cardListProps} />;
 
   return (
-    <AppShell
-      navbar={navbar}
-      header={header}
-      body={body}
-      navHidden={navHidden}
-    />
+    <AppShell navbar={navbar} header={header} navHidden={navHidden}>
+      {children}
+    </AppShell>
   );
 };
 

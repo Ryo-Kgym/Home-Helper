@@ -3,5 +3,7 @@ import { ExchangePointContainer } from "@components/container/consume_point/Exch
 import { HomeHelperLayout } from "@components/ui/Layout/HomeHelperLayout";
 
 export const Page: FC = () => (
-  <HomeHelperLayout body={<ExchangePointContainer />} />
+  <HomeHelperLayout>
+    <ExchangePointContainer />
+  </HomeHelperLayout>
 );
