@@ -1,6 +1,6 @@
 import { AppShell as McAppShell, Header } from "@mantine/core";
 import { FC, ReactElement } from "react";
-import { Layout } from "@components/ui/Layout/Layout";
+import { Html } from "@components/ui/Layout/Html";
 import { Navi } from "@components/ui/Navi";
 
 type LayoutProps = {
@@ -38,7 +38,7 @@ export const index: FC<LayoutProps> = ({
         },
       })}
     >
-      <Layout main={children} />
+      <Html>{children}</Html>
     </McAppShell>
   );
 };
