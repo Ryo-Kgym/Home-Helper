@@ -1,8 +1,7 @@
 import { FC, useEffect, useState } from "react";
-import {
-  PointHistory,
-  PointHistoryPresenter,
-} from "@components/presenter/point_history/PointHistoryPresenter";
+import { PointHistoryPresenter } from "@components/presenter/point_history/PointHistoryPresenter";
+import { PointHistory } from "@domain/model/home_helper/PointHistory";
+import { TbodyProps } from "@components/ui/Table";
 
 const DATA: PointHistory[] = [
   {
@@ -28,11 +27,29 @@ const DATA: PointHistory[] = [
 ];
 
 export const PointHistoryContainer: FC = () => {
-  const [records, setRecords] = useState<PointHistory[]>([]);
+  const [pointHistories, setPointHistories] = useState<PointHistory[]>([]);
 
   useEffect(() => {
-    setRecords(DATA);
+    setPointHistories(DATA);
   }, []);
 
-  return <PointHistoryPresenter records={records} />;
+  const tbodyProps: TbodyProps[] = pointHistories.map((pointHistory) => {
+    return {
+      keyPrefix: "pointHistory",
+      columns: [
+        { value: pointHistory.date.toLocaleDateString() },
+        {
+          value: formatPoint(pointHistory.point),
+          align: "right",
+        },
+        { value: pointHistory.itemName },
+      ],
+    };
+  });
+
+  return <PointHistoryPresenter tbodyProps={tbodyProps} />;
+};
+
+const formatPoint = (point: number): string => {
+  return point.toLocaleString() + process.env.NEXT_PUBLIC_POINT_UNIT;
 };
