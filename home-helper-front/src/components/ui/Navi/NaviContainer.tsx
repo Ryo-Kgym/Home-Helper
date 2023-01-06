@@ -2,12 +2,16 @@ import { FC, ReactElement } from "react";
 import { NaviPresenter } from "@components/ui/Navi/NaviPresenter";
 
 type NaviContainerProps = {
-  body: ReactElement;
+  children: ReactElement;
   hidden?: boolean;
 };
-export const NaviContainer: FC<NaviContainerProps> = ({ body, hidden }) => {
+export const NaviContainer: FC<NaviContainerProps> = ({ children, hidden }) => {
   const display = hidden ? "none" : "display";
   const width = hidden ? 0 : 300;
 
-  return <NaviPresenter body={body} width={width} display={display} />;
+  return (
+    <NaviPresenter width={width} display={display}>
+      {children}
+    </NaviPresenter>
+  );
 };

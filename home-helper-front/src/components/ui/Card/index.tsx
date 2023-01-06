@@ -1,20 +1,32 @@
-import Link from "next/link";
-import styles from "../ui.module.scss";
 import { FC } from "react";
+import { Grid } from "@components/ui/Grid";
+import { LinkContainer } from "@components/ui/Card/LinkContainer";
 
-export type CardProps = {
+export { LinkContainer as Link } from "./LinkContainer";
+
+export type LinkProps = {
   href: string;
   label: string;
   back?: boolean;
   handleClick?: () => void;
 };
 
-export const index: FC<CardProps> = ({ back, label, href, handleClick }) => {
-  const text = back ? <h2>&larr; {label}</h2> : <h2> {label} &rarr;</h2>;
-
+export const LinkList: FC<{ props: LinkProps[] }> = ({ props }) => {
   return (
-    <Link href={href} className={styles.card} onClick={handleClick}>
-      {text}
-    </Link>
+    <Grid>
+      <>
+        {props.map((p, i) => {
+          return (
+            <LinkContainer
+              href={p.href}
+              label={p.label}
+              back={p.back}
+              handleClick={p.handleClick}
+              key={"link" + i}
+            />
+          );
+        })}
+      </>
+    </Grid>
   );
 };

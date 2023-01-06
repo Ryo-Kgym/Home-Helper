@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { LinkList } from "@components/ui/Card/LinkList";
+import { LinkList } from "@components/ui/Card";
 
 export const HouseHoldPresenter: FC = () => {
   const cardLinkProps = [

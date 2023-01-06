@@ -1,19 +1,19 @@
 import { AppShell as McAppShell, Header } from "@mantine/core";
 import { FC, ReactElement } from "react";
-import { Layout } from "@components/ui/Layout/Layout";
+import { Html } from "@components/ui/Layout/Html";
 import { Navi } from "@components/ui/Navi";
 
 type LayoutProps = {
   header?: ReactElement;
   navbar?: ReactElement;
-  body: ReactElement;
+  children: ReactElement;
   headerHidden?: boolean;
   navHidden?: boolean;
 };
 export const index: FC<LayoutProps> = ({
   header = <></>,
   navbar = <></>,
-  body,
+  children,
   headerHidden = false,
   navHidden = false,
 }) => {
@@ -23,7 +23,7 @@ export const index: FC<LayoutProps> = ({
   return (
     <McAppShell
       padding="md"
-      navbar={<Navi body={navbar} hidden={navHidden} />}
+      navbar={<Navi hidden={navHidden}>{navbar}</Navi>}
       header={
         <Header height={headerHeight} p="xs" display={headerDisplay}>
           {header}
@@ -38,7 +38,7 @@ export const index: FC<LayoutProps> = ({
         },
       })}
     >
-      <Layout main={body} />
+      <Html>{children}</Html>
     </McAppShell>
   );
 };

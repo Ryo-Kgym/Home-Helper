@@ -1,14 +1,17 @@
 import homeStyle from "../../../styles/Home.module.css";
 import styles from "./styles.module.scss";
-import { ReactElement } from "react";
+import { FC, ReactElement } from "react";
 import Head from "next/head";
 
-export const Layout = (props: { main: ReactElement }) => {
+type Props = {
+  children: ReactElement;
+};
+export const Html: FC<Props> = ({ children }) => {
   return (
     <div>
       <AppHeader />
       <div className={homeStyle.container}>
-        <main className={styles.main}>{props.main}</main>
+        <main className={styles.main}>{children}</main>
       </div>
     </div>
   );

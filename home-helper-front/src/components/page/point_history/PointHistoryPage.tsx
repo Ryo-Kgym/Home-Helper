@@ -3,5 +3,7 @@ import { PointHistoryContainer } from "@components/container/point_history/Point
 import { HomeHelperLayout } from "@components/ui/Layout/HomeHelperLayout";
 
 export const Page: FC = () => (
-  <HomeHelperLayout body={<PointHistoryContainer />} />
+  <HomeHelperLayout>
+    <PointHistoryContainer />
+  </HomeHelperLayout>
 );

@@ -3,5 +3,7 @@ import { HouseHoldContainer } from "@components/container/house_hold/HouseHoldCo
 import { HouseHoldLayout } from "@components/ui/Layout/HouseHoldLayout";
 
 export const Page: FC = () => (
-  <HouseHoldLayout body={<HouseHoldContainer />} navHidden />
+  <HouseHoldLayout navHidden>
+    <HouseHoldContainer />
+  </HouseHoldLayout>
 );
