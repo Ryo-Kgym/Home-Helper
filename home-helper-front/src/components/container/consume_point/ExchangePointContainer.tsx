@@ -7,6 +7,8 @@ import {
   exchangeHelpPoint,
   ExchangePointForm,
 } from "@hooks/help_point/exchangeHelpPoint";
+import { TbodyProps } from "@components/ui/Table";
+import { Counter } from "@components/ui/Counter";
 
 export const ExchangePointContainer = () => {
   const [exchangeItems, setExchangeItems] = useState<ExchangeItem[]>([]);
@@ -54,14 +56,37 @@ export const ExchangePointContainer = () => {
     return 0;
   };
 
+  const tbodyProps: TbodyProps[] = exchangeItems.map((exchangeItem) => {
+    return {
+      keyPrefix: "exchangeItem",
+      columns: [
+        { value: exchangeItem.name },
+        { value: exchangeItem.point },
+        {
+          value: (
+            <Counter
+              defaultValue={0}
+              handleSetCount={(count: number) => {
+                handleCalcTotalUsePoint(
+                  exchangeItem.id,
+                  exchangeItem.point,
+                  count
+                );
+              }}
+            />
+          ),
+        },
+      ],
+    };
+  });
+
   return (
     <ExchangePointPresenter
-      exchangeItems={exchangeItems}
       currentPoint={currentPoint}
       totalUsePoint={totalUsePoint}
-      handleCalcTotalUsePoint={handleCalcTotalUsePoint}
       handleRequest={handleRequest}
       handleRegisterAfterProcess={handleRegisterAfterProcess}
+      tbodyProps={tbodyProps}
     />
   );
 };
