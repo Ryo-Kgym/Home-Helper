@@ -8,6 +8,8 @@ import {
   ChargePointForm,
   registerHelpPoint,
 } from "@hooks/help_point/registerHelpPoint";
+import { TbodyProps } from "@components/ui/Table";
+import { Counter } from "@components/ui/Counter";
 
 export const ChargePointContainer: FC = () => {
   const [totalPoint, setTotalPoint] = useState(0);
@@ -53,15 +55,34 @@ export const ChargePointContainer: FC = () => {
     return 0;
   };
 
+  const tbodyProps: TbodyProps[] = helpItems.map((helpItem) => {
+    return {
+      keyPrefix: "helpItem",
+      columns: [
+        { value: helpItem.name },
+        { value: helpItem.point },
+        {
+          value: (
+            <Counter
+              defaultValue={0}
+              handleSetCount={(count: number) => {
+                handleCalcTotal(helpItem.id.toString(), helpItem.point, count);
+              }}
+            />
+          ),
+        },
+      ],
+    };
+  });
+
   return (
     <ChargePointPresenter
       fromDate={fromDate}
-      helpItems={helpItems}
       totalPoint={totalPoint}
       currentPoint={currentPoint}
-      handleCalcTotal={handleCalcTotal}
       handleRegisterHelps={handleRegisterHelps}
       handleRegisterAfterProcess={handleRegisterAfterProcess}
+      tbodyProps={tbodyProps}
     />
   );
 };

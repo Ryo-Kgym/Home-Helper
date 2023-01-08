@@ -1,41 +1,12 @@
 import { FC } from "react";
-import { Table } from "@mantine/core";
+import { Table, TbodyProps } from "@components/ui/Table";
 
-type PointHistoryPresenterProps = {
-  records: PointHistory[];
+type Props = {
+  tbodyProps: TbodyProps[];
 };
 
-export type PointHistory = {
-  date: Date;
-  point: number;
-  itemName: string;
-};
+const header = ["日付", "ポイント", "項目"];
 
-export const PointHistoryPresenter: FC<PointHistoryPresenterProps> = ({
-  records,
-}) => <PointHistoryTable records={records} />;
-
-const PointHistoryTable = ({ records }: { records: PointHistory[] }) => (
-  <Table striped highlightOnHover>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>日付</th>
-        <th>ポイント</th>
-        <th>項目</th>
-      </tr>
-    </thead>
-    <tbody>
-      {records.map((d, i) => {
-        return (
-          <tr key={"pointHistory" + i}>
-            <td>{i}</td>
-            <td>{d.date.toLocaleDateString()}</td>
-            <td>{d.point.toLocaleString()}</td>
-            <td>{d.itemName}</td>
-          </tr>
-        );
-      })}
-    </tbody>
-  </Table>
+export const PointHistoryPresenter: FC<Props> = ({ tbodyProps }) => (
+  <Table header={header} tbodyPropsArray={tbodyProps} />
 );

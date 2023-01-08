@@ -1,33 +1,30 @@
 import { FC } from "react";
-import { Flex, Table } from "@mantine/core";
+import { Flex } from "@mantine/core";
 import styles from "./styles.module.scss";
-import { Counter } from "@components/ui/Counter";
 import { UpdateNotification } from "@components/ui/UpdateNotification";
-import { HelpItem } from "@domain/model/home_helper/HelpItem";
+import { Table, TbodyProps } from "@components/ui/Table";
 
 type ChargePointPresenterProps = {
   fromDate: string;
-  helpItems: HelpItem[];
   currentPoint: number;
   totalPoint: number;
-  handleCalcTotal: (id: string, point: number, count: number) => void;
   handleRegisterHelps: () => void;
   handleRegisterAfterProcess: () => void;
+  tbodyProps: TbodyProps[];
 };
 
 export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
   fromDate,
-  helpItems,
   currentPoint,
   totalPoint,
-  handleCalcTotal,
   handleRegisterHelps,
   handleRegisterAfterProcess,
+  tbodyProps,
 }) => {
   return (
     <>
       <Title fromDate={fromDate} />
-      <HelpItemTable helpItems={helpItems} handleSetValue={handleCalcTotal} />
+      <HelpItemTable tbodyProps={tbodyProps} />
       <TotalPointBox
         currentPoint={currentPoint}
         totalUsePoint={totalPoint}
@@ -38,40 +35,10 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
   );
 };
 
-const HelpItemTable = ({
-  helpItems,
-  handleSetValue,
-}: {
-  helpItems: any[];
-  handleSetValue: (id: string, point: number, count: number) => void;
-}) => (
-  <Table striped highlightOnHover>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>お手伝い</th>
-        <th>ポイント</th>
-        <th>回数</th>
-      </tr>
-    </thead>
-    <tbody>
-      {helpItems.map((helpItem, index) => (
-        <tr key={helpItem.id}>
-          <td>{index + 1}</td>
-          <td>{helpItem.name}</td>
-          <td>{helpItem.point}</td>
-          <td>
-            <Counter
-              defaultValue={0}
-              handleSetCount={(count: number) => {
-                handleSetValue(helpItem.id, helpItem.point, count);
-              }}
-            />
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </Table>
+const header = ["お手伝い", "ポイント", "回数"];
+
+const HelpItemTable = ({ tbodyProps }: { tbodyProps: TbodyProps[] }) => (
+  <Table header={header} tbodyPropsArray={tbodyProps} />
 );
 
 const Title = ({ fromDate }: { fromDate: string }) => {
