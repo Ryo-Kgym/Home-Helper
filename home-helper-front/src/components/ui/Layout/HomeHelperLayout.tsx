@@ -22,7 +22,7 @@ export const HomeHelperLayout: FC<HomeHelperLayoutProps> = ({
 
 const linkListProps = [
   { href: "/homeHelper/possessionPoint", label: "ホーム" },
-  { href: "/homeHelper/chargePoint", label: "ふやす" },
+  { href: "/homeHelper/chargePoint", label: "ためる" },
   { href: "/homeHelper/exchangePoint", label: "つかう" },
   { href: "/homeHelper/pointHistory", label: "履歴" },
   { href: "/homeHelper", label: "戻る", back: true },
