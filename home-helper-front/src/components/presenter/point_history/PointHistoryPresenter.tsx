@@ -1,12 +1,24 @@
 import { FC } from "react";
-import { Table, TbodyProps } from "@components/ui/Table";
+import { Tab } from "@components/ui/Tab";
+import { ChargedPointHistoryContainer as ChargedPointHistory } from "@components/container/charged_point_history/ChargedPointHistoryContainer";
+import { UsedPointHistoryContainer as UsedPointHistory } from "@components/container/used_point_history/UsedPointHistoryContainer";
 
-type Props = {
-  tbodyProps: TbodyProps[];
-};
+type Props = {};
 
-const header = ["日付", "ポイント", "項目"];
-
-export const PointHistoryPresenter: FC<Props> = ({ tbodyProps }) => (
-  <Table header={header} tbodyPropsArray={tbodyProps} />
+export const PointHistoryPresenter: FC<Props> = ({}) => (
+  <Tab
+    defaultSelect={"charged"}
+    tabPropsList={[
+      {
+        value: "charged",
+        label: "ためた",
+        contents: <ChargedPointHistory />,
+      },
+      {
+        value: "used",
+        label: "つかった",
+        contents: <UsedPointHistory />,
+      },
+    ]}
+  />
 );
