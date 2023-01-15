@@ -13,5 +13,9 @@ object DbHelpPointEarnedDetailDynamicSqlSupport {
         val earnedAchievementId = column<String>("earned_achievement_id", JDBCType.VARCHAR)
 
         val helpItemId = column<String>("help_item_id", JDBCType.VARCHAR)
+
+        val helpItemCount = column<Int>("help_item_count", JDBCType.INTEGER)
+
+        val helpItemTotalPoint = column<Int>("help_item_total_point", JDBCType.INTEGER)
     }
 }
