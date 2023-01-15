@@ -23,7 +23,7 @@ class SearchHelpPointEarnedAchievementResolver(
      */
     fun helpPointEarnedAchievement(param: SearchHelpPointParam): List<HelpPointEarnedAchievementGqo> {
         val criteria = SearchHelpPointEarnedCriteria(
-            userId = UserId.valueOf(param.userId.toString()),
+            userId = UserId.valueOf(param.userId),
         )
         val output = searchHelpPointEarnedAchievementGateway.search(criteria)
 
@@ -39,5 +39,5 @@ class SearchHelpPointEarnedAchievementResolver(
 }
 
 data class SearchHelpPointParam(
-    val userId: Long,
+    val userId: String,
 )

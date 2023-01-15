@@ -70,7 +70,7 @@ input SearchUserParam {
 
 type HelpPointEarnedAchievement{
     id: ID!,
-    userId: Int!,
+    userId: String!,
     earnedDate: String!,
     earnedPoint: Int!,
     helpItemsByEarnedAchievementId: [HelpItem],
