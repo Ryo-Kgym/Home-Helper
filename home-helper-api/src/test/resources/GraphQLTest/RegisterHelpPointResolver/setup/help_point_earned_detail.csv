@@ -1,3 +1,3 @@
-id,earned_achievement_id,help_item_id
-1,1,aaa
-2,1,bbb
+id,earned_achievement_id,help_item_id,help_item_count,help_item_total_point
+1,1,aaa,1,100
+2,1,bbb,1,200
