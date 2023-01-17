@@ -2,37 +2,41 @@ import { FC, useEffect, useState } from "react";
 import { PointHistory } from "@domain/model/home_helper/PointHistory";
 import { TbodyProps } from "@components/ui/Table";
 import { ChargedPointHistoryPresenter } from "@components/presenter/charged_point_history/ChargedPointHistoryPresenter";
-
-const DATA: PointHistory[] = [
-  {
-    date: new Date(),
-    point: 100,
-    itemName: "みずやり",
-  },
-  {
-    date: new Date(),
-    point: 200,
-    itemName: "お皿洗い",
-  },
-];
+import { fetchHelpPointEarnedAchievements } from "@hooks/help_point/fetchHelpPointEarnedAchievements";
 
 export const ChargedPointHistoryContainer: FC = () => {
   const [pointHistories, setPointHistories] = useState<PointHistory[]>([]);
 
   useEffect(() => {
-    setPointHistories(DATA);
+    fetchHelpPointEarnedAchievements().then((list) => {
+      let pointHistories = list.flatMap((earnedAchievement) => {
+        let date = earnedAchievement.earnedDate;
+        return earnedAchievement.helpPointEarnedDetailByEarnedAchievementId.map(
+          (earnedDetail) => {
+            return {
+              date: date,
+              point: earnedDetail.helpItemByEarnedDetail.point,
+              count: earnedDetail.helpItemCount,
+              totalPoint: earnedDetail.helpItemTotalPoint,
+              itemName: earnedDetail.helpItemByEarnedDetail.name,
+            };
+          }
+        );
+      });
+      setPointHistories(pointHistories);
+    });
   }, []);
 
   const tbodyProps: TbodyProps[] = pointHistories.map((pointHistory) => {
     return {
-      keyPrefix: "usedPointHistory",
+      keyPrefix: "chargedPointHistory",
       columns: [
-        { value: pointHistory.date.toLocaleDateString() },
+        { value: pointHistory.date },
+        { value: pointHistory.itemName },
         {
-          value: formatPoint(pointHistory.point),
+          value: formatPoint(pointHistory.totalPoint),
           align: "right",
         },
-        { value: pointHistory.itemName },
       ],
     };
   });

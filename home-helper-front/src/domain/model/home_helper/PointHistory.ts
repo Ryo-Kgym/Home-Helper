@@ -1,5 +1,7 @@
 export type PointHistory = {
-  date: Date;
+  date: string;
   point: number;
+  count: number;
+  totalPoint: number;
   itemName: string;
 };
