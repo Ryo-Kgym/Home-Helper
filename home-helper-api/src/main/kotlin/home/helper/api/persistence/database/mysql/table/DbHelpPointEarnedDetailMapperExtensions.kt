@@ -21,7 +21,9 @@ import org.mybatis.dynamic.sql.util.kotlin.mybatis3.selectOne
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.update
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail.earnedAchievementId
+import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail.helpItemCount
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail.helpItemId
+import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail.helpItemTotalPoint
 import home.helper.api.persistence.database.mysql.table.DbHelpPointEarnedDetailDynamicSqlSupport.DbHelpPointEarnedDetail.id
 
 fun DbHelpPointEarnedDetailMapper.count(completer: CountCompleter) =
@@ -40,6 +42,8 @@ fun DbHelpPointEarnedDetailMapper.insert(record: DbHelpPointEarnedDetailRecord) 
         map(id).toProperty("id")
         map(earnedAchievementId).toProperty("earnedAchievementId")
         map(helpItemId).toProperty("helpItemId")
+        map(helpItemCount).toProperty("helpItemCount")
+        map(helpItemTotalPoint).toProperty("helpItemTotalPoint")
     }
 
 fun DbHelpPointEarnedDetailMapper.insertMultiple(records: Collection<DbHelpPointEarnedDetailRecord>) =
@@ -47,6 +51,8 @@ fun DbHelpPointEarnedDetailMapper.insertMultiple(records: Collection<DbHelpPoint
         map(id).toProperty("id")
         map(earnedAchievementId).toProperty("earnedAchievementId")
         map(helpItemId).toProperty("helpItemId")
+        map(helpItemCount).toProperty("helpItemCount")
+        map(helpItemTotalPoint).toProperty("helpItemTotalPoint")
     }
 
 fun DbHelpPointEarnedDetailMapper.insertMultiple(vararg records: DbHelpPointEarnedDetailRecord) =
@@ -57,9 +63,11 @@ fun DbHelpPointEarnedDetailMapper.insertSelective(record: DbHelpPointEarnedDetai
         map(id).toPropertyWhenPresent("id", record::id)
         map(earnedAchievementId).toPropertyWhenPresent("earnedAchievementId", record::earnedAchievementId)
         map(helpItemId).toPropertyWhenPresent("helpItemId", record::helpItemId)
+        map(helpItemCount).toPropertyWhenPresent("helpItemCount", record::helpItemCount)
+        map(helpItemTotalPoint).toPropertyWhenPresent("helpItemTotalPoint", record::helpItemTotalPoint)
     }
 
-private val columnList = listOf(id, earnedAchievementId, helpItemId)
+private val columnList = listOf(id, earnedAchievementId, helpItemId, helpItemCount, helpItemTotalPoint)
 
 fun DbHelpPointEarnedDetailMapper.selectOne(completer: SelectCompleter) =
     selectOne(this::selectOne, columnList, DbHelpPointEarnedDetail, completer)
@@ -83,6 +91,8 @@ fun KotlinUpdateBuilder.updateAllColumns(record: DbHelpPointEarnedDetailRecord) 
         set(id).equalTo(record::id)
         set(earnedAchievementId).equalTo(record::earnedAchievementId)
         set(helpItemId).equalTo(record::helpItemId)
+        set(helpItemCount).equalTo(record::helpItemCount)
+        set(helpItemTotalPoint).equalTo(record::helpItemTotalPoint)
     }
 
 fun KotlinUpdateBuilder.updateSelectiveColumns(record: DbHelpPointEarnedDetailRecord) =
@@ -90,12 +100,16 @@ fun KotlinUpdateBuilder.updateSelectiveColumns(record: DbHelpPointEarnedDetailRe
         set(id).equalToWhenPresent(record::id)
         set(earnedAchievementId).equalToWhenPresent(record::earnedAchievementId)
         set(helpItemId).equalToWhenPresent(record::helpItemId)
+        set(helpItemCount).equalToWhenPresent(record::helpItemCount)
+        set(helpItemTotalPoint).equalToWhenPresent(record::helpItemTotalPoint)
     }
 
 fun DbHelpPointEarnedDetailMapper.updateByPrimaryKey(record: DbHelpPointEarnedDetailRecord) =
     update {
         set(earnedAchievementId).equalTo(record::earnedAchievementId)
         set(helpItemId).equalTo(record::helpItemId)
+        set(helpItemCount).equalTo(record::helpItemCount)
+        set(helpItemTotalPoint).equalTo(record::helpItemTotalPoint)
         where(id, isEqualTo(record::id))
     }
 
@@ -103,5 +117,7 @@ fun DbHelpPointEarnedDetailMapper.updateByPrimaryKeySelective(record: DbHelpPoin
     update {
         set(earnedAchievementId).equalToWhenPresent(record::earnedAchievementId)
         set(helpItemId).equalToWhenPresent(record::helpItemId)
+        set(helpItemCount).equalToWhenPresent(record::helpItemCount)
+        set(helpItemTotalPoint).equalToWhenPresent(record::helpItemTotalPoint)
         where(id, isEqualTo(record::id))
     }

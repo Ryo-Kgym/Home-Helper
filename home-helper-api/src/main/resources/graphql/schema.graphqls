@@ -68,14 +68,24 @@ input SearchUserParam {
     userId: ID
 }
 
-type HelpPointEarnedAchievement{
+"""お手伝いポイント獲得実績"""
+type HelpPointEarnedAchievement {
     id: ID!,
-    userId: Int!,
+    userId: String!,
     earnedDate: String!,
     earnedPoint: Int!,
-    helpItemsByEarnedAchievementId: [HelpItem],
+    helpPointEarnedDetailByEarnedAchievementId: [HelpPointEarnedDetail]!,
 }
 
+"""お手伝いポイント獲得明細"""
+type HelpPointEarnedDetail {
+    earnedAchievementId: ID!,
+    helpItemByEarnedDetail: HelpItem!,
+    helpItemCount: Int!,
+    helpItemTotalPoint: Int!,
+}
+
+"""お手伝い項目"""
 type HelpItem {
     id: ID!
     name: String!

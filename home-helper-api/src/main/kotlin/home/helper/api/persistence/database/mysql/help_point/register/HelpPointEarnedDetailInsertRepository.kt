@@ -30,6 +30,8 @@ class HelpPointEarnedDetailInsertRepository(
                 id = helpPointEarnedDetailIdGateway.getId().id,
                 earnedAchievementId = helpPointEarnedAchievementIdGateway.getId().id,
                 helpItemId = it.helpItem.helpItemId.id,
+                helpItemCount = it.count,
+                helpItemTotalPoint = it.calcSubtotalPoint().value,
             )
         }
     }

@@ -1,16 +1,21 @@
 query {
     helpPointEarnedAchievement(param: {
-        userId: "1"
+        userId: "u1"
     }) {
         id
         userId
         earnedDate
         earnedPoint
-        helpItemsByEarnedAchievementId {
-            id
-            name
-            point
-            memo
+        helpPointEarnedDetailByEarnedAchievementId {
+            earnedAchievementId
+            helpItemByEarnedDetail {
+                id
+                name
+                point
+                memo
+            }
+            helpItemCount
+            helpItemTotalPoint
         }
     }
 }

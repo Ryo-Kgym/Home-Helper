@@ -16,10 +16,10 @@
                 on hi.id = hped.help_item_id
         <where>
             <if test="id != null">
-                and hi.id = #{id, jdbcType=BIGINT}
+                and hi.id = #{id, jdbcType=VARCHAR}
             </if>
             <if test="earnedAchievementId != null">
-                and hped.earned_achievement_id = #{earnedAchievementId, jdbcType=BIGINT}
+                and hped.earned_achievement_id = #{earnedAchievementId, jdbcType=VARCHAR}
             </if>
         </where>
         order by

@@ -42,7 +42,9 @@ interface DbHelpPointEarnedDetailMapper {
         id = "DbHelpPointEarnedDetailRecordResult", value = [
             Result(column = "id", property = "id", jdbcType = JdbcType.VARCHAR, id = true),
             Result(column = "earned_achievement_id", property = "earnedAchievementId", jdbcType = JdbcType.VARCHAR),
-            Result(column = "help_item_id", property = "helpItemId", jdbcType = JdbcType.VARCHAR)
+            Result(column = "help_item_id", property = "helpItemId", jdbcType = JdbcType.VARCHAR),
+            Result(column = "help_item_count", property = "helpItemCount", jdbcType = JdbcType.INTEGER),
+            Result(column = "help_item_total_point", property = "helpItemTotalPoint", jdbcType = JdbcType.INTEGER)
         ]
     )
     fun selectMany(selectStatement: SelectStatementProvider): List<DbHelpPointEarnedDetailRecord>

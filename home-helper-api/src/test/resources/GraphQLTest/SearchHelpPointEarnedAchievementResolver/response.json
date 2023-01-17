@@ -3,35 +3,50 @@
     "helpPointEarnedAchievement": [
       {
         "id": "1",
-        "userId": 1,
+        "userId": "u1",
         "earnedDate": "2022-11-06",
         "earnedPoint": 500,
-        "helpItemsByEarnedAchievementId": [
+        "helpPointEarnedDetailByEarnedAchievementId": [
           {
-            "id": "1",
-            "name": "テスト項目1",
-            "point": 100,
-            "memo": "これはテストです。"
+            "earnedAchievementId": "1",
+            "helpItemByEarnedDetail": {
+              "id": "1",
+              "name": "テスト項目1",
+              "point": 100,
+              "memo": "これはテストです。"
+            },
+            "helpItemCount": 1,
+            "helpItemTotalPoint": 100
           },
           {
-            "id": "2",
-            "name": "テスト項目2",
-            "point": 200,
-            "memo": "これもテストです。"
+            "earnedAchievementId": "1",
+            "helpItemByEarnedDetail": {
+              "id": "2",
+              "name": "テスト項目2",
+              "point": 200,
+              "memo": "これもテストです。"
+            },
+            "helpItemCount": 1,
+            "helpItemTotalPoint": 100
           }
         ]
       },
       {
         "id": "2",
-        "userId": 1,
+        "userId": "u1",
         "earnedDate": "2022-11-13",
         "earnedPoint": 300,
-        "helpItemsByEarnedAchievementId": [
+        "helpPointEarnedDetailByEarnedAchievementId": [
           {
-            "id": "2",
-            "name": "テスト項目2",
-            "point": 200,
-            "memo": "これもテストです。"
+            "earnedAchievementId": "2",
+            "helpItemByEarnedDetail": {
+              "id": "2",
+              "name": "テスト項目2",
+              "point": 200,
+              "memo": "これもテストです。"
+            },
+            "helpItemCount": 1,
+            "helpItemTotalPoint": 100
           }
         ]
       }

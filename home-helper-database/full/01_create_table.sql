@@ -10,7 +10,9 @@ drop table if exists help_point_earned_detail;
 create table help_point_earned_detail (
     id                    varchar(32) not null comment 'ID' primary key,
     earned_achievement_id varchar(32) not null comment '獲得実績ID',
-    help_item_id          varchar(32) not null comment 'お手伝い項目ID'
+    help_item_id          varchar(32) not null comment 'お手伝い項目ID',
+    help_item_count       integer     not null comment 'お手伝い項目件数',
+    help_item_total_point integer     not null comment 'お手伝い項目合計ポイント'
 ) comment 'お手伝いポイント獲得明細';
 
 drop table if exists help_point_exchanged_achievement;
