@@ -9,13 +9,23 @@
         "helpPointEarnedDetailByEarnedAchievementId": [
           {
             "earnedAchievementId": "1",
-            "helpItemId": "1",
+            "helpItemByEarnedDetail": {
+              "id": "1",
+              "name": "テスト項目1",
+              "point": 100,
+              "memo": "これはテストです。"
+            },
             "helpItemCount": 1,
             "helpItemTotalPoint": 100
           },
           {
             "earnedAchievementId": "1",
-            "helpItemId": "2",
+            "helpItemByEarnedDetail": {
+              "id": "2",
+              "name": "テスト項目2",
+              "point": 200,
+              "memo": "これもテストです。"
+            },
             "helpItemCount": 1,
             "helpItemTotalPoint": 100
           }
@@ -29,7 +39,12 @@
         "helpPointEarnedDetailByEarnedAchievementId": [
           {
             "earnedAchievementId": "2",
-            "helpItemId": "2",
+            "helpItemByEarnedDetail": {
+              "id": "2",
+              "name": "テスト項目2",
+              "point": 200,
+              "memo": "これもテストです。"
+            },
             "helpItemCount": 1,
             "helpItemTotalPoint": 100
           }

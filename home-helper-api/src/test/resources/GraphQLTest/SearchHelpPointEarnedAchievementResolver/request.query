@@ -8,7 +8,12 @@ query {
         earnedPoint
         helpPointEarnedDetailByEarnedAchievementId {
             earnedAchievementId
-            helpItemId
+            helpItemByEarnedDetail {
+                id
+                name
+                point
+                memo
+            }
             helpItemCount
             helpItemTotalPoint
         }

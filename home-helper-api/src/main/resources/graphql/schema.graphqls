@@ -74,13 +74,13 @@ type HelpPointEarnedAchievement {
     userId: String!,
     earnedDate: String!,
     earnedPoint: Int!,
-    helpPointEarnedDetailByEarnedAchievementId: [HelpPointEarnedDetail],
+    helpPointEarnedDetailByEarnedAchievementId: [HelpPointEarnedDetail]!,
 }
 
 """お手伝いポイント獲得明細"""
 type HelpPointEarnedDetail {
     earnedAchievementId: ID!,
-    helpItemId: ID!,
+    helpItemByEarnedDetail: HelpItem!,
     helpItemCount: Int!,
     helpItemTotalPoint: Int!,
 }
