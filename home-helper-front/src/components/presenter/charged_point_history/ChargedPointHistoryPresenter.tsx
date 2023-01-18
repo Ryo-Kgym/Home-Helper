@@ -5,7 +5,7 @@ type Props = {
   tbodyProps: TbodyProps[];
 };
 
-const header = ["日付", "ためたポイント", "項目"];
+const header = ["日付", "項目", "ためたポイント"];
 
 export const ChargedPointHistoryPresenter: FC<Props> = ({ tbodyProps }) => {
   return <Table header={header} tbodyPropsArray={tbodyProps} />;

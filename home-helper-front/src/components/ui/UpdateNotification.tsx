@@ -28,7 +28,7 @@ export const UpdateNotification: FC<UpdateNotificationProps> = ({
   autoClose,
 }) => {
   return (
-    <Group position="center" className={styles.updateNotification}>
+    <Group position="center">
       <Button
         onClick={() => {
           showNotification({
@@ -54,6 +54,7 @@ export const UpdateNotification: FC<UpdateNotificationProps> = ({
             handleAfterProcess();
           }, updateTime ?? 3000);
         }}
+        className={"h-24 w-30 text-3xl bg-blue-500"}
       >
         {label}
       </Button>
