@@ -1,0 +1,41 @@
+extend type Query {
+    """お手伝いポイント獲得実績を取得します。"""
+    helpPointEarnedAchievement(param: SearchHelpPointParam): [HelpPointEarnedAchievement]
+}
+
+extend type Mutation {
+    """お手伝いポイントを登録します。"""
+    registerHelpPoint(param: RegisterHelpPointParam): [String]
+}
+
+input SearchHelpPointParam {
+    userId: ID
+}
+
+"""お手伝いポイント獲得実績"""
+type HelpPointEarnedAchievement {
+    id: ID!,
+    userId: String!,
+    earnedDate: String!,
+    earnedPoint: Int!,
+    helpPointEarnedDetailByEarnedAchievementId: [HelpPointEarnedDetail]!,
+}
+
+"""お手伝いポイント獲得明細"""
+type HelpPointEarnedDetail {
+    earnedAchievementId: ID!,
+    helpItemByEarnedDetail: HelpItem!,
+    helpItemCount: Int!,
+    helpItemTotalPoint: Int!,
+}
+
+input RegisterHelpPointParam {
+    details: [RegisterHelpPointDetail]
+    userId: String!
+}
+
+input RegisterHelpPointDetail {
+    id: String!
+    point: Int!
+    count: Int!
+}

@@ -1,0 +1,31 @@
+extend type Query {
+    """交換品を取得します。"""
+    exchangeItems(param: SearchExchangeItemParam): [ExchangeItem]
+}
+
+extend type Mutation {
+    """お手伝いポイントを交換します。"""
+    exchangeHelpPoint(param: ExchangeHelpPointParam): [String]
+}
+
+"""交換品"""
+type ExchangeItem {
+    id: ID!
+    name: String!
+    point: String!
+}
+
+input SearchExchangeItemParam {
+    id: String
+}
+
+input ExchangeHelpPointParam {
+    details: [ExchangeHelpPointDetail]
+    userId: String!
+}
+
+input ExchangeHelpPointDetail {
+    id: String!
+    point: Int!
+    count: Int!
+}
