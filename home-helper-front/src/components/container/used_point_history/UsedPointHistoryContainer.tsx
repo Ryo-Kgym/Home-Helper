@@ -5,13 +5,17 @@ import { UsedPointHistoryPresenter } from "@components/presenter/used_point_hist
 
 const DATA: PointHistory[] = [
   {
-    date: new Date(),
+    date: "2023-01-18",
     point: -100,
+    count: 10,
+    totalPoint: -1000,
     itemName: "お菓子",
   },
   {
-    date: new Date(),
+    date: "2023-01-18",
     point: -1000,
+    count: 2,
+    totalPoint: -2000,
     itemName: "おもちゃ",
   },
 ];
@@ -27,7 +31,7 @@ export const UsedPointHistoryContainer: FC = () => {
     return {
       keyPrefix: "usedPointHistory",
       columns: [
-        { value: pointHistory.date.toLocaleDateString() },
+        { value: pointHistory.date },
         {
           value: formatPoint(pointHistory.point),
           align: "right",
