@@ -1,0 +1,20 @@
+{
+  "data": {
+    "helpPointExchangedAchievementByUserId": [
+      {
+        "userId": "u1",
+        "exchangeItemId": "2",
+        "exchangeCount": 3,
+        "exchangeTotalPoint": 1500,
+        "exchangedDatetime": "2023-01-18T12:34:58"
+      },
+      {
+        "userId": "u1",
+        "exchangeItemId": "1",
+        "exchangeCount": 2,
+        "exchangeTotalPoint": 1000,
+        "exchangedDatetime": "2023-01-18T12:34:56"
+      }
+    ]
+  }
+}

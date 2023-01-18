@@ -1,0 +1,9 @@
+query {
+    helpPointExchangedAchievementByUserId(userId: "u1") {
+        userId
+        exchangeItemId
+        exchangeCount
+        exchangeTotalPoint
+        exchangedDatetime
+    }
+}
