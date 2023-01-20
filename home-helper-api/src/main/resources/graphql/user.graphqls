@@ -1,0 +1,17 @@
+extend type Query {
+    """ユーザを取得します。"""
+    users(param: SearchUserParam): [User]
+    user(userId: ID!): User
+}
+
+"""ユーザ"""
+type User {
+    id: ID!
+    name: String!
+    currentPoint: Int!
+    lastHelp: String!
+}
+
+input SearchUserParam {
+    userId: ID
+}

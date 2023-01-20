@@ -1,0 +1,30 @@
+extend type Query {
+    """お手伝い項目を取得します。"""
+    helpItems(param: SearchHelpItemParam): [HelpItem]
+    helpItem(id: ID): HelpItem
+}
+
+extend type Mutation {
+    """お手伝い項目を登録します。"""
+    registerHelpItem(param: RegisterHelpItemParam): [String]
+}
+
+"""お手伝い項目"""
+type HelpItem {
+    id: ID!
+    name: String!
+    point: Int!
+    memo: String
+}
+
+input SearchHelpItemParam {
+    pointFrom: Int
+    pointTo: Int
+}
+
+input RegisterHelpItemParam {
+    name: String!
+    point: Int!
+    memo: String
+}
+
