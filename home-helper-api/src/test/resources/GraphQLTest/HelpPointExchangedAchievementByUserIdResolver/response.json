@@ -4,6 +4,11 @@
       {
         "userId": "u1",
         "exchangeItemId": "2",
+        "exchangeItemById": {
+          "id": "2",
+          "name": "交換品2",
+          "point": "500"
+        },
         "exchangeCount": 3,
         "exchangeTotalPoint": 1500,
         "exchangedDatetime": "2023-01-18T12:34:58"
@@ -11,6 +16,11 @@
       {
         "userId": "u1",
         "exchangeItemId": "1",
+        "exchangeItemById": {
+          "id": "1",
+          "name": "交換品1",
+          "point": "500"
+        },
         "exchangeCount": 2,
         "exchangeTotalPoint": 1000,
         "exchangedDatetime": "2023-01-18T12:34:56"

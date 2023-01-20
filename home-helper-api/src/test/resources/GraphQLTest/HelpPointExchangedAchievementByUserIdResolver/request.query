@@ -2,6 +2,11 @@ query {
     helpPointExchangedAchievementByUserId(userId: "u1") {
         userId
         exchangeItemId
+        exchangeItemById {
+            id
+            name
+            point
+        }
         exchangeCount
         exchangeTotalPoint
         exchangedDatetime

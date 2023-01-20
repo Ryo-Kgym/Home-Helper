@@ -35,6 +35,7 @@ type HelpPointEarnedDetail {
 type HelpPointExchangedAchievement {
     userId: ID!,
     exchangeItemId: ID!,
+    exchangeItemById: ExchangeItem!,
     exchangeCount: Int!,
     exchangeTotalPoint: Int!,
     exchangedDatetime: String!,
