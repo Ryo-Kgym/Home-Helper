@@ -11,14 +11,14 @@ export async function helpPointExchangedAchievements(): Promise<
     variables: {
       userId: loadUserId(),
     },
-    key: "helpPointExchangedAchievement",
+    key: "helpPointExchangedAchievementByUserId",
   };
 
   return query(param);
 }
 
 const GET_HELP_POINT_EXCHANGED_ACHIEVEMENT = gql`
-  query helpPointEarnedAchievement($userId: ID!) {
+  query helpPointExchangedAchievementByUserId($userId: ID!) {
     helpPointExchangedAchievementByUserId(userId: $userId) {
       userId
       exchangeItemById {
