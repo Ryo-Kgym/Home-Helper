@@ -25,5 +25,6 @@ const linkListProps = [
   { href: "/homeHelper/chargePoint", label: "ためる" },
   { href: "/homeHelper/exchangePoint", label: "つかう" },
   { href: "/homeHelper/pointHistory", label: "履歴" },
+  { href: "/homeHelper/helpItem/register", label: "お手伝い項目" },
   { href: "/homeHelper", label: "戻る", back: true },
 ];
