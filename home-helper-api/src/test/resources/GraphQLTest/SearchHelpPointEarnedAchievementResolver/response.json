@@ -2,6 +2,25 @@
   "data": {
     "helpPointEarnedAchievement": [
       {
+        "id": "2",
+        "userId": "u1",
+        "earnedDate": "2022-11-13",
+        "earnedPoint": 300,
+        "helpPointEarnedDetailByEarnedAchievementId": [
+          {
+            "earnedAchievementId": "2",
+            "helpItemByEarnedDetail": {
+              "id": "2",
+              "name": "テスト項目2",
+              "point": 200,
+              "memo": "これもテストです。"
+            },
+            "helpItemCount": 1,
+            "helpItemTotalPoint": 100
+          }
+        ]
+      },
+      {
         "id": "1",
         "userId": "u1",
         "earnedDate": "2022-11-06",
@@ -20,25 +39,6 @@
           },
           {
             "earnedAchievementId": "1",
-            "helpItemByEarnedDetail": {
-              "id": "2",
-              "name": "テスト項目2",
-              "point": 200,
-              "memo": "これもテストです。"
-            },
-            "helpItemCount": 1,
-            "helpItemTotalPoint": 100
-          }
-        ]
-      },
-      {
-        "id": "2",
-        "userId": "u1",
-        "earnedDate": "2022-11-13",
-        "earnedPoint": 300,
-        "helpPointEarnedDetailByEarnedAchievementId": [
-          {
-            "earnedAchievementId": "2",
             "helpItemByEarnedDetail": {
               "id": "2",
               "name": "テスト項目2",

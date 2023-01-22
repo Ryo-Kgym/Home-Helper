@@ -29,7 +29,7 @@ class SearchHelpPointExchangedAchievementRepository(
             override fun getSelectStatement(): String {
                 return "select * from help_point_exchanged_achievement " +
                         "where user_id = #{parameters.userId} " +
-                        "order by exchanged_datetime desc"
+                        "order by exchanged_datetime desc, id"
             }
         }
 

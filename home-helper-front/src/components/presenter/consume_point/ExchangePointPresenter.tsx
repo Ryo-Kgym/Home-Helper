@@ -34,7 +34,7 @@ export const ExchangePointPresenter: FC<ConsumePointPresenterProps> = ({
 
 const header = ["交換品", "ポイント", "交換数"];
 const ExchangeTable = ({ tbodyProps }: { tbodyProps: TbodyProps[] }) => (
-  <Table header={header} tbodyPropsArray={tbodyProps} />
+  <Table header={header} tbodyPropsArray={tbodyProps} height={"40vh"} />
 );
 
 const FormulaFlex = ({ label, point }: { label: string; point: number }) => (

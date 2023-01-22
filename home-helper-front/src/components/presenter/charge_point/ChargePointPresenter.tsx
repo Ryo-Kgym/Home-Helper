@@ -38,7 +38,7 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
 const header = ["お手伝い", "ポイント", "回数"];
 
 const HelpItemTable = ({ tbodyProps }: { tbodyProps: TbodyProps[] }) => (
-  <Table header={header} tbodyPropsArray={tbodyProps} />
+  <Table header={header} tbodyPropsArray={tbodyProps} height={"40vh"} />
 );
 
 const Title = ({ fromDate }: { fromDate: string }) => {

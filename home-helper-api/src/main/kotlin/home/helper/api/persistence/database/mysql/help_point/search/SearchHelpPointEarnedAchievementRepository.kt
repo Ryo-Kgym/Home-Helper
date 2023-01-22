@@ -46,7 +46,7 @@ class SearchHelpPointEarnedAchievementRepository(
             override fun getSelectStatement(): String {
                 return "select * from help_point_earned_achievement " +
                         "where user_id = #{parameters.userId} " +
-                        "order by earned_datetime, id"
+                        "order by earned_datetime desc, id"
             }
         }
 }
