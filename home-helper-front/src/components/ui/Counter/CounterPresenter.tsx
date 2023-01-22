@@ -1,59 +1,41 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Button, Flex } from "@mantine/core";
-import styles from "./ui.module.scss";
+import styles from "../ui.module.scss";
 
 type CounterProps = {
-  defaultValue: number;
+  count: number;
   handleSetCount: (count: number) => void;
-  min?: number;
-  max?: number;
+  min: number;
+  max: number;
+  handleIncrement: () => void;
+  handleDecrement: () => void;
+  handleReset: () => void;
 };
 
-export const Counter: FC<CounterProps> = ({
-  defaultValue,
+export const CounterPresenter: FC<CounterProps> = ({
+  count,
   handleSetCount,
-  min,
-  max,
+  handleIncrement,
+  handleDecrement,
+  handleReset,
 }) => {
-  const [count, setCount] = useState(defaultValue);
-  const countMin = min ?? 0;
-  const countMax = max ?? 9999;
-
-  const handleIncrement = () => {
-    if (count < countMax) {
-      setCount(count + 1);
-      handleSetCount(count + 1);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (count > countMin) {
-      setCount(count - 1);
-      handleSetCount(count - 1);
-    }
-  };
-
-  const handleReset = () => {
-    setCount(defaultValue);
-  };
-
   return (
     <Flex direction={"row"} align={"center"} className={styles.counter}>
-      <Flex>
+      <div className={"flex"}>
         <Decrement handleClick={handleDecrement} />
-      </Flex>
+      </div>
       <Flex className={styles.count}>{count}</Flex>
-      <Flex>
+      <div className={"flex"}>
         <Increment handleClick={handleIncrement} />
-      </Flex>
+      </div>
       <Flex className={styles.blank} />
-      <Flex>
+      <div className={"flex"}>
         <Reset
           handleSetValue={handleSetCount}
           handleReset={handleReset}
           count={count}
         />
-      </Flex>
+      </div>
     </Flex>
   );
 };
