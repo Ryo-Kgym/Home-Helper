@@ -1,6 +1,7 @@
 import { FC, ReactElement } from "react";
 import { Input } from "@components/ui/Input";
 import { InputValidationMessage } from "@components/ui/Input/InputValidator";
+import { Button } from "@mantine/core";
 
 type HelpItemRegisterPresenterProps = {
   itemName: string;
@@ -9,6 +10,7 @@ type HelpItemRegisterPresenterProps = {
   setPoint: (value: number) => void;
   memo: string;
   setMemo: (value: string) => void;
+  registerOnClick: () => void;
 };
 export const HelpItemRegisterPresenter: FC<HelpItemRegisterPresenterProps> = ({
   itemName,
@@ -17,11 +19,14 @@ export const HelpItemRegisterPresenter: FC<HelpItemRegisterPresenterProps> = ({
   setPoint,
   memo,
   setMemo,
+  registerOnClick,
 }) => (
   <div className={"text-4xl"}>
     <ItemNameItem value={itemName} setValue={setItemName} />
     <PointItem value={point} setValue={setPoint} />
     <MemoItem value={memo} setValue={setMemo} />
+    // TODO ボタンの置き換え
+    <Button onClick={registerOnClick}>登録</Button>
   </div>
 );
 
