@@ -8,9 +8,10 @@ export const HelpItemRegisterContainer = () => {
   const [memo, setMemo] = useState<string>("");
 
   const register = () => {
-    let message = registerHelpItem(itemName, point, memo);
-    // TODO ダイアログに置き換える
-    alert(message);
+    if (itemName.length < 1) {
+      return;
+    }
+    registerHelpItem(itemName, point, memo).then((r) => alert(r[0]));
   };
 
   return (
