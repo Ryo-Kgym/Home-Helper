@@ -25,7 +25,9 @@ export const HelpItemRegisterPresenter: FC<HelpItemRegisterPresenterProps> = ({
     <ItemNameItem value={itemName} setValue={setItemName} />
     <PointItem value={point} setValue={setPoint} />
     <MemoItem value={memo} setValue={setMemo} />
-    <Button label={"登録"} onClick={registerOnClick} />
+    <div className={"grid place-content-center"}>
+      <Button label={"登録"} onClick={registerOnClick} />
+    </div>
   </div>
 );
 
