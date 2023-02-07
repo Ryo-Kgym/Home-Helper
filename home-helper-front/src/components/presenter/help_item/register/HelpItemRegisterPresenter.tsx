@@ -1,7 +1,7 @@
 import { FC, ReactElement } from "react";
 import { Input } from "@components/ui/Input";
 import { InputValidationMessage } from "@components/ui/Input/InputValidator";
-import { Button } from "@mantine/core";
+import { Button } from "@components/ui/Button";
 
 type HelpItemRegisterPresenterProps = {
   itemName: string;
@@ -25,8 +25,7 @@ export const HelpItemRegisterPresenter: FC<HelpItemRegisterPresenterProps> = ({
     <ItemNameItem value={itemName} setValue={setItemName} />
     <PointItem value={point} setValue={setPoint} />
     <MemoItem value={memo} setValue={setMemo} />
-    // TODO ボタンの置き換え
-    <Button onClick={registerOnClick}>登録</Button>
+    <Button label={"登録"} onClick={registerOnClick} />
   </div>
 );
 
