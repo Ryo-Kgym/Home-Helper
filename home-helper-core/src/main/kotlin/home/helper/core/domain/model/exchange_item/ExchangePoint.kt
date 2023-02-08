@@ -7,7 +7,7 @@ package home.helper.core.domain.model.exchange_item
 /**
  * 交換品のポイントを保持するクラスです。
  */
-data class ExchangePoint(
+data class ExchangePoint private constructor(
     val point: Int
 ) {
     companion object {
