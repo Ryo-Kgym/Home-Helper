@@ -6,6 +6,9 @@ extend type Query {
 extend type Mutation {
     """お手伝いポイントを交換します。"""
     exchangeHelpPoint(param: ExchangeHelpPointParam): [String]
+
+    """交換品を登録します。"""
+    registerExchangeItem(param: RegisterExchangeItemParam): [String]
 }
 
 """交換品"""
@@ -28,4 +31,10 @@ input ExchangeHelpPointDetail {
     id: String!
     point: Int!
     count: Int!
+}
+
+input RegisterExchangeItemParam {
+    name: String!
+    point: Int!
+    memo: String
 }

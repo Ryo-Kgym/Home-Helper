@@ -7,12 +7,15 @@ package home.helper.api.config
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.annotation.Order
+import home.helper.api.persistence.database.mysql.exchange_item.register.RegisterExchangeItemSaveRepository
 import home.helper.api.persistence.database.mysql.help_item.register.RegisterHelpItemSaveRepository
 import home.helper.api.persistence.database.mysql.help_point.exchange.ExchangeHelpPointSaveRepository
 import home.helper.api.persistence.database.mysql.help_point.register.RegisterHelpPointRepository
+import home.helper.core.domain.interactor.exchange_item.RegisterExchangeItemInteractor
 import home.helper.core.domain.interactor.help_item.RegisterHelpItemInteractor
 import home.helper.core.domain.interactor.help_point.ExchangeHelpPointInteractor
 import home.helper.core.domain.interactor.help_point.RegisterHelpPointInteractor
+import home.helper.core.domain.use_case.exchange_item.RegisterExchangeItemUseCase
 import home.helper.core.domain.use_case.help_item.RegisterHelpItemUseCase
 import home.helper.core.domain.use_case.help_point.ExchangeHelpPointUseCase
 import home.helper.core.domain.use_case.help_point.RegisterHelpPointUseCase
@@ -33,6 +36,17 @@ class InteractorConfig {
     ): RegisterHelpItemUseCase {
         return RegisterHelpItemInteractor(
             registerHelpItemSaveGateway = registerHelpItemSaveGateway,
+            saveMessageGateway = saveMessageGateway,
+        )
+    }
+
+    @Bean
+    fun registerExchangeItemUseCase(
+        registerExchangeItemSaveGateway: RegisterExchangeItemSaveRepository,
+        saveMessageGateway: SaveMessageGateway
+    ): RegisterExchangeItemUseCase {
+        return RegisterExchangeItemInteractor(
+            registerExchangeItemSaveGateway = registerExchangeItemSaveGateway,
             saveMessageGateway = saveMessageGateway,
         )
     }

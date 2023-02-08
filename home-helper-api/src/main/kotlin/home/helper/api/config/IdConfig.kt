@@ -9,10 +9,12 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Scope
 import home.helper.api.gateway.id.IdGateway
+import home.helper.api.persistence.database.mysql.id.ExchangeItemIdRepository
 import home.helper.api.persistence.database.mysql.id.HelpItemIdRepository
 import home.helper.api.persistence.database.mysql.id.IdType
 import home.helper.api.persistence.database.mysql.id.RandomIdRepository
 import home.helper.api.persistence.database.mysql.table_customize.IdHolderCustomRepository
+import home.helper.core.domain.model.exchange_item.ExchangeItemId
 import home.helper.core.domain.model.help_item.HelpItemId
 
 /**
@@ -33,6 +35,21 @@ class IdConfig {
             object : RandomIdRepository<HelpItemId>(IdType.HELP_ITEM_ID) {
                 override fun generateId(id: String): HelpItemId {
                     return HelpItemId.valueOf(id)
+                }
+            }
+        }
+    }
+
+    @Bean
+    fun helpExchangeIdGateway(@Value("\${mock.id:false}") mockId: Boolean,
+                              idHolderCustomRepository: IdHolderCustomRepository
+    ): IdGateway<ExchangeItemId> {
+        return if (mockId) {
+            ExchangeItemIdRepository(idHolderCustomRepository)
+        } else {
+            object : RandomIdRepository<ExchangeItemId>(IdType.EXCHANGE_ITEM_ID) {
+                override fun generateId(id: String): ExchangeItemId {
+                    return ExchangeItemId.valueOf(id)
                 }
             }
         }
