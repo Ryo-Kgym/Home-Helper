@@ -1,4 +1,4 @@
-import { Button as MButton } from "@mantine/core";
+import { Button as MButton, MANTINE_COLORS } from "@mantine/core";
 import type { FC } from "react";
 import { MantineColor } from "@mantine/styles";
 
@@ -12,19 +12,17 @@ export const Button: FC<ButtonProps> = ({
   onClick,
   colorType = "register",
 }) => {
-  const map = COLOR_MAP.get(colorType);
-  const colorClass = `${map}-500 hover:${map}-400`;
-
   return (
     <MButton
       radius="xl"
       size="xl"
+      color={COLOR_MAP.get(colorType)}
       onClick={onClick}
-      className={"m-4 " + colorClass}
+      className={"m-4"}
     >
       {label}
     </MButton>
   );
 };
 
-const COLOR_MAP = new Map<any, string>([["register", "bg-green"]]);
+const COLOR_MAP = new Map<any, MantineColor>([["register", "green"]]);
