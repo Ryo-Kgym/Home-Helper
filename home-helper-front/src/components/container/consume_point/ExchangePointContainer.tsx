@@ -61,7 +61,7 @@ export const ExchangePointContainer = () => {
       keyPrefix: "exchangeItem",
       columns: [
         { value: exchangeItem.name },
-        { value: exchangeItem.point },
+        { value: exchangeItem.point.toLocaleString() },
         {
           value: (
             <Counter

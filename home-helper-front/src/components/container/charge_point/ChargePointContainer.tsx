@@ -60,7 +60,7 @@ export const ChargePointContainer: FC = () => {
       keyPrefix: "helpItem",
       columns: [
         { value: helpItem.name },
-        { value: helpItem.point },
+        { value: helpItem.point.toLocaleString() },
         {
           value: (
             <Counter

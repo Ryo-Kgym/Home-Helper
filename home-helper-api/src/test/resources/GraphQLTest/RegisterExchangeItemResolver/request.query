@@ -1,0 +1,9 @@
+mutation {
+    registerExchangeItem(
+        param: {
+            name: "交換品4",
+            point: 300,
+            memo: "これはテストです。"
+        }
+    )
+}

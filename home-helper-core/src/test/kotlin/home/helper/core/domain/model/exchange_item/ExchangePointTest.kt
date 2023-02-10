@@ -36,9 +36,9 @@ internal class ExchangePointTest {
 
     @Test
     fun times() {
-        val source = ExchangePoint(100)
+        val source = ExchangePoint.valueOf(100)
         val actual = source.times(3)
-        val expected = ExchangePoint(300)
+        val expected = ExchangePoint.valueOf(300)
 
         assertThat(actual, `is`(expected))
     }

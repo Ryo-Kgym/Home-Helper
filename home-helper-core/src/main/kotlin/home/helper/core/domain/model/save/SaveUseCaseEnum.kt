@@ -8,5 +8,6 @@ enum class SaveUseCaseEnum {
     REGISTER_HELP_POINT,
     REGISTER_HELP_ITEM,
     EXCHANGE_HELP_POINT,
+    REGISTER_EXCHANGE_ITEM,
     ;
 }
