@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { PointHistoryPresenter } from "@components/presenter/point_history/PointHistoryPresenter";
+import { PointHistoryPresenter } from "./PointHistoryPresenter";
 
 export const PointHistoryContainer: FC = () => {
   return <PointHistoryPresenter />;

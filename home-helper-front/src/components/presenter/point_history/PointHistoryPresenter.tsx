@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Tab } from "@components/ui/Tab";
-import { ChargedPointHistoryContainer as ChargedPointHistory } from "@components/container/charged_point_history/ChargedPointHistoryContainer";
-import { UsedPointHistoryContainer as UsedPointHistory } from "@components/container/used_point_history/UsedPointHistoryContainer";
+import { ChargedPointHistoryContainer as ChargedPointHistory } from "@components/presenter/charged_point_history/ChargedPointHistoryContainer";
+import { UsedPointHistoryContainer as UsedPointHistory } from "@components/presenter/used_point_history/UsedPointHistoryContainer";
 
 type Props = {};
 

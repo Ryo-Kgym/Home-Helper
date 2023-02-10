@@ -1,5 +1,9 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { FC, useEffect, useState } from "react";
-import { ChargePointPresenter } from "@components/presenter/charge_point/ChargePointPresenter";
+import { ChargePointPresenter } from "./ChargePointPresenter";
 import { HelpItem } from "@domain/model/home_helper/HelpItem";
 import { toJapanMd } from "@function/DateConverter";
 import { fetchUser } from "@hooks/user/fetchUser";

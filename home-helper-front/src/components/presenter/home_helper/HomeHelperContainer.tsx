@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { HomeHelperPresenter } from "@components/presenter/home_helper/HomeHelperPresenter";
+import { HomeHelperPresenter } from "./HomeHelperPresenter";
 import { fetchUsers } from "@hooks/user/fetchUsers";
 import { User } from "@domain/model/home_helper/User";
 import { saveUserId } from "@hooks/loadUserId";

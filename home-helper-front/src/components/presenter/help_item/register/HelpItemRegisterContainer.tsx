@@ -1,17 +1,22 @@
-import { useState } from "react";
-import { showNotification } from "@hooks/notification/showNotification";
-import { ExchangeItemRegisterPresenter } from "@components/presenter/exchange_item/register/ExchangeItemRegisterPresenter";
-import { registerExchangeItem } from "@hooks/exchange_item/registerExchangeItem";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
 
-export const ExchangeItemRegisterContainer = () => {
+import { HelpItemRegisterPresenter } from "./HelpItemRegisterPresenter";
+import { useState } from "react";
+import { registerHelpItem } from "@hooks/help_item/registerHelpItem";
+import { showNotification } from "@hooks/notification/showNotification";
+
+export const HelpItemRegisterContainer = () => {
   const [itemName, setItemName] = useState<string>("");
   const [point, setPoint] = useState<number>(0);
+  const [memo, setMemo] = useState<string>("");
 
   const register = () => {
     if (itemName.length < 1) {
       return;
     }
-    registerExchangeItem(itemName, point).then((r) => {
+    registerHelpItem(itemName, point, memo).then((r) => {
       showNotification({
         title: "登録完了",
         message: r[0],
@@ -20,11 +25,13 @@ export const ExchangeItemRegisterContainer = () => {
   };
 
   return (
-    <ExchangeItemRegisterPresenter
+    <HelpItemRegisterPresenter
       itemName={itemName}
       setItemName={setItemName}
       point={point}
       setPoint={setPoint}
+      memo={memo}
+      setMemo={setMemo}
       registerOnClick={register}
     />
   );

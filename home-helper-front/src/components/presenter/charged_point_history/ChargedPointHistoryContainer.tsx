@@ -1,7 +1,11 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { FC, useEffect, useState } from "react";
 import { PointHistory } from "@domain/model/home_helper/PointHistory";
 import { TbodyProps } from "@components/ui/Table";
-import { ChargedPointHistoryPresenter } from "@components/presenter/charged_point_history/ChargedPointHistoryPresenter";
+import { ChargedPointHistoryPresenter } from "./ChargedPointHistoryPresenter";
 import { fetchHelpPointEarnedAchievements } from "@hooks/help_point/fetchHelpPointEarnedAchievements";
 
 export const ChargedPointHistoryContainer: FC = () => {

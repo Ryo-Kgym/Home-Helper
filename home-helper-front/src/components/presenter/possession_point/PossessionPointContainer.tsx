@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from "react";
-import { PossessionPointPresenter } from "@components/presenter/possession_point/PossessionPointPresenter";
+import { PossessionPointPresenter } from "./PossessionPointPresenter";
 import { fetchUser } from "@hooks/user/fetchUser";
 
 export const PossessionPointContainer: FC = () => {

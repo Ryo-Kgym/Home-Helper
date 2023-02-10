@@ -1,5 +1,9 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { useEffect, useState } from "react";
-import { ExchangePointPresenter } from "@components/presenter/consume_point/ExchangePointPresenter";
+import { ExchangePointPresenter } from "./ExchangePointPresenter";
 import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
 import { fetchUser } from "@hooks/user/fetchUser";
 import { fetchExchangeItems } from "@hooks/exchange_item/fetchExchangeItems";
