@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { MainTitle } from "@components/ui/MainTitle";
-import { LinkList } from "@components/ui/Card";
+import { MainTitle } from "@components/atoms/MainTitle";
+import { LinkList } from "@components/atoms/Card";
 
 const linkListProps = [
   { href: "/homeHelper", label: "お手伝いアプリ" },

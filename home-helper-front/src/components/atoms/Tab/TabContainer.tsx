@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { TabPresenter } from "@components/ui/Tab/TabPresenter";
-import { TabProps } from "@components/ui/Tab/index";
+import { TabPresenter } from "@components/atoms/Tab/TabPresenter";
+import { TabProps } from "@components/atoms/Tab/index";
 
 type Props = {
   defaultSelect: string;

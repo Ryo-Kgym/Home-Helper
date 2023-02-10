@@ -1,6 +1,6 @@
 import { FC, ReactElement } from "react";
 import { index as AppShell } from "./";
-import { LinkList } from "@components/ui/Card";
+import { LinkList } from "@components/atoms/Card";
 
 type HomeHelperLayoutProps = {
   children: ReactElement;

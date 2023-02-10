@@ -12,8 +12,8 @@ import {
   ChargePointForm,
   registerHelpPoint,
 } from "@hooks/help_point/registerHelpPoint";
-import { TbodyProps } from "@components/ui/Table";
-import { Counter } from "@components/ui/Counter";
+import { TbodyProps } from "@components/atoms/Table";
+import { Counter } from "@components/atoms/Counter";
 
 export const ChargePointContainer: FC = () => {
   const [totalPoint, setTotalPoint] = useState(0);

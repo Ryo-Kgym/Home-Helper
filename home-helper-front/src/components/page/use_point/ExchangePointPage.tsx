@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { ExchangePointContainer } from "@components/presenter/consume_point/ExchangePointContainer";
-import { HomeHelperLayout } from "@components/ui/Layout/HomeHelperLayout";
+import { HomeHelperLayout } from "@components/atoms/Layout/HomeHelperLayout";
 
 export const Page: FC = () => (
   <HomeHelperLayout>

@@ -1,8 +1,8 @@
 import { Flex } from "@mantine/core";
 import { FC } from "react";
 import styles from "./styles.module.scss";
-import { UpdateNotification } from "@components/ui/UpdateNotification";
-import { Table, TbodyProps } from "@components/ui/Table";
+import { UpdateNotification } from "@components/atoms/UpdateNotification";
+import { Table, TbodyProps } from "@components/atoms/Table";
 
 type ConsumePointPresenterProps = {
   currentPoint: number;

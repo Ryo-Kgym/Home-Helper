@@ -1,5 +1,5 @@
 import { FC, ReactElement } from "react";
-import { NaviPresenter } from "@components/ui/Navi/NaviPresenter";
+import { NaviPresenter } from "@components/atoms/Navi/NaviPresenter";
 
 type NaviContainerProps = {
   children: ReactElement;

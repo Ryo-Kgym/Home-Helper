@@ -1,7 +1,7 @@
 import { FC, ReactElement } from "react";
-import { Input } from "@components/ui/Input";
-import { InputValidationMessage } from "@components/ui/Input/InputValidator";
-import { Button } from "@components/ui/Button";
+import { Input } from "@components/atoms/Input";
+import { InputValidationMessage } from "@components/atoms/Input/InputValidator";
+import { Button } from "@components/atoms/Button";
 
 type ExchangeItemRegisterPresenterProps = {
   itemName: string;

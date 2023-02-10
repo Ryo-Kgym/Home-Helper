@@ -11,8 +11,8 @@ import {
   exchangeHelpPoint,
   ExchangePointForm,
 } from "@hooks/help_point/exchangeHelpPoint";
-import { TbodyProps } from "@components/ui/Table";
-import { Counter } from "@components/ui/Counter";
+import { TbodyProps } from "@components/atoms/Table";
+import { Counter } from "@components/atoms/Counter";
 
 export const ExchangePointContainer = () => {
   const [exchangeItems, setExchangeItems] = useState<ExchangeItem[]>([]);

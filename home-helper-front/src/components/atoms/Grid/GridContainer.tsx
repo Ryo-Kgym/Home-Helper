@@ -1,5 +1,5 @@
 import { FC, ReactElement } from "react";
-import { GridPresenter } from "@components/ui/Grid/GridPresenter";
+import { GridPresenter } from "@components/atoms/Grid/GridPresenter";
 
 type Props = {
   children: ReactElement;

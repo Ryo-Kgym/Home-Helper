@@ -1,7 +1,7 @@
 import { Tabs } from "@mantine/core";
-import { StyledTabs } from "@components/ui/Tab/StyledTabs";
+import { StyledTabs } from "@components/atoms/Tab/StyledTabs";
 import { FC } from "react";
-import { TabProps } from "@components/ui/Tab/index";
+import { TabProps } from "@components/atoms/Tab/index";
 
 type Props = {
   defaultSelect: string;

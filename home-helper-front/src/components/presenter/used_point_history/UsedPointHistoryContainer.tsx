@@ -4,7 +4,7 @@
 
 import { FC, useEffect, useState } from "react";
 import { PointHistory } from "@domain/model/home_helper/PointHistory";
-import { TbodyProps } from "@components/ui/Table";
+import { TbodyProps } from "@components/atoms/Table";
 import { UsedPointHistoryPresenter } from "./UsedPointHistoryPresenter";
 import { fetchHelpPointExchangedAchievements } from "@hooks/help_point/fetchHelpPointExchangedAchievements";
 

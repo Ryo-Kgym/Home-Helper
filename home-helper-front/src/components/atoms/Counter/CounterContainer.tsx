@@ -1,4 +1,4 @@
-import { CounterPresenter } from "@components/ui/Counter/CounterPresenter";
+import { CounterPresenter } from "@components/atoms/Counter/CounterPresenter";
 import { FC, useState } from "react";
 
 type CounterContainerProps = {

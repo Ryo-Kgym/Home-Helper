@@ -1,6 +1,6 @@
-import { TextInputPresenter } from "@components/ui/Input/TextField/TextInputPresenter";
+import { TextInputPresenter } from "@components/atoms/Input/TextField/TextInputPresenter";
 import { ChangeEvent, FC } from "react";
-import { InputValidator } from "@components/ui/Input/InputValidator";
+import { InputValidator } from "@components/atoms/Input/InputValidator";
 
 type TextInputContainerProps = {
   label: string;

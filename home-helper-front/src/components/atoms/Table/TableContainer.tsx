@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import { TablePresenter } from "@components/ui/Table/TablePresenter";
-import { ColumnProps, TbodyProps } from "@components/ui/Table/index";
+import { TablePresenter } from "@components/atoms/Table/TablePresenter";
+import { ColumnProps, TbodyProps } from "@components/atoms/Table/index";
 import { createStyles, ScrollArea } from "@mantine/core";
 
 type Props = {

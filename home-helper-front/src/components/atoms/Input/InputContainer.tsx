@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { TextField } from "@components/ui/Input/TextField";
-import { InputValidator } from "@components/ui/Input/InputValidator";
+import { TextField } from "@components/atoms/Input/TextField";
+import { InputValidator } from "@components/atoms/Input/InputValidator";
 
 type InputContainerProps = {
   label: string;

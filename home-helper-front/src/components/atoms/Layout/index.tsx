@@ -1,7 +1,7 @@
 import { AppShell as McAppShell, Header } from "@mantine/core";
 import { FC, ReactElement } from "react";
-import { Html } from "@components/ui/Layout/Html";
-import { Navi } from "@components/ui/Navi";
+import { Html } from "@components/atoms/Layout/Html";
+import { Navi } from "@components/atoms/Navi";
 
 type LayoutProps = {
   header?: ReactElement;

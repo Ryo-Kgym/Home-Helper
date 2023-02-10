@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Table, TbodyProps } from "@components/ui/Table";
+import { Table, TbodyProps } from "@components/atoms/Table";
 
 type Props = {
   tbodyProps: TbodyProps[];

@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Grid } from "@components/ui/Grid";
-import { LinkContainer } from "@components/ui/Card/LinkContainer";
+import { Grid } from "@components/atoms/Grid";
+import { LinkContainer } from "@components/atoms/Card/LinkContainer";
 
 export { LinkContainer as Link } from "./LinkContainer";
 

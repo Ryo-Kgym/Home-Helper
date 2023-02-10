@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { LinkPresenter } from "@components/ui/Card/LinkPresenter";
-import { LinkProps } from "@components/ui/Card/index";
+import { LinkPresenter } from "@components/atoms/Card/LinkPresenter";
+import { LinkProps } from "@components/atoms/Card/index";
 
 export const LinkContainer: FC<LinkProps> = ({
   back,
