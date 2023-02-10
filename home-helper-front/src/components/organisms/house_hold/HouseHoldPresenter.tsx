@@ -19,7 +19,7 @@ export const HouseHoldPresenter: FC<HomeHelperPresenterProps> = ({
   ];
   userList.map((user) => {
     return propList.push({
-      href: "/houseHold/account",
+      href: "/household/account",
       label: user.name,
       back: false,
       handleClick: () => {
