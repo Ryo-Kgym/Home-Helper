@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { PointHistoryContainer } from "@components/presenter/point_history/PointHistoryContainer";
+import { PointHistoryContainer } from "@components/organisms/point_history/PointHistoryContainer";
 import { HomeHelperLayout } from "@components/atoms/Layout/HomeHelperLayout";
 
 export const Page: FC = () => (
