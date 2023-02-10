@@ -6,7 +6,10 @@ type HomeHelperPresenterProps = {
   handleClickUser: (userId: string) => void;
 };
 
-export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = (props) => {
+export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = ({
+  userList,
+  handleClickUser,
+}) => {
   const propList: LinkProps[] = [
     {
       href: "/",
@@ -14,20 +17,16 @@ export const HomeHelperPresenter: FC<HomeHelperPresenterProps> = (props) => {
       back: true,
     },
   ];
-  props.userList.map((user) => {
+  userList.map((user) => {
     return propList.push({
       href: "/homeHelper/possessionPoint",
       label: user.name,
       back: false,
       handleClick: () => {
-        props.handleClickUser(user.id);
+        handleClickUser(user.id);
       },
     });
   });
 
-  return (
-    <>
-      <LinkList props={propList} />
-    </>
-  );
+  return <LinkList props={propList} />;
 };

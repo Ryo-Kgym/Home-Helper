@@ -1,14 +1,32 @@
 import { FC } from "react";
-import { LinkList } from "@components/atoms/Card";
+import { LinkList, LinkProps } from "@components/atoms/Card";
 
-export const HouseHoldPresenter: FC = () => {
-  const cardLinkProps = [
+type HomeHelperPresenterProps = {
+  userList: any[];
+  handleClickUser: (userId: string) => void;
+};
+
+export const HouseHoldPresenter: FC<HomeHelperPresenterProps> = ({
+  userList,
+  handleClickUser,
+}) => {
+  const propList: LinkProps[] = [
     {
       href: "/",
       label: "戻る",
       back: true,
     },
   ];
+  userList.map((user) => {
+    return propList.push({
+      href: "/houseHold/account",
+      label: user.name,
+      back: false,
+      handleClick: () => {
+        handleClickUser(user.id);
+      },
+    });
+  });
 
-  return <LinkList props={cardLinkProps} />;
+  return <LinkList props={propList} />;
 };
