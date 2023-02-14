@@ -1,6 +1,6 @@
 version: '3'
 services:
-  mysql_ci:
+  home_helper_db_ci:
     platform: linux/x86_64
     container_name: home_helper_db_ci
     image: mysql:latest
@@ -14,9 +14,22 @@ services:
     ports:
       - 23306:3306
     volumes:
-      - ./full:/docker-entrypoint-initdb.d
-      - ./docker/data/ci:/var/lib/mysql
+      - ./full/home_helper:/docker-entrypoint-initdb.d
+      - ./docker/data/home_helper/ci:/var/lib/mysql
       - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
+  household_db_ci:
+    image: postgres:latest
+    container_name: household_db_ci
+    environment:
+      POSTGRES_USER: household
+      POSTGRES_PASSWORD: household
+      POSTGRES_DB: household_db_ci
+      TZ: 'Asia/Tokyo'
+    ports:
+      - 25432:5432
+    volumes:
+      - ./full/household:/docker-entrypoint-initdb.d
+      - ./docker/data/household/ci:/var/lib/postgresql/data
 volumes:
   database:
     driver: local
