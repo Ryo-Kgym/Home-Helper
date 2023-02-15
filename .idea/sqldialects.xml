@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/home-helper-database/full/household/01_create_master_table.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/home-helper-database/full/household/02_create_transaction_table.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/home-helper-database/household_postgrephile/household_db/init/01_create_master_table.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/home-helper-database/household_postgrephile/household_db/init/02_create_transaction_table.sql" dialect="PostgreSQL" />
     <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>

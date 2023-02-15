@@ -5,7 +5,7 @@ services:
     restart: always
     image: postgres:latest
     build:
-      context: ./db
+      context: ./household_db
     volumes:
       - db:/var/lib/postgresql/data
       - ./volume/data/household/ci:/var/lib/postgresql/data
