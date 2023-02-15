@@ -1,0 +1,53 @@
+version: "3.3"
+services:
+  db:
+    container_name: household-db
+    restart: always
+    image: household-db
+    build:
+      context: ./db
+    volumes:
+      - db:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    networks:
+      - network
+    ports:
+      - 5432:5432
+
+  graphql:
+    container_name: household-graphql
+    restart: always
+    image: household-graphql
+    build:
+      context: ./graphql
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+    networks:
+      - network
+    ports:
+      - 5001:5001
+    command:
+      [
+        "--connection",
+        "${DATABASE_URL}",
+        "--port",
+        "5001",
+        "--schema",
+        "public",
+        "--append-plugins",
+        "postgraphile-plugin-connection-filter",
+        "--watch",
+        "--enhance-graphiql",
+        "--dynamic-json",
+        "--export-schema-graphql",
+        "schema.graphql"
+      ]
+
+networks:
+  network:
+
+volumes:
+  db:
