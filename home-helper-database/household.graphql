@@ -1,0 +1,1721 @@
+"""The root query type which gives access points into the data universe."""
+type Query implements Node {
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form.
+  """
+  query: Query!
+
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  """
+  nodeId: ID!
+
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+
+  """Reads and enables pagination through a set of `AccountBalance`."""
+  allAccountBalances(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `AccountBalance`."""
+    orderBy: [AccountBalancesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: AccountBalanceCondition
+  ): AccountBalancesConnection
+
+  """Reads and enables pagination through a set of `MAccount`."""
+  allMAccounts(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MAccount`."""
+    orderBy: [MAccountsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MAccountCondition
+  ): MAccountsConnection
+
+  """Reads and enables pagination through a set of `MCategory`."""
+  allMCategories(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MCategory`."""
+    orderBy: [MCategoriesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MCategoryCondition
+  ): MCategoriesConnection
+
+  """Reads and enables pagination through a set of `MGenre`."""
+  allMGenres(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MGenre`."""
+    orderBy: [MGenresOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MGenreCondition
+  ): MGenresConnection
+
+  """Reads and enables pagination through a set of `MUser`."""
+  allMUsers(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MUser`."""
+    orderBy: [MUsersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MUserCondition
+  ): MUsersConnection
+  accountBalanceByAccountId(accountId: String!): AccountBalance
+  mAccountByAccountId(accountId: String!): MAccount
+  mCategoryByCategoryId(categoryId: String!): MCategory
+  mGenreByGenreId(genreId: String!): MGenre
+  mUserByUserId(userId: String!): MUser
+
+  """Reads a single `AccountBalance` using its globally unique `ID`."""
+  accountBalance(
+    """
+    The globally unique `ID` to be used in selecting a single `AccountBalance`.
+    """
+    nodeId: ID!
+  ): AccountBalance
+
+  """Reads a single `MAccount` using its globally unique `ID`."""
+  mAccount(
+    """The globally unique `ID` to be used in selecting a single `MAccount`."""
+    nodeId: ID!
+  ): MAccount
+
+  """Reads a single `MCategory` using its globally unique `ID`."""
+  mCategory(
+    """The globally unique `ID` to be used in selecting a single `MCategory`."""
+    nodeId: ID!
+  ): MCategory
+
+  """Reads a single `MGenre` using its globally unique `ID`."""
+  mGenre(
+    """The globally unique `ID` to be used in selecting a single `MGenre`."""
+    nodeId: ID!
+  ): MGenre
+
+  """Reads a single `MUser` using its globally unique `ID`."""
+  mUser(
+    """The globally unique `ID` to be used in selecting a single `MUser`."""
+    nodeId: ID!
+  ): MUser
+}
+
+"""An object with a globally unique `ID`."""
+interface Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+"""A connection to a list of `AccountBalance` values."""
+type AccountBalancesConnection {
+  """A list of `AccountBalance` objects."""
+  nodes: [AccountBalance]!
+
+  """
+  A list of edges which contains the `AccountBalance` and cursor to aid in pagination.
+  """
+  edges: [AccountBalancesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `AccountBalance` you could get from the connection."""
+  totalCount: Int!
+}
+
+type AccountBalance implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  accountId: String!
+  balance: BigFloat
+
+  """Reads a single `MAccount` that is related to this `AccountBalance`."""
+  mAccountByAccountId: MAccount
+}
+
+"""
+A floating point number that requires more precision than IEEE 754 binary 64
+"""
+scalar BigFloat
+
+type MAccount implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  accountId: String!
+  accountName: String!
+  validFlag: Boolean
+  displayOrder: Int!
+  ownerUserId: String!
+
+  """Reads a single `MUser` that is related to this `MAccount`."""
+  mUserByOwnerUserId: MUser
+
+  """Reads a single `AccountBalance` that is related to this `MAccount`."""
+  accountBalanceByAccountId: AccountBalance
+
+  """Reads and enables pagination through a set of `AccountBalance`."""
+  accountBalancesByAccountId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `AccountBalance`."""
+    orderBy: [AccountBalancesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: AccountBalanceCondition
+  ): AccountBalancesConnection! @deprecated(reason: "Please use accountBalanceByAccountId instead")
+}
+
+type MUser implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  userId: String!
+  userName: String!
+  displayOrder: Int!
+
+  """Reads and enables pagination through a set of `MAccount`."""
+  mAccountsByOwnerUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MAccount`."""
+    orderBy: [MAccountsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MAccountCondition
+  ): MAccountsConnection!
+}
+
+"""A connection to a list of `MAccount` values."""
+type MAccountsConnection {
+  """A list of `MAccount` objects."""
+  nodes: [MAccount]!
+
+  """
+  A list of edges which contains the `MAccount` and cursor to aid in pagination.
+  """
+  edges: [MAccountsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MAccount` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `MAccount` edge in the connection."""
+type MAccountsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MAccount` at the end of the edge."""
+  node: MAccount
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+}
+
+"""Methods to use when ordering `MAccount`."""
+enum MAccountsOrderBy {
+  NATURAL
+  ACCOUNT_ID_ASC
+  ACCOUNT_ID_DESC
+  ACCOUNT_NAME_ASC
+  ACCOUNT_NAME_DESC
+  VALID_FLAG_ASC
+  VALID_FLAG_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  OWNER_USER_ID_ASC
+  OWNER_USER_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `MAccount` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input MAccountCondition {
+  """Checks for equality with the object’s `accountId` field."""
+  accountId: String
+
+  """Checks for equality with the object’s `accountName` field."""
+  accountName: String
+
+  """Checks for equality with the object’s `validFlag` field."""
+  validFlag: Boolean
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+
+  """Checks for equality with the object’s `ownerUserId` field."""
+  ownerUserId: String
+}
+
+"""Methods to use when ordering `AccountBalance`."""
+enum AccountBalancesOrderBy {
+  NATURAL
+  ACCOUNT_ID_ASC
+  ACCOUNT_ID_DESC
+  BALANCE_ASC
+  BALANCE_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `AccountBalance` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input AccountBalanceCondition {
+  """Checks for equality with the object’s `accountId` field."""
+  accountId: String
+
+  """Checks for equality with the object’s `balance` field."""
+  balance: BigFloat
+}
+
+"""A `AccountBalance` edge in the connection."""
+type AccountBalancesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `AccountBalance` at the end of the edge."""
+  node: AccountBalance
+}
+
+"""A connection to a list of `MCategory` values."""
+type MCategoriesConnection {
+  """A list of `MCategory` objects."""
+  nodes: [MCategory]!
+
+  """
+  A list of edges which contains the `MCategory` and cursor to aid in pagination.
+  """
+  edges: [MCategoriesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MCategory` you could get from the connection."""
+  totalCount: Int!
+}
+
+type MCategory implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  categoryId: String!
+  categoryName: String!
+  genreId: String!
+  validFlag: Boolean
+  displayOrder: Int!
+
+  """Reads a single `MGenre` that is related to this `MCategory`."""
+  mGenreByGenreId: MGenre
+}
+
+type MGenre implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  genreId: String!
+  genreName: String!
+  genreType: GenreType!
+  iocomeType: IocomeType!
+  validFlag: Boolean
+  displayOrder: Int!
+
+  """Reads and enables pagination through a set of `MCategory`."""
+  mCategoriesByGenreId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `MCategory`."""
+    orderBy: [MCategoriesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MCategoryCondition
+  ): MCategoriesConnection!
+}
+
+enum GenreType {
+  FIXED
+  FLUCTUATION
+}
+
+enum IocomeType {
+  INCOME
+  OUTCOME
+}
+
+"""Methods to use when ordering `MCategory`."""
+enum MCategoriesOrderBy {
+  NATURAL
+  CATEGORY_ID_ASC
+  CATEGORY_ID_DESC
+  CATEGORY_NAME_ASC
+  CATEGORY_NAME_DESC
+  GENRE_ID_ASC
+  GENRE_ID_DESC
+  VALID_FLAG_ASC
+  VALID_FLAG_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `MCategory` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input MCategoryCondition {
+  """Checks for equality with the object’s `categoryId` field."""
+  categoryId: String
+
+  """Checks for equality with the object’s `categoryName` field."""
+  categoryName: String
+
+  """Checks for equality with the object’s `genreId` field."""
+  genreId: String
+
+  """Checks for equality with the object’s `validFlag` field."""
+  validFlag: Boolean
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+}
+
+"""A `MCategory` edge in the connection."""
+type MCategoriesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MCategory` at the end of the edge."""
+  node: MCategory
+}
+
+"""A connection to a list of `MGenre` values."""
+type MGenresConnection {
+  """A list of `MGenre` objects."""
+  nodes: [MGenre]!
+
+  """
+  A list of edges which contains the `MGenre` and cursor to aid in pagination.
+  """
+  edges: [MGenresEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MGenre` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `MGenre` edge in the connection."""
+type MGenresEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MGenre` at the end of the edge."""
+  node: MGenre
+}
+
+"""Methods to use when ordering `MGenre`."""
+enum MGenresOrderBy {
+  NATURAL
+  GENRE_ID_ASC
+  GENRE_ID_DESC
+  GENRE_NAME_ASC
+  GENRE_NAME_DESC
+  GENRE_TYPE_ASC
+  GENRE_TYPE_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
+  VALID_FLAG_ASC
+  VALID_FLAG_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `MGenre` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input MGenreCondition {
+  """Checks for equality with the object’s `genreId` field."""
+  genreId: String
+
+  """Checks for equality with the object’s `genreName` field."""
+  genreName: String
+
+  """Checks for equality with the object’s `genreType` field."""
+  genreType: GenreType
+
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
+  """Checks for equality with the object’s `validFlag` field."""
+  validFlag: Boolean
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+}
+
+"""A connection to a list of `MUser` values."""
+type MUsersConnection {
+  """A list of `MUser` objects."""
+  nodes: [MUser]!
+
+  """
+  A list of edges which contains the `MUser` and cursor to aid in pagination.
+  """
+  edges: [MUsersEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `MUser` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `MUser` edge in the connection."""
+type MUsersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `MUser` at the end of the edge."""
+  node: MUser
+}
+
+"""Methods to use when ordering `MUser`."""
+enum MUsersOrderBy {
+  NATURAL
+  USER_ID_ASC
+  USER_ID_DESC
+  USER_NAME_ASC
+  USER_NAME_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `MUser` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input MUserCondition {
+  """Checks for equality with the object’s `userId` field."""
+  userId: String
+
+  """Checks for equality with the object’s `userName` field."""
+  userName: String
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+}
+
+"""
+The root mutation type which contains root level fields which mutate data.
+"""
+type Mutation {
+  """Creates a single `AccountBalance`."""
+  createAccountBalance(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateAccountBalanceInput!
+  ): CreateAccountBalancePayload
+
+  """Creates a single `MAccount`."""
+  createMAccount(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMAccountInput!
+  ): CreateMAccountPayload
+
+  """Creates a single `MCategory`."""
+  createMCategory(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMCategoryInput!
+  ): CreateMCategoryPayload
+
+  """Creates a single `MGenre`."""
+  createMGenre(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMGenreInput!
+  ): CreateMGenrePayload
+
+  """Creates a single `MUser`."""
+  createMUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMUserInput!
+  ): CreateMUserPayload
+
+  """
+  Updates a single `AccountBalance` using its globally unique id and a patch.
+  """
+  updateAccountBalance(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateAccountBalanceInput!
+  ): UpdateAccountBalancePayload
+
+  """Updates a single `AccountBalance` using a unique key and a patch."""
+  updateAccountBalanceByAccountId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateAccountBalanceByAccountIdInput!
+  ): UpdateAccountBalancePayload
+
+  """Updates a single `MAccount` using its globally unique id and a patch."""
+  updateMAccount(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMAccountInput!
+  ): UpdateMAccountPayload
+
+  """Updates a single `MAccount` using a unique key and a patch."""
+  updateMAccountByAccountId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMAccountByAccountIdInput!
+  ): UpdateMAccountPayload
+
+  """Updates a single `MCategory` using its globally unique id and a patch."""
+  updateMCategory(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMCategoryInput!
+  ): UpdateMCategoryPayload
+
+  """Updates a single `MCategory` using a unique key and a patch."""
+  updateMCategoryByCategoryId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMCategoryByCategoryIdInput!
+  ): UpdateMCategoryPayload
+
+  """Updates a single `MGenre` using its globally unique id and a patch."""
+  updateMGenre(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMGenreInput!
+  ): UpdateMGenrePayload
+
+  """Updates a single `MGenre` using a unique key and a patch."""
+  updateMGenreByGenreId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMGenreByGenreIdInput!
+  ): UpdateMGenrePayload
+
+  """Updates a single `MUser` using its globally unique id and a patch."""
+  updateMUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMUserInput!
+  ): UpdateMUserPayload
+
+  """Updates a single `MUser` using a unique key and a patch."""
+  updateMUserByUserId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMUserByUserIdInput!
+  ): UpdateMUserPayload
+
+  """Deletes a single `AccountBalance` using its globally unique id."""
+  deleteAccountBalance(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteAccountBalanceInput!
+  ): DeleteAccountBalancePayload
+
+  """Deletes a single `AccountBalance` using a unique key."""
+  deleteAccountBalanceByAccountId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteAccountBalanceByAccountIdInput!
+  ): DeleteAccountBalancePayload
+
+  """Deletes a single `MAccount` using its globally unique id."""
+  deleteMAccount(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMAccountInput!
+  ): DeleteMAccountPayload
+
+  """Deletes a single `MAccount` using a unique key."""
+  deleteMAccountByAccountId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMAccountByAccountIdInput!
+  ): DeleteMAccountPayload
+
+  """Deletes a single `MCategory` using its globally unique id."""
+  deleteMCategory(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMCategoryInput!
+  ): DeleteMCategoryPayload
+
+  """Deletes a single `MCategory` using a unique key."""
+  deleteMCategoryByCategoryId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMCategoryByCategoryIdInput!
+  ): DeleteMCategoryPayload
+
+  """Deletes a single `MGenre` using its globally unique id."""
+  deleteMGenre(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMGenreInput!
+  ): DeleteMGenrePayload
+
+  """Deletes a single `MGenre` using a unique key."""
+  deleteMGenreByGenreId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMGenreByGenreIdInput!
+  ): DeleteMGenrePayload
+
+  """Deletes a single `MUser` using its globally unique id."""
+  deleteMUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMUserInput!
+  ): DeleteMUserPayload
+
+  """Deletes a single `MUser` using a unique key."""
+  deleteMUserByUserId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMUserByUserIdInput!
+  ): DeleteMUserPayload
+}
+
+"""The output of our create `AccountBalance` mutation."""
+type CreateAccountBalancePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `AccountBalance` that was created by this mutation."""
+  accountBalance: AccountBalance
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `MAccount` that is related to this `AccountBalance`."""
+  mAccountByAccountId: MAccount
+
+  """An edge for our `AccountBalance`. May be used by Relay 1."""
+  accountBalanceEdge(
+    """The method to use when ordering `AccountBalance`."""
+    orderBy: [AccountBalancesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): AccountBalancesEdge
+}
+
+"""All input for the create `AccountBalance` mutation."""
+input CreateAccountBalanceInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `AccountBalance` to be created by this mutation."""
+  accountBalance: AccountBalanceInput!
+}
+
+"""An input for mutations affecting `AccountBalance`"""
+input AccountBalanceInput {
+  accountId: String!
+  balance: BigFloat
+}
+
+"""The output of our create `MAccount` mutation."""
+type CreateMAccountPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MAccount` that was created by this mutation."""
+  mAccount: MAccount
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `MUser` that is related to this `MAccount`."""
+  mUserByOwnerUserId: MUser
+
+  """An edge for our `MAccount`. May be used by Relay 1."""
+  mAccountEdge(
+    """The method to use when ordering `MAccount`."""
+    orderBy: [MAccountsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MAccountsEdge
+}
+
+"""All input for the create `MAccount` mutation."""
+input CreateMAccountInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `MAccount` to be created by this mutation."""
+  mAccount: MAccountInput!
+}
+
+"""An input for mutations affecting `MAccount`"""
+input MAccountInput {
+  accountId: String!
+  accountName: String!
+  validFlag: Boolean
+  displayOrder: Int!
+  ownerUserId: String!
+}
+
+"""The output of our create `MCategory` mutation."""
+type CreateMCategoryPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MCategory` that was created by this mutation."""
+  mCategory: MCategory
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `MGenre` that is related to this `MCategory`."""
+  mGenreByGenreId: MGenre
+
+  """An edge for our `MCategory`. May be used by Relay 1."""
+  mCategoryEdge(
+    """The method to use when ordering `MCategory`."""
+    orderBy: [MCategoriesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MCategoriesEdge
+}
+
+"""All input for the create `MCategory` mutation."""
+input CreateMCategoryInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `MCategory` to be created by this mutation."""
+  mCategory: MCategoryInput!
+}
+
+"""An input for mutations affecting `MCategory`"""
+input MCategoryInput {
+  categoryId: String!
+  categoryName: String!
+  genreId: String!
+  validFlag: Boolean
+  displayOrder: Int!
+}
+
+"""The output of our create `MGenre` mutation."""
+type CreateMGenrePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MGenre` that was created by this mutation."""
+  mGenre: MGenre
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MGenre`. May be used by Relay 1."""
+  mGenreEdge(
+    """The method to use when ordering `MGenre`."""
+    orderBy: [MGenresOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MGenresEdge
+}
+
+"""All input for the create `MGenre` mutation."""
+input CreateMGenreInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `MGenre` to be created by this mutation."""
+  mGenre: MGenreInput!
+}
+
+"""An input for mutations affecting `MGenre`"""
+input MGenreInput {
+  genreId: String!
+  genreName: String!
+  genreType: GenreType!
+  iocomeType: IocomeType!
+  validFlag: Boolean
+  displayOrder: Int!
+}
+
+"""The output of our create `MUser` mutation."""
+type CreateMUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MUser` that was created by this mutation."""
+  mUser: MUser
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MUser`. May be used by Relay 1."""
+  mUserEdge(
+    """The method to use when ordering `MUser`."""
+    orderBy: [MUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MUsersEdge
+}
+
+"""All input for the create `MUser` mutation."""
+input CreateMUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `MUser` to be created by this mutation."""
+  mUser: MUserInput!
+}
+
+"""An input for mutations affecting `MUser`"""
+input MUserInput {
+  userId: String!
+  userName: String!
+  displayOrder: Int!
+}
+
+"""The output of our update `AccountBalance` mutation."""
+type UpdateAccountBalancePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `AccountBalance` that was updated by this mutation."""
+  accountBalance: AccountBalance
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `MAccount` that is related to this `AccountBalance`."""
+  mAccountByAccountId: MAccount
+
+  """An edge for our `AccountBalance`. May be used by Relay 1."""
+  accountBalanceEdge(
+    """The method to use when ordering `AccountBalance`."""
+    orderBy: [AccountBalancesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): AccountBalancesEdge
+}
+
+"""All input for the `updateAccountBalance` mutation."""
+input UpdateAccountBalanceInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `AccountBalance` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `AccountBalance` being updated.
+  """
+  accountBalancePatch: AccountBalancePatch!
+}
+
+"""
+Represents an update to a `AccountBalance`. Fields that are set will be updated.
+"""
+input AccountBalancePatch {
+  accountId: String
+  balance: BigFloat
+}
+
+"""All input for the `updateAccountBalanceByAccountId` mutation."""
+input UpdateAccountBalanceByAccountIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `AccountBalance` being updated.
+  """
+  accountBalancePatch: AccountBalancePatch!
+  accountId: String!
+}
+
+"""The output of our update `MAccount` mutation."""
+type UpdateMAccountPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MAccount` that was updated by this mutation."""
+  mAccount: MAccount
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `MUser` that is related to this `MAccount`."""
+  mUserByOwnerUserId: MUser
+
+  """An edge for our `MAccount`. May be used by Relay 1."""
+  mAccountEdge(
+    """The method to use when ordering `MAccount`."""
+    orderBy: [MAccountsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MAccountsEdge
+}
+
+"""All input for the `updateMAccount` mutation."""
+input UpdateMAccountInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MAccount` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `MAccount` being updated.
+  """
+  mAccountPatch: MAccountPatch!
+}
+
+"""
+Represents an update to a `MAccount`. Fields that are set will be updated.
+"""
+input MAccountPatch {
+  accountId: String
+  accountName: String
+  validFlag: Boolean
+  displayOrder: Int
+  ownerUserId: String
+}
+
+"""All input for the `updateMAccountByAccountId` mutation."""
+input UpdateMAccountByAccountIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `MAccount` being updated.
+  """
+  mAccountPatch: MAccountPatch!
+  accountId: String!
+}
+
+"""The output of our update `MCategory` mutation."""
+type UpdateMCategoryPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MCategory` that was updated by this mutation."""
+  mCategory: MCategory
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `MGenre` that is related to this `MCategory`."""
+  mGenreByGenreId: MGenre
+
+  """An edge for our `MCategory`. May be used by Relay 1."""
+  mCategoryEdge(
+    """The method to use when ordering `MCategory`."""
+    orderBy: [MCategoriesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MCategoriesEdge
+}
+
+"""All input for the `updateMCategory` mutation."""
+input UpdateMCategoryInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MCategory` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `MCategory` being updated.
+  """
+  mCategoryPatch: MCategoryPatch!
+}
+
+"""
+Represents an update to a `MCategory`. Fields that are set will be updated.
+"""
+input MCategoryPatch {
+  categoryId: String
+  categoryName: String
+  genreId: String
+  validFlag: Boolean
+  displayOrder: Int
+}
+
+"""All input for the `updateMCategoryByCategoryId` mutation."""
+input UpdateMCategoryByCategoryIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `MCategory` being updated.
+  """
+  mCategoryPatch: MCategoryPatch!
+  categoryId: String!
+}
+
+"""The output of our update `MGenre` mutation."""
+type UpdateMGenrePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MGenre` that was updated by this mutation."""
+  mGenre: MGenre
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MGenre`. May be used by Relay 1."""
+  mGenreEdge(
+    """The method to use when ordering `MGenre`."""
+    orderBy: [MGenresOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MGenresEdge
+}
+
+"""All input for the `updateMGenre` mutation."""
+input UpdateMGenreInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MGenre` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `MGenre` being updated.
+  """
+  mGenrePatch: MGenrePatch!
+}
+
+"""
+Represents an update to a `MGenre`. Fields that are set will be updated.
+"""
+input MGenrePatch {
+  genreId: String
+  genreName: String
+  genreType: GenreType
+  iocomeType: IocomeType
+  validFlag: Boolean
+  displayOrder: Int
+}
+
+"""All input for the `updateMGenreByGenreId` mutation."""
+input UpdateMGenreByGenreIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `MGenre` being updated.
+  """
+  mGenrePatch: MGenrePatch!
+  genreId: String!
+}
+
+"""The output of our update `MUser` mutation."""
+type UpdateMUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MUser` that was updated by this mutation."""
+  mUser: MUser
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MUser`. May be used by Relay 1."""
+  mUserEdge(
+    """The method to use when ordering `MUser`."""
+    orderBy: [MUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MUsersEdge
+}
+
+"""All input for the `updateMUser` mutation."""
+input UpdateMUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MUser` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `MUser` being updated.
+  """
+  mUserPatch: MUserPatch!
+}
+
+"""
+Represents an update to a `MUser`. Fields that are set will be updated.
+"""
+input MUserPatch {
+  userId: String
+  userName: String
+  displayOrder: Int
+}
+
+"""All input for the `updateMUserByUserId` mutation."""
+input UpdateMUserByUserIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `MUser` being updated.
+  """
+  mUserPatch: MUserPatch!
+  userId: String!
+}
+
+"""The output of our delete `AccountBalance` mutation."""
+type DeleteAccountBalancePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `AccountBalance` that was deleted by this mutation."""
+  accountBalance: AccountBalance
+  deletedAccountBalanceId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `MAccount` that is related to this `AccountBalance`."""
+  mAccountByAccountId: MAccount
+
+  """An edge for our `AccountBalance`. May be used by Relay 1."""
+  accountBalanceEdge(
+    """The method to use when ordering `AccountBalance`."""
+    orderBy: [AccountBalancesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): AccountBalancesEdge
+}
+
+"""All input for the `deleteAccountBalance` mutation."""
+input DeleteAccountBalanceInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `AccountBalance` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteAccountBalanceByAccountId` mutation."""
+input DeleteAccountBalanceByAccountIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  accountId: String!
+}
+
+"""The output of our delete `MAccount` mutation."""
+type DeleteMAccountPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MAccount` that was deleted by this mutation."""
+  mAccount: MAccount
+  deletedMAccountId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `MUser` that is related to this `MAccount`."""
+  mUserByOwnerUserId: MUser
+
+  """An edge for our `MAccount`. May be used by Relay 1."""
+  mAccountEdge(
+    """The method to use when ordering `MAccount`."""
+    orderBy: [MAccountsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MAccountsEdge
+}
+
+"""All input for the `deleteMAccount` mutation."""
+input DeleteMAccountInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MAccount` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteMAccountByAccountId` mutation."""
+input DeleteMAccountByAccountIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  accountId: String!
+}
+
+"""The output of our delete `MCategory` mutation."""
+type DeleteMCategoryPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MCategory` that was deleted by this mutation."""
+  mCategory: MCategory
+  deletedMCategoryId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `MGenre` that is related to this `MCategory`."""
+  mGenreByGenreId: MGenre
+
+  """An edge for our `MCategory`. May be used by Relay 1."""
+  mCategoryEdge(
+    """The method to use when ordering `MCategory`."""
+    orderBy: [MCategoriesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MCategoriesEdge
+}
+
+"""All input for the `deleteMCategory` mutation."""
+input DeleteMCategoryInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MCategory` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteMCategoryByCategoryId` mutation."""
+input DeleteMCategoryByCategoryIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  categoryId: String!
+}
+
+"""The output of our delete `MGenre` mutation."""
+type DeleteMGenrePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MGenre` that was deleted by this mutation."""
+  mGenre: MGenre
+  deletedMGenreId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MGenre`. May be used by Relay 1."""
+  mGenreEdge(
+    """The method to use when ordering `MGenre`."""
+    orderBy: [MGenresOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MGenresEdge
+}
+
+"""All input for the `deleteMGenre` mutation."""
+input DeleteMGenreInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MGenre` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteMGenreByGenreId` mutation."""
+input DeleteMGenreByGenreIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  genreId: String!
+}
+
+"""The output of our delete `MUser` mutation."""
+type DeleteMUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `MUser` that was deleted by this mutation."""
+  mUser: MUser
+  deletedMUserId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `MUser`. May be used by Relay 1."""
+  mUserEdge(
+    """The method to use when ordering `MUser`."""
+    orderBy: [MUsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MUsersEdge
+}
+
+"""All input for the `deleteMUser` mutation."""
+input DeleteMUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `MUser` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteMUserByUserId` mutation."""
+input DeleteMUserByUserIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  userId: String!
+}
