@@ -5,7 +5,7 @@ services:
     container_name: home_helper_db_ci
     image: mysql:latest
     env_file:
-      - ./.env
+      - .env
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - 23306:3306
@@ -19,12 +19,12 @@ services:
     restart: always
     image: postgres:latest
     build:
-      context: ./household_db
+      context: household_db
     volumes:
       - db:/var/lib/postgresql/data
       - ./volume/data/household/main:/var/lib/postgresql/data
     env_file:
-      - ./.env
+      - .env
     networks:
       - network
     ports:
@@ -35,12 +35,12 @@ services:
     restart: always
     image: postgres:latest
     build:
-      context: ./household_db
+      context: household_db
     volumes:
       - db_ci:/var/lib/postgresql/data
       - ./volume/data/household/ci:/var/lib/postgresql/data
     env_file:
-      - ./.env
+      - .env
     networks:
       - network
     ports:
@@ -51,9 +51,9 @@ services:
     restart: always
     image: household-graphql
     build:
-      context: ./graphql
+      context: graphql
     env_file:
-      - ./.env
+      - .env
     depends_on:
       - db
     networks:
