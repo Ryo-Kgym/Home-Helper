@@ -1,13 +1,13 @@
 version: "3.3"
 services:
-  db:
-    container_name: household-db
+  db_ci:
+    container_name: household-db-ci
     restart: always
     image: postgres:latest
     build:
       context: ./household_db
     volumes:
-      - db:/var/lib/postgresql/data
+      - db_ci:/var/lib/postgresql/data
       - ./volume/data/household/ci:/var/lib/postgresql/data
     env_file:
       - ./.env
@@ -25,7 +25,7 @@ services:
     env_file:
       - ./.env
     depends_on:
-      - db
+      - db_ci
     networks:
       - network
     ports:
@@ -53,4 +53,4 @@ networks:
 volumes:
   database:
     driver: local
-  db:
+  db_ci:
