@@ -3,17 +3,18 @@ services:
   db:
     container_name: household-db
     restart: always
-    image: household-db
+    image: postgres:latest
     build:
       context: ./db
     volumes:
       - db:/var/lib/postgresql/data
+      - ./volume/data/household/ci:/var/lib/postgresql/data
     env_file:
       - ./.env
     networks:
       - network
     ports:
-      - 5432:5432
+      - "5432:5432"
 
   graphql:
     container_name: household-graphql
@@ -28,7 +29,7 @@ services:
     networks:
       - network
     ports:
-      - 5001:5001
+      - "5001:5001"
     command:
       [
         "--connection",
@@ -42,12 +43,14 @@ services:
         "--watch",
         "--enhance-graphiql",
         "--dynamic-json",
-        "--export-schema-graphql",
-        "schema.graphql"
+        "--simple-collections",
+        "only"
       ]
 
 networks:
   network:
 
 volumes:
+  database:
+    driver: local
   db:

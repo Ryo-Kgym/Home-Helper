@@ -17,19 +17,6 @@ services:
       - ./full/home_helper:/docker-entrypoint-initdb.d
       - ./docker/data/home_helper/ci:/var/lib/mysql
       - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
-  household_db_ci:
-    image: postgres:latest
-    container_name: household_db_ci
-    environment:
-      POSTGRES_USER: household
-      POSTGRES_PASSWORD: household
-      POSTGRES_DB: household_db_ci
-      TZ: 'Asia/Tokyo'
-    ports:
-      - 25432:5432
-    volumes:
-      - ./full/household:/docker-entrypoint-initdb.d
-      - ./docker/data/household/ci:/var/lib/postgresql/data
 volumes:
   database:
     driver: local
