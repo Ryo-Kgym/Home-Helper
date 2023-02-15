@@ -1,5 +1,19 @@
 version: "3.3"
 services:
+  home_helper_db_ci:
+    platform: linux/x86_64
+    container_name: home_helper_db_ci
+    image: mysql:latest
+    env_file:
+      - ./.env
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 23306:3306
+    volumes:
+      - ./home_helper_db/init:/docker-entrypoint-initdb.d
+      - ./volume/data/home_helper/ci:/var/lib/mysql
+      - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
+
   db:
     container_name: household-db
     restart: always
