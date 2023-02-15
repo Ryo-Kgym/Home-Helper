@@ -15,5 +15,12 @@
       <jdbc-url>jdbc:postgresql://localhost:25432/household_db_ci</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="household_db@localhost" uuid="9de4c6ca-28a7-4fd0-9524-6fd35b0e210d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/household_db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

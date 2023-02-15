@@ -33,10 +33,10 @@ create table m_category (
 
 drop table if exists m_account cascade;
 create table m_account (
-    account_id    varchar(8) not null primary key,
-    account_name  char(50)   not null,
+    account_id    varchar(8)  not null primary key,
+    account_name  varchar(50) not null,
     valid_flag    boolean default true,
-    display_order int        not null,
-    owner_user_id varchar(8) not null,
+    display_order int         not null,
+    owner_user_id varchar(8)  not null,
     constraint account_owner_user_id foreign key (owner_user_id) references m_user (user_id)
 );
