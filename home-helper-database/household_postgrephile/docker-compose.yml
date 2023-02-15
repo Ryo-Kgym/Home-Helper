@@ -1,5 +1,21 @@
 version: "3.3"
 services:
+  db:
+    container_name: household-db
+    restart: always
+    image: postgres:latest
+    build:
+      context: ./household_db
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./volume/data/household/main:/var/lib/postgresql/data
+    env_file:
+      - ./.env
+    networks:
+      - network
+    ports:
+      - "5432:5432"
+
   db_ci:
     container_name: household-db-ci
     restart: always
@@ -14,7 +30,7 @@ services:
     networks:
       - network
     ports:
-      - "5432:5432"
+      - "25432:5432"
 
   graphql:
     container_name: household-graphql
@@ -25,7 +41,7 @@ services:
     env_file:
       - ./.env
     depends_on:
-      - db_ci
+      - db
     networks:
       - network
     ports:
@@ -53,4 +69,5 @@ networks:
 volumes:
   database:
     driver: local
+  db:
   db_ci:
