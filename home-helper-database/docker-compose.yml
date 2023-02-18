@@ -74,7 +74,8 @@ services:
         "--enhance-graphiql",
         "--dynamic-json",
         "--simple-collections",
-        "only"
+        "only",
+        "--cors",
       ]
 
 networks:
