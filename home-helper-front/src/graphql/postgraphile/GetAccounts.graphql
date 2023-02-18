@@ -1,0 +1,15 @@
+query GetAccounts {
+    allMAccountsList(condition: {}, orderBy: DISPLAY_ORDER_ASC) {
+        accountId
+        accountName
+        displayOrder
+        validFlag
+        accountBalanceByAccountId {
+            balance
+        }
+        mUserByOwnerUserId {
+            userId
+            userName
+        }
+    }
+}
