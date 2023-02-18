@@ -17,150 +17,90 @@ type Query implements Node {
     nodeId: ID!
   ): Node
 
-  """Reads and enables pagination through a set of `AccountBalance`."""
-  allAccountBalances(
+  """Reads a set of `AccountBalance`."""
+  allAccountBalancesList(
     """Only read the first `n` values of the set."""
     first: Int
 
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
+    """Skip the first `n` values."""
     offset: Int
 
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
     """The method to use when ordering `AccountBalance`."""
-    orderBy: [AccountBalancesOrderBy!] = [PRIMARY_KEY_ASC]
+    orderBy: [AccountBalancesOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
     condition: AccountBalanceCondition
-  ): AccountBalancesConnection
+  ): [AccountBalance!]
 
-  """Reads and enables pagination through a set of `MAccount`."""
-  allMAccounts(
+  """Reads a set of `MAccount`."""
+  allMAccountsList(
     """Only read the first `n` values of the set."""
     first: Int
 
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
+    """Skip the first `n` values."""
     offset: Int
 
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
     """The method to use when ordering `MAccount`."""
-    orderBy: [MAccountsOrderBy!] = [PRIMARY_KEY_ASC]
+    orderBy: [MAccountsOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
     condition: MAccountCondition
-  ): MAccountsConnection
+  ): [MAccount!]
 
-  """Reads and enables pagination through a set of `MCategory`."""
-  allMCategories(
+  """Reads a set of `MCategory`."""
+  allMCategoriesList(
     """Only read the first `n` values of the set."""
     first: Int
 
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
+    """Skip the first `n` values."""
     offset: Int
 
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
     """The method to use when ordering `MCategory`."""
-    orderBy: [MCategoriesOrderBy!] = [PRIMARY_KEY_ASC]
+    orderBy: [MCategoriesOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
     condition: MCategoryCondition
-  ): MCategoriesConnection
+  ): [MCategory!]
 
-  """Reads and enables pagination through a set of `MGenre`."""
-  allMGenres(
+  """Reads a set of `MGenre`."""
+  allMGenresList(
     """Only read the first `n` values of the set."""
     first: Int
 
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
+    """Skip the first `n` values."""
     offset: Int
 
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
     """The method to use when ordering `MGenre`."""
-    orderBy: [MGenresOrderBy!] = [PRIMARY_KEY_ASC]
+    orderBy: [MGenresOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
     condition: MGenreCondition
-  ): MGenresConnection
+  ): [MGenre!]
 
-  """Reads and enables pagination through a set of `MUser`."""
-  allMUsers(
+  """Reads a set of `MUser`."""
+  allMUsersList(
     """Only read the first `n` values of the set."""
     first: Int
 
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
+    """Skip the first `n` values."""
     offset: Int
 
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
     """The method to use when ordering `MUser`."""
-    orderBy: [MUsersOrderBy!] = [PRIMARY_KEY_ASC]
+    orderBy: [MUsersOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
     condition: MUserCondition
-  ): MUsersConnection
+  ): [MUser!]
   accountBalanceByAccountId(accountId: String!): AccountBalance
   mAccountByAccountId(accountId: String!): MAccount
   mCategoryByCategoryId(categoryId: String!): MCategory
@@ -208,23 +148,6 @@ interface Node {
   nodeId: ID!
 }
 
-"""A connection to a list of `AccountBalance` values."""
-type AccountBalancesConnection {
-  """A list of `AccountBalance` objects."""
-  nodes: [AccountBalance]!
-
-  """
-  A list of edges which contains the `AccountBalance` and cursor to aid in pagination.
-  """
-  edges: [AccountBalancesEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `AccountBalance` you could get from the connection."""
-  totalCount: Int!
-}
-
 type AccountBalance implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -258,35 +181,6 @@ type MAccount implements Node {
 
   """Reads a single `AccountBalance` that is related to this `MAccount`."""
   accountBalanceByAccountId: AccountBalance
-
-  """Reads and enables pagination through a set of `AccountBalance`."""
-  accountBalancesByAccountId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `AccountBalance`."""
-    orderBy: [AccountBalancesOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: AccountBalanceCondition
-  ): AccountBalancesConnection! @deprecated(reason: "Please use accountBalanceByAccountId instead")
 }
 
 type MUser implements Node {
@@ -299,77 +193,21 @@ type MUser implements Node {
   displayOrder: Int!
 
   """Reads and enables pagination through a set of `MAccount`."""
-  mAccountsByOwnerUserId(
+  mAccountsByOwnerUserIdList(
     """Only read the first `n` values of the set."""
     first: Int
 
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
+    """Skip the first `n` values."""
     offset: Int
 
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
     """The method to use when ordering `MAccount`."""
-    orderBy: [MAccountsOrderBy!] = [PRIMARY_KEY_ASC]
+    orderBy: [MAccountsOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
     condition: MAccountCondition
-  ): MAccountsConnection!
-}
-
-"""A connection to a list of `MAccount` values."""
-type MAccountsConnection {
-  """A list of `MAccount` objects."""
-  nodes: [MAccount]!
-
-  """
-  A list of edges which contains the `MAccount` and cursor to aid in pagination.
-  """
-  edges: [MAccountsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `MAccount` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `MAccount` edge in the connection."""
-type MAccountsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `MAccount` at the end of the edge."""
-  node: MAccount
-}
-
-"""A location in a connection that can be used for resuming pagination."""
-scalar Cursor
-
-"""Information about pagination in a connection."""
-type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: Cursor
-
-  """When paginating forwards, the cursor to continue."""
-  endCursor: Cursor
+  ): [MAccount!]!
 }
 
 """Methods to use when ordering `MAccount`."""
@@ -433,32 +271,6 @@ input AccountBalanceCondition {
   balance: BigFloat
 }
 
-"""A `AccountBalance` edge in the connection."""
-type AccountBalancesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `AccountBalance` at the end of the edge."""
-  node: AccountBalance
-}
-
-"""A connection to a list of `MCategory` values."""
-type MCategoriesConnection {
-  """A list of `MCategory` objects."""
-  nodes: [MCategory]!
-
-  """
-  A list of edges which contains the `MCategory` and cursor to aid in pagination.
-  """
-  edges: [MCategoriesEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `MCategory` you could get from the connection."""
-  totalCount: Int!
-}
-
 type MCategory implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -487,33 +299,21 @@ type MGenre implements Node {
   displayOrder: Int!
 
   """Reads and enables pagination through a set of `MCategory`."""
-  mCategoriesByGenreId(
+  mCategoriesByGenreIdList(
     """Only read the first `n` values of the set."""
     first: Int
 
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
+    """Skip the first `n` values."""
     offset: Int
 
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
     """The method to use when ordering `MCategory`."""
-    orderBy: [MCategoriesOrderBy!] = [PRIMARY_KEY_ASC]
+    orderBy: [MCategoriesOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
     condition: MCategoryCondition
-  ): MCategoriesConnection!
+  ): [MCategory!]!
 }
 
 enum GenreType {
@@ -564,41 +364,6 @@ input MCategoryCondition {
   displayOrder: Int
 }
 
-"""A `MCategory` edge in the connection."""
-type MCategoriesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `MCategory` at the end of the edge."""
-  node: MCategory
-}
-
-"""A connection to a list of `MGenre` values."""
-type MGenresConnection {
-  """A list of `MGenre` objects."""
-  nodes: [MGenre]!
-
-  """
-  A list of edges which contains the `MGenre` and cursor to aid in pagination.
-  """
-  edges: [MGenresEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `MGenre` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `MGenre` edge in the connection."""
-type MGenresEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `MGenre` at the end of the edge."""
-  node: MGenre
-}
-
 """Methods to use when ordering `MGenre`."""
 enum MGenresOrderBy {
   NATURAL
@@ -639,32 +404,6 @@ input MGenreCondition {
 
   """Checks for equality with the object’s `displayOrder` field."""
   displayOrder: Int
-}
-
-"""A connection to a list of `MUser` values."""
-type MUsersConnection {
-  """A list of `MUser` objects."""
-  nodes: [MUser]!
-
-  """
-  A list of edges which contains the `MUser` and cursor to aid in pagination.
-  """
-  edges: [MUsersEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `MUser` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `MUser` edge in the connection."""
-type MUsersEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `MUser` at the end of the edge."""
-  node: MUser
 }
 
 """Methods to use when ordering `MUser`."""
@@ -919,12 +658,6 @@ type CreateAccountBalancePayload {
 
   """Reads a single `MAccount` that is related to this `AccountBalance`."""
   mAccountByAccountId: MAccount
-
-  """An edge for our `AccountBalance`. May be used by Relay 1."""
-  accountBalanceEdge(
-    """The method to use when ordering `AccountBalance`."""
-    orderBy: [AccountBalancesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AccountBalancesEdge
 }
 
 """All input for the create `AccountBalance` mutation."""
@@ -963,12 +696,6 @@ type CreateMAccountPayload {
 
   """Reads a single `MUser` that is related to this `MAccount`."""
   mUserByOwnerUserId: MUser
-
-  """An edge for our `MAccount`. May be used by Relay 1."""
-  mAccountEdge(
-    """The method to use when ordering `MAccount`."""
-    orderBy: [MAccountsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MAccountsEdge
 }
 
 """All input for the create `MAccount` mutation."""
@@ -1010,12 +737,6 @@ type CreateMCategoryPayload {
 
   """Reads a single `MGenre` that is related to this `MCategory`."""
   mGenreByGenreId: MGenre
-
-  """An edge for our `MCategory`. May be used by Relay 1."""
-  mCategoryEdge(
-    """The method to use when ordering `MCategory`."""
-    orderBy: [MCategoriesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MCategoriesEdge
 }
 
 """All input for the create `MCategory` mutation."""
@@ -1054,12 +775,6 @@ type CreateMGenrePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """An edge for our `MGenre`. May be used by Relay 1."""
-  mGenreEdge(
-    """The method to use when ordering `MGenre`."""
-    orderBy: [MGenresOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MGenresEdge
 }
 
 """All input for the create `MGenre` mutation."""
@@ -1099,12 +814,6 @@ type CreateMUserPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """An edge for our `MUser`. May be used by Relay 1."""
-  mUserEdge(
-    """The method to use when ordering `MUser`."""
-    orderBy: [MUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MUsersEdge
 }
 
 """All input for the create `MUser` mutation."""
@@ -1144,12 +853,6 @@ type UpdateAccountBalancePayload {
 
   """Reads a single `MAccount` that is related to this `AccountBalance`."""
   mAccountByAccountId: MAccount
-
-  """An edge for our `AccountBalance`. May be used by Relay 1."""
-  accountBalanceEdge(
-    """The method to use when ordering `AccountBalance`."""
-    orderBy: [AccountBalancesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AccountBalancesEdge
 }
 
 """All input for the `updateAccountBalance` mutation."""
@@ -1212,12 +915,6 @@ type UpdateMAccountPayload {
 
   """Reads a single `MUser` that is related to this `MAccount`."""
   mUserByOwnerUserId: MUser
-
-  """An edge for our `MAccount`. May be used by Relay 1."""
-  mAccountEdge(
-    """The method to use when ordering `MAccount`."""
-    orderBy: [MAccountsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MAccountsEdge
 }
 
 """All input for the `updateMAccount` mutation."""
@@ -1283,12 +980,6 @@ type UpdateMCategoryPayload {
 
   """Reads a single `MGenre` that is related to this `MCategory`."""
   mGenreByGenreId: MGenre
-
-  """An edge for our `MCategory`. May be used by Relay 1."""
-  mCategoryEdge(
-    """The method to use when ordering `MCategory`."""
-    orderBy: [MCategoriesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MCategoriesEdge
 }
 
 """All input for the `updateMCategory` mutation."""
@@ -1351,12 +1042,6 @@ type UpdateMGenrePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """An edge for our `MGenre`. May be used by Relay 1."""
-  mGenreEdge(
-    """The method to use when ordering `MGenre`."""
-    orderBy: [MGenresOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MGenresEdge
 }
 
 """All input for the `updateMGenre` mutation."""
@@ -1420,12 +1105,6 @@ type UpdateMUserPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """An edge for our `MUser`. May be used by Relay 1."""
-  mUserEdge(
-    """The method to use when ordering `MUser`."""
-    orderBy: [MUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MUsersEdge
 }
 
 """All input for the `updateMUser` mutation."""
@@ -1490,12 +1169,6 @@ type DeleteAccountBalancePayload {
 
   """Reads a single `MAccount` that is related to this `AccountBalance`."""
   mAccountByAccountId: MAccount
-
-  """An edge for our `AccountBalance`. May be used by Relay 1."""
-  accountBalanceEdge(
-    """The method to use when ordering `AccountBalance`."""
-    orderBy: [AccountBalancesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): AccountBalancesEdge
 }
 
 """All input for the `deleteAccountBalance` mutation."""
@@ -1541,12 +1214,6 @@ type DeleteMAccountPayload {
 
   """Reads a single `MUser` that is related to this `MAccount`."""
   mUserByOwnerUserId: MUser
-
-  """An edge for our `MAccount`. May be used by Relay 1."""
-  mAccountEdge(
-    """The method to use when ordering `MAccount`."""
-    orderBy: [MAccountsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MAccountsEdge
 }
 
 """All input for the `deleteMAccount` mutation."""
@@ -1592,12 +1259,6 @@ type DeleteMCategoryPayload {
 
   """Reads a single `MGenre` that is related to this `MCategory`."""
   mGenreByGenreId: MGenre
-
-  """An edge for our `MCategory`. May be used by Relay 1."""
-  mCategoryEdge(
-    """The method to use when ordering `MCategory`."""
-    orderBy: [MCategoriesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MCategoriesEdge
 }
 
 """All input for the `deleteMCategory` mutation."""
@@ -1640,12 +1301,6 @@ type DeleteMGenrePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """An edge for our `MGenre`. May be used by Relay 1."""
-  mGenreEdge(
-    """The method to use when ordering `MGenre`."""
-    orderBy: [MGenresOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MGenresEdge
 }
 
 """All input for the `deleteMGenre` mutation."""
@@ -1688,12 +1343,6 @@ type DeleteMUserPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
-
-  """An edge for our `MUser`. May be used by Relay 1."""
-  mUserEdge(
-    """The method to use when ordering `MUser`."""
-    orderBy: [MUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): MUsersEdge
 }
 
 """All input for the `deleteMUser` mutation."""
