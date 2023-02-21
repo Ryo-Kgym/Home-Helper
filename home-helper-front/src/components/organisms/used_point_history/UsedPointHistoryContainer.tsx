@@ -4,7 +4,7 @@
 
 import { FC, useEffect, useState } from "react";
 import { PointHistory } from "@domain/model/home_helper/PointHistory";
-import { TbodyProps } from "@components/atoms/Table";
+import { TableProps } from "@components/atoms/Table";
 import { UsedPointHistoryPresenter } from "./UsedPointHistoryPresenter";
 import { fetchHelpPointExchangedAchievements } from "@hooks/help_point/fetchHelpPointExchangedAchievements";
 
@@ -26,7 +26,7 @@ export const UsedPointHistoryContainer: FC = () => {
     });
   }, []);
 
-  const tbodyProps: TbodyProps[] = pointHistories.map((pointHistory) => {
+  const tableProps: TableProps[] = pointHistories.map((pointHistory) => {
     return {
       keyPrefix: "usedPointHistory",
       columns: [
@@ -40,7 +40,7 @@ export const UsedPointHistoryContainer: FC = () => {
     };
   });
 
-  return <UsedPointHistoryPresenter tbodyProps={tbodyProps} />;
+  return <UsedPointHistoryPresenter tableProps={tableProps} />;
 };
 
 const formatPoint = (point: number): string => {

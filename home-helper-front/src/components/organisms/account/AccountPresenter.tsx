@@ -1,13 +1,13 @@
 import { FC } from "react";
-import { Table, TbodyProps } from "@components/atoms/Table";
+import { Table, TableProps } from "@components/atoms/Table";
 
 type AccountPresenterProps = {
-  tbodyProps: TbodyProps[];
+  tableProps: TableProps[];
 };
-export const AccountPresenter: FC<AccountPresenterProps> = ({ tbodyProps }) => {
+export const AccountPresenter: FC<AccountPresenterProps> = ({ tableProps }) => {
   return (
     <>
-      <Table header={["アカウント", "残高"]} tbodyPropsArray={tbodyProps} />
+      <Table header={["アカウント", "残高"]} tablePropsList={tableProps} />
     </>
   );
 };

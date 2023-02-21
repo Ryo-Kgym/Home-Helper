@@ -2,14 +2,14 @@ import { Flex } from "@mantine/core";
 import { FC } from "react";
 import styles from "./styles.module.scss";
 import { UpdateNotification } from "@components/atoms/UpdateNotification";
-import { Table, TbodyProps } from "@components/atoms/Table";
+import { Table, TableProps } from "@components/atoms/Table";
 
 type ConsumePointPresenterProps = {
   currentPoint: number;
   totalUsePoint: number;
   handleRequest: () => void;
   handleRegisterAfterProcess: () => void;
-  tbodyProps: TbodyProps[];
+  tableProps: TableProps[];
 };
 
 export const ExchangePointPresenter: FC<ConsumePointPresenterProps> = ({
@@ -17,11 +17,11 @@ export const ExchangePointPresenter: FC<ConsumePointPresenterProps> = ({
   totalUsePoint,
   handleRequest,
   handleRegisterAfterProcess,
-  tbodyProps,
+  tableProps,
 }) => {
   return (
     <>
-      <ExchangeTable tbodyProps={tbodyProps} />
+      <ExchangeTable tableProps={tableProps} />
       <LeavePointBox
         currentPoint={currentPoint}
         totalUsePoint={totalUsePoint}
@@ -33,8 +33,8 @@ export const ExchangePointPresenter: FC<ConsumePointPresenterProps> = ({
 };
 
 const header = ["交換品", "ポイント", "交換数"];
-const ExchangeTable = ({ tbodyProps }: { tbodyProps: TbodyProps[] }) => (
-  <Table header={header} tbodyPropsArray={tbodyProps} height={"40vh"} />
+const ExchangeTable = ({ tableProps }: { tableProps: TableProps[] }) => (
+  <Table header={header} tablePropsList={tableProps} height={"40vh"} />
 );
 
 const FormulaFlex = ({ label, point }: { label: string; point: number }) => (

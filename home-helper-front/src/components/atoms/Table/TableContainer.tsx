@@ -1,16 +1,15 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { TablePresenter } from "@components/atoms/Table/TablePresenter";
-import { ColumnProps, TbodyProps } from "@components/atoms/Table/index";
-import { createStyles, ScrollArea } from "@mantine/core";
+import { ColumnProps, TableProps } from "@components/atoms/Table/index";
 
 type Props = {
   header: string[];
-  tbodyPropsArray: TbodyProps[];
+  tablePropsList: TableProps[];
   height?: string;
 };
 export const TableContainer: FC<Props> = ({
   header,
-  tbodyPropsArray,
+  tablePropsList,
   height = "80vh",
 }) => {
   const thead = (
@@ -21,7 +20,7 @@ export const TableContainer: FC<Props> = ({
     </tr>
   );
 
-  const generateRow = (tbodyProps: TbodyProps, i: number) => {
+  const generateRow = (tbodyProps: TableProps, i: number) => {
     return (
       <tr key={tbodyProps.keyPrefix + i}>
         {tbodyProps.columns.map(generateColumn)}
@@ -41,7 +40,7 @@ export const TableContainer: FC<Props> = ({
     );
   };
 
-  const tbody = <tbody>{tbodyPropsArray.map(generateRow)}</tbody>;
+  const tbody = <tbody>{tablePropsList.map(generateRow)}</tbody>;
 
   return (
     <TablePresenter

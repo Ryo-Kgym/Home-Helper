@@ -1,17 +1,17 @@
 import { FC } from "react";
-import { Table, TbodyProps } from "@components/atoms/Table";
+import { Table, TableProps } from "@components/atoms/Table";
 
 type CategoryPresenterProps = {
-  tbodyProps: TbodyProps[];
+  tableProps: TableProps[];
 };
 export const CategoryPresenter: FC<CategoryPresenterProps> = ({
-  tbodyProps,
+  tableProps,
 }) => {
   return (
     <>
       <Table
         header={["収入", "ジャンル", "カテゴリ", "金額"]}
-        tbodyPropsArray={tbodyProps}
+        tablePropsList={tableProps}
       />
     </>
   );

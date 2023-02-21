@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Flex } from "@mantine/core";
 import styles from "./styles.module.scss";
 import { UpdateNotification } from "@components/atoms/UpdateNotification";
-import { Table, TbodyProps } from "@components/atoms/Table";
+import { Table, TableProps } from "@components/atoms/Table";
 
 type ChargePointPresenterProps = {
   fromDate: string;
@@ -10,7 +10,7 @@ type ChargePointPresenterProps = {
   totalPoint: number;
   handleRegisterHelps: () => void;
   handleRegisterAfterProcess: () => void;
-  tbodyProps: TbodyProps[];
+  tableProps: TableProps[];
 };
 
 export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
@@ -19,12 +19,12 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
   totalPoint,
   handleRegisterHelps,
   handleRegisterAfterProcess,
-  tbodyProps,
+  tableProps,
 }) => {
   return (
     <>
       <Title fromDate={fromDate} />
-      <HelpItemTable tbodyProps={tbodyProps} />
+      <HelpItemTable tbodyProps={tableProps} />
       <TotalPointBox
         currentPoint={currentPoint}
         totalUsePoint={totalPoint}
@@ -37,8 +37,8 @@ export const ChargePointPresenter: FC<ChargePointPresenterProps> = ({
 
 const header = ["お手伝い", "ポイント", "回数"];
 
-const HelpItemTable = ({ tbodyProps }: { tbodyProps: TbodyProps[] }) => (
-  <Table header={header} tbodyPropsArray={tbodyProps} height={"40vh"} />
+const HelpItemTable = ({ tbodyProps }: { tbodyProps: TableProps[] }) => (
+  <Table header={header} tablePropsList={tbodyProps} height={"40vh"} />
 );
 
 const Title = ({ fromDate }: { fromDate: string }) => {

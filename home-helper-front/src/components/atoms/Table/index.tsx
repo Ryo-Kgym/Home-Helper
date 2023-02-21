@@ -1,6 +1,6 @@
 export { TableContainer as Table } from "./TableContainer";
 
-export type TbodyProps = {
+export type TableProps = {
   keyPrefix: string;
   columns: ColumnProps[];
 };

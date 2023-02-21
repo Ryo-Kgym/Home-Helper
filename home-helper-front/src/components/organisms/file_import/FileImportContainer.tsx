@@ -1,9 +1,9 @@
 import { FileImportPresenter } from "@components/organisms/file_import/FileImportPresenter";
-import { TbodyProps } from "@components/atoms/Table";
+import { TableProps } from "@components/atoms/Table";
 import category from "@pages/household/category";
 
 export const FileImportContainer = () => {
-  const tableProps: TbodyProps[] = mockImported.map((d) => {
+  const tableProps: TableProps[] = mockImported.map((d) => {
     return {
       keyPrefix: "category",
       columns: [
@@ -17,7 +17,7 @@ export const FileImportContainer = () => {
   });
 
   return (
-    <FileImportPresenter tbodyProps={tableProps} yearMonths={mockYearMonth} />
+    <FileImportPresenter tableProps={tableProps} yearMonths={mockYearMonth} />
   );
 };
 

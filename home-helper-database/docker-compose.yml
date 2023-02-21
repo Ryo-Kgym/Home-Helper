@@ -1,22 +1,88 @@
-version: '3'
+version: "3.3"
 services:
-  mysql_ci:
+  home_helper_db_ci:
     platform: linux/x86_64
     container_name: home_helper_db_ci
     image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: home_helper_db_ci
-      MYSQL_USER: home_helper
-      MYSQL_PASSWORD: home_helper
-      TZ: 'Asia/Tokyo'
+    env_file:
+      - .env
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
       - 23306:3306
     volumes:
-      - ./full:/docker-entrypoint-initdb.d
-      - ./docker/data/ci:/var/lib/mysql
+      - ./home_helper_db/init:/docker-entrypoint-initdb.d
+      - ./volume/data/home_helper/ci:/var/lib/mysql
       - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
+
+  db:
+    container_name: household-db
+    restart: always
+    image: postgres:latest
+    build:
+      context: household_db
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./volume/data/household/main:/var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - network
+    ports:
+      - "5432:5432"
+
+  db_ci:
+    container_name: household-db-ci
+    restart: always
+    image: postgres:latest
+    build:
+      context: household_db
+    volumes:
+      - db_ci:/var/lib/postgresql/data
+      - ./volume/data/household/ci:/var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - network
+    ports:
+      - "25432:5432"
+
+  graphql:
+    container_name: household-graphql
+    restart: always
+    image: household-graphql
+    build:
+      context: graphql
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - network
+    ports:
+      - "5001:5001"
+    command:
+      [
+        "--connection",
+        "${DATABASE_URL}",
+        "--port",
+        "5001",
+        "--schema",
+        "public",
+        "--append-plugins",
+        "postgraphile-plugin-connection-filter",
+        "--watch",
+        "--enhance-graphiql",
+        "--dynamic-json",
+        "--simple-collections",
+        "only",
+        "--cors",
+      ]
+
+networks:
+  network:
+
 volumes:
   database:
     driver: local
+  db:
+  db_ci:
