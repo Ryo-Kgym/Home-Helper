@@ -1,12 +1,13 @@
 import { AccountPresenter } from "@components/organisms/account/AccountPresenter";
 import { TbodyProps } from "@components/atoms/Table";
 import { useGetAccountsQuery } from "@graphql/postgraphile/generated/graphql";
+import { Fetching } from "@components/molecules/Fetching";
+import { FetchError } from "@components/molecules/FetchError";
 
 export const AccountContainer = () => {
   const [{ data, fetching, error }] = useGetAccountsQuery();
-  // TODO loading, error の処理を別コンポに委譲
-  if (fetching) return <div>loading...</div>;
-  if (error) return <div>{error.message}</div>;
+  if (fetching) return <Fetching />;
+  if (error) return <FetchError error={error} />;
 
   const tbodyProps: TbodyProps[] =
     data?.allMAccountsList?.map((account) => {
