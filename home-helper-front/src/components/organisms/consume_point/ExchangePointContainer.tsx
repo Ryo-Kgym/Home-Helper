@@ -11,7 +11,7 @@ import {
   exchangeHelpPoint,
   ExchangePointForm,
 } from "@hooks/help_point/exchangeHelpPoint";
-import { TbodyProps } from "@components/atoms/Table";
+import { TableProps } from "@components/atoms/Table";
 import { Counter } from "@components/atoms/Counter";
 
 export const ExchangePointContainer = () => {
@@ -60,7 +60,7 @@ export const ExchangePointContainer = () => {
     return 0;
   };
 
-  const tbodyProps: TbodyProps[] = exchangeItems.map((exchangeItem) => {
+  const tableProps: TableProps[] = exchangeItems.map((exchangeItem) => {
     return {
       keyPrefix: "exchangeItem",
       columns: [
@@ -90,7 +90,7 @@ export const ExchangePointContainer = () => {
       totalUsePoint={totalUsePoint}
       handleRequest={handleRequest}
       handleRegisterAfterProcess={handleRegisterAfterProcess}
-      tbodyProps={tbodyProps}
+      tableProps={tableProps}
     />
   );
 };

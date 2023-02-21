@@ -1,10 +1,10 @@
-import { TbodyProps } from "@components/atoms/Table";
+import { TableProps } from "@components/atoms/Table";
 import { CategoryPresenter } from "@components/organisms/category/CategoryPresenter";
 import { PriceByCategory } from "@domain/model/household/Category";
 import { IocomeType } from "@domain/model/household/IocomeType";
 
 export const CategoryContainer = () => {
-  const tbodyProps: TbodyProps[] = mockCategory.map((category) => {
+  const tableProps: TableProps[] = mockCategory.map((category) => {
     return {
       keyPrefix: "category",
       columns: [
@@ -16,7 +16,7 @@ export const CategoryContainer = () => {
     };
   });
 
-  return <CategoryPresenter tbodyProps={tbodyProps} />;
+  return <CategoryPresenter tableProps={tableProps} />;
 };
 const mockCategory: PriceByCategory[] = [
   {

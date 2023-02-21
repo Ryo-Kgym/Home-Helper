@@ -1,14 +1,14 @@
 import { FC } from "react";
-import { Table, TbodyProps } from "@components/atoms/Table";
+import { Table, TableProps } from "@components/atoms/Table";
 import { GridTable } from "@components/molecules/GridTable";
 
 type FileImportPresenterProps = {
-  tbodyProps: TbodyProps[];
+  tableProps: TableProps[];
   yearMonths: any[];
 };
 export const FileImportPresenter: FC<FileImportPresenterProps> = ({
   yearMonths,
-  tbodyProps,
+  tableProps,
 }) => {
   return (
     <>
@@ -22,7 +22,7 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
       <div>
         <Table
           header={["決済日", "備考", "支出金額", "ジャンル", "カテゴリ"]}
-          tbodyPropsArray={tbodyProps}
+          tablePropsList={tableProps}
         />
       </div>
     </>

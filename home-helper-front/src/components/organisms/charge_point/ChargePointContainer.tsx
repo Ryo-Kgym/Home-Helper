@@ -12,7 +12,7 @@ import {
   ChargePointForm,
   registerHelpPoint,
 } from "@hooks/help_point/registerHelpPoint";
-import { TbodyProps } from "@components/atoms/Table";
+import { TableProps } from "@components/atoms/Table";
 import { Counter } from "@components/atoms/Counter";
 
 export const ChargePointContainer: FC = () => {
@@ -59,7 +59,7 @@ export const ChargePointContainer: FC = () => {
     return 0;
   };
 
-  const tbodyProps: TbodyProps[] = helpItems.map((helpItem) => {
+  const tableProps: TableProps[] = helpItems.map((helpItem) => {
     return {
       keyPrefix: "helpItem",
       columns: [
@@ -86,7 +86,7 @@ export const ChargePointContainer: FC = () => {
       currentPoint={currentPoint}
       handleRegisterHelps={handleRegisterHelps}
       handleRegisterAfterProcess={handleRegisterAfterProcess}
-      tbodyProps={tbodyProps}
+      tableProps={tableProps}
     />
   );
 };

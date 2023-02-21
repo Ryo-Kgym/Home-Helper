@@ -1,5 +1,5 @@
 import { AccountPresenter } from "@components/organisms/account/AccountPresenter";
-import { TbodyProps } from "@components/atoms/Table";
+import { TableProps } from "@components/atoms/Table";
 import { useGetAccountsQuery } from "@graphql/postgraphile/generated/graphql";
 import { Fetching } from "@components/molecules/Fetching";
 import { FetchError } from "@components/molecules/FetchError";
@@ -9,7 +9,7 @@ export const AccountContainer = () => {
   if (fetching) return <Fetching />;
   if (error) return <FetchError error={error} />;
 
-  const tbodyProps: TbodyProps[] =
+  const tableProps: TableProps[] =
     data?.allMAccountsList?.map((account) => {
       return {
         keyPrefix: "account",
@@ -25,5 +25,5 @@ export const AccountContainer = () => {
       };
     }) ?? [];
 
-  return <AccountPresenter tbodyProps={tbodyProps} />;
+  return <AccountPresenter tableProps={tableProps} />;
 };
