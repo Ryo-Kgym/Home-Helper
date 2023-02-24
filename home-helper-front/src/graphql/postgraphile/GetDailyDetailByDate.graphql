@@ -1,0 +1,25 @@
+query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
+    dailyDetailByDateList(fromDate: $fromDate, toDate: $toDate) {
+        date
+        amount
+        memo
+        mCategoryByCategoryId {
+            categoryId
+            categoryName
+            mGenreByGenreId {
+                genreId
+                genreName
+                genreType
+                iocomeType
+            }
+        }
+        mAccountByAccountId {
+            accountId
+            accountName
+        }
+        mUserByUserId {
+            userId
+            userName
+        }
+    }
+}

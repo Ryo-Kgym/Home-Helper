@@ -20,6 +20,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   BigFloat: any;
+  Date: any;
 };
 
 export type AccountBalance = Node & {
@@ -159,6 +160,37 @@ export type CreateAccountBalancePayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the create `DailyDetail` mutation. */
+export type CreateDailyDetailInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The `DailyDetail` to be created by this mutation. */
+  dailyDetail: DailyDetailInput;
+};
+
+/** The output of our create `DailyDetail` mutation. */
+export type CreateDailyDetailPayload = {
+  __typename?: "CreateDailyDetailPayload";
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `DailyDetail` that was created by this mutation. */
+  dailyDetail?: Maybe<DailyDetail>;
+  /** Reads a single `MAccount` that is related to this `DailyDetail`. */
+  mAccountByAccountId?: Maybe<MAccount>;
+  /** Reads a single `MCategory` that is related to this `DailyDetail`. */
+  mCategoryByCategoryId?: Maybe<MCategory>;
+  /** Reads a single `MUser` that is related to this `DailyDetail`. */
+  mUserByUserId?: Maybe<MUser>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
 /** All input for the create `MAccount` mutation. */
 export type CreateMAccountInput = {
   /**
@@ -263,6 +295,139 @@ export type CreateMUserPayload = {
   query?: Maybe<Query>;
 };
 
+export type DailyDetail = Node & {
+  __typename?: "DailyDetail";
+  accountId: Scalars["String"];
+  amount: Scalars["BigFloat"];
+  categoryId: Scalars["String"];
+  date: Scalars["Date"];
+  /** Reads a single `MAccount` that is related to this `DailyDetail`. */
+  mAccountByAccountId?: Maybe<MAccount>;
+  /** Reads a single `MCategory` that is related to this `DailyDetail`. */
+  mCategoryByCategoryId?: Maybe<MCategory>;
+  /** Reads a single `MUser` that is related to this `DailyDetail`. */
+  mUserByUserId?: Maybe<MUser>;
+  memo?: Maybe<Scalars["String"]>;
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars["ID"];
+  serialNo: Scalars["Int"];
+  userId: Scalars["String"];
+};
+
+/**
+ * A condition to be used against `DailyDetail` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ */
+export type DailyDetailCondition = {
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `amount` field. */
+  amount?: InputMaybe<Scalars["BigFloat"]>;
+  /** Checks for equality with the object’s `categoryId` field. */
+  categoryId?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `date` field. */
+  date?: InputMaybe<Scalars["Date"]>;
+  /** Checks for equality with the object’s `memo` field. */
+  memo?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `serialNo` field. */
+  serialNo?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: InputMaybe<Scalars["String"]>;
+};
+
+/** A filter to be used against `DailyDetail` object types. All fields are combined with a logical ‘and.’ */
+export type DailyDetailFilter = {
+  /** Filter by the object’s `accountId` field. */
+  accountId?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `amount` field. */
+  amount?: InputMaybe<BigFloatFilter>;
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<DailyDetailFilter>>;
+  /** Filter by the object’s `categoryId` field. */
+  categoryId?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `date` field. */
+  date?: InputMaybe<DateFilter>;
+  /** Filter by the object’s `memo` field. */
+  memo?: InputMaybe<StringFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<DailyDetailFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<DailyDetailFilter>>;
+  /** Filter by the object’s `serialNo` field. */
+  serialNo?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: InputMaybe<StringFilter>;
+};
+
+/** An input for mutations affecting `DailyDetail` */
+export type DailyDetailInput = {
+  accountId: Scalars["String"];
+  amount: Scalars["BigFloat"];
+  categoryId: Scalars["String"];
+  date: Scalars["Date"];
+  memo?: InputMaybe<Scalars["String"]>;
+  serialNo?: InputMaybe<Scalars["Int"]>;
+  userId: Scalars["String"];
+};
+
+/** Represents an update to a `DailyDetail`. Fields that are set will be updated. */
+export type DailyDetailPatch = {
+  accountId?: InputMaybe<Scalars["String"]>;
+  amount?: InputMaybe<Scalars["BigFloat"]>;
+  categoryId?: InputMaybe<Scalars["String"]>;
+  date?: InputMaybe<Scalars["Date"]>;
+  memo?: InputMaybe<Scalars["String"]>;
+  serialNo?: InputMaybe<Scalars["Int"]>;
+  userId?: InputMaybe<Scalars["String"]>;
+};
+
+/** Methods to use when ordering `DailyDetail`. */
+export enum DailyDetailsOrderBy {
+  AccountIdAsc = "ACCOUNT_ID_ASC",
+  AccountIdDesc = "ACCOUNT_ID_DESC",
+  AmountAsc = "AMOUNT_ASC",
+  AmountDesc = "AMOUNT_DESC",
+  CategoryIdAsc = "CATEGORY_ID_ASC",
+  CategoryIdDesc = "CATEGORY_ID_DESC",
+  DateAsc = "DATE_ASC",
+  DateDesc = "DATE_DESC",
+  MemoAsc = "MEMO_ASC",
+  MemoDesc = "MEMO_DESC",
+  Natural = "NATURAL",
+  PrimaryKeyAsc = "PRIMARY_KEY_ASC",
+  PrimaryKeyDesc = "PRIMARY_KEY_DESC",
+  SerialNoAsc = "SERIAL_NO_ASC",
+  SerialNoDesc = "SERIAL_NO_DESC",
+  UserIdAsc = "USER_ID_ASC",
+  UserIdDesc = "USER_ID_DESC",
+}
+
+/** A filter to be used against Date fields. All fields are combined with a logical ‘and.’ */
+export type DateFilter = {
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: InputMaybe<Scalars["Date"]>;
+  /** Equal to the specified value. */
+  equalTo?: InputMaybe<Scalars["Date"]>;
+  /** Greater than the specified value. */
+  greaterThan?: InputMaybe<Scalars["Date"]>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: InputMaybe<Scalars["Date"]>;
+  /** Included in the specified list. */
+  in?: InputMaybe<Array<Scalars["Date"]>>;
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: InputMaybe<Scalars["Boolean"]>;
+  /** Less than the specified value. */
+  lessThan?: InputMaybe<Scalars["Date"]>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: InputMaybe<Scalars["Date"]>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: InputMaybe<Scalars["Date"]>;
+  /** Not equal to the specified value. */
+  notEqualTo?: InputMaybe<Scalars["Date"]>;
+  /** Not included in the specified list. */
+  notIn?: InputMaybe<Array<Scalars["Date"]>>;
+};
+
 /** All input for the `deleteAccountBalanceByAccountId` mutation. */
 export type DeleteAccountBalanceByAccountIdInput = {
   accountId: Scalars["String"];
@@ -297,6 +462,48 @@ export type DeleteAccountBalancePayload = {
   deletedAccountBalanceId?: Maybe<Scalars["ID"]>;
   /** Reads a single `MAccount` that is related to this `AccountBalance`. */
   mAccountByAccountId?: Maybe<MAccount>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+/** All input for the `deleteDailyDetailBySerialNo` mutation. */
+export type DeleteDailyDetailBySerialNoInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  serialNo: Scalars["Int"];
+};
+
+/** All input for the `deleteDailyDetail` mutation. */
+export type DeleteDailyDetailInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The globally unique `ID` which will identify a single `DailyDetail` to be deleted. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our delete `DailyDetail` mutation. */
+export type DeleteDailyDetailPayload = {
+  __typename?: "DeleteDailyDetailPayload";
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `DailyDetail` that was deleted by this mutation. */
+  dailyDetail?: Maybe<DailyDetail>;
+  deletedDailyDetailId?: Maybe<Scalars["ID"]>;
+  /** Reads a single `MAccount` that is related to this `DailyDetail`. */
+  mAccountByAccountId?: Maybe<MAccount>;
+  /** Reads a single `MCategory` that is related to this `DailyDetail`. */
+  mCategoryByCategoryId?: Maybe<MCategory>;
+  /** Reads a single `MUser` that is related to this `DailyDetail`. */
+  mUserByUserId?: Maybe<MUser>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
@@ -543,6 +750,8 @@ export type MAccount = Node & {
   accountBalanceByAccountId?: Maybe<AccountBalance>;
   accountId: Scalars["String"];
   accountName: Scalars["String"];
+  /** Reads and enables pagination through a set of `DailyDetail`. */
+  dailyDetailsByAccountIdList: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
   /** Reads a single `MUser` that is related to this `MAccount`. */
   mUserByOwnerUserId?: Maybe<MUser>;
@@ -550,6 +759,14 @@ export type MAccount = Node & {
   nodeId: Scalars["ID"];
   ownerUserId: Scalars["String"];
   validFlag?: Maybe<Scalars["Boolean"]>;
+};
+
+export type MAccountDailyDetailsByAccountIdListArgs = {
+  condition?: InputMaybe<DailyDetailCondition>;
+  filter?: InputMaybe<DailyDetailFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailsOrderBy>>;
 };
 
 /**
@@ -645,6 +862,8 @@ export type MCategory = Node & {
   __typename?: "MCategory";
   categoryId: Scalars["String"];
   categoryName: Scalars["String"];
+  /** Reads and enables pagination through a set of `DailyDetail`. */
+  dailyDetailsByCategoryIdList: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
   genreId: Scalars["String"];
   /** Reads a single `MGenre` that is related to this `MCategory`. */
@@ -652,6 +871,14 @@ export type MCategory = Node & {
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
   nodeId: Scalars["ID"];
   validFlag?: Maybe<Scalars["Boolean"]>;
+};
+
+export type MCategoryDailyDetailsByCategoryIdListArgs = {
+  condition?: InputMaybe<DailyDetailCondition>;
+  filter?: InputMaybe<DailyDetailFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailsOrderBy>>;
 };
 
 /**
@@ -810,6 +1037,8 @@ export enum MGenresOrderBy {
 
 export type MUser = Node & {
   __typename?: "MUser";
+  /** Reads and enables pagination through a set of `DailyDetail`. */
+  dailyDetailsByUserIdList: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
   /** Reads and enables pagination through a set of `MAccount`. */
   mAccountsByOwnerUserIdList: Array<MAccount>;
@@ -817,6 +1046,14 @@ export type MUser = Node & {
   nodeId: Scalars["ID"];
   userId: Scalars["String"];
   userName: Scalars["String"];
+};
+
+export type MUserDailyDetailsByUserIdListArgs = {
+  condition?: InputMaybe<DailyDetailCondition>;
+  filter?: InputMaybe<DailyDetailFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailsOrderBy>>;
 };
 
 export type MUserMAccountsByOwnerUserIdListArgs = {
@@ -885,6 +1122,8 @@ export type Mutation = {
   __typename?: "Mutation";
   /** Creates a single `AccountBalance`. */
   createAccountBalance?: Maybe<CreateAccountBalancePayload>;
+  /** Creates a single `DailyDetail`. */
+  createDailyDetail?: Maybe<CreateDailyDetailPayload>;
   /** Creates a single `MAccount`. */
   createMAccount?: Maybe<CreateMAccountPayload>;
   /** Creates a single `MCategory`. */
@@ -897,6 +1136,10 @@ export type Mutation = {
   deleteAccountBalance?: Maybe<DeleteAccountBalancePayload>;
   /** Deletes a single `AccountBalance` using a unique key. */
   deleteAccountBalanceByAccountId?: Maybe<DeleteAccountBalancePayload>;
+  /** Deletes a single `DailyDetail` using its globally unique id. */
+  deleteDailyDetail?: Maybe<DeleteDailyDetailPayload>;
+  /** Deletes a single `DailyDetail` using a unique key. */
+  deleteDailyDetailBySerialNo?: Maybe<DeleteDailyDetailPayload>;
   /** Deletes a single `MAccount` using its globally unique id. */
   deleteMAccount?: Maybe<DeleteMAccountPayload>;
   /** Deletes a single `MAccount` using a unique key. */
@@ -917,6 +1160,10 @@ export type Mutation = {
   updateAccountBalance?: Maybe<UpdateAccountBalancePayload>;
   /** Updates a single `AccountBalance` using a unique key and a patch. */
   updateAccountBalanceByAccountId?: Maybe<UpdateAccountBalancePayload>;
+  /** Updates a single `DailyDetail` using its globally unique id and a patch. */
+  updateDailyDetail?: Maybe<UpdateDailyDetailPayload>;
+  /** Updates a single `DailyDetail` using a unique key and a patch. */
+  updateDailyDetailBySerialNo?: Maybe<UpdateDailyDetailPayload>;
   /** Updates a single `MAccount` using its globally unique id and a patch. */
   updateMAccount?: Maybe<UpdateMAccountPayload>;
   /** Updates a single `MAccount` using a unique key and a patch. */
@@ -938,6 +1185,11 @@ export type Mutation = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateAccountBalanceArgs = {
   input: CreateAccountBalanceInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateDailyDetailArgs = {
+  input: CreateDailyDetailInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -968,6 +1220,16 @@ export type MutationDeleteAccountBalanceArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAccountBalanceByAccountIdArgs = {
   input: DeleteAccountBalanceByAccountIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteDailyDetailArgs = {
+  input: DeleteDailyDetailInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteDailyDetailBySerialNoArgs = {
+  input: DeleteDailyDetailBySerialNoInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1018,6 +1280,16 @@ export type MutationUpdateAccountBalanceArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAccountBalanceByAccountIdArgs = {
   input: UpdateAccountBalanceByAccountIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateDailyDetailArgs = {
+  input: UpdateDailyDetailInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateDailyDetailBySerialNoArgs = {
+  input: UpdateDailyDetailBySerialNoInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1074,6 +1346,8 @@ export type Query = Node & {
   accountBalanceByAccountId?: Maybe<AccountBalance>;
   /** Reads a set of `AccountBalance`. */
   allAccountBalancesList?: Maybe<Array<AccountBalance>>;
+  /** Reads a set of `DailyDetail`. */
+  allDailyDetailsList?: Maybe<Array<DailyDetail>>;
   /** Reads a set of `MAccount`. */
   allMAccountsList?: Maybe<Array<MAccount>>;
   /** Reads a set of `MCategory`. */
@@ -1082,6 +1356,11 @@ export type Query = Node & {
   allMGenresList?: Maybe<Array<MGenre>>;
   /** Reads a set of `MUser`. */
   allMUsersList?: Maybe<Array<MUser>>;
+  /** Reads a single `DailyDetail` using its globally unique `ID`. */
+  dailyDetail?: Maybe<DailyDetail>;
+  /** Reads and enables pagination through a set of `DailyDetail`. */
+  dailyDetailByDateList?: Maybe<Array<Maybe<DailyDetail>>>;
+  dailyDetailBySerialNo?: Maybe<DailyDetail>;
   /** Reads a single `MAccount` using its globally unique `ID`. */
   mAccount?: Maybe<MAccount>;
   mAccountByAccountId?: Maybe<MAccount>;
@@ -1125,6 +1404,15 @@ export type QueryAllAccountBalancesListArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAllDailyDetailsListArgs = {
+  condition?: InputMaybe<DailyDetailCondition>;
+  filter?: InputMaybe<DailyDetailFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailsOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllMAccountsListArgs = {
   condition?: InputMaybe<MAccountCondition>;
   filter?: InputMaybe<MAccountFilter>;
@@ -1158,6 +1446,25 @@ export type QueryAllMUsersListArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<MUsersOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryDailyDetailArgs = {
+  nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryDailyDetailByDateListArgs = {
+  filter?: InputMaybe<DailyDetailFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  fromDate?: InputMaybe<Scalars["Date"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  toDate?: InputMaybe<Scalars["Date"]>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryDailyDetailBySerialNoArgs = {
+  serialNo: Scalars["Int"];
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1324,6 +1631,51 @@ export type UpdateAccountBalancePayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the `updateDailyDetailBySerialNo` mutation. */
+export type UpdateDailyDetailBySerialNoInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** An object where the defined keys will be set on the `DailyDetail` being updated. */
+  dailyDetailPatch: DailyDetailPatch;
+  serialNo: Scalars["Int"];
+};
+
+/** All input for the `updateDailyDetail` mutation. */
+export type UpdateDailyDetailInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** An object where the defined keys will be set on the `DailyDetail` being updated. */
+  dailyDetailPatch: DailyDetailPatch;
+  /** The globally unique `ID` which will identify a single `DailyDetail` to be updated. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our update `DailyDetail` mutation. */
+export type UpdateDailyDetailPayload = {
+  __typename?: "UpdateDailyDetailPayload";
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `DailyDetail` that was updated by this mutation. */
+  dailyDetail?: Maybe<DailyDetail>;
+  /** Reads a single `MAccount` that is related to this `DailyDetail`. */
+  mAccountByAccountId?: Maybe<MAccount>;
+  /** Reads a single `MCategory` that is related to this `DailyDetail`. */
+  mCategoryByCategoryId?: Maybe<MCategory>;
+  /** Reads a single `MUser` that is related to this `DailyDetail`. */
+  mUserByUserId?: Maybe<MUser>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
 /** All input for the `updateMAccountByAccountId` mutation. */
 export type UpdateMAccountByAccountIdInput = {
   accountId: Scalars["String"];
@@ -1484,6 +1836,31 @@ export type UpdateMUserPayload = {
   query?: Maybe<Query>;
 };
 
+export type CreateDailyDetailMutationVariables = Exact<{
+  date: Scalars["Date"];
+  categoryId: Scalars["String"];
+  accountId: Scalars["String"];
+  userId: Scalars["String"];
+  amount: Scalars["BigFloat"];
+  memo?: InputMaybe<Scalars["String"]>;
+}>;
+
+export type CreateDailyDetailMutation = {
+  __typename?: "Mutation";
+  createDailyDetail?: {
+    __typename?: "CreateDailyDetailPayload";
+    dailyDetail?: {
+      __typename?: "DailyDetail";
+      date: any;
+      categoryId: string;
+      accountId: string;
+      userId: string;
+      amount: any;
+      memo?: string | null;
+    } | null;
+  } | null;
+};
+
 export type GetAccountsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetAccountsQuery = {
@@ -1506,6 +1883,82 @@ export type GetAccountsQuery = {
   }> | null;
 };
 
+export type GetDailyDetailByDateQueryVariables = Exact<{
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+}>;
+
+export type GetDailyDetailByDateQuery = {
+  __typename?: "Query";
+  dailyDetailByDateList?: Array<{
+    __typename?: "DailyDetail";
+    date: any;
+    amount: any;
+    memo?: string | null;
+    mCategoryByCategoryId?: {
+      __typename?: "MCategory";
+      categoryId: string;
+      categoryName: string;
+      mGenreByGenreId?: {
+        __typename?: "MGenre";
+        genreId: string;
+        genreName: string;
+        genreType: GenreType;
+        iocomeType: IocomeType;
+      } | null;
+    } | null;
+    mAccountByAccountId?: {
+      __typename?: "MAccount";
+      accountId: string;
+      accountName: string;
+    } | null;
+    mUserByUserId?: {
+      __typename?: "MUser";
+      userId: string;
+      userName: string;
+    } | null;
+  } | null> | null;
+};
+
+export const CreateDailyDetailDocument = gql`
+  mutation CreateDailyDetail(
+    $date: Date!
+    $categoryId: String!
+    $accountId: String!
+    $userId: String!
+    $amount: BigFloat!
+    $memo: String
+  ) {
+    createDailyDetail(
+      input: {
+        dailyDetail: {
+          date: $date
+          categoryId: $categoryId
+          accountId: $accountId
+          userId: $userId
+          amount: $amount
+          memo: $memo
+        }
+      }
+    ) {
+      dailyDetail {
+        date
+        categoryId
+        accountId
+        userId
+        amount
+        memo
+      }
+    }
+  }
+`;
+
+export function useCreateDailyDetailMutation() {
+  return Urql.useMutation<
+    CreateDailyDetailMutation,
+    CreateDailyDetailMutationVariables
+  >(CreateDailyDetailDocument);
+}
 export const GetAccountsDocument = gql`
   query GetAccounts {
     allMAccountsList(condition: {}, orderBy: DISPLAY_ORDER_ASC) {
@@ -1531,4 +1984,40 @@ export function useGetAccountsQuery(
     query: GetAccountsDocument,
     ...options,
   });
+}
+export const GetDailyDetailByDateDocument = gql`
+  query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
+    dailyDetailByDateList(fromDate: $fromDate, toDate: $toDate) {
+      date
+      amount
+      memo
+      mCategoryByCategoryId {
+        categoryId
+        categoryName
+        mGenreByGenreId {
+          genreId
+          genreName
+          genreType
+          iocomeType
+        }
+      }
+      mAccountByAccountId {
+        accountId
+        accountName
+      }
+      mUserByUserId {
+        userId
+        userName
+      }
+    }
+  }
+`;
+
+export function useGetDailyDetailByDateQuery(
+  options: Omit<Urql.UseQueryArgs<GetDailyDetailByDateQueryVariables>, "query">
+) {
+  return Urql.useQuery<
+    GetDailyDetailByDateQuery,
+    GetDailyDetailByDateQueryVariables
+  >({ query: GetDailyDetailByDateDocument, ...options });
 }
