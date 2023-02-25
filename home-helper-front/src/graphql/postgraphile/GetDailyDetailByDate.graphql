@@ -3,21 +3,21 @@ query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
         date
         amount
         memo
-        mCategoryByCategoryId {
+        categoryByCategoryId {
             categoryId
             categoryName
-            mGenreByGenreId {
+            genreByGenreId {
                 genreId
                 genreName
                 genreType
                 iocomeType
             }
         }
-        mAccountByAccountId {
+        accountByAccountId {
             accountId
             accountName
         }
-        mUserByUserId {
+        userByUserId {
             userId
             userName
         }
