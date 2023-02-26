@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { DayPresenter } from "./DayPresenter";
+import { useGetAmountByDay } from "@hooks/household/iocome/useGetAmountByDay";
 
 type DayContainerProps = {
   date: Date;
@@ -10,5 +11,9 @@ export const DayContainer: FC<DayContainerProps> = ({ date }) => {
       ? date.getMonth() + 1 + "/" + date.getDate()
       : date.getDate().toLocaleString();
 
-  return <DayPresenter displayDay={displayDate} income={2000} outcome={500} />;
+  const { income, outcome } = useGetAmountByDay(date);
+
+  return (
+    <DayPresenter displayDay={displayDate} income={income} outcome={outcome} />
+  );
 };

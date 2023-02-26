@@ -2,8 +2,8 @@ import { FC } from "react";
 
 type DayPresenterProps = {
   displayDay: string;
-  income: number;
-  outcome: number;
+  income: number | undefined;
+  outcome: number | undefined;
 };
 export const DayPresenter: FC<DayPresenterProps> = ({
   displayDay,
@@ -15,9 +15,11 @@ export const DayPresenter: FC<DayPresenterProps> = ({
       <div className={"p-2"}>{displayDay}</div>
 
       <div className={"grid grid-cols-1"}>
-        <Line price={income} backgroundColor={"bg-green-500"} />
-        <Line price={outcome} backgroundColor={"bg-red-500"} />
-        <Line price={income - outcome} backgroundColor={"bg-yellow-500"} />
+        {income && <Line price={income} backgroundColor={"bg-green-500"} />}
+        {outcome && <Line price={outcome} backgroundColor={"bg-red-500"} />}
+        {income && outcome && (
+          <Line price={income - outcome} backgroundColor={"bg-yellow-500"} />
+        )}
       </div>
     </div>
   );
