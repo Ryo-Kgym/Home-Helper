@@ -10,5 +10,5 @@ export const DayContainer: FC<DayContainerProps> = ({ date }) => {
       ? date.getMonth() + 1 + "/" + date.getDate()
       : date.getDate().toLocaleString();
 
-  return <DayPresenter displayDay={displayDate} />;
+  return <DayPresenter displayDay={displayDate} income={2000} outcome={500} />;
 };
