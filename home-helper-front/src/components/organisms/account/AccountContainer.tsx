@@ -10,7 +10,7 @@ export const AccountContainer = () => {
   if (error) return <FetchError error={error} />;
 
   const tableProps: TableProps[] =
-    data?.allMAccountsList?.map((account) => {
+    data?.allAccountsList?.map((account) => {
       return {
         keyPrefix: "account",
         columns: [
