@@ -5,5 +5,10 @@ type DayContainerProps = {
   date: Date;
 };
 export const DayContainer: FC<DayContainerProps> = ({ date }) => {
-  return <DayPresenter day={date.getDate().toLocaleString()} />;
+  const displayDate =
+    date.getDate() === 1
+      ? date.getMonth() + 1 + "/" + date.getDate()
+      : date.getDate().toLocaleString();
+
+  return <DayPresenter displayDay={displayDate} />;
 };
