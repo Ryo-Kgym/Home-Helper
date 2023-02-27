@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC, useState } from "react";
 import { DayPresenter } from "./DayPresenter";
 import { useGetAmountByDay } from "@hooks/household/iocome/useGetAmountByDay";
 
@@ -7,6 +7,7 @@ type DayContainerProps = {
   baseDate: Date;
 };
 export const DayContainer: FC<DayContainerProps> = ({ date, baseDate }) => {
+  const [opened, setOpened] = useState(false);
   const today = new Date();
 
   const displayDate =
@@ -26,6 +27,9 @@ export const DayContainer: FC<DayContainerProps> = ({ date, baseDate }) => {
       outcome={outcome}
       isToday={isToday}
       isNotThisMonth={isNotThisMonth}
+      opened={opened}
+      onClose={() => setOpened(false)}
+      openClickHandler={() => setOpened(true)}
     />
   );
 };

@@ -1,4 +1,6 @@
 import { FC } from "react";
+import { Modal } from "@components/atoms/Modal";
+import { RegisterDailyDetail } from "@components/organisms/register_daily_detail";
 
 type DayPresenterProps = {
   displayDay: string;
@@ -6,6 +8,9 @@ type DayPresenterProps = {
   outcome: number | undefined;
   isToday: boolean;
   isNotThisMonth: boolean;
+  opened: boolean;
+  onClose: () => void;
+  openClickHandler: () => void;
 };
 export const DayPresenter: FC<DayPresenterProps> = ({
   displayDay,
@@ -13,11 +18,15 @@ export const DayPresenter: FC<DayPresenterProps> = ({
   outcome,
   isToday,
   isNotThisMonth,
-}) => {
-  return (
+  opened,
+  onClose,
+  openClickHandler,
+}) => (
+  <>
     <div
       className={`h-32 border-r-2 border-b-2 
       ${isToday && "bg-amber-100"} ${isNotThisMonth && "bg-gray-300"}`}
+      onClick={openClickHandler}
     >
       <div className={"p-2"}>{displayDay}</div>
 
@@ -29,8 +38,11 @@ export const DayPresenter: FC<DayPresenterProps> = ({
         )}
       </div>
     </div>
-  );
-};
+    <Modal opened={opened} onClose={onClose}>
+      <RegisterDailyDetail />
+    </Modal>
+  </>
+);
 
 const Line = ({
   price,
