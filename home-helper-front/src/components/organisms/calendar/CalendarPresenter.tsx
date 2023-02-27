@@ -1,16 +1,23 @@
 import type { FC } from "react";
 import { Day } from "@components/organisms/calendar/day";
+import { ChangeMonth } from "@components/organisms/calendar/change_month";
 
 type CalendarPresenterProps = {
   dateList: Date[];
 };
 export const CalendarPresenter: FC<CalendarPresenterProps> = ({ dateList }) => {
   return (
-    <div className={"w-full grid grid-cols-7 border-l-2"}>
-      <Week />
-      {dateList.map((date) => (
-        <Day date={date} />
-      ))}
+    <div className={"grid grid-cols-1 w-full"}>
+      <div className={"justify-center"}>
+        <ChangeMonth date={new Date()} />
+      </div>
+
+      <div className={"w-full grid grid-cols-7 border-l-2"}>
+        <Week />
+        {dateList.map((date, index) => (
+          <Day key={`day${index}`} date={date} />
+        ))}
+      </div>
     </div>
   );
 };
