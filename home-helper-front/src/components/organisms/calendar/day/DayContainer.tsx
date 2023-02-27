@@ -4,8 +4,9 @@ import { useGetAmountByDay } from "@hooks/household/iocome/useGetAmountByDay";
 
 type DayContainerProps = {
   date: Date;
+  baseDate: Date;
 };
-export const DayContainer: FC<DayContainerProps> = ({ date }) => {
+export const DayContainer: FC<DayContainerProps> = ({ date, baseDate }) => {
   const today = new Date();
 
   const displayDate =
@@ -16,7 +17,7 @@ export const DayContainer: FC<DayContainerProps> = ({ date }) => {
   const { income, outcome } = useGetAmountByDay(date);
 
   const isToday = date.toDateString() === today.toDateString();
-  const isNotThisMonth = date.getMonth() !== today.getMonth();
+  const isNotThisMonth = date.getMonth() !== baseDate.getMonth();
 
   return (
     <DayPresenter

@@ -21,7 +21,7 @@ export const CalendarPresenter: FC<CalendarPresenterProps> = ({
       <div className={"w-full grid grid-cols-7 border-l-2"}>
         <Week />
         {dateList.map((date, index) => (
-          <Day key={`day${index}`} date={date} />
+          <Day key={`day${index}`} date={date} baseDate={baseDate} />
         ))}
       </div>
     </div>
