@@ -1,20 +1,26 @@
 import { FC } from "react";
+import { PrevIcon } from "@components/atoms/Icon/PrevIcon";
+import { NextIcon } from "@components/atoms/Icon/NextIcon";
 
 type ChangeMonthPresenterProps = {
   displayYearMonth: string;
+  prevClickHandler: () => void;
+  nextClickHandler: () => void;
 };
 export const ChangeMonthPresenter: FC<ChangeMonthPresenterProps> = ({
   displayYearMonth,
+  prevClickHandler,
+  nextClickHandler,
 }) => (
-  <div className={"grid grid-cols-5 text-3xl p-2"}>
-    <div className={"col-span-1 text-center"}>
-      <>前月</>
+  <div className={"grid grid-cols-3 text-3xl p-2"}>
+    <div className={"justify-center flex"}>
+      <PrevIcon onClickHandler={prevClickHandler} />
     </div>
-    <div className={"col-span-3 text-center"}>
+    <div className={"text-center"}>
       <div>{displayYearMonth}</div>
     </div>
-    <div className={"col-span-1 text-center"}>
-      <>次月</>
+    <div className={"justify-center flex"}>
+      <NextIcon onClickHandler={nextClickHandler} />
     </div>
   </div>
 );

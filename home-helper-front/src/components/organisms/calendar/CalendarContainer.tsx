@@ -7,5 +7,11 @@ type CalendarContainerProps = {};
 export const CalendarContainer: FC<CalendarContainerProps> = () => {
   const [baseDate, setBaseDate] = useState(new Date());
 
-  return <CalendarPresenter dateList={createDateList(baseDate)} />;
+  return (
+    <CalendarPresenter
+      baseDate={baseDate}
+      setBaseDate={setBaseDate}
+      dateList={createDateList(baseDate)}
+    />
+  );
 };

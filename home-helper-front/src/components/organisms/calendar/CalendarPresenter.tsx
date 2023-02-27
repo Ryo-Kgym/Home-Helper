@@ -3,13 +3,19 @@ import { Day } from "@components/organisms/calendar/day";
 import { ChangeMonth } from "@components/organisms/calendar/change_month";
 
 type CalendarPresenterProps = {
+  baseDate: Date;
+  setBaseDate: (date: Date) => void;
   dateList: Date[];
 };
-export const CalendarPresenter: FC<CalendarPresenterProps> = ({ dateList }) => {
+export const CalendarPresenter: FC<CalendarPresenterProps> = ({
+  baseDate,
+  setBaseDate,
+  dateList,
+}) => {
   return (
     <div className={"grid grid-cols-1 w-full"}>
       <div className={"justify-center"}>
-        <ChangeMonth date={new Date()} />
+        <ChangeMonth baseDate={baseDate} setBaseDate={setBaseDate} />
       </div>
 
       <div className={"w-full grid grid-cols-7 border-l-2"}>

@@ -2,12 +2,29 @@ import { FC } from "react";
 import { ChangeMonthPresenter } from "@components/organisms/calendar/change_month/ChangeMonthPresenter";
 
 type ChangeMonthContainerProps = {
-  date: Date;
+  baseDate: Date;
+  setBaseDate: (date: Date) => void;
 };
 export const ChangeMonthContainer: FC<ChangeMonthContainerProps> = ({
-  date,
+  baseDate,
+  setBaseDate,
 }) => {
-  const displayDate = date.getFullYear() + "年" + (date.getMonth() + 1) + "月";
+  const displayDate =
+    baseDate.getFullYear() + "年" + (baseDate.getMonth() + 1) + "月";
 
-  return <ChangeMonthPresenter displayYearMonth={displayDate} />;
+  const prevClickHandler = () => {
+    setBaseDate(new Date(baseDate.getFullYear(), baseDate.getMonth() - 1, 1));
+  };
+
+  const nextClickHandler = () => {
+    setBaseDate(new Date(baseDate.getFullYear(), baseDate.getMonth() + 1, 1));
+  };
+
+  return (
+    <ChangeMonthPresenter
+      displayYearMonth={displayDate}
+      prevClickHandler={prevClickHandler}
+      nextClickHandler={nextClickHandler}
+    />
+  );
 };
