@@ -3,6 +3,7 @@ import { Modal } from "@components/atoms/Modal";
 import { RegisterDailyDetail } from "@components/organisms/register_daily_detail";
 
 type DayPresenterProps = {
+  date: Date;
   displayDay: string;
   income: number | undefined;
   outcome: number | undefined;
@@ -13,6 +14,7 @@ type DayPresenterProps = {
   openClickHandler: () => void;
 };
 export const DayPresenter: FC<DayPresenterProps> = ({
+  date,
   displayDay,
   income,
   outcome,
@@ -39,7 +41,7 @@ export const DayPresenter: FC<DayPresenterProps> = ({
       </div>
     </div>
     <Modal opened={opened} onClose={onClose}>
-      <RegisterDailyDetail />
+      <RegisterDailyDetail date={date} />
     </Modal>
   </>
 );

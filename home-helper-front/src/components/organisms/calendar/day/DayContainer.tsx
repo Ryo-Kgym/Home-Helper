@@ -22,6 +22,7 @@ export const DayContainer: FC<DayContainerProps> = ({ date, baseDate }) => {
 
   return (
     <DayPresenter
+      date={date}
       displayDay={displayDate}
       income={income}
       outcome={outcome}
