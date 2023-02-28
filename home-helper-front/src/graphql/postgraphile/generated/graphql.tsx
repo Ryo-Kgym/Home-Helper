@@ -1858,9 +1858,11 @@ export type CreateDailyDetailMutation = {
   } | null;
 };
 
-export type GetAccountsQueryVariables = Exact<{ [key: string]: never }>;
+export type GetAccountBalanceListQueryVariables = Exact<{
+  [key: string]: never;
+}>;
 
-export type GetAccountsQuery = {
+export type GetAccountBalanceListQuery = {
   __typename?: "Query";
   allAccountsList?: Array<{
     __typename?: "Account";
@@ -1972,8 +1974,8 @@ export function useCreateDailyDetailMutation() {
     CreateDailyDetailMutationVariables
   >(CreateDailyDetailDocument);
 }
-export const GetAccountsDocument = gql`
-  query GetAccounts {
+export const GetAccountBalanceListDocument = gql`
+  query GetAccountBalanceList {
     allAccountsList(condition: {}, orderBy: DISPLAY_ORDER_ASC) {
       accountId
       accountName
@@ -1990,13 +1992,16 @@ export const GetAccountsDocument = gql`
   }
 `;
 
-export function useGetAccountsQuery(
-  options?: Omit<Urql.UseQueryArgs<GetAccountsQueryVariables>, "query">
+export function useGetAccountBalanceListQuery(
+  options?: Omit<
+    Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>,
+    "query"
+  >
 ) {
-  return Urql.useQuery<GetAccountsQuery, GetAccountsQueryVariables>({
-    query: GetAccountsDocument,
-    ...options,
-  });
+  return Urql.useQuery<
+    GetAccountBalanceListQuery,
+    GetAccountBalanceListQueryVariables
+  >({ query: GetAccountBalanceListDocument, ...options });
 }
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {

@@ -1,4 +1,4 @@
-query GetAccounts {
+query GetAccountBalanceList {
     allAccountsList(condition: {}, orderBy: DISPLAY_ORDER_ASC) {
         accountId
         accountName
