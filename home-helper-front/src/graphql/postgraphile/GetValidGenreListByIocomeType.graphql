@@ -1,4 +1,4 @@
-query GetGenreListByIocomeType($iocomeType: IocomeType!) {
+query GetValidGenreListByIocomeType($iocomeType: IocomeType!) {
     allGenresList(
         condition: { validFlag: true, iocomeType: $iocomeType }
         orderBy: DISPLAY_ORDER_ASC

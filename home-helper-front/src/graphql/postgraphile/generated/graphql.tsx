@@ -1919,11 +1919,22 @@ export type GetDailyDetailByDateQuery = {
   } | null> | null;
 };
 
-export type GetGenreListByIocomeTypeQueryVariables = Exact<{
+export type GetValidAccountsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetValidAccountsQuery = {
+  __typename?: "Query";
+  allAccountsList?: Array<{
+    __typename?: "Account";
+    accountId: string;
+    accountName: string;
+  }> | null;
+};
+
+export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
   iocomeType: IocomeType;
 }>;
 
-export type GetGenreListByIocomeTypeQuery = {
+export type GetValidGenreListByIocomeTypeQuery = {
   __typename?: "Query";
   allGenresList?: Array<{
     __typename?: "Genre";
@@ -2039,8 +2050,28 @@ export function useGetDailyDetailByDateQuery(
     GetDailyDetailByDateQueryVariables
   >({ query: GetDailyDetailByDateDocument, ...options });
 }
-export const GetGenreListByIocomeTypeDocument = gql`
-  query GetGenreListByIocomeType($iocomeType: IocomeType!) {
+export const GetValidAccountsDocument = gql`
+  query GetValidAccounts {
+    allAccountsList(
+      condition: { validFlag: true }
+      orderBy: DISPLAY_ORDER_ASC
+    ) {
+      accountId
+      accountName
+    }
+  }
+`;
+
+export function useGetValidAccountsQuery(
+  options?: Omit<Urql.UseQueryArgs<GetValidAccountsQueryVariables>, "query">
+) {
+  return Urql.useQuery<GetValidAccountsQuery, GetValidAccountsQueryVariables>({
+    query: GetValidAccountsDocument,
+    ...options,
+  });
+}
+export const GetValidGenreListByIocomeTypeDocument = gql`
+  query GetValidGenreListByIocomeType($iocomeType: IocomeType!) {
     allGenresList(
       condition: { validFlag: true, iocomeType: $iocomeType }
       orderBy: DISPLAY_ORDER_ASC
@@ -2054,14 +2085,14 @@ export const GetGenreListByIocomeTypeDocument = gql`
   }
 `;
 
-export function useGetGenreListByIocomeTypeQuery(
+export function useGetValidGenreListByIocomeTypeQuery(
   options: Omit<
-    Urql.UseQueryArgs<GetGenreListByIocomeTypeQueryVariables>,
+    Urql.UseQueryArgs<GetValidGenreListByIocomeTypeQueryVariables>,
     "query"
   >
 ) {
   return Urql.useQuery<
-    GetGenreListByIocomeTypeQuery,
-    GetGenreListByIocomeTypeQueryVariables
-  >({ query: GetGenreListByIocomeTypeDocument, ...options });
+    GetValidGenreListByIocomeTypeQuery,
+    GetValidGenreListByIocomeTypeQueryVariables
+  >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
 }
