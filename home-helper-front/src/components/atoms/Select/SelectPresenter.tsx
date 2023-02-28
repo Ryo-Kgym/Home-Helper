@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, FC, forwardRef } from "react";
-import { Group, Avatar, Text, Select, SelectItem } from "@mantine/core";
+import { Avatar, Group, Select, SelectItem, Text } from "@mantine/core";
 
 type SelectPresenterProps = {
   label: string;
@@ -39,21 +39,24 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
   ({ image, label, description, ...others }: ItemProps, ref) => (
     <div ref={ref} {...others}>
       <Group noWrap>
-        <Avatar src={image} />
+        {image && <Avatar src={image} />}
 
         <div>
           <Text size="sm">{label}</Text>
-          <Text size="xs" opacity={0.65}>
-            {description}
-          </Text>
+          {description && (
+            <Text size="xs" opacity={0.65}>
+              {description}
+            </Text>
+          )}
         </div>
       </Group>
     </div>
   )
 );
 
-interface ItemProps extends ComponentPropsWithoutRef<"div"> {
-  image: string;
+export interface ItemProps extends ComponentPropsWithoutRef<"div"> {
   label: string;
-  description: string;
+  value: string | number;
+  image?: string;
+  description?: string;
 }
