@@ -2,13 +2,17 @@ import { FC } from "react";
 import { GenreSelectPresenter } from "./GenreSelectPresenter";
 import {
   IocomeType,
-  useGetGenreListByIocomeTypeQuery,
+  useGetValidGenreListByIocomeTypeQuery,
 } from "@graphql/postgraphile/generated/graphql";
 
-type GenreSelectContainerProps = {};
-export const GenreSelectContainer: FC<GenreSelectContainerProps> = () => {
-  const [{ data }] = useGetGenreListByIocomeTypeQuery({
-    variables: { iocomeType: IocomeType.Income },
+type GenreSelectContainerProps = {
+  iocomeType: "INCOME" | "OUTCOME";
+};
+export const GenreSelectContainer: FC<GenreSelectContainerProps> = ({
+  iocomeType,
+}) => {
+  const [{ data }] = useGetValidGenreListByIocomeTypeQuery({
+    variables: { iocomeType: iocomeType as IocomeType },
   });
 
   const genres =
