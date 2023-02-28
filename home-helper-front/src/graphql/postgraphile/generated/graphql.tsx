@@ -1917,6 +1917,22 @@ export type GetDailyDetailByDateQuery = {
   } | null> | null;
 };
 
+export type GetGenreListByIocomeTypeQueryVariables = Exact<{
+  iocomeType: IocomeType;
+}>;
+
+export type GetGenreListByIocomeTypeQuery = {
+  __typename?: "Query";
+  allGenresList?: Array<{
+    __typename?: "Genre";
+    genreId: string;
+    genreName: string;
+    genreType: GenreType;
+    iocomeType: IocomeType;
+    displayOrder: number;
+  }> | null;
+};
+
 export const CreateDailyDetailDocument = gql`
   mutation CreateDailyDetail(
     $date: Date!
@@ -2017,4 +2033,30 @@ export function useGetDailyDetailByDateQuery(
     GetDailyDetailByDateQuery,
     GetDailyDetailByDateQueryVariables
   >({ query: GetDailyDetailByDateDocument, ...options });
+}
+export const GetGenreListByIocomeTypeDocument = gql`
+  query GetGenreListByIocomeType($iocomeType: IocomeType!) {
+    allGenresList(
+      condition: { validFlag: true, iocomeType: $iocomeType }
+      orderBy: DISPLAY_ORDER_ASC
+    ) {
+      genreId
+      genreName
+      genreType
+      iocomeType
+      displayOrder
+    }
+  }
+`;
+
+export function useGetGenreListByIocomeTypeQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetGenreListByIocomeTypeQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetGenreListByIocomeTypeQuery,
+    GetGenreListByIocomeTypeQueryVariables
+  >({ query: GetGenreListByIocomeTypeDocument, ...options });
 }
