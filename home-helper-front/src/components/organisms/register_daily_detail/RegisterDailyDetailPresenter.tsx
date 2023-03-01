@@ -5,6 +5,8 @@ import { AccountSelect } from "@components/molecules/CustomSelect/Account";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
+import { TextAreaContainer } from "@components/atoms/TextArea/TextAreaContainer";
+import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
 
 type RegisterDailyDetailPresenterProps = {
   displayDate: string;
@@ -67,6 +69,9 @@ export const RegisterDailyDetailPresenter: FC<
     </Field>
     <Field>
       <AmountInput value={amount} onChange={setAmount} />
+    </Field>
+    <Field>
+      <MemoTextArea memo={memo} setMemo={setMemo} />
     </Field>
   </div>
 );
