@@ -4,6 +4,8 @@ import { CategorySelect } from "@components/molecules/CustomSelect/Category";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { AmountInputPresenter } from "@components/molecules/CustomNumberInput/Amount/AmountInputPresenter";
+import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
 
 type RegisterDailyDetailPresenterProps = {
   displayDate: string;
@@ -15,8 +17,8 @@ type RegisterDailyDetailPresenterProps = {
   setGenreId: (value: string) => void;
   accountId: string;
   setAccountId: (value: string) => void;
-  amount: string;
-  setAmount: (value: string) => void;
+  amount: Number;
+  setAmount: (value: Number) => void;
   memo: string;
   setMemo: (value: string) => void;
 };
@@ -37,35 +39,34 @@ export const RegisterDailyDetailPresenter: FC<
   memo,
   setMemo,
 }) => (
-  <div className={"grid grid-cols-2 w-full text-3xl"}>
-    <div className={"col-span-2 text-center"}>{displayDate}</div>
-    <Field label={"区分"}>
+  <div className={"grid grid-cols-1 w-full text-3xl"}>
+    <div className={"text-center"}>{displayDate}</div>
+    <Field>
       <IocomeTypeSegment
         iocomeType={iocomeType}
         setIocomeType={setIocomeType}
       />
     </Field>
-    <Field label={"ジャンル"}>
+    <Field>
       <GenreSelect iocomeType={iocomeType} />
     </Field>
-    <Field label={"カテゴリ"}>
+    <Field>
       <CategorySelect genreId={"GNR00001"} />
     </Field>
-    <Field label={"アカウント"}>
+    <Field>
       <AccountSelect />
     </Field>
-    <Field label={"金額"}>
-      <input type={"number"} />
+    <Field>
+      <AmountInput value={amount} onChange={setAmount} />
     </Field>
-    <Field label={"メモ"}>
+    <Field>
       <input type={"text"} />
     </Field>
   </div>
 );
 
-const Field = ({ label, children }: { label: string; children: ReactNode }) => (
+const Field = ({ children }: { children: ReactNode }) => (
   <>
-    <div>{label}</div>
     <div>{children}</div>
   </>
 );

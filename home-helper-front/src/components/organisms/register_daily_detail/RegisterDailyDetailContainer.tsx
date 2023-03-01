@@ -12,7 +12,7 @@ export const RegisterDailyDetailContainer: FC<
   const [categoryId, setCategoryId] = useState("");
   const [genreId, setGenreId] = useState("");
   const [accountId, setAccountId] = useState("");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState<Number>(0);
   const [memo, setMemo] = useState("");
 
   const displayDate = date.toLocaleDateString();
