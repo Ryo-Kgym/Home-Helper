@@ -4,9 +4,13 @@ import { useGetValidGenreListByIocomeTypeQuery } from "@graphql/postgraphile/gen
 import { IocomeType } from "@domain/model/household/IocomeType";
 
 type GenreSelectContainerProps = {
+  genreId: string | null;
+  setGenreId: (value: string | null) => void;
   iocomeType: IocomeType;
 };
 export const GenreSelectContainer: FC<GenreSelectContainerProps> = ({
+  genreId,
+  setGenreId,
   iocomeType,
 }) => {
   const [{ data }] = useGetValidGenreListByIocomeTypeQuery({
@@ -22,5 +26,11 @@ export const GenreSelectContainer: FC<GenreSelectContainerProps> = ({
       };
     }) ?? [];
 
-  return <GenreSelectPresenter genres={genres} />;
+  return (
+    <GenreSelectPresenter
+      value={genreId}
+      onChange={setGenreId}
+      genres={genres}
+    />
+  );
 };

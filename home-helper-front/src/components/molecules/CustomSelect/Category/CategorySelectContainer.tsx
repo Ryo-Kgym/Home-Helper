@@ -3,13 +3,17 @@ import { CategorySelectPresenter } from "./CategorySelectPresenter";
 import { useGetValidCategoryByGenreIdQuery } from "@graphql/postgraphile/generated/graphql";
 
 type CategorySelectContainerProps = {
-  genreId: string;
+  categoryId: string | null;
+  setCategoryId: (value: string | null) => void;
+  genreId: string | null;
 };
 export const CategorySelectContainer: FC<CategorySelectContainerProps> = ({
+  categoryId,
+  setCategoryId,
   genreId,
 }) => {
   const [{ data }] = useGetValidCategoryByGenreIdQuery({
-    variables: { genreId: genreId },
+    variables: { genreId: genreId ?? "" },
   });
 
   const categories =
@@ -21,5 +25,11 @@ export const CategorySelectContainer: FC<CategorySelectContainerProps> = ({
       };
     }) ?? [];
 
-  return <CategorySelectPresenter categories={categories} />;
+  return (
+    <CategorySelectPresenter
+      value={categoryId}
+      onChange={setCategoryId}
+      categories={categories}
+    />
+  );
 };

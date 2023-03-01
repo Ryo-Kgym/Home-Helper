@@ -9,9 +9,9 @@ export const RegisterDailyDetailContainer: FC<
   RegisterDailyDetailContainerProps
 > = ({ date }) => {
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
-  const [categoryId, setCategoryId] = useState("");
-  const [genreId, setGenreId] = useState("");
-  const [accountId, setAccountId] = useState("");
+  const [categoryId, setCategoryId] = useState<string | null>("");
+  const [genreId, setGenreId] = useState<string | null>("");
+  const [accountId, setAccountId] = useState<string | null>("");
   const [amount, setAmount] = useState<Number>(0);
   const [memo, setMemo] = useState("");
 

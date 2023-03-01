@@ -1,17 +1,24 @@
 import { ComponentPropsWithoutRef, FC, forwardRef } from "react";
 import { Avatar, Group, Select, SelectItem, Text } from "@mantine/core";
+import { MantineSize } from "@mantine/styles";
 
 type SelectPresenterProps = {
   label: string;
-  data: ItemProps[];
+  value: string | null;
+  onChange: (value: string | null) => void;
+  data: SelectData[];
   placeholder?: string;
   maxDropdownHeight?: number;
+  size?: MantineSize;
 };
 export const SelectPresenter: FC<SelectPresenterProps> = ({
   label,
+  value,
+  onChange,
   data,
   placeholder = "",
   maxDropdownHeight = 400,
+  size = "lg",
 }) => {
   const filter = (value: string, item: SelectItem): boolean => {
     return (
@@ -23,6 +30,8 @@ export const SelectPresenter: FC<SelectPresenterProps> = ({
   return (
     <Select
       label={label}
+      value={value}
+      onChange={onChange}
       placeholder={placeholder}
       itemComponent={SelectItem}
       // @ts-ignore
@@ -31,13 +40,14 @@ export const SelectPresenter: FC<SelectPresenterProps> = ({
       maxDropdownHeight={maxDropdownHeight}
       nothingFound="not found..."
       filter={filter}
+      size={size}
     />
   );
 };
 
-const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
+const SelectItem = forwardRef<HTMLDivElement, SelectData>(
   function selectItemFunc(
-    { image, label, description, ...others }: ItemProps,
+    { image, label, description, ...others }: SelectData,
     ref
   ) {
     return (
@@ -59,7 +69,7 @@ const SelectItem = forwardRef<HTMLDivElement, ItemProps>(
   }
 );
 
-export interface ItemProps extends ComponentPropsWithoutRef<"div"> {
+export interface SelectData extends ComponentPropsWithoutRef<"div"> {
   label: string;
   value: string | number;
   image?: string;

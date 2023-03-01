@@ -4,19 +4,18 @@ import { CategorySelect } from "@components/molecules/CustomSelect/Category";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { AmountInputPresenter } from "@components/molecules/CustomNumberInput/Amount/AmountInputPresenter";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
 
 type RegisterDailyDetailPresenterProps = {
   displayDate: string;
   iocomeType: IocomeType;
   setIocomeType: (value: IocomeType) => void;
-  categoryId: string;
-  setCategoryId: (value: string) => void;
-  genreId: string;
-  setGenreId: (value: string) => void;
-  accountId: string;
-  setAccountId: (value: string) => void;
+  categoryId: string | null;
+  setCategoryId: (value: string | null) => void;
+  genreId: string | null;
+  setGenreId: (value: string | null) => void;
+  accountId: string | null;
+  setAccountId: (value: string | null) => void;
   amount: Number;
   setAmount: (value: Number) => void;
   memo: string;
@@ -39,8 +38,10 @@ export const RegisterDailyDetailPresenter: FC<
   memo,
   setMemo,
 }) => (
-  <div className={"grid grid-cols-1 w-full text-3xl"}>
-    <div className={"text-center"}>{displayDate}</div>
+  <div className={"grid grid-cols-1 w-full"}>
+    <Field>
+      <div className={"text-center text-3xl"}>{displayDate}</div>
+    </Field>
     <Field>
       <IocomeTypeSegment
         iocomeType={iocomeType}
@@ -48,25 +49,30 @@ export const RegisterDailyDetailPresenter: FC<
       />
     </Field>
     <Field>
-      <GenreSelect iocomeType={iocomeType} />
+      <GenreSelect
+        iocomeType={iocomeType}
+        genreId={genreId}
+        setGenreId={setGenreId}
+      />
     </Field>
     <Field>
-      <CategorySelect genreId={"GNR00001"} />
+      <CategorySelect
+        genreId={genreId}
+        categoryId={categoryId}
+        setCategoryId={setCategoryId}
+      />
     </Field>
     <Field>
-      <AccountSelect />
+      <AccountSelect accountId={accountId} setAccountId={setAccountId} />
     </Field>
     <Field>
       <AmountInput value={amount} onChange={setAmount} />
-    </Field>
-    <Field>
-      <input type={"text"} />
     </Field>
   </div>
 );
 
 const Field = ({ children }: { children: ReactNode }) => (
   <>
-    <div>{children}</div>
+    <div className={"py-4"}>{children}</div>
   </>
 );
