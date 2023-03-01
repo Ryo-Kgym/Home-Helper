@@ -5,12 +5,14 @@ type ModalPresenterProps = {
   opened: boolean;
   onClose: () => void;
   children: ReactNode;
+  size?: string;
 };
 
 export const ModalPresenter: FC<ModalPresenterProps> = ({
   opened,
   onClose,
   children,
+  size = "70%",
 }) => {
   const theme = useMantineTheme();
 
@@ -25,6 +27,7 @@ export const ModalPresenter: FC<ModalPresenterProps> = ({
       }
       overlayOpacity={0.55}
       overlayBlur={3}
+      size={size}
     >
       {children}
     </Modal>
