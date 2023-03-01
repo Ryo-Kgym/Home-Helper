@@ -1930,6 +1930,20 @@ export type GetValidAccountsQuery = {
   }> | null;
 };
 
+export type GetValidCategoryByGenreIdQueryVariables = Exact<{
+  genreId: Scalars["String"];
+}>;
+
+export type GetValidCategoryByGenreIdQuery = {
+  __typename?: "Query";
+  allCategoriesList?: Array<{
+    __typename?: "Category";
+    categoryId: string;
+    categoryName: string;
+    displayOrder: number;
+  }> | null;
+};
+
 export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
   iocomeType: IocomeType;
 }>;
@@ -2069,6 +2083,30 @@ export function useGetValidAccountsQuery(
     query: GetValidAccountsDocument,
     ...options,
   });
+}
+export const GetValidCategoryByGenreIdDocument = gql`
+  query GetValidCategoryByGenreId($genreId: String!) {
+    allCategoriesList(
+      condition: { genreId: $genreId, validFlag: true }
+      orderBy: DISPLAY_ORDER_ASC
+    ) {
+      categoryId
+      categoryName
+      displayOrder
+    }
+  }
+`;
+
+export function useGetValidCategoryByGenreIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetValidCategoryByGenreIdQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetValidCategoryByGenreIdQuery,
+    GetValidCategoryByGenreIdQueryVariables
+  >({ query: GetValidCategoryByGenreIdDocument, ...options });
 }
 export const GetValidGenreListByIocomeTypeDocument = gql`
   query GetValidGenreListByIocomeType($iocomeType: IocomeType!) {

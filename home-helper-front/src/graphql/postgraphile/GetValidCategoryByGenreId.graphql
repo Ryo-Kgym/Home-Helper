@@ -1,0 +1,10 @@
+query GetValidCategoryByGenreId($genreId: String!) {
+    allCategoriesList(
+        condition: {genreId: $genreId, validFlag: true}
+        orderBy: DISPLAY_ORDER_ASC
+    ) {
+        categoryId
+        categoryName
+        displayOrder
+    }
+}
