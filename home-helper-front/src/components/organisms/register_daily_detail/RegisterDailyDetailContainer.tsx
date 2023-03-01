@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { RegisterDailyDetailPresenter } from "./RegisterDailyDetailPresenter";
+import { IocomeType } from "@domain/model/household/IocomeType";
 
 type RegisterDailyDetailContainerProps = {
   date: Date;
@@ -7,7 +8,7 @@ type RegisterDailyDetailContainerProps = {
 export const RegisterDailyDetailContainer: FC<
   RegisterDailyDetailContainerProps
 > = ({ date }) => {
-  const [iocomeType, setIocomeType] = useState<"INCOME" | "OUTCOME">("INCOME");
+  const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
   const [categoryId, setCategoryId] = useState("");
   const [genreId, setGenreId] = useState("");
   const [accountId, setAccountId] = useState("");
