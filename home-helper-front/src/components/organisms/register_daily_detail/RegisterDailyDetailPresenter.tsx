@@ -7,9 +7,11 @@ import { IocomeType } from "@domain/model/household/IocomeType";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
 import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
 import { Button } from "@components/atoms/Button";
+import { DatePicker } from "@components/atoms/DatePicker";
 
 type RegisterDailyDetailPresenterProps = {
-  displayDate: string;
+  date: Date;
+  setDate: (value: Date) => void;
   iocomeType: IocomeType;
   setIocomeType: (value: IocomeType) => void;
   categoryId: string | null;
@@ -28,7 +30,8 @@ type RegisterDailyDetailPresenterProps = {
 export const RegisterDailyDetailPresenter: FC<
   RegisterDailyDetailPresenterProps
 > = ({
-  displayDate,
+  date,
+  setDate,
   iocomeType,
   setIocomeType,
   categoryId,
@@ -46,7 +49,12 @@ export const RegisterDailyDetailPresenter: FC<
 }) => (
   <div className={"grid grid-cols-1 w-full"}>
     <Field>
-      <div className={"text-center text-3xl"}>{displayDate}</div>
+      <DatePicker
+        value={date}
+        onChange={setDate}
+        withAsterisk
+        defaultValue={date}
+      />
     </Field>
     <Field>
       <IocomeTypeSegment
