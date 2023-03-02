@@ -7,20 +7,22 @@ type SelectPresenterProps = {
   value: string | null;
   onChange: (value: string | null) => void;
   data: SelectData[];
-  placeholder?: string;
-  maxDropdownHeight?: number;
-  size?: MantineSize;
-  withAsterisk?: boolean;
+  placeholder: string;
+  maxDropdownHeight: number;
+  size: MantineSize;
+  withAsterisk: boolean;
+  error: string;
 };
 export const SelectPresenter: FC<SelectPresenterProps> = ({
   label,
   value,
   onChange,
   data,
-  placeholder = "",
-  maxDropdownHeight = 400,
-  size = "lg",
-  withAsterisk = false,
+  placeholder,
+  maxDropdownHeight,
+  size,
+  withAsterisk,
+  error,
 }) => {
   const filter = (value: string, item: SelectItem): boolean => {
     return (
@@ -44,6 +46,7 @@ export const SelectPresenter: FC<SelectPresenterProps> = ({
       filter={filter}
       size={size}
       withAsterisk={withAsterisk}
+      error={error}
     />
   );
 };
