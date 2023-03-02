@@ -14,7 +14,7 @@ export const RegisterDailyDetailContainer: FC<
   const [categoryId, setCategoryId] = useState<string | null>("");
   const [genreId, setGenreId] = useState<string | null>("");
   const [accountId, setAccountId] = useState<string | null>("");
-  const [amount, setAmount] = useState<Number>(0);
+  const [amount, setAmount] = useState<Number | null>(null);
   const [memo, setMemo] = useState("");
 
   const allClear = () => {
@@ -26,24 +26,18 @@ export const RegisterDailyDetailContainer: FC<
     setMemo("");
   };
 
-  const checkInput = () => {
-    if (genreId?.length === undefined || genreId?.length === 0) {
-      alert("ジャンルを選択してください");
-      return false;
-    }
-    if (categoryId?.length === undefined || categoryId?.length === 0) {
-      alert("カテゴリーを選択してください");
-      return false;
-    }
-    if (accountId?.length === undefined || accountId?.length === 0) {
-      alert("アカウントを選択してください");
-      return false;
-    }
-    if (amount === undefined) {
-      alert("金額を入力してください");
-      return false;
-    }
-    return true;
+  const anyFieldIsInvalid = () => {
+    const genreIdIsInvalid = genreId === null || genreId === "";
+    const categoryIdIsInvalid = categoryId === null || categoryId === "";
+    const accountIdIsInvalid = accountId === null || accountId === "";
+    const amountIsInvalid = amount === undefined || amount === null;
+
+    return (
+      genreIdIsInvalid ||
+      categoryIdIsInvalid ||
+      accountIdIsInvalid ||
+      amountIsInvalid
+    );
   };
 
   const register = useRegisterDailyDetail({
@@ -53,12 +47,13 @@ export const RegisterDailyDetailContainer: FC<
     amount: amount as number,
     memo: memo,
   });
+
   const registerClickHandler = () => {
-    if (!checkInput()) {
+    if (anyFieldIsInvalid()) {
       return;
     }
     register();
-    setAmount(0);
+    setAmount(null);
     setMemo("");
   };
 
@@ -67,24 +62,24 @@ export const RegisterDailyDetailContainer: FC<
       date={registerDate}
       setDate={setRegisterDate}
       iocomeType={iocomeType}
-      setIocomeType={(value: IocomeType) => {
+      changeIocomeTypeHandler={(value: IocomeType) => {
         setIocomeType(value);
         setGenreId(null);
         setCategoryId(null);
       }}
       genreId={genreId}
-      setGenreId={(value: string | null) => {
+      changeGenreIdHandler={(value: string | null) => {
         setGenreId(value);
         setCategoryId(null);
       }}
       categoryId={categoryId}
-      setCategoryId={setCategoryId}
+      changeCategoryIdHandler={setCategoryId}
       accountId={accountId}
-      setAccountId={setAccountId}
+      changeAccountIdHandler={setAccountId}
       amount={amount}
-      setAmount={setAmount}
+      changeAmountHandler={setAmount}
       memo={memo}
-      setMemo={setMemo}
+      changeMemoHandler={setMemo}
       clearClickHandler={allClear}
       registerClickHandler={registerClickHandler}
     />

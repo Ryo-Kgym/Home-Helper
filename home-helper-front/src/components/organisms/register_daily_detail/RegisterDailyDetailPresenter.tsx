@@ -13,17 +13,17 @@ type RegisterDailyDetailPresenterProps = {
   date: Date;
   setDate: (value: Date) => void;
   iocomeType: IocomeType;
-  setIocomeType: (value: IocomeType) => void;
+  changeIocomeTypeHandler: (value: IocomeType) => void;
   categoryId: string | null;
-  setCategoryId: (value: string | null) => void;
+  changeCategoryIdHandler: (value: string | null) => void;
   genreId: string | null;
-  setGenreId: (value: string | null) => void;
+  changeGenreIdHandler: (value: string | null) => void;
   accountId: string | null;
-  setAccountId: (value: string | null) => void;
-  amount: Number;
-  setAmount: (value: Number) => void;
+  changeAccountIdHandler: (value: string | null) => void;
+  amount: Number | null;
+  changeAmountHandler: (value: Number) => void;
   memo: string;
-  setMemo: (value: string) => void;
+  changeMemoHandler: (value: string) => void;
   clearClickHandler: () => void;
   registerClickHandler: () => void;
 };
@@ -33,17 +33,17 @@ export const RegisterDailyDetailPresenter: FC<
   date,
   setDate,
   iocomeType,
-  setIocomeType,
+  changeIocomeTypeHandler,
   categoryId,
-  setCategoryId,
+  changeCategoryIdHandler,
   genreId,
-  setGenreId,
+  changeGenreIdHandler,
   accountId,
-  setAccountId,
+  changeAccountIdHandler,
   amount,
-  setAmount,
+  changeAmountHandler,
   memo,
-  setMemo,
+  changeMemoHandler,
   clearClickHandler,
   registerClickHandler,
 }) => (
@@ -59,31 +59,34 @@ export const RegisterDailyDetailPresenter: FC<
     <Field>
       <IocomeTypeSegment
         iocomeType={iocomeType}
-        setIocomeType={setIocomeType}
+        setIocomeType={changeIocomeTypeHandler}
       />
     </Field>
     <Field>
       <GenreSelect
         iocomeType={iocomeType}
         genreId={genreId}
-        setGenreId={setGenreId}
+        setGenreId={changeGenreIdHandler}
       />
     </Field>
     <Field>
       <CategorySelect
         genreId={genreId}
         categoryId={categoryId}
-        setCategoryId={setCategoryId}
+        setCategoryId={changeCategoryIdHandler}
       />
     </Field>
     <Field>
-      <AccountSelect accountId={accountId} setAccountId={setAccountId} />
+      <AccountSelect
+        accountId={accountId}
+        setAccountId={changeAccountIdHandler}
+      />
     </Field>
     <Field>
-      <AmountInput value={amount} onChange={setAmount} />
+      <AmountInput value={amount} onChange={changeAmountHandler} />
     </Field>
     <Field>
-      <MemoTextArea memo={memo} setMemo={setMemo} />
+      <MemoTextArea memo={memo} setMemo={changeMemoHandler} />
     </Field>
     <Button colorType={"register"} onClick={registerClickHandler} />
     <Button colorType={"clear"} onClick={clearClickHandler} />
@@ -92,6 +95,6 @@ export const RegisterDailyDetailPresenter: FC<
 
 const Field = ({ children }: { children: ReactNode }) => (
   <>
-    <div className={"py-4"}>{children}</div>
+    <div className={"py-2"}>{children}</div>
   </>
 );
