@@ -2,7 +2,7 @@ import { FC } from "react";
 import { NumberInput } from "@components/atoms/NumberInput";
 
 type AmountInputPresenterProps = {
-  value: Number;
+  value: Number | null;
   onChange: (value: Number) => void;
 };
 export const AmountInputPresenter: FC<AmountInputPresenterProps> = ({

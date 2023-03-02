@@ -3,7 +3,7 @@ import { NumberInputPresenter } from "@components/atoms/NumberInput/NumberInputP
 
 type NumberInputContainerProps = {
   label: string;
-  value: Number;
+  value: Number | null;
   onChange: (value: Number) => void;
   placeholder?: string;
   withAsterisk?: boolean;
@@ -15,11 +15,12 @@ export const NumberInputContainer: FC<NumberInputContainerProps> = ({
   placeholder,
   withAsterisk,
 }) => {
-  const checkValue = (value: Number) => {
+  const checkValue = (value: Number | null) => {
+    if (value == undefined) {
+      return "Required";
+    }
     if (String(value).length > 9) {
       return "Too long";
-    } else if (value == undefined) {
-      return "Required";
     }
     return "";
   };
@@ -27,7 +28,7 @@ export const NumberInputContainer: FC<NumberInputContainerProps> = ({
   return (
     <NumberInputPresenter
       label={label}
-      value={value?.valueOf() ?? 0}
+      value={value?.valueOf()}
       onChange={onChange}
       placeholder={placeholder}
       error={checkValue(value)}
