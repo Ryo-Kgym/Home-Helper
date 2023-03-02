@@ -17,21 +17,41 @@ export const RegisterDailyDetailContainer: FC<
 
   const displayDate = date.toLocaleDateString();
 
+  const allClear = () => {
+    setIocomeType(IocomeType.Income);
+    setCategoryId(null);
+    setGenreId(null);
+    setAccountId(null);
+    setAmount(0);
+    setMemo("");
+  };
+
+  const register = () => {};
+
   return (
     <RegisterDailyDetailPresenter
       displayDate={displayDate}
       iocomeType={iocomeType}
-      setIocomeType={setIocomeType}
+      setIocomeType={(value: IocomeType) => {
+        setIocomeType(value);
+        setGenreId(null);
+        setCategoryId(null);
+      }}
+      genreId={genreId}
+      setGenreId={(value: string | null) => {
+        setGenreId(value);
+        setCategoryId(null);
+      }}
       categoryId={categoryId}
       setCategoryId={setCategoryId}
-      genreId={genreId}
-      setGenreId={setGenreId}
       accountId={accountId}
       setAccountId={setAccountId}
       amount={amount}
       setAmount={setAmount}
       memo={memo}
       setMemo={setMemo}
+      clearClickHandler={allClear}
+      registerClickHandler={register}
     />
   );
 };

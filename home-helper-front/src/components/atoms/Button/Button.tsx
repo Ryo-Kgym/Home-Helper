@@ -5,7 +5,7 @@ import { MantineColor } from "@mantine/styles";
 type ButtonProps = {
   label: string;
   onClick: () => void;
-  colorType?: "register";
+  colorType?: "register" | "clear";
 };
 export const Button: FC<ButtonProps> = ({
   label,
@@ -25,4 +25,7 @@ export const Button: FC<ButtonProps> = ({
   );
 };
 
-const COLOR_MAP = new Map<any, MantineColor>([["register", "green"]]);
+const COLOR_MAP = new Map<any, MantineColor>([
+  ["register", "green"],
+  ["clear", "gray"],
+]);

@@ -5,8 +5,8 @@ import { AccountSelect } from "@components/molecules/CustomSelect/Account";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
-import { TextAreaContainer } from "@components/atoms/TextArea/TextAreaContainer";
 import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
+import { Button } from "@components/atoms/Button";
 
 type RegisterDailyDetailPresenterProps = {
   displayDate: string;
@@ -22,6 +22,8 @@ type RegisterDailyDetailPresenterProps = {
   setAmount: (value: Number) => void;
   memo: string;
   setMemo: (value: string) => void;
+  clearClickHandler: () => void;
+  registerClickHandler: () => void;
 };
 export const RegisterDailyDetailPresenter: FC<
   RegisterDailyDetailPresenterProps
@@ -39,6 +41,8 @@ export const RegisterDailyDetailPresenter: FC<
   setAmount,
   memo,
   setMemo,
+  clearClickHandler,
+  registerClickHandler,
 }) => (
   <div className={"grid grid-cols-1 w-full"}>
     <Field>
@@ -73,6 +77,12 @@ export const RegisterDailyDetailPresenter: FC<
     <Field>
       <MemoTextArea memo={memo} setMemo={setMemo} />
     </Field>
+    <Button colorType={"clear"} label={"CLEAR"} onClick={clearClickHandler} />
+    <Button
+      colorType={"register"}
+      label={"REGISTER"}
+      onClick={registerClickHandler}
+    />
   </div>
 );
 
