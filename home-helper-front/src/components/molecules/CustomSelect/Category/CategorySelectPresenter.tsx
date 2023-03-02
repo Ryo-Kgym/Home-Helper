@@ -18,5 +18,6 @@ export const CategorySelectPresenter: FC<CategorySelectPresenterProps> = ({
     onChange={onChange}
     data={categories}
     placeholder={"カテゴリを選択してください"}
+    withAsterisk
   />
 );

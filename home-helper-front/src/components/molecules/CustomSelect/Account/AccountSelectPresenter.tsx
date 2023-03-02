@@ -18,5 +18,6 @@ export const AccountSelectPresenter: FC<AccountSelectPresenterProps> = ({
     onChange={onChange}
     data={accounts}
     placeholder={"アカウントを選択してください"}
+    withAsterisk
   />
 );

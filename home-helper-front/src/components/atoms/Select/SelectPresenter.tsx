@@ -10,6 +10,7 @@ type SelectPresenterProps = {
   placeholder?: string;
   maxDropdownHeight?: number;
   size?: MantineSize;
+  withAsterisk?: boolean;
 };
 export const SelectPresenter: FC<SelectPresenterProps> = ({
   label,
@@ -19,6 +20,7 @@ export const SelectPresenter: FC<SelectPresenterProps> = ({
   placeholder = "",
   maxDropdownHeight = 400,
   size = "lg",
+  withAsterisk = false,
 }) => {
   const filter = (value: string, item: SelectItem): boolean => {
     return (
@@ -41,6 +43,7 @@ export const SelectPresenter: FC<SelectPresenterProps> = ({
       nothingFound="not found..."
       filter={filter}
       size={size}
+      withAsterisk={withAsterisk}
     />
   );
 };

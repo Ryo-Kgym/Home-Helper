@@ -18,5 +18,6 @@ export const GenreSelectPresenter: FC<GenreSelectPresenterProps> = ({
     onChange={onChange}
     data={genres}
     placeholder={"ジャンルを選択してください"}
+    withAsterisk
   />
 );
