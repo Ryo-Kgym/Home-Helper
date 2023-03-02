@@ -3,14 +3,14 @@ import type { FC } from "react";
 import { MantineColor } from "@mantine/styles";
 
 type ButtonProps = {
-  label: string;
   onClick: () => void;
   colorType?: "register" | "clear";
+  label?: string;
 };
-export const Button: FC<ButtonProps> = ({
-  label,
+export const ButtonPresenter: FC<ButtonProps> = ({
   onClick,
   colorType = "register",
+  label = colorType.toUpperCase(),
 }) => {
   return (
     <MButton

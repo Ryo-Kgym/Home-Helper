@@ -77,12 +77,8 @@ export const RegisterDailyDetailPresenter: FC<
     <Field>
       <MemoTextArea memo={memo} setMemo={setMemo} />
     </Field>
-    <Button colorType={"clear"} label={"CLEAR"} onClick={clearClickHandler} />
-    <Button
-      colorType={"register"}
-      label={"REGISTER"}
-      onClick={registerClickHandler}
-    />
+    <Button colorType={"clear"} onClick={clearClickHandler} />
+    <Button colorType={"register"} onClick={registerClickHandler} />
   </div>
 );
 
