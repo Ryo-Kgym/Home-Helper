@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { RegisterDailyDetailPresenter } from "./RegisterDailyDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { useRegisterDailyDetail } from "@hooks/household/daily_detail/useRegisterDailyDetail";
 
 type RegisterDailyDetailContainerProps = {
   date: Date;
@@ -25,7 +26,41 @@ export const RegisterDailyDetailContainer: FC<
     setMemo("");
   };
 
-  const register = () => {};
+  const checkInput = () => {
+    if (genreId?.length === undefined || genreId?.length === 0) {
+      alert("ジャンルを選択してください");
+      return false;
+    }
+    if (categoryId?.length === undefined || categoryId?.length === 0) {
+      alert("カテゴリーを選択してください");
+      return false;
+    }
+    if (accountId?.length === undefined || accountId?.length === 0) {
+      alert("アカウントを選択してください");
+      return false;
+    }
+    if (amount === undefined) {
+      alert("金額を入力してください");
+      return false;
+    }
+    return true;
+  };
+
+  const register = useRegisterDailyDetail({
+    date: registerDate,
+    categoryId: categoryId!!,
+    accountId: accountId!!,
+    amount: amount as number,
+    memo: memo,
+  });
+  const registerClickHandler = () => {
+    if (!checkInput()) {
+      return;
+    }
+    register();
+    setAmount(0);
+    setMemo("");
+  };
 
   return (
     <RegisterDailyDetailPresenter
@@ -51,7 +86,7 @@ export const RegisterDailyDetailContainer: FC<
       memo={memo}
       setMemo={setMemo}
       clearClickHandler={allClear}
-      registerClickHandler={register}
+      registerClickHandler={registerClickHandler}
     />
   );
 };
