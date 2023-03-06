@@ -1,1 +1,1 @@
-export { Button } from "@components/atoms/Button/Button";
+export { ButtonPresenter as Button } from "@components/atoms/Button/ButtonPresenter";

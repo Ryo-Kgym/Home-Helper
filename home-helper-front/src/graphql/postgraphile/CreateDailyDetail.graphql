@@ -1,0 +1,30 @@
+mutation CreateDailyDetail(
+    $date: Date!
+    $categoryId: String!
+    $accountId: String!
+    $userId: String!
+    $amount: BigFloat!
+    $memo: String
+) {
+    createDailyDetail(
+        input: {
+            dailyDetail: {
+                date: $date
+                categoryId: $categoryId
+                accountId: $accountId
+                userId: $userId
+                amount: $amount
+                memo: $memo
+            }
+        }
+    ) {
+        dailyDetail {
+            date
+            categoryId
+            accountId
+            userId
+            amount
+            memo
+        }
+    }
+}

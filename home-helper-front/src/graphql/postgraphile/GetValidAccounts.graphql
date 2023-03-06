@@ -1,0 +1,6 @@
+query GetValidAccounts {
+    allAccountsList(condition: {validFlag: true}, orderBy: DISPLAY_ORDER_ASC) {
+        accountId
+        accountName
+    }
+}

@@ -17,6 +17,23 @@ type Query implements Node {
     nodeId: ID!
   ): Node
 
+  """Reads a set of `Account`."""
+  allAccountsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Account`."""
+    orderBy: [AccountsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: AccountCondition
+  ): [Account!]
+
   """Reads a set of `AccountBalance`."""
   allAccountBalancesList(
     """Only read the first `n` values of the set."""
@@ -34,78 +51,97 @@ type Query implements Node {
     condition: AccountBalanceCondition
   ): [AccountBalance!]
 
-  """Reads a set of `MAccount`."""
-  allMAccountsList(
+  """Reads a set of `Category`."""
+  allCategoriesList(
     """Only read the first `n` values of the set."""
     first: Int
 
     """Skip the first `n` values."""
     offset: Int
 
-    """The method to use when ordering `MAccount`."""
-    orderBy: [MAccountsOrderBy!]
+    """The method to use when ordering `Category`."""
+    orderBy: [CategoriesOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: MAccountCondition
-  ): [MAccount!]
+    condition: CategoryCondition
+  ): [Category!]
 
-  """Reads a set of `MCategory`."""
-  allMCategoriesList(
+  """Reads a set of `DailyDetail`."""
+  allDailyDetailsList(
     """Only read the first `n` values of the set."""
     first: Int
 
     """Skip the first `n` values."""
     offset: Int
 
-    """The method to use when ordering `MCategory`."""
-    orderBy: [MCategoriesOrderBy!]
+    """The method to use when ordering `DailyDetail`."""
+    orderBy: [DailyDetailsOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: MCategoryCondition
-  ): [MCategory!]
+    condition: DailyDetailCondition
+  ): [DailyDetail!]
 
-  """Reads a set of `MGenre`."""
-  allMGenresList(
+  """Reads a set of `Genre`."""
+  allGenresList(
     """Only read the first `n` values of the set."""
     first: Int
 
     """Skip the first `n` values."""
     offset: Int
 
-    """The method to use when ordering `MGenre`."""
-    orderBy: [MGenresOrderBy!]
+    """The method to use when ordering `Genre`."""
+    orderBy: [GenresOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: MGenreCondition
-  ): [MGenre!]
+    condition: GenreCondition
+  ): [Genre!]
 
-  """Reads a set of `MUser`."""
-  allMUsersList(
+  """Reads a set of `User`."""
+  allUsersList(
     """Only read the first `n` values of the set."""
     first: Int
 
     """Skip the first `n` values."""
     offset: Int
 
-    """The method to use when ordering `MUser`."""
-    orderBy: [MUsersOrderBy!]
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: MUserCondition
-  ): [MUser!]
+    condition: UserCondition
+  ): [User!]
+  accountByAccountId(accountId: String!): Account
   accountBalanceByAccountId(accountId: String!): AccountBalance
-  mAccountByAccountId(accountId: String!): MAccount
-  mCategoryByCategoryId(categoryId: String!): MCategory
-  mGenreByGenreId(genreId: String!): MGenre
-  mUserByUserId(userId: String!): MUser
+  categoryByCategoryId(categoryId: String!): Category
+  dailyDetailBySerialNo(serialNo: Int!): DailyDetail
+  genreByGenreId(genreId: String!): Genre
+  userByUserId(userId: String!): User
+
+  """Reads and enables pagination through a set of `DailyDetail`."""
+  dailyDetailByDateList(
+    fromDate: Date
+    toDate: Date
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+  ): [DailyDetail]
+
+  """Reads a single `Account` using its globally unique `ID`."""
+  account(
+    """The globally unique `ID` to be used in selecting a single `Account`."""
+    nodeId: ID!
+  ): Account
 
   """Reads a single `AccountBalance` using its globally unique `ID`."""
   accountBalance(
@@ -115,29 +151,31 @@ type Query implements Node {
     nodeId: ID!
   ): AccountBalance
 
-  """Reads a single `MAccount` using its globally unique `ID`."""
-  mAccount(
-    """The globally unique `ID` to be used in selecting a single `MAccount`."""
+  """Reads a single `Category` using its globally unique `ID`."""
+  category(
+    """The globally unique `ID` to be used in selecting a single `Category`."""
     nodeId: ID!
-  ): MAccount
+  ): Category
 
-  """Reads a single `MCategory` using its globally unique `ID`."""
-  mCategory(
-    """The globally unique `ID` to be used in selecting a single `MCategory`."""
+  """Reads a single `DailyDetail` using its globally unique `ID`."""
+  dailyDetail(
+    """
+    The globally unique `ID` to be used in selecting a single `DailyDetail`.
+    """
     nodeId: ID!
-  ): MCategory
+  ): DailyDetail
 
-  """Reads a single `MGenre` using its globally unique `ID`."""
-  mGenre(
-    """The globally unique `ID` to be used in selecting a single `MGenre`."""
+  """Reads a single `Genre` using its globally unique `ID`."""
+  genre(
+    """The globally unique `ID` to be used in selecting a single `Genre`."""
     nodeId: ID!
-  ): MGenre
+  ): Genre
 
-  """Reads a single `MUser` using its globally unique `ID`."""
-  mUser(
-    """The globally unique `ID` to be used in selecting a single `MUser`."""
+  """Reads a single `User` using its globally unique `ID`."""
+  user(
+    """The globally unique `ID` to be used in selecting a single `User`."""
     nodeId: ID!
-  ): MUser
+  ): User
 }
 
 """An object with a globally unique `ID`."""
@@ -148,24 +186,7 @@ interface Node {
   nodeId: ID!
 }
 
-type AccountBalance implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  accountId: String!
-  balance: BigFloat
-
-  """Reads a single `MAccount` that is related to this `AccountBalance`."""
-  mAccountByAccountId: MAccount
-}
-
-"""
-A floating point number that requires more precision than IEEE 754 binary 64
-"""
-scalar BigFloat
-
-type MAccount implements Node {
+type Account implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
@@ -176,14 +197,31 @@ type MAccount implements Node {
   displayOrder: Int!
   ownerUserId: String!
 
-  """Reads a single `MUser` that is related to this `MAccount`."""
-  mUserByOwnerUserId: MUser
+  """Reads a single `User` that is related to this `Account`."""
+  userByOwnerUserId: User
 
-  """Reads a single `AccountBalance` that is related to this `MAccount`."""
+  """Reads a single `AccountBalance` that is related to this `Account`."""
   accountBalanceByAccountId: AccountBalance
+
+  """Reads and enables pagination through a set of `DailyDetail`."""
+  dailyDetailsByAccountIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `DailyDetail`."""
+    orderBy: [DailyDetailsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: DailyDetailCondition
+  ): [DailyDetail!]!
 }
 
-type MUser implements Node {
+type User implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
@@ -192,26 +230,43 @@ type MUser implements Node {
   userName: String!
   displayOrder: Int!
 
-  """Reads and enables pagination through a set of `MAccount`."""
-  mAccountsByOwnerUserIdList(
+  """Reads and enables pagination through a set of `Account`."""
+  accountsByOwnerUserIdList(
     """Only read the first `n` values of the set."""
     first: Int
 
     """Skip the first `n` values."""
     offset: Int
 
-    """The method to use when ordering `MAccount`."""
-    orderBy: [MAccountsOrderBy!]
+    """The method to use when ordering `Account`."""
+    orderBy: [AccountsOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: MAccountCondition
-  ): [MAccount!]!
+    condition: AccountCondition
+  ): [Account!]!
+
+  """Reads and enables pagination through a set of `DailyDetail`."""
+  dailyDetailsByUserIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `DailyDetail`."""
+    orderBy: [DailyDetailsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: DailyDetailCondition
+  ): [DailyDetail!]!
 }
 
-"""Methods to use when ordering `MAccount`."""
-enum MAccountsOrderBy {
+"""Methods to use when ordering `Account`."""
+enum AccountsOrderBy {
   NATURAL
   ACCOUNT_ID_ASC
   ACCOUNT_ID_DESC
@@ -228,10 +283,9 @@ enum MAccountsOrderBy {
 }
 
 """
-A condition to be used against `MAccount` object types. All fields are tested
-for equality and combined with a logical ‘and.’
+A condition to be used against `Account` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
-input MAccountCondition {
+input AccountCondition {
   """Checks for equality with the object’s `accountId` field."""
   accountId: String
 
@@ -246,6 +300,207 @@ input MAccountCondition {
 
   """Checks for equality with the object’s `ownerUserId` field."""
   ownerUserId: String
+}
+
+type DailyDetail implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  serialNo: Int!
+  date: Date!
+  categoryId: String!
+  accountId: String!
+  userId: String!
+  amount: BigFloat!
+  memo: String
+
+  """Reads a single `Category` that is related to this `DailyDetail`."""
+  categoryByCategoryId: Category
+
+  """Reads a single `Account` that is related to this `DailyDetail`."""
+  accountByAccountId: Account
+
+  """Reads a single `User` that is related to this `DailyDetail`."""
+  userByUserId: User
+}
+
+"""The day, does not include a time."""
+scalar Date
+
+"""
+A floating point number that requires more precision than IEEE 754 binary 64
+"""
+scalar BigFloat
+
+type Category implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  categoryId: String!
+  categoryName: String!
+  genreId: String!
+  validFlag: Boolean
+  displayOrder: Int!
+
+  """Reads a single `Genre` that is related to this `Category`."""
+  genreByGenreId: Genre
+
+  """Reads and enables pagination through a set of `DailyDetail`."""
+  dailyDetailsByCategoryIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `DailyDetail`."""
+    orderBy: [DailyDetailsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: DailyDetailCondition
+  ): [DailyDetail!]!
+}
+
+type Genre implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  genreId: String!
+  genreName: String!
+  genreType: GenreType!
+  iocomeType: IocomeType!
+  validFlag: Boolean
+  displayOrder: Int!
+
+  """Reads and enables pagination through a set of `Category`."""
+  categoriesByGenreIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Category`."""
+    orderBy: [CategoriesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CategoryCondition
+  ): [Category!]!
+}
+
+enum GenreType {
+  FIXED
+  FLUCTUATION
+}
+
+enum IocomeType {
+  INCOME
+  OUTCOME
+}
+
+"""Methods to use when ordering `Category`."""
+enum CategoriesOrderBy {
+  NATURAL
+  CATEGORY_ID_ASC
+  CATEGORY_ID_DESC
+  CATEGORY_NAME_ASC
+  CATEGORY_NAME_DESC
+  GENRE_ID_ASC
+  GENRE_ID_DESC
+  VALID_FLAG_ASC
+  VALID_FLAG_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Category` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input CategoryCondition {
+  """Checks for equality with the object’s `categoryId` field."""
+  categoryId: String
+
+  """Checks for equality with the object’s `categoryName` field."""
+  categoryName: String
+
+  """Checks for equality with the object’s `genreId` field."""
+  genreId: String
+
+  """Checks for equality with the object’s `validFlag` field."""
+  validFlag: Boolean
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+}
+
+"""Methods to use when ordering `DailyDetail`."""
+enum DailyDetailsOrderBy {
+  NATURAL
+  SERIAL_NO_ASC
+  SERIAL_NO_DESC
+  DATE_ASC
+  DATE_DESC
+  CATEGORY_ID_ASC
+  CATEGORY_ID_DESC
+  ACCOUNT_ID_ASC
+  ACCOUNT_ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  AMOUNT_ASC
+  AMOUNT_DESC
+  MEMO_ASC
+  MEMO_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `DailyDetail` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input DailyDetailCondition {
+  """Checks for equality with the object’s `serialNo` field."""
+  serialNo: Int
+
+  """Checks for equality with the object’s `date` field."""
+  date: Date
+
+  """Checks for equality with the object’s `categoryId` field."""
+  categoryId: String
+
+  """Checks for equality with the object’s `accountId` field."""
+  accountId: String
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: String
+
+  """Checks for equality with the object’s `amount` field."""
+  amount: BigFloat
+
+  """Checks for equality with the object’s `memo` field."""
+  memo: String
+}
+
+type AccountBalance implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  accountId: String!
+  balance: BigFloat
+
+  """Reads a single `Account` that is related to this `AccountBalance`."""
+  accountByAccountId: Account
 }
 
 """Methods to use when ordering `AccountBalance`."""
@@ -271,101 +526,8 @@ input AccountBalanceCondition {
   balance: BigFloat
 }
 
-type MCategory implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  categoryId: String!
-  categoryName: String!
-  genreId: String!
-  validFlag: Boolean
-  displayOrder: Int!
-
-  """Reads a single `MGenre` that is related to this `MCategory`."""
-  mGenreByGenreId: MGenre
-}
-
-type MGenre implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  genreId: String!
-  genreName: String!
-  genreType: GenreType!
-  iocomeType: IocomeType!
-  validFlag: Boolean
-  displayOrder: Int!
-
-  """Reads and enables pagination through a set of `MCategory`."""
-  mCategoriesByGenreIdList(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Skip the first `n` values."""
-    offset: Int
-
-    """The method to use when ordering `MCategory`."""
-    orderBy: [MCategoriesOrderBy!]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: MCategoryCondition
-  ): [MCategory!]!
-}
-
-enum GenreType {
-  FIXED
-  FLUCTUATION
-}
-
-enum IocomeType {
-  INCOME
-  OUTCOME
-}
-
-"""Methods to use when ordering `MCategory`."""
-enum MCategoriesOrderBy {
-  NATURAL
-  CATEGORY_ID_ASC
-  CATEGORY_ID_DESC
-  CATEGORY_NAME_ASC
-  CATEGORY_NAME_DESC
-  GENRE_ID_ASC
-  GENRE_ID_DESC
-  VALID_FLAG_ASC
-  VALID_FLAG_DESC
-  DISPLAY_ORDER_ASC
-  DISPLAY_ORDER_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `MCategory` object types. All fields are tested
-for equality and combined with a logical ‘and.’
-"""
-input MCategoryCondition {
-  """Checks for equality with the object’s `categoryId` field."""
-  categoryId: String
-
-  """Checks for equality with the object’s `categoryName` field."""
-  categoryName: String
-
-  """Checks for equality with the object’s `genreId` field."""
-  genreId: String
-
-  """Checks for equality with the object’s `validFlag` field."""
-  validFlag: Boolean
-
-  """Checks for equality with the object’s `displayOrder` field."""
-  displayOrder: Int
-}
-
-"""Methods to use when ordering `MGenre`."""
-enum MGenresOrderBy {
+"""Methods to use when ordering `Genre`."""
+enum GenresOrderBy {
   NATURAL
   GENRE_ID_ASC
   GENRE_ID_DESC
@@ -384,9 +546,9 @@ enum MGenresOrderBy {
 }
 
 """
-A condition to be used against `MGenre` object types. All fields are tested for equality and combined with a logical ‘and.’
+A condition to be used against `Genre` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
-input MGenreCondition {
+input GenreCondition {
   """Checks for equality with the object’s `genreId` field."""
   genreId: String
 
@@ -406,8 +568,8 @@ input MGenreCondition {
   displayOrder: Int
 }
 
-"""Methods to use when ordering `MUser`."""
-enum MUsersOrderBy {
+"""Methods to use when ordering `User`."""
+enum UsersOrderBy {
   NATURAL
   USER_ID_ASC
   USER_ID_DESC
@@ -420,9 +582,9 @@ enum MUsersOrderBy {
 }
 
 """
-A condition to be used against `MUser` object types. All fields are tested for equality and combined with a logical ‘and.’
+A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
-input MUserCondition {
+input UserCondition {
   """Checks for equality with the object’s `userId` field."""
   userId: String
 
@@ -437,6 +599,14 @@ input MUserCondition {
 The root mutation type which contains root level fields which mutate data.
 """
 type Mutation {
+  """Creates a single `Account`."""
+  createAccount(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateAccountInput!
+  ): CreateAccountPayload
+
   """Creates a single `AccountBalance`."""
   createAccountBalance(
     """
@@ -445,37 +615,53 @@ type Mutation {
     input: CreateAccountBalanceInput!
   ): CreateAccountBalancePayload
 
-  """Creates a single `MAccount`."""
-  createMAccount(
+  """Creates a single `Category`."""
+  createCategory(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateMAccountInput!
-  ): CreateMAccountPayload
+    input: CreateCategoryInput!
+  ): CreateCategoryPayload
 
-  """Creates a single `MCategory`."""
-  createMCategory(
+  """Creates a single `DailyDetail`."""
+  createDailyDetail(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateMCategoryInput!
-  ): CreateMCategoryPayload
+    input: CreateDailyDetailInput!
+  ): CreateDailyDetailPayload
 
-  """Creates a single `MGenre`."""
-  createMGenre(
+  """Creates a single `Genre`."""
+  createGenre(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateMGenreInput!
-  ): CreateMGenrePayload
+    input: CreateGenreInput!
+  ): CreateGenrePayload
 
-  """Creates a single `MUser`."""
-  createMUser(
+  """Creates a single `User`."""
+  createUser(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateMUserInput!
-  ): CreateMUserPayload
+    input: CreateUserInput!
+  ): CreateUserPayload
+
+  """Updates a single `Account` using its globally unique id and a patch."""
+  updateAccount(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateAccountInput!
+  ): UpdateAccountPayload
+
+  """Updates a single `Account` using a unique key and a patch."""
+  updateAccountByAccountId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateAccountByAccountIdInput!
+  ): UpdateAccountPayload
 
   """
   Updates a single `AccountBalance` using its globally unique id and a patch.
@@ -495,69 +681,87 @@ type Mutation {
     input: UpdateAccountBalanceByAccountIdInput!
   ): UpdateAccountBalancePayload
 
-  """Updates a single `MAccount` using its globally unique id and a patch."""
-  updateMAccount(
+  """Updates a single `Category` using its globally unique id and a patch."""
+  updateCategory(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateMAccountInput!
-  ): UpdateMAccountPayload
+    input: UpdateCategoryInput!
+  ): UpdateCategoryPayload
 
-  """Updates a single `MAccount` using a unique key and a patch."""
-  updateMAccountByAccountId(
+  """Updates a single `Category` using a unique key and a patch."""
+  updateCategoryByCategoryId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateMAccountByAccountIdInput!
-  ): UpdateMAccountPayload
+    input: UpdateCategoryByCategoryIdInput!
+  ): UpdateCategoryPayload
 
-  """Updates a single `MCategory` using its globally unique id and a patch."""
-  updateMCategory(
+  """
+  Updates a single `DailyDetail` using its globally unique id and a patch.
+  """
+  updateDailyDetail(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateMCategoryInput!
-  ): UpdateMCategoryPayload
+    input: UpdateDailyDetailInput!
+  ): UpdateDailyDetailPayload
 
-  """Updates a single `MCategory` using a unique key and a patch."""
-  updateMCategoryByCategoryId(
+  """Updates a single `DailyDetail` using a unique key and a patch."""
+  updateDailyDetailBySerialNo(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateMCategoryByCategoryIdInput!
-  ): UpdateMCategoryPayload
+    input: UpdateDailyDetailBySerialNoInput!
+  ): UpdateDailyDetailPayload
 
-  """Updates a single `MGenre` using its globally unique id and a patch."""
-  updateMGenre(
+  """Updates a single `Genre` using its globally unique id and a patch."""
+  updateGenre(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateMGenreInput!
-  ): UpdateMGenrePayload
+    input: UpdateGenreInput!
+  ): UpdateGenrePayload
 
-  """Updates a single `MGenre` using a unique key and a patch."""
-  updateMGenreByGenreId(
+  """Updates a single `Genre` using a unique key and a patch."""
+  updateGenreByGenreId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateMGenreByGenreIdInput!
-  ): UpdateMGenrePayload
+    input: UpdateGenreByGenreIdInput!
+  ): UpdateGenrePayload
 
-  """Updates a single `MUser` using its globally unique id and a patch."""
-  updateMUser(
+  """Updates a single `User` using its globally unique id and a patch."""
+  updateUser(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateMUserInput!
-  ): UpdateMUserPayload
+    input: UpdateUserInput!
+  ): UpdateUserPayload
 
-  """Updates a single `MUser` using a unique key and a patch."""
-  updateMUserByUserId(
+  """Updates a single `User` using a unique key and a patch."""
+  updateUserByUserId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateMUserByUserIdInput!
-  ): UpdateMUserPayload
+    input: UpdateUserByUserIdInput!
+  ): UpdateUserPayload
+
+  """Deletes a single `Account` using its globally unique id."""
+  deleteAccount(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteAccountInput!
+  ): DeleteAccountPayload
+
+  """Deletes a single `Account` using a unique key."""
+  deleteAccountByAccountId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteAccountByAccountIdInput!
+  ): DeleteAccountPayload
 
   """Deletes a single `AccountBalance` using its globally unique id."""
   deleteAccountBalance(
@@ -575,69 +779,110 @@ type Mutation {
     input: DeleteAccountBalanceByAccountIdInput!
   ): DeleteAccountBalancePayload
 
-  """Deletes a single `MAccount` using its globally unique id."""
-  deleteMAccount(
+  """Deletes a single `Category` using its globally unique id."""
+  deleteCategory(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteMAccountInput!
-  ): DeleteMAccountPayload
+    input: DeleteCategoryInput!
+  ): DeleteCategoryPayload
 
-  """Deletes a single `MAccount` using a unique key."""
-  deleteMAccountByAccountId(
+  """Deletes a single `Category` using a unique key."""
+  deleteCategoryByCategoryId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteMAccountByAccountIdInput!
-  ): DeleteMAccountPayload
+    input: DeleteCategoryByCategoryIdInput!
+  ): DeleteCategoryPayload
 
-  """Deletes a single `MCategory` using its globally unique id."""
-  deleteMCategory(
+  """Deletes a single `DailyDetail` using its globally unique id."""
+  deleteDailyDetail(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteMCategoryInput!
-  ): DeleteMCategoryPayload
+    input: DeleteDailyDetailInput!
+  ): DeleteDailyDetailPayload
 
-  """Deletes a single `MCategory` using a unique key."""
-  deleteMCategoryByCategoryId(
+  """Deletes a single `DailyDetail` using a unique key."""
+  deleteDailyDetailBySerialNo(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteMCategoryByCategoryIdInput!
-  ): DeleteMCategoryPayload
+    input: DeleteDailyDetailBySerialNoInput!
+  ): DeleteDailyDetailPayload
 
-  """Deletes a single `MGenre` using its globally unique id."""
-  deleteMGenre(
+  """Deletes a single `Genre` using its globally unique id."""
+  deleteGenre(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteMGenreInput!
-  ): DeleteMGenrePayload
+    input: DeleteGenreInput!
+  ): DeleteGenrePayload
 
-  """Deletes a single `MGenre` using a unique key."""
-  deleteMGenreByGenreId(
+  """Deletes a single `Genre` using a unique key."""
+  deleteGenreByGenreId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteMGenreByGenreIdInput!
-  ): DeleteMGenrePayload
+    input: DeleteGenreByGenreIdInput!
+  ): DeleteGenrePayload
 
-  """Deletes a single `MUser` using its globally unique id."""
-  deleteMUser(
+  """Deletes a single `User` using its globally unique id."""
+  deleteUser(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteMUserInput!
-  ): DeleteMUserPayload
+    input: DeleteUserInput!
+  ): DeleteUserPayload
 
-  """Deletes a single `MUser` using a unique key."""
-  deleteMUserByUserId(
+  """Deletes a single `User` using a unique key."""
+  deleteUserByUserId(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteMUserByUserIdInput!
-  ): DeleteMUserPayload
+    input: DeleteUserByUserIdInput!
+  ): DeleteUserPayload
+}
+
+"""The output of our create `Account` mutation."""
+type CreateAccountPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Account` that was created by this mutation."""
+  account: Account
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Account`."""
+  userByOwnerUserId: User
+}
+
+"""All input for the create `Account` mutation."""
+input CreateAccountInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Account` to be created by this mutation."""
+  account: AccountInput!
+}
+
+"""An input for mutations affecting `Account`"""
+input AccountInput {
+  accountId: String!
+  accountName: String!
+  validFlag: Boolean
+  displayOrder: Int!
+  ownerUserId: String!
 }
 
 """The output of our create `AccountBalance` mutation."""
@@ -656,8 +901,8 @@ type CreateAccountBalancePayload {
   """
   query: Query
 
-  """Reads a single `MAccount` that is related to this `AccountBalance`."""
-  mAccountByAccountId: MAccount
+  """Reads a single `Account` that is related to this `AccountBalance`."""
+  accountByAccountId: Account
 }
 
 """All input for the create `AccountBalance` mutation."""
@@ -678,81 +923,40 @@ input AccountBalanceInput {
   balance: BigFloat
 }
 
-"""The output of our create `MAccount` mutation."""
-type CreateMAccountPayload {
+"""The output of our create `Category` mutation."""
+type CreateCategoryPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `MAccount` that was created by this mutation."""
-  mAccount: MAccount
+  """The `Category` that was created by this mutation."""
+  category: Category
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """Reads a single `MUser` that is related to this `MAccount`."""
-  mUserByOwnerUserId: MUser
+  """Reads a single `Genre` that is related to this `Category`."""
+  genreByGenreId: Genre
 }
 
-"""All input for the create `MAccount` mutation."""
-input CreateMAccountInput {
+"""All input for the create `Category` mutation."""
+input CreateCategoryInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """The `MAccount` to be created by this mutation."""
-  mAccount: MAccountInput!
+  """The `Category` to be created by this mutation."""
+  category: CategoryInput!
 }
 
-"""An input for mutations affecting `MAccount`"""
-input MAccountInput {
-  accountId: String!
-  accountName: String!
-  validFlag: Boolean
-  displayOrder: Int!
-  ownerUserId: String!
-}
-
-"""The output of our create `MCategory` mutation."""
-type CreateMCategoryPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `MCategory` that was created by this mutation."""
-  mCategory: MCategory
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `MGenre` that is related to this `MCategory`."""
-  mGenreByGenreId: MGenre
-}
-
-"""All input for the create `MCategory` mutation."""
-input CreateMCategoryInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `MCategory` to be created by this mutation."""
-  mCategory: MCategoryInput!
-}
-
-"""An input for mutations affecting `MCategory`"""
-input MCategoryInput {
+"""An input for mutations affecting `Category`"""
+input CategoryInput {
   categoryId: String!
   categoryName: String!
   genreId: String!
@@ -760,16 +964,65 @@ input MCategoryInput {
   displayOrder: Int!
 }
 
-"""The output of our create `MGenre` mutation."""
-type CreateMGenrePayload {
+"""The output of our create `DailyDetail` mutation."""
+type CreateDailyDetailPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `MGenre` that was created by this mutation."""
-  mGenre: MGenre
+  """The `DailyDetail` that was created by this mutation."""
+  dailyDetail: DailyDetail
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Category` that is related to this `DailyDetail`."""
+  categoryByCategoryId: Category
+
+  """Reads a single `Account` that is related to this `DailyDetail`."""
+  accountByAccountId: Account
+
+  """Reads a single `User` that is related to this `DailyDetail`."""
+  userByUserId: User
+}
+
+"""All input for the create `DailyDetail` mutation."""
+input CreateDailyDetailInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `DailyDetail` to be created by this mutation."""
+  dailyDetail: DailyDetailInput!
+}
+
+"""An input for mutations affecting `DailyDetail`"""
+input DailyDetailInput {
+  serialNo: Int
+  date: Date!
+  categoryId: String!
+  accountId: String!
+  userId: String!
+  amount: BigFloat!
+  memo: String
+}
+
+"""The output of our create `Genre` mutation."""
+type CreateGenrePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Genre` that was created by this mutation."""
+  genre: Genre
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -777,20 +1030,20 @@ type CreateMGenrePayload {
   query: Query
 }
 
-"""All input for the create `MGenre` mutation."""
-input CreateMGenreInput {
+"""All input for the create `Genre` mutation."""
+input CreateGenreInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """The `MGenre` to be created by this mutation."""
-  mGenre: MGenreInput!
+  """The `Genre` to be created by this mutation."""
+  genre: GenreInput!
 }
 
-"""An input for mutations affecting `MGenre`"""
-input MGenreInput {
+"""An input for mutations affecting `Genre`"""
+input GenreInput {
   genreId: String!
   genreName: String!
   genreType: GenreType!
@@ -799,16 +1052,16 @@ input MGenreInput {
   displayOrder: Int!
 }
 
-"""The output of our create `MUser` mutation."""
-type CreateMUserPayload {
+"""The output of our create `User` mutation."""
+type CreateUserPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `MUser` that was created by this mutation."""
-  mUser: MUser
+  """The `User` that was created by this mutation."""
+  user: User
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -816,23 +1069,88 @@ type CreateMUserPayload {
   query: Query
 }
 
-"""All input for the create `MUser` mutation."""
-input CreateMUserInput {
+"""All input for the create `User` mutation."""
+input CreateUserInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """The `MUser` to be created by this mutation."""
-  mUser: MUserInput!
+  """The `User` to be created by this mutation."""
+  user: UserInput!
 }
 
-"""An input for mutations affecting `MUser`"""
-input MUserInput {
+"""An input for mutations affecting `User`"""
+input UserInput {
   userId: String!
   userName: String!
   displayOrder: Int!
+}
+
+"""The output of our update `Account` mutation."""
+type UpdateAccountPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Account` that was updated by this mutation."""
+  account: Account
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Account`."""
+  userByOwnerUserId: User
+}
+
+"""All input for the `updateAccount` mutation."""
+input UpdateAccountInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Account` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Account` being updated.
+  """
+  accountPatch: AccountPatch!
+}
+
+"""
+Represents an update to a `Account`. Fields that are set will be updated.
+"""
+input AccountPatch {
+  accountId: String
+  accountName: String
+  validFlag: Boolean
+  displayOrder: Int
+  ownerUserId: String
+}
+
+"""All input for the `updateAccountByAccountId` mutation."""
+input UpdateAccountByAccountIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Account` being updated.
+  """
+  accountPatch: AccountPatch!
+  accountId: String!
 }
 
 """The output of our update `AccountBalance` mutation."""
@@ -851,8 +1169,8 @@ type UpdateAccountBalancePayload {
   """
   query: Query
 
-  """Reads a single `MAccount` that is related to this `AccountBalance`."""
-  mAccountByAccountId: MAccount
+  """Reads a single `Account` that is related to this `AccountBalance`."""
+  accountByAccountId: Account
 }
 
 """All input for the `updateAccountBalance` mutation."""
@@ -897,28 +1215,28 @@ input UpdateAccountBalanceByAccountIdInput {
   accountId: String!
 }
 
-"""The output of our update `MAccount` mutation."""
-type UpdateMAccountPayload {
+"""The output of our update `Category` mutation."""
+type UpdateCategoryPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `MAccount` that was updated by this mutation."""
-  mAccount: MAccount
+  """The `Category` that was updated by this mutation."""
+  category: Category
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """Reads a single `MUser` that is related to this `MAccount`."""
-  mUserByOwnerUserId: MUser
+  """Reads a single `Genre` that is related to this `Category`."""
+  genreByGenreId: Genre
 }
 
-"""All input for the `updateMAccount` mutation."""
-input UpdateMAccountInput {
+"""All input for the `updateCategory` mutation."""
+input UpdateCategoryInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -926,85 +1244,20 @@ input UpdateMAccountInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `MAccount` to be updated.
+  The globally unique `ID` which will identify a single `Category` to be updated.
   """
   nodeId: ID!
 
   """
-  An object where the defined keys will be set on the `MAccount` being updated.
+  An object where the defined keys will be set on the `Category` being updated.
   """
-  mAccountPatch: MAccountPatch!
+  categoryPatch: CategoryPatch!
 }
 
 """
-Represents an update to a `MAccount`. Fields that are set will be updated.
+Represents an update to a `Category`. Fields that are set will be updated.
 """
-input MAccountPatch {
-  accountId: String
-  accountName: String
-  validFlag: Boolean
-  displayOrder: Int
-  ownerUserId: String
-}
-
-"""All input for the `updateMAccountByAccountId` mutation."""
-input UpdateMAccountByAccountIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `MAccount` being updated.
-  """
-  mAccountPatch: MAccountPatch!
-  accountId: String!
-}
-
-"""The output of our update `MCategory` mutation."""
-type UpdateMCategoryPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `MCategory` that was updated by this mutation."""
-  mCategory: MCategory
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `MGenre` that is related to this `MCategory`."""
-  mGenreByGenreId: MGenre
-}
-
-"""All input for the `updateMCategory` mutation."""
-input UpdateMCategoryInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `MCategory` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `MCategory` being updated.
-  """
-  mCategoryPatch: MCategoryPatch!
-}
-
-"""
-Represents an update to a `MCategory`. Fields that are set will be updated.
-"""
-input MCategoryPatch {
+input CategoryPatch {
   categoryId: String
   categoryName: String
   genreId: String
@@ -1012,8 +1265,8 @@ input MCategoryPatch {
   displayOrder: Int
 }
 
-"""All input for the `updateMCategoryByCategoryId` mutation."""
-input UpdateMCategoryByCategoryIdInput {
+"""All input for the `updateCategoryByCategoryId` mutation."""
+input UpdateCategoryByCategoryIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1021,22 +1274,95 @@ input UpdateMCategoryByCategoryIdInput {
   clientMutationId: String
 
   """
-  An object where the defined keys will be set on the `MCategory` being updated.
+  An object where the defined keys will be set on the `Category` being updated.
   """
-  mCategoryPatch: MCategoryPatch!
+  categoryPatch: CategoryPatch!
   categoryId: String!
 }
 
-"""The output of our update `MGenre` mutation."""
-type UpdateMGenrePayload {
+"""The output of our update `DailyDetail` mutation."""
+type UpdateDailyDetailPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `MGenre` that was updated by this mutation."""
-  mGenre: MGenre
+  """The `DailyDetail` that was updated by this mutation."""
+  dailyDetail: DailyDetail
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Category` that is related to this `DailyDetail`."""
+  categoryByCategoryId: Category
+
+  """Reads a single `Account` that is related to this `DailyDetail`."""
+  accountByAccountId: Account
+
+  """Reads a single `User` that is related to this `DailyDetail`."""
+  userByUserId: User
+}
+
+"""All input for the `updateDailyDetail` mutation."""
+input UpdateDailyDetailInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `DailyDetail` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `DailyDetail` being updated.
+  """
+  dailyDetailPatch: DailyDetailPatch!
+}
+
+"""
+Represents an update to a `DailyDetail`. Fields that are set will be updated.
+"""
+input DailyDetailPatch {
+  serialNo: Int
+  date: Date
+  categoryId: String
+  accountId: String
+  userId: String
+  amount: BigFloat
+  memo: String
+}
+
+"""All input for the `updateDailyDetailBySerialNo` mutation."""
+input UpdateDailyDetailBySerialNoInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `DailyDetail` being updated.
+  """
+  dailyDetailPatch: DailyDetailPatch!
+  serialNo: Int!
+}
+
+"""The output of our update `Genre` mutation."""
+type UpdateGenrePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Genre` that was updated by this mutation."""
+  genre: Genre
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -1044,8 +1370,8 @@ type UpdateMGenrePayload {
   query: Query
 }
 
-"""All input for the `updateMGenre` mutation."""
-input UpdateMGenreInput {
+"""All input for the `updateGenre` mutation."""
+input UpdateGenreInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1053,20 +1379,20 @@ input UpdateMGenreInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `MGenre` to be updated.
+  The globally unique `ID` which will identify a single `Genre` to be updated.
   """
   nodeId: ID!
 
   """
-  An object where the defined keys will be set on the `MGenre` being updated.
+  An object where the defined keys will be set on the `Genre` being updated.
   """
-  mGenrePatch: MGenrePatch!
+  genrePatch: GenrePatch!
 }
 
 """
-Represents an update to a `MGenre`. Fields that are set will be updated.
+Represents an update to a `Genre`. Fields that are set will be updated.
 """
-input MGenrePatch {
+input GenrePatch {
   genreId: String
   genreName: String
   genreType: GenreType
@@ -1075,8 +1401,8 @@ input MGenrePatch {
   displayOrder: Int
 }
 
-"""All input for the `updateMGenreByGenreId` mutation."""
-input UpdateMGenreByGenreIdInput {
+"""All input for the `updateGenreByGenreId` mutation."""
+input UpdateGenreByGenreIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1084,22 +1410,22 @@ input UpdateMGenreByGenreIdInput {
   clientMutationId: String
 
   """
-  An object where the defined keys will be set on the `MGenre` being updated.
+  An object where the defined keys will be set on the `Genre` being updated.
   """
-  mGenrePatch: MGenrePatch!
+  genrePatch: GenrePatch!
   genreId: String!
 }
 
-"""The output of our update `MUser` mutation."""
-type UpdateMUserPayload {
+"""The output of our update `User` mutation."""
+type UpdateUserPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `MUser` that was updated by this mutation."""
-  mUser: MUser
+  """The `User` that was updated by this mutation."""
+  user: User
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -1107,8 +1433,8 @@ type UpdateMUserPayload {
   query: Query
 }
 
-"""All input for the `updateMUser` mutation."""
-input UpdateMUserInput {
+"""All input for the `updateUser` mutation."""
+input UpdateUserInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1116,27 +1442,25 @@ input UpdateMUserInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `MUser` to be updated.
+  The globally unique `ID` which will identify a single `User` to be updated.
   """
   nodeId: ID!
 
   """
-  An object where the defined keys will be set on the `MUser` being updated.
+  An object where the defined keys will be set on the `User` being updated.
   """
-  mUserPatch: MUserPatch!
+  userPatch: UserPatch!
 }
 
-"""
-Represents an update to a `MUser`. Fields that are set will be updated.
-"""
-input MUserPatch {
+"""Represents an update to a `User`. Fields that are set will be updated."""
+input UserPatch {
   userId: String
   userName: String
   displayOrder: Int
 }
 
-"""All input for the `updateMUserByUserId` mutation."""
-input UpdateMUserByUserIdInput {
+"""All input for the `updateUserByUserId` mutation."""
+input UpdateUserByUserIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1144,10 +1468,55 @@ input UpdateMUserByUserIdInput {
   clientMutationId: String
 
   """
-  An object where the defined keys will be set on the `MUser` being updated.
+  An object where the defined keys will be set on the `User` being updated.
   """
-  mUserPatch: MUserPatch!
+  userPatch: UserPatch!
   userId: String!
+}
+
+"""The output of our delete `Account` mutation."""
+type DeleteAccountPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Account` that was deleted by this mutation."""
+  account: Account
+  deletedAccountId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Account`."""
+  userByOwnerUserId: User
+}
+
+"""All input for the `deleteAccount` mutation."""
+input DeleteAccountInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Account` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteAccountByAccountId` mutation."""
+input DeleteAccountByAccountIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  accountId: String!
 }
 
 """The output of our delete `AccountBalance` mutation."""
@@ -1167,8 +1536,8 @@ type DeleteAccountBalancePayload {
   """
   query: Query
 
-  """Reads a single `MAccount` that is related to this `AccountBalance`."""
-  mAccountByAccountId: MAccount
+  """Reads a single `Account` that is related to this `AccountBalance`."""
+  accountByAccountId: Account
 }
 
 """All input for the `deleteAccountBalance` mutation."""
@@ -1195,29 +1564,29 @@ input DeleteAccountBalanceByAccountIdInput {
   accountId: String!
 }
 
-"""The output of our delete `MAccount` mutation."""
-type DeleteMAccountPayload {
+"""The output of our delete `Category` mutation."""
+type DeleteCategoryPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `MAccount` that was deleted by this mutation."""
-  mAccount: MAccount
-  deletedMAccountId: ID
+  """The `Category` that was deleted by this mutation."""
+  category: Category
+  deletedCategoryId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """Reads a single `MUser` that is related to this `MAccount`."""
-  mUserByOwnerUserId: MUser
+  """Reads a single `Genre` that is related to this `Category`."""
+  genreByGenreId: Genre
 }
 
-"""All input for the `deleteMAccount` mutation."""
-input DeleteMAccountInput {
+"""All input for the `deleteCategory` mutation."""
+input DeleteCategoryInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1225,58 +1594,13 @@ input DeleteMAccountInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `MAccount` to be deleted.
+  The globally unique `ID` which will identify a single `Category` to be deleted.
   """
   nodeId: ID!
 }
 
-"""All input for the `deleteMAccountByAccountId` mutation."""
-input DeleteMAccountByAccountIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  accountId: String!
-}
-
-"""The output of our delete `MCategory` mutation."""
-type DeleteMCategoryPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `MCategory` that was deleted by this mutation."""
-  mCategory: MCategory
-  deletedMCategoryId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `MGenre` that is related to this `MCategory`."""
-  mGenreByGenreId: MGenre
-}
-
-"""All input for the `deleteMCategory` mutation."""
-input DeleteMCategoryInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `MCategory` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""All input for the `deleteMCategoryByCategoryId` mutation."""
-input DeleteMCategoryByCategoryIdInput {
+"""All input for the `deleteCategoryByCategoryId` mutation."""
+input DeleteCategoryByCategoryIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1285,26 +1609,35 @@ input DeleteMCategoryByCategoryIdInput {
   categoryId: String!
 }
 
-"""The output of our delete `MGenre` mutation."""
-type DeleteMGenrePayload {
+"""The output of our delete `DailyDetail` mutation."""
+type DeleteDailyDetailPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `MGenre` that was deleted by this mutation."""
-  mGenre: MGenre
-  deletedMGenreId: ID
+  """The `DailyDetail` that was deleted by this mutation."""
+  dailyDetail: DailyDetail
+  deletedDailyDetailId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `Category` that is related to this `DailyDetail`."""
+  categoryByCategoryId: Category
+
+  """Reads a single `Account` that is related to this `DailyDetail`."""
+  accountByAccountId: Account
+
+  """Reads a single `User` that is related to this `DailyDetail`."""
+  userByUserId: User
 }
 
-"""All input for the `deleteMGenre` mutation."""
-input DeleteMGenreInput {
+"""All input for the `deleteDailyDetail` mutation."""
+input DeleteDailyDetailInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1312,13 +1645,55 @@ input DeleteMGenreInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `MGenre` to be deleted.
+  The globally unique `ID` which will identify a single `DailyDetail` to be deleted.
   """
   nodeId: ID!
 }
 
-"""All input for the `deleteMGenreByGenreId` mutation."""
-input DeleteMGenreByGenreIdInput {
+"""All input for the `deleteDailyDetailBySerialNo` mutation."""
+input DeleteDailyDetailBySerialNoInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  serialNo: Int!
+}
+
+"""The output of our delete `Genre` mutation."""
+type DeleteGenrePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Genre` that was deleted by this mutation."""
+  genre: Genre
+  deletedGenreId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteGenre` mutation."""
+input DeleteGenreInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Genre` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteGenreByGenreId` mutation."""
+input DeleteGenreByGenreIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1327,17 +1702,17 @@ input DeleteMGenreByGenreIdInput {
   genreId: String!
 }
 
-"""The output of our delete `MUser` mutation."""
-type DeleteMUserPayload {
+"""The output of our delete `User` mutation."""
+type DeleteUserPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `MUser` that was deleted by this mutation."""
-  mUser: MUser
-  deletedMUserId: ID
+  """The `User` that was deleted by this mutation."""
+  user: User
+  deletedUserId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
@@ -1345,8 +1720,8 @@ type DeleteMUserPayload {
   query: Query
 }
 
-"""All input for the `deleteMUser` mutation."""
-input DeleteMUserInput {
+"""All input for the `deleteUser` mutation."""
+input DeleteUserInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -1354,13 +1729,13 @@ input DeleteMUserInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `MUser` to be deleted.
+  The globally unique `ID` which will identify a single `User` to be deleted.
   """
   nodeId: ID!
 }
 
-"""All input for the `deleteMUserByUserId` mutation."""
-input DeleteMUserByUserIdInput {
+"""All input for the `deleteUserByUserId` mutation."""
+input DeleteUserByUserIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.

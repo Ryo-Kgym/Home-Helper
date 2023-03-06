@@ -1,4 +1,4 @@
 export enum IocomeType {
-  "INCOME", // 収入
-  "OUTCOME", // 支出
+  Income = "INCOME", // 収入
+  Outcome = "OUTCOME", // 支出
 }

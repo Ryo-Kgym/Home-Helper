@@ -1,0 +1,12 @@
+query GetValidGenreListByIocomeType($iocomeType: IocomeType!) {
+    allGenresList(
+        condition: { validFlag: true, iocomeType: $iocomeType }
+        orderBy: DISPLAY_ORDER_ASC
+    ) {
+        genreId
+        genreName
+        genreType
+        iocomeType
+        displayOrder
+    }
+}

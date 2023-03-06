@@ -1,5 +1,5 @@
-query GetAccounts {
-    allMAccountsList(condition: {}, orderBy: DISPLAY_ORDER_ASC) {
+query GetAccountBalanceList {
+    allAccountsList(condition: {}, orderBy: DISPLAY_ORDER_ASC) {
         accountId
         accountName
         displayOrder
@@ -7,7 +7,7 @@ query GetAccounts {
         accountBalanceByAccountId {
             balance
         }
-        mUserByOwnerUserId {
+        userByOwnerUserId {
             userId
             userName
         }
