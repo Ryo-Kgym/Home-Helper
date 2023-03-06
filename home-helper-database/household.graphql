@@ -85,6 +85,23 @@ type Query implements Node {
     condition: DailyDetailCondition
   ): [DailyDetail!]
 
+  """Reads a set of `DailyTotalView`."""
+  allDailyTotalViewsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `DailyTotalView`."""
+    orderBy: [DailyTotalViewsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: DailyTotalViewCondition
+  ): [DailyTotalView!]
+
   """Reads a set of `Genre`."""
   allGenresList(
     """Only read the first `n` values of the set."""
@@ -136,6 +153,18 @@ type Query implements Node {
     """Skip the first `n` values."""
     offset: Int
   ): [DailyDetail]
+
+  """Reads and enables pagination through a set of `DailyTotalView`."""
+  dailyTotalViewByDateIocomeTypeList(
+    iocomeType: IocomeType
+    date: Date
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+  ): [DailyTotalView]
 
   """Reads a single `Account` using its globally unique `ID`."""
   account(
@@ -524,6 +553,38 @@ input AccountBalanceCondition {
 
   """Checks for equality with the object’s `balance` field."""
   balance: BigFloat
+}
+
+type DailyTotalView {
+  date: Date
+  iocomeType: IocomeType
+  total: BigFloat
+}
+
+"""Methods to use when ordering `DailyTotalView`."""
+enum DailyTotalViewsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
+  TOTAL_ASC
+  TOTAL_DESC
+}
+
+"""
+A condition to be used against `DailyTotalView` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input DailyTotalViewCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: Date
+
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
+  """Checks for equality with the object’s `total` field."""
+  total: BigFloat
 }
 
 """Methods to use when ordering `Genre`."""
