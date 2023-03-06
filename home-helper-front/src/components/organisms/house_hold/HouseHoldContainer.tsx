@@ -1,19 +1,22 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { HouseHoldPresenter } from "./HouseHoldPresenter";
-import { User } from "@domain/model/home_helper/User";
 import { saveUserId } from "@hooks/loadUserId";
-import { fetchUsers } from "@hooks/user/fetchUsers";
+import { useGetAllUsersQuery } from "@graphql/postgraphile/generated/graphql";
 
 export const HouseHoldContainer: FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
-
   const handleClickUser = (userId: string) => {
     saveUserId(userId);
   };
 
-  useEffect(() => {
-    fetchUsers().then((r) => setUsers(r));
-  }, []);
+  const [{ data }] = useGetAllUsersQuery();
+  const users =
+    data?.allUsersList?.map((user) => {
+      return {
+        id: user.userId,
+        name: user.userName,
+      };
+    }) ?? [];
+
   return (
     <HouseHoldPresenter userList={users} handleClickUser={handleClickUser} />
   );
