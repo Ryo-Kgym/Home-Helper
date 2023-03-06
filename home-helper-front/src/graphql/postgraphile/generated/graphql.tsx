@@ -591,6 +591,53 @@ export enum DailyDetailsOrderBy {
   UserIdDesc = "USER_ID_DESC",
 }
 
+export type DailyTotalView = {
+  __typename?: "DailyTotalView";
+  date?: Maybe<Scalars["Date"]>;
+  iocomeType?: Maybe<IocomeType>;
+  total?: Maybe<Scalars["BigFloat"]>;
+};
+
+/**
+ * A condition to be used against `DailyTotalView` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type DailyTotalViewCondition = {
+  /** Checks for equality with the object’s `date` field. */
+  date?: InputMaybe<Scalars["Date"]>;
+  /** Checks for equality with the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeType>;
+  /** Checks for equality with the object’s `total` field. */
+  total?: InputMaybe<Scalars["BigFloat"]>;
+};
+
+/** A filter to be used against `DailyTotalView` object types. All fields are combined with a logical ‘and.’ */
+export type DailyTotalViewFilter = {
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<DailyTotalViewFilter>>;
+  /** Filter by the object’s `date` field. */
+  date?: InputMaybe<DateFilter>;
+  /** Filter by the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeTypeFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<DailyTotalViewFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<DailyTotalViewFilter>>;
+  /** Filter by the object’s `total` field. */
+  total?: InputMaybe<BigFloatFilter>;
+};
+
+/** Methods to use when ordering `DailyTotalView`. */
+export enum DailyTotalViewsOrderBy {
+  DateAsc = "DATE_ASC",
+  DateDesc = "DATE_DESC",
+  IocomeTypeAsc = "IOCOME_TYPE_ASC",
+  IocomeTypeDesc = "IOCOME_TYPE_DESC",
+  Natural = "NATURAL",
+  TotalAsc = "TOTAL_ASC",
+  TotalDesc = "TOTAL_DESC",
+}
+
 /** A filter to be used against Date fields. All fields are combined with a logical ‘and.’ */
 export type DateFilter = {
   /** Not equal to the specified value, treating null like an ordinary value. */
@@ -1270,6 +1317,8 @@ export type Query = Node & {
   allCategoriesList?: Maybe<Array<Category>>;
   /** Reads a set of `DailyDetail`. */
   allDailyDetailsList?: Maybe<Array<DailyDetail>>;
+  /** Reads a set of `DailyTotalView`. */
+  allDailyTotalViewsList?: Maybe<Array<DailyTotalView>>;
   /** Reads a set of `Genre`. */
   allGenresList?: Maybe<Array<Genre>>;
   /** Reads a set of `User`. */
@@ -1282,6 +1331,8 @@ export type Query = Node & {
   /** Reads and enables pagination through a set of `DailyDetail`. */
   dailyDetailByDateList?: Maybe<Array<Maybe<DailyDetail>>>;
   dailyDetailBySerialNo?: Maybe<DailyDetail>;
+  /** Reads and enables pagination through a set of `DailyTotalView`. */
+  dailyTotalViewByDateIocomeTypeList?: Maybe<Array<Maybe<DailyTotalView>>>;
   /** Reads a single `Genre` using its globally unique `ID`. */
   genre?: Maybe<Genre>;
   genreByGenreId?: Maybe<Genre>;
@@ -1356,6 +1407,15 @@ export type QueryAllDailyDetailsListArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAllDailyTotalViewsListArgs = {
+  condition?: InputMaybe<DailyTotalViewCondition>;
+  filter?: InputMaybe<DailyTotalViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyTotalViewsOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllGenresListArgs = {
   condition?: InputMaybe<GenreCondition>;
   filter?: InputMaybe<GenreFilter>;
@@ -1400,6 +1460,15 @@ export type QueryDailyDetailByDateListArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryDailyDetailBySerialNoArgs = {
   serialNo: Scalars["Int"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryDailyTotalViewByDateIocomeTypeListArgs = {
+  date?: InputMaybe<Scalars["Date"]>;
+  filter?: InputMaybe<DailyTotalViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  iocomeType?: InputMaybe<IocomeType>;
+  offset?: InputMaybe<Scalars["Int"]>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1930,6 +1999,21 @@ export type GetDailyDetailByDateQuery = {
   } | null> | null;
 };
 
+export type GetDailyTotalByDateIocomeTypeQueryVariables = Exact<{
+  iocomeType: IocomeType;
+  date: Scalars["Date"];
+}>;
+
+export type GetDailyTotalByDateIocomeTypeQuery = {
+  __typename?: "Query";
+  dailyTotalViewByDateIocomeTypeList?: Array<{
+    __typename?: "DailyTotalView";
+    date?: any | null;
+    iocomeType?: IocomeType | null;
+    total?: any | null;
+  } | null> | null;
+};
+
 export type GetValidAccountsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetValidAccountsQuery = {
@@ -2091,6 +2175,27 @@ export function useGetDailyDetailByDateQuery(
     GetDailyDetailByDateQuery,
     GetDailyDetailByDateQueryVariables
   >({ query: GetDailyDetailByDateDocument, ...options });
+}
+export const GetDailyTotalByDateIocomeTypeDocument = gql`
+  query GetDailyTotalByDateIocomeType($iocomeType: IocomeType!, $date: Date!) {
+    dailyTotalViewByDateIocomeTypeList(date: $date, iocomeType: $iocomeType) {
+      date
+      iocomeType
+      total
+    }
+  }
+`;
+
+export function useGetDailyTotalByDateIocomeTypeQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetDailyTotalByDateIocomeTypeQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetDailyTotalByDateIocomeTypeQuery,
+    GetDailyTotalByDateIocomeTypeQueryVariables
+  >({ query: GetDailyTotalByDateIocomeTypeDocument, ...options });
 }
 export const GetValidAccountsDocument = gql`
   query GetValidAccounts {
