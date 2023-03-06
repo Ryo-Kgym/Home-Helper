@@ -1882,6 +1882,17 @@ export type GetAccountBalanceListQuery = {
   }> | null;
 };
 
+export type GetAllUsersQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetAllUsersQuery = {
+  __typename?: "Query";
+  allUsersList?: Array<{
+    __typename?: "User";
+    userId: string;
+    userName: string;
+  }> | null;
+};
+
 export type GetDailyDetailByDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -2027,6 +2038,23 @@ export function useGetAccountBalanceListQuery(
     GetAccountBalanceListQuery,
     GetAccountBalanceListQueryVariables
   >({ query: GetAccountBalanceListDocument, ...options });
+}
+export const GetAllUsersDocument = gql`
+  query GetAllUsers {
+    allUsersList {
+      userId
+      userName
+    }
+  }
+`;
+
+export function useGetAllUsersQuery(
+  options?: Omit<Urql.UseQueryArgs<GetAllUsersQueryVariables>, "query">
+) {
+  return Urql.useQuery<GetAllUsersQuery, GetAllUsersQueryVariables>({
+    query: GetAllUsersDocument,
+    ...options,
+  });
 }
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {

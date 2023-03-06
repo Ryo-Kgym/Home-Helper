@@ -1,8 +1,9 @@
 import { FC } from "react";
 import { LinkList, LinkProps } from "@components/atoms/Card";
+import { User } from "@domain/model/household/User";
 
 type HomeHelperPresenterProps = {
-  userList: any[];
+  userList: User[];
   handleClickUser: (userId: string) => void;
 };
 
