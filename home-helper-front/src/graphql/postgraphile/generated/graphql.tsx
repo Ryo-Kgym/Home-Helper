@@ -2053,6 +2053,7 @@ export type GetDailyDetailByDateQuery = {
   __typename?: "Query";
   dailyDetailByDateList?: Array<{
     __typename?: "DailyDetail";
+    serialNo: number;
     date: any;
     amount: any;
     memo?: string | null;
@@ -2261,6 +2262,7 @@ export function useGetAllUsersQuery(
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
     dailyDetailByDateList(fromDate: $fromDate, toDate: $toDate) {
+      serialNo
       date
       amount
       memo
