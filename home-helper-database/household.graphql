@@ -119,6 +119,23 @@ type Query implements Node {
     condition: GenreCondition
   ): [Genre!]
 
+  """Reads a set of `TotalByAccountView`."""
+  allTotalByAccountViewsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `TotalByAccountView`."""
+    orderBy: [TotalByAccountViewsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TotalByAccountViewCondition
+  ): [TotalByAccountView!]
+
   """Reads a set of `User`."""
   allUsersList(
     """Only read the first `n` values of the set."""
@@ -165,6 +182,17 @@ type Query implements Node {
     """Skip the first `n` values."""
     offset: Int
   ): [DailyTotalView]
+
+  """Reads and enables pagination through a set of `TotalByAccountView`."""
+  totalByAccountIdList(
+    accountId: String
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+  ): [TotalByAccountView]
 
   """Reads a single `Account` using its globally unique `ID`."""
   account(
@@ -627,6 +655,50 @@ input GenreCondition {
 
   """Checks for equality with the object’s `displayOrder` field."""
   displayOrder: Int
+}
+
+type TotalByAccountView {
+  accountId: String
+  accountName: String
+  displayOrder: Int
+  iocomeType: IocomeType
+  total: BigFloat
+}
+
+"""Methods to use when ordering `TotalByAccountView`."""
+enum TotalByAccountViewsOrderBy {
+  NATURAL
+  ACCOUNT_ID_ASC
+  ACCOUNT_ID_DESC
+  ACCOUNT_NAME_ASC
+  ACCOUNT_NAME_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
+  TOTAL_ASC
+  TOTAL_DESC
+}
+
+"""
+A condition to be used against `TotalByAccountView` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input TotalByAccountViewCondition {
+  """Checks for equality with the object’s `accountId` field."""
+  accountId: String
+
+  """Checks for equality with the object’s `accountName` field."""
+  accountName: String
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
+  """Checks for equality with the object’s `total` field."""
+  total: BigFloat
 }
 
 """Methods to use when ordering `User`."""
