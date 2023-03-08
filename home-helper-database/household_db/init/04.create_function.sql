@@ -1,3 +1,15 @@
+drop function if exists daily_detail_by_date cascade;
+create function daily_detail_by_date(from_date date, to_date date) returns setof daily_detail as
+$$
+select *
+from
+    daily_detail
+where date between from_date and to_date
+order by
+    date,
+    serial_no;
+$$ language sql stable;
+
 drop function if exists daily_total_view_by_date_iocome_type cascade;
 create function daily_total_view_by_date_iocome_type(iocome_type iocome_type, date date)
     returns setof daily_total_view as

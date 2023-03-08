@@ -20,14 +20,3 @@ create table daily_detail (
 );
 
 create index daily_detail_date_index on daily_detail (date);
-
-drop function if exists daily_detail_by_date cascade;
-create function daily_detail_by_date(from_date date, to_date date) returns setof daily_detail as
-$$
-select *
-from
-    daily_detail
-where date between from_date and to_date
-order by
-    serial_no;
-$$ language sql stable;
