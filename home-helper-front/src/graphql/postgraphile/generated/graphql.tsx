@@ -1321,6 +1321,8 @@ export type Query = Node & {
   allDailyTotalViewsList?: Maybe<Array<DailyTotalView>>;
   /** Reads a set of `Genre`. */
   allGenresList?: Maybe<Array<Genre>>;
+  /** Reads a set of `TotalByAccountView`. */
+  allTotalByAccountViewsList?: Maybe<Array<TotalByAccountView>>;
   /** Reads a set of `User`. */
   allUsersList?: Maybe<Array<User>>;
   /** Reads a single `Category` using its globally unique `ID`. */
@@ -1345,6 +1347,8 @@ export type Query = Node & {
    * which can only query top level fields if they are in a particular form.
    */
   query: Query;
+  /** Reads and enables pagination through a set of `TotalByAccountView`. */
+  totalByAccountIdList?: Maybe<Array<Maybe<TotalByAccountView>>>;
   /** Reads a single `User` using its globally unique `ID`. */
   user?: Maybe<User>;
   userByUserId?: Maybe<User>;
@@ -1425,6 +1429,15 @@ export type QueryAllGenresListArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAllTotalByAccountViewsListArgs = {
+  condition?: InputMaybe<TotalByAccountViewCondition>;
+  filter?: InputMaybe<TotalByAccountViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<TotalByAccountViewsOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllUsersListArgs = {
   condition?: InputMaybe<UserCondition>;
   filter?: InputMaybe<UserFilter>;
@@ -1484,6 +1497,14 @@ export type QueryGenreByGenreIdArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryNodeArgs = {
   nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryTotalByAccountIdListArgs = {
+  accountId?: InputMaybe<Scalars["String"]>;
+  filter?: InputMaybe<TotalByAccountViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1573,6 +1594,67 @@ export type StringFilter = {
   /** Starts with the specified string (case-insensitive). */
   startsWithInsensitive?: InputMaybe<Scalars["String"]>;
 };
+
+export type TotalByAccountView = {
+  __typename?: "TotalByAccountView";
+  accountId?: Maybe<Scalars["String"]>;
+  accountName?: Maybe<Scalars["String"]>;
+  displayOrder?: Maybe<Scalars["Int"]>;
+  iocomeType?: Maybe<IocomeType>;
+  total?: Maybe<Scalars["BigFloat"]>;
+};
+
+/**
+ * A condition to be used against `TotalByAccountView` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type TotalByAccountViewCondition = {
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `accountName` field. */
+  accountName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `displayOrder` field. */
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeType>;
+  /** Checks for equality with the object’s `total` field. */
+  total?: InputMaybe<Scalars["BigFloat"]>;
+};
+
+/** A filter to be used against `TotalByAccountView` object types. All fields are combined with a logical ‘and.’ */
+export type TotalByAccountViewFilter = {
+  /** Filter by the object’s `accountId` field. */
+  accountId?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `accountName` field. */
+  accountName?: InputMaybe<StringFilter>;
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<TotalByAccountViewFilter>>;
+  /** Filter by the object’s `displayOrder` field. */
+  displayOrder?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeTypeFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<TotalByAccountViewFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<TotalByAccountViewFilter>>;
+  /** Filter by the object’s `total` field. */
+  total?: InputMaybe<BigFloatFilter>;
+};
+
+/** Methods to use when ordering `TotalByAccountView`. */
+export enum TotalByAccountViewsOrderBy {
+  AccountIdAsc = "ACCOUNT_ID_ASC",
+  AccountIdDesc = "ACCOUNT_ID_DESC",
+  AccountNameAsc = "ACCOUNT_NAME_ASC",
+  AccountNameDesc = "ACCOUNT_NAME_DESC",
+  DisplayOrderAsc = "DISPLAY_ORDER_ASC",
+  DisplayOrderDesc = "DISPLAY_ORDER_DESC",
+  IocomeTypeAsc = "IOCOME_TYPE_ASC",
+  IocomeTypeDesc = "IOCOME_TYPE_DESC",
+  Natural = "NATURAL",
+  TotalAsc = "TOTAL_ASC",
+  TotalDesc = "TOTAL_DESC",
+}
 
 /** All input for the `updateAccountBalanceByAccountId` mutation. */
 export type UpdateAccountBalanceByAccountIdInput = {
@@ -2014,6 +2096,22 @@ export type GetDailyTotalByDateIocomeTypeQuery = {
   } | null> | null;
 };
 
+export type GetTotalByAccountIdQueryVariables = Exact<{
+  accountId: Scalars["String"];
+}>;
+
+export type GetTotalByAccountIdQuery = {
+  __typename?: "Query";
+  totalByAccountIdList?: Array<{
+    __typename?: "TotalByAccountView";
+    accountId?: string | null;
+    accountName?: string | null;
+    iocomeType?: IocomeType | null;
+    displayOrder?: number | null;
+    total?: any | null;
+  } | null> | null;
+};
+
 export type GetValidAccountsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetValidAccountsQuery = {
@@ -2196,6 +2294,26 @@ export function useGetDailyTotalByDateIocomeTypeQuery(
     GetDailyTotalByDateIocomeTypeQuery,
     GetDailyTotalByDateIocomeTypeQueryVariables
   >({ query: GetDailyTotalByDateIocomeTypeDocument, ...options });
+}
+export const GetTotalByAccountIdDocument = gql`
+  query GetTotalByAccountId($accountId: String!) {
+    totalByAccountIdList(accountId: $accountId) {
+      accountId
+      accountName
+      iocomeType
+      displayOrder
+      total
+    }
+  }
+`;
+
+export function useGetTotalByAccountIdQuery(
+  options: Omit<Urql.UseQueryArgs<GetTotalByAccountIdQueryVariables>, "query">
+) {
+  return Urql.useQuery<
+    GetTotalByAccountIdQuery,
+    GetTotalByAccountIdQueryVariables
+  >({ query: GetTotalByAccountIdDocument, ...options });
 }
 export const GetValidAccountsDocument = gql`
   query GetValidAccounts {
