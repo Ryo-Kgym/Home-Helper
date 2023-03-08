@@ -5,8 +5,8 @@ import { TableProps } from "@components/atoms/Table";
 
 type DailyTableContainerProps = {};
 export const DailyTableContainer: FC<DailyTableContainerProps> = () => {
-  const [fromDate, setFromDate] = useState<Date | null>(new Date());
-  const [toDate, setToDate] = useState<Date | null>(new Date());
+  const [fromDate, setFromDate] = useState<Date | null>(new Date("2023-03-01"));
+  const [toDate, setToDate] = useState<Date | null>(new Date("2023-04-31"));
 
   const [{ data }] = useGetDailyDetailByDateQuery({
     variables: {
@@ -20,13 +20,16 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = () => {
       return {
         keyPrefix: "dailyDetail",
         columns: [
-          { value: dailyDetail?.date },
+          { value: dailyDetail?.date, align: "center" },
           {
             value: dailyDetail?.categoryByCategoryId?.genreByGenreId?.genreName,
           },
           { value: dailyDetail?.categoryByCategoryId?.categoryName },
           { value: dailyDetail?.accountByAccountId?.accountName },
-          { value: dailyDetail?.amount?.toLocaleString() },
+          {
+            value: Number(dailyDetail?.amount!).toLocaleString(),
+            align: "right",
+          },
           { value: dailyDetail?.memo },
         ],
       };

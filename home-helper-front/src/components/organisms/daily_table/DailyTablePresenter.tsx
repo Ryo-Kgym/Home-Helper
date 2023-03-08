@@ -10,5 +10,6 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
   <Table
     header={["日付", "ジャンル", "カテゴリ", "アカウント", "金額", "メモ"]}
     tablePropsList={tablePropsList}
+    size={"xs"}
   />
 );
