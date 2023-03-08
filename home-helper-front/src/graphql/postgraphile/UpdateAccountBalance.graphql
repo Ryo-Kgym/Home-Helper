@@ -1,0 +1,12 @@
+mutation UpdateAccountBalance($accountId: String!, $balance: BigFloat!) {
+    updateAccountBalanceByAccountId(
+        input: {accountBalancePatch: {balance: $balance}, accountId: $accountId}
+    ) {
+        query {
+            accountBalanceByAccountId(accountId: $accountId) {
+                accountId
+                balance
+            }
+        }
+    }
+}

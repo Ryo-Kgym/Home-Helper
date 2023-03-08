@@ -2153,6 +2153,26 @@ export type GetValidGenreListByIocomeTypeQuery = {
   }> | null;
 };
 
+export type UpdateAccountBalanceMutationVariables = Exact<{
+  accountId: Scalars["String"];
+  balance: Scalars["BigFloat"];
+}>;
+
+export type UpdateAccountBalanceMutation = {
+  __typename?: "Mutation";
+  updateAccountBalanceByAccountId?: {
+    __typename?: "UpdateAccountBalancePayload";
+    query?: {
+      __typename?: "Query";
+      accountBalanceByAccountId?: {
+        __typename?: "AccountBalance";
+        accountId: string;
+        balance?: any | null;
+      } | null;
+    } | null;
+  } | null;
+};
+
 export const CreateDailyDetailDocument = gql`
   mutation CreateDailyDetail(
     $date: Date!
@@ -2384,4 +2404,28 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQuery,
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
+}
+export const UpdateAccountBalanceDocument = gql`
+  mutation UpdateAccountBalance($accountId: String!, $balance: BigFloat!) {
+    updateAccountBalanceByAccountId(
+      input: {
+        accountBalancePatch: { balance: $balance }
+        accountId: $accountId
+      }
+    ) {
+      query {
+        accountBalanceByAccountId(accountId: $accountId) {
+          accountId
+          balance
+        }
+      }
+    }
+  }
+`;
+
+export function useUpdateAccountBalanceMutation() {
+  return Urql.useMutation<
+    UpdateAccountBalanceMutation,
+    UpdateAccountBalanceMutationVariables
+  >(UpdateAccountBalanceDocument);
 }
