@@ -7,7 +7,11 @@ import { CalendarContainer } from "@components/organisms/calendar/CalendarContai
 export const Page: FC = () => {
   return (
     <HouseHoldLayout>
-      <Split first={<CalendarContainer />} second={<AccountContainer />} />
+      <Split
+        size={35}
+        first={<CalendarContainer />}
+        second={<AccountContainer />}
+      />
     </HouseHoldLayout>
   );
 };

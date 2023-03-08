@@ -7,7 +7,11 @@ import { DailyTableContainer } from "@components/organisms/daily_table/DailyTabl
 export const Page: FC = () => {
   return (
     <HouseHoldLayout>
-      <Split first={<CalendarContainer />} second={<DailyTableContainer />} />
+      <Split
+        size={35}
+        first={<CalendarContainer />}
+        second={<DailyTableContainer />}
+      />
     </HouseHoldLayout>
   );
 };
