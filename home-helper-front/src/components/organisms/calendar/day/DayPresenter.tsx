@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { Modal } from "@components/atoms/Modal";
 import { RegisterDailyDetail } from "@components/organisms/register_daily_detail";
 
@@ -28,15 +28,23 @@ export const DayPresenter: FC<DayPresenterProps> = ({
     <div
       className={`h-32 border-r-2 border-b-2 
       ${isToday && "bg-amber-100"} ${isNotThisMonth && "bg-gray-300"}`}
-      onClick={openClickHandler}
     >
-      <div className={"p-2"}>{displayDay}</div>
+      <DayLabel openClickHandler={openClickHandler}>{displayDay}</DayLabel>
 
       <div className={"grid grid-cols-1"}>
-        <Line price={income} backgroundColor={`${income && "bg-green-300"} `} />
-        <Line price={outcome} backgroundColor={`${outcome && "bg-red-300"} `} />
+        <TotalLine
+          price={income}
+          backgroundColor={`${income && "bg-green-300"} `}
+        />
+        <TotalLine
+          price={outcome}
+          backgroundColor={`${outcome && "bg-red-300"} `}
+        />
         {income && outcome && (
-          <Line price={income - outcome} backgroundColor={"bg-yellow-300"} />
+          <TotalLine
+            price={income - outcome}
+            backgroundColor={"bg-yellow-300"}
+          />
         )}
       </div>
     </div>
@@ -46,18 +54,32 @@ export const DayPresenter: FC<DayPresenterProps> = ({
   </>
 );
 
-const Line = ({
+const DayLabel = ({
+  openClickHandler,
+  children,
+}: {
+  openClickHandler: () => void;
+  children: ReactNode;
+}) => (
+  <div
+    className={
+      "m-1 pt-1 cursor-pointer rounded-full bg-amber-200/20 w-[2em] h-[2em] text-center"
+    }
+    onClick={openClickHandler}
+  >
+    {children}
+  </div>
+);
+const TotalLine = ({
   price,
   backgroundColor = "bg-inherit",
 }: {
   price?: number;
   backgroundColor?: string;
-}) => {
-  return (
-    <div
-      className={`m-0.5 pr-1 rounded-md ${backgroundColor} text-right h-[1.5em]`}
-    >
-      {price?.toLocaleString() ?? ""}
-    </div>
-  );
-};
+}) => (
+  <div
+    className={`m-0.5 pr-1 rounded-md ${backgroundColor} text-right h-[1.5em]`}
+  >
+    {price?.toLocaleString() ?? ""}
+  </div>
+);
