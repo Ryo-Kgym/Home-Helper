@@ -1,4 +1,8 @@
-import { useCreateDailyDetailMutation } from "@graphql/postgraphile/generated/graphql";
+import {
+  useCreateDailyDetailMutation,
+  useGetTotalByAccountIdQuery,
+  useUpdateAccountBalanceMutation,
+} from "@graphql/postgraphile/generated/graphql";
 import { loadUserId } from "@hooks/loadUserId";
 
 type DailyDetailForRegistration = {
@@ -18,7 +22,18 @@ export const useRegisterDailyDetail = ({
 }: DailyDetailForRegistration) => {
   const userId = loadUserId();
 
-  const [result, mutation] = useCreateDailyDetailMutation();
+  const [ignore1, dailyRegistrationMutation] = useCreateDailyDetailMutation();
+  const [{ data }] = useGetTotalByAccountIdQuery({
+    variables: {
+      accountId: accountId,
+    },
+  });
+  const totalByAccountId: number =
+    data?.totalByAccountIdList?.reduce((acc: number, val): number => {
+      return acc + val?.total ?? 0;
+    }, 0) ?? 0;
+  const [ignore2, accountBalanceUpdateMutation] =
+    useUpdateAccountBalanceMutation();
 
   const variables = {
     date: date,
@@ -30,7 +45,11 @@ export const useRegisterDailyDetail = ({
   };
 
   return () => {
-    mutation(variables);
+    dailyRegistrationMutation(variables);
+    accountBalanceUpdateMutation({
+      accountId: accountId,
+      balance: totalByAccountId,
+    });
     console.log(variables);
   };
 };
