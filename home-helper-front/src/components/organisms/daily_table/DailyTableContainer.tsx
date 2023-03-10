@@ -5,8 +5,11 @@ import { TableProps } from "@components/atoms/Table";
 
 type DailyTableContainerProps = {};
 export const DailyTableContainer: FC<DailyTableContainerProps> = () => {
-  const [fromDate, setFromDate] = useState<Date | null>(new Date("2023-03-01"));
-  const [toDate, setToDate] = useState<Date | null>(new Date("2023-04-31"));
+  const today = new Date();
+  const thisFirstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+
+  const [fromDate, setFromDate] = useState<Date | null>(thisFirstDay);
+  const [toDate, setToDate] = useState<Date | null>(new Date());
 
   const [{ data }] = useGetDailyDetailByDateQuery({
     variables: {
@@ -34,5 +37,13 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = () => {
         ],
       };
     }) ?? [];
-  return <DailyTablePresenter tablePropsList={dailyDetail} />;
+  return (
+    <DailyTablePresenter
+      fromDate={fromDate}
+      changeFromDate={setFromDate}
+      toDate={toDate}
+      changeToDate={setToDate}
+      tablePropsList={dailyDetail}
+    />
+  );
 };
