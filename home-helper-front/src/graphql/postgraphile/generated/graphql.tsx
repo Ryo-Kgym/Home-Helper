@@ -1964,22 +1964,6 @@ export type GetDailyTotalByDateIocomeTypeQuery = {
   } | null> | null;
 };
 
-export type GetTotalByAccountIdQueryVariables = Exact<{
-  accountId: Scalars["String"];
-}>;
-
-export type GetTotalByAccountIdQuery = {
-  __typename?: "Query";
-  totalByAccountIdList?: Array<{
-    __typename?: "TotalByAccountView";
-    accountId?: string | null;
-    accountName?: string | null;
-    iocomeType?: IocomeType | null;
-    displayOrder?: number | null;
-    total?: any | null;
-  } | null> | null;
-};
-
 export type GetValidAccountsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetValidAccountsQuery = {
@@ -2180,26 +2164,6 @@ export function useGetDailyTotalByDateIocomeTypeQuery(
     GetDailyTotalByDateIocomeTypeQuery,
     GetDailyTotalByDateIocomeTypeQueryVariables
   >({ query: GetDailyTotalByDateIocomeTypeDocument, ...options });
-}
-export const GetTotalByAccountIdDocument = gql`
-  query GetTotalByAccountId($accountId: String!) {
-    totalByAccountIdList(accountId: $accountId) {
-      accountId
-      accountName
-      iocomeType
-      displayOrder
-      total
-    }
-  }
-`;
-
-export function useGetTotalByAccountIdQuery(
-  options: Omit<Urql.UseQueryArgs<GetTotalByAccountIdQueryVariables>, "query">
-) {
-  return Urql.useQuery<
-    GetTotalByAccountIdQuery,
-    GetTotalByAccountIdQueryVariables
-  >({ query: GetTotalByAccountIdDocument, ...options });
 }
 export const GetValidAccountsDocument = gql`
   query GetValidAccounts {

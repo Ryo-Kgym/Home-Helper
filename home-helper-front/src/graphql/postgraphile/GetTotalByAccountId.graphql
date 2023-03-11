@@ -1,9 +1,0 @@
-query GetTotalByAccountId($accountId: String!) {
-    totalByAccountIdList(accountId: $accountId) {
-        accountId
-        accountName
-        iocomeType
-        displayOrder
-        total
-    }
-}
