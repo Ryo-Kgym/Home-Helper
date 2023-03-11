@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import { Day } from "@components/organisms/calendar/day";
-import { ChangeMonth } from "@components/organisms/calendar/change_month";
+import { MonthPicker } from "@components/atoms/Button/MonthPicker";
 
 type CalendarPresenterProps = {
-  baseDate: Date;
-  setBaseDate: (date: Date) => void;
+  baseDate: Date | null;
+  setBaseDate: (date: Date | null) => void;
   dateList: Date[];
 };
 export const CalendarPresenter: FC<CalendarPresenterProps> = ({
@@ -15,13 +15,13 @@ export const CalendarPresenter: FC<CalendarPresenterProps> = ({
   return (
     <div className={"grid grid-cols-1 w-full"}>
       <div className={"justify-center"}>
-        <ChangeMonth baseDate={baseDate} setBaseDate={setBaseDate} />
+        <MonthPicker value={baseDate} changeValue={setBaseDate} />
       </div>
 
       <div className={"w-full grid grid-cols-7 border-l-2"}>
         <Week />
         {dateList.map((date, index) => (
-          <Day key={`day${index}`} date={date} baseDate={baseDate} />
+          <Day key={`day${index}`} date={date} baseDate={baseDate!} />
         ))}
       </div>
     </div>

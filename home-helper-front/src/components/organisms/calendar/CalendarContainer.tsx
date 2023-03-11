@@ -5,13 +5,13 @@ import { createDateList } from "@components/organisms/calendar/createDateList";
 
 type CalendarContainerProps = {};
 export const CalendarContainer: FC<CalendarContainerProps> = () => {
-  const [baseDate, setBaseDate] = useState(new Date());
+  const [baseDate, setBaseDate] = useState<Date | null>(new Date());
 
   return (
     <CalendarPresenter
       baseDate={baseDate}
       setBaseDate={setBaseDate}
-      dateList={createDateList(baseDate)}
+      dateList={createDateList(baseDate!)}
     />
   );
 };
