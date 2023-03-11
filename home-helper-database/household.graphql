@@ -158,6 +158,15 @@ type Query implements Node {
   genreByGenreId(genreId: String!): Genre
   userByUserId(userId: String!): User
 
+  """Reads and enables pagination through a set of `TotalByAccountView`."""
+  accountTotalList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+  ): [TotalByAccountView]
+
   """Reads and enables pagination through a set of `TotalByCategoryView`."""
   categoryTotalByMonthList(
     fromDate: Date
