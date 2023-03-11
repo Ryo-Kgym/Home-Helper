@@ -1495,8 +1495,10 @@ export enum TotalByAccountViewsOrderBy {
 
 export type TotalByCategoryView = {
   __typename?: "TotalByCategoryView";
+  categoryId?: Maybe<Scalars["String"]>;
   categoryName?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["Date"]>;
+  genreId?: Maybe<Scalars["String"]>;
   genreName?: Maybe<Scalars["String"]>;
   iocomeType?: Maybe<IocomeType>;
   total?: Maybe<Scalars["BigFloat"]>;
@@ -1507,10 +1509,14 @@ export type TotalByCategoryView = {
  * are tested for equality and combined with a logical ‘and.’
  */
 export type TotalByCategoryViewCondition = {
+  /** Checks for equality with the object’s `categoryId` field. */
+  categoryId?: InputMaybe<Scalars["String"]>;
   /** Checks for equality with the object’s `categoryName` field. */
   categoryName?: InputMaybe<Scalars["String"]>;
   /** Checks for equality with the object’s `date` field. */
   date?: InputMaybe<Scalars["Date"]>;
+  /** Checks for equality with the object’s `genreId` field. */
+  genreId?: InputMaybe<Scalars["String"]>;
   /** Checks for equality with the object’s `genreName` field. */
   genreName?: InputMaybe<Scalars["String"]>;
   /** Checks for equality with the object’s `iocomeType` field. */
@@ -1523,10 +1529,14 @@ export type TotalByCategoryViewCondition = {
 export type TotalByCategoryViewFilter = {
   /** Checks for all expressions in this list. */
   and?: InputMaybe<Array<TotalByCategoryViewFilter>>;
+  /** Filter by the object’s `categoryId` field. */
+  categoryId?: InputMaybe<StringFilter>;
   /** Filter by the object’s `categoryName` field. */
   categoryName?: InputMaybe<StringFilter>;
   /** Filter by the object’s `date` field. */
   date?: InputMaybe<DateFilter>;
+  /** Filter by the object’s `genreId` field. */
+  genreId?: InputMaybe<StringFilter>;
   /** Filter by the object’s `genreName` field. */
   genreName?: InputMaybe<StringFilter>;
   /** Filter by the object’s `iocomeType` field. */
@@ -1541,10 +1551,14 @@ export type TotalByCategoryViewFilter = {
 
 /** Methods to use when ordering `TotalByCategoryView`. */
 export enum TotalByCategoryViewsOrderBy {
+  CategoryIdAsc = "CATEGORY_ID_ASC",
+  CategoryIdDesc = "CATEGORY_ID_DESC",
   CategoryNameAsc = "CATEGORY_NAME_ASC",
   CategoryNameDesc = "CATEGORY_NAME_DESC",
   DateAsc = "DATE_ASC",
   DateDesc = "DATE_DESC",
+  GenreIdAsc = "GENRE_ID_ASC",
+  GenreIdDesc = "GENRE_ID_DESC",
   GenreNameAsc = "GENRE_NAME_ASC",
   GenreNameDesc = "GENRE_NAME_DESC",
   IocomeTypeAsc = "IOCOME_TYPE_ASC",
@@ -1903,7 +1917,9 @@ export type GetCategoryTotalByMonthQuery = {
     __typename?: "TotalByCategoryView";
     date?: any | null;
     iocomeType?: IocomeType | null;
+    genreId?: string | null;
     genreName?: string | null;
+    categoryId?: string | null;
     categoryName?: string | null;
     total?: any | null;
   } | null> | null;
@@ -2086,7 +2102,9 @@ export const GetCategoryTotalByMonthDocument = gql`
     categoryTotalByMonthList(fromDate: $fromDate, toDate: $toDate) {
       date
       iocomeType
+      genreId
       genreName
+      categoryId
       categoryName
       total
     }

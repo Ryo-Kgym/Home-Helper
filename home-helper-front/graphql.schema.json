@@ -8317,6 +8317,18 @@
         "description": null,
         "fields": [
           {
+            "name": "categoryId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "categoryName",
             "description": null,
             "args": [],
@@ -8335,6 +8347,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Date",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "genreId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8389,6 +8413,18 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "categoryId",
+            "description": "Checks for equality with the object’s `categoryId` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "categoryName",
             "description": "Checks for equality with the object’s `categoryName` field.",
             "type": {
@@ -8406,6 +8442,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Date",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "genreId",
+            "description": "Checks for equality with the object’s `genreId` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -8480,6 +8528,18 @@
             "deprecationReason": null
           },
           {
+            "name": "categoryId",
+            "description": "Filter by the object’s `categoryId` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "categoryName",
             "description": "Filter by the object’s `categoryName` field.",
             "type": {
@@ -8497,6 +8557,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "DateFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "genreId",
+            "description": "Filter by the object’s `genreId` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -8585,6 +8657,18 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "CATEGORY_ID_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CATEGORY_ID_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "CATEGORY_NAME_ASC",
             "description": null,
             "isDeprecated": false,
@@ -8604,6 +8688,18 @@
           },
           {
             "name": "DATE_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GENRE_ID_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GENRE_ID_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
