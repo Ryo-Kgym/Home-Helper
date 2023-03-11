@@ -5,6 +5,7 @@ import { useGetCategoryTotalByMonth } from "@hooks/household/category/useGetCate
 import { FC, useState } from "react";
 import { Button } from "@components/atoms/Button";
 import { DailyTableByCategory } from "@components/organisms/daily_table/category";
+import { FormatPrice } from "@components/molecules/FormatPrice";
 
 export const CategoryContainer: FC = () => {
   const [date, setDate] = useState<Date | null>(new Date());
@@ -25,7 +26,12 @@ export const CategoryContainer: FC = () => {
           { value: category?.genreName, align: "left" },
           { value: category?.categoryName, align: "left" },
           {
-            value: formatTotal(category?.iocomeType!, category?.total!),
+            value: (
+              <FormatPrice
+                iocomeType={category?.iocomeType!}
+                price={category?.total!}
+              />
+            ),
             align: "right",
           },
           {
@@ -68,13 +74,4 @@ export const CategoryContainer: FC = () => {
       outcomeTotal={outcomeTotal}
     />
   );
-};
-
-const formatTotal = (iocomeType: IocomeType, total: number) => {
-  const price = Number(total).toLocaleString();
-
-  if (iocomeType === IocomeType.Income) {
-    return <div className={"text-green-600"}>{price}</div>;
-  }
-  return <div className={"text-red-400"}>{"(" + price + ")"}</div>;
 };
