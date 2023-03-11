@@ -3,7 +3,7 @@ import {
   useGetTotalByAccountIdQuery,
   useUpdateAccountBalanceMutation,
 } from "@graphql/postgraphile/generated/graphql";
-import { loadUserId } from "@hooks/loadUserId";
+import { loadUser } from "@hooks/loadUser";
 
 type DailyDetailForRegistration = {
   date: Date;
@@ -20,7 +20,7 @@ export const useRegisterDailyDetail = ({
   amount,
   memo,
 }: DailyDetailForRegistration) => {
-  const userId = loadUserId();
+  const userId = loadUser().getUserId;
 
   const [ignore1, dailyRegistrationMutation] = useCreateDailyDetailMutation();
   const [{ data }] = useGetTotalByAccountIdQuery({
