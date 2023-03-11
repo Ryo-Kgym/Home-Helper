@@ -3,8 +3,12 @@ import { DailyTablePresenter } from "./DailyTablePresenter";
 import { useGetDailyDetailByDateQuery } from "@graphql/postgraphile/generated/graphql";
 import { TableProps } from "@components/atoms/Table";
 
-type DailyTableContainerProps = {};
-export const DailyTableContainer: FC<DailyTableContainerProps> = () => {
+type DailyTableContainerProps = {
+  dailyDetail?: TableProps[];
+};
+export const DailyTableContainer: FC<DailyTableContainerProps> = ({
+  dailyDetail,
+}) => {
   const today = new Date();
   const thisFirstDay = new Date(today.getFullYear(), today.getMonth(), 1);
 
@@ -18,7 +22,9 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = () => {
     },
   });
 
-  const dailyDetail: TableProps[] =
+  const tableProps: TableProps[] =
+    dailyDetail ??
+    // default data
     data?.dailyDetailByDateList?.map((dailyDetail) => {
       return {
         keyPrefix: "dailyDetail",
@@ -36,14 +42,15 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = () => {
           { value: dailyDetail?.memo },
         ],
       };
-    }) ?? [];
+    }) ??
+    [];
   return (
     <DailyTablePresenter
       fromDate={fromDate}
       changeFromDate={setFromDate}
       toDate={toDate}
       changeToDate={setToDate}
-      tablePropsList={dailyDetail}
+      tablePropsList={tableProps}
     />
   );
 };
