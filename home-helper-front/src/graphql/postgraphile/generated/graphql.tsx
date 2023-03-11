@@ -1963,6 +1963,45 @@ export type GetDailyDetailByDateQuery = {
   } | null> | null;
 };
 
+export type GetDailyDetailByDateCategoryIdQueryVariables = Exact<{
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+  categoryId: Scalars["String"];
+}>;
+
+export type GetDailyDetailByDateCategoryIdQuery = {
+  __typename?: "Query";
+  dailyDetailByDateList?: Array<{
+    __typename?: "DailyDetail";
+    serialNo: number;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    categoryByCategoryId?: {
+      __typename?: "Category";
+      categoryId: string;
+      categoryName: string;
+      genreByGenreId?: {
+        __typename?: "Genre";
+        genreId: string;
+        genreName: string;
+        genreType: GenreType;
+        iocomeType: IocomeType;
+      } | null;
+    } | null;
+    accountByAccountId?: {
+      __typename?: "Account";
+      accountId: string;
+      accountName: string;
+    } | null;
+    userByUserId?: {
+      __typename?: "User";
+      userId: string;
+      userName: string;
+    } | null;
+  } | null> | null;
+};
+
 export type GetDailyTotalByDateIocomeTypeQueryVariables = Exact<{
   iocomeType: IocomeType;
   date: Scalars["Date"];
@@ -2158,6 +2197,54 @@ export function useGetDailyDetailByDateQuery(
     GetDailyDetailByDateQuery,
     GetDailyDetailByDateQueryVariables
   >({ query: GetDailyDetailByDateDocument, ...options });
+}
+export const GetDailyDetailByDateCategoryIdDocument = gql`
+  query GetDailyDetailByDateCategoryId(
+    $fromDate: Date!
+    $toDate: Date!
+    $categoryId: String!
+  ) {
+    dailyDetailByDateList(
+      fromDate: $fromDate
+      toDate: $toDate
+      filter: { categoryId: { equalTo: $categoryId } }
+    ) {
+      serialNo
+      date
+      amount
+      memo
+      categoryByCategoryId {
+        categoryId
+        categoryName
+        genreByGenreId {
+          genreId
+          genreName
+          genreType
+          iocomeType
+        }
+      }
+      accountByAccountId {
+        accountId
+        accountName
+      }
+      userByUserId {
+        userId
+        userName
+      }
+    }
+  }
+`;
+
+export function useGetDailyDetailByDateCategoryIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetDailyDetailByDateCategoryIdQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetDailyDetailByDateCategoryIdQuery,
+    GetDailyDetailByDateCategoryIdQueryVariables
+  >({ query: GetDailyDetailByDateCategoryIdDocument, ...options });
 }
 export const GetDailyTotalByDateIocomeTypeDocument = gql`
   query GetDailyTotalByDateIocomeType($iocomeType: IocomeType!, $date: Date!) {
