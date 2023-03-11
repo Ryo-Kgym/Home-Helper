@@ -60,5 +60,5 @@ group by
     account_name,
     display_order
 order by
-    display_order desc;
+    display_order ;
 $$ language sql stable;
