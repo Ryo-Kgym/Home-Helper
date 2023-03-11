@@ -25,8 +25,6 @@ export type Scalars = {
 
 export type Account = Node & {
   __typename?: "Account";
-  /** Reads a single `AccountBalance` that is related to this `Account`. */
-  accountBalanceByAccountId?: Maybe<AccountBalance>;
   accountId: Scalars["String"];
   accountName: Scalars["String"];
   /** Reads and enables pagination through a set of `DailyDetail`. */
@@ -47,64 +45,6 @@ export type AccountDailyDetailsByAccountIdListArgs = {
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailsOrderBy>>;
 };
-
-export type AccountBalance = Node & {
-  __typename?: "AccountBalance";
-  /** Reads a single `Account` that is related to this `AccountBalance`. */
-  accountByAccountId?: Maybe<Account>;
-  accountId: Scalars["String"];
-  balance?: Maybe<Scalars["BigFloat"]>;
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars["ID"];
-};
-
-/**
- * A condition to be used against `AccountBalance` object types. All fields are
- * tested for equality and combined with a logical ‘and.’
- */
-export type AccountBalanceCondition = {
-  /** Checks for equality with the object’s `accountId` field. */
-  accountId?: InputMaybe<Scalars["String"]>;
-  /** Checks for equality with the object’s `balance` field. */
-  balance?: InputMaybe<Scalars["BigFloat"]>;
-};
-
-/** A filter to be used against `AccountBalance` object types. All fields are combined with a logical ‘and.’ */
-export type AccountBalanceFilter = {
-  /** Filter by the object’s `accountId` field. */
-  accountId?: InputMaybe<StringFilter>;
-  /** Checks for all expressions in this list. */
-  and?: InputMaybe<Array<AccountBalanceFilter>>;
-  /** Filter by the object’s `balance` field. */
-  balance?: InputMaybe<BigFloatFilter>;
-  /** Negates the expression. */
-  not?: InputMaybe<AccountBalanceFilter>;
-  /** Checks for any expressions in this list. */
-  or?: InputMaybe<Array<AccountBalanceFilter>>;
-};
-
-/** An input for mutations affecting `AccountBalance` */
-export type AccountBalanceInput = {
-  accountId: Scalars["String"];
-  balance?: InputMaybe<Scalars["BigFloat"]>;
-};
-
-/** Represents an update to a `AccountBalance`. Fields that are set will be updated. */
-export type AccountBalancePatch = {
-  accountId?: InputMaybe<Scalars["String"]>;
-  balance?: InputMaybe<Scalars["BigFloat"]>;
-};
-
-/** Methods to use when ordering `AccountBalance`. */
-export enum AccountBalancesOrderBy {
-  AccountIdAsc = "ACCOUNT_ID_ASC",
-  AccountIdDesc = "ACCOUNT_ID_DESC",
-  BalanceAsc = "BALANCE_ASC",
-  BalanceDesc = "BALANCE_DESC",
-  Natural = "NATURAL",
-  PrimaryKeyAsc = "PRIMARY_KEY_ASC",
-  PrimaryKeyDesc = "PRIMARY_KEY_DESC",
-}
 
 /** A condition to be used against `Account` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type AccountCondition = {
@@ -320,33 +260,6 @@ export type CategoryPatch = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
   genreId?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** All input for the create `AccountBalance` mutation. */
-export type CreateAccountBalanceInput = {
-  /** The `AccountBalance` to be created by this mutation. */
-  accountBalance: AccountBalanceInput;
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars["String"]>;
-};
-
-/** The output of our create `AccountBalance` mutation. */
-export type CreateAccountBalancePayload = {
-  __typename?: "CreateAccountBalancePayload";
-  /** The `AccountBalance` that was created by this mutation. */
-  accountBalance?: Maybe<AccountBalance>;
-  /** Reads a single `Account` that is related to this `AccountBalance`. */
-  accountByAccountId?: Maybe<Account>;
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars["String"]>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
 };
 
 /** All input for the create `Account` mutation. */
@@ -662,44 +575,6 @@ export type DateFilter = {
   notEqualTo?: InputMaybe<Scalars["Date"]>;
   /** Not included in the specified list. */
   notIn?: InputMaybe<Array<Scalars["Date"]>>;
-};
-
-/** All input for the `deleteAccountBalanceByAccountId` mutation. */
-export type DeleteAccountBalanceByAccountIdInput = {
-  accountId: Scalars["String"];
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars["String"]>;
-};
-
-/** All input for the `deleteAccountBalance` mutation. */
-export type DeleteAccountBalanceInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars["String"]>;
-  /** The globally unique `ID` which will identify a single `AccountBalance` to be deleted. */
-  nodeId: Scalars["ID"];
-};
-
-/** The output of our delete `AccountBalance` mutation. */
-export type DeleteAccountBalancePayload = {
-  __typename?: "DeleteAccountBalancePayload";
-  /** The `AccountBalance` that was deleted by this mutation. */
-  accountBalance?: Maybe<AccountBalance>;
-  /** Reads a single `Account` that is related to this `AccountBalance`. */
-  accountByAccountId?: Maybe<Account>;
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars["String"]>;
-  deletedAccountBalanceId?: Maybe<Scalars["ID"]>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
 };
 
 /** All input for the `deleteAccountByAccountId` mutation. */
@@ -1084,8 +959,6 @@ export type Mutation = {
   __typename?: "Mutation";
   /** Creates a single `Account`. */
   createAccount?: Maybe<CreateAccountPayload>;
-  /** Creates a single `AccountBalance`. */
-  createAccountBalance?: Maybe<CreateAccountBalancePayload>;
   /** Creates a single `Category`. */
   createCategory?: Maybe<CreateCategoryPayload>;
   /** Creates a single `DailyDetail`. */
@@ -1096,10 +969,6 @@ export type Mutation = {
   createUser?: Maybe<CreateUserPayload>;
   /** Deletes a single `Account` using its globally unique id. */
   deleteAccount?: Maybe<DeleteAccountPayload>;
-  /** Deletes a single `AccountBalance` using its globally unique id. */
-  deleteAccountBalance?: Maybe<DeleteAccountBalancePayload>;
-  /** Deletes a single `AccountBalance` using a unique key. */
-  deleteAccountBalanceByAccountId?: Maybe<DeleteAccountBalancePayload>;
   /** Deletes a single `Account` using a unique key. */
   deleteAccountByAccountId?: Maybe<DeleteAccountPayload>;
   /** Deletes a single `Category` using its globally unique id. */
@@ -1120,10 +989,6 @@ export type Mutation = {
   deleteUserByUserId?: Maybe<DeleteUserPayload>;
   /** Updates a single `Account` using its globally unique id and a patch. */
   updateAccount?: Maybe<UpdateAccountPayload>;
-  /** Updates a single `AccountBalance` using its globally unique id and a patch. */
-  updateAccountBalance?: Maybe<UpdateAccountBalancePayload>;
-  /** Updates a single `AccountBalance` using a unique key and a patch. */
-  updateAccountBalanceByAccountId?: Maybe<UpdateAccountBalancePayload>;
   /** Updates a single `Account` using a unique key and a patch. */
   updateAccountByAccountId?: Maybe<UpdateAccountPayload>;
   /** Updates a single `Category` using its globally unique id and a patch. */
@@ -1150,11 +1015,6 @@ export type MutationCreateAccountArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateAccountBalanceArgs = {
-  input: CreateAccountBalanceInput;
-};
-
-/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateCategoryArgs = {
   input: CreateCategoryInput;
 };
@@ -1177,16 +1037,6 @@ export type MutationCreateUserArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAccountArgs = {
   input: DeleteAccountInput;
-};
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteAccountBalanceArgs = {
-  input: DeleteAccountBalanceInput;
-};
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteAccountBalanceByAccountIdArgs = {
-  input: DeleteAccountBalanceByAccountIdInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1237,16 +1087,6 @@ export type MutationDeleteUserByUserIdArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAccountArgs = {
   input: UpdateAccountInput;
-};
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateAccountBalanceArgs = {
-  input: UpdateAccountBalanceInput;
-};
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateAccountBalanceByAccountIdArgs = {
-  input: UpdateAccountBalanceByAccountIdInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1305,12 +1145,7 @@ export type Query = Node & {
   __typename?: "Query";
   /** Reads a single `Account` using its globally unique `ID`. */
   account?: Maybe<Account>;
-  /** Reads a single `AccountBalance` using its globally unique `ID`. */
-  accountBalance?: Maybe<AccountBalance>;
-  accountBalanceByAccountId?: Maybe<AccountBalance>;
   accountByAccountId?: Maybe<Account>;
-  /** Reads a set of `AccountBalance`. */
-  allAccountBalancesList?: Maybe<Array<AccountBalance>>;
   /** Reads a set of `Account`. */
   allAccountsList?: Maybe<Array<Account>>;
   /** Reads a set of `Category`. */
@@ -1364,27 +1199,8 @@ export type QueryAccountArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAccountBalanceArgs = {
-  nodeId: Scalars["ID"];
-};
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAccountBalanceByAccountIdArgs = {
-  accountId: Scalars["String"];
-};
-
-/** The root query type which gives access points into the data universe. */
 export type QueryAccountByAccountIdArgs = {
   accountId: Scalars["String"];
-};
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAllAccountBalancesListArgs = {
-  condition?: InputMaybe<AccountBalanceCondition>;
-  filter?: InputMaybe<AccountBalanceFilter>;
-  first?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<AccountBalancesOrderBy>>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1739,47 +1555,6 @@ export enum TotalByCategoryViewsOrderBy {
   TotalDesc = "TOTAL_DESC",
 }
 
-/** All input for the `updateAccountBalanceByAccountId` mutation. */
-export type UpdateAccountBalanceByAccountIdInput = {
-  /** An object where the defined keys will be set on the `AccountBalance` being updated. */
-  accountBalancePatch: AccountBalancePatch;
-  accountId: Scalars["String"];
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars["String"]>;
-};
-
-/** All input for the `updateAccountBalance` mutation. */
-export type UpdateAccountBalanceInput = {
-  /** An object where the defined keys will be set on the `AccountBalance` being updated. */
-  accountBalancePatch: AccountBalancePatch;
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars["String"]>;
-  /** The globally unique `ID` which will identify a single `AccountBalance` to be updated. */
-  nodeId: Scalars["ID"];
-};
-
-/** The output of our update `AccountBalance` mutation. */
-export type UpdateAccountBalancePayload = {
-  __typename?: "UpdateAccountBalancePayload";
-  /** The `AccountBalance` that was updated by this mutation. */
-  accountBalance?: Maybe<AccountBalance>;
-  /** Reads a single `Account` that is related to this `AccountBalance`. */
-  accountByAccountId?: Maybe<Account>;
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars["String"]>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
-};
-
 /** All input for the `updateAccountByAccountId` mutation. */
 export type UpdateAccountByAccountIdInput = {
   accountId: Scalars["String"];
@@ -2098,21 +1873,13 @@ export type GetAccountBalanceListQueryVariables = Exact<{
 
 export type GetAccountBalanceListQuery = {
   __typename?: "Query";
-  allAccountsList?: Array<{
-    __typename?: "Account";
-    accountId: string;
-    accountName: string;
-    displayOrder: number;
-    validFlag?: boolean | null;
-    accountBalanceByAccountId?: {
-      __typename?: "AccountBalance";
-      balance?: any | null;
-    } | null;
-    userByOwnerUserId?: {
-      __typename?: "User";
-      userId: string;
-      userName: string;
-    } | null;
+  allTotalByAccountViewsList?: Array<{
+    __typename?: "TotalByAccountView";
+    accountId?: string | null;
+    accountName?: string | null;
+    displayOrder?: number | null;
+    iocomeType?: IocomeType | null;
+    total?: any | null;
   }> | null;
 };
 
@@ -2254,26 +2021,6 @@ export type GetValidGenreListByIocomeTypeQuery = {
   }> | null;
 };
 
-export type UpdateAccountBalanceMutationVariables = Exact<{
-  accountId: Scalars["String"];
-  balance: Scalars["BigFloat"];
-}>;
-
-export type UpdateAccountBalanceMutation = {
-  __typename?: "Mutation";
-  updateAccountBalanceByAccountId?: {
-    __typename?: "UpdateAccountBalancePayload";
-    query?: {
-      __typename?: "Query";
-      accountBalanceByAccountId?: {
-        __typename?: "AccountBalance";
-        accountId: string;
-        balance?: any | null;
-      } | null;
-    } | null;
-  } | null;
-};
-
 export const CreateDailyDetailDocument = gql`
   mutation CreateDailyDetail(
     $date: Date!
@@ -2315,18 +2062,12 @@ export function useCreateDailyDetailMutation() {
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList {
-    allAccountsList(condition: {}, orderBy: DISPLAY_ORDER_ASC) {
+    allTotalByAccountViewsList(orderBy: DISPLAY_ORDER_DESC) {
       accountId
       accountName
       displayOrder
-      validFlag
-      accountBalanceByAccountId {
-        balance
-      }
-      userByOwnerUserId {
-        userId
-        userName
-      }
+      iocomeType
+      total
     }
   }
 `;
@@ -2529,28 +2270,4 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQuery,
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
-}
-export const UpdateAccountBalanceDocument = gql`
-  mutation UpdateAccountBalance($accountId: String!, $balance: BigFloat!) {
-    updateAccountBalanceByAccountId(
-      input: {
-        accountBalancePatch: { balance: $balance }
-        accountId: $accountId
-      }
-    ) {
-      query {
-        accountBalanceByAccountId(accountId: $accountId) {
-          accountId
-          balance
-        }
-      }
-    }
-  }
-`;
-
-export function useUpdateAccountBalanceMutation() {
-  return Urql.useMutation<
-    UpdateAccountBalanceMutation,
-    UpdateAccountBalanceMutationVariables
-  >(UpdateAccountBalanceDocument);
 }
