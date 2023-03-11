@@ -25,8 +25,6 @@ export type Scalars = {
 
 export type Account = Node & {
   __typename?: "Account";
-  /** Reads a single `AccountBalance` that is related to this `Account`. */
-  accountBalanceByAccountId?: Maybe<AccountBalance>;
   accountId: Scalars["String"];
   accountName: Scalars["String"];
   /** Reads and enables pagination through a set of `DailyDetail`. */
@@ -47,64 +45,6 @@ export type AccountDailyDetailsByAccountIdListArgs = {
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailsOrderBy>>;
 };
-
-export type AccountBalance = Node & {
-  __typename?: "AccountBalance";
-  /** Reads a single `Account` that is related to this `AccountBalance`. */
-  accountByAccountId?: Maybe<Account>;
-  accountId: Scalars["String"];
-  balance?: Maybe<Scalars["BigFloat"]>;
-  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
-  nodeId: Scalars["ID"];
-};
-
-/**
- * A condition to be used against `AccountBalance` object types. All fields are
- * tested for equality and combined with a logical ‘and.’
- */
-export type AccountBalanceCondition = {
-  /** Checks for equality with the object’s `accountId` field. */
-  accountId?: InputMaybe<Scalars["String"]>;
-  /** Checks for equality with the object’s `balance` field. */
-  balance?: InputMaybe<Scalars["BigFloat"]>;
-};
-
-/** A filter to be used against `AccountBalance` object types. All fields are combined with a logical ‘and.’ */
-export type AccountBalanceFilter = {
-  /** Filter by the object’s `accountId` field. */
-  accountId?: InputMaybe<StringFilter>;
-  /** Checks for all expressions in this list. */
-  and?: InputMaybe<Array<AccountBalanceFilter>>;
-  /** Filter by the object’s `balance` field. */
-  balance?: InputMaybe<BigFloatFilter>;
-  /** Negates the expression. */
-  not?: InputMaybe<AccountBalanceFilter>;
-  /** Checks for any expressions in this list. */
-  or?: InputMaybe<Array<AccountBalanceFilter>>;
-};
-
-/** An input for mutations affecting `AccountBalance` */
-export type AccountBalanceInput = {
-  accountId: Scalars["String"];
-  balance?: InputMaybe<Scalars["BigFloat"]>;
-};
-
-/** Represents an update to a `AccountBalance`. Fields that are set will be updated. */
-export type AccountBalancePatch = {
-  accountId?: InputMaybe<Scalars["String"]>;
-  balance?: InputMaybe<Scalars["BigFloat"]>;
-};
-
-/** Methods to use when ordering `AccountBalance`. */
-export enum AccountBalancesOrderBy {
-  AccountIdAsc = "ACCOUNT_ID_ASC",
-  AccountIdDesc = "ACCOUNT_ID_DESC",
-  BalanceAsc = "BALANCE_ASC",
-  BalanceDesc = "BALANCE_DESC",
-  Natural = "NATURAL",
-  PrimaryKeyAsc = "PRIMARY_KEY_ASC",
-  PrimaryKeyDesc = "PRIMARY_KEY_DESC",
-}
 
 /** A condition to be used against `Account` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type AccountCondition = {
@@ -320,33 +260,6 @@ export type CategoryPatch = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
   genreId?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** All input for the create `AccountBalance` mutation. */
-export type CreateAccountBalanceInput = {
-  /** The `AccountBalance` to be created by this mutation. */
-  accountBalance: AccountBalanceInput;
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars["String"]>;
-};
-
-/** The output of our create `AccountBalance` mutation. */
-export type CreateAccountBalancePayload = {
-  __typename?: "CreateAccountBalancePayload";
-  /** The `AccountBalance` that was created by this mutation. */
-  accountBalance?: Maybe<AccountBalance>;
-  /** Reads a single `Account` that is related to this `AccountBalance`. */
-  accountByAccountId?: Maybe<Account>;
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars["String"]>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
 };
 
 /** All input for the create `Account` mutation. */
@@ -591,6 +504,53 @@ export enum DailyDetailsOrderBy {
   UserIdDesc = "USER_ID_DESC",
 }
 
+export type DailyTotalView = {
+  __typename?: "DailyTotalView";
+  date?: Maybe<Scalars["Date"]>;
+  iocomeType?: Maybe<IocomeType>;
+  total?: Maybe<Scalars["BigFloat"]>;
+};
+
+/**
+ * A condition to be used against `DailyTotalView` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type DailyTotalViewCondition = {
+  /** Checks for equality with the object’s `date` field. */
+  date?: InputMaybe<Scalars["Date"]>;
+  /** Checks for equality with the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeType>;
+  /** Checks for equality with the object’s `total` field. */
+  total?: InputMaybe<Scalars["BigFloat"]>;
+};
+
+/** A filter to be used against `DailyTotalView` object types. All fields are combined with a logical ‘and.’ */
+export type DailyTotalViewFilter = {
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<DailyTotalViewFilter>>;
+  /** Filter by the object’s `date` field. */
+  date?: InputMaybe<DateFilter>;
+  /** Filter by the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeTypeFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<DailyTotalViewFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<DailyTotalViewFilter>>;
+  /** Filter by the object’s `total` field. */
+  total?: InputMaybe<BigFloatFilter>;
+};
+
+/** Methods to use when ordering `DailyTotalView`. */
+export enum DailyTotalViewsOrderBy {
+  DateAsc = "DATE_ASC",
+  DateDesc = "DATE_DESC",
+  IocomeTypeAsc = "IOCOME_TYPE_ASC",
+  IocomeTypeDesc = "IOCOME_TYPE_DESC",
+  Natural = "NATURAL",
+  TotalAsc = "TOTAL_ASC",
+  TotalDesc = "TOTAL_DESC",
+}
+
 /** A filter to be used against Date fields. All fields are combined with a logical ‘and.’ */
 export type DateFilter = {
   /** Not equal to the specified value, treating null like an ordinary value. */
@@ -615,44 +575,6 @@ export type DateFilter = {
   notEqualTo?: InputMaybe<Scalars["Date"]>;
   /** Not included in the specified list. */
   notIn?: InputMaybe<Array<Scalars["Date"]>>;
-};
-
-/** All input for the `deleteAccountBalanceByAccountId` mutation. */
-export type DeleteAccountBalanceByAccountIdInput = {
-  accountId: Scalars["String"];
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars["String"]>;
-};
-
-/** All input for the `deleteAccountBalance` mutation. */
-export type DeleteAccountBalanceInput = {
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars["String"]>;
-  /** The globally unique `ID` which will identify a single `AccountBalance` to be deleted. */
-  nodeId: Scalars["ID"];
-};
-
-/** The output of our delete `AccountBalance` mutation. */
-export type DeleteAccountBalancePayload = {
-  __typename?: "DeleteAccountBalancePayload";
-  /** The `AccountBalance` that was deleted by this mutation. */
-  accountBalance?: Maybe<AccountBalance>;
-  /** Reads a single `Account` that is related to this `AccountBalance`. */
-  accountByAccountId?: Maybe<Account>;
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars["String"]>;
-  deletedAccountBalanceId?: Maybe<Scalars["ID"]>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
 };
 
 /** All input for the `deleteAccountByAccountId` mutation. */
@@ -1037,8 +959,6 @@ export type Mutation = {
   __typename?: "Mutation";
   /** Creates a single `Account`. */
   createAccount?: Maybe<CreateAccountPayload>;
-  /** Creates a single `AccountBalance`. */
-  createAccountBalance?: Maybe<CreateAccountBalancePayload>;
   /** Creates a single `Category`. */
   createCategory?: Maybe<CreateCategoryPayload>;
   /** Creates a single `DailyDetail`. */
@@ -1049,10 +969,6 @@ export type Mutation = {
   createUser?: Maybe<CreateUserPayload>;
   /** Deletes a single `Account` using its globally unique id. */
   deleteAccount?: Maybe<DeleteAccountPayload>;
-  /** Deletes a single `AccountBalance` using its globally unique id. */
-  deleteAccountBalance?: Maybe<DeleteAccountBalancePayload>;
-  /** Deletes a single `AccountBalance` using a unique key. */
-  deleteAccountBalanceByAccountId?: Maybe<DeleteAccountBalancePayload>;
   /** Deletes a single `Account` using a unique key. */
   deleteAccountByAccountId?: Maybe<DeleteAccountPayload>;
   /** Deletes a single `Category` using its globally unique id. */
@@ -1073,10 +989,6 @@ export type Mutation = {
   deleteUserByUserId?: Maybe<DeleteUserPayload>;
   /** Updates a single `Account` using its globally unique id and a patch. */
   updateAccount?: Maybe<UpdateAccountPayload>;
-  /** Updates a single `AccountBalance` using its globally unique id and a patch. */
-  updateAccountBalance?: Maybe<UpdateAccountBalancePayload>;
-  /** Updates a single `AccountBalance` using a unique key and a patch. */
-  updateAccountBalanceByAccountId?: Maybe<UpdateAccountBalancePayload>;
   /** Updates a single `Account` using a unique key and a patch. */
   updateAccountByAccountId?: Maybe<UpdateAccountPayload>;
   /** Updates a single `Category` using its globally unique id and a patch. */
@@ -1103,11 +1015,6 @@ export type MutationCreateAccountArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
-export type MutationCreateAccountBalanceArgs = {
-  input: CreateAccountBalanceInput;
-};
-
-/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateCategoryArgs = {
   input: CreateCategoryInput;
 };
@@ -1130,16 +1037,6 @@ export type MutationCreateUserArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAccountArgs = {
   input: DeleteAccountInput;
-};
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteAccountBalanceArgs = {
-  input: DeleteAccountBalanceInput;
-};
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationDeleteAccountBalanceByAccountIdArgs = {
-  input: DeleteAccountBalanceByAccountIdInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1190,16 +1087,6 @@ export type MutationDeleteUserByUserIdArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAccountArgs = {
   input: UpdateAccountInput;
-};
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateAccountBalanceArgs = {
-  input: UpdateAccountBalanceInput;
-};
-
-/** The root mutation type which contains root level fields which mutate data. */
-export type MutationUpdateAccountBalanceByAccountIdArgs = {
-  input: UpdateAccountBalanceByAccountIdInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1258,30 +1145,37 @@ export type Query = Node & {
   __typename?: "Query";
   /** Reads a single `Account` using its globally unique `ID`. */
   account?: Maybe<Account>;
-  /** Reads a single `AccountBalance` using its globally unique `ID`. */
-  accountBalance?: Maybe<AccountBalance>;
-  accountBalanceByAccountId?: Maybe<AccountBalance>;
   accountByAccountId?: Maybe<Account>;
-  /** Reads a set of `AccountBalance`. */
-  allAccountBalancesList?: Maybe<Array<AccountBalance>>;
+  /** Reads and enables pagination through a set of `TotalByAccountView`. */
+  accountTotalList?: Maybe<Array<Maybe<TotalByAccountView>>>;
   /** Reads a set of `Account`. */
   allAccountsList?: Maybe<Array<Account>>;
   /** Reads a set of `Category`. */
   allCategoriesList?: Maybe<Array<Category>>;
   /** Reads a set of `DailyDetail`. */
   allDailyDetailsList?: Maybe<Array<DailyDetail>>;
+  /** Reads a set of `DailyTotalView`. */
+  allDailyTotalViewsList?: Maybe<Array<DailyTotalView>>;
   /** Reads a set of `Genre`. */
   allGenresList?: Maybe<Array<Genre>>;
+  /** Reads a set of `TotalByAccountView`. */
+  allTotalByAccountViewsList?: Maybe<Array<TotalByAccountView>>;
+  /** Reads a set of `TotalByCategoryView`. */
+  allTotalByCategoryViewsList?: Maybe<Array<TotalByCategoryView>>;
   /** Reads a set of `User`. */
   allUsersList?: Maybe<Array<User>>;
   /** Reads a single `Category` using its globally unique `ID`. */
   category?: Maybe<Category>;
   categoryByCategoryId?: Maybe<Category>;
+  /** Reads and enables pagination through a set of `TotalByCategoryView`. */
+  categoryTotalByMonthList?: Maybe<Array<Maybe<TotalByCategoryView>>>;
   /** Reads a single `DailyDetail` using its globally unique `ID`. */
   dailyDetail?: Maybe<DailyDetail>;
   /** Reads and enables pagination through a set of `DailyDetail`. */
   dailyDetailByDateList?: Maybe<Array<Maybe<DailyDetail>>>;
   dailyDetailBySerialNo?: Maybe<DailyDetail>;
+  /** Reads and enables pagination through a set of `DailyTotalView`. */
+  dailyTotalViewByDateIocomeTypeList?: Maybe<Array<Maybe<DailyTotalView>>>;
   /** Reads a single `Genre` using its globally unique `ID`. */
   genre?: Maybe<Genre>;
   genreByGenreId?: Maybe<Genre>;
@@ -1305,27 +1199,15 @@ export type QueryAccountArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAccountBalanceArgs = {
-  nodeId: Scalars["ID"];
-};
-
-/** The root query type which gives access points into the data universe. */
-export type QueryAccountBalanceByAccountIdArgs = {
-  accountId: Scalars["String"];
-};
-
-/** The root query type which gives access points into the data universe. */
 export type QueryAccountByAccountIdArgs = {
   accountId: Scalars["String"];
 };
 
 /** The root query type which gives access points into the data universe. */
-export type QueryAllAccountBalancesListArgs = {
-  condition?: InputMaybe<AccountBalanceCondition>;
-  filter?: InputMaybe<AccountBalanceFilter>;
+export type QueryAccountTotalListArgs = {
+  filter?: InputMaybe<TotalByAccountViewFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<AccountBalancesOrderBy>>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1356,12 +1238,39 @@ export type QueryAllDailyDetailsListArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAllDailyTotalViewsListArgs = {
+  condition?: InputMaybe<DailyTotalViewCondition>;
+  filter?: InputMaybe<DailyTotalViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyTotalViewsOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllGenresListArgs = {
   condition?: InputMaybe<GenreCondition>;
   filter?: InputMaybe<GenreFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GenresOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllTotalByAccountViewsListArgs = {
+  condition?: InputMaybe<TotalByAccountViewCondition>;
+  filter?: InputMaybe<TotalByAccountViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<TotalByAccountViewsOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllTotalByCategoryViewsListArgs = {
+  condition?: InputMaybe<TotalByCategoryViewCondition>;
+  filter?: InputMaybe<TotalByCategoryViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<TotalByCategoryViewsOrderBy>>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1384,6 +1293,15 @@ export type QueryCategoryByCategoryIdArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QueryCategoryTotalByMonthListArgs = {
+  filter?: InputMaybe<TotalByCategoryViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  fromDate?: InputMaybe<Scalars["Date"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  toDate?: InputMaybe<Scalars["Date"]>;
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryDailyDetailArgs = {
   nodeId: Scalars["ID"];
 };
@@ -1400,6 +1318,15 @@ export type QueryDailyDetailByDateListArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryDailyDetailBySerialNoArgs = {
   serialNo: Scalars["Int"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryDailyTotalViewByDateIocomeTypeListArgs = {
+  date?: InputMaybe<Scalars["Date"]>;
+  filter?: InputMaybe<DailyTotalViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  iocomeType?: InputMaybe<IocomeType>;
+  offset?: InputMaybe<Scalars["Int"]>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1505,46 +1432,127 @@ export type StringFilter = {
   startsWithInsensitive?: InputMaybe<Scalars["String"]>;
 };
 
-/** All input for the `updateAccountBalanceByAccountId` mutation. */
-export type UpdateAccountBalanceByAccountIdInput = {
-  /** An object where the defined keys will be set on the `AccountBalance` being updated. */
-  accountBalancePatch: AccountBalancePatch;
-  accountId: Scalars["String"];
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars["String"]>;
+export type TotalByAccountView = {
+  __typename?: "TotalByAccountView";
+  accountId?: Maybe<Scalars["String"]>;
+  accountName?: Maybe<Scalars["String"]>;
+  displayOrder?: Maybe<Scalars["Int"]>;
+  iocomeType?: Maybe<IocomeType>;
+  total?: Maybe<Scalars["BigFloat"]>;
 };
 
-/** All input for the `updateAccountBalance` mutation. */
-export type UpdateAccountBalanceInput = {
-  /** An object where the defined keys will be set on the `AccountBalance` being updated. */
-  accountBalancePatch: AccountBalancePatch;
-  /**
-   * An arbitrary string value with no semantic meaning. Will be included in the
-   * payload verbatim. May be used to track mutations by the client.
-   */
-  clientMutationId?: InputMaybe<Scalars["String"]>;
-  /** The globally unique `ID` which will identify a single `AccountBalance` to be updated. */
-  nodeId: Scalars["ID"];
+/**
+ * A condition to be used against `TotalByAccountView` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type TotalByAccountViewCondition = {
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `accountName` field. */
+  accountName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `displayOrder` field. */
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeType>;
+  /** Checks for equality with the object’s `total` field. */
+  total?: InputMaybe<Scalars["BigFloat"]>;
 };
 
-/** The output of our update `AccountBalance` mutation. */
-export type UpdateAccountBalancePayload = {
-  __typename?: "UpdateAccountBalancePayload";
-  /** The `AccountBalance` that was updated by this mutation. */
-  accountBalance?: Maybe<AccountBalance>;
-  /** Reads a single `Account` that is related to this `AccountBalance`. */
-  accountByAccountId?: Maybe<Account>;
-  /**
-   * The exact same `clientMutationId` that was provided in the mutation input,
-   * unchanged and unused. May be used by a client to track mutations.
-   */
-  clientMutationId?: Maybe<Scalars["String"]>;
-  /** Our root query field type. Allows us to run any query from our mutation payload. */
-  query?: Maybe<Query>;
+/** A filter to be used against `TotalByAccountView` object types. All fields are combined with a logical ‘and.’ */
+export type TotalByAccountViewFilter = {
+  /** Filter by the object’s `accountId` field. */
+  accountId?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `accountName` field. */
+  accountName?: InputMaybe<StringFilter>;
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<TotalByAccountViewFilter>>;
+  /** Filter by the object’s `displayOrder` field. */
+  displayOrder?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeTypeFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<TotalByAccountViewFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<TotalByAccountViewFilter>>;
+  /** Filter by the object’s `total` field. */
+  total?: InputMaybe<BigFloatFilter>;
 };
+
+/** Methods to use when ordering `TotalByAccountView`. */
+export enum TotalByAccountViewsOrderBy {
+  AccountIdAsc = "ACCOUNT_ID_ASC",
+  AccountIdDesc = "ACCOUNT_ID_DESC",
+  AccountNameAsc = "ACCOUNT_NAME_ASC",
+  AccountNameDesc = "ACCOUNT_NAME_DESC",
+  DisplayOrderAsc = "DISPLAY_ORDER_ASC",
+  DisplayOrderDesc = "DISPLAY_ORDER_DESC",
+  IocomeTypeAsc = "IOCOME_TYPE_ASC",
+  IocomeTypeDesc = "IOCOME_TYPE_DESC",
+  Natural = "NATURAL",
+  TotalAsc = "TOTAL_ASC",
+  TotalDesc = "TOTAL_DESC",
+}
+
+export type TotalByCategoryView = {
+  __typename?: "TotalByCategoryView";
+  categoryName?: Maybe<Scalars["String"]>;
+  date?: Maybe<Scalars["Date"]>;
+  genreName?: Maybe<Scalars["String"]>;
+  iocomeType?: Maybe<IocomeType>;
+  total?: Maybe<Scalars["BigFloat"]>;
+};
+
+/**
+ * A condition to be used against `TotalByCategoryView` object types. All fields
+ * are tested for equality and combined with a logical ‘and.’
+ */
+export type TotalByCategoryViewCondition = {
+  /** Checks for equality with the object’s `categoryName` field. */
+  categoryName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `date` field. */
+  date?: InputMaybe<Scalars["Date"]>;
+  /** Checks for equality with the object’s `genreName` field. */
+  genreName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeType>;
+  /** Checks for equality with the object’s `total` field. */
+  total?: InputMaybe<Scalars["BigFloat"]>;
+};
+
+/** A filter to be used against `TotalByCategoryView` object types. All fields are combined with a logical ‘and.’ */
+export type TotalByCategoryViewFilter = {
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<TotalByCategoryViewFilter>>;
+  /** Filter by the object’s `categoryName` field. */
+  categoryName?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `date` field. */
+  date?: InputMaybe<DateFilter>;
+  /** Filter by the object’s `genreName` field. */
+  genreName?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeTypeFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<TotalByCategoryViewFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<TotalByCategoryViewFilter>>;
+  /** Filter by the object’s `total` field. */
+  total?: InputMaybe<BigFloatFilter>;
+};
+
+/** Methods to use when ordering `TotalByCategoryView`. */
+export enum TotalByCategoryViewsOrderBy {
+  CategoryNameAsc = "CATEGORY_NAME_ASC",
+  CategoryNameDesc = "CATEGORY_NAME_DESC",
+  DateAsc = "DATE_ASC",
+  DateDesc = "DATE_DESC",
+  GenreNameAsc = "GENRE_NAME_ASC",
+  GenreNameDesc = "GENRE_NAME_DESC",
+  IocomeTypeAsc = "IOCOME_TYPE_ASC",
+  IocomeTypeDesc = "IOCOME_TYPE_DESC",
+  Natural = "NATURAL",
+  TotalAsc = "TOTAL_ASC",
+  TotalDesc = "TOTAL_DESC",
+}
 
 /** All input for the `updateAccountByAccountId` mutation. */
 export type UpdateAccountByAccountIdInput = {
@@ -1864,22 +1872,13 @@ export type GetAccountBalanceListQueryVariables = Exact<{
 
 export type GetAccountBalanceListQuery = {
   __typename?: "Query";
-  allAccountsList?: Array<{
-    __typename?: "Account";
-    accountId: string;
-    accountName: string;
-    displayOrder: number;
-    validFlag?: boolean | null;
-    accountBalanceByAccountId?: {
-      __typename?: "AccountBalance";
-      balance?: any | null;
-    } | null;
-    userByOwnerUserId?: {
-      __typename?: "User";
-      userId: string;
-      userName: string;
-    } | null;
-  }> | null;
+  accountTotalList?: Array<{
+    __typename?: "TotalByAccountView";
+    accountId?: string | null;
+    accountName?: string | null;
+    total?: any | null;
+    displayOrder?: number | null;
+  } | null> | null;
 };
 
 export type GetAllUsersQueryVariables = Exact<{ [key: string]: never }>;
@@ -1893,6 +1892,23 @@ export type GetAllUsersQuery = {
   }> | null;
 };
 
+export type GetCategoryTotalByMonthQueryVariables = Exact<{
+  fromDate?: InputMaybe<Scalars["Date"]>;
+  toDate?: InputMaybe<Scalars["Date"]>;
+}>;
+
+export type GetCategoryTotalByMonthQuery = {
+  __typename?: "Query";
+  categoryTotalByMonthList?: Array<{
+    __typename?: "TotalByCategoryView";
+    date?: any | null;
+    iocomeType?: IocomeType | null;
+    genreName?: string | null;
+    categoryName?: string | null;
+    total?: any | null;
+  } | null> | null;
+};
+
 export type GetDailyDetailByDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -1902,6 +1918,7 @@ export type GetDailyDetailByDateQuery = {
   __typename?: "Query";
   dailyDetailByDateList?: Array<{
     __typename?: "DailyDetail";
+    serialNo: number;
     date: any;
     amount: any;
     memo?: string | null;
@@ -1927,6 +1944,21 @@ export type GetDailyDetailByDateQuery = {
       userId: string;
       userName: string;
     } | null;
+  } | null> | null;
+};
+
+export type GetDailyTotalByDateIocomeTypeQueryVariables = Exact<{
+  iocomeType: IocomeType;
+  date: Scalars["Date"];
+}>;
+
+export type GetDailyTotalByDateIocomeTypeQuery = {
+  __typename?: "Query";
+  dailyTotalViewByDateIocomeTypeList?: Array<{
+    __typename?: "DailyTotalView";
+    date?: any | null;
+    iocomeType?: IocomeType | null;
+    total?: any | null;
   } | null> | null;
 };
 
@@ -2012,18 +2044,11 @@ export function useCreateDailyDetailMutation() {
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList {
-    allAccountsList(condition: {}, orderBy: DISPLAY_ORDER_ASC) {
+    accountTotalList {
       accountId
       accountName
+      total
       displayOrder
-      validFlag
-      accountBalanceByAccountId {
-        balance
-      }
-      userByOwnerUserId {
-        userId
-        userName
-      }
     }
   }
 `;
@@ -2056,9 +2081,33 @@ export function useGetAllUsersQuery(
     ...options,
   });
 }
+export const GetCategoryTotalByMonthDocument = gql`
+  query GetCategoryTotalByMonth($fromDate: Date, $toDate: Date) {
+    categoryTotalByMonthList(fromDate: $fromDate, toDate: $toDate) {
+      date
+      iocomeType
+      genreName
+      categoryName
+      total
+    }
+  }
+`;
+
+export function useGetCategoryTotalByMonthQuery(
+  options?: Omit<
+    Urql.UseQueryArgs<GetCategoryTotalByMonthQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetCategoryTotalByMonthQuery,
+    GetCategoryTotalByMonthQueryVariables
+  >({ query: GetCategoryTotalByMonthDocument, ...options });
+}
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
     dailyDetailByDateList(fromDate: $fromDate, toDate: $toDate) {
+      serialNo
       date
       amount
       memo
@@ -2091,6 +2140,27 @@ export function useGetDailyDetailByDateQuery(
     GetDailyDetailByDateQuery,
     GetDailyDetailByDateQueryVariables
   >({ query: GetDailyDetailByDateDocument, ...options });
+}
+export const GetDailyTotalByDateIocomeTypeDocument = gql`
+  query GetDailyTotalByDateIocomeType($iocomeType: IocomeType!, $date: Date!) {
+    dailyTotalViewByDateIocomeTypeList(date: $date, iocomeType: $iocomeType) {
+      date
+      iocomeType
+      total
+    }
+  }
+`;
+
+export function useGetDailyTotalByDateIocomeTypeQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetDailyTotalByDateIocomeTypeQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetDailyTotalByDateIocomeTypeQuery,
+    GetDailyTotalByDateIocomeTypeQueryVariables
+  >({ query: GetDailyTotalByDateIocomeTypeDocument, ...options });
 }
 export const GetValidAccountsDocument = gql`
   query GetValidAccounts {

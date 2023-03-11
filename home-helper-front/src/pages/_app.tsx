@@ -4,6 +4,7 @@ import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider } from "@mantine/core";
 import { client } from "@graphql/postgraphile/client";
 import { Provider } from "urql";
+import { Toaster } from "react-hot-toast";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -11,6 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <MantineProvider withNormalizeCSS withGlobalStyles>
         <NotificationsProvider>
           <Component {...pageProps} />
+          <Toaster />
         </NotificationsProvider>
       </MantineProvider>
     </Provider>

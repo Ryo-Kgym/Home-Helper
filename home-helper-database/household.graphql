@@ -34,23 +34,6 @@ type Query implements Node {
     condition: AccountCondition
   ): [Account!]
 
-  """Reads a set of `AccountBalance`."""
-  allAccountBalancesList(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Skip the first `n` values."""
-    offset: Int
-
-    """The method to use when ordering `AccountBalance`."""
-    orderBy: [AccountBalancesOrderBy!]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: AccountBalanceCondition
-  ): [AccountBalance!]
-
   """Reads a set of `Category`."""
   allCategoriesList(
     """Only read the first `n` values of the set."""
@@ -85,6 +68,23 @@ type Query implements Node {
     condition: DailyDetailCondition
   ): [DailyDetail!]
 
+  """Reads a set of `DailyTotalView`."""
+  allDailyTotalViewsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `DailyTotalView`."""
+    orderBy: [DailyTotalViewsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: DailyTotalViewCondition
+  ): [DailyTotalView!]
+
   """Reads a set of `Genre`."""
   allGenresList(
     """Only read the first `n` values of the set."""
@@ -101,6 +101,40 @@ type Query implements Node {
     """
     condition: GenreCondition
   ): [Genre!]
+
+  """Reads a set of `TotalByAccountView`."""
+  allTotalByAccountViewsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `TotalByAccountView`."""
+    orderBy: [TotalByAccountViewsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TotalByAccountViewCondition
+  ): [TotalByAccountView!]
+
+  """Reads a set of `TotalByCategoryView`."""
+  allTotalByCategoryViewsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `TotalByCategoryView`."""
+    orderBy: [TotalByCategoryViewsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TotalByCategoryViewCondition
+  ): [TotalByCategoryView!]
 
   """Reads a set of `User`."""
   allUsersList(
@@ -119,11 +153,31 @@ type Query implements Node {
     condition: UserCondition
   ): [User!]
   accountByAccountId(accountId: String!): Account
-  accountBalanceByAccountId(accountId: String!): AccountBalance
   categoryByCategoryId(categoryId: String!): Category
   dailyDetailBySerialNo(serialNo: Int!): DailyDetail
   genreByGenreId(genreId: String!): Genre
   userByUserId(userId: String!): User
+
+  """Reads and enables pagination through a set of `TotalByAccountView`."""
+  accountTotalList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+  ): [TotalByAccountView]
+
+  """Reads and enables pagination through a set of `TotalByCategoryView`."""
+  categoryTotalByMonthList(
+    fromDate: Date
+    toDate: Date
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+  ): [TotalByCategoryView]
 
   """Reads and enables pagination through a set of `DailyDetail`."""
   dailyDetailByDateList(
@@ -137,19 +191,23 @@ type Query implements Node {
     offset: Int
   ): [DailyDetail]
 
+  """Reads and enables pagination through a set of `DailyTotalView`."""
+  dailyTotalViewByDateIocomeTypeList(
+    iocomeType: IocomeType
+    date: Date
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+  ): [DailyTotalView]
+
   """Reads a single `Account` using its globally unique `ID`."""
   account(
     """The globally unique `ID` to be used in selecting a single `Account`."""
     nodeId: ID!
   ): Account
-
-  """Reads a single `AccountBalance` using its globally unique `ID`."""
-  accountBalance(
-    """
-    The globally unique `ID` to be used in selecting a single `AccountBalance`.
-    """
-    nodeId: ID!
-  ): AccountBalance
 
   """Reads a single `Category` using its globally unique `ID`."""
   category(
@@ -199,9 +257,6 @@ type Account implements Node {
 
   """Reads a single `User` that is related to this `Account`."""
   userByOwnerUserId: User
-
-  """Reads a single `AccountBalance` that is related to this `Account`."""
-  accountBalanceByAccountId: AccountBalance
 
   """Reads and enables pagination through a set of `DailyDetail`."""
   dailyDetailsByAccountIdList(
@@ -491,39 +546,36 @@ input DailyDetailCondition {
   memo: String
 }
 
-type AccountBalance implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  accountId: String!
-  balance: BigFloat
-
-  """Reads a single `Account` that is related to this `AccountBalance`."""
-  accountByAccountId: Account
+type DailyTotalView {
+  date: Date
+  iocomeType: IocomeType
+  total: BigFloat
 }
 
-"""Methods to use when ordering `AccountBalance`."""
-enum AccountBalancesOrderBy {
+"""Methods to use when ordering `DailyTotalView`."""
+enum DailyTotalViewsOrderBy {
   NATURAL
-  ACCOUNT_ID_ASC
-  ACCOUNT_ID_DESC
-  BALANCE_ASC
-  BALANCE_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
+  DATE_ASC
+  DATE_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
+  TOTAL_ASC
+  TOTAL_DESC
 }
 
 """
-A condition to be used against `AccountBalance` object types. All fields are
+A condition to be used against `DailyTotalView` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
-input AccountBalanceCondition {
-  """Checks for equality with the object’s `accountId` field."""
-  accountId: String
+input DailyTotalViewCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: Date
 
-  """Checks for equality with the object’s `balance` field."""
-  balance: BigFloat
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
+  """Checks for equality with the object’s `total` field."""
+  total: BigFloat
 }
 
 """Methods to use when ordering `Genre`."""
@@ -568,6 +620,94 @@ input GenreCondition {
   displayOrder: Int
 }
 
+type TotalByAccountView {
+  accountId: String
+  accountName: String
+  displayOrder: Int
+  iocomeType: IocomeType
+  total: BigFloat
+}
+
+"""Methods to use when ordering `TotalByAccountView`."""
+enum TotalByAccountViewsOrderBy {
+  NATURAL
+  ACCOUNT_ID_ASC
+  ACCOUNT_ID_DESC
+  ACCOUNT_NAME_ASC
+  ACCOUNT_NAME_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
+  TOTAL_ASC
+  TOTAL_DESC
+}
+
+"""
+A condition to be used against `TotalByAccountView` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input TotalByAccountViewCondition {
+  """Checks for equality with the object’s `accountId` field."""
+  accountId: String
+
+  """Checks for equality with the object’s `accountName` field."""
+  accountName: String
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
+  """Checks for equality with the object’s `total` field."""
+  total: BigFloat
+}
+
+type TotalByCategoryView {
+  date: Date
+  iocomeType: IocomeType
+  genreName: String
+  categoryName: String
+  total: BigFloat
+}
+
+"""Methods to use when ordering `TotalByCategoryView`."""
+enum TotalByCategoryViewsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
+  GENRE_NAME_ASC
+  GENRE_NAME_DESC
+  CATEGORY_NAME_ASC
+  CATEGORY_NAME_DESC
+  TOTAL_ASC
+  TOTAL_DESC
+}
+
+"""
+A condition to be used against `TotalByCategoryView` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input TotalByCategoryViewCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: Date
+
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
+  """Checks for equality with the object’s `genreName` field."""
+  genreName: String
+
+  """Checks for equality with the object’s `categoryName` field."""
+  categoryName: String
+
+  """Checks for equality with the object’s `total` field."""
+  total: BigFloat
+}
+
 """Methods to use when ordering `User`."""
 enum UsersOrderBy {
   NATURAL
@@ -606,14 +746,6 @@ type Mutation {
     """
     input: CreateAccountInput!
   ): CreateAccountPayload
-
-  """Creates a single `AccountBalance`."""
-  createAccountBalance(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateAccountBalanceInput!
-  ): CreateAccountBalancePayload
 
   """Creates a single `Category`."""
   createCategory(
@@ -662,24 +794,6 @@ type Mutation {
     """
     input: UpdateAccountByAccountIdInput!
   ): UpdateAccountPayload
-
-  """
-  Updates a single `AccountBalance` using its globally unique id and a patch.
-  """
-  updateAccountBalance(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateAccountBalanceInput!
-  ): UpdateAccountBalancePayload
-
-  """Updates a single `AccountBalance` using a unique key and a patch."""
-  updateAccountBalanceByAccountId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateAccountBalanceByAccountIdInput!
-  ): UpdateAccountBalancePayload
 
   """Updates a single `Category` using its globally unique id and a patch."""
   updateCategory(
@@ -762,22 +876,6 @@ type Mutation {
     """
     input: DeleteAccountByAccountIdInput!
   ): DeleteAccountPayload
-
-  """Deletes a single `AccountBalance` using its globally unique id."""
-  deleteAccountBalance(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteAccountBalanceInput!
-  ): DeleteAccountBalancePayload
-
-  """Deletes a single `AccountBalance` using a unique key."""
-  deleteAccountBalanceByAccountId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteAccountBalanceByAccountIdInput!
-  ): DeleteAccountBalancePayload
 
   """Deletes a single `Category` using its globally unique id."""
   deleteCategory(
@@ -883,44 +981,6 @@ input AccountInput {
   validFlag: Boolean
   displayOrder: Int!
   ownerUserId: String!
-}
-
-"""The output of our create `AccountBalance` mutation."""
-type CreateAccountBalancePayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `AccountBalance` that was created by this mutation."""
-  accountBalance: AccountBalance
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `Account` that is related to this `AccountBalance`."""
-  accountByAccountId: Account
-}
-
-"""All input for the create `AccountBalance` mutation."""
-input CreateAccountBalanceInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `AccountBalance` to be created by this mutation."""
-  accountBalance: AccountBalanceInput!
-}
-
-"""An input for mutations affecting `AccountBalance`"""
-input AccountBalanceInput {
-  accountId: String!
-  balance: BigFloat
 }
 
 """The output of our create `Category` mutation."""
@@ -1150,68 +1210,6 @@ input UpdateAccountByAccountIdInput {
   An object where the defined keys will be set on the `Account` being updated.
   """
   accountPatch: AccountPatch!
-  accountId: String!
-}
-
-"""The output of our update `AccountBalance` mutation."""
-type UpdateAccountBalancePayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `AccountBalance` that was updated by this mutation."""
-  accountBalance: AccountBalance
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `Account` that is related to this `AccountBalance`."""
-  accountByAccountId: Account
-}
-
-"""All input for the `updateAccountBalance` mutation."""
-input UpdateAccountBalanceInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `AccountBalance` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `AccountBalance` being updated.
-  """
-  accountBalancePatch: AccountBalancePatch!
-}
-
-"""
-Represents an update to a `AccountBalance`. Fields that are set will be updated.
-"""
-input AccountBalancePatch {
-  accountId: String
-  balance: BigFloat
-}
-
-"""All input for the `updateAccountBalanceByAccountId` mutation."""
-input UpdateAccountBalanceByAccountIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `AccountBalance` being updated.
-  """
-  accountBalancePatch: AccountBalancePatch!
   accountId: String!
 }
 
@@ -1511,51 +1509,6 @@ input DeleteAccountInput {
 
 """All input for the `deleteAccountByAccountId` mutation."""
 input DeleteAccountByAccountIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  accountId: String!
-}
-
-"""The output of our delete `AccountBalance` mutation."""
-type DeleteAccountBalancePayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `AccountBalance` that was deleted by this mutation."""
-  accountBalance: AccountBalance
-  deletedAccountBalanceId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `Account` that is related to this `AccountBalance`."""
-  accountByAccountId: Account
-}
-
-"""All input for the `deleteAccountBalance` mutation."""
-input DeleteAccountBalanceInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `AccountBalance` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""All input for the `deleteAccountBalanceByAccountId` mutation."""
-input DeleteAccountBalanceByAccountIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.

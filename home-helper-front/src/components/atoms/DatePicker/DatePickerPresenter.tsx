@@ -1,4 +1,4 @@
-import { DatePicker } from "@mantine/dates";
+import { DateInput } from "@mantine/dates";
 import { FC } from "react";
 import { MantineSize } from "@mantine/styles";
 
@@ -20,7 +20,7 @@ export const DatePickerPresenter: FC<DatePickerPresenterProps> = ({
   withAsterisk = false,
   size = "lg",
 }) => (
-  <DatePicker
+  <DateInput
     value={value}
     onChange={onChange}
     label={label}
@@ -28,9 +28,9 @@ export const DatePickerPresenter: FC<DatePickerPresenterProps> = ({
     placeholder={placeholder}
     withAsterisk={withAsterisk}
     size={size}
-    inputFormat="YYYY-MM-DD"
-    labelFormat="YYYY-MM"
-    firstDayOfWeek="sunday"
+    valueFormat="YYYY-MM-DD"
+    monthLabelFormat={"YYYY-MM"}
+    firstDayOfWeek={0}
     error={value === null ? "Required" : ""}
   />
 );

@@ -20,13 +20,14 @@ export const ModalPresenter: FC<ModalPresenterProps> = ({
     <Modal
       opened={opened}
       onClose={onClose}
-      overlayColor={
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[9]
-          : theme.colors.gray[2]
-      }
-      overlayOpacity={0.55}
-      overlayBlur={3}
+      overlayProps={{
+        color:
+          theme.colorScheme === "dark"
+            ? theme.colors.dark[9]
+            : theme.colors.gray[2],
+        opacity: 0.55,
+        blur: 3,
+      }}
       size={size}
     >
       {children}

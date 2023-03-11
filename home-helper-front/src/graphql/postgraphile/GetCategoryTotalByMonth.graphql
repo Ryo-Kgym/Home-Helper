@@ -1,0 +1,9 @@
+query GetCategoryTotalByMonth($fromDate: Date, $toDate: Date) {
+    categoryTotalByMonthList(fromDate: $fromDate, toDate: $toDate) {
+        date
+        iocomeType
+        genreName
+        categoryName
+        total
+    }
+}

@@ -1,15 +1,8 @@
 query GetAccountBalanceList {
-    allAccountsList(condition: {}, orderBy: DISPLAY_ORDER_ASC) {
+    accountTotalList {
         accountId
         accountName
+        total
         displayOrder
-        validFlag
-        accountBalanceByAccountId {
-            balance
-        }
-        userByOwnerUserId {
-            userId
-            userName
-        }
     }
 }

@@ -10,15 +10,13 @@ export const AccountContainer = () => {
   if (error) return <FetchError error={error} />;
 
   const tableProps: TableProps[] =
-    data?.allAccountsList?.map((account) => {
+    data?.accountTotalList?.map((account) => {
       return {
         keyPrefix: "account",
         columns: [
-          { value: account.accountName, align: "left" },
+          { value: account?.accountName, align: "left" },
           {
-            value: Number(
-              account.accountBalanceByAccountId?.balance
-            ).toLocaleString(),
+            value: Number(account?.total).toLocaleString(),
             align: "right",
           },
         ],

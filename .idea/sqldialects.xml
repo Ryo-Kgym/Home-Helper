@@ -3,6 +3,8 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/home-helper-database/household_db/init/01_create_master_table.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/home-helper-database/household_db/init/02_create_transaction_table.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/home-helper-database/household_db/init/03.create_view.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/home-helper-database/household_db/init/04.create_function.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/home-helper-database/household_db/init/10.insert_master.sql" dialect="PostgreSQL" />
     <file url="PROJECT" dialect="MySQL" />
   </component>

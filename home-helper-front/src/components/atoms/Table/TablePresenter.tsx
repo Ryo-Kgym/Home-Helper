@@ -5,15 +5,26 @@ type TablePresenterProps = {
   headerTr: ReactElement;
   tbody: ReactElement;
   height: string;
+  scrolled: boolean;
+  setScrolled: (scrolled: boolean) => void;
+  classes: Record<"header" | "scrolled", string>;
+  cx: (a: string, b?: Record<string, boolean>) => string;
+  fontSize: number;
+  horizontalSpacing: number;
+  verticalSpacing: number;
 };
 export const TablePresenter: FC<TablePresenterProps> = ({
   headerTr,
   tbody,
   height,
+  scrolled,
+  setScrolled,
+  classes,
+  cx,
+  fontSize,
+  horizontalSpacing,
+  verticalSpacing,
 }) => {
-  const { classes, cx } = useStyles();
-  const [scrolled, setScrolled] = useState(false);
-
   return (
     <ScrollArea
       sx={{ height: height }}
@@ -22,9 +33,9 @@ export const TablePresenter: FC<TablePresenterProps> = ({
       <Table
         striped
         highlightOnHover
-        horizontalSpacing={50}
-        verticalSpacing="xl"
-        fontSize={28}
+        horizontalSpacing={horizontalSpacing}
+        verticalSpacing={verticalSpacing}
+        fontSize={fontSize}
         withColumnBorders
         className={"bg-slate-100 table-fixed"}
       >
@@ -36,30 +47,3 @@ export const TablePresenter: FC<TablePresenterProps> = ({
     </ScrollArea>
   );
 };
-
-const useStyles = createStyles((theme) => ({
-  header: {
-    position: "sticky",
-    top: 0,
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
-    transition: "box-shadow 150ms ease",
-
-    "&::after": {
-      content: '""',
-      position: "absolute",
-      left: 0,
-      right: 0,
-      bottom: 0,
-      borderBottom: `1px solid ${
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[3]
-          : theme.colors.gray[2]
-      }`,
-    },
-  },
-
-  scrolled: {
-    boxShadow: theme.shadows.sm,
-  },
-}));

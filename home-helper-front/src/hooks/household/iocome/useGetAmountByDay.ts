@@ -1,49 +1,27 @@
+import {
+  IocomeType,
+  useGetDailyTotalByDateIocomeTypeQuery,
+} from "@graphql/postgraphile/generated/graphql";
+
 export const useGetAmountByDay = (date: Date) => {
-  const income: number | undefined = mockIncomeMap.get(
-    date.toISOString().slice(0, 10)
-  );
-  const outcome: number | undefined = mockOutcomeMap.get(
-    date.toISOString().slice(0, 10)
-  );
+  const [incomeTotal] = useGetDailyTotalByDateIocomeTypeQuery({
+    variables: {
+      date: date.toISOString().slice(0, 10),
+      iocomeType: IocomeType.Income,
+    },
+  });
+  const [outcomeTotal] = useGetDailyTotalByDateIocomeTypeQuery({
+    variables: {
+      date: date.toISOString().slice(0, 10),
+      iocomeType: IocomeType.Outcome,
+    },
+  });
+
+  const income = incomeTotal.data?.dailyTotalViewByDateIocomeTypeList?.[0];
+  const outcome = outcomeTotal.data?.dailyTotalViewByDateIocomeTypeList?.[0];
 
   return {
-    income: income,
-    outcome: outcome,
+    income: income == null ? undefined : Number(income.total),
+    outcome: outcome == null ? undefined : Number(outcome.total),
   };
 };
-
-const mockIncomeMap = new Map<string, number>([
-  ["2023-03-01", 1000],
-  ["2023-03-03", 1200],
-  ["2023-03-06", 1300],
-  ["2023-03-09", 1600],
-  ["2023-03-10", 1700],
-  ["2023-03-11", 1800],
-  ["2023-03-12", 1900],
-  ["2023-03-13", 2000],
-  ["2023-03-14", 2100],
-  ["2023-03-20", 2100],
-  ["2023-03-21", 2100],
-  ["2023-03-23", 1100],
-  ["2023-03-24", 1300],
-  ["2023-03-25", 1100],
-  ["2023-03-26", 1300],
-]);
-
-const mockOutcomeMap = new Map<string, number>([
-  ["2023-03-01", 400],
-  ["2023-03-03", 500],
-  ["2023-03-04", 600],
-  ["2023-03-09", 700],
-  ["2023-03-10", 800],
-  ["2023-03-14", 1000],
-  ["2023-03-15", 900],
-  ["2023-03-18", 1100],
-  ["2023-03-19", 1200],
-  ["2023-03-20", 1300],
-  ["2023-03-21", 1400],
-  ["2023-03-22", 1500],
-  ["2023-03-25", 1600],
-  ["2023-03-27", 1700],
-  ["2023-03-28", 1800],
-]);
