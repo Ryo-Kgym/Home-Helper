@@ -20,16 +20,38 @@ export const CategoryContainer: FC = () => {
           },
           { value: category?.genreName, align: "left" },
           { value: category?.categoryName, align: "left" },
-          { value: Number(category?.total).toLocaleString(), align: "right" },
+          {
+            value: formatTotal(category?.iocomeType!, category?.total!),
+            align: "right",
+          },
         ],
       };
     }) ?? [];
+
+  const incomeTotal = data?.categoryTotalByMonthList
+    ?.filter((c) => c!.iocomeType === IocomeType.Income)
+    .reduce((a, b) => a + Number(b!.total!), 0);
+
+  const outcomeTotal = data?.categoryTotalByMonthList
+    ?.filter((c) => c!.iocomeType === IocomeType.Outcome)
+    .reduce((a, b) => a + Number(b!.total!), 0);
 
   return (
     <CategoryPresenter
       date={date}
       changeDate={setDate}
       tableProps={tableProps}
+      incomeTotal={incomeTotal}
+      outcomeTotal={outcomeTotal}
     />
   );
+};
+
+const formatTotal = (iocomeType: IocomeType, total: number) => {
+  const price = Number(total).toLocaleString();
+
+  if (iocomeType === IocomeType.Income) {
+    return <div className={"text-green-600"}>{price}</div>;
+  }
+  return <div className={"text-red-400"}>{"(" + price + ")"}</div>;
 };
