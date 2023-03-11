@@ -3,6 +3,7 @@ import { CategoryPresenter } from "@components/organisms/category/CategoryPresen
 import { getLabel, IocomeType } from "@domain/model/household/IocomeType";
 import { useGetCategoryTotalByMonth } from "@hooks/household/category/useGetCategoryTotalByMonth";
 import { FC, useState } from "react";
+import { Button } from "@components/atoms/Button";
 
 export const CategoryContainer: FC = () => {
   const [date, setDate] = useState<Date | null>(new Date());
@@ -23,6 +24,12 @@ export const CategoryContainer: FC = () => {
           {
             value: formatTotal(category?.iocomeType!, category?.total!),
             align: "right",
+          },
+          {
+            value: (
+              <Button label={"詳細"} colorType={"detail"} onClick={() => {}} />
+            ),
+            align: "center",
           },
         ],
       };

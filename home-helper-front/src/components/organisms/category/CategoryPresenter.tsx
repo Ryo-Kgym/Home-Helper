@@ -21,7 +21,7 @@ export const CategoryPresenter: FC<CategoryPresenterProps> = ({
     <div>
       <MonthPicker value={date} changeValue={changeDate} />
       <Table
-        header={["区分", "ジャンル", "カテゴリ", "金額"]}
+        header={["区分", "ジャンル", "カテゴリ", "金額", "詳細"]}
         tablePropsList={tableProps}
         size={"sm"}
       />
