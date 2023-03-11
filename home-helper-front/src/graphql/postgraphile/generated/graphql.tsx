@@ -1323,11 +1323,15 @@ export type Query = Node & {
   allGenresList?: Maybe<Array<Genre>>;
   /** Reads a set of `TotalByAccountView`. */
   allTotalByAccountViewsList?: Maybe<Array<TotalByAccountView>>;
+  /** Reads a set of `TotalByCategoryView`. */
+  allTotalByCategoryViewsList?: Maybe<Array<TotalByCategoryView>>;
   /** Reads a set of `User`. */
   allUsersList?: Maybe<Array<User>>;
   /** Reads a single `Category` using its globally unique `ID`. */
   category?: Maybe<Category>;
   categoryByCategoryId?: Maybe<Category>;
+  /** Reads and enables pagination through a set of `TotalByCategoryView`. */
+  categoryTotalByMonthList?: Maybe<Array<Maybe<TotalByCategoryView>>>;
   /** Reads a single `DailyDetail` using its globally unique `ID`. */
   dailyDetail?: Maybe<DailyDetail>;
   /** Reads and enables pagination through a set of `DailyDetail`. */
@@ -1438,6 +1442,15 @@ export type QueryAllTotalByAccountViewsListArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAllTotalByCategoryViewsListArgs = {
+  condition?: InputMaybe<TotalByCategoryViewCondition>;
+  filter?: InputMaybe<TotalByCategoryViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<TotalByCategoryViewsOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllUsersListArgs = {
   condition?: InputMaybe<UserCondition>;
   filter?: InputMaybe<UserFilter>;
@@ -1454,6 +1467,15 @@ export type QueryCategoryArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryCategoryByCategoryIdArgs = {
   categoryId: Scalars["String"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryCategoryTotalByMonthListArgs = {
+  filter?: InputMaybe<TotalByCategoryViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  fromDate?: InputMaybe<Scalars["Date"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  toDate?: InputMaybe<Scalars["Date"]>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1649,6 +1671,67 @@ export enum TotalByAccountViewsOrderBy {
   AccountNameDesc = "ACCOUNT_NAME_DESC",
   DisplayOrderAsc = "DISPLAY_ORDER_ASC",
   DisplayOrderDesc = "DISPLAY_ORDER_DESC",
+  IocomeTypeAsc = "IOCOME_TYPE_ASC",
+  IocomeTypeDesc = "IOCOME_TYPE_DESC",
+  Natural = "NATURAL",
+  TotalAsc = "TOTAL_ASC",
+  TotalDesc = "TOTAL_DESC",
+}
+
+export type TotalByCategoryView = {
+  __typename?: "TotalByCategoryView";
+  categoryName?: Maybe<Scalars["String"]>;
+  date?: Maybe<Scalars["Date"]>;
+  genreName?: Maybe<Scalars["String"]>;
+  iocomeType?: Maybe<IocomeType>;
+  total?: Maybe<Scalars["BigFloat"]>;
+};
+
+/**
+ * A condition to be used against `TotalByCategoryView` object types. All fields
+ * are tested for equality and combined with a logical ‘and.’
+ */
+export type TotalByCategoryViewCondition = {
+  /** Checks for equality with the object’s `categoryName` field. */
+  categoryName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `date` field. */
+  date?: InputMaybe<Scalars["Date"]>;
+  /** Checks for equality with the object’s `genreName` field. */
+  genreName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeType>;
+  /** Checks for equality with the object’s `total` field. */
+  total?: InputMaybe<Scalars["BigFloat"]>;
+};
+
+/** A filter to be used against `TotalByCategoryView` object types. All fields are combined with a logical ‘and.’ */
+export type TotalByCategoryViewFilter = {
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<TotalByCategoryViewFilter>>;
+  /** Filter by the object’s `categoryName` field. */
+  categoryName?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `date` field. */
+  date?: InputMaybe<DateFilter>;
+  /** Filter by the object’s `genreName` field. */
+  genreName?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeTypeFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<TotalByCategoryViewFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<TotalByCategoryViewFilter>>;
+  /** Filter by the object’s `total` field. */
+  total?: InputMaybe<BigFloatFilter>;
+};
+
+/** Methods to use when ordering `TotalByCategoryView`. */
+export enum TotalByCategoryViewsOrderBy {
+  CategoryNameAsc = "CATEGORY_NAME_ASC",
+  CategoryNameDesc = "CATEGORY_NAME_DESC",
+  DateAsc = "DATE_ASC",
+  DateDesc = "DATE_DESC",
+  GenreNameAsc = "GENRE_NAME_ASC",
+  GenreNameDesc = "GENRE_NAME_DESC",
   IocomeTypeAsc = "IOCOME_TYPE_ASC",
   IocomeTypeDesc = "IOCOME_TYPE_DESC",
   Natural = "NATURAL",
@@ -2044,6 +2127,23 @@ export type GetAllUsersQuery = {
   }> | null;
 };
 
+export type GetCategoryTotalByMonthQueryVariables = Exact<{
+  fromDate?: InputMaybe<Scalars["Date"]>;
+  toDate?: InputMaybe<Scalars["Date"]>;
+}>;
+
+export type GetCategoryTotalByMonthQuery = {
+  __typename?: "Query";
+  categoryTotalByMonthList?: Array<{
+    __typename?: "TotalByCategoryView";
+    date?: any | null;
+    iocomeType?: IocomeType | null;
+    genreName?: string | null;
+    categoryName?: string | null;
+    total?: any | null;
+  } | null> | null;
+};
+
 export type GetDailyDetailByDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -2258,6 +2358,29 @@ export function useGetAllUsersQuery(
     query: GetAllUsersDocument,
     ...options,
   });
+}
+export const GetCategoryTotalByMonthDocument = gql`
+  query GetCategoryTotalByMonth($fromDate: Date, $toDate: Date) {
+    categoryTotalByMonthList(fromDate: $fromDate, toDate: $toDate) {
+      date
+      iocomeType
+      genreName
+      categoryName
+      total
+    }
+  }
+`;
+
+export function useGetCategoryTotalByMonthQuery(
+  options?: Omit<
+    Urql.UseQueryArgs<GetCategoryTotalByMonthQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetCategoryTotalByMonthQuery,
+    GetCategoryTotalByMonthQueryVariables
+  >({ query: GetCategoryTotalByMonthDocument, ...options });
 }
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
