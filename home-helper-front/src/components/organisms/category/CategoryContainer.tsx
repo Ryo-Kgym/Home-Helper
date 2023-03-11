@@ -5,9 +5,9 @@ import { useGetCategoryTotalByMonth } from "@hooks/household/category/useGetCate
 import { FC, useState } from "react";
 
 export const CategoryContainer: FC = () => {
-  const [date] = useState(new Date());
+  const [date, setDate] = useState<Date | null>(new Date());
 
-  const [{ data }] = useGetCategoryTotalByMonth(date);
+  const [{ data }] = useGetCategoryTotalByMonth(date!);
 
   const tableProps: TableProps[] =
     data?.categoryTotalByMonthList?.map((category) => {
@@ -25,5 +25,11 @@ export const CategoryContainer: FC = () => {
       };
     }) ?? [];
 
-  return <CategoryPresenter tableProps={tableProps} />;
+  return (
+    <CategoryPresenter
+      date={date}
+      changeDate={setDate}
+      tableProps={tableProps}
+    />
+  );
 };
