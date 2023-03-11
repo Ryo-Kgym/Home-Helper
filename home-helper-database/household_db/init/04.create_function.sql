@@ -32,7 +32,7 @@ select
     t.genre_name,
     t.category_id,
     t.category_name,
-    t.total
+    sum(t.total) as total
 from
     total_by_category_view t
 where t.date between from_date and to_date
@@ -42,10 +42,9 @@ group by
     t.genre_id,
     t.genre_name,
     t.category_id,
-    t.category_name,
-    t.total
+    t.category_name
 order by
-    t.total desc;
+    sum(t.total) desc;
 $$ language sql stable;
 
 drop function if exists account_total cascade;
