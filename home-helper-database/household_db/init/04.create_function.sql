@@ -28,7 +28,9 @@ $$
 select
     (to_char(t.date, 'YYYY-MM') || '-01') :: date as date,
     t.iocome_type,
+    t.genre_id,
     t.genre_name,
+    t.category_id,
     t.category_name,
     t.total
 from
@@ -37,7 +39,9 @@ where t.date between from_date and to_date
 group by
     to_char(t.date, 'YYYY-MM'),
     t.iocome_type,
+    t.genre_id,
     t.genre_name,
+    t.category_id,
     t.category_name,
     t.total
 order by
