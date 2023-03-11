@@ -1146,6 +1146,8 @@ export type Query = Node & {
   /** Reads a single `Account` using its globally unique `ID`. */
   account?: Maybe<Account>;
   accountByAccountId?: Maybe<Account>;
+  /** Reads and enables pagination through a set of `TotalByAccountView`. */
+  accountTotalList?: Maybe<Array<Maybe<TotalByAccountView>>>;
   /** Reads a set of `Account`. */
   allAccountsList?: Maybe<Array<Account>>;
   /** Reads a set of `Category`. */
@@ -1186,8 +1188,6 @@ export type Query = Node & {
    * which can only query top level fields if they are in a particular form.
    */
   query: Query;
-  /** Reads and enables pagination through a set of `TotalByAccountView`. */
-  totalByAccountIdList?: Maybe<Array<Maybe<TotalByAccountView>>>;
   /** Reads a single `User` using its globally unique `ID`. */
   user?: Maybe<User>;
   userByUserId?: Maybe<User>;
@@ -1201,6 +1201,13 @@ export type QueryAccountArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryAccountByAccountIdArgs = {
   accountId: Scalars["String"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAccountTotalListArgs = {
+  filter?: InputMaybe<TotalByAccountViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1335,14 +1342,6 @@ export type QueryGenreByGenreIdArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryNodeArgs = {
   nodeId: Scalars["ID"];
-};
-
-/** The root query type which gives access points into the data universe. */
-export type QueryTotalByAccountIdListArgs = {
-  accountId?: InputMaybe<Scalars["String"]>;
-  filter?: InputMaybe<TotalByAccountViewFilter>;
-  first?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1873,14 +1872,13 @@ export type GetAccountBalanceListQueryVariables = Exact<{
 
 export type GetAccountBalanceListQuery = {
   __typename?: "Query";
-  allTotalByAccountViewsList?: Array<{
+  accountTotalList?: Array<{
     __typename?: "TotalByAccountView";
     accountId?: string | null;
     accountName?: string | null;
-    displayOrder?: number | null;
-    iocomeType?: IocomeType | null;
     total?: any | null;
-  }> | null;
+    displayOrder?: number | null;
+  } | null> | null;
 };
 
 export type GetAllUsersQueryVariables = Exact<{ [key: string]: never }>;
@@ -2046,12 +2044,11 @@ export function useCreateDailyDetailMutation() {
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList {
-    allTotalByAccountViewsList(orderBy: DISPLAY_ORDER_DESC) {
+    accountTotalList {
       accountId
       accountName
-      displayOrder
-      iocomeType
       total
+      displayOrder
     }
   }
 `;

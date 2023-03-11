@@ -1,9 +1,8 @@
 query GetAccountBalanceList {
-    allTotalByAccountViewsList(orderBy: DISPLAY_ORDER_DESC) {
+    accountTotalList {
         accountId
         accountName
-        displayOrder
-        iocomeType
         total
+        displayOrder
     }
 }
