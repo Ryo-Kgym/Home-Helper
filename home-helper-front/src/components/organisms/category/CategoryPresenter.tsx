@@ -10,8 +10,9 @@ export const CategoryPresenter: FC<CategoryPresenterProps> = ({
   return (
     <>
       <Table
-        header={["収入", "ジャンル", "カテゴリ", "金額"]}
+        header={["区分", "ジャンル", "カテゴリ", "金額"]}
         tablePropsList={tableProps}
+        size={"sm"}
       />
     </>
   );
