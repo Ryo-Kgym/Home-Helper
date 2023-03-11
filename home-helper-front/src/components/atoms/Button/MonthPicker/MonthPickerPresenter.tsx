@@ -13,6 +13,9 @@ export const MonthPickerPresenter: FC<MonthPickerPresenterProps> = ({
     <MonthPickerInput
       label="YEAR MONTH"
       placeholder="YYYY-MM"
+      valueFormat={"YYYY-MM"}
+      yearLabelFormat={"YYYY"}
+      monthsListFormat={"MM"}
       value={value}
       onChange={changeValue}
       mx="auto"
