@@ -30,3 +30,26 @@ from
     total_by_account_view t
 where t.account_id = total_by_account_id.account_id;
 $$ language sql stable;
+
+drop function if exists category_total_by_month cascade;
+create function category_total_by_month(from_date date, to_date date)
+    returns setof total_by_category_view as
+$$
+select
+    (to_char(t.date, 'YYYY-MM') || '-01') :: date as date,
+    t.iocome_type,
+    t.genre_name,
+    t.category_name,
+    t.total
+from
+    total_by_category_view t
+where t.date between from_date and to_date
+group by
+    to_char(t.date, 'YYYY-MM'),
+    t.iocome_type,
+    t.genre_name,
+    t.category_name,
+    t.total
+order by
+    t.total desc;
+$$ language sql stable;

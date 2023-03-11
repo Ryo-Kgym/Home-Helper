@@ -136,6 +136,23 @@ type Query implements Node {
     condition: TotalByAccountViewCondition
   ): [TotalByAccountView!]
 
+  """Reads a set of `TotalByCategoryView`."""
+  allTotalByCategoryViewsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `TotalByCategoryView`."""
+    orderBy: [TotalByCategoryViewsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TotalByCategoryViewCondition
+  ): [TotalByCategoryView!]
+
   """Reads a set of `User`."""
   allUsersList(
     """Only read the first `n` values of the set."""
@@ -158,6 +175,18 @@ type Query implements Node {
   dailyDetailBySerialNo(serialNo: Int!): DailyDetail
   genreByGenreId(genreId: String!): Genre
   userByUserId(userId: String!): User
+
+  """Reads and enables pagination through a set of `TotalByCategoryView`."""
+  categoryTotalByMonthList(
+    fromDate: Date
+    toDate: Date
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+  ): [TotalByCategoryView]
 
   """Reads and enables pagination through a set of `DailyDetail`."""
   dailyDetailByDateList(
@@ -696,6 +725,50 @@ input TotalByAccountViewCondition {
 
   """Checks for equality with the object’s `iocomeType` field."""
   iocomeType: IocomeType
+
+  """Checks for equality with the object’s `total` field."""
+  total: BigFloat
+}
+
+type TotalByCategoryView {
+  date: Date
+  iocomeType: IocomeType
+  genreName: String
+  categoryName: String
+  total: BigFloat
+}
+
+"""Methods to use when ordering `TotalByCategoryView`."""
+enum TotalByCategoryViewsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
+  GENRE_NAME_ASC
+  GENRE_NAME_DESC
+  CATEGORY_NAME_ASC
+  CATEGORY_NAME_DESC
+  TOTAL_ASC
+  TOTAL_DESC
+}
+
+"""
+A condition to be used against `TotalByCategoryView` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input TotalByCategoryViewCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: Date
+
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
+  """Checks for equality with the object’s `genreName` field."""
+  genreName: String
+
+  """Checks for equality with the object’s `categoryName` field."""
+  categoryName: String
 
   """Checks for equality with the object’s `total` field."""
   total: BigFloat
