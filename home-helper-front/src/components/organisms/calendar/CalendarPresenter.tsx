@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { Day } from "@components/organisms/calendar/day";
-import { MonthPicker } from "@components/atoms/Button/MonthPicker";
+import { MonthPicker } from "@components/atoms/MonthPicker";
 
 type CalendarPresenterProps = {
   baseDate: Date | null;

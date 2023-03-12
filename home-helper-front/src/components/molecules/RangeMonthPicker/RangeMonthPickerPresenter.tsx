@@ -1,4 +1,4 @@
-import { MonthPicker } from "@components/atoms/Button/MonthPicker";
+import { MonthPicker } from "@components/atoms/MonthPicker";
 import { FC } from "react";
 
 type RangeMonthPickerPresenterProps = {

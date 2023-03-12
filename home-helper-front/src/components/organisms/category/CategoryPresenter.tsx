@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Table, TableProps } from "@components/atoms/Table";
-import { MonthPicker } from "@components/atoms/Button/MonthPicker";
+import { MonthPicker } from "@components/atoms/MonthPicker";
 import { Total } from "@components/molecules/Total";
 
 type CategoryPresenterProps = {
