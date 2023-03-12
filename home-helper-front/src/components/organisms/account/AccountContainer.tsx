@@ -28,6 +28,10 @@ export const AccountContainer = () => {
       };
     }) ?? [];
 
+  const total = data?.accountTotalList?.reduce((acc, cur) => {
+    return acc + Number(cur?.total);
+  }, 0);
+
   return (
     <AccountPresenter
       fromDate={fromDate}
@@ -35,6 +39,7 @@ export const AccountContainer = () => {
       toDate={toDate}
       changeToDate={setToDate}
       tableProps={tableProps}
+      total={total}
     />
   );
 };
