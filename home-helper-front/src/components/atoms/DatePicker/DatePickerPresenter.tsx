@@ -32,6 +32,7 @@ export const DatePickerPresenter: FC<DatePickerPresenterProps> = ({
     size={size}
     valueFormat="YYYY-MM-DD"
     monthLabelFormat={"YYYY-MM"}
+    monthsListFormat={"MM"}
     firstDayOfWeek={0}
     error={value === null ? "Required" : ""}
     disabled={disabled}
