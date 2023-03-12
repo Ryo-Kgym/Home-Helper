@@ -24,10 +24,6 @@ export const GenreContainer: FC = () => {
       return {
         keyPrefix: "genre",
         columns: [
-          {
-            value: getLabel(genre?.iocomeType as IocomeType),
-            align: "center",
-          },
           { value: genre?.genreName, align: "left" },
           {
             value: (

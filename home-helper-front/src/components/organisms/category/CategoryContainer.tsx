@@ -21,10 +21,6 @@ export const CategoryContainer: FC = () => {
       return {
         keyPrefix: "category",
         columns: [
-          {
-            value: getLabel(category?.iocomeType as IocomeType),
-            align: "center",
-          },
           { value: category?.genreName, align: "left" },
           { value: category?.categoryName, align: "left" },
           {
