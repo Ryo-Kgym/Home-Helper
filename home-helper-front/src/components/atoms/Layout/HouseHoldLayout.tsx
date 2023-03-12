@@ -24,6 +24,7 @@ const cardListProps = [
   { href: "/household", label: "戻る", back: true },
   { href: "/household/daily", label: "DAILY" },
   { href: "/household/account", label: "ACCOUNT" },
+  { href: "/household/genre", label: "GENRE" },
   { href: "/household/category", label: "CATEGORY" },
   { href: "/household/fileImport", label: "FILE" },
 ];
