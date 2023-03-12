@@ -56,7 +56,11 @@ export const CategoryContainer: FC = () => {
 
   if (openDailyDetail) {
     return (
-      <DailyTableByCategory date={date!} categoryId={selectedCategoryId} />
+      <DailyTableByCategory
+        fromMonth={fromMonth!}
+        toMonth={toMonth!}
+        categoryId={selectedCategoryId}
+      />
     );
   }
 

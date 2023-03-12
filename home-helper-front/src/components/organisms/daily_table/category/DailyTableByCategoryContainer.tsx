@@ -5,14 +5,15 @@ import { DailyTableByCategoryPresenter } from "./DailyTableByCategoryPresenter";
 import { dailyDetailConverter } from "@components/atoms/Table/dailyDetailConverter";
 
 type DailyTableByCategoryContainerProps = {
-  date: Date;
+  fromMonth: Date;
+  toMonth: Date;
   categoryId: string;
 };
 export const DailyTableByCategoryContainer: FC<
   DailyTableByCategoryContainerProps
-> = ({ date, categoryId }) => {
-  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-  const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+> = ({ fromMonth, toMonth, categoryId }) => {
+  const firstDay = new Date(fromMonth.getFullYear(), fromMonth.getMonth(), 1);
+  const lastDay = new Date(toMonth.getFullYear(), toMonth.getMonth() + 1, 0);
 
   const [{ data }] = useGetDailyDetailByDateCategoryIdQuery({
     variables: {
