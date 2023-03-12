@@ -20,8 +20,7 @@ export const MonthPickerPresenter: FC<MonthPickerPresenterProps> = ({
       monthsListFormat={"MM"}
       value={value}
       onChange={changeValue}
-      mx="auto"
-      maw={400}
+      size={"lg"}
     />
   );
 };
