@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { useGetDailyDetailByDateCategoryIdQuery } from "@graphql/postgraphile/generated/graphql";
 import { TableProps } from "@components/atoms/Table";
 import { DailyTableByCategoryPresenter } from "./DailyTableByCategoryPresenter";
 import { dailyDetailConverter } from "@components/atoms/Table/dailyDetailConverter";
+import { useGetDailyDetailByDateCategoryId } from "@hooks/household/daily_detail/useGetDailyDetailByDateCategoryId";
 
 type DailyTableByCategoryContainerProps = {
   fromMonth: Date;
@@ -15,13 +15,11 @@ export const DailyTableByCategoryContainer: FC<
   const firstDay = new Date(fromMonth.getFullYear(), fromMonth.getMonth(), 1);
   const lastDay = new Date(toMonth.getFullYear(), toMonth.getMonth() + 1, 0);
 
-  const [{ data }] = useGetDailyDetailByDateCategoryIdQuery({
-    variables: {
-      fromDate: firstDay,
-      toDate: lastDay,
-      categoryId: categoryId,
-    },
-  });
+  const { data, incomeTotal, outcomeTotal } = useGetDailyDetailByDateCategoryId(
+    categoryId,
+    firstDay,
+    lastDay
+  );
 
   const tableProps: TableProps[] = dailyDetailConverter(data);
 
@@ -30,6 +28,8 @@ export const DailyTableByCategoryContainer: FC<
       firstDay={firstDay}
       lastDay={lastDay}
       tableProps={tableProps}
+      incomeTotal={incomeTotal}
+      outcomeTotal={outcomeTotal}
     />
   );
 };

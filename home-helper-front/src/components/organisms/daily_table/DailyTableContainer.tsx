@@ -8,11 +8,15 @@ type DailyTableContainerProps = {
   dailyDetail?: TableProps[];
   defaultFromDate?: Date;
   defaultToDate?: Date;
+  defaultIncomeTotal?: number;
+  defaultOutcomeTotal?: number;
 };
 export const DailyTableContainer: FC<DailyTableContainerProps> = ({
   dailyDetail,
   defaultFromDate,
   defaultToDate,
+  defaultIncomeTotal,
+  defaultOutcomeTotal,
 }) => {
   const today = new Date();
   const thisFirstDay = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -37,8 +41,8 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
       toDate={toDate}
       changeToDate={setToDate}
       tablePropsList={tableProps}
-      incomeTotal={incomeTotal}
-      outcomeTotal={outcomeTotal}
+      incomeTotal={defaultIncomeTotal ?? incomeTotal}
+      outcomeTotal={defaultOutcomeTotal ?? outcomeTotal}
     />
   );
 };
