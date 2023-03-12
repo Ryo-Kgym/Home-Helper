@@ -136,6 +136,23 @@ type Query implements Node {
     condition: TotalByCategoryViewCondition
   ): [TotalByCategoryView!]
 
+  """Reads a set of `TotalByGenreView`."""
+  allTotalByGenreViewsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `TotalByGenreView`."""
+    orderBy: [TotalByGenreViewsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TotalByGenreViewCondition
+  ): [TotalByGenreView!]
+
   """Reads a set of `User`."""
   allUsersList(
     """Only read the first `n` values of the set."""
@@ -202,6 +219,18 @@ type Query implements Node {
     """Skip the first `n` values."""
     offset: Int
   ): [DailyTotalView]
+
+  """Reads and enables pagination through a set of `TotalByGenreView`."""
+  genreTotalByMonthList(
+    fromDate: Date
+    toDate: Date
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+  ): [TotalByGenreView]
 
   """Reads a single `Account` using its globally unique `ID`."""
   account(
@@ -715,6 +744,50 @@ input TotalByCategoryViewCondition {
 
   """Checks for equality with the object’s `categoryName` field."""
   categoryName: String
+
+  """Checks for equality with the object’s `total` field."""
+  total: BigFloat
+}
+
+type TotalByGenreView {
+  date: Date
+  iocomeType: IocomeType
+  genreId: String
+  genreName: String
+  total: BigFloat
+}
+
+"""Methods to use when ordering `TotalByGenreView`."""
+enum TotalByGenreViewsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
+  GENRE_ID_ASC
+  GENRE_ID_DESC
+  GENRE_NAME_ASC
+  GENRE_NAME_DESC
+  TOTAL_ASC
+  TOTAL_DESC
+}
+
+"""
+A condition to be used against `TotalByGenreView` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input TotalByGenreViewCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: Date
+
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
+  """Checks for equality with the object’s `genreId` field."""
+  genreId: String
+
+  """Checks for equality with the object’s `genreName` field."""
+  genreName: String
 
   """Checks for equality with the object’s `total` field."""
   total: BigFloat

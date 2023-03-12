@@ -1,0 +1,37 @@
+query GetDailyDetailByDateGenreId(
+    $genreId: String!
+    $fromDate: Date!
+    $toDate: Date!
+) {
+    allCategoriesList(condition: { genreId: $genreId }) {
+        dailyDetailsByCategoryIdList(
+            filter: {
+                date: { greaterThanOrEqualTo: $fromDate }
+                and: { date: { lessThanOrEqualTo: $toDate } }
+            }
+        ) {
+            serialNo
+            date
+            amount
+            memo
+            categoryByCategoryId {
+                categoryId
+                categoryName
+                genreByGenreId {
+                    genreId
+                    genreName
+                    genreType
+                    iocomeType
+                }
+            }
+            accountByAccountId {
+                accountId
+                accountName
+            }
+            userByUserId {
+                userId
+                userName
+            }
+        }
+    }
+}

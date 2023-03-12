@@ -72,3 +72,28 @@ order by
     g.display_order,
     c.display_order
 ;
+
+drop view if exists total_by_genre_view cascade;
+create view total_by_genre_view as
+select
+    d.date,
+    g.iocome_type,
+    g.genre_id,
+    g.genre_name,
+    sum(d.amount) as total
+from
+    daily_detail d
+    inner join category c
+        on d.category_id = c.category_id
+    inner join genre g
+        on c.genre_id = g.genre_id
+group by
+    d.date,
+    g.iocome_type,
+    g.genre_id,
+    g.genre_name,
+    g.display_order
+order by
+    d.date,
+    g.display_order
+;

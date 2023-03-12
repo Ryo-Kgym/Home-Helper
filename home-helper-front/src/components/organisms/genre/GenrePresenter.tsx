@@ -12,7 +12,7 @@ type CategoryPresenterProps = {
   incomeTotal: number | undefined;
   outcomeTotal: number | undefined;
 };
-export const CategoryPresenter: FC<CategoryPresenterProps> = ({
+export const GenrePresenter: FC<CategoryPresenterProps> = ({
   fromMonth,
   changeFromMonth,
   toMonth,
@@ -30,7 +30,7 @@ export const CategoryPresenter: FC<CategoryPresenterProps> = ({
         changeToMonth={changeToMonth}
       />
       <Table
-        header={["ジャンル", "カテゴリ", "金額", "詳細"]}
+        header={["ジャンル", "金額", "詳細"]}
         tablePropsList={tableProps}
         size={"sm"}
       />

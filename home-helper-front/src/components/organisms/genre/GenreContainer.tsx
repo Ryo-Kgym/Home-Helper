@@ -1,33 +1,35 @@
 import { TableProps } from "@components/atoms/Table";
-import { CategoryPresenter } from "@components/organisms/category/CategoryPresenter";
 import { getLabel, IocomeType } from "@domain/model/household/IocomeType";
-import { useGetCategoryTotalByMonth } from "@hooks/household/category/useGetCategoryTotalByMonth";
 import { FC, useState } from "react";
 import { Button } from "@components/atoms/Button";
-import { DailyTableByCategory } from "@components/organisms/daily_table/category";
 import { FormatPrice } from "@components/molecules/FormatPrice";
+import { GenrePresenter } from "@components/organisms/genre/GenrePresenter";
+import { useGetGenreTotalByMonth } from "@hooks/household/genre/useGetGenreTotalByMonth";
+import { DailyTableByGenre } from "@components/organisms/daily_table/genre";
 
-export const CategoryContainer: FC = () => {
+export const GenreContainer: FC = () => {
   const [fromMonth, setFromMonth] = useState<Date | null>(new Date());
   const [toMonth, setToMonth] = useState<Date | null>(new Date());
 
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
+  const [selectedGenreId, setSelectedGenreId] = useState<string>("");
   const [openDailyDetail, setOpenDailyDetail] = useState(false);
 
-  const [{ data }] = useGetCategoryTotalByMonth(fromMonth, toMonth);
+  const { data, incomeTotal, outcomeTotal } = useGetGenreTotalByMonth(
+    fromMonth,
+    toMonth
+  );
 
   const tableProps: TableProps[] =
-    data?.categoryTotalByMonthList?.map((category) => {
+    data?.genreTotalByMonthList?.map((genre) => {
       return {
-        keyPrefix: "category",
+        keyPrefix: "genre",
         columns: [
-          { value: category?.genreName, align: "left" },
-          { value: category?.categoryName, align: "left" },
+          { value: genre?.genreName, align: "left" },
           {
             value: (
               <FormatPrice
-                iocomeType={category?.iocomeType!}
-                price={category?.total!}
+                iocomeType={genre?.iocomeType!}
+                price={genre?.total!}
               />
             ),
             align: "right",
@@ -38,7 +40,7 @@ export const CategoryContainer: FC = () => {
                 label={"詳細"}
                 colorType={"detail"}
                 onClick={() => {
-                  setSelectedCategoryId(category?.categoryId!);
+                  setSelectedGenreId(genre?.genreId!);
                   setOpenDailyDetail(true);
                 }}
               />
@@ -51,24 +53,16 @@ export const CategoryContainer: FC = () => {
 
   if (openDailyDetail) {
     return (
-      <DailyTableByCategory
+      <DailyTableByGenre
         fromMonth={fromMonth!}
         toMonth={toMonth!}
-        categoryId={selectedCategoryId}
+        genreId={selectedGenreId}
       />
     );
   }
 
-  const incomeTotal = data?.categoryTotalByMonthList
-    ?.filter((c) => c!.iocomeType === IocomeType.Income)
-    .reduce((a, b) => a + Number(b!.total!), 0);
-
-  const outcomeTotal = data?.categoryTotalByMonthList
-    ?.filter((c) => c!.iocomeType === IocomeType.Outcome)
-    .reduce((a, b) => a + Number(b!.total!), 0);
-
   return (
-    <CategoryPresenter
+    <GenrePresenter
       fromMonth={fromMonth}
       changeFromMonth={setFromMonth}
       toMonth={toMonth}

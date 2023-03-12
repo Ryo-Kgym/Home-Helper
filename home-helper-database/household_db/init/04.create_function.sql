@@ -64,3 +64,26 @@ group by
 order by
     display_order ;
 $$ language sql stable;
+
+drop function if exists genre_total_by_month cascade;
+create function genre_total_by_month(from_date date, to_date date)
+    returns setof total_by_genre_view as
+$$
+select
+    current_date as date,
+    t.iocome_type,
+    t.genre_id,
+    t.genre_name,
+    sum(t.total) as total
+from
+    total_by_genre_view t
+where t.date between from_date and to_date
+group by
+    t.iocome_type,
+    t.genre_id,
+    t.genre_name
+order by
+    t.iocome_type,
+    sum(t.total) desc;
+
+$$ language sql stable;
