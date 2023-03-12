@@ -2,10 +2,10 @@ import { TableProps } from "@components/atoms/Table";
 import { getLabel, IocomeType } from "@domain/model/household/IocomeType";
 import { FC, useState } from "react";
 import { Button } from "@components/atoms/Button";
-import { DailyTableByCategory } from "@components/organisms/daily_table/category";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { GenrePresenter } from "@components/organisms/genre/GenrePresenter";
 import { useGetGenreTotalByMonth } from "@hooks/household/genre/useGetGenreTotalByMonth";
+import { DailyTableByGenre } from "@components/organisms/daily_table/genre";
 
 export const GenreContainer: FC = () => {
   const [fromMonth, setFromMonth] = useState<Date | null>(new Date());
@@ -57,10 +57,10 @@ export const GenreContainer: FC = () => {
 
   if (openDailyDetail) {
     return (
-      <DailyTableByCategory
+      <DailyTableByGenre
         fromMonth={fromMonth!}
         toMonth={toMonth!}
-        categoryId={selectedGenreId}
+        genreId={selectedGenreId}
       />
     );
   }
