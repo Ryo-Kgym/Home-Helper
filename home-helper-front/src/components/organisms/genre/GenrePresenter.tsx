@@ -30,7 +30,7 @@ export const GenrePresenter: FC<CategoryPresenterProps> = ({
         changeToMonth={changeToMonth}
       />
       <Table
-        header={["区分", "ジャンル", "カテゴリ", "金額", "詳細"]}
+        header={["区分", "ジャンル", "金額", "詳細"]}
         tablePropsList={tableProps}
         size={"sm"}
       />
