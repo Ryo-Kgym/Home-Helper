@@ -1,25 +1,34 @@
 import { FC } from "react";
 import { Table, TableProps } from "@components/atoms/Table";
-import { MonthPicker } from "@components/atoms/MonthPicker";
 import { Total } from "@components/molecules/Total";
+import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker";
 
 type CategoryPresenterProps = {
-  date: Date | null;
-  changeDate: (date: Date | null) => void;
+  fromMonth: Date | null;
+  changeFromMonth: (date: Date | null) => void;
+  toMonth: Date | null;
+  changeToMonth: (date: Date | null) => void;
   tableProps: TableProps[];
-  incomeTotal?: number;
-  outcomeTotal?: number;
+  incomeTotal: number | undefined;
+  outcomeTotal: number | undefined;
 };
 export const CategoryPresenter: FC<CategoryPresenterProps> = ({
-  date,
-  changeDate,
+  fromMonth,
+  changeFromMonth,
+  toMonth,
+  changeToMonth,
   tableProps,
-  incomeTotal = 0,
-  outcomeTotal = 0,
+  incomeTotal,
+  outcomeTotal,
 }) => {
   return (
     <div>
-      <MonthPicker value={date} changeValue={changeDate} />
+      <RangeMonthPicker
+        fromMonth={fromMonth}
+        changeFromMonth={changeFromMonth}
+        toMonth={toMonth}
+        changeToMonth={changeToMonth}
+      />
       <Table
         header={["区分", "ジャンル", "カテゴリ", "金額", "詳細"]}
         tablePropsList={tableProps}

@@ -8,11 +8,14 @@ import { DailyTableByCategory } from "@components/organisms/daily_table/category
 import { FormatPrice } from "@components/molecules/FormatPrice";
 
 export const CategoryContainer: FC = () => {
-  const [date, setDate] = useState<Date | null>(new Date());
+  const [date] = useState<Date | null>(new Date());
+  const [fromMonth, setFromMonth] = useState<Date | null>(new Date());
+  const [toMonth, setToMonth] = useState<Date | null>(new Date());
+
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
   const [openDailyDetail, setOpenDailyDetail] = useState(false);
 
-  const [{ data }] = useGetCategoryTotalByMonth(date!);
+  const [{ data }] = useGetCategoryTotalByMonth(fromMonth!, toMonth!);
 
   const tableProps: TableProps[] =
     data?.categoryTotalByMonthList?.map((category) => {
@@ -67,8 +70,10 @@ export const CategoryContainer: FC = () => {
 
   return (
     <CategoryPresenter
-      date={date}
-      changeDate={setDate}
+      fromMonth={fromMonth}
+      changeFromMonth={setFromMonth}
+      toMonth={toMonth}
+      changeToMonth={setToMonth}
       tableProps={tableProps}
       incomeTotal={incomeTotal}
       outcomeTotal={outcomeTotal}
