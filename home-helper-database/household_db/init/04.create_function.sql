@@ -26,7 +26,7 @@ create function category_total_by_month(from_date date, to_date date)
     returns setof total_by_category_view as
 $$
 select
-    (to_char(t.date, 'YYYY-MM') || '-01') :: date as date,
+    current_date as date,
     t.iocome_type,
     t.genre_id,
     t.genre_name,
@@ -37,7 +37,6 @@ from
     total_by_category_view t
 where t.date between from_date and to_date
 group by
-    to_char(t.date, 'YYYY-MM'),
     t.iocome_type,
     t.genre_id,
     t.genre_name,
