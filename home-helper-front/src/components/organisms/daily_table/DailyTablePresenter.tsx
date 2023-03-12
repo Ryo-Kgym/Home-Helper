@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Table, TableProps } from "@components/atoms/Table";
 import { RangeDatePicker } from "@components/molecules/RangeDatePicker";
-import { Total } from "@components/molecules/Total";
+import { IocomeTotal } from "@components/molecules/Total";
 
 type DailyTablePresenterProps = {
   fromDate: Date | null;
@@ -36,6 +36,6 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
       tablePropsList={tablePropsList}
       size={"xs"}
     />
-    <Total income={incomeTotal} outcome={outcomeTotal} />
+    <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
   </div>
 );

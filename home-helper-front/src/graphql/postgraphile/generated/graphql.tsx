@@ -1211,7 +1211,9 @@ export type QueryAccountByAccountIdArgs = {
 export type QueryAccountTotalListArgs = {
   filter?: InputMaybe<TotalByAccountViewFilter>;
   first?: InputMaybe<Scalars["Int"]>;
+  fromDate?: InputMaybe<Scalars["Date"]>;
   offset?: InputMaybe<Scalars["Int"]>;
+  toDate?: InputMaybe<Scalars["Date"]>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1458,6 +1460,7 @@ export type TotalByAccountView = {
   __typename?: "TotalByAccountView";
   accountId?: Maybe<Scalars["String"]>;
   accountName?: Maybe<Scalars["String"]>;
+  date?: Maybe<Scalars["Date"]>;
   displayOrder?: Maybe<Scalars["Int"]>;
   iocomeType?: Maybe<IocomeType>;
   total?: Maybe<Scalars["BigFloat"]>;
@@ -1472,6 +1475,8 @@ export type TotalByAccountViewCondition = {
   accountId?: InputMaybe<Scalars["String"]>;
   /** Checks for equality with the object’s `accountName` field. */
   accountName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `date` field. */
+  date?: InputMaybe<Scalars["Date"]>;
   /** Checks for equality with the object’s `displayOrder` field. */
   displayOrder?: InputMaybe<Scalars["Int"]>;
   /** Checks for equality with the object’s `iocomeType` field. */
@@ -1488,6 +1493,8 @@ export type TotalByAccountViewFilter = {
   accountName?: InputMaybe<StringFilter>;
   /** Checks for all expressions in this list. */
   and?: InputMaybe<Array<TotalByAccountViewFilter>>;
+  /** Filter by the object’s `date` field. */
+  date?: InputMaybe<DateFilter>;
   /** Filter by the object’s `displayOrder` field. */
   displayOrder?: InputMaybe<IntFilter>;
   /** Filter by the object’s `iocomeType` field. */
@@ -1506,6 +1513,8 @@ export enum TotalByAccountViewsOrderBy {
   AccountIdDesc = "ACCOUNT_ID_DESC",
   AccountNameAsc = "ACCOUNT_NAME_ASC",
   AccountNameDesc = "ACCOUNT_NAME_DESC",
+  DateAsc = "DATE_ASC",
+  DateDesc = "DATE_DESC",
   DisplayOrderAsc = "DISPLAY_ORDER_ASC",
   DisplayOrderDesc = "DISPLAY_ORDER_DESC",
   IocomeTypeAsc = "IOCOME_TYPE_ASC",
@@ -1964,7 +1973,8 @@ export type CreateDailyDetailMutation = {
 };
 
 export type GetAccountBalanceListQueryVariables = Exact<{
-  [key: string]: never;
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
 }>;
 
 export type GetAccountBalanceListQuery = {
@@ -2240,8 +2250,8 @@ export function useCreateDailyDetailMutation() {
   >(CreateDailyDetailDocument);
 }
 export const GetAccountBalanceListDocument = gql`
-  query GetAccountBalanceList {
-    accountTotalList {
+  query GetAccountBalanceList($fromDate: Date!, $toDate: Date!) {
+    accountTotalList(fromDate: $fromDate, toDate: $toDate) {
       accountId
       accountName
       total
@@ -2251,10 +2261,7 @@ export const GetAccountBalanceListDocument = gql`
 `;
 
 export function useGetAccountBalanceListQuery(
-  options?: Omit<
-    Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>,
-    "query"
-  >
+  options: Omit<Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>, "query">
 ) {
   return Urql.useQuery<
     GetAccountBalanceListQuery,

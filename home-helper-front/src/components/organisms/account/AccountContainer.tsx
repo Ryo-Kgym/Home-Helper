@@ -1,13 +1,14 @@
 import { AccountPresenter } from "@components/organisms/account/AccountPresenter";
 import { TableProps } from "@components/atoms/Table";
-import { useGetAccountBalanceListQuery } from "@graphql/postgraphile/generated/graphql";
-import { Fetching } from "@components/molecules/Fetching";
-import { FetchError } from "@components/molecules/FetchError";
+import { useState } from "react";
+import { useGetAccountBalanceList } from "@hooks/household/account/useGetAccountBalanceList";
 
 export const AccountContainer = () => {
-  const [{ data, fetching, error }] = useGetAccountBalanceListQuery();
-  if (fetching) return <Fetching />;
-  if (error) return <FetchError error={error} />;
+  const today = new Date();
+  const [fromDate, setFromDate] = useState<Date | null>(null);
+  const [toDate, setToDate] = useState<Date | null>(today);
+
+  const { data, total } = useGetAccountBalanceList(fromDate, toDate!);
 
   const tableProps: TableProps[] =
     data?.accountTotalList?.map((account) => {
@@ -23,5 +24,14 @@ export const AccountContainer = () => {
       };
     }) ?? [];
 
-  return <AccountPresenter tableProps={tableProps} />;
+  return (
+    <AccountPresenter
+      fromDate={fromDate}
+      changeFromDate={setFromDate}
+      toDate={toDate}
+      changeToDate={setToDate}
+      tableProps={tableProps}
+      total={total}
+    />
+  );
 };

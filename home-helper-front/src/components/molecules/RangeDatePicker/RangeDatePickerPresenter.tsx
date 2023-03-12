@@ -31,6 +31,7 @@ export const RangeDatePickerPresenter: FC<RangeDatePickerPresenterProps> = ({
         value={toDate!}
         onChange={changeToDate}
         disabled={disabled}
+        required
       />
     </div>
   </div>

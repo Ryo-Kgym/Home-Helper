@@ -177,6 +177,9 @@ type Query implements Node {
 
   """Reads and enables pagination through a set of `TotalByAccountView`."""
   accountTotalList(
+    fromDate: Date
+    toDate: Date
+
     """Only read the first `n` values of the set."""
     first: Int
 
@@ -650,6 +653,7 @@ input GenreCondition {
 }
 
 type TotalByAccountView {
+  date: Date
   accountId: String
   accountName: String
   displayOrder: Int
@@ -660,6 +664,8 @@ type TotalByAccountView {
 """Methods to use when ordering `TotalByAccountView`."""
 enum TotalByAccountViewsOrderBy {
   NATURAL
+  DATE_ASC
+  DATE_DESC
   ACCOUNT_ID_ASC
   ACCOUNT_ID_DESC
   ACCOUNT_NAME_ASC
@@ -677,6 +683,9 @@ A condition to be used against `TotalByAccountView` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
 input TotalByAccountViewCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: Date
+
   """Checks for equality with the object’s `accountId` field."""
   accountId: String
 

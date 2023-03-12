@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Table, TableProps } from "@components/atoms/Table";
-import { Total } from "@components/molecules/Total";
+import { IocomeTotal } from "@components/molecules/Total";
 import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker";
 
 type CategoryPresenterProps = {
@@ -34,7 +34,7 @@ export const GenrePresenter: FC<CategoryPresenterProps> = ({
         tablePropsList={tableProps}
         size={"sm"}
       />
-      <Total income={incomeTotal} outcome={outcomeTotal} />
+      <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
     </div>
   );
 };

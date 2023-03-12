@@ -47,9 +47,10 @@ order by
 $$ language sql stable;
 
 drop function if exists account_total cascade;
-create function account_total() returns setof total_by_account_view as
+create function account_total(from_date date, to_date date) returns setof total_by_account_view as
 $$
 select
+    current_date as date,
     account_id,
     account_name,
     display_order,
@@ -57,6 +58,7 @@ select
     sum(case iocome_type when 'INCOME' then 1 else -1 end * total) as total
 from
     total_by_account_view
+where total_by_account_view.date between from_date and to_date
 group by
     account_id,
     account_name,
