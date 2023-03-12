@@ -1,1 +1,1 @@
-export { RangeMonthPickerPresenter as RangeMonthPicker } from "./RangeMonthPickerPresenter";
+export { DualMonthPickerPresenter as RangeMonthPicker } from "./DualMonthPickerPresenter";

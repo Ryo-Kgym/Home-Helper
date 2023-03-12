@@ -1,5 +1,5 @@
-import { MonthPicker } from "@components/atoms/MonthPicker";
 import { FC } from "react";
+import { MonthPickerInput } from "@mantine/dates";
 
 type RangeMonthPickerPresenterProps = {
   fromMonth: Date | null;
@@ -13,17 +13,16 @@ export const RangeMonthPickerPresenter: FC<RangeMonthPickerPresenterProps> = ({
   toMonth,
   changeToMonth,
 }) => (
-  <div className={"grid grid-cols-5 items-center"}>
-    <div className={"col-span-2"}>
-      <MonthPicker
-        value={fromMonth}
-        changeValue={changeFromMonth}
-        label={"FROM"}
-      />
-    </div>
-    <div className={"text-center pt-7"}>〜</div>
-    <div className={"col-span-2"}>
-      <MonthPicker value={toMonth} changeValue={changeToMonth} label={"TO"} />
-    </div>
+  <div className={"justify-center"}>
+    <MonthPickerInput
+      type={"range"}
+      value={[fromMonth, toMonth]}
+      onChange={(range: [Date | null, Date | null]) => {
+        changeFromMonth(range[0]);
+        changeToMonth(range[1]);
+      }}
+      label={"MONTH"}
+      valueFormat={"YYYY-MM"}
+    />
   </div>
 );
