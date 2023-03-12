@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { DailyTablePresenter } from "./DailyTablePresenter";
 import { useGetDailyDetailByDateQuery } from "@graphql/postgraphile/generated/graphql";
 import { TableProps } from "@components/atoms/Table";
+import { dailyDetailConverter } from "@components/atoms/Table/dailyDetailConverter";
 
 type DailyTableContainerProps = {
   dailyDetail?: TableProps[];
@@ -22,28 +23,7 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
     },
   });
 
-  const tableProps: TableProps[] =
-    dailyDetail ??
-    // default data
-    data?.dailyDetailByDateList?.map((dailyDetail) => {
-      return {
-        keyPrefix: "dailyDetail",
-        columns: [
-          { value: dailyDetail?.date, align: "center" },
-          {
-            value: dailyDetail?.categoryByCategoryId?.genreByGenreId?.genreName,
-          },
-          { value: dailyDetail?.categoryByCategoryId?.categoryName },
-          { value: dailyDetail?.accountByAccountId?.accountName },
-          {
-            value: Number(dailyDetail?.amount!).toLocaleString(),
-            align: "right",
-          },
-          { value: dailyDetail?.memo },
-        ],
-      };
-    }) ??
-    [];
+  const tableProps: TableProps[] = dailyDetail ?? dailyDetailConverter(data);
   return (
     <DailyTablePresenter
       fromDate={fromDate}
