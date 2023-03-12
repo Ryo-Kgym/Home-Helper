@@ -2085,6 +2085,48 @@ export type GetDailyDetailByDateCategoryIdQuery = {
   } | null> | null;
 };
 
+export type GetDailyDetailByDateGenreIdQueryVariables = Exact<{
+  genreId: Scalars["String"];
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+}>;
+
+export type GetDailyDetailByDateGenreIdQuery = {
+  __typename?: "Query";
+  allCategoriesList?: Array<{
+    __typename?: "Category";
+    dailyDetailsByCategoryIdList: Array<{
+      __typename?: "DailyDetail";
+      serialNo: number;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      categoryByCategoryId?: {
+        __typename?: "Category";
+        categoryId: string;
+        categoryName: string;
+        genreByGenreId?: {
+          __typename?: "Genre";
+          genreId: string;
+          genreName: string;
+          genreType: GenreType;
+          iocomeType: IocomeType;
+        } | null;
+      } | null;
+      accountByAccountId?: {
+        __typename?: "Account";
+        accountId: string;
+        accountName: string;
+      } | null;
+      userByUserId?: {
+        __typename?: "User";
+        userId: string;
+        userName: string;
+      } | null;
+    }>;
+  }> | null;
+};
+
 export type GetDailyTotalByDateIocomeTypeQueryVariables = Exact<{
   iocomeType: IocomeType;
   date: Scalars["Date"];
@@ -2345,6 +2387,57 @@ export function useGetDailyDetailByDateCategoryIdQuery(
     GetDailyDetailByDateCategoryIdQuery,
     GetDailyDetailByDateCategoryIdQueryVariables
   >({ query: GetDailyDetailByDateCategoryIdDocument, ...options });
+}
+export const GetDailyDetailByDateGenreIdDocument = gql`
+  query GetDailyDetailByDateGenreId(
+    $genreId: String!
+    $fromDate: Date!
+    $toDate: Date!
+  ) {
+    allCategoriesList(condition: { genreId: $genreId }) {
+      dailyDetailsByCategoryIdList(
+        filter: {
+          date: { greaterThanOrEqualTo: $fromDate }
+          and: { date: { lessThanOrEqualTo: $toDate } }
+        }
+      ) {
+        serialNo
+        date
+        amount
+        memo
+        categoryByCategoryId {
+          categoryId
+          categoryName
+          genreByGenreId {
+            genreId
+            genreName
+            genreType
+            iocomeType
+          }
+        }
+        accountByAccountId {
+          accountId
+          accountName
+        }
+        userByUserId {
+          userId
+          userName
+        }
+      }
+    }
+  }
+`;
+
+export function useGetDailyDetailByDateGenreIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetDailyDetailByDateGenreIdQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetDailyDetailByDateGenreIdQuery,
+    GetDailyDetailByDateGenreIdQueryVariables
+  >({ query: GetDailyDetailByDateGenreIdDocument, ...options });
 }
 export const GetDailyTotalByDateIocomeTypeDocument = gql`
   query GetDailyTotalByDateIocomeType($iocomeType: IocomeType!, $date: Date!) {
