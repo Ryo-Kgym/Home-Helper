@@ -1,1 +1,1 @@
-export { TotalPresenter as Total } from "./TotalPresenter";
+export { IocomeTotal as IocomeTotal } from "./IocomeTotal";
