@@ -6,15 +6,23 @@ import { useGetDailyDetailByDate } from "@hooks/household/daily_detail/useGetDai
 
 type DailyTableContainerProps = {
   dailyDetail?: TableProps[];
+  defaultFromDate?: Date;
+  defaultToDate?: Date;
 };
 export const DailyTableContainer: FC<DailyTableContainerProps> = ({
   dailyDetail,
+  defaultFromDate,
+  defaultToDate,
 }) => {
   const today = new Date();
   const thisFirstDay = new Date(today.getFullYear(), today.getMonth(), 1);
 
-  const [fromDate, setFromDate] = useState<Date | null>(thisFirstDay);
-  const [toDate, setToDate] = useState<Date | null>(new Date());
+  const [fromDate, setFromDate] = useState<Date | null>(
+    defaultFromDate ?? thisFirstDay
+  );
+  const [toDate, setToDate] = useState<Date | null>(
+    defaultToDate ?? new Date()
+  );
 
   const { data, incomeTotal, outcomeTotal } = useGetDailyDetailByDate(
     fromDate,

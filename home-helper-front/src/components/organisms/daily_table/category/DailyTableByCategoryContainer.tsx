@@ -24,5 +24,11 @@ export const DailyTableByCategoryContainer: FC<
 
   const tableProps: TableProps[] = dailyDetailConverter(data);
 
-  return <DailyTableByCategoryPresenter tableProps={tableProps} />;
+  return (
+    <DailyTableByCategoryPresenter
+      firstDay={firstDay}
+      lastDay={lastDay}
+      tableProps={tableProps}
+    />
+  );
 };
