@@ -3,7 +3,7 @@ import { FC } from "react";
 
 type NumberInputPresenterProps = {
   label: string;
-  value: number | undefined;
+  value: number | "";
   onChange: (value: number) => void;
   placeholder?: string;
   error: string;

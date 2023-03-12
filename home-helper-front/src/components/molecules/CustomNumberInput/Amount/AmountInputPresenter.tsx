@@ -2,8 +2,8 @@ import { FC } from "react";
 import { NumberInput } from "@components/atoms/NumberInput";
 
 type AmountInputPresenterProps = {
-  value: Number | null;
-  onChange: (value: Number) => void;
+  value: number | "";
+  onChange: (value: number | "") => void;
 };
 export const AmountInputPresenter: FC<AmountInputPresenterProps> = ({
   value,
