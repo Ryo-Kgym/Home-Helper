@@ -34,6 +34,9 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
   );
 
   const tableProps: TableProps[] = dailyDetail ?? dailyDetailConverter(data);
+
+  const disabled = dailyDetail?.length != undefined;
+
   return (
     <DailyTablePresenter
       fromDate={fromDate}
@@ -43,6 +46,7 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
       tablePropsList={tableProps}
       incomeTotal={defaultIncomeTotal ?? incomeTotal}
       outcomeTotal={defaultOutcomeTotal ?? outcomeTotal}
+      disabled={disabled}
     />
   );
 };

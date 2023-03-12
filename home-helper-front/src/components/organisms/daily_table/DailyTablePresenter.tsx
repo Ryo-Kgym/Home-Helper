@@ -11,6 +11,7 @@ type DailyTablePresenterProps = {
   tablePropsList: TableProps[];
   incomeTotal: number | undefined;
   outcomeTotal: number | undefined;
+  disabled: boolean;
 };
 export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
   fromDate,
@@ -20,6 +21,7 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
   tablePropsList,
   incomeTotal,
   outcomeTotal,
+  disabled,
 }) => (
   <div>
     <RangeDatePicker
@@ -27,6 +29,7 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
       changeFromDate={changeFromDate}
       toDate={toDate}
       changeToDate={changeToDate}
+      disabled={disabled}
     />
     <Table
       header={["日付", "ジャンル", "カテゴリ", "アカウント", "金額", "メモ"]}
