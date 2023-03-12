@@ -26,22 +26,24 @@ create function category_total_by_month(from_date date, to_date date)
     returns setof total_by_category_view as
 $$
 select
-    (to_char(t.date, 'YYYY-MM') || '-01') :: date as date,
+    current_date as date,
     t.iocome_type,
+    t.genre_id,
     t.genre_name,
+    t.category_id,
     t.category_name,
-    t.total
+    sum(t.total) as total
 from
     total_by_category_view t
 where t.date between from_date and to_date
 group by
-    to_char(t.date, 'YYYY-MM'),
     t.iocome_type,
+    t.genre_id,
     t.genre_name,
-    t.category_name,
-    t.total
+    t.category_id,
+    t.category_name
 order by
-    t.total desc;
+    sum(t.total) desc;
 $$ language sql stable;
 
 drop function if exists account_total cascade;

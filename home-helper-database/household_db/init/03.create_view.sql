@@ -47,7 +47,9 @@ create view total_by_category_view as
 select
     d.date,
     g.iocome_type,
+    g.genre_id,
     g.genre_name,
+    c.category_id,
     c.category_name,
     sum(d.amount) as total
 from
@@ -59,11 +61,14 @@ from
 group by
     d.date,
     g.iocome_type,
+    g.genre_id,
     g.genre_name,
-    c.category_name
+    g.display_order,
+    c.category_id,
+    c.category_name,
+    c.display_order
 order by
     d.date,
-    g.iocome_type,
-    g.genre_name,
-    c.category_name
+    g.display_order,
+    c.display_order
 ;

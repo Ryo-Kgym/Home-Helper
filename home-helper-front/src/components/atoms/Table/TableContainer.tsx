@@ -3,6 +3,7 @@ import { TablePresenter } from "@components/atoms/Table/TablePresenter";
 import { ColumnProps, TableProps } from "@components/atoms/Table/index";
 import { createStyles } from "@mantine/core";
 import { MantineSize } from "@mantine/styles";
+import theme from "tailwindcss/defaultTheme";
 
 type Props = {
   header: string[];
@@ -73,6 +74,7 @@ const useStyles = createStyles((theme) => ({
     backgroundColor:
       theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
     transition: "box-shadow 150ms ease",
+    zIndex: 5,
 
     "&::after": {
       content: '""',
