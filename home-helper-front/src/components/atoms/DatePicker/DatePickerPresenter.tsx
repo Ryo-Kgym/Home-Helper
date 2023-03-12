@@ -11,6 +11,7 @@ type DatePickerPresenterProps = {
   withAsterisk?: boolean;
   size?: MantineSize;
   disabled?: boolean;
+  required?: boolean;
 };
 export const DatePickerPresenter: FC<DatePickerPresenterProps> = ({
   value,
@@ -21,6 +22,7 @@ export const DatePickerPresenter: FC<DatePickerPresenterProps> = ({
   withAsterisk = false,
   size = "lg",
   disabled = false,
+  required = false,
 }) => (
   <DateInput
     value={value}
@@ -34,7 +36,7 @@ export const DatePickerPresenter: FC<DatePickerPresenterProps> = ({
     monthLabelFormat={"YYYY-MM"}
     monthsListFormat={"MM"}
     firstDayOfWeek={0}
-    error={value === null ? "Required" : ""}
+    error={required && value === null ? "Required" : ""}
     disabled={disabled}
   />
 );
