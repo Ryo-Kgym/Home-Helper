@@ -17,6 +17,7 @@ group by
 drop view if exists total_by_account_view cascade;
 create view total_by_account_view as
 select
+    d.date,
     d.account_id,
     a.account_name,
     a.display_order,
@@ -31,12 +32,14 @@ from
     inner join genre g
         on c.genre_id = g.genre_id
 group by
+    d.date,
     d.account_id,
     a.account_name,
     a.display_order,
     g.iocome_type
 order by
     a.display_order,
+    d.date,
     d.account_id,
     a.account_name,
     g.iocome_type;
