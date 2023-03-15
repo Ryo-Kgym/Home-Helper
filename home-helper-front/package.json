@@ -57,6 +57,7 @@
     "@graphql-codegen/cli": "3.0.0",
     "@graphql-codegen/client-preset": "2.0.0",
     "@graphql-codegen/introspection": "3.0.0",
+    "@types/encoding-japanese": "^2.0.1",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
     "prettier": "2.8.0",
