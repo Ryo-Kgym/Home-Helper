@@ -3,6 +3,7 @@ import { Table, TableProps } from "@components/atoms/Table";
 import { FileInput } from "@components/atoms/FileInput";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account";
 import { DatePicker } from "@components/atoms/DatePicker";
+import { Button } from "@components/atoms/Button";
 
 type FileImportPresenterProps = {
   uploadFile: File | null;
@@ -11,6 +12,7 @@ type FileImportPresenterProps = {
   setAccountId: (accountId: string | null) => void;
   withdrawalDate: Date | null;
   changeWithdrawalDate: (date: Date | null) => void;
+  loadClickHandler: () => void;
   tableProps: TableProps[];
 };
 export const FileImportPresenter: FC<FileImportPresenterProps> = ({
@@ -20,6 +22,7 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
   setAccountId,
   withdrawalDate,
   changeWithdrawalDate,
+  loadClickHandler,
   tableProps,
 }) => (
   <div className={"grid"}>
@@ -36,6 +39,9 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
         required
         label={"WITHDRAWAL DATE"}
       />
+    </div>
+    <div className={"py-4"}>
+      <Button onClick={loadClickHandler} label={"LOAD"} />
     </div>
     <div>
       <Table

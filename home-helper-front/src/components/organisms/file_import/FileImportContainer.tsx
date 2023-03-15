@@ -21,6 +21,13 @@ export const FileImportContainer = () => {
     };
   });
 
+  const loadClickHandler = () => {
+    console.log("loadClickHandler");
+    uploadFile?.text().then((text) => {
+      console.log(text);
+    });
+  };
+
   return (
     <FileImportPresenter
       uploadFile={uploadFile}
@@ -30,6 +37,7 @@ export const FileImportContainer = () => {
       tableProps={tableProps}
       withdrawalDate={withdrawalDate}
       changeWithdrawalDate={setWithdrawalDate}
+      loadClickHandler={loadClickHandler}
     />
   );
 };
