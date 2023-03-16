@@ -44,7 +44,7 @@ const RefillMap = new Map<FileType, (x: any) => LoadFileProps>([
     }),
   ],
   [
-    FileType.AU_CSV,
+    FileType.AU_PAY_CSV,
     (line: AuPayCsvLine): LoadFileProps => ({
       date: line.date(),
       note: line.note() + " at " + line.shopName(),

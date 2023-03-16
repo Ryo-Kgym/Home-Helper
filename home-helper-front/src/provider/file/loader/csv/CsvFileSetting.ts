@@ -14,7 +14,7 @@ const CsvFileSettingMap = new Map<FileType, CsvFileSetting>([
     },
   ],
   [
-    FileType.AU_CSV,
+    FileType.AU_PAY_CSV,
     {
       encodingTo: "UNICODE",
       encodingFrom: "SJIS",

@@ -13,12 +13,12 @@ export const FileTypeSelectContainer: FC<FileTypeSelectContainerProps> = ({
 }) => {
   const fileTypes: SelectData[] = [
     {
-      label: "三井住友銀行（Amazonカード）",
-      value: FileType.SMBC_CSV,
+      label: "Au Payカード",
+      value: FileType.AU_PAY_CSV,
     },
     {
-      label: "Au Payカード",
-      value: FileType.AU_CSV,
+      label: "三井住友銀行（Amazonカード）",
+      value: FileType.SMBC_CSV,
     },
     {
       label: "大分銀行 通帳",

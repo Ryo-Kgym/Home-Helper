@@ -5,7 +5,7 @@ import { parseOitaBankCsvLine } from "@provider/file/loader/csv/OitaBankCsvLine"
 
 const CsvFileParseMap = new Map<FileType, (line: string) => any>([
   [FileType.SMBC_CSV, parseSmbcCsvLine],
-  [FileType.AU_CSV, parseAuPayCsvLine],
+  [FileType.AU_PAY_CSV, parseAuPayCsvLine],
   [FileType.OITA_BANK_CSV, parseOitaBankCsvLine],
 ]);
 
