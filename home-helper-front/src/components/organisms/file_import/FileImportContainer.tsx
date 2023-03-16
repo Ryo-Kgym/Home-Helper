@@ -1,12 +1,16 @@
-import { FileImportPresenter } from "@components/organisms/file_import/FileImportPresenter";
+import { FileImportPresenter } from "./FileImportPresenter";
 import { TableProps } from "@components/atoms/Table";
 import category from "@pages/household/category";
 import { useState } from "react";
+import { loadCsvFile } from "@provider/file/loader/csv/loadCsvFile";
+import { FileType } from "@provider/file/FileType";
+import { SmbcCsvLine } from "@provider/file/loader/csv/SmbcCsvLine";
 
 export const FileImportContainer = () => {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [accountId, setAccountId] = useState<string | null>(null);
   const [withdrawalDate, setWithdrawalDate] = useState<Date | null>(null);
+  const [fileType, setFileType] = useState<FileType | null>(FileType.SMBC_CSV);
 
   const tableProps: TableProps[] = mockImported.map((d) => {
     return {
@@ -21,10 +25,16 @@ export const FileImportContainer = () => {
     };
   });
 
-  const loadClickHandler = () => {
-    console.log("loadClickHandler");
-    uploadFile?.text().then((text) => {
-      console.log(text);
+  const loadClickHandler = async () => {
+    const res: Array<SmbcCsvLine> = await loadCsvFile({
+      file: uploadFile!,
+      fileType: fileType!,
+    });
+    res.map((d) => {
+      console.log(d.date());
+      console.log(d.shopName());
+      console.log(d.price());
+      console.log(d.note());
     });
   };
 
