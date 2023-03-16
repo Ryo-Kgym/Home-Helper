@@ -1,6 +1,7 @@
 import { FileType } from "@provider/file/FileType";
 import { loadCsvFile } from "@provider/file/loader/csv/loadCsvFile";
 import { SmbcCsvLine } from "@provider/file/loader/csv/SmbcCsvLine";
+import { AuPayCsvLine } from "@provider/file/loader/csv/AuPayCsvLine";
 
 type loadUploadFileArgs = {
   uploadFile: File;
@@ -31,16 +32,26 @@ export type LoadFileProps = {
 const RefillMap = new Map<FileType, (x: any) => LoadFileProps>([
   [
     FileType.SMBC_CSV,
-    (line: SmbcCsvLine): LoadFileProps => {
-      return {
-        date: line.date(),
-        note: line.note() + " at " + line.shopName(),
-        price: line.price(),
-        genreId: null,
-        genreName: null,
-        categoryId: null,
-        categoryName: null,
-      };
-    },
+    (line: SmbcCsvLine): LoadFileProps => ({
+      date: line.date(),
+      note: line.note() + " at " + line.shopName(),
+      price: line.price(),
+      genreId: null,
+      genreName: null,
+      categoryId: null,
+      categoryName: null,
+    }),
+  ],
+  [
+    FileType.AU_CSV,
+    (line: AuPayCsvLine): LoadFileProps => ({
+      date: line.date(),
+      note: line.note() + " at " + line.shopName(),
+      price: line.price(),
+      genreId: null,
+      genreName: null,
+      categoryId: null,
+      categoryName: null,
+    }),
   ],
 ]);

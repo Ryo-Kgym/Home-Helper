@@ -1,11 +1,10 @@
 import { FileType } from "@provider/file/FileType";
-import {
-  parseSmbcCsvLine,
-  SmbcCsvLine,
-} from "@provider/file/loader/csv/SmbcCsvLine";
+import { parseSmbcCsvLine } from "@provider/file/loader/csv/SmbcCsvLine";
+import { parseAuPayCsvLine } from "@provider/file/loader/csv/AuPayCsvLine";
 
 const CsvFileParseMap = new Map<FileType, (line: string) => any>([
   [FileType.SMBC_CSV, parseSmbcCsvLine],
+  [FileType.AU_CSV, parseAuPayCsvLine],
 ]);
 
 /**
@@ -13,6 +12,6 @@ const CsvFileParseMap = new Map<FileType, (line: string) => any>([
  * @param line
  * @param fileType
  */
-export const parseCsv = (line: string, fileType: FileType): SmbcCsvLine => {
+export const parseCsv = (line: string, fileType: FileType): any => {
   return CsvFileParseMap.get(fileType)!(line);
 };

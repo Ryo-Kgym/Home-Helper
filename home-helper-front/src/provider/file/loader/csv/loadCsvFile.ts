@@ -21,13 +21,17 @@ export async function loadCsvFile({ file, fileType }: loadFileArgs) {
     splitSeparator,
     headerRows,
     footerRows,
+    quotation,
   } = getSetting(fileType);
 
   const readFile = await file.stream().getReader().read();
   const csv = decodeCsv(readFile, encodingTo, encodingFrom, encodingType);
 
   const rows = separateRows(csv, splitSeparator, headerRows, footerRows);
-  return rows.map((line) => parseCsv(line, fileType));
+  return rows.map((line) => {
+    if (quotation) line = line.replaceAll(quotation, "");
+    return parseCsv(line, fileType);
+  });
 }
 
 /**

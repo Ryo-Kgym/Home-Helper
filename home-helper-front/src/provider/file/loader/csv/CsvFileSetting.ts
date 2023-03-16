@@ -13,6 +13,18 @@ const CsvFileSettingMap = new Map<FileType, CsvFileSetting>([
       footerRows: 4,
     },
   ],
+  [
+    FileType.AU_CSV,
+    {
+      encodingTo: "UNICODE",
+      encodingFrom: "SJIS",
+      encodingType: "array",
+      splitSeparator: "\r\n",
+      headerRows: 1,
+      footerRows: 1,
+      quotation: '"',
+    },
+  ],
 ]);
 
 type CsvFileSetting = {
@@ -22,6 +34,7 @@ type CsvFileSetting = {
   splitSeparator: string;
   headerRows?: number;
   footerRows?: number;
+  quotation?: string;
 };
 
 export const getSetting = (fileType: FileType): CsvFileSetting => {
