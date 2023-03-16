@@ -14,6 +14,7 @@ type FileImportPresenterProps = {
   changeWithdrawalDate: (date: Date | null) => void;
   loadClickHandler: () => void;
   tableProps: TableProps[];
+  disabled: boolean;
 };
 export const FileImportPresenter: FC<FileImportPresenterProps> = ({
   uploadFile,
@@ -24,6 +25,7 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
   changeWithdrawalDate,
   loadClickHandler,
   tableProps,
+  disabled,
 }) => (
   <div className={"grid"}>
     <div className={"py-4"}>
@@ -41,7 +43,7 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
       />
     </div>
     <div className={"py-4"}>
-      <Button onClick={loadClickHandler} label={"LOAD"} />
+      <Button onClick={loadClickHandler} label={"LOAD"} disabled={disabled} />
     </div>
     <div>
       <Table

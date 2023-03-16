@@ -1,10 +1,11 @@
 import { FileImportPresenter } from "./FileImportPresenter";
 import { TableProps } from "@components/atoms/Table";
-import category from "@pages/household/category";
 import { useState } from "react";
-import { loadCsvFile } from "@provider/file/loader/csv/loadCsvFile";
 import { FileType } from "@provider/file/FileType";
-import { SmbcCsvLine } from "@provider/file/loader/csv/SmbcCsvLine";
+import {
+  LoadFileProps,
+  loadUploadFile,
+} from "@components/organisms/file_import/loadUploadFile";
 
 export const FileImportContainer = () => {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
@@ -12,11 +13,14 @@ export const FileImportContainer = () => {
   const [withdrawalDate, setWithdrawalDate] = useState<Date | null>(null);
   const [fileType, setFileType] = useState<FileType | null>(FileType.SMBC_CSV);
 
-  const tableProps: TableProps[] = mockImported.map((d) => {
+  const [loadData, setLoadData] = useState<LoadFileProps[]>([]);
+  const disabled = !uploadFile || !accountId || !withdrawalDate;
+
+  const tableProps: TableProps[] = loadData.map((d) => {
     return {
-      keyPrefix: "category",
+      keyPrefix: "load",
       columns: [
-        { value: d.date, align: "center" },
+        { value: d.date.toISOString().slice(0, 10), align: "center" },
         { value: d.note, align: "left" },
         { value: d.price.toLocaleString(), align: "right" },
         { value: "", align: "left" },
@@ -26,16 +30,12 @@ export const FileImportContainer = () => {
   });
 
   const loadClickHandler = async () => {
-    const res: Array<SmbcCsvLine> = await loadCsvFile({
-      file: uploadFile!,
-      fileType: fileType!,
-    });
-    res.map((d) => {
-      console.log(d.date());
-      console.log(d.shopName());
-      console.log(d.price());
-      console.log(d.note());
-    });
+    setLoadData(
+      await loadUploadFile({
+        uploadFile: uploadFile!,
+        fileType: fileType!,
+      })
+    );
   };
 
   return (
@@ -48,12 +48,7 @@ export const FileImportContainer = () => {
       withdrawalDate={withdrawalDate}
       changeWithdrawalDate={setWithdrawalDate}
       loadClickHandler={loadClickHandler}
+      disabled={disabled}
     />
   );
 };
-
-const mockImported = [
-  { date: "2023-02-01", note: "Amazon Payで", price: 12000 },
-  { date: "2023-02-05", note: "入金", price: -2000 },
-  { date: "2023-02-20", note: "Amazon Payで", price: 1000 },
-];
