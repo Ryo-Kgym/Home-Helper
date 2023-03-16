@@ -6,13 +6,13 @@ import { FC, useEffect, useState } from "react";
 import { PointHistory } from "@domain/model/home_helper/PointHistory";
 import { TableProps } from "@components/atoms/Table";
 import { UsedPointHistoryPresenter } from "./UsedPointHistoryPresenter";
-import { fetchHelpPointExchangedAchievements } from "@hooks/help_point/fetchHelpPointExchangedAchievements";
+import { useFetchHelpPointExchangedAchievements } from "@hooks/help_point/useFetchHelpPointExchangedAchievements";
 
 export const UsedPointHistoryContainer: FC = () => {
   const [pointHistories, setPointHistories] = useState<PointHistory[]>([]);
 
   useEffect(() => {
-    fetchHelpPointExchangedAchievements().then((list) => {
+    useFetchHelpPointExchangedAchievements().then((list) => {
       const pointHistories = list.map((exchangedAchievement) => {
         return {
           date: exchangedAchievement.exchangedDatetime,
