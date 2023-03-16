@@ -8,9 +8,9 @@ import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
 import { useFetchUser } from "@hooks/user/useFetchUser";
 import { fetchExchangeItems } from "@hooks/exchange_item/fetchExchangeItems";
 import {
-  exchangeHelpPoint,
+  useExchangeHelpPoint,
   ExchangePointForm,
-} from "@hooks/help_point/exchangeHelpPoint";
+} from "@hooks/help_point/useExchangeHelpPoint";
 import { TableProps } from "@components/atoms/Table";
 import { Counter } from "@components/atoms/Counter";
 
@@ -40,7 +40,7 @@ export const ExchangePointContainer = () => {
       alert("ポイントが不足しているよ！！");
     }
 
-    exchangeHelpPoint(exchangePointForms).then((r) => {});
+    useExchangeHelpPoint(exchangePointForms).then((r) => {});
   };
 
   const handleRegisterAfterProcess = () => {

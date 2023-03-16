@@ -1,7 +1,7 @@
 import { useExchangeHelpPoint as exchangeHelpPointGql } from "@graphql/apollo/useExchangeHelpPoint";
 import { useLoadUser } from "@hooks/useLoadUser";
 
-export const exchangeHelpPoint = (
+export const useExchangeHelpPoint = (
   details: ExchangePointForm[]
 ): Promise<string[]> => {
   return exchangeHelpPointGql(details, useLoadUser().getUserId);
