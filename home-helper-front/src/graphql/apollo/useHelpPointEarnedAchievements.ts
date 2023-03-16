@@ -3,7 +3,7 @@ import { query } from "@graphql/apollo/apollo-client";
 import { gql } from "@apollo/client";
 import { useLoadUser } from "@hooks/useLoadUser";
 
-export async function helpPointEarnedAchievements(): Promise<
+export async function useHelpPointEarnedAchievements(): Promise<
   HelpPointEarnedAchievement[]
 > {
   const param = {
