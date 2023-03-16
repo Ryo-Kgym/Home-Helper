@@ -6,7 +6,7 @@ import { FC, useEffect, useState } from "react";
 import { ChargePointPresenter } from "./ChargePointPresenter";
 import { HelpItem } from "@domain/model/home_helper/HelpItem";
 import { toJapanMd } from "@function/DateConverter";
-import { fetchUser } from "@hooks/user/fetchUser";
+import { useFetchUser } from "@hooks/user/useFetchUser";
 import { fetchHelpItems } from "@hooks/help_item/fetchHelpItems";
 import {
   ChargePointForm,
@@ -25,7 +25,7 @@ export const ChargePointContainer: FC = () => {
   );
 
   useEffect(() => {
-    fetchUser().then((user) => {
+    useFetchUser().then((user) => {
       setCurrentPoint(user.currentPoint);
       setFromDate(toJapanMd(user.lastHelp));
     });

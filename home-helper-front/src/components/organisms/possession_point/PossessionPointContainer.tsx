@@ -1,13 +1,13 @@
 import { FC, useEffect, useState } from "react";
 import { PossessionPointPresenter } from "./PossessionPointPresenter";
-import { fetchUser } from "@hooks/user/fetchUser";
+import { useFetchUser } from "@hooks/user/useFetchUser";
 
 export const PossessionPointContainer: FC = () => {
   const [currentPoint, setCurrentPoint] = useState(0);
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
-    fetchUser().then((user) => {
+    useFetchUser().then((user) => {
       setCurrentPoint(user.currentPoint);
       setUserName(user.name);
     });

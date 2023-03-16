@@ -5,7 +5,7 @@
 import { useEffect, useState } from "react";
 import { ExchangePointPresenter } from "./ExchangePointPresenter";
 import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
-import { fetchUser } from "@hooks/user/fetchUser";
+import { useFetchUser } from "@hooks/user/useFetchUser";
 import { fetchExchangeItems } from "@hooks/exchange_item/fetchExchangeItems";
 import {
   exchangeHelpPoint,
@@ -24,7 +24,7 @@ export const ExchangePointContainer = () => {
 
   useEffect(() => {
     fetchExchangeItems().then(setExchangeItems);
-    fetchUser().then((user) => setCurrentPoint(user.currentPoint));
+    useFetchUser().then((user) => setCurrentPoint(user.currentPoint));
   }, []);
 
   const handleCalcTotalUsePoint = (
