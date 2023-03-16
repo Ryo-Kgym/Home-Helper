@@ -1,10 +1,10 @@
 import { exchangeHelpPoint as exchangeHelpPointGql } from "@graphql/apollo/exchangeHelpPoint";
-import { loadUser } from "@hooks/loadUser";
+import { useLoadUser } from "@hooks/useLoadUser";
 
 export const exchangeHelpPoint = (
   details: ExchangePointForm[]
 ): Promise<string[]> => {
-  return exchangeHelpPointGql(details, loadUser().getUserId);
+  return exchangeHelpPointGql(details, useLoadUser().getUserId);
 };
 
 export type ExchangePointForm = {

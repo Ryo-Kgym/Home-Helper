@@ -1,6 +1,6 @@
 import { query } from "@graphql/apollo/apollo-client";
 import { gql } from "@apollo/client";
-import { loadUser } from "@hooks/loadUser";
+import { useLoadUser } from "@hooks/useLoadUser";
 import { HelpPointExchangedAchievement } from "@domain/model/home_helper/HelpPointExchangedAchievement";
 
 export async function helpPointExchangedAchievements(): Promise<
@@ -9,7 +9,7 @@ export async function helpPointExchangedAchievements(): Promise<
   const param = {
     query: GET_HELP_POINT_EXCHANGED_ACHIEVEMENT,
     variables: {
-      userId: loadUser().getUserId,
+      userId: useLoadUser().getUserId,
     },
     key: "helpPointExchangedAchievementByUserId",
   };

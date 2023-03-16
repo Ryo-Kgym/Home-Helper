@@ -1,5 +1,5 @@
 import { useCreateDailyDetailMutation } from "@graphql/postgraphile/generated/graphql";
-import { loadUser } from "@hooks/loadUser";
+import { useLoadUser } from "@hooks/useLoadUser";
 
 type DailyDetailForRegistration = {
   date: Date;
@@ -16,7 +16,7 @@ export const useRegisterDailyDetail = ({
   amount,
   memo,
 }: DailyDetailForRegistration) => {
-  const userId = loadUser().getUserId;
+  const userId = useLoadUser().getUserId;
 
   const [ignore, dailyRegistrationMutation] = useCreateDailyDetailMutation();
 

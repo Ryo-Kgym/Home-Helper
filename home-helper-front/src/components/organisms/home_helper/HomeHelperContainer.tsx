@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { HomeHelperPresenter } from "./HomeHelperPresenter";
 import { fetchUsers } from "@hooks/user/fetchUsers";
 import { User } from "@domain/model/home_helper/User";
-import { saveUserId } from "@hooks/loadUser";
+import { saveUserId } from "@hooks/useLoadUser";
 
 export const HomeHelperContainer: FC = () => {
   const [users, setUsers] = useState<User[]>([]);
