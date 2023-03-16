@@ -34,16 +34,16 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
   disabled,
 }) => (
   <div className={"grid"}>
-    <div className={"py-4"}>
+    <div className={"py-2"}>
       <FileTypeSelect fileType={fileType} setFileType={setFileType} />
     </div>
-    <div className={"py-4"}>
+    <div className={"py-2"}>
       <FileInput file={uploadFile} setFile={setUploadFile} />
     </div>
-    <div className={"py-4"}>
+    <div className={"py-2"}>
       <AccountSelect accountId={accountId} setAccountId={setAccountId} />
     </div>
-    <div className={"py-4"}>
+    <div className={"py-2"}>
       <DatePicker
         value={withdrawalDate!}
         onChange={changeWithdrawalDate}
@@ -51,7 +51,7 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
         label={"WITHDRAWAL DATE"}
       />
     </div>
-    <div className={"py-4"}>
+    <div className={"py-2"}>
       <Button onClick={loadClickHandler} label={"LOAD"} disabled={disabled} />
     </div>
     <div>
@@ -59,6 +59,7 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
         header={["決済日", "備考", "支出金額", "ジャンル", "カテゴリ"]}
         tablePropsList={tableProps}
         size={"xs"}
+        height={"45vh"}
       />
     </div>
   </div>
