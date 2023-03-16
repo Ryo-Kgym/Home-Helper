@@ -4,8 +4,12 @@ import { FileInput } from "@components/atoms/FileInput";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account";
 import { DatePicker } from "@components/atoms/DatePicker";
 import { Button } from "@components/atoms/Button";
+import { FileTypeSelect } from "@components/molecules/CustomSelect/FileType";
+import { FileType } from "@provider/file/FileType";
 
 type FileImportPresenterProps = {
+  fileType: FileType | null;
+  setFileType: (value: FileType | null) => void;
   uploadFile: File | null;
   setUploadFile: (file: File | null) => void;
   accountId: string | null;
@@ -17,6 +21,8 @@ type FileImportPresenterProps = {
   disabled: boolean;
 };
 export const FileImportPresenter: FC<FileImportPresenterProps> = ({
+  fileType,
+  setFileType,
   uploadFile,
   setUploadFile,
   accountId,
@@ -28,6 +34,9 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
   disabled,
 }) => (
   <div className={"grid"}>
+    <div className={"py-4"}>
+      <FileTypeSelect fileType={fileType} setFileType={setFileType} />
+    </div>
     <div className={"py-4"}>
       <FileInput file={uploadFile} setFile={setUploadFile} />
     </div>

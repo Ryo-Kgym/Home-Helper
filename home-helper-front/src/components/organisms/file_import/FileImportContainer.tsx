@@ -11,7 +11,7 @@ export const FileImportContainer = () => {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [accountId, setAccountId] = useState<string | null>(null);
   const [withdrawalDate, setWithdrawalDate] = useState<Date | null>(null);
-  const [fileType, setFileType] = useState<FileType | null>(FileType.SMBC_CSV);
+  const [fileType, setFileType] = useState<FileType | null>(null);
 
   const [loadData, setLoadData] = useState<LoadFileProps[]>([]);
   const disabled = !uploadFile || !accountId || !withdrawalDate;
@@ -40,6 +40,8 @@ export const FileImportContainer = () => {
 
   return (
     <FileImportPresenter
+      fileType={fileType}
+      setFileType={setFileType}
       uploadFile={uploadFile}
       setUploadFile={setUploadFile}
       accountId={accountId}
