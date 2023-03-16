@@ -2,7 +2,7 @@ import { mutate } from "@graphql/apollo/apollo-client";
 import { gql } from "@apollo/client";
 import { ChargePointForm } from "@hooks/help_point/registerHelpPoint";
 
-export async function registerHelpPoint(
+export async function useRegisterHelpPoint(
   details: ChargePointForm[],
   userId: string
 ): Promise<string[]> {
