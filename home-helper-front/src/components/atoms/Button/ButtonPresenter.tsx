@@ -6,11 +6,13 @@ type ButtonProps = {
   onClick: () => void;
   colorType?: "register" | "clear" | "detail";
   label?: string;
+  disabled?: boolean;
 };
 export const ButtonPresenter: FC<ButtonProps> = ({
   onClick,
   colorType = "register",
   label = colorType.toUpperCase(),
+  disabled = false,
 }) => {
   return (
     <MButton
@@ -19,6 +21,7 @@ export const ButtonPresenter: FC<ButtonProps> = ({
       color={COLOR_MAP.get(colorType)}
       onClick={onClick}
       className={CLASS_MAP.get(colorType)}
+      disabled={disabled}
     >
       {label}
     </MButton>
