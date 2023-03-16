@@ -1,4 +1,4 @@
-import { exchangeHelpPoint as exchangeHelpPointGql } from "@graphql/apollo/exchangeHelpPoint";
+import { useExchangeHelpPoint as exchangeHelpPointGql } from "@graphql/apollo/useExchangeHelpPoint";
 import { useLoadUser } from "@hooks/useLoadUser";
 
 export const exchangeHelpPoint = (
