@@ -1,7 +1,7 @@
 import { useRegisterHelpPoint as registerHelpPointGql } from "@graphql/apollo/useRegisterHelpPoint";
 import { useLoadUser } from "@hooks/useLoadUser";
 
-export const registerHelpPoint = (
+export const useRegisterHelpPoint = (
   details: ChargePointForm[]
 ): Promise<string[]> => {
   return registerHelpPointGql(details, useLoadUser().getUserId);

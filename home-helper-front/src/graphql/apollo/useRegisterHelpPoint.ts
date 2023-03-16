@@ -1,6 +1,6 @@
 import { mutate } from "@graphql/apollo/apollo-client";
 import { gql } from "@apollo/client";
-import { ChargePointForm } from "@hooks/help_point/registerHelpPoint";
+import { ChargePointForm } from "@hooks/help_point/useRegisterHelpPoint";
 
 export async function useRegisterHelpPoint(
   details: ChargePointForm[],
