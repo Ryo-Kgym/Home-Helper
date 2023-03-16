@@ -1,8 +1,8 @@
 import { HelpPointExchangedAchievement } from "@domain/model/home_helper/HelpPointExchangedAchievement";
-import { helpPointExchangedAchievements } from "@graphql/apollo/helpPointExchangedAchievements";
+import { useHelpPointExchangedAchievements } from "@graphql/apollo/useHelpPointExchangedAchievements";
 
 export async function fetchHelpPointExchangedAchievements(): Promise<
   HelpPointExchangedAchievement[]
 > {
-  return helpPointExchangedAchievements();
+  return useHelpPointExchangedAchievements();
 }
