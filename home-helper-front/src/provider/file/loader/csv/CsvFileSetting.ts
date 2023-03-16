@@ -25,6 +25,17 @@ const CsvFileSettingMap = new Map<FileType, CsvFileSetting>([
       quotation: '"',
     },
   ],
+  [
+    FileType.OITA_BANK_CSV,
+    {
+      encodingTo: "UNICODE",
+      encodingFrom: "SJIS",
+      encodingType: "array",
+      splitSeparator: "\r\n",
+      headerRows: 1,
+      footerRows: 1,
+    },
+  ],
 ]);
 
 type CsvFileSetting = {
