@@ -8,7 +8,6 @@ type DatePickerPresenterProps = {
   label?: string;
   defaultValue?: Date;
   placeholder?: string;
-  withAsterisk?: boolean;
   size?: MantineSize;
   disabled?: boolean;
   required?: boolean;
@@ -19,7 +18,6 @@ export const DatePickerPresenter: FC<DatePickerPresenterProps> = ({
   label = "DATE",
   defaultValue = new Date(),
   placeholder = "",
-  withAsterisk = false,
   size = "lg",
   disabled = false,
   required = false,
@@ -30,7 +28,7 @@ export const DatePickerPresenter: FC<DatePickerPresenterProps> = ({
     label={label}
     defaultValue={defaultValue}
     placeholder={placeholder}
-    withAsterisk={withAsterisk}
+    withAsterisk={required}
     size={size}
     valueFormat="YYYY-MM-DD"
     monthLabelFormat={"YYYY-MM"}

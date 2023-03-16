@@ -14,8 +14,10 @@ export const FileInputPresenter: FC<FileInputPresenterProps> = ({
     value={file}
     onChange={setFile}
     label="UPLOAD FILE"
-    placeholder="SELECT FILE"
+    placeholder="ファイルを選択してください"
     icon={<IconUpload size={rem(18)} />}
     size={"lg"}
+    withAsterisk
+    error={file === null ? "Required" : undefined}
   />
 );

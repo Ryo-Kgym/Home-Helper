@@ -52,7 +52,7 @@ export const RegisterDailyDetailPresenter: FC<
       <DatePicker
         value={date}
         onChange={setDate}
-        withAsterisk
+        required
         defaultValue={date}
       />
     </Field>
