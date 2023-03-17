@@ -28,10 +28,13 @@ export const TableContainer: FC<Props> = ({
     </tr>
   );
 
-  const generateRow = (tbodyProps: TableProps, i: number) => {
+  const generateRow = (
+    { keyPrefix, onClick = () => {}, columns }: TableProps,
+    i: number
+  ) => {
     return (
-      <tr key={tbodyProps.keyPrefix + i}>
-        {tbodyProps.columns.map(generateColumn)}
+      <tr key={keyPrefix + i} onClick={onClick}>
+        {columns.map(generateColumn)}
       </tr>
     );
   };
