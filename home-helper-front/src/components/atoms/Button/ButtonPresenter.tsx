@@ -4,7 +4,7 @@ import { MantineColor, MantineSize } from "@mantine/styles";
 
 type ButtonProps = {
   onClick: () => void;
-  colorType?: "register" | "clear" | "detail";
+  colorType?: "register" | "clear" | "detail" | "import";
   label?: string;
   disabled?: boolean;
 };
@@ -31,17 +31,20 @@ export const ButtonPresenter: FC<ButtonProps> = ({
 const COLOR_MAP = new Map<any, MantineColor>([
   ["register", "green"],
   ["clear", "gray"],
+  ["import", "blue"],
   ["detail", "blue"],
 ]);
 
 const SIZE_MAP = new Map<any, MantineSize>([
   ["register", "xl"],
   ["clear", "xl"],
+  ["import", "xl"],
   ["detail", "sm"],
 ]);
 
 const CLASS_MAP = new Map<any, string>([
   ["register", "m-4"],
   ["clear", "m-4"],
+  ["import", "m-4"],
   ["detail", ""],
 ]);
