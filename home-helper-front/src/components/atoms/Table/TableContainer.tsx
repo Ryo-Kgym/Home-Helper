@@ -3,7 +3,6 @@ import { TablePresenter } from "@components/atoms/Table/TablePresenter";
 import { ColumnProps, TableProps } from "@components/atoms/Table/index";
 import { createStyles } from "@mantine/core";
 import { MantineSize } from "@mantine/styles";
-import theme from "tailwindcss/defaultTheme";
 
 type Props = {
   header: string[];

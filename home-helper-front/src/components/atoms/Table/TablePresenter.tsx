@@ -1,5 +1,5 @@
-import { FC, ReactElement, useState } from "react";
-import { createStyles, ScrollArea, Table } from "@mantine/core";
+import { FC, ReactElement } from "react";
+import { ScrollArea, Table } from "@mantine/core";
 
 type TablePresenterProps = {
   headerTr: ReactElement;
