@@ -5,16 +5,26 @@ import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile"
 
 type SetPropertiesContainerProps = {
   initialValues: LoadFileProps;
+  initLoadData: LoadFileProps[];
+  setLoadData: (loadData: LoadFileProps[]) => void;
 };
 export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
   initialValues,
+  initLoadData,
+  setLoadData,
 }) => {
-  const { date: initDate, price: initPrice, note: initNote } = initialValues;
+  const {
+    date: initDate,
+    price: initPrice,
+    note: initNote,
+    genreId: initGenreId,
+    categoryId: initCategoryId,
+  } = initialValues;
 
   const [date, setDate] = useState<Date | null>(initDate);
-  const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
-  const [categoryId, setCategoryId] = useState<string | null>(null);
-  const [genreId, setGenreId] = useState<string | null>(null);
+  const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Outcome);
+  const [genreId, setGenreId] = useState<string | null>(initGenreId);
+  const [categoryId, setCategoryId] = useState<string | null>(initCategoryId);
   const [amount, setAmount] = useState<number | "">(initPrice);
   const [memo, setMemo] = useState<string>(initNote);
 
@@ -28,7 +38,22 @@ export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
   };
 
   const settingClickHandler = () => {
-    console.log("registerClickHandler");
+    setLoadData(
+      [
+        initLoadData.filter((d) => d !== initialValues),
+        [
+          {
+            date: date!,
+            price: typeof amount === "number" ? amount : 0,
+            note: memo,
+            genreId: genreId!,
+            genreName: genreId!,
+            categoryId: categoryId!,
+            categoryName: categoryId!,
+          },
+        ],
+      ].flatMap((d) => d)
+    );
   };
 
   return (
