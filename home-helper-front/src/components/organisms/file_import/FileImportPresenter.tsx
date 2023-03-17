@@ -6,6 +6,9 @@ import { DatePicker } from "@components/atoms/DatePicker";
 import { Button } from "@components/atoms/Button";
 import { FileTypeSelect } from "@components/molecules/CustomSelect/FileType";
 import { FileType } from "@provider/file/FileType";
+import { Modal } from "@components/atoms/Modal";
+import { SetProperties } from "@components/organisms/file_import/SetProperties";
+import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
 
 type FileImportPresenterProps = {
   tableProps: TableProps[];
@@ -22,6 +25,11 @@ type FileImportPresenterProps = {
   importClickHandler: () => void;
   clearClickHandler: () => void;
   registerClickHandler: () => void;
+  opened: boolean;
+  onClose: () => void;
+  initialValues: LoadFileProps;
+  loadData: LoadFileProps[];
+  setLoadData: (loadData: LoadFileProps[]) => void;
 };
 export const FileImportPresenter: FC<FileImportPresenterProps> = ({
   tableProps,
@@ -38,6 +46,11 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
   importClickHandler,
   clearClickHandler,
   registerClickHandler,
+  opened,
+  onClose,
+  initialValues,
+  loadData,
+  setLoadData,
 }) => (
   <div className={"grid"}>
     <div className={"py-2"}>
@@ -78,5 +91,12 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
         height={"45vh"}
       />
     </div>
+    <Modal opened={opened} onClose={onClose}>
+      <SetProperties
+        initialValues={initialValues}
+        initLoadData={loadData}
+        setLoadData={setLoadData}
+      />
+    </Modal>
   </div>
 );

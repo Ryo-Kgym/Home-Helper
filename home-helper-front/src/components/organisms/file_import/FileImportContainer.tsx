@@ -15,8 +15,20 @@ export const FileImportContainer = () => {
   const [fileType, setFileType] = useState<FileType | null>(null);
 
   const [loadData, setLoadData] = useState<LoadFileProps[]>([]);
-  const importDisabled = !uploadFile || !accountId || !withdrawalDate;
-  const registerDisabled = !loadData.length;
+
+  const importDisabled =
+    !uploadFile ||
+    !accountId ||
+    !withdrawalDate ||
+    loadData.filter((d) => d.categoryId === null).length > 0;
+
+  const registerDisabled =
+    loadData.filter((d) => d.categoryId === null).length > 0;
+
+  const [opened, setOpened] = useState(false);
+  const [initialValues, setInitialValues] = useState<LoadFileProps | null>(
+    null
+  );
 
   const tableProps: TableProps[] = loadData.map((d) => {
     return {
@@ -25,9 +37,13 @@ export const FileImportContainer = () => {
         { value: d.date.toISOString().slice(0, 10), align: "center" },
         { value: d.note, align: "left" },
         { value: d.price.toLocaleString(), align: "right" },
-        { value: "", align: "left" },
-        { value: "", align: "left" },
+        { value: d.genreName, align: "left" },
+        { value: d.categoryName, align: "left" },
       ],
+      onClick: () => {
+        setOpened(true);
+        setInitialValues(d);
+      },
     };
   });
 
@@ -68,6 +84,11 @@ export const FileImportContainer = () => {
       importClickHandler={loadClickHandler}
       clearClickHandler={clearClickHandler}
       registerClickHandler={registerClickHandler}
+      opened={opened}
+      onClose={() => setOpened(false)}
+      initialValues={initialValues!}
+      loadData={loadData}
+      setLoadData={setLoadData}
     />
   );
 };
