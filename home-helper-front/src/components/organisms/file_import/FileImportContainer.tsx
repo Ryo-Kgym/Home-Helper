@@ -6,6 +6,7 @@ import {
   LoadFileProps,
   loadUploadFile,
 } from "@components/organisms/file_import/loadUploadFile";
+import { successPopup } from "@function/successPopup";
 
 export const FileImportContainer = () => {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
@@ -14,7 +15,8 @@ export const FileImportContainer = () => {
   const [fileType, setFileType] = useState<FileType | null>(null);
 
   const [loadData, setLoadData] = useState<LoadFileProps[]>([]);
-  const disabled = !uploadFile || !accountId || !withdrawalDate;
+  const importDisabled = !uploadFile || !accountId || !withdrawalDate;
+  const registerDisabled = !loadData.length;
 
   const tableProps: TableProps[] = loadData.map((d) => {
     return {
@@ -38,19 +40,34 @@ export const FileImportContainer = () => {
     );
   };
 
+  const clearClickHandler = () => {
+    setUploadFile(null);
+    setAccountId(null);
+    setWithdrawalDate(null);
+    setFileType(null);
+    setLoadData([]);
+  };
+
+  const registerClickHandler = () => {
+    successPopup("登録しました");
+  };
+
   return (
     <FileImportPresenter
+      tableProps={tableProps}
       fileType={fileType}
       setFileType={setFileType}
       uploadFile={uploadFile}
       setUploadFile={setUploadFile}
       accountId={accountId}
       setAccountId={setAccountId}
-      tableProps={tableProps}
       withdrawalDate={withdrawalDate}
       changeWithdrawalDate={setWithdrawalDate}
-      loadClickHandler={loadClickHandler}
-      disabled={disabled}
+      importDisabled={importDisabled}
+      registerDisabled={registerDisabled}
+      importClickHandler={loadClickHandler}
+      clearClickHandler={clearClickHandler}
+      registerClickHandler={registerClickHandler}
     />
   );
 };
