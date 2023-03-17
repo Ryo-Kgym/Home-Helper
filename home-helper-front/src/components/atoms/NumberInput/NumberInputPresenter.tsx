@@ -8,6 +8,7 @@ type NumberInputPresenterProps = {
   placeholder?: string;
   error: string;
   withAsterisk?: boolean;
+  disabled: boolean;
 };
 export const NumberInputPresenter: FC<NumberInputPresenterProps> = ({
   label,
@@ -16,6 +17,7 @@ export const NumberInputPresenter: FC<NumberInputPresenterProps> = ({
   placeholder,
   error,
   withAsterisk,
+  disabled,
 }) => (
   <NumberInput
     value={value}
@@ -26,5 +28,6 @@ export const NumberInputPresenter: FC<NumberInputPresenterProps> = ({
     size="lg"
     withAsterisk={withAsterisk}
     hideControls
+    disabled={disabled}
   />
 );

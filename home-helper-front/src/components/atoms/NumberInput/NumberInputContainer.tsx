@@ -7,6 +7,7 @@ type NumberInputContainerProps = {
   onChange: (value: number | "") => void;
   placeholder?: string;
   withAsterisk?: boolean;
+  disabled?: boolean;
 };
 export const NumberInputContainer: FC<NumberInputContainerProps> = ({
   label,
@@ -14,6 +15,7 @@ export const NumberInputContainer: FC<NumberInputContainerProps> = ({
   onChange,
   placeholder,
   withAsterisk,
+  disabled = false,
 }) => {
   const checkValue = (value: number | "") => {
     if (value === "") {
@@ -33,6 +35,7 @@ export const NumberInputContainer: FC<NumberInputContainerProps> = ({
       placeholder={placeholder}
       error={checkValue(value)}
       withAsterisk={withAsterisk}
+      disabled={disabled}
     />
   );
 };
