@@ -1,5 +1,7 @@
 import {
+  useCreateCreditCardDetailMutation,
   useCreateCreditCardSummaryMutation,
+  useCreateDailyDetailMutation,
   useCreateImportFileHistoryMutation,
 } from "@graphql/postgraphile/generated/graphql";
 import { FileType } from "@provider/file/FileType";
@@ -25,7 +27,8 @@ export const useCreateImportFile = ({
   const loadUser = useLoadUser();
   const uuid = useUuid();
 
-  const [ignoreCreateImportFileResult, createImportFileMutation] =
+  // Common table
+  const [ignore, createImportFileMutation] =
     useCreateImportFileHistoryMutation();
 
   const createImportFileVariables = {
@@ -36,7 +39,8 @@ export const useCreateImportFile = ({
     importDatetime: useDate(),
   };
 
-  const [ignoreCreateCreditCardSummaryResult, createCreditCardSummaryMutation] =
+  // Credit card Only
+  const [ignore1, createCreditCardSummaryMutation] =
     useCreateCreditCardSummaryMutation();
 
   const createCreditCardSummaryVariables = {
@@ -48,12 +52,39 @@ export const useCreateImportFile = ({
     withdrawalDate: withdrawalDate,
   };
 
+  // Credit card Only
+  const [ignore2, createCreditCardDetailMutation] =
+    useCreateCreditCardDetailMutation();
+
+  const createCreditCardDetailVariableList = loadData.map((data) => ({
+    date: data.date,
+    categoryId: data.categoryId!,
+    amount: data.price,
+    memo: data.note,
+    summaryId: uuid,
+  }));
+
+  // Not credit card
+  const [ignore3, createDailyDetailMutation] = useCreateDailyDetailMutation();
+
+  const createDailyDetailVariableList = loadData.map((data) => ({
+    date: data.date,
+    categoryId: data.categoryId!,
+    accountId: accountId,
+    amount: data.price,
+    memo: data.note,
+    userId: loadUser.getUserId,
+  }));
+
   return () => {
-    const ignoreCreateImportFile = createImportFileMutation(
-      createImportFileVariables
+    createImportFileMutation(createImportFileVariables);
+
+    createCreditCardSummaryMutation(createCreditCardSummaryVariables);
+    createCreditCardDetailVariableList.map((variable) =>
+      createCreditCardDetailMutation(variable)
     );
-    const ignoreCreateCreditCardSummary = createCreditCardSummaryMutation(
-      createCreditCardSummaryVariables
+    createDailyDetailVariableList.map((variable) =>
+      createDailyDetailMutation(variable)
     );
   };
 };
