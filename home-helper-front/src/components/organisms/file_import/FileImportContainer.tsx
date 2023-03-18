@@ -8,6 +8,7 @@ import {
 } from "@components/organisms/file_import/loadUploadFile";
 import { successPopup } from "@function/successPopup";
 import { useCreateImportFile } from "@hooks/household/import_file/useCreateImportFile";
+import { FormatPrice } from "@components/molecules/FormatPrice";
 
 export const FileImportContainer = () => {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
@@ -38,7 +39,10 @@ export const FileImportContainer = () => {
       columns: [
         { value: d.date.toISOString().slice(0, 10), align: "center" },
         { value: d.note, align: "left" },
-        { value: d.price.toLocaleString(), align: "right" },
+        {
+          value: <FormatPrice iocomeType={d.iocomeType} price={d.price} />,
+          align: "right",
+        },
         { value: d.genreName, align: "left" },
         { value: d.categoryName, align: "left" },
       ],
