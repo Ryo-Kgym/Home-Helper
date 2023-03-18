@@ -13,9 +13,11 @@ export interface OitaBankCsvLine {
 }
 
 export const parseOitaBankCsvLine = (line: string): OitaBankCsvLine => {
-  const splitLine = line.split('","');
-  splitLine.slice(0, 1);
-  splitLine.slice(-1);
+  const removeQuotationLine = line.split('","');
+  removeQuotationLine.slice(0, 1);
+  removeQuotationLine.slice(-2);
+
+  const splitLine = removeQuotationLine.map((x) => x.replace(/"/g, ""));
 
   return {
     number: () => {
