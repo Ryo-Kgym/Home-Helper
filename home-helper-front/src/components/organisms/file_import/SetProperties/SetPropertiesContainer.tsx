@@ -59,6 +59,11 @@ export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
     onClose();
   };
 
+  const deleteClickHandler = () => {
+    setLoadData(initLoadData.filter((d) => d !== initialValues));
+    onClose();
+  };
+
   return (
     <SetPropertiesPresenter
       date={date!}
@@ -84,6 +89,7 @@ export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
       changeMemoHandler={setMemo}
       clearClickHandler={clearClickHandler}
       settingClickHandler={settingClickHandler}
+      deleteClickHandler={deleteClickHandler}
       settingDisabled={settingDisabled}
     />
   );

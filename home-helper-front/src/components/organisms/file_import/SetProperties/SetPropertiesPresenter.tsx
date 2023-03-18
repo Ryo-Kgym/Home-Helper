@@ -23,6 +23,7 @@ type SetPropertiesPresenterProps = {
   changeMemoHandler: (value: string) => void;
   clearClickHandler: () => void;
   settingClickHandler: () => void;
+  deleteClickHandler: () => void;
   settingDisabled: boolean;
 };
 export const SetPropertiesPresenter: FC<SetPropertiesPresenterProps> = ({
@@ -40,6 +41,7 @@ export const SetPropertiesPresenter: FC<SetPropertiesPresenterProps> = ({
   changeMemoHandler,
   clearClickHandler,
   settingClickHandler,
+  deleteClickHandler,
   settingDisabled,
 }) => (
   <div className={"grid grid-cols-1 w-full"}>
@@ -82,6 +84,7 @@ export const SetPropertiesPresenter: FC<SetPropertiesPresenterProps> = ({
       onClick={settingClickHandler}
       disabled={settingDisabled}
     />
+    <Button colorType={"delete"} onClick={deleteClickHandler} />
     <Button colorType={"clear"} onClick={clearClickHandler} />
   </div>
 );
