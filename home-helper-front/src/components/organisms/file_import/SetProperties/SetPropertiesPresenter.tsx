@@ -52,6 +52,7 @@ export const SetPropertiesPresenter: FC<SetPropertiesPresenterProps> = ({
       <IocomeTypeSegment
         iocomeType={iocomeType}
         setIocomeType={changeIocomeTypeHandler}
+        disabled={true}
       />
     </Field>
     <Field>
