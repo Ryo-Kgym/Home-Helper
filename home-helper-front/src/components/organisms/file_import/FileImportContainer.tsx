@@ -23,6 +23,7 @@ export const FileImportContainer = () => {
     loadData.filter((d) => d.categoryId === null).length > 0;
 
   const registerDisabled =
+    loadData.length == 0 ||
     loadData.filter((d) => d.categoryId === null).length > 0;
 
   const [opened, setOpened] = useState(false);
