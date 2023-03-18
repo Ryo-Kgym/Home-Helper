@@ -7,6 +7,7 @@ import {
   loadUploadFile,
 } from "@components/organisms/file_import/loadUploadFile";
 import { successPopup } from "@function/successPopup";
+import { useCreateImportFile } from "@hooks/household/import_file/useCreateImportFile";
 
 export const FileImportContainer = () => {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
@@ -48,6 +49,11 @@ export const FileImportContainer = () => {
     };
   });
 
+  const createImportFile = useCreateImportFile({
+    fileType: fileType!,
+    fileName: uploadFile?.name!,
+  });
+
   const loadClickHandler = async () => {
     setLoadData(
       await loadUploadFile({
@@ -66,6 +72,8 @@ export const FileImportContainer = () => {
   };
 
   const registerClickHandler = () => {
+    createImportFile();
+
     successPopup(`${loadData.length}件、登録しました`);
     clearClickHandler();
   };
