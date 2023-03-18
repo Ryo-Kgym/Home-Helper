@@ -3,6 +3,7 @@ import { TableProps } from "@components/atoms/Table";
 import { useState } from "react";
 import { FileType } from "@provider/file/FileType";
 import {
+  calcTotalPrice,
   LoadFileProps,
   loadUploadFile,
 } from "@components/organisms/file_import/loadUploadFile";
@@ -11,6 +12,7 @@ import { useCreateImportFile } from "@hooks/household/import_file/useCreateImpor
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { FileImportTablePresenter } from "@components/organisms/file_import/FileImportTablePresenter";
 import { FileImportButtonsPresenter } from "@components/organisms/file_import/FileImportButtonsPresenter";
+import { IocomeType } from "@domain/model/household/IocomeType";
 
 export const FileImportContainer = () => {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
@@ -116,6 +118,8 @@ export const FileImportContainer = () => {
           initialValues={initialValues!}
           loadData={loadData}
           setLoadData={setLoadData}
+          income={calcTotalPrice(loadData, IocomeType.Income)}
+          outcome={calcTotalPrice(loadData, IocomeType.Outcome)}
         />
       )}
     </>

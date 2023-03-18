@@ -32,6 +32,17 @@ export type LoadFileProps = {
   categoryName: string | null;
 };
 
+export const calcTotalPrice = (
+  props: LoadFileProps[],
+  iocomeType: IocomeType
+): number | undefined => {
+  return props
+    .filter((l) => l.categoryId)
+    .filter((l) => l.iocomeType === iocomeType)
+    .map((l) => l.price!)
+    .reduce((a, b) => a + b, 0);
+};
+
 const RefillMap = new Map<FileType, (x: any) => LoadFileProps>([
   [
     FileType.SMBC_CSV,

@@ -3,6 +3,7 @@ import { Table, TableProps } from "@components/atoms/Table";
 import { Modal } from "@components/atoms/Modal";
 import { SetProperties } from "@components/organisms/file_import/SetProperties";
 import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
+import { IocomeTotal } from "@components/molecules/Total";
 
 type FileImportTablePresenterProps = {
   tableProps: TableProps[];
@@ -11,6 +12,8 @@ type FileImportTablePresenterProps = {
   initialValues: LoadFileProps;
   loadData: LoadFileProps[];
   setLoadData: (loadData: LoadFileProps[]) => void;
+  income: number | undefined;
+  outcome: number | undefined;
 };
 export const FileImportTablePresenter: FC<FileImportTablePresenterProps> = ({
   tableProps,
@@ -19,6 +22,8 @@ export const FileImportTablePresenter: FC<FileImportTablePresenterProps> = ({
   initialValues,
   loadData,
   setLoadData,
+  income,
+  outcome,
 }) => (
   <div className={"grid"}>
     <div>
@@ -28,6 +33,9 @@ export const FileImportTablePresenter: FC<FileImportTablePresenterProps> = ({
         size={"xs"}
         height={"75vh"}
       />
+    </div>
+    <div>
+      <IocomeTotal income={income} outcome={outcome} />
     </div>
     <Modal opened={opened} onClose={onClose}>
       <SetProperties
