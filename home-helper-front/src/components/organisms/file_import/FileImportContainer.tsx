@@ -52,6 +52,9 @@ export const FileImportContainer = () => {
   const createImportFile = useCreateImportFile({
     fileType: fileType!,
     fileName: uploadFile?.name!,
+    accountId: accountId!,
+    withdrawalDate: withdrawalDate!,
+    loadData: loadData,
   });
 
   const loadClickHandler = async () => {
