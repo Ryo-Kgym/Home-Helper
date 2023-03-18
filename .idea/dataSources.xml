@@ -8,13 +8,6 @@
       <jdbc-url>jdbc:mysql://localhost:23306/home_helper_db_ci</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="household_db_ci@localhost" uuid="a6551c8d-ba0f-4a33-945b-78e053d23130">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:25432/household_db_ci</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
     <data-source source="LOCAL" name="household_db@localhost" uuid="9de4c6ca-28a7-4fd0-9524-6fd35b0e210d">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
