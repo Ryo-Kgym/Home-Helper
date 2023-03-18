@@ -18,13 +18,14 @@ export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
   const {
     date: initDate,
     price: initPrice,
+    iocomeType: initIocomeType,
     note: initNote,
     genreId: initGenreId,
     categoryId: initCategoryId,
   } = initialValues;
 
   const [date, setDate] = useState<Date | null>(initDate);
-  const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Outcome);
+  const [iocomeType, setIocomeType] = useState<IocomeType>(initIocomeType);
   const [genreId, setGenreId] = useState<string | null>(initGenreId);
   const [categoryId, setCategoryId] = useState<string | null>(initCategoryId);
   const [amount, setAmount] = useState<number | "">(initPrice);
@@ -48,6 +49,7 @@ export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
             date: date!,
             price: typeof amount === "number" ? amount : 0,
             note: memo,
+            iocomeType: iocomeType,
             genreId: genreId!,
             genreName: genreId!,
             categoryId: categoryId!,
