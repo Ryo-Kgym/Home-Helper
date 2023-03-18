@@ -22,7 +22,9 @@ export const GenreSelectContainer: FC<GenreSelectContainerProps> = ({
       return {
         label: genre.genreName,
         value: genre.genreId,
-        description: genre.genreName,
+        description: genre.categoriesByGenreIdList
+          .map((c) => c.categoryName)
+          .join(", "),
       };
     }) ?? [];
 
