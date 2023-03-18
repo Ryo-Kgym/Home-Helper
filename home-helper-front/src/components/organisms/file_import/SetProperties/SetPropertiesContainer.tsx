@@ -7,11 +7,13 @@ type SetPropertiesContainerProps = {
   initialValues: LoadFileProps;
   initLoadData: LoadFileProps[];
   setLoadData: (loadData: LoadFileProps[]) => void;
+  onClose: () => void;
 };
 export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
   initialValues,
   initLoadData,
   setLoadData,
+  onClose,
 }) => {
   const {
     date: initDate,
@@ -52,8 +54,9 @@ export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
             categoryName: categoryId!,
           },
         ],
-      ].flatMap((d) => d)
+      ].flatMap((ignore) => ignore)
     );
+    onClose();
   };
 
   return (

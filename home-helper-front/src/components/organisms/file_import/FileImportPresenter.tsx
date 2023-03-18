@@ -96,6 +96,7 @@ export const FileImportPresenter: FC<FileImportPresenterProps> = ({
         initialValues={initialValues}
         initLoadData={loadData}
         setLoadData={setLoadData}
+        onClose={onClose}
       />
     </Modal>
   </div>
