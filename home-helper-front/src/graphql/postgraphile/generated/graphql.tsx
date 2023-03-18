@@ -2207,6 +2207,12 @@ export type GetValidGenreListByIocomeTypeQuery = {
     genreType: GenreType;
     iocomeType: IocomeType;
     displayOrder: number;
+    categoriesByGenreIdList: Array<{
+      __typename?: "Category";
+      categoryId: string;
+      categoryName: string;
+      displayOrder: number;
+    }>;
   }> | null;
 };
 
@@ -2542,6 +2548,14 @@ export const GetValidGenreListByIocomeTypeDocument = gql`
       genreType
       iocomeType
       displayOrder
+      categoriesByGenreIdList(
+        orderBy: DISPLAY_ORDER_ASC
+        condition: { validFlag: true }
+      ) {
+        categoryId
+        categoryName
+        displayOrder
+      }
     }
   }
 `;
