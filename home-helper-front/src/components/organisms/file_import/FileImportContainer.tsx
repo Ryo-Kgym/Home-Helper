@@ -67,7 +67,7 @@ export const FileImportContainer = () => {
 
   const registerClickHandler = () => {
     successPopup(`${loadData.length}件、登録しました`);
-    setLoadData([]);
+    clearClickHandler();
   };
 
   return (
