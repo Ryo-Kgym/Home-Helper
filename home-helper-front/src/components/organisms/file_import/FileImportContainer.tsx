@@ -1,4 +1,4 @@
-import { FileImportPresenter } from "./FileImportPresenter";
+import { FileImportFieldPresenter } from "./FileImportFieldPresenter";
 import { TableProps } from "@components/atoms/Table";
 import { useState } from "react";
 import { FileType } from "@provider/file/FileType";
@@ -9,6 +9,8 @@ import {
 import { successPopup } from "@function/successPopup";
 import { useCreateImportFile } from "@hooks/household/import_file/useCreateImportFile";
 import { FormatPrice } from "@components/molecules/FormatPrice";
+import { FileImportTablePresenter } from "@components/organisms/file_import/FileImportTablePresenter";
+import { FileImportButtonsPresenter } from "@components/organisms/file_import/FileImportButtonsPresenter";
 
 export const FileImportContainer = () => {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
@@ -86,26 +88,36 @@ export const FileImportContainer = () => {
   };
 
   return (
-    <FileImportPresenter
-      tableProps={tableProps}
-      fileType={fileType}
-      setFileType={setFileType}
-      uploadFile={uploadFile}
-      setUploadFile={setUploadFile}
-      accountId={accountId}
-      setAccountId={setAccountId}
-      withdrawalDate={withdrawalDate}
-      changeWithdrawalDate={setWithdrawalDate}
-      importDisabled={importDisabled}
-      registerDisabled={registerDisabled}
-      importClickHandler={loadClickHandler}
-      clearClickHandler={clearClickHandler}
-      registerClickHandler={registerClickHandler}
-      opened={opened}
-      onClose={() => setOpened(false)}
-      initialValues={initialValues!}
-      loadData={loadData}
-      setLoadData={setLoadData}
-    />
+    <>
+      {loadData.length == 0 && (
+        <FileImportFieldPresenter
+          fileType={fileType}
+          setFileType={setFileType}
+          uploadFile={uploadFile}
+          setUploadFile={setUploadFile}
+          accountId={accountId}
+          setAccountId={setAccountId}
+          withdrawalDate={withdrawalDate}
+          changeWithdrawalDate={setWithdrawalDate}
+        />
+      )}
+      <FileImportButtonsPresenter
+        importDisabled={importDisabled}
+        registerDisabled={registerDisabled}
+        importClickHandler={loadClickHandler}
+        clearClickHandler={clearClickHandler}
+        registerClickHandler={registerClickHandler}
+      />
+      {loadData.length > 0 && (
+        <FileImportTablePresenter
+          tableProps={tableProps}
+          opened={opened}
+          onClose={() => setOpened(false)}
+          initialValues={initialValues!}
+          loadData={loadData}
+          setLoadData={setLoadData}
+        />
+      )}
+    </>
   );
 };
