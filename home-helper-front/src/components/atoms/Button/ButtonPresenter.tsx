@@ -4,7 +4,7 @@ import { MantineColor, MantineSize } from "@mantine/styles";
 
 type ButtonProps = {
   onClick: () => void;
-  colorType?: "register" | "clear" | "detail" | "import";
+  colorType?: ButtonColorType;
   label?: string;
   disabled?: boolean;
 };
@@ -17,10 +17,10 @@ export const ButtonPresenter: FC<ButtonProps> = ({
   return (
     <MButton
       radius="xl"
-      size={SIZE_MAP.get(colorType)}
-      color={COLOR_MAP.get(colorType)}
+      className={PROP_MAP.get(colorType)!.className}
+      size={PROP_MAP.get(colorType)!.size}
+      color={PROP_MAP.get(colorType)!.color}
       onClick={onClick}
-      className={CLASS_MAP.get(colorType)}
       disabled={disabled}
     >
       {label}
@@ -28,23 +28,18 @@ export const ButtonPresenter: FC<ButtonProps> = ({
   );
 };
 
-const COLOR_MAP = new Map<any, MantineColor>([
-  ["register", "green"],
-  ["clear", "gray"],
-  ["import", "blue"],
-  ["detail", "blue"],
-]);
+type ButtonColorType = "register" | "clear" | "detail" | "import" | "delete";
 
-const SIZE_MAP = new Map<any, MantineSize>([
-  ["register", "xl"],
-  ["clear", "xl"],
-  ["import", "xl"],
-  ["detail", "sm"],
-]);
+type ButtonStyleProp = {
+  className: string;
+  size: MantineSize;
+  color: MantineColor;
+};
 
-const CLASS_MAP = new Map<any, string>([
-  ["register", "m-4"],
-  ["clear", "m-4"],
-  ["import", "m-4"],
-  ["detail", ""],
+const PROP_MAP = new Map<ButtonColorType, ButtonStyleProp>([
+  ["register", { className: "m-4", size: "xl", color: "green" }],
+  ["clear", { className: "m-4", size: "xl", color: "gray" }],
+  ["import", { className: "m-4", size: "xl", color: "blue" }],
+  ["delete", { className: "m-4", size: "xl", color: "red" }],
+  ["detail", { className: "", size: "sm", color: "blue" }],
 ]);
