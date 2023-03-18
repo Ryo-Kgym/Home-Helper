@@ -43,20 +43,67 @@ export const useCreateImportFile = ({
   const [ignore1, createCreditCardSummaryMutation] =
     useCreateCreditCardSummaryMutation();
 
-  const createCreditCardSummaryVariables = {
+  // Credit card Only
+  const [ignore2, createCreditCardDetailMutation] =
+    useCreateCreditCardDetailMutation();
+
+  // Not credit card
+  const [ignore3, createDailyDetailMutation] = useCreateDailyDetailMutation();
+
+  const individualRegistration = RegistrationMap.get(fileType)!({
+    createCreditCardSummaryMutation,
+    createCreditCardDetailMutation,
+    createDailyDetailMutation,
+    uuid,
+    fileType,
+    accountId,
+    withdrawalDate,
+    loadData,
+    userId: loadUser.getUserId,
+  });
+
+  return () => {
+    createImportFileMutation(createImportFileVariables);
+
+    individualRegistration();
+  };
+};
+
+const CreditCardMap = new Map<FileType, string>([
+  [FileType.AU_PAY_CSV, "AU_PAY_CARD"],
+  [FileType.SMBC_CSV, "AMAZON_CARD"],
+]);
+
+type Args = {
+  createCreditCardSummaryMutation: any;
+  createCreditCardDetailMutation: any;
+  createDailyDetailMutation: any;
+  uuid: string;
+  fileType: FileType;
+  accountId: string;
+  withdrawalDate: Date;
+  loadData: LoadFileProps[];
+  userId: string;
+};
+const registerCreditCard = ({
+  createCreditCardSummaryMutation,
+  createCreditCardDetailMutation,
+  uuid,
+  fileType,
+  accountId,
+  withdrawalDate,
+  loadData,
+}: Args) => {
+  const summaryVariableList = {
     id: uuid,
-    creditCard: CreditCardMap.get(fileType) || "dummy",
+    creditCard: CreditCardMap.get(fileType) || "other",
     accountId: accountId,
     totalAmount: loadData.reduce((acc, cur) => acc + cur.price, 0),
     count: loadData.length,
     withdrawalDate: withdrawalDate,
   };
 
-  // Credit card Only
-  const [ignore2, createCreditCardDetailMutation] =
-    useCreateCreditCardDetailMutation();
-
-  const createCreditCardDetailVariableList = loadData.map((data) => ({
+  const detailVariableList = loadData.map((data) => ({
     date: data.date,
     categoryId: data.categoryId!,
     amount: data.price,
@@ -64,32 +111,37 @@ export const useCreateImportFile = ({
     summaryId: uuid,
   }));
 
-  // Not credit card
-  const [ignore3, createDailyDetailMutation] = useCreateDailyDetailMutation();
-
+  return () => {
+    createCreditCardSummaryMutation(summaryVariableList);
+    detailVariableList.map((variable) =>
+      createCreditCardDetailMutation(variable)
+    );
+  };
+};
+const registerDailyDetails = ({
+  createDailyDetailMutation,
+  accountId,
+  loadData,
+  userId,
+}: Args) => {
   const createDailyDetailVariableList = loadData.map((data) => ({
     date: data.date,
     categoryId: data.categoryId!,
     accountId: accountId,
     amount: data.price,
     memo: data.note,
-    userId: loadUser.getUserId,
+    userId: userId,
   }));
 
   return () => {
-    createImportFileMutation(createImportFileVariables);
-
-    createCreditCardSummaryMutation(createCreditCardSummaryVariables);
-    createCreditCardDetailVariableList.map((variable) =>
-      createCreditCardDetailMutation(variable)
-    );
     createDailyDetailVariableList.map((variable) =>
       createDailyDetailMutation(variable)
     );
   };
 };
 
-const CreditCardMap = new Map<FileType, string>([
-  [FileType.AU_PAY_CSV, "AU_PAY_CARD"],
-  [FileType.SMBC_CSV, "AMAZON_CARD"],
+const RegistrationMap = new Map<FileType, (args: Args) => () => void>([
+  [FileType.AU_PAY_CSV, registerCreditCard],
+  [FileType.SMBC_CSV, registerCreditCard],
+  [FileType.OITA_BANK_CSV, registerDailyDetails],
 ]);
