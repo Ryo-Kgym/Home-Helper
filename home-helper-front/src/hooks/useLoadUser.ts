@@ -1,11 +1,6 @@
-import { useRouter } from "next/router";
-
 export const useLoadUser = (): LoginUser => {
   const loginUserId = sessionStorage.getItem("userId");
 
-  if (loginUserId === null) {
-    useRouter().push("/");
-  }
   return {
     getUserId: loginUserId!,
     isFailure: false,
