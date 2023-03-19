@@ -6,11 +6,13 @@ type CategorySelectContainerProps = {
   categoryId: string | null;
   setCategoryId: (value: string | null) => void;
   genreId: string | null;
+  setCategoryName?: (value: string | null) => void;
 };
 export const CategorySelectContainer: FC<CategorySelectContainerProps> = ({
   categoryId,
   setCategoryId,
   genreId,
+  setCategoryName = () => {},
 }) => {
   const [{ data }] = useGetValidCategoryByGenreIdQuery({
     variables: { genreId: genreId ?? "" },
@@ -28,7 +30,12 @@ export const CategorySelectContainer: FC<CategorySelectContainerProps> = ({
   return (
     <CategorySelectPresenter
       value={categoryId}
-      onChange={setCategoryId}
+      onChange={(value) => {
+        const categoryName =
+          categories.find((c) => c.value === value)?.label ?? "";
+        setCategoryId(value);
+        setCategoryName(categoryName);
+      }}
       categories={categories}
     />
   );
