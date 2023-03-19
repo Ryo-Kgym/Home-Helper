@@ -21,12 +21,16 @@ export type Scalars = {
   Float: number;
   BigFloat: any;
   Date: any;
+  Datetime: any;
+  UUID: any;
 };
 
 export type Account = Node & {
   __typename?: "Account";
   accountId: Scalars["String"];
   accountName: Scalars["String"];
+  /** Reads and enables pagination through a set of `CreditCardSummary`. */
+  creditCardSummariesByAccountIdList: Array<CreditCardSummary>;
   /** Reads and enables pagination through a set of `DailyDetail`. */
   dailyDetailsByAccountIdList: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
@@ -36,6 +40,14 @@ export type Account = Node & {
   /** Reads a single `User` that is related to this `Account`. */
   userByOwnerUserId?: Maybe<User>;
   validFlag?: Maybe<Scalars["Boolean"]>;
+};
+
+export type AccountCreditCardSummariesByAccountIdListArgs = {
+  condition?: InputMaybe<CreditCardSummaryCondition>;
+  filter?: InputMaybe<CreditCardSummaryFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardSummariesOrderBy>>;
 };
 
 export type AccountDailyDetailsByAccountIdListArgs = {
@@ -188,6 +200,8 @@ export type Category = Node & {
   __typename?: "Category";
   categoryId: Scalars["String"];
   categoryName: Scalars["String"];
+  /** Reads and enables pagination through a set of `CreditCardDetail`. */
+  creditCardDetailsByCategoryIdList: Array<CreditCardDetail>;
   /** Reads and enables pagination through a set of `DailyDetail`. */
   dailyDetailsByCategoryIdList: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
@@ -197,6 +211,14 @@ export type Category = Node & {
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
   nodeId: Scalars["ID"];
   validFlag?: Maybe<Scalars["Boolean"]>;
+};
+
+export type CategoryCreditCardDetailsByCategoryIdListArgs = {
+  condition?: InputMaybe<CreditCardDetailCondition>;
+  filter?: InputMaybe<CreditCardDetailFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailsOrderBy>>;
 };
 
 export type CategoryDailyDetailsByCategoryIdListArgs = {
@@ -316,6 +338,62 @@ export type CreateCategoryPayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the create `CreditCardDetail` mutation. */
+export type CreateCreditCardDetailInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The `CreditCardDetail` to be created by this mutation. */
+  creditCardDetail: CreditCardDetailInput;
+};
+
+/** The output of our create `CreditCardDetail` mutation. */
+export type CreateCreditCardDetailPayload = {
+  __typename?: "CreateCreditCardDetailPayload";
+  /** Reads a single `Category` that is related to this `CreditCardDetail`. */
+  categoryByCategoryId?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `CreditCardDetail` that was created by this mutation. */
+  creditCardDetail?: Maybe<CreditCardDetail>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+/** All input for the create `CreditCardSummary` mutation. */
+export type CreateCreditCardSummaryInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The `CreditCardSummary` to be created by this mutation. */
+  creditCardSummary: CreditCardSummaryInput;
+};
+
+/** The output of our create `CreditCardSummary` mutation. */
+export type CreateCreditCardSummaryPayload = {
+  __typename?: "CreateCreditCardSummaryPayload";
+  /** Reads a single `Account` that is related to this `CreditCardSummary`. */
+  accountByAccountId?: Maybe<Account>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `CreditCardSummary` that was created by this mutation. */
+  creditCardSummary?: Maybe<CreditCardSummary>;
+  /** Reads a single `ImportFileHistory` that is related to this `CreditCardSummary`. */
+  importFileHistoryById?: Maybe<ImportFileHistory>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
 /** All input for the create `DailyDetail` mutation. */
 export type CreateDailyDetailInput = {
   /**
@@ -372,6 +450,31 @@ export type CreateGenrePayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the create `ImportFileHistory` mutation. */
+export type CreateImportFileHistoryInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The `ImportFileHistory` to be created by this mutation. */
+  importFileHistory: ImportFileHistoryInput;
+};
+
+/** The output of our create `ImportFileHistory` mutation. */
+export type CreateImportFileHistoryPayload = {
+  __typename?: "CreateImportFileHistoryPayload";
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `ImportFileHistory` that was created by this mutation. */
+  importFileHistory?: Maybe<ImportFileHistory>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
 /** All input for the create `User` mutation. */
 export type CreateUserInput = {
   /**
@@ -395,6 +498,196 @@ export type CreateUserPayload = {
   query?: Maybe<Query>;
   /** The `User` that was created by this mutation. */
   user?: Maybe<User>;
+};
+
+export type CreditCardDetail = Node & {
+  __typename?: "CreditCardDetail";
+  amount: Scalars["BigFloat"];
+  /** Reads a single `Category` that is related to this `CreditCardDetail`. */
+  categoryByCategoryId?: Maybe<Category>;
+  categoryId: Scalars["String"];
+  date: Scalars["Date"];
+  memo?: Maybe<Scalars["String"]>;
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars["ID"];
+  serialNo: Scalars["Int"];
+  summaryId: Scalars["UUID"];
+};
+
+/**
+ * A condition to be used against `CreditCardDetail` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type CreditCardDetailCondition = {
+  /** Checks for equality with the object’s `amount` field. */
+  amount?: InputMaybe<Scalars["BigFloat"]>;
+  /** Checks for equality with the object’s `categoryId` field. */
+  categoryId?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `date` field. */
+  date?: InputMaybe<Scalars["Date"]>;
+  /** Checks for equality with the object’s `memo` field. */
+  memo?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `serialNo` field. */
+  serialNo?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `summaryId` field. */
+  summaryId?: InputMaybe<Scalars["UUID"]>;
+};
+
+/** A filter to be used against `CreditCardDetail` object types. All fields are combined with a logical ‘and.’ */
+export type CreditCardDetailFilter = {
+  /** Filter by the object’s `amount` field. */
+  amount?: InputMaybe<BigFloatFilter>;
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<CreditCardDetailFilter>>;
+  /** Filter by the object’s `categoryId` field. */
+  categoryId?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `date` field. */
+  date?: InputMaybe<DateFilter>;
+  /** Filter by the object’s `memo` field. */
+  memo?: InputMaybe<StringFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<CreditCardDetailFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<CreditCardDetailFilter>>;
+  /** Filter by the object’s `serialNo` field. */
+  serialNo?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `summaryId` field. */
+  summaryId?: InputMaybe<UuidFilter>;
+};
+
+/** An input for mutations affecting `CreditCardDetail` */
+export type CreditCardDetailInput = {
+  amount: Scalars["BigFloat"];
+  categoryId: Scalars["String"];
+  date: Scalars["Date"];
+  memo?: InputMaybe<Scalars["String"]>;
+  serialNo?: InputMaybe<Scalars["Int"]>;
+  summaryId: Scalars["UUID"];
+};
+
+/** Represents an update to a `CreditCardDetail`. Fields that are set will be updated. */
+export type CreditCardDetailPatch = {
+  amount?: InputMaybe<Scalars["BigFloat"]>;
+  categoryId?: InputMaybe<Scalars["String"]>;
+  date?: InputMaybe<Scalars["Date"]>;
+  memo?: InputMaybe<Scalars["String"]>;
+  serialNo?: InputMaybe<Scalars["Int"]>;
+  summaryId?: InputMaybe<Scalars["UUID"]>;
+};
+
+/** Methods to use when ordering `CreditCardDetail`. */
+export enum CreditCardDetailsOrderBy {
+  AmountAsc = "AMOUNT_ASC",
+  AmountDesc = "AMOUNT_DESC",
+  CategoryIdAsc = "CATEGORY_ID_ASC",
+  CategoryIdDesc = "CATEGORY_ID_DESC",
+  DateAsc = "DATE_ASC",
+  DateDesc = "DATE_DESC",
+  MemoAsc = "MEMO_ASC",
+  MemoDesc = "MEMO_DESC",
+  Natural = "NATURAL",
+  PrimaryKeyAsc = "PRIMARY_KEY_ASC",
+  PrimaryKeyDesc = "PRIMARY_KEY_DESC",
+  SerialNoAsc = "SERIAL_NO_ASC",
+  SerialNoDesc = "SERIAL_NO_DESC",
+  SummaryIdAsc = "SUMMARY_ID_ASC",
+  SummaryIdDesc = "SUMMARY_ID_DESC",
+}
+
+/** Methods to use when ordering `CreditCardSummary`. */
+export enum CreditCardSummariesOrderBy {
+  AccountIdAsc = "ACCOUNT_ID_ASC",
+  AccountIdDesc = "ACCOUNT_ID_DESC",
+  CountAsc = "COUNT_ASC",
+  CountDesc = "COUNT_DESC",
+  CreditCardAsc = "CREDIT_CARD_ASC",
+  CreditCardDesc = "CREDIT_CARD_DESC",
+  IdAsc = "ID_ASC",
+  IdDesc = "ID_DESC",
+  Natural = "NATURAL",
+  PrimaryKeyAsc = "PRIMARY_KEY_ASC",
+  PrimaryKeyDesc = "PRIMARY_KEY_DESC",
+  TotalAmountAsc = "TOTAL_AMOUNT_ASC",
+  TotalAmountDesc = "TOTAL_AMOUNT_DESC",
+  WithdrawalDateAsc = "WITHDRAWAL_DATE_ASC",
+  WithdrawalDateDesc = "WITHDRAWAL_DATE_DESC",
+}
+
+export type CreditCardSummary = Node & {
+  __typename?: "CreditCardSummary";
+  /** Reads a single `Account` that is related to this `CreditCardSummary`. */
+  accountByAccountId?: Maybe<Account>;
+  accountId: Scalars["String"];
+  count: Scalars["Int"];
+  creditCard: Scalars["String"];
+  id: Scalars["UUID"];
+  /** Reads a single `ImportFileHistory` that is related to this `CreditCardSummary`. */
+  importFileHistoryById?: Maybe<ImportFileHistory>;
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars["ID"];
+  totalAmount: Scalars["BigFloat"];
+  withdrawalDate: Scalars["Date"];
+};
+
+/**
+ * A condition to be used against `CreditCardSummary` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type CreditCardSummaryCondition = {
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `count` field. */
+  count?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `creditCard` field. */
+  creditCard?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars["UUID"]>;
+  /** Checks for equality with the object’s `totalAmount` field. */
+  totalAmount?: InputMaybe<Scalars["BigFloat"]>;
+  /** Checks for equality with the object’s `withdrawalDate` field. */
+  withdrawalDate?: InputMaybe<Scalars["Date"]>;
+};
+
+/** A filter to be used against `CreditCardSummary` object types. All fields are combined with a logical ‘and.’ */
+export type CreditCardSummaryFilter = {
+  /** Filter by the object’s `accountId` field. */
+  accountId?: InputMaybe<StringFilter>;
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<CreditCardSummaryFilter>>;
+  /** Filter by the object’s `count` field. */
+  count?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `creditCard` field. */
+  creditCard?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `id` field. */
+  id?: InputMaybe<UuidFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<CreditCardSummaryFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<CreditCardSummaryFilter>>;
+  /** Filter by the object’s `totalAmount` field. */
+  totalAmount?: InputMaybe<BigFloatFilter>;
+  /** Filter by the object’s `withdrawalDate` field. */
+  withdrawalDate?: InputMaybe<DateFilter>;
+};
+
+/** An input for mutations affecting `CreditCardSummary` */
+export type CreditCardSummaryInput = {
+  accountId: Scalars["String"];
+  count: Scalars["Int"];
+  creditCard: Scalars["String"];
+  id: Scalars["UUID"];
+  totalAmount: Scalars["BigFloat"];
+  withdrawalDate: Scalars["Date"];
+};
+
+/** Represents an update to a `CreditCardSummary`. Fields that are set will be updated. */
+export type CreditCardSummaryPatch = {
+  accountId?: InputMaybe<Scalars["String"]>;
+  count?: InputMaybe<Scalars["Int"]>;
+  creditCard?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["UUID"]>;
+  totalAmount?: InputMaybe<Scalars["BigFloat"]>;
+  withdrawalDate?: InputMaybe<Scalars["Date"]>;
 };
 
 export type DailyDetail = Node & {
@@ -577,6 +870,32 @@ export type DateFilter = {
   notIn?: InputMaybe<Array<Scalars["Date"]>>;
 };
 
+/** A filter to be used against Datetime fields. All fields are combined with a logical ‘and.’ */
+export type DatetimeFilter = {
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: InputMaybe<Scalars["Datetime"]>;
+  /** Equal to the specified value. */
+  equalTo?: InputMaybe<Scalars["Datetime"]>;
+  /** Greater than the specified value. */
+  greaterThan?: InputMaybe<Scalars["Datetime"]>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: InputMaybe<Scalars["Datetime"]>;
+  /** Included in the specified list. */
+  in?: InputMaybe<Array<Scalars["Datetime"]>>;
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: InputMaybe<Scalars["Boolean"]>;
+  /** Less than the specified value. */
+  lessThan?: InputMaybe<Scalars["Datetime"]>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: InputMaybe<Scalars["Datetime"]>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: InputMaybe<Scalars["Datetime"]>;
+  /** Not equal to the specified value. */
+  notEqualTo?: InputMaybe<Scalars["Datetime"]>;
+  /** Not included in the specified list. */
+  notIn?: InputMaybe<Array<Scalars["Datetime"]>>;
+};
+
 /** All input for the `deleteAccountByAccountId` mutation. */
 export type DeleteAccountByAccountIdInput = {
   accountId: Scalars["String"];
@@ -649,6 +968,84 @@ export type DeleteCategoryPayload = {
   deletedCategoryId?: Maybe<Scalars["ID"]>;
   /** Reads a single `Genre` that is related to this `Category`. */
   genreByGenreId?: Maybe<Genre>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+/** All input for the `deleteCreditCardDetailBySerialNo` mutation. */
+export type DeleteCreditCardDetailBySerialNoInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  serialNo: Scalars["Int"];
+};
+
+/** All input for the `deleteCreditCardDetail` mutation. */
+export type DeleteCreditCardDetailInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The globally unique `ID` which will identify a single `CreditCardDetail` to be deleted. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our delete `CreditCardDetail` mutation. */
+export type DeleteCreditCardDetailPayload = {
+  __typename?: "DeleteCreditCardDetailPayload";
+  /** Reads a single `Category` that is related to this `CreditCardDetail`. */
+  categoryByCategoryId?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `CreditCardDetail` that was deleted by this mutation. */
+  creditCardDetail?: Maybe<CreditCardDetail>;
+  deletedCreditCardDetailId?: Maybe<Scalars["ID"]>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+/** All input for the `deleteCreditCardSummaryById` mutation. */
+export type DeleteCreditCardSummaryByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  id: Scalars["UUID"];
+};
+
+/** All input for the `deleteCreditCardSummary` mutation. */
+export type DeleteCreditCardSummaryInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The globally unique `ID` which will identify a single `CreditCardSummary` to be deleted. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our delete `CreditCardSummary` mutation. */
+export type DeleteCreditCardSummaryPayload = {
+  __typename?: "DeleteCreditCardSummaryPayload";
+  /** Reads a single `Account` that is related to this `CreditCardSummary`. */
+  accountByAccountId?: Maybe<Account>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `CreditCardSummary` that was deleted by this mutation. */
+  creditCardSummary?: Maybe<CreditCardSummary>;
+  deletedCreditCardSummaryId?: Maybe<Scalars["ID"]>;
+  /** Reads a single `ImportFileHistory` that is related to this `CreditCardSummary`. */
+  importFileHistoryById?: Maybe<ImportFileHistory>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
@@ -727,6 +1124,42 @@ export type DeleteGenrePayload = {
   deletedGenreId?: Maybe<Scalars["ID"]>;
   /** The `Genre` that was deleted by this mutation. */
   genre?: Maybe<Genre>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+/** All input for the `deleteImportFileHistoryById` mutation. */
+export type DeleteImportFileHistoryByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  id: Scalars["UUID"];
+};
+
+/** All input for the `deleteImportFileHistory` mutation. */
+export type DeleteImportFileHistoryInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The globally unique `ID` which will identify a single `ImportFileHistory` to be deleted. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our delete `ImportFileHistory` mutation. */
+export type DeleteImportFileHistoryPayload = {
+  __typename?: "DeleteImportFileHistoryPayload";
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  deletedImportFileHistoryId?: Maybe<Scalars["ID"]>;
+  /** The `ImportFileHistory` that was deleted by this mutation. */
+  importFileHistory?: Maybe<ImportFileHistory>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
@@ -897,6 +1330,91 @@ export enum GenresOrderBy {
   ValidFlagDesc = "VALID_FLAG_DESC",
 }
 
+/** Methods to use when ordering `ImportFileHistory`. */
+export enum ImportFileHistoriesOrderBy {
+  FileNameAsc = "FILE_NAME_ASC",
+  FileNameDesc = "FILE_NAME_DESC",
+  FileTypeAsc = "FILE_TYPE_ASC",
+  FileTypeDesc = "FILE_TYPE_DESC",
+  IdAsc = "ID_ASC",
+  IdDesc = "ID_DESC",
+  ImportDatetimeAsc = "IMPORT_DATETIME_ASC",
+  ImportDatetimeDesc = "IMPORT_DATETIME_DESC",
+  ImportUserIdAsc = "IMPORT_USER_ID_ASC",
+  ImportUserIdDesc = "IMPORT_USER_ID_DESC",
+  Natural = "NATURAL",
+  PrimaryKeyAsc = "PRIMARY_KEY_ASC",
+  PrimaryKeyDesc = "PRIMARY_KEY_DESC",
+}
+
+export type ImportFileHistory = Node & {
+  __typename?: "ImportFileHistory";
+  /** Reads a single `CreditCardSummary` that is related to this `ImportFileHistory`. */
+  creditCardSummaryById?: Maybe<CreditCardSummary>;
+  fileName: Scalars["String"];
+  fileType: Scalars["String"];
+  id: Scalars["UUID"];
+  importDatetime: Scalars["Datetime"];
+  importUserId: Scalars["String"];
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars["ID"];
+};
+
+/**
+ * A condition to be used against `ImportFileHistory` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type ImportFileHistoryCondition = {
+  /** Checks for equality with the object’s `fileName` field. */
+  fileName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `fileType` field. */
+  fileType?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars["UUID"]>;
+  /** Checks for equality with the object’s `importDatetime` field. */
+  importDatetime?: InputMaybe<Scalars["Datetime"]>;
+  /** Checks for equality with the object’s `importUserId` field. */
+  importUserId?: InputMaybe<Scalars["String"]>;
+};
+
+/** A filter to be used against `ImportFileHistory` object types. All fields are combined with a logical ‘and.’ */
+export type ImportFileHistoryFilter = {
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<ImportFileHistoryFilter>>;
+  /** Filter by the object’s `fileName` field. */
+  fileName?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `fileType` field. */
+  fileType?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `id` field. */
+  id?: InputMaybe<UuidFilter>;
+  /** Filter by the object’s `importDatetime` field. */
+  importDatetime?: InputMaybe<DatetimeFilter>;
+  /** Filter by the object’s `importUserId` field. */
+  importUserId?: InputMaybe<StringFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<ImportFileHistoryFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<ImportFileHistoryFilter>>;
+};
+
+/** An input for mutations affecting `ImportFileHistory` */
+export type ImportFileHistoryInput = {
+  fileName: Scalars["String"];
+  fileType: Scalars["String"];
+  id: Scalars["UUID"];
+  importDatetime: Scalars["Datetime"];
+  importUserId: Scalars["String"];
+};
+
+/** Represents an update to a `ImportFileHistory`. Fields that are set will be updated. */
+export type ImportFileHistoryPatch = {
+  fileName?: InputMaybe<Scalars["String"]>;
+  fileType?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["UUID"]>;
+  importDatetime?: InputMaybe<Scalars["Datetime"]>;
+  importUserId?: InputMaybe<Scalars["String"]>;
+};
+
 /** A filter to be used against Int fields. All fields are combined with a logical ‘and.’ */
 export type IntFilter = {
   /** Not equal to the specified value, treating null like an ordinary value. */
@@ -961,10 +1479,16 @@ export type Mutation = {
   createAccount?: Maybe<CreateAccountPayload>;
   /** Creates a single `Category`. */
   createCategory?: Maybe<CreateCategoryPayload>;
+  /** Creates a single `CreditCardDetail`. */
+  createCreditCardDetail?: Maybe<CreateCreditCardDetailPayload>;
+  /** Creates a single `CreditCardSummary`. */
+  createCreditCardSummary?: Maybe<CreateCreditCardSummaryPayload>;
   /** Creates a single `DailyDetail`. */
   createDailyDetail?: Maybe<CreateDailyDetailPayload>;
   /** Creates a single `Genre`. */
   createGenre?: Maybe<CreateGenrePayload>;
+  /** Creates a single `ImportFileHistory`. */
+  createImportFileHistory?: Maybe<CreateImportFileHistoryPayload>;
   /** Creates a single `User`. */
   createUser?: Maybe<CreateUserPayload>;
   /** Deletes a single `Account` using its globally unique id. */
@@ -975,6 +1499,14 @@ export type Mutation = {
   deleteCategory?: Maybe<DeleteCategoryPayload>;
   /** Deletes a single `Category` using a unique key. */
   deleteCategoryByCategoryId?: Maybe<DeleteCategoryPayload>;
+  /** Deletes a single `CreditCardDetail` using its globally unique id. */
+  deleteCreditCardDetail?: Maybe<DeleteCreditCardDetailPayload>;
+  /** Deletes a single `CreditCardDetail` using a unique key. */
+  deleteCreditCardDetailBySerialNo?: Maybe<DeleteCreditCardDetailPayload>;
+  /** Deletes a single `CreditCardSummary` using its globally unique id. */
+  deleteCreditCardSummary?: Maybe<DeleteCreditCardSummaryPayload>;
+  /** Deletes a single `CreditCardSummary` using a unique key. */
+  deleteCreditCardSummaryById?: Maybe<DeleteCreditCardSummaryPayload>;
   /** Deletes a single `DailyDetail` using its globally unique id. */
   deleteDailyDetail?: Maybe<DeleteDailyDetailPayload>;
   /** Deletes a single `DailyDetail` using a unique key. */
@@ -983,6 +1515,10 @@ export type Mutation = {
   deleteGenre?: Maybe<DeleteGenrePayload>;
   /** Deletes a single `Genre` using a unique key. */
   deleteGenreByGenreId?: Maybe<DeleteGenrePayload>;
+  /** Deletes a single `ImportFileHistory` using its globally unique id. */
+  deleteImportFileHistory?: Maybe<DeleteImportFileHistoryPayload>;
+  /** Deletes a single `ImportFileHistory` using a unique key. */
+  deleteImportFileHistoryById?: Maybe<DeleteImportFileHistoryPayload>;
   /** Deletes a single `User` using its globally unique id. */
   deleteUser?: Maybe<DeleteUserPayload>;
   /** Deletes a single `User` using a unique key. */
@@ -995,6 +1531,14 @@ export type Mutation = {
   updateCategory?: Maybe<UpdateCategoryPayload>;
   /** Updates a single `Category` using a unique key and a patch. */
   updateCategoryByCategoryId?: Maybe<UpdateCategoryPayload>;
+  /** Updates a single `CreditCardDetail` using its globally unique id and a patch. */
+  updateCreditCardDetail?: Maybe<UpdateCreditCardDetailPayload>;
+  /** Updates a single `CreditCardDetail` using a unique key and a patch. */
+  updateCreditCardDetailBySerialNo?: Maybe<UpdateCreditCardDetailPayload>;
+  /** Updates a single `CreditCardSummary` using its globally unique id and a patch. */
+  updateCreditCardSummary?: Maybe<UpdateCreditCardSummaryPayload>;
+  /** Updates a single `CreditCardSummary` using a unique key and a patch. */
+  updateCreditCardSummaryById?: Maybe<UpdateCreditCardSummaryPayload>;
   /** Updates a single `DailyDetail` using its globally unique id and a patch. */
   updateDailyDetail?: Maybe<UpdateDailyDetailPayload>;
   /** Updates a single `DailyDetail` using a unique key and a patch. */
@@ -1003,6 +1547,10 @@ export type Mutation = {
   updateGenre?: Maybe<UpdateGenrePayload>;
   /** Updates a single `Genre` using a unique key and a patch. */
   updateGenreByGenreId?: Maybe<UpdateGenrePayload>;
+  /** Updates a single `ImportFileHistory` using its globally unique id and a patch. */
+  updateImportFileHistory?: Maybe<UpdateImportFileHistoryPayload>;
+  /** Updates a single `ImportFileHistory` using a unique key and a patch. */
+  updateImportFileHistoryById?: Maybe<UpdateImportFileHistoryPayload>;
   /** Updates a single `User` using its globally unique id and a patch. */
   updateUser?: Maybe<UpdateUserPayload>;
   /** Updates a single `User` using a unique key and a patch. */
@@ -1020,6 +1568,16 @@ export type MutationCreateCategoryArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateCreditCardDetailArgs = {
+  input: CreateCreditCardDetailInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateCreditCardSummaryArgs = {
+  input: CreateCreditCardSummaryInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateDailyDetailArgs = {
   input: CreateDailyDetailInput;
 };
@@ -1027,6 +1585,11 @@ export type MutationCreateDailyDetailArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateGenreArgs = {
   input: CreateGenreInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateImportFileHistoryArgs = {
+  input: CreateImportFileHistoryInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1055,6 +1618,26 @@ export type MutationDeleteCategoryByCategoryIdArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteCreditCardDetailArgs = {
+  input: DeleteCreditCardDetailInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteCreditCardDetailBySerialNoArgs = {
+  input: DeleteCreditCardDetailBySerialNoInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteCreditCardSummaryArgs = {
+  input: DeleteCreditCardSummaryInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteCreditCardSummaryByIdArgs = {
+  input: DeleteCreditCardSummaryByIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteDailyDetailArgs = {
   input: DeleteDailyDetailInput;
 };
@@ -1072,6 +1655,16 @@ export type MutationDeleteGenreArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteGenreByGenreIdArgs = {
   input: DeleteGenreByGenreIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteImportFileHistoryArgs = {
+  input: DeleteImportFileHistoryInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteImportFileHistoryByIdArgs = {
+  input: DeleteImportFileHistoryByIdInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1105,6 +1698,26 @@ export type MutationUpdateCategoryByCategoryIdArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateCreditCardDetailArgs = {
+  input: UpdateCreditCardDetailInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateCreditCardDetailBySerialNoArgs = {
+  input: UpdateCreditCardDetailBySerialNoInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateCreditCardSummaryArgs = {
+  input: UpdateCreditCardSummaryInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateCreditCardSummaryByIdArgs = {
+  input: UpdateCreditCardSummaryByIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateDailyDetailArgs = {
   input: UpdateDailyDetailInput;
 };
@@ -1122,6 +1735,16 @@ export type MutationUpdateGenreArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateGenreByGenreIdArgs = {
   input: UpdateGenreByGenreIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateImportFileHistoryArgs = {
+  input: UpdateImportFileHistoryInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateImportFileHistoryByIdArgs = {
+  input: UpdateImportFileHistoryByIdInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1152,12 +1775,18 @@ export type Query = Node & {
   allAccountsList?: Maybe<Array<Account>>;
   /** Reads a set of `Category`. */
   allCategoriesList?: Maybe<Array<Category>>;
+  /** Reads a set of `CreditCardDetail`. */
+  allCreditCardDetailsList?: Maybe<Array<CreditCardDetail>>;
+  /** Reads a set of `CreditCardSummary`. */
+  allCreditCardSummariesList?: Maybe<Array<CreditCardSummary>>;
   /** Reads a set of `DailyDetail`. */
   allDailyDetailsList?: Maybe<Array<DailyDetail>>;
   /** Reads a set of `DailyTotalView`. */
   allDailyTotalViewsList?: Maybe<Array<DailyTotalView>>;
   /** Reads a set of `Genre`. */
   allGenresList?: Maybe<Array<Genre>>;
+  /** Reads a set of `ImportFileHistory`. */
+  allImportFileHistoriesList?: Maybe<Array<ImportFileHistory>>;
   /** Reads a set of `TotalByAccountView`. */
   allTotalByAccountViewsList?: Maybe<Array<TotalByAccountView>>;
   /** Reads a set of `TotalByCategoryView`. */
@@ -1171,6 +1800,12 @@ export type Query = Node & {
   categoryByCategoryId?: Maybe<Category>;
   /** Reads and enables pagination through a set of `TotalByCategoryView`. */
   categoryTotalByMonthList?: Maybe<Array<Maybe<TotalByCategoryView>>>;
+  /** Reads a single `CreditCardDetail` using its globally unique `ID`. */
+  creditCardDetail?: Maybe<CreditCardDetail>;
+  creditCardDetailBySerialNo?: Maybe<CreditCardDetail>;
+  /** Reads a single `CreditCardSummary` using its globally unique `ID`. */
+  creditCardSummary?: Maybe<CreditCardSummary>;
+  creditCardSummaryById?: Maybe<CreditCardSummary>;
   /** Reads a single `DailyDetail` using its globally unique `ID`. */
   dailyDetail?: Maybe<DailyDetail>;
   /** Reads and enables pagination through a set of `DailyDetail`. */
@@ -1183,6 +1818,9 @@ export type Query = Node & {
   genreByGenreId?: Maybe<Genre>;
   /** Reads and enables pagination through a set of `TotalByGenreView`. */
   genreTotalByMonthList?: Maybe<Array<Maybe<TotalByGenreView>>>;
+  /** Reads a single `ImportFileHistory` using its globally unique `ID`. */
+  importFileHistory?: Maybe<ImportFileHistory>;
+  importFileHistoryById?: Maybe<ImportFileHistory>;
   /** Fetches an object given its globally unique `ID`. */
   node?: Maybe<Node>;
   /** The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. */
@@ -1235,6 +1873,24 @@ export type QueryAllCategoriesListArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAllCreditCardDetailsListArgs = {
+  condition?: InputMaybe<CreditCardDetailCondition>;
+  filter?: InputMaybe<CreditCardDetailFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailsOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllCreditCardSummariesListArgs = {
+  condition?: InputMaybe<CreditCardSummaryCondition>;
+  filter?: InputMaybe<CreditCardSummaryFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardSummariesOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllDailyDetailsListArgs = {
   condition?: InputMaybe<DailyDetailCondition>;
   filter?: InputMaybe<DailyDetailFilter>;
@@ -1259,6 +1915,15 @@ export type QueryAllGenresListArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GenresOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllImportFileHistoriesListArgs = {
+  condition?: InputMaybe<ImportFileHistoryCondition>;
+  filter?: InputMaybe<ImportFileHistoryFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<ImportFileHistoriesOrderBy>>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1317,6 +1982,26 @@ export type QueryCategoryTotalByMonthListArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QueryCreditCardDetailArgs = {
+  nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryCreditCardDetailBySerialNoArgs = {
+  serialNo: Scalars["Int"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryCreditCardSummaryArgs = {
+  nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryCreditCardSummaryByIdArgs = {
+  id: Scalars["UUID"];
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryDailyDetailArgs = {
   nodeId: Scalars["ID"];
 };
@@ -1361,6 +2046,16 @@ export type QueryGenreTotalByMonthListArgs = {
   fromDate?: InputMaybe<Scalars["Date"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   toDate?: InputMaybe<Scalars["Date"]>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryImportFileHistoryArgs = {
+  nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryImportFileHistoryByIdArgs = {
+  id: Scalars["UUID"];
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -1660,6 +2355,32 @@ export enum TotalByGenreViewsOrderBy {
   TotalDesc = "TOTAL_DESC",
 }
 
+/** A filter to be used against UUID fields. All fields are combined with a logical ‘and.’ */
+export type UuidFilter = {
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: InputMaybe<Scalars["UUID"]>;
+  /** Equal to the specified value. */
+  equalTo?: InputMaybe<Scalars["UUID"]>;
+  /** Greater than the specified value. */
+  greaterThan?: InputMaybe<Scalars["UUID"]>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: InputMaybe<Scalars["UUID"]>;
+  /** Included in the specified list. */
+  in?: InputMaybe<Array<Scalars["UUID"]>>;
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: InputMaybe<Scalars["Boolean"]>;
+  /** Less than the specified value. */
+  lessThan?: InputMaybe<Scalars["UUID"]>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: InputMaybe<Scalars["UUID"]>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: InputMaybe<Scalars["UUID"]>;
+  /** Not equal to the specified value. */
+  notEqualTo?: InputMaybe<Scalars["UUID"]>;
+  /** Not included in the specified list. */
+  notIn?: InputMaybe<Array<Scalars["UUID"]>>;
+};
+
 /** All input for the `updateAccountByAccountId` mutation. */
 export type UpdateAccountByAccountIdInput = {
   accountId: Scalars["String"];
@@ -1738,6 +2459,90 @@ export type UpdateCategoryPayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** Reads a single `Genre` that is related to this `Category`. */
   genreByGenreId?: Maybe<Genre>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+/** All input for the `updateCreditCardDetailBySerialNo` mutation. */
+export type UpdateCreditCardDetailBySerialNoInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** An object where the defined keys will be set on the `CreditCardDetail` being updated. */
+  creditCardDetailPatch: CreditCardDetailPatch;
+  serialNo: Scalars["Int"];
+};
+
+/** All input for the `updateCreditCardDetail` mutation. */
+export type UpdateCreditCardDetailInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** An object where the defined keys will be set on the `CreditCardDetail` being updated. */
+  creditCardDetailPatch: CreditCardDetailPatch;
+  /** The globally unique `ID` which will identify a single `CreditCardDetail` to be updated. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our update `CreditCardDetail` mutation. */
+export type UpdateCreditCardDetailPayload = {
+  __typename?: "UpdateCreditCardDetailPayload";
+  /** Reads a single `Category` that is related to this `CreditCardDetail`. */
+  categoryByCategoryId?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `CreditCardDetail` that was updated by this mutation. */
+  creditCardDetail?: Maybe<CreditCardDetail>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+/** All input for the `updateCreditCardSummaryById` mutation. */
+export type UpdateCreditCardSummaryByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** An object where the defined keys will be set on the `CreditCardSummary` being updated. */
+  creditCardSummaryPatch: CreditCardSummaryPatch;
+  id: Scalars["UUID"];
+};
+
+/** All input for the `updateCreditCardSummary` mutation. */
+export type UpdateCreditCardSummaryInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** An object where the defined keys will be set on the `CreditCardSummary` being updated. */
+  creditCardSummaryPatch: CreditCardSummaryPatch;
+  /** The globally unique `ID` which will identify a single `CreditCardSummary` to be updated. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our update `CreditCardSummary` mutation. */
+export type UpdateCreditCardSummaryPayload = {
+  __typename?: "UpdateCreditCardSummaryPayload";
+  /** Reads a single `Account` that is related to this `CreditCardSummary`. */
+  accountByAccountId?: Maybe<Account>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `CreditCardSummary` that was updated by this mutation. */
+  creditCardSummary?: Maybe<CreditCardSummary>;
+  /** Reads a single `ImportFileHistory` that is related to this `CreditCardSummary`. */
+  importFileHistoryById?: Maybe<ImportFileHistory>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
@@ -1822,6 +2627,45 @@ export type UpdateGenrePayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The `Genre` that was updated by this mutation. */
   genre?: Maybe<Genre>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
+/** All input for the `updateImportFileHistoryById` mutation. */
+export type UpdateImportFileHistoryByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  id: Scalars["UUID"];
+  /** An object where the defined keys will be set on the `ImportFileHistory` being updated. */
+  importFileHistoryPatch: ImportFileHistoryPatch;
+};
+
+/** All input for the `updateImportFileHistory` mutation. */
+export type UpdateImportFileHistoryInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** An object where the defined keys will be set on the `ImportFileHistory` being updated. */
+  importFileHistoryPatch: ImportFileHistoryPatch;
+  /** The globally unique `ID` which will identify a single `ImportFileHistory` to be updated. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our update `ImportFileHistory` mutation. */
+export type UpdateImportFileHistoryPayload = {
+  __typename?: "UpdateImportFileHistoryPayload";
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `ImportFileHistory` that was updated by this mutation. */
+  importFileHistory?: Maybe<ImportFileHistory>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
@@ -1947,6 +2791,42 @@ export enum UsersOrderBy {
   UserNameDesc = "USER_NAME_DESC",
 }
 
+export type CreateCreditCardDetailMutationVariables = Exact<{
+  date: Scalars["Date"];
+  categoryId: Scalars["String"];
+  amount: Scalars["BigFloat"];
+  memo?: InputMaybe<Scalars["String"]>;
+  summaryId: Scalars["UUID"];
+}>;
+
+export type CreateCreditCardDetailMutation = {
+  __typename?: "Mutation";
+  createCreditCardDetail?: {
+    __typename?: "CreateCreditCardDetailPayload";
+    creditCardDetail?: {
+      __typename?: "CreditCardDetail";
+      serialNo: number;
+    } | null;
+  } | null;
+};
+
+export type CreateCreditCardSummaryMutationVariables = Exact<{
+  id: Scalars["UUID"];
+  creditCard: Scalars["String"];
+  accountId: Scalars["String"];
+  totalAmount: Scalars["BigFloat"];
+  count: Scalars["Int"];
+  withdrawalDate: Scalars["Date"];
+}>;
+
+export type CreateCreditCardSummaryMutation = {
+  __typename?: "Mutation";
+  createCreditCardSummary?: {
+    __typename?: "CreateCreditCardSummaryPayload";
+    creditCardSummary?: { __typename?: "CreditCardSummary"; id: any } | null;
+  } | null;
+};
+
 export type CreateDailyDetailMutationVariables = Exact<{
   date: Scalars["Date"];
   categoryId: Scalars["String"];
@@ -1969,6 +2849,22 @@ export type CreateDailyDetailMutation = {
       amount: any;
       memo?: string | null;
     } | null;
+  } | null;
+};
+
+export type CreateImportFileHistoryMutationVariables = Exact<{
+  id: Scalars["UUID"];
+  fileType: Scalars["String"];
+  fileName: Scalars["String"];
+  importUserId: Scalars["String"];
+  importDatetime: Scalars["Datetime"];
+}>;
+
+export type CreateImportFileHistoryMutation = {
+  __typename?: "Mutation";
+  createImportFileHistory?: {
+    __typename?: "CreateImportFileHistoryPayload";
+    importFileHistory?: { __typename?: "ImportFileHistory"; id: any } | null;
   } | null;
 };
 
@@ -2207,9 +3103,81 @@ export type GetValidGenreListByIocomeTypeQuery = {
     genreType: GenreType;
     iocomeType: IocomeType;
     displayOrder: number;
+    categoriesByGenreIdList: Array<{
+      __typename?: "Category";
+      categoryId: string;
+      categoryName: string;
+      displayOrder: number;
+    }>;
   }> | null;
 };
 
+export const CreateCreditCardDetailDocument = gql`
+  mutation CreateCreditCardDetail(
+    $date: Date!
+    $categoryId: String!
+    $amount: BigFloat!
+    $memo: String
+    $summaryId: UUID!
+  ) {
+    createCreditCardDetail(
+      input: {
+        creditCardDetail: {
+          date: $date
+          categoryId: $categoryId
+          amount: $amount
+          summaryId: $summaryId
+          memo: $memo
+        }
+      }
+    ) {
+      creditCardDetail {
+        serialNo
+      }
+    }
+  }
+`;
+
+export function useCreateCreditCardDetailMutation() {
+  return Urql.useMutation<
+    CreateCreditCardDetailMutation,
+    CreateCreditCardDetailMutationVariables
+  >(CreateCreditCardDetailDocument);
+}
+export const CreateCreditCardSummaryDocument = gql`
+  mutation CreateCreditCardSummary(
+    $id: UUID!
+    $creditCard: String!
+    $accountId: String!
+    $totalAmount: BigFloat!
+    $count: Int!
+    $withdrawalDate: Date!
+  ) {
+    createCreditCardSummary(
+      input: {
+        creditCardSummary: {
+          id: $id
+          creditCard: $creditCard
+          accountId: $accountId
+          totalAmount: $totalAmount
+          count: $count
+          withdrawalDate: $withdrawalDate
+        }
+      }
+    ) {
+      creditCardSummary {
+        id
+      }
+    }
+  }
+`;
+
+export function useCreateCreditCardSummaryMutation() {
+  return Urql.useMutation<
+    CreateCreditCardSummaryMutation,
+    CreateCreditCardSummaryMutationVariables
+  >(CreateCreditCardSummaryDocument);
+}
 export const CreateDailyDetailDocument = gql`
   mutation CreateDailyDetail(
     $date: Date!
@@ -2248,6 +3216,38 @@ export function useCreateDailyDetailMutation() {
     CreateDailyDetailMutation,
     CreateDailyDetailMutationVariables
   >(CreateDailyDetailDocument);
+}
+export const CreateImportFileHistoryDocument = gql`
+  mutation CreateImportFileHistory(
+    $id: UUID!
+    $fileType: String!
+    $fileName: String!
+    $importUserId: String!
+    $importDatetime: Datetime!
+  ) {
+    createImportFileHistory(
+      input: {
+        importFileHistory: {
+          id: $id
+          fileName: $fileName
+          fileType: $fileType
+          importDatetime: $importDatetime
+          importUserId: $importUserId
+        }
+      }
+    ) {
+      importFileHistory {
+        id
+      }
+    }
+  }
+`;
+
+export function useCreateImportFileHistoryMutation() {
+  return Urql.useMutation<
+    CreateImportFileHistoryMutation,
+    CreateImportFileHistoryMutationVariables
+  >(CreateImportFileHistoryDocument);
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList($fromDate: Date!, $toDate: Date!) {
@@ -2542,6 +3542,14 @@ export const GetValidGenreListByIocomeTypeDocument = gql`
       genreType
       iocomeType
       displayOrder
+      categoriesByGenreIdList(
+        orderBy: DISPLAY_ORDER_ASC
+        condition: { validFlag: true }
+      ) {
+        categoryId
+        categoryName
+        displayOrder
+      }
     }
   }
 `;

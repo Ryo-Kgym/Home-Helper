@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { HouseHoldPresenter } from "./HouseHoldPresenter";
-import { saveUserId } from "@hooks/loadUser";
+import { saveUserId } from "@hooks/useLoadUser";
 import { useGetAllUsersQuery } from "@graphql/postgraphile/generated/graphql";
 
 export const HouseHoldContainer: FC = () => {

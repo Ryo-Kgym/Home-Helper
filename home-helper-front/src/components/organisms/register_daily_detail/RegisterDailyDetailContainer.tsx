@@ -15,7 +15,7 @@ export const RegisterDailyDetailContainer: FC<
   const [categoryId, setCategoryId] = useState<string | null>("");
   const [genreId, setGenreId] = useState<string | null>("");
   const [accountId, setAccountId] = useState<string | null>("");
-  const [amount, setAmount] = useState<Number | null>(null);
+  const [amount, setAmount] = useState<number | "">("");
   const [memo, setMemo] = useState("");
 
   const allClear = () => {
@@ -23,7 +23,7 @@ export const RegisterDailyDetailContainer: FC<
     setCategoryId(null);
     setGenreId(null);
     setAccountId(null);
-    setAmount(0);
+    setAmount("");
     setMemo("");
   };
 
@@ -55,7 +55,7 @@ export const RegisterDailyDetailContainer: FC<
       return;
     }
     register();
-    setAmount(null);
+    setAmount("");
     setMemo("");
     successPopup("登録しました");
   };

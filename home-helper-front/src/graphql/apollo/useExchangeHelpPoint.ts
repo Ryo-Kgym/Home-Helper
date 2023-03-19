@@ -1,8 +1,8 @@
 import { mutate } from "@graphql/apollo/apollo-client";
 import { gql } from "@apollo/client";
-import { ExchangePointForm } from "@hooks/help_point/exchangeHelpPoint";
+import { ExchangePointForm } from "@hooks/help_point/useExchangeHelpPoint";
 
-export async function exchangeHelpPoint(
+export async function useExchangeHelpPoint(
   details: ExchangePointForm[],
   userId: string
 ): Promise<string[]> {

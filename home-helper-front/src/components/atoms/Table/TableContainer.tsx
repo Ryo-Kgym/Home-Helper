@@ -3,7 +3,6 @@ import { TablePresenter } from "@components/atoms/Table/TablePresenter";
 import { ColumnProps, TableProps } from "@components/atoms/Table/index";
 import { createStyles } from "@mantine/core";
 import { MantineSize } from "@mantine/styles";
-import theme from "tailwindcss/defaultTheme";
 
 type Props = {
   header: string[];
@@ -29,10 +28,13 @@ export const TableContainer: FC<Props> = ({
     </tr>
   );
 
-  const generateRow = (tbodyProps: TableProps, i: number) => {
+  const generateRow = (
+    { keyPrefix, onClick = () => {}, columns }: TableProps,
+    i: number
+  ) => {
     return (
-      <tr key={tbodyProps.keyPrefix + i}>
-        {tbodyProps.columns.map(generateColumn)}
+      <tr key={keyPrefix + i} onClick={onClick}>
+        {columns.map(generateColumn)}
       </tr>
     );
   };

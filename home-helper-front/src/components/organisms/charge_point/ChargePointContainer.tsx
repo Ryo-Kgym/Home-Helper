@@ -6,12 +6,12 @@ import { FC, useEffect, useState } from "react";
 import { ChargePointPresenter } from "./ChargePointPresenter";
 import { HelpItem } from "@domain/model/home_helper/HelpItem";
 import { toJapanMd } from "@function/DateConverter";
-import { fetchUser } from "@hooks/user/fetchUser";
+import { useFetchUser } from "@hooks/user/useFetchUser";
 import { fetchHelpItems } from "@hooks/help_item/fetchHelpItems";
 import {
   ChargePointForm,
-  registerHelpPoint,
-} from "@hooks/help_point/registerHelpPoint";
+  useRegisterHelpPoint,
+} from "@hooks/help_point/useRegisterHelpPoint";
 import { TableProps } from "@components/atoms/Table";
 import { Counter } from "@components/atoms/Counter";
 
@@ -25,7 +25,7 @@ export const ChargePointContainer: FC = () => {
   );
 
   useEffect(() => {
-    fetchUser().then((user) => {
+    useFetchUser().then((user) => {
       setCurrentPoint(user.currentPoint);
       setFromDate(toJapanMd(user.lastHelp));
     });
@@ -39,7 +39,7 @@ export const ChargePointContainer: FC = () => {
   const handleRegisterHelps = () => {
     if (chargePointForms.length === 0) return;
 
-    registerHelpPoint(chargePointForms).then((r) => {});
+    useRegisterHelpPoint(chargePointForms).then((r) => {});
   };
 
   const handleRegisterAfterProcess = () => {

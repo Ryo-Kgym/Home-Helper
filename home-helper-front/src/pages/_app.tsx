@@ -5,16 +5,19 @@ import { MantineProvider } from "@mantine/core";
 import { client } from "@graphql/postgraphile/client";
 import { Provider } from "urql";
 import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "@provider/Authentication/AuthProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider value={client}>
-      <MantineProvider withNormalizeCSS withGlobalStyles>
-        <NotificationsProvider>
-          <Component {...pageProps} />
-          <Toaster />
-        </NotificationsProvider>
-      </MantineProvider>
-    </Provider>
+    <AuthProvider>
+      <Provider value={client}>
+        <MantineProvider withNormalizeCSS withGlobalStyles>
+          <NotificationsProvider>
+            <Component {...pageProps} />
+            <Toaster />
+          </NotificationsProvider>
+        </MantineProvider>
+      </Provider>
+    </AuthProvider>
   );
 }

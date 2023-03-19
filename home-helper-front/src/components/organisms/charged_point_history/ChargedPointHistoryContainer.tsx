@@ -6,13 +6,13 @@ import { FC, useEffect, useState } from "react";
 import { PointHistory } from "@domain/model/home_helper/PointHistory";
 import { TableProps } from "@components/atoms/Table";
 import { ChargedPointHistoryPresenter } from "./ChargedPointHistoryPresenter";
-import { fetchHelpPointEarnedAchievements } from "@hooks/help_point/fetchHelpPointEarnedAchievements";
+import { useFetchHelpPointEarnedAchievements } from "@hooks/help_point/useFetchHelpPointEarnedAchievements";
 
 export const ChargedPointHistoryContainer: FC = () => {
   const [pointHistories, setPointHistories] = useState<PointHistory[]>([]);
 
   useEffect(() => {
-    fetchHelpPointEarnedAchievements().then((list) => {
+    useFetchHelpPointEarnedAchievements().then((list) => {
       let pointHistories = list.flatMap((earnedAchievement) => {
         let date = earnedAchievement.earnedDate;
         return earnedAchievement.helpPointEarnedDetailByEarnedAchievementId.map(

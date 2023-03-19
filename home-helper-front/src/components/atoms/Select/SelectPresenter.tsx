@@ -27,7 +27,7 @@ export const SelectPresenter: FC<SelectPresenterProps> = ({
   const filter = (value: string, item: SelectItem): boolean => {
     return (
       item?.label?.toLowerCase().includes(value.toLowerCase().trim()) ||
-      item.description.toLowerCase().includes(value.toLowerCase().trim())
+      item.description?.toLowerCase().includes(value.toLowerCase().trim())
     );
   };
 

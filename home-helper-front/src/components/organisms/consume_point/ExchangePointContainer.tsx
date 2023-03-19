@@ -5,12 +5,12 @@
 import { useEffect, useState } from "react";
 import { ExchangePointPresenter } from "./ExchangePointPresenter";
 import { ExchangeItem } from "@domain/model/home_helper/ExchangeItem";
-import { fetchUser } from "@hooks/user/fetchUser";
+import { useFetchUser } from "@hooks/user/useFetchUser";
 import { fetchExchangeItems } from "@hooks/exchange_item/fetchExchangeItems";
 import {
-  exchangeHelpPoint,
+  useExchangeHelpPoint,
   ExchangePointForm,
-} from "@hooks/help_point/exchangeHelpPoint";
+} from "@hooks/help_point/useExchangeHelpPoint";
 import { TableProps } from "@components/atoms/Table";
 import { Counter } from "@components/atoms/Counter";
 
@@ -24,7 +24,7 @@ export const ExchangePointContainer = () => {
 
   useEffect(() => {
     fetchExchangeItems().then(setExchangeItems);
-    fetchUser().then((user) => setCurrentPoint(user.currentPoint));
+    useFetchUser().then((user) => setCurrentPoint(user.currentPoint));
   }, []);
 
   const handleCalcTotalUsePoint = (
@@ -40,7 +40,7 @@ export const ExchangePointContainer = () => {
       alert("ポイントが不足しているよ！！");
     }
 
-    exchangeHelpPoint(exchangePointForms).then((r) => {});
+    useExchangeHelpPoint(exchangePointForms).then((r) => {});
   };
 
   const handleRegisterAfterProcess = () => {

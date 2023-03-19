@@ -20,8 +20,8 @@ type RegisterDailyDetailPresenterProps = {
   changeGenreIdHandler: (value: string | null) => void;
   accountId: string | null;
   changeAccountIdHandler: (value: string | null) => void;
-  amount: Number | null;
-  changeAmountHandler: (value: Number) => void;
+  amount: number | "";
+  changeAmountHandler: (value: number | "") => void;
   memo: string;
   changeMemoHandler: (value: string) => void;
   clearClickHandler: () => void;
@@ -52,7 +52,7 @@ export const RegisterDailyDetailPresenter: FC<
       <DatePicker
         value={date}
         onChange={setDate}
-        withAsterisk
+        required
         defaultValue={date}
       />
     </Field>

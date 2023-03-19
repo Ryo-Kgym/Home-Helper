@@ -7,11 +7,13 @@ type GenreSelectContainerProps = {
   genreId: string | null;
   setGenreId: (value: string | null) => void;
   iocomeType: IocomeType;
+  setGenreName?: (value: string | null) => void;
 };
 export const GenreSelectContainer: FC<GenreSelectContainerProps> = ({
   genreId,
   setGenreId,
   iocomeType,
+  setGenreName = () => {},
 }) => {
   const [{ data }] = useGetValidGenreListByIocomeTypeQuery({
     variables: { iocomeType: iocomeType },
@@ -22,14 +24,20 @@ export const GenreSelectContainer: FC<GenreSelectContainerProps> = ({
       return {
         label: genre.genreName,
         value: genre.genreId,
-        description: genre.genreName,
+        description: genre.categoriesByGenreIdList
+          .map((c) => c.categoryName)
+          .join(", "),
       };
     }) ?? [];
 
   return (
     <GenreSelectPresenter
       value={genreId}
-      onChange={setGenreId}
+      onChange={(value) => {
+        const categoryName = genres.find((g) => g.value === value)?.label ?? "";
+        setGenreId(value);
+        setGenreName(categoryName);
+      }}
       genres={genres}
     />
   );

@@ -7,12 +7,14 @@ type SegmentPresenterProps = {
   onChange: (value: string) => void;
   data: SegmentData[];
   size?: MantineSize;
+  disabled?: boolean;
 };
 export const SegmentPresenter: FC<SegmentPresenterProps> = ({
   value,
   onChange,
   data,
   size = "md",
+  disabled = false,
 }) => {
   return (
     <SegmentedControl
@@ -23,6 +25,7 @@ export const SegmentPresenter: FC<SegmentPresenterProps> = ({
       value={value}
       onChange={onChange}
       data={data}
+      disabled={disabled}
     />
   );
 };
