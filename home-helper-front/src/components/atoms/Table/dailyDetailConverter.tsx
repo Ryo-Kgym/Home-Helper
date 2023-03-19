@@ -2,9 +2,14 @@ import { GetDailyDetailByDateQuery } from "@graphql/postgraphile/generated/graph
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { TableProps } from "@components/atoms/Table/index";
 
-export const dailyDetailConverter = (
-  data: GetDailyDetailByDateQuery | undefined
-): TableProps[] => {
+type dailyDetailConverterArgs = {
+  data: GetDailyDetailByDateQuery | undefined;
+  onClickHandler?: (serialNo: number) => void;
+};
+export const dailyDetailConverter = ({
+  data,
+  onClickHandler = () => {},
+}: dailyDetailConverterArgs): TableProps[] => {
   return (
     data?.dailyDetailByDateList?.map((dailyDetail) => {
       return {
@@ -29,6 +34,9 @@ export const dailyDetailConverter = (
           },
           { value: dailyDetail?.memo },
         ],
+        onClick: () => {
+          onClickHandler(dailyDetail?.serialNo!);
+        },
       };
     }) ?? []
   );

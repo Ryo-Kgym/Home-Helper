@@ -28,12 +28,23 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
     defaultToDate ?? new Date()
   );
 
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [serialNo, setSerialNo] = useState<number | undefined>(undefined);
+
   const { data, incomeTotal, outcomeTotal } = useGetDailyDetailByDate(
     fromDate,
     toDate
   );
 
-  const tableProps: TableProps[] = dailyDetail ?? dailyDetailConverter(data);
+  const tableProps: TableProps[] =
+    dailyDetail ??
+    dailyDetailConverter({
+      data,
+      onClickHandler: (serialNo) => {
+        setSerialNo(serialNo);
+        setModalOpen(true);
+      },
+    });
 
   const disabled = dailyDetail?.length != undefined;
 
@@ -47,6 +58,9 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
       incomeTotal={defaultIncomeTotal ?? incomeTotal}
       outcomeTotal={defaultOutcomeTotal ?? outcomeTotal}
       disabled={disabled}
+      modalOpen={modalOpen}
+      onClose={() => setModalOpen(false)}
+      serialNo={serialNo}
     />
   );
 };
