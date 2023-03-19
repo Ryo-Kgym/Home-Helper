@@ -13,10 +13,12 @@ type SetPropertiesPresenterProps = {
   changeDateHandler: (value: Date) => void;
   iocomeType: IocomeType;
   changeIocomeTypeHandler: (value: IocomeType) => void;
-  categoryId: string | null;
-  changeCategoryIdHandler: (value: string | null) => void;
   genreId: string | null;
   changeGenreIdHandler: (value: string | null) => void;
+  setGenreName: (value: string | null) => void;
+  categoryId: string | null;
+  changeCategoryIdHandler: (value: string | null) => void;
+  setCategoryName: (value: string | null) => void;
   amount: number | "";
   changeAmountHandler: (value: number | "") => void;
   memo: string;
@@ -31,10 +33,12 @@ export const SetPropertiesPresenter: FC<SetPropertiesPresenterProps> = ({
   changeDateHandler,
   iocomeType,
   changeIocomeTypeHandler,
-  categoryId,
-  changeCategoryIdHandler,
   genreId,
   changeGenreIdHandler,
+  setGenreName,
+  categoryId,
+  changeCategoryIdHandler,
+  setCategoryName,
   amount,
   changeAmountHandler,
   memo,
@@ -60,6 +64,7 @@ export const SetPropertiesPresenter: FC<SetPropertiesPresenterProps> = ({
         iocomeType={iocomeType}
         genreId={genreId}
         setGenreId={changeGenreIdHandler}
+        setGenreName={setGenreName}
       />
     </Field>
     <Field>
@@ -67,6 +72,7 @@ export const SetPropertiesPresenter: FC<SetPropertiesPresenterProps> = ({
         genreId={genreId}
         categoryId={categoryId}
         setCategoryId={changeCategoryIdHandler}
+        setCategoryName={setCategoryName}
       />
     </Field>
     <Field>

@@ -33,6 +33,9 @@ export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
 
   const settingDisabled = !categoryId || !genreId || !amount;
 
+  const [genreName, setGenreName] = useState<string | null>(null);
+  const [categoryName, setCategoryName] = useState<string | null>(null);
+
   const clearClickHandler = () => {
     setIocomeType(IocomeType.Income);
     setCategoryId(null);
@@ -51,9 +54,9 @@ export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
             note: memo,
             iocomeType: iocomeType,
             genreId: genreId!,
-            genreName: genreId!,
+            genreName: genreName!,
             categoryId: categoryId!,
-            categoryName: categoryId!,
+            categoryName: categoryName!,
           },
         ],
       ].flatMap((ignore) => ignore)
@@ -81,10 +84,12 @@ export const SetPropertiesContainer: FC<SetPropertiesContainerProps> = ({
         setGenreId(value);
         setCategoryId(null);
       }}
+      setGenreName={setGenreName}
       categoryId={categoryId}
       changeCategoryIdHandler={(value) => {
         setCategoryId(value);
       }}
+      setCategoryName={setCategoryName}
       amount={amount}
       changeAmountHandler={setAmount}
       memo={memo}
