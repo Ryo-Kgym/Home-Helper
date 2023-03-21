@@ -2,7 +2,10 @@ import { FC, useState } from "react";
 import { DailyTablePresenter } from "./DailyTablePresenter";
 import { TableProps } from "@components/atoms/Table";
 import { dailyDetailConverter } from "@components/atoms/Table/dailyDetailConverter";
-import { useGetDailyDetailByDate } from "@hooks/household/daily_detail/useGetDailyDetailByDate";
+import {
+  DailyDetail,
+  useGetDailyDetailByDate,
+} from "@hooks/household/daily_detail/useGetDailyDetailByDate";
 
 type DailyTableContainerProps = {
   dailyDetail?: TableProps[];
@@ -12,7 +15,7 @@ type DailyTableContainerProps = {
   defaultOutcomeTotal?: number;
 };
 export const DailyTableContainer: FC<DailyTableContainerProps> = ({
-  dailyDetail,
+  dailyDetail: dailyDetailTableProps,
   defaultFromDate,
   defaultToDate,
   defaultIncomeTotal,
@@ -29,24 +32,22 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
   );
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [serialNo, setSerialNo] = useState<number | undefined>(undefined);
+  const [dailyDetail, setDailyDetail] = useState<DailyDetail | null>(null);
 
-  const { data, incomeTotal, outcomeTotal } = useGetDailyDetailByDate(
-    fromDate,
-    toDate
-  );
+  const { data, incomeTotal, outcomeTotal, getDetail } =
+    useGetDailyDetailByDate(fromDate, toDate);
 
   const tableProps: TableProps[] =
-    dailyDetail ??
+    dailyDetailTableProps ??
     dailyDetailConverter({
       data,
       onClickHandler: (serialNo) => {
-        setSerialNo(serialNo);
+        setDailyDetail(getDetail(serialNo));
         setModalOpen(true);
       },
     });
 
-  const disabled = dailyDetail?.length != undefined;
+  const disabled = dailyDetailTableProps?.length != undefined;
 
   return (
     <DailyTablePresenter
@@ -60,7 +61,7 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
       disabled={disabled}
       modalOpen={modalOpen}
       onClose={() => setModalOpen(false)}
-      serialNo={serialNo}
+      detailForUpdate={dailyDetail}
     />
   );
 };
