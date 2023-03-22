@@ -24,8 +24,9 @@ type UpdateDailyDetailPresenterProps = {
   changeAmountHandler: (value: number | "") => void;
   memo: string;
   changeMemoHandler: (value: string) => void;
-  clearClickHandler: () => void;
-  registerClickHandler: () => void;
+  resetClickHandler: () => void;
+  updateClickHandler: () => void;
+  deleteClickHandler: () => void;
 };
 export const UpdateDailyDetailPresenter: FC<
   UpdateDailyDetailPresenterProps
@@ -44,8 +45,9 @@ export const UpdateDailyDetailPresenter: FC<
   changeAmountHandler,
   memo,
   changeMemoHandler,
-  clearClickHandler,
-  registerClickHandler,
+  resetClickHandler,
+  updateClickHandler,
+  deleteClickHandler,
 }) => (
   <div className={"grid grid-cols-1 w-full"}>
     <Field>
@@ -88,8 +90,9 @@ export const UpdateDailyDetailPresenter: FC<
     <Field>
       <MemoTextArea memo={memo} setMemo={changeMemoHandler} />
     </Field>
-    <Button colorType={"register"} onClick={registerClickHandler} />
-    <Button colorType={"clear"} onClick={clearClickHandler} />
+    <Button colorType={"update"} onClick={updateClickHandler} />
+    <Button colorType={"reset"} onClick={resetClickHandler} />
+    <Button colorType={"delete"} onClick={deleteClickHandler} />
   </div>
 );
 
