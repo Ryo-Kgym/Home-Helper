@@ -23,7 +23,7 @@ export const UpdateDailyDetailContainer: FC<
   const [amount, setAmount] = useState<number | "">(initData.amount);
   const [memo, setMemo] = useState(initData.memo);
 
-  const clearClickHandler = () => {
+  const resetClickHandler = () => {
     setDate(initData.date);
     setIocomeType(initData.iocomeType!);
     setGenreId(initData.genreId);
@@ -56,7 +56,7 @@ export const UpdateDailyDetailContainer: FC<
       changeAmountHandler={setAmount}
       memo={memo ?? ""}
       changeMemoHandler={setMemo}
-      resetClickHandler={clearClickHandler}
+      resetClickHandler={resetClickHandler}
       updateClickHandler={() => {}}
       deleteClickHandler={() => {}}
     />
