@@ -2868,6 +2868,18 @@ export type CreateImportFileHistoryMutation = {
   } | null;
 };
 
+export type DeleteDailyDetailBySerialNoMutationVariables = Exact<{
+  serialNo: Scalars["Int"];
+}>;
+
+export type DeleteDailyDetailBySerialNoMutation = {
+  __typename?: "Mutation";
+  deleteDailyDetailBySerialNo?: {
+    __typename?: "DeleteDailyDetailPayload";
+    clientMutationId?: string | null;
+  } | null;
+};
+
 export type GetAccountBalanceListQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -3265,6 +3277,20 @@ export function useCreateImportFileHistoryMutation() {
     CreateImportFileHistoryMutation,
     CreateImportFileHistoryMutationVariables
   >(CreateImportFileHistoryDocument);
+}
+export const DeleteDailyDetailBySerialNoDocument = gql`
+  mutation DeleteDailyDetailBySerialNo($serialNo: Int!) {
+    deleteDailyDetailBySerialNo(input: { serialNo: $serialNo }) {
+      clientMutationId
+    }
+  }
+`;
+
+export function useDeleteDailyDetailBySerialNoMutation() {
+  return Urql.useMutation<
+    DeleteDailyDetailBySerialNoMutation,
+    DeleteDailyDetailBySerialNoMutationVariables
+  >(DeleteDailyDetailBySerialNoDocument);
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList($fromDate: Date!, $toDate: Date!) {
