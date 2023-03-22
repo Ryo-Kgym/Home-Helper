@@ -1,0 +1,25 @@
+mutation UpdateDailyDetailBySerialNo(
+    $serialNo: Int!
+    $date: Date!
+    $categoryId: String!
+    $accountId: String!
+    $amount: BigFloat!
+    $memo: String
+) {
+    updateDailyDetailBySerialNo(
+        input: {
+            dailyDetailPatch: {
+                date: $date
+                categoryId: $categoryId
+                accountId: $accountId
+                amount: $amount
+                memo: $memo
+            }
+            serialNo: $serialNo
+        }
+    ) {
+        dailyDetail {
+            serialNo
+        }
+    }
+}

@@ -3112,6 +3112,23 @@ export type GetValidGenreListByIocomeTypeQuery = {
   }> | null;
 };
 
+export type UpdateDailyDetailBySerialNoMutationVariables = Exact<{
+  serialNo: Scalars["Int"];
+  date: Scalars["Date"];
+  categoryId: Scalars["String"];
+  accountId: Scalars["String"];
+  amount: Scalars["BigFloat"];
+  memo?: InputMaybe<Scalars["String"]>;
+}>;
+
+export type UpdateDailyDetailBySerialNoMutation = {
+  __typename?: "Mutation";
+  updateDailyDetailBySerialNo?: {
+    __typename?: "UpdateDailyDetailPayload";
+    dailyDetail?: { __typename?: "DailyDetail"; serialNo: number } | null;
+  } | null;
+};
+
 export const CreateCreditCardDetailDocument = gql`
   mutation CreateCreditCardDetail(
     $date: Date!
@@ -3564,4 +3581,38 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQuery,
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
+}
+export const UpdateDailyDetailBySerialNoDocument = gql`
+  mutation UpdateDailyDetailBySerialNo(
+    $serialNo: Int!
+    $date: Date!
+    $categoryId: String!
+    $accountId: String!
+    $amount: BigFloat!
+    $memo: String
+  ) {
+    updateDailyDetailBySerialNo(
+      input: {
+        dailyDetailPatch: {
+          date: $date
+          categoryId: $categoryId
+          accountId: $accountId
+          amount: $amount
+          memo: $memo
+        }
+        serialNo: $serialNo
+      }
+    ) {
+      dailyDetail {
+        serialNo
+      }
+    }
+  }
+`;
+
+export function useUpdateDailyDetailBySerialNoMutation() {
+  return Urql.useMutation<
+    UpdateDailyDetailBySerialNoMutation,
+    UpdateDailyDetailBySerialNoMutationVariables
+  >(UpdateDailyDetailBySerialNoDocument);
 }
