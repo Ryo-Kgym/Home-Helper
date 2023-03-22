@@ -56,8 +56,9 @@ export const UpdateDailyDetailContainer: FC<
       changeAmountHandler={setAmount}
       memo={memo ?? ""}
       changeMemoHandler={setMemo}
-      clearClickHandler={clearClickHandler}
-      registerClickHandler={() => {}}
+      resetClickHandler={clearClickHandler}
+      updateClickHandler={() => {}}
+      deleteClickHandler={() => {}}
     />
   );
 };
