@@ -34,6 +34,7 @@ export const useGetDailyDetailByDate = (
     );
 
     return {
+      serialNo: dailyDetail?.serialNo ?? null,
       date: new Date(dailyDetail?.date),
       amount: Number(dailyDetail?.amount) ?? "",
       iocomeType:
@@ -57,6 +58,7 @@ export const useGetDailyDetailByDate = (
 };
 
 export type DailyDetail = {
+  serialNo: number | null;
   date: Date | null;
   amount: number | "";
   iocomeType: IocomeType | null;
