@@ -2,13 +2,16 @@ import { FC, useState } from "react";
 import { UpdateDailyDetailPresenter } from "./UpdateDailyDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { DailyDetail } from "@hooks/household/daily_detail/useGetDailyDetailByDate";
+import { useUpdateDailyDetailBySerialNo } from "@hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
+import { useDeleteDailyDetailBySerialNo } from "@hooks/household/daily_detail/useDeleteDailyDetailBySerialNo";
 
 type UpdateDailyDetailContainerProps = {
   initData: DailyDetail | null;
+  onClose: () => void;
 };
 export const UpdateDailyDetailContainer: FC<
   UpdateDailyDetailContainerProps
-> = ({ initData }) => {
+> = ({ initData, onClose }) => {
   if (initData == null) return <div>No Data</div>;
 
   const [date, setDate] = useState<Date | null>(initData.date);
@@ -22,6 +25,18 @@ export const UpdateDailyDetailContainer: FC<
   const [accountId, setAccountId] = useState<string | null>(initData.accountId);
   const [amount, setAmount] = useState<number | "">(initData.amount);
   const [memo, setMemo] = useState(initData.memo);
+
+  const { updateHandler } = useUpdateDailyDetailBySerialNo({
+    serialNo: initData.serialNo!,
+    date: date!,
+    categoryId: categoryId!,
+    accountId: accountId!,
+    amount: Number(amount),
+    memo: memo,
+  });
+  const { deleteHandler } = useDeleteDailyDetailBySerialNo({
+    serialNo: initData.serialNo!,
+  });
 
   const resetClickHandler = () => {
     setDate(initData.date);
@@ -57,8 +72,15 @@ export const UpdateDailyDetailContainer: FC<
       memo={memo ?? ""}
       changeMemoHandler={setMemo}
       resetClickHandler={resetClickHandler}
-      updateClickHandler={() => {}}
-      deleteClickHandler={() => {}}
+      updateClickHandler={() => {
+        updateHandler();
+        onClose();
+      }}
+      deleteClickHandler={() => {
+        // TODO リングしたい
+        deleteHandler();
+        onClose();
+      }}
     />
   );
 };
