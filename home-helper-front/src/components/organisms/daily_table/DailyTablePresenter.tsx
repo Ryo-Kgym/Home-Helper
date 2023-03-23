@@ -2,6 +2,9 @@ import { FC } from "react";
 import { Table, TableProps } from "@components/atoms/Table";
 import { RangeDatePicker } from "@components/molecules/RangeDatePicker";
 import { IocomeTotal } from "@components/molecules/Total";
+import { Modal } from "@components/atoms/Modal";
+import { UpdateDailyDetail } from "@components/organisms/update_daily_detail";
+import { DailyDetail } from "@hooks/household/daily_detail/useGetDailyDetailByDate";
 
 type DailyTablePresenterProps = {
   fromDate: Date | null;
@@ -12,6 +15,9 @@ type DailyTablePresenterProps = {
   incomeTotal: number | undefined;
   outcomeTotal: number | undefined;
   disabled: boolean;
+  modalOpen: boolean;
+  onClose: () => void;
+  detailForUpdate: DailyDetail | null;
 };
 export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
   fromDate,
@@ -22,6 +28,9 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
   incomeTotal,
   outcomeTotal,
   disabled,
+  modalOpen,
+  onClose,
+  detailForUpdate,
 }) => (
   <div>
     <RangeDatePicker
@@ -37,5 +46,8 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
       size={"xs"}
     />
     <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
+    <Modal opened={modalOpen} onClose={onClose}>
+      <UpdateDailyDetail initData={detailForUpdate} onClose={onClose} />
+    </Modal>
   </div>
 );

@@ -28,7 +28,14 @@ export const ButtonPresenter: FC<ButtonProps> = ({
   );
 };
 
-type ButtonColorType = "register" | "clear" | "detail" | "import" | "delete";
+type ButtonColorType =
+  | "register"
+  | "update"
+  | "clear"
+  | "reset"
+  | "detail"
+  | "import"
+  | "delete";
 
 type ButtonStyleProp = {
   className: string;
@@ -37,9 +44,11 @@ type ButtonStyleProp = {
 };
 
 const PROP_MAP = new Map<ButtonColorType, ButtonStyleProp>([
-  ["register", { className: "m-4", size: "xl", color: "green" }],
-  ["clear", { className: "m-4", size: "xl", color: "gray" }],
-  ["import", { className: "m-4", size: "xl", color: "blue" }],
-  ["delete", { className: "m-4", size: "xl", color: "red" }],
+  ["register", { className: "m-2", size: "xl", color: "green" }],
+  ["update", { className: "m-2", size: "xl", color: "indigo" }],
+  ["clear", { className: "m-2", size: "xl", color: "gray" }],
+  ["reset", { className: "m-2", size: "xl", color: "gray" }],
+  ["import", { className: "m-2", size: "xl", color: "blue" }],
+  ["delete", { className: "m-2", size: "xl", color: "red" }],
   ["detail", { className: "", size: "sm", color: "blue" }],
 ]);
