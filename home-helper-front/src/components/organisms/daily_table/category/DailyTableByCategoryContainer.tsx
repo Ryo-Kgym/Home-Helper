@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { TableProps } from "@components/atoms/Table";
 import { DailyTableByCategoryPresenter } from "./DailyTableByCategoryPresenter";
-import { dailyDetailConverter } from "@components/atoms/Table/dailyDetailConverter";
+import { dailyDetailConverter } from "@components/organisms/daily_table/dailyDetailConverter";
 import { useGetDailyDetailByDateCategoryId } from "@hooks/household/daily_detail/useGetDailyDetailByDateCategoryId";
 
 type DailyTableByCategoryContainerProps = {
