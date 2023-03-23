@@ -47,7 +47,7 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
     />
     <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
     <Modal opened={modalOpen} onClose={onClose}>
-      <UpdateDailyDetail initData={detailForUpdate} />
+      <UpdateDailyDetail initData={detailForUpdate} onClose={onClose} />
     </Modal>
   </div>
 );
