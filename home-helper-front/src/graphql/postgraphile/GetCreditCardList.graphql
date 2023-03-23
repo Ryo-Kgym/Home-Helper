@@ -1,0 +1,34 @@
+query GetCreditCardList {
+    allCreditCardSummariesList(orderBy: WITHDRAWAL_DATE_DESC) {
+        id
+        creditCard
+        accountByAccountId {
+            accountId
+            accountName
+        }
+        count
+        withdrawalDate
+        totalAmount
+        importFileHistoryById {
+            importDatetime
+            fileName
+            fileType
+        }
+        creditCardDetailsBySummaryIdList(orderBy: DATE_ASC) {
+            serialNo
+            date
+            amount
+            memo
+            categoryByCategoryId {
+                categoryId
+                categoryName
+                genreByGenreId {
+                    genreId
+                    genreName
+                    genreType
+                    iocomeType
+                }
+            }
+        }
+    }
+}
