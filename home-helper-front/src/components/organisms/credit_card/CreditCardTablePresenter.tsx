@@ -1,6 +1,17 @@
 import { FC } from "react";
+import { Table, TableProps } from "@components/atoms/Table";
 
-type CreditCardTablePresenterProps = {};
-export const CreditCardTablePresenter: FC<
-  CreditCardTablePresenterProps
-> = () => <div className={"grid col-span-1"}></div>;
+type CreditCardTablePresenterProps = {
+  tableProps: TableProps[];
+};
+export const CreditCardTablePresenter: FC<CreditCardTablePresenterProps> = ({
+  tableProps,
+}) => (
+  <div className={"grid col-span-1"}>
+    <Table
+      header={["引落日", "種類", "アカウント", "合計", "詳細"]}
+      tablePropsList={tableProps}
+      size={"xs"}
+    />
+  </div>
+);
