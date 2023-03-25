@@ -1,6 +1,6 @@
 import { GetDailyDetailByDateQuery } from "@graphql/postgraphile/generated/graphql";
 import { FormatPrice } from "@components/molecules/FormatPrice";
-import { TableProps } from "@components/atoms/Table/index";
+import { TableProps } from "@components/atoms/Table/";
 
 type dailyDetailConverterArgs = {
   data: GetDailyDetailByDateQuery | undefined;
