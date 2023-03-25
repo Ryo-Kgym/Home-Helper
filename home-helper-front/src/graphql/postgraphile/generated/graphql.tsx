@@ -3186,6 +3186,20 @@ export type GetValidGenreListByIocomeTypeQuery = {
   }> | null;
 };
 
+export type UpdateCreditCardDetailBySerialNoMutationVariables = Exact<{
+  serialNo: Scalars["Int"];
+  categoryId: Scalars["String"];
+  memo?: InputMaybe<Scalars["String"]>;
+}>;
+
+export type UpdateCreditCardDetailBySerialNoMutation = {
+  __typename?: "Mutation";
+  updateCreditCardDetailBySerialNo?: {
+    __typename?: "UpdateCreditCardDetailPayload";
+    clientMutationId?: string | null;
+  } | null;
+};
+
 export type UpdateDailyDetailBySerialNoMutationVariables = Exact<{
   serialNo: Scalars["Int"];
   date: Scalars["Date"];
@@ -3713,6 +3727,29 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQuery,
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
+}
+export const UpdateCreditCardDetailBySerialNoDocument = gql`
+  mutation UpdateCreditCardDetailBySerialNo(
+    $serialNo: Int!
+    $categoryId: String!
+    $memo: String
+  ) {
+    updateCreditCardDetailBySerialNo(
+      input: {
+        creditCardDetailPatch: { categoryId: $categoryId, memo: $memo }
+        serialNo: $serialNo
+      }
+    ) {
+      clientMutationId
+    }
+  }
+`;
+
+export function useUpdateCreditCardDetailBySerialNoMutation() {
+  return Urql.useMutation<
+    UpdateCreditCardDetailBySerialNoMutation,
+    UpdateCreditCardDetailBySerialNoMutationVariables
+  >(UpdateCreditCardDetailBySerialNoDocument);
 }
 export const UpdateDailyDetailBySerialNoDocument = gql`
   mutation UpdateDailyDetailBySerialNo(
