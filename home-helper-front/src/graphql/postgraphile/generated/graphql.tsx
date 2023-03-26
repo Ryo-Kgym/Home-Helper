@@ -2944,6 +2944,34 @@ export type GetCategoryTotalByMonthQuery = {
   } | null> | null;
 };
 
+export type GetCreditCardDetailBySerialNoQueryVariables = Exact<{
+  serialNo: Scalars["Int"];
+}>;
+
+export type GetCreditCardDetailBySerialNoQuery = {
+  __typename?: "Query";
+  creditCardDetailBySerialNo?: {
+    __typename?: "CreditCardDetail";
+    serialNo: number;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    summaryId: any;
+    categoryByCategoryId?: {
+      __typename?: "Category";
+      categoryId: string;
+      categoryName: string;
+      genreByGenreId?: {
+        __typename?: "Genre";
+        genreId: string;
+        genreName: string;
+        genreType: GenreType;
+        iocomeType: IocomeType;
+      } | null;
+    } | null;
+  } | null;
+};
+
 export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
   id: Scalars["UUID"];
 }>;
@@ -3440,6 +3468,39 @@ export function useGetCategoryTotalByMonthQuery(
     GetCategoryTotalByMonthQuery,
     GetCategoryTotalByMonthQueryVariables
   >({ query: GetCategoryTotalByMonthDocument, ...options });
+}
+export const GetCreditCardDetailBySerialNoDocument = gql`
+  query GetCreditCardDetailBySerialNo($serialNo: Int!) {
+    creditCardDetailBySerialNo(serialNo: $serialNo) {
+      serialNo
+      date
+      amount
+      memo
+      summaryId
+      categoryByCategoryId {
+        categoryId
+        categoryName
+        genreByGenreId {
+          genreId
+          genreName
+          genreType
+          iocomeType
+        }
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardDetailBySerialNoQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailBySerialNoQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailBySerialNoQuery,
+    GetCreditCardDetailBySerialNoQueryVariables
+  >({ query: GetCreditCardDetailBySerialNoDocument, ...options });
 }
 export const GetCreditCardDetailBySummaryIdDocument = gql`
   query GetCreditCardDetailBySummaryId($id: UUID!) {
