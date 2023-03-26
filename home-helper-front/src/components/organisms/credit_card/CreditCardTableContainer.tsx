@@ -4,36 +4,26 @@ import { useGetCreditCardListQuery } from "@graphql/postgraphile/generated/graph
 import { TableProps } from "@components/atoms/Table";
 import { Split } from "@components/atoms/Split";
 import { creditCardListConverter } from "@components/organisms/credit_card/creditCardListConverter";
-import { CreditCardDetailTablePresenter } from "@components/organisms/credit_card/CreditCardDetailTablePresenter";
-import { CreditCardDetail } from "@domain/model/household/CreditCardDetail";
+import { CreditCardDetailTable } from "@components/organisms/credit_card/CreditCardDetailTable";
 
 type CreditCardTableContainerProps = {};
 export const CreditCardTableContainer: FC<
   CreditCardTableContainerProps
 > = () => {
-  const [detailProps, setDetailProps] = useState<TableProps[]>([]);
-  const [detail, setDetail] = useState<CreditCardDetail | null>(null);
-  const [opened, setOpened] = useState(false);
+  const [creditCardSummaryId, setCreditCardSummaryId] = useState<string>("");
 
   const [{ data }] = useGetCreditCardListQuery();
 
   const tableProps: TableProps[] = creditCardListConverter({
     data,
-    setDetailProps,
-    setDetail,
-    setOpened,
+    setCreditCardSummaryId,
   });
 
   return (
     <Split
       first={<CreditCardTablePresenter tableProps={tableProps} />}
       second={
-        <CreditCardDetailTablePresenter
-          tableProps={detailProps}
-          opened={opened}
-          initData={detail}
-          onClose={() => setOpened(false)}
-        />
+        <CreditCardDetailTable creditCardSummaryId={creditCardSummaryId} />
       }
       size={40}
     />
