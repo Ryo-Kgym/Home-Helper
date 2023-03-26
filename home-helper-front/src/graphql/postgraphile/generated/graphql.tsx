@@ -2944,6 +2944,37 @@ export type GetCategoryTotalByMonthQuery = {
   } | null> | null;
 };
 
+export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
+  id: Scalars["UUID"];
+}>;
+
+export type GetCreditCardDetailBySummaryIdQuery = {
+  __typename?: "Query";
+  creditCardSummaryById?: {
+    __typename?: "CreditCardSummary";
+    id: any;
+    creditCardDetailsBySummaryIdList: Array<{
+      __typename?: "CreditCardDetail";
+      serialNo: number;
+      date: any;
+      memo?: string | null;
+      amount: any;
+      categoryByCategoryId?: {
+        __typename?: "Category";
+        categoryId: string;
+        categoryName: string;
+        genreByGenreId?: {
+          __typename?: "Genre";
+          genreId: string;
+          genreName: string;
+          genreType: GenreType;
+          iocomeType: IocomeType;
+        } | null;
+      } | null;
+    }>;
+  } | null;
+};
+
 export type GetCreditCardListQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetCreditCardListQuery = {
@@ -3428,6 +3459,41 @@ export function useGetCategoryTotalByMonthQuery(
     GetCategoryTotalByMonthQuery,
     GetCategoryTotalByMonthQueryVariables
   >({ query: GetCategoryTotalByMonthDocument, ...options });
+}
+export const GetCreditCardDetailBySummaryIdDocument = gql`
+  query GetCreditCardDetailBySummaryId($id: UUID!) {
+    creditCardSummaryById(id: $id) {
+      id
+      creditCardDetailsBySummaryIdList(orderBy: DATE_ASC) {
+        serialNo
+        date
+        memo
+        amount
+        categoryByCategoryId {
+          categoryId
+          categoryName
+          genreByGenreId {
+            genreId
+            genreName
+            genreType
+            iocomeType
+          }
+        }
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardDetailBySummaryIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailBySummaryIdQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailBySummaryIdQuery,
+    GetCreditCardDetailBySummaryIdQueryVariables
+  >({ query: GetCreditCardDetailBySummaryIdDocument, ...options });
 }
 export const GetCreditCardListDocument = gql`
   query GetCreditCardList {
