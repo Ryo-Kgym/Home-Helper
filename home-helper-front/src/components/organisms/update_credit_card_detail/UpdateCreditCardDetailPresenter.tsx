@@ -51,6 +51,7 @@ export const UpdateCreditCardDetailPresenter: FC<
       <IocomeTypeSegment
         iocomeType={iocomeType}
         setIocomeType={changeIocomeTypeHandler}
+        disabled
       />
     </Field>
     <Field>

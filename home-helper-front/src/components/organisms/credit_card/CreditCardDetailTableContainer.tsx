@@ -1,5 +1,4 @@
-import { FC, useState } from "react";
-import { CreditCardDetail } from "@domain/model/household/CreditCardDetail";
+import { FC, useEffect, useState } from "react";
 import { CreditCardDetailTablePresenter } from "@components/organisms/credit_card/CreditCardDetailTablePresenter";
 import { useGetCreditCardDetailBySummaryIdQuery } from "@graphql/postgraphile/generated/graphql";
 import { FormatPrice } from "@components/molecules/FormatPrice";
@@ -12,7 +11,7 @@ export const CreditCardDetailTableContainer: FC<
   CreditCardDetailTableContainerProps
 > = ({ creditCardSummaryId }) => {
   const [isOpen, setOpened] = useState(false);
-  const [detail, setDetail] = useState<CreditCardDetail | null>(null);
+  const [detailSerialNo, setDetailSerialNo] = useState<number | null>(null);
 
   const [{ data }, refetch] = useGetCreditCardDetailBySummaryIdQuery({
     variables: {
@@ -44,29 +43,24 @@ export const CreditCardDetailTableContainer: FC<
           { value: detail.memo },
         ],
         onClick: () => {
-          setDetail({
-            serialNo: detail.serialNo,
-            date: new Date(detail.date),
-            amount: Number(detail.amount) as number | "",
-            iocomeType: detail.categoryByCategoryId?.genreByGenreId?.iocomeType,
-            genreId: detail.categoryByCategoryId?.genreByGenreId?.genreId,
-            categoryId: detail.categoryByCategoryId?.categoryId,
-            memo: detail.memo,
-          } as CreditCardDetail);
+          setDetailSerialNo(detail.serialNo);
           setOpened(true);
         },
       })
     ) ?? [];
 
+  useEffect(() => {
+    refetch({ requestPolicy: "network-only" });
+  }, [data]);
+
   return (
     <CreditCardDetailTablePresenter
       tableProps={tableProps}
       opened={isOpen}
-      initData={detail}
       onClose={() => {
         setOpened(false);
-        refetch({ requestPolicy: "network-only" });
       }}
+      detailSerialNo={detailSerialNo}
     />
   );
 };
