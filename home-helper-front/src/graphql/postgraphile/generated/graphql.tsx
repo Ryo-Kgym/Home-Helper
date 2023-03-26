@@ -2997,25 +2997,6 @@ export type GetCreditCardListQuery = {
       fileName: string;
       fileType: string;
     } | null;
-    creditCardDetailsBySummaryIdList: Array<{
-      __typename?: "CreditCardDetail";
-      serialNo: number;
-      date: any;
-      amount: any;
-      memo?: string | null;
-      categoryByCategoryId?: {
-        __typename?: "Category";
-        categoryId: string;
-        categoryName: string;
-        genreByGenreId?: {
-          __typename?: "Genre";
-          genreId: string;
-          genreName: string;
-          genreType: GenreType;
-          iocomeType: IocomeType;
-        } | null;
-      } | null;
-    }>;
   }> | null;
 };
 
@@ -3511,22 +3492,6 @@ export const GetCreditCardListDocument = gql`
         importDatetime
         fileName
         fileType
-      }
-      creditCardDetailsBySummaryIdList(orderBy: DATE_ASC) {
-        serialNo
-        date
-        amount
-        memo
-        categoryByCategoryId {
-          categoryId
-          categoryName
-          genreByGenreId {
-            genreId
-            genreName
-            genreType
-            iocomeType
-          }
-        }
       }
     }
   }
