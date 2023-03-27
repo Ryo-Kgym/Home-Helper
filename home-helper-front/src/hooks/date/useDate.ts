@@ -9,12 +9,17 @@ dayjs.tz.setDefault("Asia/Tokyo");
 export const useDate = () => {
   const now = dayjs().tz().format("YYYY-MM-DD HH:mm:ss.SSSSSS");
 
-  const convert = (date: Date) => {
+  const convertToFull = (date: Date) => {
     return dayjs(date).tz().format("YYYY-MM-DD HH:mm:ss.SSSSSS");
+  };
+
+  const convertToYmd = (date: Date) => {
+    return dayjs(date).tz().format("YYYY-MM-DD");
   };
 
   return {
     now,
-    convert,
+    convertToFull,
+    convertToYmd,
   };
 };

@@ -1,6 +1,7 @@
 import { useGetTotalBetweenDateQuery } from "@graphql/postgraphile/generated/graphql";
 import { createDateList } from "@components/organisms/calendar/createDateList";
 import { DailyTotal } from "@domain/model/household/DailyTotal";
+import { useDate } from "@hooks/date/useDate";
 
 export const useGetTotalForMonth = (date: Date) => {
   const year = date.getFullYear();
@@ -15,13 +16,14 @@ export const useGetTotalForMonth = (date: Date) => {
       toDate: lastDate,
     },
   });
+  const { convertToYmd } = useDate();
 
   const dailyTotalList: DailyTotal[] = createDateList(date).map((date) => {
     const incomeTotal = data?.incomeTotalByDate?.find(
-      (e) => e.date === date.toISOString().slice(0, 10)
+      (e) => e.date === convertToYmd(date)
     )?.total;
     const outcomeTotal = data?.outcomeTotalByDate?.find(
-      (e) => e.date === date.toISOString().slice(0, 10)
+      (e) => e.date === convertToYmd(date)
     )?.total;
 
     return {

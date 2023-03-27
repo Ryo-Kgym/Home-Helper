@@ -18,12 +18,12 @@ export const useRegisterDailyDetail = ({
   memo,
 }: DailyDetailForRegistration) => {
   const userId = useLoadUser().getUserId;
-  const { convert } = useDate();
+  const { convertToFull } = useDate();
 
   const [ignore, dailyRegistrationMutation] = useCreateDailyDetailMutation();
 
   const variables = {
-    date: convert(date),
+    date: convertToFull(date),
     categoryId: categoryId,
     accountId: accountId,
     amount: amount,
