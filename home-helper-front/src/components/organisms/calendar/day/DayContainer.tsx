@@ -15,10 +15,15 @@ export const DayContainer: FC<DayContainerProps> = ({ date, baseDate }) => {
       ? date.getMonth() + 1 + "/" + date.getDate()
       : date.getDate().toLocaleString();
 
-  const { income, outcome } = useGetAmountByDay(date);
+  const { income, outcome, refetch } = useGetAmountByDay(date);
 
   const isToday = date.toDateString() === today.toDateString();
   const isNotThisMonth = date.getMonth() !== baseDate.getMonth();
+
+  const closeHandler = () => {
+    setOpened(false);
+    refetch();
+  };
 
   return (
     <DayPresenter
@@ -29,7 +34,7 @@ export const DayContainer: FC<DayContainerProps> = ({ date, baseDate }) => {
       isToday={isToday}
       isNotThisMonth={isNotThisMonth}
       opened={opened}
-      onClose={() => setOpened(false)}
+      onClose={closeHandler}
       openClickHandler={() => setOpened(true)}
     />
   );
