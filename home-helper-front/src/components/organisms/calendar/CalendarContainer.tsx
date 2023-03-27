@@ -1,17 +1,20 @@
 import type { FC } from "react";
-import { CalendarPresenter } from "@components/organisms/calendar/CalendarPresenter";
 import { useState } from "react";
-import { createDateList } from "@components/organisms/calendar/createDateList";
+import { CalendarPresenter } from "@components/organisms/calendar/CalendarPresenter";
+import { useGetTotalForMonth } from "@hooks/household/iocome/useGetTotalForMonth";
 
 type CalendarContainerProps = {};
 export const CalendarContainer: FC<CalendarContainerProps> = () => {
   const [baseDate, setBaseDate] = useState<Date | null>(new Date());
 
+  const { dailyTotalList, refetch } = useGetTotalForMonth(baseDate!);
+
   return (
     <CalendarPresenter
       baseDate={baseDate}
       setBaseDate={setBaseDate}
-      dateList={createDateList(baseDate!)}
+      dailyTotalList={dailyTotalList}
+      refetch={refetch}
     />
   );
 };
