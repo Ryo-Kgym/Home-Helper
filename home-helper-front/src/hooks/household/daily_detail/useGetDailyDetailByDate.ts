@@ -1,5 +1,6 @@
 import { useGetDailyDetailByDateQuery } from "@graphql/postgraphile/generated/graphql";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { DailyDetail } from "@domain/model/household/DailyDetail";
 
 export const useGetDailyDetailByDate = (
   fromDate: Date | null,
@@ -55,15 +56,4 @@ export const useGetDailyDetailByDate = (
     outcomeTotal,
     getDetail: getDailyDetail,
   };
-};
-
-export type DailyDetail = {
-  serialNo: number | null;
-  date: Date | null;
-  amount: number | "";
-  iocomeType: IocomeType | null;
-  genreId: string | null;
-  categoryId: string | null;
-  accountId: string | null;
-  memo: string | null;
 };

@@ -4,7 +4,7 @@ import { RangeDatePicker } from "@components/molecules/RangeDatePicker";
 import { IocomeTotal } from "@components/molecules/Total";
 import { Modal } from "@components/atoms/Modal";
 import { UpdateDailyDetail } from "@components/organisms/update_daily_detail";
-import { DailyDetail } from "@hooks/household/daily_detail/useGetDailyDetailByDate";
+import { DailyDetail } from "@domain/model/household/DailyDetail";
 
 type DailyTablePresenterProps = {
   fromDate: Date | null;

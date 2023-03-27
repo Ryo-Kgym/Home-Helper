@@ -2,10 +2,8 @@ import { FC, useState } from "react";
 import { DailyTablePresenter } from "./DailyTablePresenter";
 import { TableProps } from "@components/atoms/Table";
 import { dailyDetailConverter } from "@components/organisms/daily_table/dailyDetailConverter";
-import {
-  DailyDetail,
-  useGetDailyDetailByDate,
-} from "@hooks/household/daily_detail/useGetDailyDetailByDate";
+import { useGetDailyDetailByDate } from "@hooks/household/daily_detail/useGetDailyDetailByDate";
+import { DailyDetail } from "@domain/model/household/DailyDetail";
 
 type DailyTableContainerProps = {
   dailyDetail?: TableProps[];
