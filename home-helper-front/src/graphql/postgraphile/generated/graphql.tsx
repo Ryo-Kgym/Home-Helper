@@ -3147,21 +3147,6 @@ export type GetDailyDetailByDateGenreIdQuery = {
   }> | null;
 };
 
-export type GetDailyTotalByDateIocomeTypeQueryVariables = Exact<{
-  iocomeType: IocomeType;
-  date: Scalars["Date"];
-}>;
-
-export type GetDailyTotalByDateIocomeTypeQuery = {
-  __typename?: "Query";
-  dailyTotalViewByDateIocomeTypeList?: Array<{
-    __typename?: "DailyTotalView";
-    date?: any | null;
-    iocomeType?: IocomeType | null;
-    total?: any | null;
-  } | null> | null;
-};
-
 export type GetGenreTotalByMonthQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -3721,27 +3706,6 @@ export function useGetDailyDetailByDateGenreIdQuery(
     GetDailyDetailByDateGenreIdQuery,
     GetDailyDetailByDateGenreIdQueryVariables
   >({ query: GetDailyDetailByDateGenreIdDocument, ...options });
-}
-export const GetDailyTotalByDateIocomeTypeDocument = gql`
-  query GetDailyTotalByDateIocomeType($iocomeType: IocomeType!, $date: Date!) {
-    dailyTotalViewByDateIocomeTypeList(date: $date, iocomeType: $iocomeType) {
-      date
-      iocomeType
-      total
-    }
-  }
-`;
-
-export function useGetDailyTotalByDateIocomeTypeQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetDailyTotalByDateIocomeTypeQueryVariables>,
-    "query"
-  >
-) {
-  return Urql.useQuery<
-    GetDailyTotalByDateIocomeTypeQuery,
-    GetDailyTotalByDateIocomeTypeQueryVariables
-  >({ query: GetDailyTotalByDateIocomeTypeDocument, ...options });
 }
 export const GetGenreTotalByMonthDocument = gql`
   query GetGenreTotalByMonth($fromDate: Date!, $toDate: Date!) {

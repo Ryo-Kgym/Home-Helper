@@ -1,7 +1,0 @@
-query GetDailyTotalByDateIocomeType($iocomeType: IocomeType!, $date: Date!) {
-    dailyTotalViewByDateIocomeTypeList(date: $date, iocomeType: $iocomeType) {
-        date
-        iocomeType
-        total
-    }
-}
