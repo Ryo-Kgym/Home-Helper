@@ -44,6 +44,7 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
       header={["日付", "ジャンル", "カテゴリ", "アカウント", "金額", "メモ"]}
       tablePropsList={tablePropsList}
       size={"xs"}
+      height={"75vh"}
     />
     <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
     <Modal opened={modalOpen} onClose={onClose}>
