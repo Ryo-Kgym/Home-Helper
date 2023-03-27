@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { DailyTablePresenter } from "./DailyTablePresenter";
 import { TableProps } from "@components/atoms/Table";
 import { dailyDetailConverter } from "@components/organisms/daily_table/dailyDetailConverter";
@@ -32,7 +32,7 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [dailyDetail, setDailyDetail] = useState<DailyDetail | null>(null);
 
-  const { data, incomeTotal, outcomeTotal, getDetail } =
+  const { data, incomeTotal, outcomeTotal, getDetail, refetch } =
     useGetDailyDetailByDate(fromDate, toDate);
 
   const tableProps: TableProps[] =
@@ -46,6 +46,10 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
     });
 
   const disabled = dailyDetailTableProps?.length != undefined;
+
+  useEffect(() => {
+    refetch();
+  }, [data]);
 
   return (
     <DailyTablePresenter

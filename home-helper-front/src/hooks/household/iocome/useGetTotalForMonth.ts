@@ -6,7 +6,7 @@ export const useGetTotalForMonth = (date: Date) => {
   const year = date.getFullYear();
   const month = date.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
-  const firstDate = new Date(year, month, firstDay + 1);
+  const firstDate = new Date(year, month, -firstDay + 1);
   const lastDate = new Date(year, month + 1, 0);
 
   const [{ data }, refetch] = useGetTotalBetweenDateQuery({
@@ -36,5 +36,6 @@ export const useGetTotalForMonth = (date: Date) => {
     refetch: () => {
       refetch({ requestPolicy: "network-only" });
     },
+    data,
   };
 };
