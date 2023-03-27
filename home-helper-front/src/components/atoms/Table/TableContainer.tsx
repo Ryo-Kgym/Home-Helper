@@ -29,11 +29,15 @@ export const TableContainer: FC<Props> = ({
   );
 
   const generateRow = (
-    { keyPrefix, onClick = () => {}, columns }: TableProps,
+    { keyPrefix, onClick, columns }: TableProps,
     i: number
   ) => {
     return (
-      <tr key={keyPrefix + i} onClick={onClick}>
+      <tr
+        key={keyPrefix + i}
+        onClick={onClick ?? (() => {})}
+        className={onClick ? "cursor-pointer" : ""}
+      >
         {columns.map(generateColumn)}
       </tr>
     );
