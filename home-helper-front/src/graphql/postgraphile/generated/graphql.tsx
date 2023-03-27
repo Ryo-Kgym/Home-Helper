@@ -3179,6 +3179,27 @@ export type GetGenreTotalByMonthQuery = {
   } | null> | null;
 };
 
+export type GetTotalBetweenDateQueryVariables = Exact<{
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+}>;
+
+export type GetTotalBetweenDateQuery = {
+  __typename?: "Query";
+  incomeTotalByDate?: Array<{
+    __typename?: "DailyTotalView";
+    date?: any | null;
+    iocomeType?: IocomeType | null;
+    total?: any | null;
+  }> | null;
+  outcomeTotalByDate?: Array<{
+    __typename?: "DailyTotalView";
+    date?: any | null;
+    iocomeType?: IocomeType | null;
+    total?: any | null;
+  }> | null;
+};
+
 export type GetValidAccountsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetValidAccountsQuery = {
@@ -3741,6 +3762,41 @@ export function useGetGenreTotalByMonthQuery(
     GetGenreTotalByMonthQuery,
     GetGenreTotalByMonthQueryVariables
   >({ query: GetGenreTotalByMonthDocument, ...options });
+}
+export const GetTotalBetweenDateDocument = gql`
+  query GetTotalBetweenDate($fromDate: Date!, $toDate: Date!) {
+    incomeTotalByDate: allDailyTotalViewsList(
+      condition: { iocomeType: INCOME }
+      filter: {
+        date: { greaterThanOrEqualTo: $fromDate }
+        and: { date: { lessThanOrEqualTo: $toDate } }
+      }
+    ) {
+      date
+      iocomeType
+      total
+    }
+    outcomeTotalByDate: allDailyTotalViewsList(
+      condition: { iocomeType: OUTCOME }
+      filter: {
+        date: { greaterThanOrEqualTo: $fromDate }
+        and: { date: { lessThanOrEqualTo: $toDate } }
+      }
+    ) {
+      date
+      iocomeType
+      total
+    }
+  }
+`;
+
+export function useGetTotalBetweenDateQuery(
+  options: Omit<Urql.UseQueryArgs<GetTotalBetweenDateQueryVariables>, "query">
+) {
+  return Urql.useQuery<
+    GetTotalBetweenDateQuery,
+    GetTotalBetweenDateQueryVariables
+  >({ query: GetTotalBetweenDateDocument, ...options });
 }
 export const GetValidAccountsDocument = gql`
   query GetValidAccounts {
