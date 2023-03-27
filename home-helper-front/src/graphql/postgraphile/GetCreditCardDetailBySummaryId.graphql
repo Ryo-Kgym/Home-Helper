@@ -1,0 +1,21 @@
+query GetCreditCardDetailBySummaryId($id: UUID!) {
+    creditCardSummaryById(id: $id) {
+        id
+        creditCardDetailsBySummaryIdList(orderBy: DATE_ASC) {
+            serialNo
+            date
+            memo
+            amount
+            categoryByCategoryId {
+                categoryId
+                categoryName
+                genreByGenreId {
+                    genreId
+                    genreName
+                    genreType
+                    iocomeType
+                }
+            }
+        }
+    }
+}

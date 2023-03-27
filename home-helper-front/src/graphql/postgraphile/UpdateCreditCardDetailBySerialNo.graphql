@@ -1,0 +1,14 @@
+mutation UpdateCreditCardDetailBySerialNo(
+    $serialNo: Int!
+    $categoryId: String!
+    $memo: String
+) {
+    updateCreditCardDetailBySerialNo(
+        input: {
+            creditCardDetailPatch: { categoryId: $categoryId, memo: $memo }
+            serialNo: $serialNo
+        }
+    ) {
+        clientMutationId
+    }
+}

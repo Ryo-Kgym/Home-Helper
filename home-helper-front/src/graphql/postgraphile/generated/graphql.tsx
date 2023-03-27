@@ -361,6 +361,8 @@ export type CreateCreditCardDetailPayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The `CreditCardDetail` that was created by this mutation. */
   creditCardDetail?: Maybe<CreditCardDetail>;
+  /** Reads a single `CreditCardSummary` that is related to this `CreditCardDetail`. */
+  creditCardSummaryBySummaryId?: Maybe<CreditCardSummary>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
@@ -506,6 +508,8 @@ export type CreditCardDetail = Node & {
   /** Reads a single `Category` that is related to this `CreditCardDetail`. */
   categoryByCategoryId?: Maybe<Category>;
   categoryId: Scalars["String"];
+  /** Reads a single `CreditCardSummary` that is related to this `CreditCardDetail`. */
+  creditCardSummaryBySummaryId?: Maybe<CreditCardSummary>;
   date: Scalars["Date"];
   memo?: Maybe<Scalars["String"]>;
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
@@ -620,6 +624,8 @@ export type CreditCardSummary = Node & {
   accountId: Scalars["String"];
   count: Scalars["Int"];
   creditCard: Scalars["String"];
+  /** Reads and enables pagination through a set of `CreditCardDetail`. */
+  creditCardDetailsBySummaryIdList: Array<CreditCardDetail>;
   id: Scalars["UUID"];
   /** Reads a single `ImportFileHistory` that is related to this `CreditCardSummary`. */
   importFileHistoryById?: Maybe<ImportFileHistory>;
@@ -627,6 +633,14 @@ export type CreditCardSummary = Node & {
   nodeId: Scalars["ID"];
   totalAmount: Scalars["BigFloat"];
   withdrawalDate: Scalars["Date"];
+};
+
+export type CreditCardSummaryCreditCardDetailsBySummaryIdListArgs = {
+  condition?: InputMaybe<CreditCardDetailCondition>;
+  filter?: InputMaybe<CreditCardDetailFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailsOrderBy>>;
 };
 
 /**
@@ -1005,6 +1019,8 @@ export type DeleteCreditCardDetailPayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The `CreditCardDetail` that was deleted by this mutation. */
   creditCardDetail?: Maybe<CreditCardDetail>;
+  /** Reads a single `CreditCardSummary` that is related to this `CreditCardDetail`. */
+  creditCardSummaryBySummaryId?: Maybe<CreditCardSummary>;
   deletedCreditCardDetailId?: Maybe<Scalars["ID"]>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
@@ -2500,6 +2516,8 @@ export type UpdateCreditCardDetailPayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The `CreditCardDetail` that was updated by this mutation. */
   creditCardDetail?: Maybe<CreditCardDetail>;
+  /** Reads a single `CreditCardSummary` that is related to this `CreditCardDetail`. */
+  creditCardSummaryBySummaryId?: Maybe<CreditCardSummary>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
 };
@@ -2926,6 +2944,90 @@ export type GetCategoryTotalByMonthQuery = {
   } | null> | null;
 };
 
+export type GetCreditCardDetailBySerialNoQueryVariables = Exact<{
+  serialNo: Scalars["Int"];
+}>;
+
+export type GetCreditCardDetailBySerialNoQuery = {
+  __typename?: "Query";
+  creditCardDetailBySerialNo?: {
+    __typename?: "CreditCardDetail";
+    serialNo: number;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    summaryId: any;
+    categoryByCategoryId?: {
+      __typename?: "Category";
+      categoryId: string;
+      categoryName: string;
+      genreByGenreId?: {
+        __typename?: "Genre";
+        genreId: string;
+        genreName: string;
+        genreType: GenreType;
+        iocomeType: IocomeType;
+      } | null;
+    } | null;
+  } | null;
+};
+
+export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
+  id: Scalars["UUID"];
+}>;
+
+export type GetCreditCardDetailBySummaryIdQuery = {
+  __typename?: "Query";
+  creditCardSummaryById?: {
+    __typename?: "CreditCardSummary";
+    id: any;
+    creditCardDetailsBySummaryIdList: Array<{
+      __typename?: "CreditCardDetail";
+      serialNo: number;
+      date: any;
+      memo?: string | null;
+      amount: any;
+      categoryByCategoryId?: {
+        __typename?: "Category";
+        categoryId: string;
+        categoryName: string;
+        genreByGenreId?: {
+          __typename?: "Genre";
+          genreId: string;
+          genreName: string;
+          genreType: GenreType;
+          iocomeType: IocomeType;
+        } | null;
+      } | null;
+    }>;
+  } | null;
+};
+
+export type GetCreditCardListQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetCreditCardListQuery = {
+  __typename?: "Query";
+  allCreditCardSummariesList?: Array<{
+    __typename?: "CreditCardSummary";
+    id: any;
+    creditCard: string;
+    count: number;
+    withdrawalDate: any;
+    totalAmount: any;
+    accountByAccountId?: {
+      __typename?: "Account";
+      accountId: string;
+      accountName: string;
+    } | null;
+    importFileHistoryById?: {
+      __typename?: "ImportFileHistory";
+      importDatetime: any;
+      fileName: string;
+      fileType: string;
+    } | null;
+  }> | null;
+};
+
 export type GetDailyDetailByDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -3122,6 +3224,20 @@ export type GetValidGenreListByIocomeTypeQuery = {
       displayOrder: number;
     }>;
   }> | null;
+};
+
+export type UpdateCreditCardDetailBySerialNoMutationVariables = Exact<{
+  serialNo: Scalars["Int"];
+  categoryId: Scalars["String"];
+  memo?: InputMaybe<Scalars["String"]>;
+}>;
+
+export type UpdateCreditCardDetailBySerialNoMutation = {
+  __typename?: "Mutation";
+  updateCreditCardDetailBySerialNo?: {
+    __typename?: "UpdateCreditCardDetailPayload";
+    clientMutationId?: string | null;
+  } | null;
 };
 
 export type UpdateDailyDetailBySerialNoMutationVariables = Exact<{
@@ -3352,6 +3468,102 @@ export function useGetCategoryTotalByMonthQuery(
     GetCategoryTotalByMonthQuery,
     GetCategoryTotalByMonthQueryVariables
   >({ query: GetCategoryTotalByMonthDocument, ...options });
+}
+export const GetCreditCardDetailBySerialNoDocument = gql`
+  query GetCreditCardDetailBySerialNo($serialNo: Int!) {
+    creditCardDetailBySerialNo(serialNo: $serialNo) {
+      serialNo
+      date
+      amount
+      memo
+      summaryId
+      categoryByCategoryId {
+        categoryId
+        categoryName
+        genreByGenreId {
+          genreId
+          genreName
+          genreType
+          iocomeType
+        }
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardDetailBySerialNoQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailBySerialNoQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailBySerialNoQuery,
+    GetCreditCardDetailBySerialNoQueryVariables
+  >({ query: GetCreditCardDetailBySerialNoDocument, ...options });
+}
+export const GetCreditCardDetailBySummaryIdDocument = gql`
+  query GetCreditCardDetailBySummaryId($id: UUID!) {
+    creditCardSummaryById(id: $id) {
+      id
+      creditCardDetailsBySummaryIdList(orderBy: DATE_ASC) {
+        serialNo
+        date
+        memo
+        amount
+        categoryByCategoryId {
+          categoryId
+          categoryName
+          genreByGenreId {
+            genreId
+            genreName
+            genreType
+            iocomeType
+          }
+        }
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardDetailBySummaryIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailBySummaryIdQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailBySummaryIdQuery,
+    GetCreditCardDetailBySummaryIdQueryVariables
+  >({ query: GetCreditCardDetailBySummaryIdDocument, ...options });
+}
+export const GetCreditCardListDocument = gql`
+  query GetCreditCardList {
+    allCreditCardSummariesList(orderBy: WITHDRAWAL_DATE_DESC) {
+      id
+      creditCard
+      accountByAccountId {
+        accountId
+        accountName
+      }
+      count
+      withdrawalDate
+      totalAmount
+      importFileHistoryById {
+        importDatetime
+        fileName
+        fileType
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardListQuery(
+  options?: Omit<Urql.UseQueryArgs<GetCreditCardListQueryVariables>, "query">
+) {
+  return Urql.useQuery<GetCreditCardListQuery, GetCreditCardListQueryVariables>(
+    { query: GetCreditCardListDocument, ...options }
+  );
 }
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
@@ -3607,6 +3819,29 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQuery,
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
+}
+export const UpdateCreditCardDetailBySerialNoDocument = gql`
+  mutation UpdateCreditCardDetailBySerialNo(
+    $serialNo: Int!
+    $categoryId: String!
+    $memo: String
+  ) {
+    updateCreditCardDetailBySerialNo(
+      input: {
+        creditCardDetailPatch: { categoryId: $categoryId, memo: $memo }
+        serialNo: $serialNo
+      }
+    ) {
+      clientMutationId
+    }
+  }
+`;
+
+export function useUpdateCreditCardDetailBySerialNoMutation() {
+  return Urql.useMutation<
+    UpdateCreditCardDetailBySerialNoMutation,
+    UpdateCreditCardDetailBySerialNoMutationVariables
+  >(UpdateCreditCardDetailBySerialNoDocument);
 }
 export const UpdateDailyDetailBySerialNoDocument = gql`
   mutation UpdateDailyDetailBySerialNo(

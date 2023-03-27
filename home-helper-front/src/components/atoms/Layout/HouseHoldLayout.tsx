@@ -23,6 +23,7 @@ export const HouseHoldLayout: FC<HouseHoldLayoutProps> = ({
 const cardListProps = [
   { href: "/household", label: "戻る", back: true },
   { href: "/household/daily", label: "DAILY" },
+  { href: "/household/creditCard", label: "CREDIT CARD" },
   { href: "/household/account", label: "ACCOUNT" },
   { href: "/household/genre", label: "GENRE" },
   { href: "/household/category", label: "CATEGORY" },

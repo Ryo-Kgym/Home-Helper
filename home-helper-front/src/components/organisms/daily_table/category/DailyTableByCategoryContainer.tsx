@@ -21,7 +21,7 @@ export const DailyTableByCategoryContainer: FC<
     lastDay
   );
 
-  const tableProps: TableProps[] = dailyDetailConverter(data);
+  const tableProps: TableProps[] = dailyDetailConverter({ data });
 
   return (
     <DailyTableByCategoryPresenter

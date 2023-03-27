@@ -1,6 +1,6 @@
 import { TableProps } from "@components/atoms/Table";
 import { CategoryPresenter } from "@components/organisms/category/CategoryPresenter";
-import { getLabel, IocomeType } from "@domain/model/household/IocomeType";
+import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGetCategoryTotalByMonth } from "@hooks/household/category/useGetCategoryTotalByMonth";
 import { FC, useState } from "react";
 import { Button } from "@components/atoms/Button";

@@ -704,12 +704,78 @@ type CreditCardDetail implements Node {
 
   """Reads a single `Category` that is related to this `CreditCardDetail`."""
   categoryByCategoryId: Category
+
+  """
+  Reads a single `CreditCardSummary` that is related to this `CreditCardDetail`.
+  """
+  creditCardSummaryBySummaryId: CreditCardSummary
 }
 
 """
 A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
 """
 scalar UUID
+
+type CreditCardSummary implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  creditCard: String!
+  withdrawalDate: Date!
+  accountId: String!
+  totalAmount: BigFloat!
+  count: Int!
+
+  """
+  Reads a single `ImportFileHistory` that is related to this `CreditCardSummary`.
+  """
+  importFileHistoryById: ImportFileHistory
+
+  """Reads a single `Account` that is related to this `CreditCardSummary`."""
+  accountByAccountId: Account
+
+  """Reads and enables pagination through a set of `CreditCardDetail`."""
+  creditCardDetailsBySummaryIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `CreditCardDetail`."""
+    orderBy: [CreditCardDetailsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CreditCardDetailCondition
+  ): [CreditCardDetail!]!
+}
+
+type ImportFileHistory implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  fileName: String!
+  fileType: String!
+  importDatetime: Datetime!
+  importUserId: String!
+
+  """
+  Reads a single `CreditCardSummary` that is related to this `ImportFileHistory`.
+  """
+  creditCardSummaryById: CreditCardSummary
+}
+
+"""
+A point in time as described by the [ISO
+8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
+"""
+scalar Datetime
 
 """Methods to use when ordering `CreditCardDetail`."""
 enum CreditCardDetailsOrderBy {
@@ -753,50 +819,6 @@ input CreditCardDetailCondition {
   """Checks for equality with the object’s `summaryId` field."""
   summaryId: UUID
 }
-
-type CreditCardSummary implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  id: UUID!
-  creditCard: String!
-  withdrawalDate: Date!
-  accountId: String!
-  totalAmount: BigFloat!
-  count: Int!
-
-  """
-  Reads a single `ImportFileHistory` that is related to this `CreditCardSummary`.
-  """
-  importFileHistoryById: ImportFileHistory
-
-  """Reads a single `Account` that is related to this `CreditCardSummary`."""
-  accountByAccountId: Account
-}
-
-type ImportFileHistory implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  id: UUID!
-  fileName: String!
-  fileType: String!
-  importDatetime: Datetime!
-  importUserId: String!
-
-  """
-  Reads a single `CreditCardSummary` that is related to this `ImportFileHistory`.
-  """
-  creditCardSummaryById: CreditCardSummary
-}
-
-"""
-A point in time as described by the [ISO
-8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
-"""
-scalar Datetime
 
 """Methods to use when ordering `CreditCardSummary`."""
 enum CreditCardSummariesOrderBy {
@@ -1563,6 +1585,11 @@ type CreateCreditCardDetailPayload {
 
   """Reads a single `Category` that is related to this `CreditCardDetail`."""
   categoryByCategoryId: Category
+
+  """
+  Reads a single `CreditCardSummary` that is related to this `CreditCardDetail`.
+  """
+  creditCardSummaryBySummaryId: CreditCardSummary
 }
 
 """All input for the create `CreditCardDetail` mutation."""
@@ -1944,6 +1971,11 @@ type UpdateCreditCardDetailPayload {
 
   """Reads a single `Category` that is related to this `CreditCardDetail`."""
   categoryByCategoryId: Category
+
+  """
+  Reads a single `CreditCardSummary` that is related to this `CreditCardDetail`.
+  """
+  creditCardSummaryBySummaryId: CreditCardSummary
 }
 
 """All input for the `updateCreditCardDetail` mutation."""
@@ -2428,6 +2460,11 @@ type DeleteCreditCardDetailPayload {
 
   """Reads a single `Category` that is related to this `CreditCardDetail`."""
   categoryByCategoryId: Category
+
+  """
+  Reads a single `CreditCardSummary` that is related to this `CreditCardDetail`.
+  """
+  creditCardSummaryBySummaryId: CreditCardSummary
 }
 
 """All input for the `deleteCreditCardDetail` mutation."""
