@@ -1827,8 +1827,6 @@ export type Query = Node & {
   /** Reads and enables pagination through a set of `DailyDetail`. */
   dailyDetailByDateList?: Maybe<Array<Maybe<DailyDetail>>>;
   dailyDetailBySerialNo?: Maybe<DailyDetail>;
-  /** Reads and enables pagination through a set of `DailyTotalView`. */
-  dailyTotalViewByDateIocomeTypeList?: Maybe<Array<Maybe<DailyTotalView>>>;
   /** Reads a single `Genre` using its globally unique `ID`. */
   genre?: Maybe<Genre>;
   genreByGenreId?: Maybe<Genre>;
@@ -2034,15 +2032,6 @@ export type QueryDailyDetailByDateListArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryDailyDetailBySerialNoArgs = {
   serialNo: Scalars["Int"];
-};
-
-/** The root query type which gives access points into the data universe. */
-export type QueryDailyTotalViewByDateIocomeTypeListArgs = {
-  date?: InputMaybe<Scalars["Date"]>;
-  filter?: InputMaybe<DailyTotalViewFilter>;
-  first?: InputMaybe<Scalars["Int"]>;
-  iocomeType?: InputMaybe<IocomeType>;
-  offset?: InputMaybe<Scalars["Int"]>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -3028,6 +3017,27 @@ export type GetCreditCardListQuery = {
   }> | null;
 };
 
+export type GetCreditCardSummaryByWithdrawalDateQueryVariables = Exact<{
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+}>;
+
+export type GetCreditCardSummaryByWithdrawalDateQuery = {
+  __typename?: "Query";
+  allCreditCardSummariesList?: Array<{
+    __typename?: "CreditCardSummary";
+    id: any;
+    withdrawalDate: any;
+    totalAmount: any;
+    creditCard: string;
+    accountByAccountId?: {
+      __typename?: "Account";
+      accountId: string;
+      accountName: string;
+    } | null;
+  }> | null;
+};
+
 export type GetDailyDetailByDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -3570,6 +3580,38 @@ export function useGetCreditCardListQuery(
   return Urql.useQuery<GetCreditCardListQuery, GetCreditCardListQueryVariables>(
     { query: GetCreditCardListDocument, ...options }
   );
+}
+export const GetCreditCardSummaryByWithdrawalDateDocument = gql`
+  query GetCreditCardSummaryByWithdrawalDate($fromDate: Date!, $toDate: Date!) {
+    allCreditCardSummariesList(
+      filter: {
+        withdrawalDate: { greaterThanOrEqualTo: $fromDate }
+        and: { withdrawalDate: { lessThanOrEqualTo: $toDate } }
+      }
+      orderBy: WITHDRAWAL_DATE_ASC
+    ) {
+      id
+      withdrawalDate
+      totalAmount
+      creditCard
+      accountByAccountId {
+        accountId
+        accountName
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardSummaryByWithdrawalDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardSummaryByWithdrawalDateQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetCreditCardSummaryByWithdrawalDateQuery,
+    GetCreditCardSummaryByWithdrawalDateQueryVariables
+  >({ query: GetCreditCardSummaryByWithdrawalDateDocument, ...options });
 }
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
