@@ -1,4 +1,4 @@
-query GetCreditCardSummaryByWithdrawalDate($fromDate: Date!, $toDate: Date!) {
+query GetCreditCardSummaryBetweenWithdrawalDate($fromDate: Date!, $toDate: Date!) {
     allCreditCardSummariesList(
         filter: {
             withdrawalDate: { greaterThanOrEqualTo: $fromDate }

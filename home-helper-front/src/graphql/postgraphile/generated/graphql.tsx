@@ -3017,12 +3017,12 @@ export type GetCreditCardListQuery = {
   }> | null;
 };
 
-export type GetCreditCardSummaryByWithdrawalDateQueryVariables = Exact<{
+export type GetCreditCardSummaryBetweenWithdrawalDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
 }>;
 
-export type GetCreditCardSummaryByWithdrawalDateQuery = {
+export type GetCreditCardSummaryBetweenWithdrawalDateQuery = {
   __typename?: "Query";
   allCreditCardSummariesList?: Array<{
     __typename?: "CreditCardSummary";
@@ -3581,8 +3581,11 @@ export function useGetCreditCardListQuery(
     { query: GetCreditCardListDocument, ...options }
   );
 }
-export const GetCreditCardSummaryByWithdrawalDateDocument = gql`
-  query GetCreditCardSummaryByWithdrawalDate($fromDate: Date!, $toDate: Date!) {
+export const GetCreditCardSummaryBetweenWithdrawalDateDocument = gql`
+  query GetCreditCardSummaryBetweenWithdrawalDate(
+    $fromDate: Date!
+    $toDate: Date!
+  ) {
     allCreditCardSummariesList(
       filter: {
         withdrawalDate: { greaterThanOrEqualTo: $fromDate }
@@ -3602,16 +3605,16 @@ export const GetCreditCardSummaryByWithdrawalDateDocument = gql`
   }
 `;
 
-export function useGetCreditCardSummaryByWithdrawalDateQuery(
+export function useGetCreditCardSummaryBetweenWithdrawalDateQuery(
   options: Omit<
-    Urql.UseQueryArgs<GetCreditCardSummaryByWithdrawalDateQueryVariables>,
+    Urql.UseQueryArgs<GetCreditCardSummaryBetweenWithdrawalDateQueryVariables>,
     "query"
   >
 ) {
   return Urql.useQuery<
-    GetCreditCardSummaryByWithdrawalDateQuery,
-    GetCreditCardSummaryByWithdrawalDateQueryVariables
-  >({ query: GetCreditCardSummaryByWithdrawalDateDocument, ...options });
+    GetCreditCardSummaryBetweenWithdrawalDateQuery,
+    GetCreditCardSummaryBetweenWithdrawalDateQueryVariables
+  >({ query: GetCreditCardSummaryBetweenWithdrawalDateDocument, ...options });
 }
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
