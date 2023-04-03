@@ -11,7 +11,7 @@ export const CalendarContainer: FC<CalendarContainerProps> = () => {
 
   useEffect(() => {
     refetch();
-  }, [data]);
+  }, []);
 
   return (
     <CalendarPresenter
