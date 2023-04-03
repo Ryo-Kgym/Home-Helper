@@ -7,5 +7,19 @@ dayjs.extend(utc);
 dayjs.tz.setDefault("Asia/Tokyo");
 
 export const useDate = () => {
-  return dayjs().tz().format("YYYY-MM-DD HH:mm:ss.SSSSSS");
+  const now = dayjs().tz().format("YYYY-MM-DD HH:mm:ss.SSSSSS");
+
+  const convertToFull = (date: Date) => {
+    return dayjs(date).tz().format("YYYY-MM-DD HH:mm:ss.SSSSSS");
+  };
+
+  const convertToYmd = (date: Date) => {
+    return dayjs(date).tz().format("YYYY-MM-DD");
+  };
+
+  return {
+    now,
+    convertToFull,
+    convertToYmd,
+  };
 };

@@ -4,7 +4,7 @@ import { RangeDatePicker } from "@components/molecules/RangeDatePicker";
 import { IocomeTotal } from "@components/molecules/Total";
 import { Modal } from "@components/atoms/Modal";
 import { UpdateDailyDetail } from "@components/organisms/update_daily_detail";
-import { DailyDetail } from "@hooks/household/daily_detail/useGetDailyDetailByDate";
+import { DailyDetail } from "@domain/model/household/DailyDetail";
 
 type DailyTablePresenterProps = {
   fromDate: Date | null;
@@ -44,6 +44,7 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
       header={["日付", "ジャンル", "カテゴリ", "アカウント", "金額", "メモ"]}
       tablePropsList={tablePropsList}
       size={"xs"}
+      height={"75vh"}
     />
     <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
     <Modal opened={modalOpen} onClose={onClose}>

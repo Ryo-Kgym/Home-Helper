@@ -16,14 +16,14 @@ export const UpdateCreditCardDetailContainer: FC<
 > = ({ serialNo, onClose }) => {
   if (serialNo == null) return <div>No Data</div>;
 
-  const [{ data }, refetch] = useGetCreditCardDetailBySerialNoQuery({
+  const [{ data, fetching }, refetch] = useGetCreditCardDetailBySerialNoQuery({
     variables: {
       serialNo,
     },
   });
 
   const initData = {
-    date: new Date(data?.creditCardDetailBySerialNo?.date),
+    date: fetching ? null : new Date(data?.creditCardDetailBySerialNo?.date),
     iocomeType:
       data?.creditCardDetailBySerialNo?.categoryByCategoryId?.genreByGenreId
         ?.iocomeType ?? IocomeType.Income,
@@ -62,7 +62,7 @@ export const UpdateCreditCardDetailContainer: FC<
 
   useEffect(() => {
     refetch({ requestPolicy: "network-only" });
-  }, [data]);
+  }, []);
 
   return (
     <UpdateCreditCardDetailPresenter

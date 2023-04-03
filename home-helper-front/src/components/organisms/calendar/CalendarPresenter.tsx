@@ -1,16 +1,19 @@
 import type { FC } from "react";
 import { Day } from "@components/organisms/calendar/day";
 import { MonthPicker } from "@components/atoms/MonthPicker";
+import { DailyTotal } from "@domain/model/household/DailyTotal";
 
 type CalendarPresenterProps = {
   baseDate: Date | null;
   setBaseDate: (date: Date | null) => void;
-  dateList: Date[];
+  dailyTotalList: DailyTotal[];
+  refetch: () => void;
 };
 export const CalendarPresenter: FC<CalendarPresenterProps> = ({
   baseDate,
   setBaseDate,
-  dateList,
+  dailyTotalList,
+  refetch,
 }) => {
   return (
     <div className={"grid grid-cols-1 w-full"}>
@@ -20,8 +23,15 @@ export const CalendarPresenter: FC<CalendarPresenterProps> = ({
 
       <div className={"w-full grid grid-cols-7 border-l-2"}>
         <Week />
-        {dateList.map((date, index) => (
-          <Day key={`day${index}`} date={date} baseDate={baseDate!} />
+        {dailyTotalList.map((e, index) => (
+          <Day
+            key={`day${index}`}
+            baseDate={baseDate!}
+            date={e.date}
+            income={e.incomeTotal}
+            outcome={e.outcomeTotal}
+            refetch={refetch}
+          />
         ))}
       </div>
     </div>
