@@ -1,12 +1,20 @@
 import { FC, useState } from "react";
 import { DayPresenter } from "./DayPresenter";
-import { useGetAmountByDay } from "@hooks/household/iocome/useGetAmountByDay";
 
 type DayContainerProps = {
   date: Date;
   baseDate: Date;
+  income: number | undefined;
+  outcome: number | undefined;
+  refetch: () => void;
 };
-export const DayContainer: FC<DayContainerProps> = ({ date, baseDate }) => {
+export const DayContainer: FC<DayContainerProps> = ({
+  date,
+  baseDate,
+  income,
+  outcome,
+  refetch,
+}) => {
   const [opened, setOpened] = useState(false);
   const today = new Date();
 
@@ -15,10 +23,13 @@ export const DayContainer: FC<DayContainerProps> = ({ date, baseDate }) => {
       ? date.getMonth() + 1 + "/" + date.getDate()
       : date.getDate().toLocaleString();
 
-  const { income, outcome } = useGetAmountByDay(date);
-
   const isToday = date.toDateString() === today.toDateString();
   const isNotThisMonth = date.getMonth() !== baseDate.getMonth();
+
+  const closeHandler = () => {
+    setOpened(false);
+    refetch();
+  };
 
   return (
     <DayPresenter
@@ -29,7 +40,7 @@ export const DayContainer: FC<DayContainerProps> = ({ date, baseDate }) => {
       isToday={isToday}
       isNotThisMonth={isNotThisMonth}
       opened={opened}
-      onClose={() => setOpened(false)}
+      onClose={closeHandler}
       openClickHandler={() => setOpened(true)}
     />
   );

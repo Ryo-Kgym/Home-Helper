@@ -1,11 +1,12 @@
 import { useGetDailyDetailByDateQuery } from "@graphql/postgraphile/generated/graphql";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { DailyDetail } from "@domain/model/household/DailyDetail";
 
 export const useGetDailyDetailByDate = (
   fromDate: Date | null,
   toDate: Date | null
 ) => {
-  const [{ data, fetching, error }] = useGetDailyDetailByDateQuery({
+  const [{ data, fetching, error }, refetch] = useGetDailyDetailByDateQuery({
     variables: {
       fromDate: fromDate,
       toDate: toDate,
@@ -28,7 +29,7 @@ export const useGetDailyDetailByDate = (
     )
     .reduce((a, b) => a + Number(b!.amount!), 0);
 
-  const getDailyDetail = (serialNo: number): DailyDetail => {
+  const getDetail = (serialNo: number): DailyDetail => {
     const dailyDetail = data?.dailyDetailByDateList?.find(
       (e) => e!.serialNo === serialNo
     );
@@ -53,17 +54,9 @@ export const useGetDailyDetailByDate = (
     error,
     incomeTotal,
     outcomeTotal,
-    getDetail: getDailyDetail,
+    getDetail,
+    refetch: () => {
+      refetch({ requestPolicy: "network-only" });
+    },
   };
-};
-
-export type DailyDetail = {
-  serialNo: number | null;
-  date: Date | null;
-  amount: number | "";
-  iocomeType: IocomeType | null;
-  genreId: string | null;
-  categoryId: string | null;
-  accountId: string | null;
-  memo: string | null;
 };

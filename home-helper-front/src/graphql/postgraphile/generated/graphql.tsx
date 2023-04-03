@@ -3147,21 +3147,6 @@ export type GetDailyDetailByDateGenreIdQuery = {
   }> | null;
 };
 
-export type GetDailyTotalByDateIocomeTypeQueryVariables = Exact<{
-  iocomeType: IocomeType;
-  date: Scalars["Date"];
-}>;
-
-export type GetDailyTotalByDateIocomeTypeQuery = {
-  __typename?: "Query";
-  dailyTotalViewByDateIocomeTypeList?: Array<{
-    __typename?: "DailyTotalView";
-    date?: any | null;
-    iocomeType?: IocomeType | null;
-    total?: any | null;
-  } | null> | null;
-};
-
 export type GetGenreTotalByMonthQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -3177,6 +3162,27 @@ export type GetGenreTotalByMonthQuery = {
     genreName?: string | null;
     total?: any | null;
   } | null> | null;
+};
+
+export type GetTotalBetweenDateQueryVariables = Exact<{
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+}>;
+
+export type GetTotalBetweenDateQuery = {
+  __typename?: "Query";
+  incomeTotalByDate?: Array<{
+    __typename?: "DailyTotalView";
+    date?: any | null;
+    iocomeType?: IocomeType | null;
+    total?: any | null;
+  }> | null;
+  outcomeTotalByDate?: Array<{
+    __typename?: "DailyTotalView";
+    date?: any | null;
+    iocomeType?: IocomeType | null;
+    total?: any | null;
+  }> | null;
 };
 
 export type GetValidAccountsQueryVariables = Exact<{ [key: string]: never }>;
@@ -3701,27 +3707,6 @@ export function useGetDailyDetailByDateGenreIdQuery(
     GetDailyDetailByDateGenreIdQueryVariables
   >({ query: GetDailyDetailByDateGenreIdDocument, ...options });
 }
-export const GetDailyTotalByDateIocomeTypeDocument = gql`
-  query GetDailyTotalByDateIocomeType($iocomeType: IocomeType!, $date: Date!) {
-    dailyTotalViewByDateIocomeTypeList(date: $date, iocomeType: $iocomeType) {
-      date
-      iocomeType
-      total
-    }
-  }
-`;
-
-export function useGetDailyTotalByDateIocomeTypeQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetDailyTotalByDateIocomeTypeQueryVariables>,
-    "query"
-  >
-) {
-  return Urql.useQuery<
-    GetDailyTotalByDateIocomeTypeQuery,
-    GetDailyTotalByDateIocomeTypeQueryVariables
-  >({ query: GetDailyTotalByDateIocomeTypeDocument, ...options });
-}
 export const GetGenreTotalByMonthDocument = gql`
   query GetGenreTotalByMonth($fromDate: Date!, $toDate: Date!) {
     genreTotalByMonthList(fromDate: $fromDate, toDate: $toDate) {
@@ -3741,6 +3726,41 @@ export function useGetGenreTotalByMonthQuery(
     GetGenreTotalByMonthQuery,
     GetGenreTotalByMonthQueryVariables
   >({ query: GetGenreTotalByMonthDocument, ...options });
+}
+export const GetTotalBetweenDateDocument = gql`
+  query GetTotalBetweenDate($fromDate: Date!, $toDate: Date!) {
+    incomeTotalByDate: allDailyTotalViewsList(
+      condition: { iocomeType: INCOME }
+      filter: {
+        date: { greaterThanOrEqualTo: $fromDate }
+        and: { date: { lessThanOrEqualTo: $toDate } }
+      }
+    ) {
+      date
+      iocomeType
+      total
+    }
+    outcomeTotalByDate: allDailyTotalViewsList(
+      condition: { iocomeType: OUTCOME }
+      filter: {
+        date: { greaterThanOrEqualTo: $fromDate }
+        and: { date: { lessThanOrEqualTo: $toDate } }
+      }
+    ) {
+      date
+      iocomeType
+      total
+    }
+  }
+`;
+
+export function useGetTotalBetweenDateQuery(
+  options: Omit<Urql.UseQueryArgs<GetTotalBetweenDateQueryVariables>, "query">
+) {
+  return Urql.useQuery<
+    GetTotalBetweenDateQuery,
+    GetTotalBetweenDateQueryVariables
+  >({ query: GetTotalBetweenDateDocument, ...options });
 }
 export const GetValidAccountsDocument = gql`
   query GetValidAccounts {

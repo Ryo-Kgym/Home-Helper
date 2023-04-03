@@ -28,6 +28,7 @@ export const useCreateImportFile = ({
 }: useCreateImportFileArgs) => {
   const loadUser = useLoadUser();
   const uuid = useUuid();
+  const { now } = useDate();
 
   // Common table
   const [ignore, createImportFileMutation] =
@@ -38,7 +39,7 @@ export const useCreateImportFile = ({
     fileType: fileType,
     fileName: fileName,
     importUserId: loadUser.getUserId,
-    importDatetime: useDate(),
+    importDatetime: now,
   };
 
   // Credit card Only

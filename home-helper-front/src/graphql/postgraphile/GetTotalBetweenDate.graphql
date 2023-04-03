@@ -1,0 +1,24 @@
+query GetTotalBetweenDate($fromDate: Date!, $toDate: Date!) {
+    incomeTotalByDate: allDailyTotalViewsList(
+        condition: { iocomeType: INCOME }
+        filter: {
+            date: { greaterThanOrEqualTo: $fromDate }
+            and: { date: { lessThanOrEqualTo: $toDate } }
+        }
+    ) {
+        date
+        iocomeType
+        total
+    }
+    outcomeTotalByDate: allDailyTotalViewsList(
+        condition: { iocomeType: OUTCOME }
+        filter: {
+            date: { greaterThanOrEqualTo: $fromDate }
+            and: { date: { lessThanOrEqualTo: $toDate } }
+        }
+    ) {
+        date
+        iocomeType
+        total
+    }
+}

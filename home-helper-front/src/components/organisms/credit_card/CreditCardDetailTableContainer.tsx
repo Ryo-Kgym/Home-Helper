@@ -51,7 +51,7 @@ export const CreditCardDetailTableContainer: FC<
 
   useEffect(() => {
     refetch({ requestPolicy: "network-only" });
-  }, [data]);
+  }, []);
 
   return (
     <CreditCardDetailTablePresenter

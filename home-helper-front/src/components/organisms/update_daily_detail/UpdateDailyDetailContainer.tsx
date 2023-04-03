@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 import { UpdateDailyDetailPresenter } from "./UpdateDailyDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { DailyDetail } from "@hooks/household/daily_detail/useGetDailyDetailByDate";
 import { useUpdateDailyDetailBySerialNo } from "@hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
 import { useDeleteDailyDetailBySerialNo } from "@hooks/household/daily_detail/useDeleteDailyDetailBySerialNo";
+import { DailyDetail } from "@domain/model/household/DailyDetail";
 
 type UpdateDailyDetailContainerProps = {
   initData: DailyDetail | null;
