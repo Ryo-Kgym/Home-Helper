@@ -1,0 +1,14 @@
+query GetCreditCardSummaryAccountTotalBetweenDate(
+    $fromDate: Date!
+    $toDate: Date!
+) {
+    creditCardSummaryAccountTotalBetweenDateList(
+        fromDate: $fromDate
+        toDate: $toDate
+    ) {
+        accountId
+        accountName
+        total
+        count
+    }
+}

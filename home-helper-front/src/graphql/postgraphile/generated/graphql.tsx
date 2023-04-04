@@ -20,6 +20,7 @@ export type Scalars = {
   Int: number;
   Float: number;
   BigFloat: any;
+  BigInt: any;
   Date: any;
   Datetime: any;
   UUID: any;
@@ -151,6 +152,32 @@ export type BigFloatFilter = {
   notEqualTo?: InputMaybe<Scalars["BigFloat"]>;
   /** Not included in the specified list. */
   notIn?: InputMaybe<Array<Scalars["BigFloat"]>>;
+};
+
+/** A filter to be used against BigInt fields. All fields are combined with a logical ‘and.’ */
+export type BigIntFilter = {
+  /** Not equal to the specified value, treating null like an ordinary value. */
+  distinctFrom?: InputMaybe<Scalars["BigInt"]>;
+  /** Equal to the specified value. */
+  equalTo?: InputMaybe<Scalars["BigInt"]>;
+  /** Greater than the specified value. */
+  greaterThan?: InputMaybe<Scalars["BigInt"]>;
+  /** Greater than or equal to the specified value. */
+  greaterThanOrEqualTo?: InputMaybe<Scalars["BigInt"]>;
+  /** Included in the specified list. */
+  in?: InputMaybe<Array<Scalars["BigInt"]>>;
+  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
+  isNull?: InputMaybe<Scalars["Boolean"]>;
+  /** Less than the specified value. */
+  lessThan?: InputMaybe<Scalars["BigInt"]>;
+  /** Less than or equal to the specified value. */
+  lessThanOrEqualTo?: InputMaybe<Scalars["BigInt"]>;
+  /** Equal to the specified value, treating null like an ordinary value. */
+  notDistinctFrom?: InputMaybe<Scalars["BigInt"]>;
+  /** Not equal to the specified value. */
+  notEqualTo?: InputMaybe<Scalars["BigInt"]>;
+  /** Not included in the specified list. */
+  notIn?: InputMaybe<Array<Scalars["BigInt"]>>;
 };
 
 /** A filter to be used against Boolean fields. All fields are combined with a logical ‘and.’ */
@@ -703,6 +730,60 @@ export type CreditCardSummaryPatch = {
   totalAmount?: InputMaybe<Scalars["BigFloat"]>;
   withdrawalDate?: InputMaybe<Scalars["Date"]>;
 };
+
+export type CreditCardSummaryTotalByAccountView = {
+  __typename?: "CreditCardSummaryTotalByAccountView";
+  accountId?: Maybe<Scalars["String"]>;
+  accountName?: Maybe<Scalars["String"]>;
+  count?: Maybe<Scalars["BigInt"]>;
+  total?: Maybe<Scalars["BigFloat"]>;
+};
+
+/**
+ * A condition to be used against `CreditCardSummaryTotalByAccountView` object
+ * types. All fields are tested for equality and combined with a logical ‘and.’
+ */
+export type CreditCardSummaryTotalByAccountViewCondition = {
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `accountName` field. */
+  accountName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `count` field. */
+  count?: InputMaybe<Scalars["BigInt"]>;
+  /** Checks for equality with the object’s `total` field. */
+  total?: InputMaybe<Scalars["BigFloat"]>;
+};
+
+/** A filter to be used against `CreditCardSummaryTotalByAccountView` object types. All fields are combined with a logical ‘and.’ */
+export type CreditCardSummaryTotalByAccountViewFilter = {
+  /** Filter by the object’s `accountId` field. */
+  accountId?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `accountName` field. */
+  accountName?: InputMaybe<StringFilter>;
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewFilter>>;
+  /** Filter by the object’s `count` field. */
+  count?: InputMaybe<BigIntFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<CreditCardSummaryTotalByAccountViewFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewFilter>>;
+  /** Filter by the object’s `total` field. */
+  total?: InputMaybe<BigFloatFilter>;
+};
+
+/** Methods to use when ordering `CreditCardSummaryTotalByAccountView`. */
+export enum CreditCardSummaryTotalByAccountViewsOrderBy {
+  AccountIdAsc = "ACCOUNT_ID_ASC",
+  AccountIdDesc = "ACCOUNT_ID_DESC",
+  AccountNameAsc = "ACCOUNT_NAME_ASC",
+  AccountNameDesc = "ACCOUNT_NAME_DESC",
+  CountAsc = "COUNT_ASC",
+  CountDesc = "COUNT_DESC",
+  Natural = "NATURAL",
+  TotalAsc = "TOTAL_ASC",
+  TotalDesc = "TOTAL_DESC",
+}
 
 export type DailyDetail = Node & {
   __typename?: "DailyDetail";
@@ -1795,6 +1876,10 @@ export type Query = Node & {
   allCreditCardDetailsList?: Maybe<Array<CreditCardDetail>>;
   /** Reads a set of `CreditCardSummary`. */
   allCreditCardSummariesList?: Maybe<Array<CreditCardSummary>>;
+  /** Reads a set of `CreditCardSummaryTotalByAccountView`. */
+  allCreditCardSummaryTotalByAccountViewsList?: Maybe<
+    Array<CreditCardSummaryTotalByAccountView>
+  >;
   /** Reads a set of `DailyDetail`. */
   allDailyDetailsList?: Maybe<Array<DailyDetail>>;
   /** Reads a set of `DailyTotalView`. */
@@ -1821,6 +1906,10 @@ export type Query = Node & {
   creditCardDetailBySerialNo?: Maybe<CreditCardDetail>;
   /** Reads a single `CreditCardSummary` using its globally unique `ID`. */
   creditCardSummary?: Maybe<CreditCardSummary>;
+  /** Reads and enables pagination through a set of `CreditCardSummaryTotalByAccountView`. */
+  creditCardSummaryAccountTotalBetweenDateList?: Maybe<
+    Array<Maybe<CreditCardSummaryTotalByAccountView>>
+  >;
   creditCardSummaryById?: Maybe<CreditCardSummary>;
   /** Reads a single `DailyDetail` using its globally unique `ID`. */
   dailyDetail?: Maybe<DailyDetail>;
@@ -1902,6 +1991,15 @@ export type QueryAllCreditCardSummariesListArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardSummariesOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllCreditCardSummaryTotalByAccountViewsListArgs = {
+  condition?: InputMaybe<CreditCardSummaryTotalByAccountViewCondition>;
+  filter?: InputMaybe<CreditCardSummaryTotalByAccountViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewsOrderBy>>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -2008,6 +2106,15 @@ export type QueryCreditCardDetailBySerialNoArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryCreditCardSummaryArgs = {
   nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryCreditCardSummaryAccountTotalBetweenDateListArgs = {
+  filter?: InputMaybe<CreditCardSummaryTotalByAccountViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  fromDate?: InputMaybe<Scalars["Date"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  toDate?: InputMaybe<Scalars["Date"]>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -3017,6 +3124,22 @@ export type GetCreditCardListQuery = {
   }> | null;
 };
 
+export type GetCreditCardSummaryAccountTotalBetweenDateQueryVariables = Exact<{
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+}>;
+
+export type GetCreditCardSummaryAccountTotalBetweenDateQuery = {
+  __typename?: "Query";
+  creditCardSummaryAccountTotalBetweenDateList?: Array<{
+    __typename?: "CreditCardSummaryTotalByAccountView";
+    accountId?: string | null;
+    accountName?: string | null;
+    total?: any | null;
+    count?: any | null;
+  } | null> | null;
+};
+
 export type GetCreditCardSummaryBetweenWithdrawalDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -3580,6 +3703,34 @@ export function useGetCreditCardListQuery(
   return Urql.useQuery<GetCreditCardListQuery, GetCreditCardListQueryVariables>(
     { query: GetCreditCardListDocument, ...options }
   );
+}
+export const GetCreditCardSummaryAccountTotalBetweenDateDocument = gql`
+  query GetCreditCardSummaryAccountTotalBetweenDate(
+    $fromDate: Date!
+    $toDate: Date!
+  ) {
+    creditCardSummaryAccountTotalBetweenDateList(
+      fromDate: $fromDate
+      toDate: $toDate
+    ) {
+      accountId
+      accountName
+      total
+      count
+    }
+  }
+`;
+
+export function useGetCreditCardSummaryAccountTotalBetweenDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardSummaryAccountTotalBetweenDateQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetCreditCardSummaryAccountTotalBetweenDateQuery,
+    GetCreditCardSummaryAccountTotalBetweenDateQueryVariables
+  >({ query: GetCreditCardSummaryAccountTotalBetweenDateDocument, ...options });
 }
 export const GetCreditCardSummaryBetweenWithdrawalDateDocument = gql`
   query GetCreditCardSummaryBetweenWithdrawalDate(
