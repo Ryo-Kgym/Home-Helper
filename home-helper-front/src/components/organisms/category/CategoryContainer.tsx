@@ -1,6 +1,5 @@
 import { TableProps } from "@components/atoms/Table";
 import { CategoryPresenter } from "@components/organisms/category/CategoryPresenter";
-import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGetCategoryTotalByMonth } from "@hooks/household/category/useGetCategoryTotalByMonth";
 import { FC, useState } from "react";
 import { Button } from "@components/atoms/Button";
@@ -14,7 +13,10 @@ export const CategoryContainer: FC = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>("");
   const [openDailyDetail, setOpenDailyDetail] = useState(false);
 
-  const [{ data }] = useGetCategoryTotalByMonth(fromMonth, toMonth);
+  const { data, incomeTotal, outcomeTotal } = useGetCategoryTotalByMonth(
+    fromMonth,
+    toMonth
+  );
 
   const tableProps: TableProps[] =
     data?.categoryTotalByMonthList?.map((category) => {
@@ -58,14 +60,6 @@ export const CategoryContainer: FC = () => {
       />
     );
   }
-
-  const incomeTotal = data?.categoryTotalByMonthList
-    ?.filter((c) => c!.iocomeType === IocomeType.Income)
-    .reduce((a, b) => a + Number(b!.total!), 0);
-
-  const outcomeTotal = data?.categoryTotalByMonthList
-    ?.filter((c) => c!.iocomeType === IocomeType.Outcome)
-    .reduce((a, b) => a + Number(b!.total!), 0);
 
   return (
     <CategoryPresenter
