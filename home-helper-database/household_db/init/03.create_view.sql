@@ -104,19 +104,23 @@ order by
 drop view if exists credit_card_summary_total_by_account_view cascade;
 create view credit_card_summary_total_by_account_view as
 select
+    d.withdrawal_date as date,
     d.account_id,
     a.account_name,
-    sum(d.total_amount) as total,
-    sum(d.count) as count
+    a.display_order,
+    'OUTCOME'::iocome_type as iocome_type,
+    sum(d.total_amount) as total
 from
     credit_card_summary d
     inner join account a
         on a.account_id = d.account_id
 group by
+    d.withdrawal_date,
     d.account_id,
     a.account_name,
     a.display_order
 order by
     a.display_order,
-    d.account_id
+    d.account_id,
+    d.withdrawal_date
 ;

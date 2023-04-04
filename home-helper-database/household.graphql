@@ -270,20 +270,6 @@ type Query implements Node {
     offset: Int
   ): [TotalByCategoryView]
 
-  """
-  Reads and enables pagination through a set of `CreditCardSummaryTotalByAccountView`.
-  """
-  creditCardSummaryAccountTotalBetweenDateList(
-    fromDate: Date
-    toDate: Date
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Skip the first `n` values."""
-    offset: Int
-  ): [CreditCardSummaryTotalByAccountView]
-
   """Reads and enables pagination through a set of `DailyDetail`."""
   dailyDetailByDateList(
     fromDate: Date
@@ -883,30 +869,29 @@ input CreditCardSummaryCondition {
 }
 
 type CreditCardSummaryTotalByAccountView {
+  date: Date
   accountId: String
   accountName: String
+  displayOrder: Int
+  iocomeType: IocomeType
   total: BigFloat
-  count: BigInt
 }
-
-"""
-A signed eight-byte integer. The upper big integer values are greater than the
-max value for a JavaScript number. Therefore all big integers will be output as
-strings and not numbers.
-"""
-scalar BigInt
 
 """Methods to use when ordering `CreditCardSummaryTotalByAccountView`."""
 enum CreditCardSummaryTotalByAccountViewsOrderBy {
   NATURAL
+  DATE_ASC
+  DATE_DESC
   ACCOUNT_ID_ASC
   ACCOUNT_ID_DESC
   ACCOUNT_NAME_ASC
   ACCOUNT_NAME_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
   TOTAL_ASC
   TOTAL_DESC
-  COUNT_ASC
-  COUNT_DESC
 }
 
 """
@@ -914,17 +899,23 @@ A condition to be used against `CreditCardSummaryTotalByAccountView` object
 types. All fields are tested for equality and combined with a logical ‘and.’
 """
 input CreditCardSummaryTotalByAccountViewCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: Date
+
   """Checks for equality with the object’s `accountId` field."""
   accountId: String
 
   """Checks for equality with the object’s `accountName` field."""
   accountName: String
 
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
   """Checks for equality with the object’s `total` field."""
   total: BigFloat
-
-  """Checks for equality with the object’s `count` field."""
-  count: BigInt
 }
 
 type DailyTotalView {

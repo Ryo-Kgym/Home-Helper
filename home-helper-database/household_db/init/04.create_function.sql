@@ -39,21 +39,39 @@ drop function if exists account_total cascade;
 create function account_total(from_date date, to_date date) returns setof total_by_account_view as
 $$
 select
-    current_date as date,
-    account_id,
-    account_name,
-    display_order,
-    'INCOME'::iocome_type as iocome_type,
-    sum(case iocome_type when 'INCOME' then 1 else -1 end * total) as total
+    current_date                                                     as date,
+    u.account_id,
+    u.account_name,
+    u.display_order,
+    'INCOME'::iocome_type                                            as iocome_type,
+    sum(case u.iocome_type when 'INCOME' then 1 else -1 end * total) as total
 from
-    total_by_account_view
-where total_by_account_view.date between from_date and to_date
+    (select
+         account_id,
+         account_name,
+         display_order,
+         iocome_type,
+         total
+     from
+         total_by_account_view tbav
+     where tbav.date between from_date and to_date
+     union all
+     select
+         account_id,
+         account_name,
+         display_order,
+         iocome_type,
+         total
+     from
+         credit_card_summary_total_by_account_view stbav
+     where stbav.date between from_date and to_date) as u
 group by
-    account_id,
-    account_name,
-    display_order
+    u.account_id,
+    u.account_name,
+    u.display_order
 order by
-    display_order ;
+    u.display_order,
+    u.account_id;
 $$ language sql stable;
 
 drop function if exists genre_total_by_month cascade;
@@ -77,27 +95,4 @@ order by
     t.iocome_type,
     sum(t.total) desc;
 
-$$ language sql stable;
-
-drop function if exists credit_card_summary_account_total_between_date cascade;
-create function credit_card_summary_account_total_between_date(from_date date, to_date date)
-    returns setof credit_card_summary_total_by_account_view as
-$$
-select
-    s.account_id,
-    a.account_name,
-    sum(s.total_amount) as total,
-    sum(s.count) as count
-from
-    credit_card_summary s
-    inner join account a
-        on s.account_id = a.account_id
-where
-    s.withdrawal_date between from_date and to_date
-group by
-    s.account_id,
-    a.account_name,
-    a.display_order
-order by
-    a.display_order;
 $$ language sql stable;
