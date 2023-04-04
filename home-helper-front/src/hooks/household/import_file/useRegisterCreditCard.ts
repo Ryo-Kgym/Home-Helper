@@ -36,9 +36,11 @@ export const useRegisterCreditCard = ({
 
   return () => {
     createCreditCardSummaryMutation(summaryVariableList);
-    detailVariableList.map((variable) =>
-      createCreditCardDetailMutation(variable)
-    );
+    setTimeout(() => {
+      detailVariableList.map((variable) =>
+        createCreditCardDetailMutation(variable)
+      );
+    }, 100);
   };
 };
 

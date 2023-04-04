@@ -85,6 +85,23 @@ type Query implements Node {
     condition: CreditCardSummaryCondition
   ): [CreditCardSummary!]
 
+  """Reads a set of `CreditCardSummaryTotalByAccountView`."""
+  allCreditCardSummaryTotalByAccountViewsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `CreditCardSummaryTotalByAccountView`."""
+    orderBy: [CreditCardSummaryTotalByAccountViewsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CreditCardSummaryTotalByAccountViewCondition
+  ): [CreditCardSummaryTotalByAccountView!]
+
   """Reads a set of `DailyDetail`."""
   allDailyDetailsList(
     """Only read the first `n` values of the set."""
@@ -264,18 +281,6 @@ type Query implements Node {
     """Skip the first `n` values."""
     offset: Int
   ): [DailyDetail]
-
-  """Reads and enables pagination through a set of `DailyTotalView`."""
-  dailyTotalViewByDateIocomeTypeList(
-    iocomeType: IocomeType
-    date: Date
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Skip the first `n` values."""
-    offset: Int
-  ): [DailyTotalView]
 
   """Reads and enables pagination through a set of `TotalByGenreView`."""
   genreTotalByMonthList(
@@ -861,6 +866,56 @@ input CreditCardSummaryCondition {
 
   """Checks for equality with the object’s `count` field."""
   count: Int
+}
+
+type CreditCardSummaryTotalByAccountView {
+  date: Date
+  accountId: String
+  accountName: String
+  displayOrder: Int
+  iocomeType: IocomeType
+  total: BigFloat
+}
+
+"""Methods to use when ordering `CreditCardSummaryTotalByAccountView`."""
+enum CreditCardSummaryTotalByAccountViewsOrderBy {
+  NATURAL
+  DATE_ASC
+  DATE_DESC
+  ACCOUNT_ID_ASC
+  ACCOUNT_ID_DESC
+  ACCOUNT_NAME_ASC
+  ACCOUNT_NAME_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
+  TOTAL_ASC
+  TOTAL_DESC
+}
+
+"""
+A condition to be used against `CreditCardSummaryTotalByAccountView` object
+types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input CreditCardSummaryTotalByAccountViewCondition {
+  """Checks for equality with the object’s `date` field."""
+  date: Date
+
+  """Checks for equality with the object’s `accountId` field."""
+  accountId: String
+
+  """Checks for equality with the object’s `accountName` field."""
+  accountName: String
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
+  """Checks for equality with the object’s `total` field."""
+  total: BigFloat
 }
 
 type DailyTotalView {

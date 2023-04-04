@@ -56,17 +56,20 @@ export const useCreateImportFile = ({
   return () => {
     createImportFileMutation(createImportFileVariables);
 
-    RegistrationMap.get(fileType)!({
-      createCreditCardSummaryMutation,
-      createCreditCardDetailMutation,
-      createDailyDetailMutation,
-      uuid,
-      fileType,
-      accountId,
-      withdrawalDate,
-      loadData,
-      userId: loadUser.getUserId,
-    })();
+    setTimeout(
+      RegistrationMap.get(fileType)!({
+        createCreditCardSummaryMutation,
+        createCreditCardDetailMutation,
+        createDailyDetailMutation,
+        uuid,
+        fileType,
+        accountId,
+        withdrawalDate,
+        loadData,
+        userId: loadUser.getUserId,
+      }),
+      100
+    );
   };
 };
 
