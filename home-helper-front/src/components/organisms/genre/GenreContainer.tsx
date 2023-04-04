@@ -1,11 +1,12 @@
 import { TableProps } from "@components/atoms/Table";
-import { getLabel, IocomeType } from "@domain/model/household/IocomeType";
+import { IocomeType } from "@domain/model/household/IocomeType";
 import { FC, useState } from "react";
 import { Button } from "@components/atoms/Button";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { GenrePresenter } from "@components/organisms/genre/GenrePresenter";
 import { useGetGenreTotalByMonth } from "@hooks/household/genre/useGetGenreTotalByMonth";
 import { DailyTableByGenre } from "@components/organisms/daily_table/genre";
+import { useGetCreditCardSummaryBetweenMonth } from "@hooks/household/credit_card/useGetCreditCardSummaryBetweenMonth";
 
 export const GenreContainer: FC = () => {
   const [fromMonth, setFromMonth] = useState<Date | null>(new Date());
@@ -18,6 +19,12 @@ export const GenreContainer: FC = () => {
     fromMonth,
     toMonth
   );
+
+  const {
+    data: creditCardSummaryData,
+    incomeTotal: creditCardIncomeTotal,
+    outcomeTotal: creditCardOutcomeTotal,
+  } = useGetCreditCardSummaryBetweenMonth(fromMonth, toMonth);
 
   const tableProps: TableProps[] =
     data?.genreTotalByMonthList?.map((genre) => {
@@ -51,6 +58,31 @@ export const GenreContainer: FC = () => {
       };
     }) ?? [];
 
+  const creditCardTableProps: TableProps[] =
+    creditCardSummaryData?.allCreditCardSummariesList?.map((summary) => {
+      return {
+        keyPrefix: "creditCardSummary",
+        columns: [
+          {
+            value: summary.creditCard,
+          },
+          {
+            value: (
+              <FormatPrice
+                price={summary.totalAmount!}
+                iocomeType={IocomeType.Outcome}
+              />
+            ),
+            align: "right",
+          },
+          {
+            value: "-",
+            align: "center",
+          },
+        ],
+      };
+    }) ?? [];
+
   if (openDailyDetail) {
     return (
       <DailyTableByGenre
@@ -67,9 +99,9 @@ export const GenreContainer: FC = () => {
       changeFromMonth={setFromMonth}
       toMonth={toMonth}
       changeToMonth={setToMonth}
-      tableProps={tableProps}
-      incomeTotal={incomeTotal}
-      outcomeTotal={outcomeTotal}
+      tableProps={tableProps.concat(creditCardTableProps)}
+      incomeTotal={incomeTotal! + creditCardIncomeTotal!}
+      outcomeTotal={outcomeTotal! + creditCardOutcomeTotal!}
     />
   );
 };
