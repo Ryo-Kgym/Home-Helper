@@ -4,6 +4,8 @@ import { TableProps } from "@components/atoms/Table";
 import { dailyDetailConverter } from "@components/organisms/daily_table/dailyDetailConverter";
 import { useGetDailyDetailByDate } from "@hooks/household/daily_detail/useGetDailyDetailByDate";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
+import { creditCardSummaryConverter } from "@components/organisms/daily_table/creditCardSummaryConverter";
+import { useGetCreditCardSummaryBetweenDate } from "@hooks/household/credit_card/useGetCreditCardSummaryBetweenDate";
 
 type DailyTableContainerProps = {
   dailyDetail?: TableProps[];
@@ -35,6 +37,12 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
   const { data, incomeTotal, outcomeTotal, getDetail, refetch } =
     useGetDailyDetailByDate(fromDate, toDate);
 
+  const {
+    data: creditCardSummaryData,
+    incomeTotal: creditCardIncomeTotal,
+    outcomeTotal: creditCardOutcomeTotal,
+  } = useGetCreditCardSummaryBetweenDate(fromDate, toDate);
+
   const tableProps: TableProps[] =
     dailyDetailTableProps ??
     dailyDetailConverter({
@@ -43,7 +51,11 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
         setDailyDetail(getDetail(serialNo));
         setModalOpen(true);
       },
-    });
+    }).concat(
+      creditCardSummaryConverter({
+        data: creditCardSummaryData,
+      })
+    );
 
   const disabled = dailyDetailTableProps?.length != undefined;
 
@@ -58,8 +70,10 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
       toDate={toDate}
       changeToDate={setToDate}
       tablePropsList={tableProps}
-      incomeTotal={defaultIncomeTotal ?? incomeTotal}
-      outcomeTotal={defaultOutcomeTotal ?? outcomeTotal}
+      incomeTotal={defaultIncomeTotal ?? incomeTotal! + creditCardIncomeTotal}
+      outcomeTotal={
+        defaultOutcomeTotal ?? outcomeTotal! + creditCardOutcomeTotal!
+      }
       disabled={disabled}
       modalOpen={modalOpen}
       onClose={() => setModalOpen(false)}
