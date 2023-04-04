@@ -85,6 +85,23 @@ type Query implements Node {
     condition: CreditCardSummaryCondition
   ): [CreditCardSummary!]
 
+  """Reads a set of `CreditCardSummaryTotalByAccountView`."""
+  allCreditCardSummaryTotalByAccountViewsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `CreditCardSummaryTotalByAccountView`."""
+    orderBy: [CreditCardSummaryTotalByAccountViewsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CreditCardSummaryTotalByAccountViewCondition
+  ): [CreditCardSummaryTotalByAccountView!]
+
   """Reads a set of `DailyDetail`."""
   allDailyDetailsList(
     """Only read the first `n` values of the set."""
@@ -253,6 +270,20 @@ type Query implements Node {
     offset: Int
   ): [TotalByCategoryView]
 
+  """
+  Reads and enables pagination through a set of `CreditCardSummaryTotalByAccountView`.
+  """
+  creditCardSummaryAccountTotalBetweenDateList(
+    fromDate: Date
+    toDate: Date
+
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+  ): [CreditCardSummaryTotalByAccountView]
+
   """Reads and enables pagination through a set of `DailyDetail`."""
   dailyDetailByDateList(
     fromDate: Date
@@ -264,18 +295,6 @@ type Query implements Node {
     """Skip the first `n` values."""
     offset: Int
   ): [DailyDetail]
-
-  """Reads and enables pagination through a set of `DailyTotalView`."""
-  dailyTotalViewByDateIocomeTypeList(
-    iocomeType: IocomeType
-    date: Date
-
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Skip the first `n` values."""
-    offset: Int
-  ): [DailyTotalView]
 
   """Reads and enables pagination through a set of `TotalByGenreView`."""
   genreTotalByMonthList(
@@ -861,6 +880,51 @@ input CreditCardSummaryCondition {
 
   """Checks for equality with the object’s `count` field."""
   count: Int
+}
+
+type CreditCardSummaryTotalByAccountView {
+  accountId: String
+  accountName: String
+  total: BigFloat
+  count: BigInt
+}
+
+"""
+A signed eight-byte integer. The upper big integer values are greater than the
+max value for a JavaScript number. Therefore all big integers will be output as
+strings and not numbers.
+"""
+scalar BigInt
+
+"""Methods to use when ordering `CreditCardSummaryTotalByAccountView`."""
+enum CreditCardSummaryTotalByAccountViewsOrderBy {
+  NATURAL
+  ACCOUNT_ID_ASC
+  ACCOUNT_ID_DESC
+  ACCOUNT_NAME_ASC
+  ACCOUNT_NAME_DESC
+  TOTAL_ASC
+  TOTAL_DESC
+  COUNT_ASC
+  COUNT_DESC
+}
+
+"""
+A condition to be used against `CreditCardSummaryTotalByAccountView` object
+types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input CreditCardSummaryTotalByAccountViewCondition {
+  """Checks for equality with the object’s `accountId` field."""
+  accountId: String
+
+  """Checks for equality with the object’s `accountName` field."""
+  accountName: String
+
+  """Checks for equality with the object’s `total` field."""
+  total: BigFloat
+
+  """Checks for equality with the object’s `count` field."""
+  count: BigInt
 }
 
 type DailyTotalView {

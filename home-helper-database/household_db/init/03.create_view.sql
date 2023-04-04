@@ -100,3 +100,23 @@ order by
     d.date,
     g.display_order
 ;
+
+drop view if exists credit_card_summary_total_by_account_view cascade;
+create view credit_card_summary_total_by_account_view as
+select
+    d.account_id,
+    a.account_name,
+    sum(d.total_amount) as total,
+    sum(d.count) as count
+from
+    credit_card_summary d
+    inner join account a
+        on a.account_id = d.account_id
+group by
+    d.account_id,
+    a.account_name,
+    a.display_order
+order by
+    a.display_order,
+    d.account_id
+;

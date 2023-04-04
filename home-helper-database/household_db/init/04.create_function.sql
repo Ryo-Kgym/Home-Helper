@@ -78,3 +78,26 @@ order by
     sum(t.total) desc;
 
 $$ language sql stable;
+
+drop function if exists credit_card_summary_account_total_between_date cascade;
+create function credit_card_summary_account_total_between_date(from_date date, to_date date)
+    returns setof credit_card_summary_total_by_account_view as
+$$
+select
+    s.account_id,
+    a.account_name,
+    sum(s.total_amount) as total,
+    sum(s.count) as count
+from
+    credit_card_summary s
+    inner join account a
+        on s.account_id = a.account_id
+where
+    s.withdrawal_date between from_date and to_date
+group by
+    s.account_id,
+    a.account_name,
+    a.display_order
+order by
+    a.display_order;
+$$ language sql stable;
