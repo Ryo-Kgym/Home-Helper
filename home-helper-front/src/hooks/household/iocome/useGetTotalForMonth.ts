@@ -77,5 +77,5 @@ const calcOutcomeTotal = (
   if (creditCardTotal === undefined) {
     return Number(outcomeTotal);
   }
-  return Number(outcomeTotal + creditCardTotal);
+  return Number(outcomeTotal) + Number(creditCardTotal);
 };
