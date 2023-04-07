@@ -1,13 +1,13 @@
 import { MonthPicker } from "@components/atoms/MonthPicker";
 import { FC } from "react";
 
-type RangeMonthPickerPresenterProps = {
+type DualMonthPickerPresenterProps = {
   fromMonth: Date | null;
   changeFromMonth: (date: Date | null) => void;
   toMonth: Date | null;
   changeToMonth: (date: Date | null) => void;
 };
-export const DualMonthPickerPresenter: FC<RangeMonthPickerPresenterProps> = ({
+export const DualMonthPickerPresenter: FC<DualMonthPickerPresenterProps> = ({
   fromMonth,
   changeFromMonth,
   toMonth,
