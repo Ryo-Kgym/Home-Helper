@@ -3119,6 +3119,28 @@ export type GetCreditCardSummaryBetweenWithdrawalDateQuery = {
   }> | null;
 };
 
+export type GetCreditCardSummaryByAccountIdBetweenDateQueryVariables = Exact<{
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+  accountId: Scalars["String"];
+}>;
+
+export type GetCreditCardSummaryByAccountIdBetweenDateQuery = {
+  __typename?: "Query";
+  allCreditCardSummariesList?: Array<{
+    __typename?: "CreditCardSummary";
+    id: any;
+    withdrawalDate: any;
+    totalAmount: any;
+    creditCard: string;
+    accountByAccountId?: {
+      __typename?: "Account";
+      accountId: string;
+      accountName: string;
+    } | null;
+  }> | null;
+};
+
 export type GetDailyDetailByDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -3735,6 +3757,43 @@ export function useGetCreditCardSummaryBetweenWithdrawalDateQuery(
     GetCreditCardSummaryBetweenWithdrawalDateQuery,
     GetCreditCardSummaryBetweenWithdrawalDateQueryVariables
   >({ query: GetCreditCardSummaryBetweenWithdrawalDateDocument, ...options });
+}
+export const GetCreditCardSummaryByAccountIdBetweenDateDocument = gql`
+  query GetCreditCardSummaryByAccountIdBetweenDate(
+    $fromDate: Date!
+    $toDate: Date!
+    $accountId: String!
+  ) {
+    allCreditCardSummariesList(
+      filter: {
+        withdrawalDate: { greaterThanOrEqualTo: $fromDate }
+        and: { withdrawalDate: { lessThanOrEqualTo: $toDate } }
+      }
+      orderBy: WITHDRAWAL_DATE_ASC
+      condition: { accountId: $accountId }
+    ) {
+      id
+      withdrawalDate
+      totalAmount
+      creditCard
+      accountByAccountId {
+        accountId
+        accountName
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardSummaryByAccountIdBetweenDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardSummaryByAccountIdBetweenDateQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetCreditCardSummaryByAccountIdBetweenDateQuery,
+    GetCreditCardSummaryByAccountIdBetweenDateQueryVariables
+  >({ query: GetCreditCardSummaryByAccountIdBetweenDateDocument, ...options });
 }
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
