@@ -5,11 +5,13 @@ type MonthPickerPresenterProps = {
   value: Date | null;
   changeValue: (value: Date | null) => void;
   label?: string;
+  clearable?: boolean;
 };
 export const MonthPickerPresenter: FC<MonthPickerPresenterProps> = ({
   value,
   changeValue,
   label = "YEAR MONTH",
+  clearable = false,
 }) => {
   return (
     <MonthPickerInput
@@ -21,6 +23,7 @@ export const MonthPickerPresenter: FC<MonthPickerPresenterProps> = ({
       value={value}
       onChange={changeValue}
       size={"lg"}
+      clearable={clearable}
     />
   );
 };
