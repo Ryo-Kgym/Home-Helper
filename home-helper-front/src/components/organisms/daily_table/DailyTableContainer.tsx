@@ -61,7 +61,7 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
 
   useEffect(() => {
     refetch();
-  }, [data]);
+  }, []);
 
   return (
     <DailyTablePresenter

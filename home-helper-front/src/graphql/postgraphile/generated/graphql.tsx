@@ -20,7 +20,6 @@ export type Scalars = {
   Int: number;
   Float: number;
   BigFloat: any;
-  BigInt: any;
   Date: any;
   Datetime: any;
   UUID: any;
@@ -152,32 +151,6 @@ export type BigFloatFilter = {
   notEqualTo?: InputMaybe<Scalars["BigFloat"]>;
   /** Not included in the specified list. */
   notIn?: InputMaybe<Array<Scalars["BigFloat"]>>;
-};
-
-/** A filter to be used against BigInt fields. All fields are combined with a logical ‘and.’ */
-export type BigIntFilter = {
-  /** Not equal to the specified value, treating null like an ordinary value. */
-  distinctFrom?: InputMaybe<Scalars["BigInt"]>;
-  /** Equal to the specified value. */
-  equalTo?: InputMaybe<Scalars["BigInt"]>;
-  /** Greater than the specified value. */
-  greaterThan?: InputMaybe<Scalars["BigInt"]>;
-  /** Greater than or equal to the specified value. */
-  greaterThanOrEqualTo?: InputMaybe<Scalars["BigInt"]>;
-  /** Included in the specified list. */
-  in?: InputMaybe<Array<Scalars["BigInt"]>>;
-  /** Is null (if `true` is specified) or is not null (if `false` is specified). */
-  isNull?: InputMaybe<Scalars["Boolean"]>;
-  /** Less than the specified value. */
-  lessThan?: InputMaybe<Scalars["BigInt"]>;
-  /** Less than or equal to the specified value. */
-  lessThanOrEqualTo?: InputMaybe<Scalars["BigInt"]>;
-  /** Equal to the specified value, treating null like an ordinary value. */
-  notDistinctFrom?: InputMaybe<Scalars["BigInt"]>;
-  /** Not equal to the specified value. */
-  notEqualTo?: InputMaybe<Scalars["BigInt"]>;
-  /** Not included in the specified list. */
-  notIn?: InputMaybe<Array<Scalars["BigInt"]>>;
 };
 
 /** A filter to be used against Boolean fields. All fields are combined with a logical ‘and.’ */
@@ -735,7 +708,9 @@ export type CreditCardSummaryTotalByAccountView = {
   __typename?: "CreditCardSummaryTotalByAccountView";
   accountId?: Maybe<Scalars["String"]>;
   accountName?: Maybe<Scalars["String"]>;
-  count?: Maybe<Scalars["BigInt"]>;
+  date?: Maybe<Scalars["Date"]>;
+  displayOrder?: Maybe<Scalars["Int"]>;
+  iocomeType?: Maybe<IocomeType>;
   total?: Maybe<Scalars["BigFloat"]>;
 };
 
@@ -748,8 +723,12 @@ export type CreditCardSummaryTotalByAccountViewCondition = {
   accountId?: InputMaybe<Scalars["String"]>;
   /** Checks for equality with the object’s `accountName` field. */
   accountName?: InputMaybe<Scalars["String"]>;
-  /** Checks for equality with the object’s `count` field. */
-  count?: InputMaybe<Scalars["BigInt"]>;
+  /** Checks for equality with the object’s `date` field. */
+  date?: InputMaybe<Scalars["Date"]>;
+  /** Checks for equality with the object’s `displayOrder` field. */
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeType>;
   /** Checks for equality with the object’s `total` field. */
   total?: InputMaybe<Scalars["BigFloat"]>;
 };
@@ -762,8 +741,12 @@ export type CreditCardSummaryTotalByAccountViewFilter = {
   accountName?: InputMaybe<StringFilter>;
   /** Checks for all expressions in this list. */
   and?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewFilter>>;
-  /** Filter by the object’s `count` field. */
-  count?: InputMaybe<BigIntFilter>;
+  /** Filter by the object’s `date` field. */
+  date?: InputMaybe<DateFilter>;
+  /** Filter by the object’s `displayOrder` field. */
+  displayOrder?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeTypeFilter>;
   /** Negates the expression. */
   not?: InputMaybe<CreditCardSummaryTotalByAccountViewFilter>;
   /** Checks for any expressions in this list. */
@@ -778,8 +761,12 @@ export enum CreditCardSummaryTotalByAccountViewsOrderBy {
   AccountIdDesc = "ACCOUNT_ID_DESC",
   AccountNameAsc = "ACCOUNT_NAME_ASC",
   AccountNameDesc = "ACCOUNT_NAME_DESC",
-  CountAsc = "COUNT_ASC",
-  CountDesc = "COUNT_DESC",
+  DateAsc = "DATE_ASC",
+  DateDesc = "DATE_DESC",
+  DisplayOrderAsc = "DISPLAY_ORDER_ASC",
+  DisplayOrderDesc = "DISPLAY_ORDER_DESC",
+  IocomeTypeAsc = "IOCOME_TYPE_ASC",
+  IocomeTypeDesc = "IOCOME_TYPE_DESC",
   Natural = "NATURAL",
   TotalAsc = "TOTAL_ASC",
   TotalDesc = "TOTAL_DESC",
@@ -1906,10 +1893,6 @@ export type Query = Node & {
   creditCardDetailBySerialNo?: Maybe<CreditCardDetail>;
   /** Reads a single `CreditCardSummary` using its globally unique `ID`. */
   creditCardSummary?: Maybe<CreditCardSummary>;
-  /** Reads and enables pagination through a set of `CreditCardSummaryTotalByAccountView`. */
-  creditCardSummaryAccountTotalBetweenDateList?: Maybe<
-    Array<Maybe<CreditCardSummaryTotalByAccountView>>
-  >;
   creditCardSummaryById?: Maybe<CreditCardSummary>;
   /** Reads a single `DailyDetail` using its globally unique `ID`. */
   dailyDetail?: Maybe<DailyDetail>;
@@ -2106,15 +2089,6 @@ export type QueryCreditCardDetailBySerialNoArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryCreditCardSummaryArgs = {
   nodeId: Scalars["ID"];
-};
-
-/** The root query type which gives access points into the data universe. */
-export type QueryCreditCardSummaryAccountTotalBetweenDateListArgs = {
-  filter?: InputMaybe<CreditCardSummaryTotalByAccountViewFilter>;
-  first?: InputMaybe<Scalars["Int"]>;
-  fromDate?: InputMaybe<Scalars["Date"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  toDate?: InputMaybe<Scalars["Date"]>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -3124,22 +3098,6 @@ export type GetCreditCardListQuery = {
   }> | null;
 };
 
-export type GetCreditCardSummaryAccountTotalBetweenDateQueryVariables = Exact<{
-  fromDate: Scalars["Date"];
-  toDate: Scalars["Date"];
-}>;
-
-export type GetCreditCardSummaryAccountTotalBetweenDateQuery = {
-  __typename?: "Query";
-  creditCardSummaryAccountTotalBetweenDateList?: Array<{
-    __typename?: "CreditCardSummaryTotalByAccountView";
-    accountId?: string | null;
-    accountName?: string | null;
-    total?: any | null;
-    count?: any | null;
-  } | null> | null;
-};
-
 export type GetCreditCardSummaryBetweenWithdrawalDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -3161,12 +3119,73 @@ export type GetCreditCardSummaryBetweenWithdrawalDateQuery = {
   }> | null;
 };
 
+export type GetCreditCardSummaryByAccountIdBetweenDateQueryVariables = Exact<{
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+  accountId: Scalars["String"];
+}>;
+
+export type GetCreditCardSummaryByAccountIdBetweenDateQuery = {
+  __typename?: "Query";
+  allCreditCardSummariesList?: Array<{
+    __typename?: "CreditCardSummary";
+    id: any;
+    withdrawalDate: any;
+    totalAmount: any;
+    creditCard: string;
+    accountByAccountId?: {
+      __typename?: "Account";
+      accountId: string;
+      accountName: string;
+    } | null;
+  }> | null;
+};
+
 export type GetDailyDetailByDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
 }>;
 
 export type GetDailyDetailByDateQuery = {
+  __typename?: "Query";
+  dailyDetailByDateList?: Array<{
+    __typename?: "DailyDetail";
+    serialNo: number;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    categoryByCategoryId?: {
+      __typename?: "Category";
+      categoryId: string;
+      categoryName: string;
+      genreByGenreId?: {
+        __typename?: "Genre";
+        genreId: string;
+        genreName: string;
+        genreType: GenreType;
+        iocomeType: IocomeType;
+      } | null;
+    } | null;
+    accountByAccountId?: {
+      __typename?: "Account";
+      accountId: string;
+      accountName: string;
+    } | null;
+    userByUserId?: {
+      __typename?: "User";
+      userId: string;
+      userName: string;
+    } | null;
+  } | null> | null;
+};
+
+export type GetDailyDetailByDateAccountIdQueryVariables = Exact<{
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+  accountId: Scalars["String"];
+}>;
+
+export type GetDailyDetailByDateAccountIdQuery = {
   __typename?: "Query";
   dailyDetailByDateList?: Array<{
     __typename?: "DailyDetail";
@@ -3704,34 +3723,6 @@ export function useGetCreditCardListQuery(
     { query: GetCreditCardListDocument, ...options }
   );
 }
-export const GetCreditCardSummaryAccountTotalBetweenDateDocument = gql`
-  query GetCreditCardSummaryAccountTotalBetweenDate(
-    $fromDate: Date!
-    $toDate: Date!
-  ) {
-    creditCardSummaryAccountTotalBetweenDateList(
-      fromDate: $fromDate
-      toDate: $toDate
-    ) {
-      accountId
-      accountName
-      total
-      count
-    }
-  }
-`;
-
-export function useGetCreditCardSummaryAccountTotalBetweenDateQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetCreditCardSummaryAccountTotalBetweenDateQueryVariables>,
-    "query"
-  >
-) {
-  return Urql.useQuery<
-    GetCreditCardSummaryAccountTotalBetweenDateQuery,
-    GetCreditCardSummaryAccountTotalBetweenDateQueryVariables
-  >({ query: GetCreditCardSummaryAccountTotalBetweenDateDocument, ...options });
-}
 export const GetCreditCardSummaryBetweenWithdrawalDateDocument = gql`
   query GetCreditCardSummaryBetweenWithdrawalDate(
     $fromDate: Date!
@@ -3766,6 +3757,43 @@ export function useGetCreditCardSummaryBetweenWithdrawalDateQuery(
     GetCreditCardSummaryBetweenWithdrawalDateQuery,
     GetCreditCardSummaryBetweenWithdrawalDateQueryVariables
   >({ query: GetCreditCardSummaryBetweenWithdrawalDateDocument, ...options });
+}
+export const GetCreditCardSummaryByAccountIdBetweenDateDocument = gql`
+  query GetCreditCardSummaryByAccountIdBetweenDate(
+    $fromDate: Date!
+    $toDate: Date!
+    $accountId: String!
+  ) {
+    allCreditCardSummariesList(
+      filter: {
+        withdrawalDate: { greaterThanOrEqualTo: $fromDate }
+        and: { withdrawalDate: { lessThanOrEqualTo: $toDate } }
+      }
+      orderBy: WITHDRAWAL_DATE_ASC
+      condition: { accountId: $accountId }
+    ) {
+      id
+      withdrawalDate
+      totalAmount
+      creditCard
+      accountByAccountId {
+        accountId
+        accountName
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardSummaryByAccountIdBetweenDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardSummaryByAccountIdBetweenDateQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetCreditCardSummaryByAccountIdBetweenDateQuery,
+    GetCreditCardSummaryByAccountIdBetweenDateQueryVariables
+  >({ query: GetCreditCardSummaryByAccountIdBetweenDateDocument, ...options });
 }
 export const GetDailyDetailByDateDocument = gql`
   query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
@@ -3803,6 +3831,54 @@ export function useGetDailyDetailByDateQuery(
     GetDailyDetailByDateQuery,
     GetDailyDetailByDateQueryVariables
   >({ query: GetDailyDetailByDateDocument, ...options });
+}
+export const GetDailyDetailByDateAccountIdDocument = gql`
+  query GetDailyDetailByDateAccountId(
+    $fromDate: Date!
+    $toDate: Date!
+    $accountId: String!
+  ) {
+    dailyDetailByDateList(
+      fromDate: $fromDate
+      toDate: $toDate
+      filter: { accountId: { equalTo: $accountId } }
+    ) {
+      serialNo
+      date
+      amount
+      memo
+      categoryByCategoryId {
+        categoryId
+        categoryName
+        genreByGenreId {
+          genreId
+          genreName
+          genreType
+          iocomeType
+        }
+      }
+      accountByAccountId {
+        accountId
+        accountName
+      }
+      userByUserId {
+        userId
+        userName
+      }
+    }
+  }
+`;
+
+export function useGetDailyDetailByDateAccountIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetDailyDetailByDateAccountIdQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetDailyDetailByDateAccountIdQuery,
+    GetDailyDetailByDateAccountIdQueryVariables
+  >({ query: GetDailyDetailByDateAccountIdDocument, ...options });
 }
 export const GetDailyDetailByDateCategoryIdDocument = gql`
   query GetDailyDetailByDateCategoryId(

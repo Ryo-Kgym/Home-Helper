@@ -1,1 +1,1 @@
-export { DatePickerPresenter as DatePicker } from "./DatePickerPresenter";
+export { DatePickerContainer as DatePicker } from "./DatePickerContainer";

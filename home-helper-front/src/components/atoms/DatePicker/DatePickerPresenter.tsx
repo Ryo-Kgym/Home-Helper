@@ -5,22 +5,24 @@ import { MantineSize } from "@mantine/styles";
 type DatePickerPresenterProps = {
   value: Date;
   onChange: (date: Date) => void;
-  label?: string;
-  defaultValue?: Date;
-  placeholder?: string;
-  size?: MantineSize;
-  disabled?: boolean;
-  required?: boolean;
+  label: string;
+  defaultValue: Date;
+  placeholder: string;
+  size: MantineSize;
+  disabled: boolean;
+  required: boolean;
+  error: string;
 };
 export const DatePickerPresenter: FC<DatePickerPresenterProps> = ({
   value,
   onChange,
-  label = "DATE",
-  defaultValue = new Date(),
-  placeholder = "",
-  size = "lg",
-  disabled = false,
-  required = false,
+  label,
+  defaultValue,
+  placeholder,
+  size,
+  disabled,
+  required,
+  error,
 }) => (
   <DateInput
     value={value}
@@ -34,7 +36,7 @@ export const DatePickerPresenter: FC<DatePickerPresenterProps> = ({
     monthLabelFormat={"YYYY-MM"}
     monthsListFormat={"MM"}
     firstDayOfWeek={0}
-    error={required && value === null ? "Required" : ""}
+    error={error}
     disabled={disabled}
   />
 );

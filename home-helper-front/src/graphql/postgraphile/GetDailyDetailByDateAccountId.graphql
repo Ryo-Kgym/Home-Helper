@@ -1,0 +1,34 @@
+query GetDailyDetailByDateAccountId(
+    $fromDate: Date!
+    $toDate: Date!
+    $accountId: String!
+) {
+    dailyDetailByDateList(
+        fromDate: $fromDate
+        toDate: $toDate
+        filter: { accountId: { equalTo: $accountId } }
+    ) {
+        serialNo
+        date
+        amount
+        memo
+        categoryByCategoryId {
+            categoryId
+            categoryName
+            genreByGenreId {
+                genreId
+                genreName
+                genreType
+                iocomeType
+            }
+        }
+        accountByAccountId {
+            accountId
+            accountName
+        }
+        userByUserId {
+            userId
+            userName
+        }
+    }
+}
