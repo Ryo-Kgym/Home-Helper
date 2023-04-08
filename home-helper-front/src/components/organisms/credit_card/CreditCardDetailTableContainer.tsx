@@ -49,10 +49,6 @@ export const CreditCardDetailTableContainer: FC<
       })
     ) ?? [];
 
-  useEffect(() => {
-    refetch({ requestPolicy: "network-only" });
-  }, []);
-
   return (
     <CreditCardDetailTablePresenter
       tableProps={tableProps}
