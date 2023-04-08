@@ -59,10 +59,6 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
 
   const disabled = dailyDetailTableProps?.length != undefined;
 
-  useEffect(() => {
-    refetch();
-  }, []);
-
   return (
     <DailyTablePresenter
       fromDate={fromDate}
