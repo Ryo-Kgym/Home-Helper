@@ -37,7 +37,6 @@ export const UpdateNotification: FC<UpdateNotificationProps> = ({
             title: showTitle,
             message: showMessage,
             autoClose: false,
-            disallowClose: true,
           });
 
           handleClick();
