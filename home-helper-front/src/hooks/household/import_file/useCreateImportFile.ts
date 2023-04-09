@@ -5,7 +5,7 @@ import {
   useCreateImportFileHistoryMutation,
 } from "@graphql/postgraphile/generated/graphql";
 import { FileType } from "@provider/file/FileType";
-import { useLoadUser } from "@hooks/useLoadUser";
+import { loadUser } from "@hooks/loadUser";
 import { useUuid } from "@hooks/uuid/useUuid";
 import { useDate } from "@hooks/date/useDate";
 import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
@@ -26,7 +26,7 @@ export const useCreateImportFile = ({
   withdrawalDate,
   loadData,
 }: useCreateImportFileArgs) => {
-  const loadUser = useLoadUser();
+  const loadUser = loadUser();
   const uuid = useUuid();
   const { now } = useDate();
 

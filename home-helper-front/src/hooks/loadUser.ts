@@ -1,4 +1,4 @@
-export const useLoadUser = (): LoginUser => {
+export const loadUser = (): LoginUser => {
   const loginUserId = sessionStorage.getItem("userId");
 
   return {
