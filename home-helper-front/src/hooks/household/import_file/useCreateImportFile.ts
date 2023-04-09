@@ -26,7 +26,7 @@ export const useCreateImportFile = ({
   withdrawalDate,
   loadData,
 }: useCreateImportFileArgs) => {
-  const loadUser = loadUser();
+  const { getUserId } = loadUser();
   const uuid = useUuid();
   const { now } = useDate();
 
@@ -38,7 +38,7 @@ export const useCreateImportFile = ({
     id: uuid,
     fileType: fileType,
     fileName: fileName,
-    importUserId: loadUser.getUserId,
+    importUserId: getUserId,
     importDatetime: now,
   };
 
@@ -66,7 +66,7 @@ export const useCreateImportFile = ({
         accountId,
         withdrawalDate,
         loadData,
-        userId: loadUser.getUserId,
+        userId: getUserId,
       }),
       100
     );
