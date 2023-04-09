@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { UpdateCreditCardDetailPresenter } from "./UpdateCreditCardDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import {
@@ -14,13 +14,13 @@ type UpdateCreditCardDetailContainerProps = {
 export const UpdateCreditCardDetailContainer: FC<
   UpdateCreditCardDetailContainerProps
 > = ({ serialNo, onClose }) => {
-  if (serialNo == null) return <div>No Data</div>;
-
-  const [{ data, fetching }, refetch] = useGetCreditCardDetailBySerialNoQuery({
+  const [{ data, fetching }] = useGetCreditCardDetailBySerialNoQuery({
     variables: {
-      serialNo,
+      serialNo: serialNo == null ? Number.MIN_VALUE : serialNo,
     },
   });
+
+  if (data == null) return <div>No Data</div>;
 
   const initData = {
     date: fetching ? null : new Date(data?.creditCardDetailBySerialNo?.date),
@@ -59,10 +59,6 @@ export const UpdateCreditCardDetailContainer: FC<
     setCategoryId(initData.categoryId);
     setMemo(initData.memo);
   };
-
-  useEffect(() => {
-    refetch({ requestPolicy: "network-only" });
-  }, []);
 
   return (
     <UpdateCreditCardDetailPresenter
