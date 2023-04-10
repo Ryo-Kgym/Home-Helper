@@ -1,16 +1,24 @@
 import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
+import { loadUser } from "@hooks/loadUser";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const router = useRouter();
+  const { push } = useRouter();
 
-  useEffect(() => {
-    try {
-      sessionStorage.getItem("userId");
-    } catch (e) {
-      router.push("/");
+  const checkAuth = () => {
+    const { getUserId } = loadUser();
+    if (!getUserId) {
+      push("/");
     }
-  }, []);
+  };
+
+  useEffect(
+    () => {
+      checkAuth();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   return <>{children}</>;
 };

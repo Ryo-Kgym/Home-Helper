@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { UpdateCreditCardDetailPresenter } from "./UpdateCreditCardDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import {
@@ -14,35 +14,19 @@ type UpdateCreditCardDetailContainerProps = {
 export const UpdateCreditCardDetailContainer: FC<
   UpdateCreditCardDetailContainerProps
 > = ({ serialNo, onClose }) => {
-  if (serialNo == null) return <div>No Data</div>;
+  const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
+  const [genreId, setGenreId] = useState<string | null>(null);
+  const [categoryId, setCategoryId] = useState<string | null>(null);
+  const [memo, setMemo] = useState<string | null>(null);
 
-  const [{ data, fetching }, refetch] = useGetCreditCardDetailBySerialNoQuery({
+  const [{ data }] = useGetCreditCardDetailBySerialNoQuery({
     variables: {
-      serialNo,
+      serialNo: serialNo == null ? Number.MIN_VALUE : serialNo,
     },
   });
 
-  const initData = {
-    date: fetching ? null : new Date(data?.creditCardDetailBySerialNo?.date),
-    iocomeType:
-      data?.creditCardDetailBySerialNo?.categoryByCategoryId?.genreByGenreId
-        ?.iocomeType ?? IocomeType.Income,
-    genreId:
-      data?.creditCardDetailBySerialNo?.categoryByCategoryId?.genreByGenreId
-        ?.genreId ?? null,
-    categoryId:
-      data?.creditCardDetailBySerialNo?.categoryByCategoryId?.categoryId ??
-      null,
-    amount: Number(data?.creditCardDetailBySerialNo?.amount) ?? "",
-    memo: data?.creditCardDetailBySerialNo?.memo,
-  };
-
-  const [iocomeType, setIocomeType] = useState<IocomeType>(initData.iocomeType);
-  const [genreId, setGenreId] = useState(initData.genreId);
-  const [categoryId, setCategoryId] = useState(initData.categoryId);
-  const [memo, setMemo] = useState(initData.memo);
-
   const [ignore, update] = useUpdateCreditCardDetailBySerialNoMutation();
+
   const updateHandler = () => {
     update({
       serialNo: serialNo!,
@@ -53,16 +37,34 @@ export const UpdateCreditCardDetailContainer: FC<
     onClose();
   };
 
+  const initData = useMemo(
+    () => ({
+      date: new Date(data?.creditCardDetailBySerialNo?.date),
+      iocomeType:
+        data?.creditCardDetailBySerialNo?.categoryByCategoryId?.genreByGenreId
+          ?.iocomeType ?? IocomeType.Income,
+      genreId:
+        data?.creditCardDetailBySerialNo?.categoryByCategoryId?.genreByGenreId
+          ?.genreId ?? null,
+      categoryId:
+        data?.creditCardDetailBySerialNo?.categoryByCategoryId?.categoryId ??
+        null,
+      amount: Number(data?.creditCardDetailBySerialNo?.amount) ?? "",
+      memo: data?.creditCardDetailBySerialNo?.memo,
+    }),
+    [data]
+  );
+
   const resetClickHandler = () => {
     setIocomeType(initData.iocomeType!);
     setGenreId(initData.genreId);
     setCategoryId(initData.categoryId);
-    setMemo(initData.memo);
+    setMemo(initData.memo ?? null);
   };
 
-  useEffect(() => {
-    refetch({ requestPolicy: "network-only" });
-  }, []);
+  useEffect(resetClickHandler, [initData]);
+
+  if (data == null) return <div>No Data</div>;
 
   return (
     <UpdateCreditCardDetailPresenter
