@@ -1,13 +1,13 @@
 import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
-import { loadUser } from "@hooks/loadUser";
+import { useUser } from "@hooks/user/useUser";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const { userId } = useUser();
   const { push } = useRouter();
 
   const checkAuth = () => {
-    const { getUserId } = loadUser();
-    if (!getUserId) {
+    if (userId.length === 0) {
       push("/");
     }
   };

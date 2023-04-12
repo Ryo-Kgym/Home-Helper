@@ -1,23 +1,31 @@
 import { FC } from "react";
 import { HouseHoldPresenter } from "./HouseHoldPresenter";
-import { saveUserId } from "@hooks/loadUser";
 import { useGetAllUsersQuery } from "@graphql/postgraphile/generated/graphql";
+import { useUser } from "@hooks/user/useUser";
+import { LinkProps } from "@components/atoms/Card";
 
 export const HouseHoldContainer: FC = () => {
-  const handleClickUser = (userId: string) => {
-    saveUserId(userId);
-  };
-
+  const { save } = useUser();
   const [{ data }] = useGetAllUsersQuery();
-  const users =
+
+  const linkProps: LinkProps[] = [INIT_LINK_PROP].concat(
     data?.allUsersList?.map((user) => {
       return {
-        id: user.userId,
-        name: user.userName,
+        href: "/household/account",
+        label: user.userName,
+        back: false,
+        handleClick: () => {
+          save({ userId: user.userId, userName: user.userName });
+        },
       };
-    }) ?? [];
-
-  return (
-    <HouseHoldPresenter userList={users} handleClickUser={handleClickUser} />
+    }) ?? []
   );
+
+  return <HouseHoldPresenter linkProps={linkProps} />;
+};
+
+const INIT_LINK_PROP = {
+  href: "/",
+  label: "戻る",
+  back: true,
 };

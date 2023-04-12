@@ -5,12 +5,12 @@ import {
   useCreateImportFileHistoryMutation,
 } from "@graphql/postgraphile/generated/graphql";
 import { FileType } from "@provider/file/FileType";
-import { loadUser } from "@hooks/loadUser";
 import { useUuid } from "@hooks/uuid/useUuid";
 import { useDate } from "@hooks/date/useDate";
 import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
 import { useRegisterDailyDetails } from "@hooks/household/import_file/useRegisterDailyDetails";
 import { useRegisterCreditCard } from "@hooks/household/import_file/useRegisterCreditCard";
+import { useUser } from "@hooks/user/useUser";
 
 type useCreateImportFileArgs = {
   fileType: FileType;
@@ -26,7 +26,7 @@ export const useCreateImportFile = ({
   withdrawalDate,
   loadData,
 }: useCreateImportFileArgs) => {
-  const { getUserId } = loadUser();
+  const { userId } = useUser();
   const uuid = useUuid();
   const { now } = useDate();
 
@@ -38,7 +38,7 @@ export const useCreateImportFile = ({
     id: uuid,
     fileType: fileType,
     fileName: fileName,
-    importUserId: getUserId,
+    importUserId: userId,
     importDatetime: now,
   };
 
@@ -66,7 +66,7 @@ export const useCreateImportFile = ({
         accountId,
         withdrawalDate,
         loadData,
-        userId: getUserId,
+        userId,
       }),
       100
     );
