@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { TableProps } from "@components/atoms/Table";
+import { TableProps, tablePropsDateSorter } from "@components/atoms/Table";
 import { DailyTableByAccountPresenter } from "./DailyTableByAccountPresenter";
 import { dailyDetailConverter } from "@components/organisms/daily_table/dailyDetailConverter";
 import { useGetDailyDetailByDateAccountId } from "@hooks/household/daily_detail/useGetDailyDetailByDateAccountId";
@@ -32,15 +32,7 @@ export const DailyTableByAccountContainer: FC<
 
   const tableProps: TableProps[] = dailyDetailConverter({ data })
     .concat(creditCardSummaryConverter({ data: creditCardSummaryData }))
-    .sort((a, b) => {
-      if (a.columns[0].value > b.columns[0].value) {
-        return 1;
-      } else if (a.columns[0].value < b.columns[0].value) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
+    .sort(tablePropsDateSorter);
 
   return (
     <DailyTableByAccountPresenter

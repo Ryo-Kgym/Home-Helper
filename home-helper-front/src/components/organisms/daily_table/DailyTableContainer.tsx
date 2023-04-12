@@ -1,6 +1,6 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { DailyTablePresenter } from "./DailyTablePresenter";
-import { TableProps } from "@components/atoms/Table";
+import { TableProps, tablePropsDateSorter } from "@components/atoms/Table";
 import { dailyDetailConverter } from "@components/organisms/daily_table/dailyDetailConverter";
 import { useGetDailyDetailByDate } from "@hooks/household/daily_detail/useGetDailyDetailByDate";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
@@ -34,7 +34,7 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [dailyDetail, setDailyDetail] = useState<DailyDetail | null>(null);
 
-  const { data, incomeTotal, outcomeTotal, getDetail, refetch } =
+  const { data, incomeTotal, outcomeTotal, getDetail } =
     useGetDailyDetailByDate(fromDate, toDate);
 
   const {
@@ -51,11 +51,13 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
         setDailyDetail(getDetail(serialNo));
         setModalOpen(true);
       },
-    }).concat(
-      creditCardSummaryConverter({
-        data: creditCardSummaryData,
-      })
-    );
+    })
+      .concat(
+        creditCardSummaryConverter({
+          data: creditCardSummaryData,
+        })
+      )
+      .sort(tablePropsDateSorter);
 
   const disabled = dailyDetailTableProps?.length != undefined;
 
