@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { HouseHoldPresenter } from "./HouseHoldPresenter";
 import { useGetAllUsersQuery } from "@graphql/postgraphile/generated/graphql";
-import { saveUser } from "@hooks/user/useUser";
+import { useUser } from "@hooks/user/useUser";
 
 export const HouseHoldContainer: FC = () => {
-  const { save } = saveUser();
+  const { save } = useUser();
 
   const handleClickUser = (userId: string) => {
     save(userId);
