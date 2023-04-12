@@ -1,6 +1,7 @@
 import { FC, ReactElement } from "react";
 import { index as AppShell } from "./";
 import { LinkList } from "@components/atoms/Card";
+import { useUser } from "@hooks/user/useUser";
 
 type HouseHoldLayoutProps = {
   children: ReactElement;
@@ -10,7 +11,14 @@ export const HouseHoldLayout: FC<HouseHoldLayoutProps> = ({
   children,
   navHidden,
 }) => {
-  const header = <h1 className={"font-bold"}>家計簿アプリ</h1>;
+  const { userName } = useUser();
+
+  const header = (
+    <div className={"grid grid-cols-2"}>
+      <h1 className={"font-bold"}>家計簿アプリ</h1>
+      <h2 className={"m-2 text-right"}>ログイン：{userName}</h2>
+    </div>
+  );
   const navbar = <LinkList props={cardListProps} />;
 
   return (
