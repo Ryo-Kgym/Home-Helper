@@ -4,8 +4,8 @@ import { userIdState } from "@recoil/userIdState";
 export const useUser = () => {
   const [userId, setUserId] = useRecoilState(userIdState);
 
-  const save = (userId: string) => {
-    setUserId(userId);
+  const save = (user: { userId: string; userName: string }) => {
+    setUserId(user.userId);
   };
   return { userId, save };
 };

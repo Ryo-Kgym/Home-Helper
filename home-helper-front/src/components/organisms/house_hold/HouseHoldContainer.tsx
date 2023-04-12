@@ -15,7 +15,7 @@ export const HouseHoldContainer: FC = () => {
         label: user.userName,
         back: false,
         handleClick: () => {
-          save(user.userId);
+          save({ userId: user.userId, userName: user.userName });
         },
       };
     }) ?? []
