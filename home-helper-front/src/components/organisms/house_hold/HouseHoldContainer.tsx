@@ -1,14 +1,13 @@
 import { FC } from "react";
 import { HouseHoldPresenter } from "./HouseHoldPresenter";
 import { useGetAllUsersQuery } from "@graphql/postgraphile/generated/graphql";
-import { useRecoilState } from "recoil";
-import { userIdState } from "@recoil/userIdState";
+import { saveUser } from "@hooks/user/useUser";
 
 export const HouseHoldContainer: FC = () => {
-  const [_userId, setUserId] = useRecoilState(userIdState);
+  const { save } = saveUser();
 
   const handleClickUser = (userId: string) => {
-    setUserId(userId);
+    save(userId);
   };
 
   const [{ data }] = useGetAllUsersQuery();

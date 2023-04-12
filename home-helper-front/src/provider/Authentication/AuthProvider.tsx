@@ -1,10 +1,9 @@
 import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
-import { userIdState } from "@recoil/userIdState";
+import { useUser } from "@hooks/user/useUser";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [userId] = useRecoilState(userIdState);
+  const { userId } = useUser();
   const { push } = useRouter();
 
   const checkAuth = () => {

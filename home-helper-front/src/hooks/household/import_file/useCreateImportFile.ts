@@ -10,8 +10,7 @@ import { useDate } from "@hooks/date/useDate";
 import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
 import { useRegisterDailyDetails } from "@hooks/household/import_file/useRegisterDailyDetails";
 import { useRegisterCreditCard } from "@hooks/household/import_file/useRegisterCreditCard";
-import { useRecoilState } from "recoil";
-import { userIdState } from "@recoil/userIdState";
+import { useUser } from "@hooks/user/useUser";
 
 type useCreateImportFileArgs = {
   fileType: FileType;
@@ -27,7 +26,7 @@ export const useCreateImportFile = ({
   withdrawalDate,
   loadData,
 }: useCreateImportFileArgs) => {
-  const [userId] = useRecoilState(userIdState);
+  const { userId } = useUser();
   const uuid = useUuid();
   const { now } = useDate();
 
