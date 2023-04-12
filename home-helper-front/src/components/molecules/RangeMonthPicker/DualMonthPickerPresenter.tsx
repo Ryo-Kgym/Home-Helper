@@ -19,7 +19,6 @@ export const DualMonthPickerPresenter: FC<DualMonthPickerPresenterProps> = ({
         value={fromMonth}
         changeValue={changeFromMonth}
         label={"FROM"}
-        clearable={true}
       />
     </div>
     <div className={"text-center pt-7"}>〜</div>
