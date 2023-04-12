@@ -1,13 +1,14 @@
 import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
-import { loadUser } from "@hooks/loadUser";
+import { useRecoilState } from "recoil";
+import { userIdState } from "@recoil/userIdState";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [userId] = useRecoilState(userIdState);
   const { push } = useRouter();
 
   const checkAuth = () => {
-    const { getUserId } = loadUser();
-    if (!getUserId) {
+    if (userId.length === 0) {
       push("/");
     }
   };

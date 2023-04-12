@@ -1,15 +1,17 @@
 import { HelpPointEarnedAchievement } from "@domain/model/home_helper/HelpPointEarnedAchievement";
 import { query } from "@graphql/apollo/apollo-client";
 import { gql } from "@apollo/client";
-import { loadUser } from "@hooks/loadUser";
+import { useRecoilState } from "recoil";
+import { userIdState } from "@recoil/userIdState";
 
 export async function useHelpPointEarnedAchievements(): Promise<
   HelpPointEarnedAchievement[]
 > {
+  const [userId] = useRecoilState(userIdState);
   const param = {
     query: GET_HELP_POINT_EARNED_ACHIEVEMENT,
     variables: {
-      userId: loadUser().getUserId,
+      userId,
     },
     key: "helpPointEarnedAchievement",
   };
