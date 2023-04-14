@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { TransferListItem } from "@components/atoms/TransferList";
-import { SalaryTransferPresenter } from "./SalaryTransferPresenter";
+import { YearlySummaryCategoryPresenter } from "./YearlySummaryCategoryPresenter";
 import {
   IocomeType,
   useGetAllCategoryListWithCriteriaQuery,
 } from "@graphql/postgraphile/generated/graphql";
 
-export const SalaryTransferContainer = () => {
+export const YearlySummaryCategoryTransferContainer = () => {
   const [transferData, setTransferData] = useState<
     [TransferListItem[], TransferListItem[]]
   >([[], []]);
@@ -34,7 +34,7 @@ export const SalaryTransferContainer = () => {
   }, []);
 
   return (
-    <SalaryTransferPresenter
+    <YearlySummaryCategoryPresenter
       transferData={transferData}
       setData={setTransferData}
       registerClickHandler={registerClickHandler}

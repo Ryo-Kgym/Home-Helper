@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { SelectMasterPresenter } from "@components/organisms/master/SelectMasterPresenter";
 import { TabProps } from "@components/atoms/Tab";
-import { SalaryTransfer } from "@components/organisms/master/salary";
+import { YearlySummaryCategory } from "@components/organisms/master/yearlySummaryCategory";
 
 export const SelectMasterContainer: FC = () => {
   const tabPropsList: TabProps[] = [
@@ -21,9 +21,9 @@ export const SelectMasterContainer: FC = () => {
       contents: <></>,
     },
     {
-      value: "salary",
-      label: "給与",
-      contents: <SalaryTransfer />,
+      value: "yearlySummaryCategory",
+      label: "年間サマリ",
+      contents: <YearlySummaryCategory />,
     },
   ];
 

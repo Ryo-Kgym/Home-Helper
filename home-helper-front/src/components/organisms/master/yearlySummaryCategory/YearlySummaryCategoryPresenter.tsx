@@ -9,12 +9,9 @@ type SalaryTransferPresenterProps = {
   resetClickHandler: () => void;
 };
 
-export const SalaryTransferPresenter: FC<SalaryTransferPresenterProps> = ({
-  transferData,
-  setData,
-  registerClickHandler,
-  resetClickHandler,
-}) => (
+export const YearlySummaryCategoryPresenter: FC<
+  SalaryTransferPresenterProps
+> = ({ transferData, setData, registerClickHandler, resetClickHandler }) => (
   <div className={"grid"}>
     <TransferList data={transferData} setData={setData} />
     <Button colorType={"register"} onClick={registerClickHandler} />
