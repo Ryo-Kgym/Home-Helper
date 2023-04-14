@@ -1,0 +1,20 @@
+query GetYearlySummaryCategoriesByUserId($userId: String!) {
+    categories: allYearlySummaryCategoriesList(
+        condition: { userId: $userId }
+        orderBy: DISPLAY_ORDER_ASC
+    ) {
+        id
+        userId
+        displayOrder
+        category: categoryByCategoryId {
+            id: categoryId
+            name: categoryName
+            genre: genreByGenreId {
+                id: genreId
+                name: genreName
+                type: genreType
+                iocomeType
+            }
+        }
+    }
+}
