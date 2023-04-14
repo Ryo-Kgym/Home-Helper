@@ -1,0 +1,29 @@
+query GetAllCategoryListWithCriteria(
+    $categoryIn: [Boolean!] = [true, false]
+    $genreIn: [Boolean!] = [true, false]
+    $iocomeTypeIn: [IocomeType!] = [INCOME, OUTCOME]
+) {
+    genres: allGenresList(
+        filter: {
+            validFlag: { in: $categoryIn }
+            and: { iocomeType: { in: $iocomeTypeIn } }
+        }
+        orderBy: DISPLAY_ORDER_ASC
+    ) {
+        id: genreId
+        name: genreName
+        type: genreType
+        iocomeType
+        validFlag
+        displayOrder
+        categories: categoriesByGenreIdList(
+            filter: { validFlag: { in: $genreIn } }
+            orderBy: DISPLAY_ORDER_ASC
+        ) {
+            id: categoryId
+            name: categoryName
+            validFlag
+            displayOrder
+        }
+    }
+}

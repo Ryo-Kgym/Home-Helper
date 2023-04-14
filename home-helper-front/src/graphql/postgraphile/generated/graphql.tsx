@@ -2984,6 +2984,32 @@ export type GetAccountBalanceListQuery = {
   } | null> | null;
 };
 
+export type GetAllCategoryListWithCriteriaQueryVariables = Exact<{
+  categoryIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
+  genreIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
+  iocomeTypeIn?: InputMaybe<Array<IocomeType> | IocomeType>;
+}>;
+
+export type GetAllCategoryListWithCriteriaQuery = {
+  __typename?: "Query";
+  genres?: Array<{
+    __typename?: "Genre";
+    iocomeType: IocomeType;
+    validFlag?: boolean | null;
+    displayOrder: number;
+    id: string;
+    name: string;
+    type: GenreType;
+    categories: Array<{
+      __typename?: "Category";
+      validFlag?: boolean | null;
+      displayOrder: number;
+      id: string;
+      name: string;
+    }>;
+  }> | null;
+};
+
 export type GetAllUsersQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetAllUsersQuery = {
@@ -3584,6 +3610,49 @@ export function useGetAccountBalanceListQuery(
     GetAccountBalanceListQuery,
     GetAccountBalanceListQueryVariables
   >({ query: GetAccountBalanceListDocument, ...options });
+}
+export const GetAllCategoryListWithCriteriaDocument = gql`
+  query GetAllCategoryListWithCriteria(
+    $categoryIn: [Boolean!] = [true, false]
+    $genreIn: [Boolean!] = [true, false]
+    $iocomeTypeIn: [IocomeType!] = [INCOME, OUTCOME]
+  ) {
+    genres: allGenresList(
+      filter: {
+        validFlag: { in: $categoryIn }
+        and: { iocomeType: { in: $iocomeTypeIn } }
+      }
+      orderBy: DISPLAY_ORDER_ASC
+    ) {
+      id: genreId
+      name: genreName
+      type: genreType
+      iocomeType
+      validFlag
+      displayOrder
+      categories: categoriesByGenreIdList(
+        filter: { validFlag: { in: $genreIn } }
+        orderBy: DISPLAY_ORDER_ASC
+      ) {
+        id: categoryId
+        name: categoryName
+        validFlag
+        displayOrder
+      }
+    }
+  }
+`;
+
+export function useGetAllCategoryListWithCriteriaQuery(
+  options?: Omit<
+    Urql.UseQueryArgs<GetAllCategoryListWithCriteriaQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetAllCategoryListWithCriteriaQuery,
+    GetAllCategoryListWithCriteriaQueryVariables
+  >({ query: GetAllCategoryListWithCriteriaDocument, ...options });
 }
 export const GetAllUsersDocument = gql`
   query GetAllUsers {
