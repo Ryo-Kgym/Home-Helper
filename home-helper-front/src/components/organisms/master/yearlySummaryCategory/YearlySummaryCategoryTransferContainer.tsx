@@ -4,9 +4,12 @@ import { YearlySummaryCategoryPresenter } from "./YearlySummaryCategoryPresenter
 import {
   IocomeType,
   useGetAllCategoryListWithCriteriaQuery,
+  useGetYearlySummaryCategoriesByUserIdQuery,
 } from "@graphql/postgraphile/generated/graphql";
+import { useUser } from "@hooks/user/useUser";
 
 export const YearlySummaryCategoryTransferContainer = () => {
+  const { userId } = useUser();
   const [transferData, setTransferData] = useState<
     [TransferListItem[], TransferListItem[]]
   >([[], []]);
@@ -29,6 +32,22 @@ export const YearlySummaryCategoryTransferContainer = () => {
       });
     }) ?? [];
 
+  const [{ data: yearlySummaryCategoriesData }] =
+    useGetYearlySummaryCategoriesByUserIdQuery({
+      variables: {
+        userId,
+      },
+    });
+
+  const rightData: TransferListItem[] =
+    yearlySummaryCategoriesData?.categories
+      ?.map((c) => c.category)
+      .map((c) => ({
+        value: c!.id,
+        label: c!.name,
+        group: c!.genre?.name,
+      })) ?? [];
+
   useEffect(() => {
     setTransferData([leftData, rightData]);
   }, []);
@@ -42,11 +61,3 @@ export const YearlySummaryCategoryTransferContainer = () => {
     />
   );
 };
-
-const rightData: TransferListItem[] = [
-  { value: "blitz", label: "Blitz.js", group: "Frameworks" },
-  { value: "gatsby", label: "Gatsby.js", group: "Frameworks" },
-  { value: "vue", label: "Vue", group: "Frameworks" },
-  { value: "rw", label: "Redwood", group: "Libraries" },
-  { value: "np", label: "NumPy", group: "Libraries" },
-];
