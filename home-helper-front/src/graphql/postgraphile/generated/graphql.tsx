@@ -3257,6 +3257,7 @@ export type GetAllCategoryListWithCriteriaQueryVariables = Exact<{
   validCategoryIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
   validGenreIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
   iocomeTypeIn?: InputMaybe<Array<IocomeType> | IocomeType>;
+  categoryNotIn?: InputMaybe<Array<Scalars["String"]> | Scalars["String"]>;
 }>;
 
 export type GetAllCategoryListWithCriteriaQuery = {
@@ -3911,6 +3912,7 @@ export const GetAllCategoryListWithCriteriaDocument = gql`
     $validCategoryIn: [Boolean!] = [true, false]
     $validGenreIn: [Boolean!] = [true, false]
     $iocomeTypeIn: [IocomeType!] = [INCOME, OUTCOME]
+    $categoryNotIn: [String!] = ""
   ) {
     genres: allGenresList(
       filter: {
@@ -3926,7 +3928,10 @@ export const GetAllCategoryListWithCriteriaDocument = gql`
       validFlag
       displayOrder
       categories: categoriesByGenreIdList(
-        filter: { validFlag: { in: $validGenreIn } }
+        filter: {
+          validFlag: { in: $validGenreIn }
+          and: { categoryId: { notIn: $categoryNotIn } }
+        }
         orderBy: DISPLAY_ORDER_ASC
       ) {
         id: categoryId

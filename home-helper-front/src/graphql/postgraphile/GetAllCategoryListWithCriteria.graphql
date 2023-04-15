@@ -2,6 +2,7 @@ query GetAllCategoryListWithCriteria(
     $validCategoryIn: [Boolean!] = [true, false]
     $validGenreIn: [Boolean!] = [true, false]
     $iocomeTypeIn: [IocomeType!] = [INCOME, OUTCOME]
+    $categoryNotIn: [String!] = ""
 ) {
     genres: allGenresList(
         filter: {
@@ -17,7 +18,10 @@ query GetAllCategoryListWithCriteria(
         validFlag
         displayOrder
         categories: categoriesByGenreIdList(
-            filter: { validFlag: { in: $validGenreIn } }
+            filter: {
+                validFlag: { in: $validGenreIn }
+                and: { categoryId: { notIn: $categoryNotIn } }
+            }
             orderBy: DISPLAY_ORDER_ASC
         ) {
             id: categoryId
