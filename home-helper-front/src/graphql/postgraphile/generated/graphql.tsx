@@ -3254,8 +3254,8 @@ export type GetAccountBalanceListQuery = {
 };
 
 export type GetAllCategoryListWithCriteriaQueryVariables = Exact<{
-  categoryIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
-  genreIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
+  validCategoryIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
+  validGenreIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
   iocomeTypeIn?: InputMaybe<Array<IocomeType> | IocomeType>;
 }>;
 
@@ -3908,13 +3908,13 @@ export function useGetAccountBalanceListQuery(
 }
 export const GetAllCategoryListWithCriteriaDocument = gql`
   query GetAllCategoryListWithCriteria(
-    $categoryIn: [Boolean!] = [true, false]
-    $genreIn: [Boolean!] = [true, false]
+    $validCategoryIn: [Boolean!] = [true, false]
+    $validGenreIn: [Boolean!] = [true, false]
     $iocomeTypeIn: [IocomeType!] = [INCOME, OUTCOME]
   ) {
     genres: allGenresList(
       filter: {
-        validFlag: { in: $categoryIn }
+        validFlag: { in: $validCategoryIn }
         and: { iocomeType: { in: $iocomeTypeIn } }
       }
       orderBy: DISPLAY_ORDER_ASC
@@ -3926,7 +3926,7 @@ export const GetAllCategoryListWithCriteriaDocument = gql`
       validFlag
       displayOrder
       categories: categoriesByGenreIdList(
-        filter: { validFlag: { in: $genreIn } }
+        filter: { validFlag: { in: $validGenreIn } }
         orderBy: DISPLAY_ORDER_ASC
       ) {
         id: categoryId
