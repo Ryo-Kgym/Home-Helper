@@ -4,16 +4,21 @@ import { Button } from "@components/atoms/Button";
 
 type SalaryTransferPresenterProps = {
   transferData: [TransferListItem[], TransferListItem[]];
-  setData: (data: [TransferListItem[], TransferListItem[]]) => void;
+  setTransferData: (data: [TransferListItem[], TransferListItem[]]) => void;
   registerClickHandler: () => void;
   resetClickHandler: () => void;
 };
 
 export const YearlySummaryCategoryPresenter: FC<
   SalaryTransferPresenterProps
-> = ({ transferData, setData, registerClickHandler, resetClickHandler }) => (
+> = ({
+  transferData,
+  setTransferData,
+  registerClickHandler,
+  resetClickHandler,
+}) => (
   <div className={"grid"}>
-    <TransferList data={transferData} setData={setData} />
+    <TransferList data={transferData} setData={setTransferData} />
     <Button colorType={"register"} onClick={registerClickHandler} />
     <Button colorType={"reset"} onClick={resetClickHandler} />
   </div>
