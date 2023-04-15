@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import {
   IocomeType,
   useGetAllCategoryListWithCriteriaQuery,
@@ -12,27 +8,12 @@ import { useUser } from "@hooks/user/useUser";
 
 export const useGetYearlySummaryCategories = () => {
   const { userId } = useUser();
-  const [{ data }] = useGetAllCategoryListWithCriteriaQuery({
-    variables: {
-      categoryIn: [true],
-      genreIn: [true],
-      iocomeTypeIn: [IocomeType.Income, IocomeType.Outcome],
-    },
-  });
-
   const [{ data: yearlySummaryCategoriesData }] =
     useGetYearlySummaryCategoriesByUserIdQuery({
       variables: {
         userId,
       },
     });
-
-  const unselectCategories: TransferListItem[] =
-    data?.genres?.flatMap((g) => {
-      return g.categories.map((c) => {
-        return { value: c.id, label: c.name, group: g.name };
-      });
-    }) ?? [];
 
   const selectedCategories: TransferListItem[] =
     yearlySummaryCategoriesData?.categories
@@ -42,6 +23,22 @@ export const useGetYearlySummaryCategories = () => {
         label: c!.name,
         group: c!.genre?.name,
       })) ?? [];
+
+  const [{ data }] = useGetAllCategoryListWithCriteriaQuery({
+    variables: {
+      validCategoryIn: [true],
+      validGenreIn: [true],
+      iocomeTypeIn: [IocomeType.Income, IocomeType.Outcome],
+      categoryNotIn: selectedCategories.map((c) => c.value),
+    },
+  });
+
+  const unselectCategories: TransferListItem[] =
+    data?.genres?.flatMap((g) => {
+      return g.categories.map((c) => {
+        return { value: c.id, label: c.name, group: g.name };
+      });
+    }) ?? [];
 
   return {
     unselectCategories,
