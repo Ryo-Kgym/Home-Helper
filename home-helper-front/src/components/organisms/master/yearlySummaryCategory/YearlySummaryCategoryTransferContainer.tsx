@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TransferListItem } from "@components/atoms/TransferList";
 import { YearlySummaryCategoryPresenter } from "./YearlySummaryCategoryPresenter";
-import { useYearlySummaryCategories } from "./useYearlySummaryCategories";
+import { useGetYearlySummaryCategories } from "./useGetYearlySummaryCategories";
 
 export const YearlySummaryCategoryTransferContainer = () => {
   const [transferData, setTransferData] = useState<
@@ -12,7 +12,7 @@ export const YearlySummaryCategoryTransferContainer = () => {
   const resetClickHandler = () => {};
 
   const { unselectCategories, selectedCategories } =
-    useYearlySummaryCategories();
+    useGetYearlySummaryCategories();
 
   useEffect(() => {
     setTransferData([unselectCategories, selectedCategories]);

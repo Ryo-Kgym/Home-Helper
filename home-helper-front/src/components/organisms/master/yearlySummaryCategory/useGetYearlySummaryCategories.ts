@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import {
   IocomeType,
   useGetAllCategoryListWithCriteriaQuery,
@@ -6,7 +10,7 @@ import {
 import { TransferListItem } from "@components/atoms/TransferList";
 import { useUser } from "@hooks/user/useUser";
 
-export const useYearlySummaryCategories = () => {
+export const useGetYearlySummaryCategories = () => {
   const { userId } = useUser();
   const [{ data }] = useGetAllCategoryListWithCriteriaQuery({
     variables: {
