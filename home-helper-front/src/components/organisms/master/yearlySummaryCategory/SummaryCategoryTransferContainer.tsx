@@ -8,14 +8,14 @@ export const SummaryCategoryTransferContainer = () => {
     [TransferListItem[], TransferListItem[]]
   >([[], []]);
 
-  const registerClickHandler = () => {};
-  const resetClickHandler = () => {};
-
   const { unselectCategories, selectedCategories } = useGetSummaryCategories();
 
-  useEffect(() => {
+  const registerClickHandler = () => {};
+  const resetClickHandler = () => {
     setTransferData([unselectCategories, selectedCategories]);
-  }, []);
+  };
+
+  useEffect(resetClickHandler, []);
 
   return (
     <SummaryCategoryPresenter
