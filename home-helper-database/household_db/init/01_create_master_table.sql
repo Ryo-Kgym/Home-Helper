@@ -41,8 +41,8 @@ create table account (
     constraint account_owner_user_id foreign key (owner_user_id) references "user" (user_id)
 );
 
-drop table if exists yearly_summary_category cascade;
-create table yearly_summary_category (
+drop table if exists summary_category cascade;
+create table summary_category (
     id          uuid       not null primary key,
     user_id     varchar(8) not null,
     category_id varchar(8) not null,
@@ -50,4 +50,4 @@ create table yearly_summary_category (
     constraint yearly_summary_category_user_id_fk foreign key (user_id) references "user" (user_id),
     constraint yearly_summary_category_category_id_fk foreign key (category_id) references "category" (category_id)
 );
-create index yearly_summary_category_user_id_idx on yearly_summary_category (user_id);
+create index summary_category_user_id_idx on summary_category (user_id);
