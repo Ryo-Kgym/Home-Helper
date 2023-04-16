@@ -27,7 +27,7 @@ export const useCreateImportFile = ({
   loadData,
 }: useCreateImportFileArgs) => {
   const { userId } = useUser();
-  const uuid = useUuid();
+  const { get } = useUuid();
   const { now } = useDate();
 
   // Common table
@@ -35,7 +35,7 @@ export const useCreateImportFile = ({
     useCreateImportFileHistoryMutation();
 
   const createImportFileVariables = {
-    id: uuid,
+    id: get(),
     fileType: fileType,
     fileName: fileName,
     importUserId: userId,
@@ -61,7 +61,7 @@ export const useCreateImportFile = ({
         createCreditCardSummaryMutation,
         createCreditCardDetailMutation,
         createDailyDetailMutation,
-        uuid,
+        uuid: get(),
         fileType,
         accountId,
         withdrawalDate,
