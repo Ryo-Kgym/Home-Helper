@@ -3506,6 +3506,18 @@ export type DeleteDailyDetailBySerialNoMutation = {
   } | null;
 };
 
+export type DeleteSummaryCategoryByIdMutationVariables = Exact<{
+  id: Scalars["UUID"];
+}>;
+
+export type DeleteSummaryCategoryByIdMutation = {
+  __typename?: "Mutation";
+  deleteSummaryCategoryById?: {
+    __typename?: "DeleteSummaryCategoryPayload";
+    clientMutationId?: string | null;
+  } | null;
+};
+
 export type GetAccountBalanceListQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -4156,6 +4168,20 @@ export function useDeleteDailyDetailBySerialNoMutation() {
     DeleteDailyDetailBySerialNoMutation,
     DeleteDailyDetailBySerialNoMutationVariables
   >(DeleteDailyDetailBySerialNoDocument);
+}
+export const DeleteSummaryCategoryByIdDocument = gql`
+  mutation DeleteSummaryCategoryById($id: UUID!) {
+    deleteSummaryCategoryById(input: { id: $id }) {
+      clientMutationId
+    }
+  }
+`;
+
+export function useDeleteSummaryCategoryByIdMutation() {
+  return Urql.useMutation<
+    DeleteSummaryCategoryByIdMutation,
+    DeleteSummaryCategoryByIdMutationVariables
+  >(DeleteSummaryCategoryByIdDocument);
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList($fromDate: Date!, $toDate: Date!) {
