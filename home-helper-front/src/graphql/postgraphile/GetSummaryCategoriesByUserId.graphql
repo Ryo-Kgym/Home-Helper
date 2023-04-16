@@ -1,5 +1,5 @@
-query GetYearlySummaryCategoriesByUserId($userId: String!) {
-    categories: allYearlySummaryCategoriesList(
+query GetSummaryCategoriesByUserId($userId: String!) {
+    categories: allSummaryCategoriesList(
         condition: { userId: $userId }
         orderBy: DISPLAY_ORDER_ASC
     ) {

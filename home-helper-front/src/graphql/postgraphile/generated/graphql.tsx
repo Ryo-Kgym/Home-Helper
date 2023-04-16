@@ -210,6 +210,8 @@ export type Category = Node & {
   genreId: Scalars["String"];
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
   nodeId: Scalars["ID"];
+  /** Reads and enables pagination through a set of `SummaryCategory`. */
+  summaryCategoriesByCategoryIdList: Array<SummaryCategory>;
   validFlag?: Maybe<Scalars["Boolean"]>;
   /** Reads and enables pagination through a set of `YearlySummaryCategory`. */
   yearlySummaryCategoriesByCategoryIdList: Array<YearlySummaryCategory>;
@@ -229,6 +231,14 @@ export type CategoryDailyDetailsByCategoryIdListArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailsOrderBy>>;
+};
+
+export type CategorySummaryCategoriesByCategoryIdListArgs = {
+  condition?: InputMaybe<SummaryCategoryCondition>;
+  filter?: InputMaybe<SummaryCategoryFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<SummaryCategoriesOrderBy>>;
 };
 
 export type CategoryYearlySummaryCategoriesByCategoryIdListArgs = {
@@ -485,6 +495,35 @@ export type CreateImportFileHistoryPayload = {
   importFileHistory?: Maybe<ImportFileHistory>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
+};
+
+/** All input for the create `SummaryCategory` mutation. */
+export type CreateSummaryCategoryInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The `SummaryCategory` to be created by this mutation. */
+  summaryCategory: SummaryCategoryInput;
+};
+
+/** The output of our create `SummaryCategory` mutation. */
+export type CreateSummaryCategoryPayload = {
+  __typename?: "CreateSummaryCategoryPayload";
+  /** Reads a single `Category` that is related to this `SummaryCategory`. */
+  categoryByCategoryId?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `SummaryCategory` that was created by this mutation. */
+  summaryCategory?: Maybe<SummaryCategory>;
+  /** Reads a single `User` that is related to this `SummaryCategory`. */
+  userByUserId?: Maybe<User>;
 };
 
 /** All input for the create `User` mutation. */
@@ -1287,6 +1326,46 @@ export type DeleteImportFileHistoryPayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the `deleteSummaryCategoryById` mutation. */
+export type DeleteSummaryCategoryByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  id: Scalars["UUID"];
+};
+
+/** All input for the `deleteSummaryCategory` mutation. */
+export type DeleteSummaryCategoryInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The globally unique `ID` which will identify a single `SummaryCategory` to be deleted. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our delete `SummaryCategory` mutation. */
+export type DeleteSummaryCategoryPayload = {
+  __typename?: "DeleteSummaryCategoryPayload";
+  /** Reads a single `Category` that is related to this `SummaryCategory`. */
+  categoryByCategoryId?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  deletedSummaryCategoryId?: Maybe<Scalars["ID"]>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `SummaryCategory` that was deleted by this mutation. */
+  summaryCategory?: Maybe<SummaryCategory>;
+  /** Reads a single `User` that is related to this `SummaryCategory`. */
+  userByUserId?: Maybe<User>;
+};
+
 /** All input for the `deleteUserByUserId` mutation. */
 export type DeleteUserByUserIdInput = {
   /**
@@ -1652,6 +1731,8 @@ export type Mutation = {
   createGenre?: Maybe<CreateGenrePayload>;
   /** Creates a single `ImportFileHistory`. */
   createImportFileHistory?: Maybe<CreateImportFileHistoryPayload>;
+  /** Creates a single `SummaryCategory`. */
+  createSummaryCategory?: Maybe<CreateSummaryCategoryPayload>;
   /** Creates a single `User`. */
   createUser?: Maybe<CreateUserPayload>;
   /** Creates a single `YearlySummaryCategory`. */
@@ -1684,6 +1765,10 @@ export type Mutation = {
   deleteImportFileHistory?: Maybe<DeleteImportFileHistoryPayload>;
   /** Deletes a single `ImportFileHistory` using a unique key. */
   deleteImportFileHistoryById?: Maybe<DeleteImportFileHistoryPayload>;
+  /** Deletes a single `SummaryCategory` using its globally unique id. */
+  deleteSummaryCategory?: Maybe<DeleteSummaryCategoryPayload>;
+  /** Deletes a single `SummaryCategory` using a unique key. */
+  deleteSummaryCategoryById?: Maybe<DeleteSummaryCategoryPayload>;
   /** Deletes a single `User` using its globally unique id. */
   deleteUser?: Maybe<DeleteUserPayload>;
   /** Deletes a single `User` using a unique key. */
@@ -1720,6 +1805,10 @@ export type Mutation = {
   updateImportFileHistory?: Maybe<UpdateImportFileHistoryPayload>;
   /** Updates a single `ImportFileHistory` using a unique key and a patch. */
   updateImportFileHistoryById?: Maybe<UpdateImportFileHistoryPayload>;
+  /** Updates a single `SummaryCategory` using its globally unique id and a patch. */
+  updateSummaryCategory?: Maybe<UpdateSummaryCategoryPayload>;
+  /** Updates a single `SummaryCategory` using a unique key and a patch. */
+  updateSummaryCategoryById?: Maybe<UpdateSummaryCategoryPayload>;
   /** Updates a single `User` using its globally unique id and a patch. */
   updateUser?: Maybe<UpdateUserPayload>;
   /** Updates a single `User` using a unique key and a patch. */
@@ -1763,6 +1852,11 @@ export type MutationCreateGenreArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateImportFileHistoryArgs = {
   input: CreateImportFileHistoryInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateSummaryCategoryArgs = {
+  input: CreateSummaryCategoryInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1843,6 +1937,16 @@ export type MutationDeleteImportFileHistoryArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteImportFileHistoryByIdArgs = {
   input: DeleteImportFileHistoryByIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteSummaryCategoryArgs = {
+  input: DeleteSummaryCategoryInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteSummaryCategoryByIdArgs = {
+  input: DeleteSummaryCategoryByIdInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -1936,6 +2040,16 @@ export type MutationUpdateImportFileHistoryByIdArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateSummaryCategoryArgs = {
+  input: UpdateSummaryCategoryInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateSummaryCategoryByIdArgs = {
+  input: UpdateSummaryCategoryByIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateUserArgs = {
   input: UpdateUserInput;
 };
@@ -1989,6 +2103,8 @@ export type Query = Node & {
   allGenresList?: Maybe<Array<Genre>>;
   /** Reads a set of `ImportFileHistory`. */
   allImportFileHistoriesList?: Maybe<Array<ImportFileHistory>>;
+  /** Reads a set of `SummaryCategory`. */
+  allSummaryCategoriesList?: Maybe<Array<SummaryCategory>>;
   /** Reads a set of `TotalByAccountView`. */
   allTotalByAccountViewsList?: Maybe<Array<TotalByAccountView>>;
   /** Reads a set of `TotalByCategoryView`. */
@@ -2032,6 +2148,9 @@ export type Query = Node & {
    * which can only query top level fields if they are in a particular form.
    */
   query: Query;
+  /** Reads a single `SummaryCategory` using its globally unique `ID`. */
+  summaryCategory?: Maybe<SummaryCategory>;
+  summaryCategoryById?: Maybe<SummaryCategory>;
   /** Reads a single `User` using its globally unique `ID`. */
   user?: Maybe<User>;
   userByUserId?: Maybe<User>;
@@ -2138,6 +2257,15 @@ export type QueryAllImportFileHistoriesListArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ImportFileHistoriesOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllSummaryCategoriesListArgs = {
+  condition?: InputMaybe<SummaryCategoryCondition>;
+  filter?: InputMaybe<SummaryCategoryFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<SummaryCategoriesOrderBy>>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -2278,6 +2406,16 @@ export type QueryNodeArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QuerySummaryCategoryArgs = {
+  nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QuerySummaryCategoryByIdArgs = {
+  id: Scalars["UUID"];
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryUserArgs = {
   nodeId: Scalars["ID"];
 };
@@ -2373,6 +2511,84 @@ export type StringFilter = {
   startsWith?: InputMaybe<Scalars["String"]>;
   /** Starts with the specified string (case-insensitive). */
   startsWithInsensitive?: InputMaybe<Scalars["String"]>;
+};
+
+/** Methods to use when ordering `SummaryCategory`. */
+export enum SummaryCategoriesOrderBy {
+  CategoryIdAsc = "CATEGORY_ID_ASC",
+  CategoryIdDesc = "CATEGORY_ID_DESC",
+  DisplayOrderAsc = "DISPLAY_ORDER_ASC",
+  DisplayOrderDesc = "DISPLAY_ORDER_DESC",
+  IdAsc = "ID_ASC",
+  IdDesc = "ID_DESC",
+  Natural = "NATURAL",
+  PrimaryKeyAsc = "PRIMARY_KEY_ASC",
+  PrimaryKeyDesc = "PRIMARY_KEY_DESC",
+  UserIdAsc = "USER_ID_ASC",
+  UserIdDesc = "USER_ID_DESC",
+}
+
+export type SummaryCategory = Node & {
+  __typename?: "SummaryCategory";
+  /** Reads a single `Category` that is related to this `SummaryCategory`. */
+  categoryByCategoryId?: Maybe<Category>;
+  categoryId: Scalars["String"];
+  displayOrder: Scalars["Int"];
+  id: Scalars["UUID"];
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars["ID"];
+  /** Reads a single `User` that is related to this `SummaryCategory`. */
+  userByUserId?: Maybe<User>;
+  userId: Scalars["String"];
+};
+
+/**
+ * A condition to be used against `SummaryCategory` object types. All fields are
+ * tested for equality and combined with a logical ‘and.’
+ */
+export type SummaryCategoryCondition = {
+  /** Checks for equality with the object’s `categoryId` field. */
+  categoryId?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `displayOrder` field. */
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `id` field. */
+  id?: InputMaybe<Scalars["UUID"]>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: InputMaybe<Scalars["String"]>;
+};
+
+/** A filter to be used against `SummaryCategory` object types. All fields are combined with a logical ‘and.’ */
+export type SummaryCategoryFilter = {
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<SummaryCategoryFilter>>;
+  /** Filter by the object’s `categoryId` field. */
+  categoryId?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `displayOrder` field. */
+  displayOrder?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `id` field. */
+  id?: InputMaybe<UuidFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<SummaryCategoryFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<SummaryCategoryFilter>>;
+  /** Filter by the object’s `userId` field. */
+  userId?: InputMaybe<StringFilter>;
+};
+
+/** An input for mutations affecting `SummaryCategory` */
+export type SummaryCategoryInput = {
+  categoryId: Scalars["String"];
+  displayOrder: Scalars["Int"];
+  id: Scalars["UUID"];
+  userId: Scalars["String"];
+};
+
+/** Represents an update to a `SummaryCategory`. Fields that are set will be updated. */
+export type SummaryCategoryPatch = {
+  categoryId?: InputMaybe<Scalars["String"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  id?: InputMaybe<Scalars["UUID"]>;
+  userId?: InputMaybe<Scalars["String"]>;
 };
 
 export type TotalByAccountView = {
@@ -2896,6 +3112,49 @@ export type UpdateImportFileHistoryPayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the `updateSummaryCategoryById` mutation. */
+export type UpdateSummaryCategoryByIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  id: Scalars["UUID"];
+  /** An object where the defined keys will be set on the `SummaryCategory` being updated. */
+  summaryCategoryPatch: SummaryCategoryPatch;
+};
+
+/** All input for the `updateSummaryCategory` mutation. */
+export type UpdateSummaryCategoryInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The globally unique `ID` which will identify a single `SummaryCategory` to be updated. */
+  nodeId: Scalars["ID"];
+  /** An object where the defined keys will be set on the `SummaryCategory` being updated. */
+  summaryCategoryPatch: SummaryCategoryPatch;
+};
+
+/** The output of our update `SummaryCategory` mutation. */
+export type UpdateSummaryCategoryPayload = {
+  __typename?: "UpdateSummaryCategoryPayload";
+  /** Reads a single `Category` that is related to this `SummaryCategory`. */
+  categoryByCategoryId?: Maybe<Category>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** The `SummaryCategory` that was updated by this mutation. */
+  summaryCategory?: Maybe<SummaryCategory>;
+  /** Reads a single `User` that is related to this `SummaryCategory`. */
+  userByUserId?: Maybe<User>;
+};
+
 /** All input for the `updateUserByUserId` mutation. */
 export type UpdateUserByUserIdInput = {
   /**
@@ -2987,6 +3246,8 @@ export type User = Node & {
   displayOrder: Scalars["Int"];
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
   nodeId: Scalars["ID"];
+  /** Reads and enables pagination through a set of `SummaryCategory`. */
+  summaryCategoriesByUserIdList: Array<SummaryCategory>;
   userId: Scalars["String"];
   userName: Scalars["String"];
   /** Reads and enables pagination through a set of `YearlySummaryCategory`. */
@@ -3007,6 +3268,14 @@ export type UserDailyDetailsByUserIdListArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailsOrderBy>>;
+};
+
+export type UserSummaryCategoriesByUserIdListArgs = {
+  condition?: InputMaybe<SummaryCategoryCondition>;
+  filter?: InputMaybe<SummaryCategoryFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<SummaryCategoriesOrderBy>>;
 };
 
 export type UserYearlySummaryCategoriesByUserIdListArgs = {
@@ -3612,6 +3881,32 @@ export type GetGenreTotalByMonthQuery = {
   } | null> | null;
 };
 
+export type GetSummaryCategoriesByUserIdQueryVariables = Exact<{
+  userId: Scalars["String"];
+}>;
+
+export type GetSummaryCategoriesByUserIdQuery = {
+  __typename?: "Query";
+  categories?: Array<{
+    __typename?: "SummaryCategory";
+    id: any;
+    userId: string;
+    displayOrder: number;
+    category?: {
+      __typename?: "Category";
+      id: string;
+      name: string;
+      genre?: {
+        __typename?: "Genre";
+        iocomeType: IocomeType;
+        id: string;
+        name: string;
+        type: GenreType;
+      } | null;
+    } | null;
+  }> | null;
+};
+
 export type GetTotalBetweenDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -3677,32 +3972,6 @@ export type GetValidGenreListByIocomeTypeQuery = {
       categoryName: string;
       displayOrder: number;
     }>;
-  }> | null;
-};
-
-export type GetYearlySummaryCategoriesByUserIdQueryVariables = Exact<{
-  userId: Scalars["String"];
-}>;
-
-export type GetYearlySummaryCategoriesByUserIdQuery = {
-  __typename?: "Query";
-  categories?: Array<{
-    __typename?: "YearlySummaryCategory";
-    id: any;
-    userId: string;
-    displayOrder: number;
-    category?: {
-      __typename?: "Category";
-      id: string;
-      name: string;
-      genre?: {
-        __typename?: "Genre";
-        iocomeType: IocomeType;
-        id: string;
-        name: string;
-        type: GenreType;
-      } | null;
-    } | null;
   }> | null;
 };
 
@@ -4368,6 +4637,40 @@ export function useGetGenreTotalByMonthQuery(
     GetGenreTotalByMonthQueryVariables
   >({ query: GetGenreTotalByMonthDocument, ...options });
 }
+export const GetSummaryCategoriesByUserIdDocument = gql`
+  query GetSummaryCategoriesByUserId($userId: String!) {
+    categories: allSummaryCategoriesList(
+      condition: { userId: $userId }
+      orderBy: DISPLAY_ORDER_ASC
+    ) {
+      id
+      userId
+      displayOrder
+      category: categoryByCategoryId {
+        id: categoryId
+        name: categoryName
+        genre: genreByGenreId {
+          id: genreId
+          name: genreName
+          type: genreType
+          iocomeType
+        }
+      }
+    }
+  }
+`;
+
+export function useGetSummaryCategoriesByUserIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetSummaryCategoriesByUserIdQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetSummaryCategoriesByUserIdQuery,
+    GetSummaryCategoriesByUserIdQueryVariables
+  >({ query: GetSummaryCategoriesByUserIdDocument, ...options });
+}
 export const GetTotalBetweenDateDocument = gql`
   query GetTotalBetweenDate($fromDate: Date!, $toDate: Date!) {
     incomeTotalByDate: allDailyTotalViewsList(
@@ -4480,40 +4783,6 @@ export function useGetValidGenreListByIocomeTypeQuery(
     GetValidGenreListByIocomeTypeQuery,
     GetValidGenreListByIocomeTypeQueryVariables
   >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
-}
-export const GetYearlySummaryCategoriesByUserIdDocument = gql`
-  query GetYearlySummaryCategoriesByUserId($userId: String!) {
-    categories: allYearlySummaryCategoriesList(
-      condition: { userId: $userId }
-      orderBy: DISPLAY_ORDER_ASC
-    ) {
-      id
-      userId
-      displayOrder
-      category: categoryByCategoryId {
-        id: categoryId
-        name: categoryName
-        genre: genreByGenreId {
-          id: genreId
-          name: genreName
-          type: genreType
-          iocomeType
-        }
-      }
-    }
-  }
-`;
-
-export function useGetYearlySummaryCategoriesByUserIdQuery(
-  options: Omit<
-    Urql.UseQueryArgs<GetYearlySummaryCategoriesByUserIdQueryVariables>,
-    "query"
-  >
-) {
-  return Urql.useQuery<
-    GetYearlySummaryCategoriesByUserIdQuery,
-    GetYearlySummaryCategoriesByUserIdQueryVariables
-  >({ query: GetYearlySummaryCategoriesByUserIdDocument, ...options });
 }
 export const UpdateCreditCardDetailBySerialNoDocument = gql`
   mutation UpdateCreditCardDetailBySerialNo(
