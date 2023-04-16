@@ -1,1 +1,1 @@
-export { YearlySummaryCategoryTransferContainer as YearlySummaryCategory } from "./YearlySummaryCategoryTransferContainer";
+export { SummaryCategoryTransferContainer as SummaryCategory } from "./SummaryCategoryTransferContainer";

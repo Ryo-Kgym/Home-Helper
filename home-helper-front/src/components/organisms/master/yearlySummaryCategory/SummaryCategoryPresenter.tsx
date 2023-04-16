@@ -9,9 +9,7 @@ type SalaryTransferPresenterProps = {
   resetClickHandler: () => void;
 };
 
-export const YearlySummaryCategoryPresenter: FC<
-  SalaryTransferPresenterProps
-> = ({
+export const SummaryCategoryPresenter: FC<SalaryTransferPresenterProps> = ({
   transferData,
   setTransferData,
   registerClickHandler,

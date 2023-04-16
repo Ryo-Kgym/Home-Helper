@@ -1,22 +1,22 @@
 import {
   IocomeType,
   useGetAllCategoryListWithCriteriaQuery,
-  useGetYearlySummaryCategoriesByUserIdQuery,
+  useGetSummaryCategoriesByUserIdQuery,
 } from "@graphql/postgraphile/generated/graphql";
 import { TransferListItem } from "@components/atoms/TransferList";
 import { useUser } from "@hooks/user/useUser";
 
-export const useGetYearlySummaryCategories = () => {
+export const useGetSummaryCategories = () => {
   const { userId } = useUser();
-  const [{ data: yearlySummaryCategoriesData }] =
-    useGetYearlySummaryCategoriesByUserIdQuery({
+  const [{ data: summaryCategoriesData }] =
+    useGetSummaryCategoriesByUserIdQuery({
       variables: {
         userId,
       },
     });
 
   const selectedCategories: TransferListItem[] =
-    yearlySummaryCategoriesData?.categories
+    summaryCategoriesData?.categories
       ?.map((c) => c.category)
       .map((c) => ({
         value: c!.id,
