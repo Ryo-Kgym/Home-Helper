@@ -3494,6 +3494,21 @@ export type CreateImportFileHistoryMutation = {
   } | null;
 };
 
+export type CreateSummaryCategoryMutationVariables = Exact<{
+  id: Scalars["UUID"];
+  userId: Scalars["String"];
+  categoryId: Scalars["String"];
+  displayOrder: Scalars["Int"];
+}>;
+
+export type CreateSummaryCategoryMutation = {
+  __typename?: "Mutation";
+  createSummaryCategory?: {
+    __typename?: "CreateSummaryCategoryPayload";
+    clientMutationId?: string | null;
+  } | null;
+};
+
 export type DeleteDailyDetailBySerialNoMutationVariables = Exact<{
   serialNo: Scalars["Int"];
 }>;
@@ -4154,6 +4169,34 @@ export function useCreateImportFileHistoryMutation() {
     CreateImportFileHistoryMutation,
     CreateImportFileHistoryMutationVariables
   >(CreateImportFileHistoryDocument);
+}
+export const CreateSummaryCategoryDocument = gql`
+  mutation CreateSummaryCategory(
+    $id: UUID!
+    $userId: String!
+    $categoryId: String!
+    $displayOrder: Int!
+  ) {
+    createSummaryCategory(
+      input: {
+        summaryCategory: {
+          id: $id
+          userId: $userId
+          categoryId: $categoryId
+          displayOrder: $displayOrder
+        }
+      }
+    ) {
+      clientMutationId
+    }
+  }
+`;
+
+export function useCreateSummaryCategoryMutation() {
+  return Urql.useMutation<
+    CreateSummaryCategoryMutation,
+    CreateSummaryCategoryMutationVariables
+  >(CreateSummaryCategoryDocument);
 }
 export const DeleteDailyDetailBySerialNoDocument = gql`
   mutation DeleteDailyDetailBySerialNo($serialNo: Int!) {
