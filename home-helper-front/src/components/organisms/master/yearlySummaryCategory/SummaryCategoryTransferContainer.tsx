@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { TransferListItem } from "@components/atoms/TransferList";
 import { SummaryCategoryPresenter } from "./SummaryCategoryPresenter";
 import { useGetSummaryCategories } from "./useGetSummaryCategories";
+import { useCreateSummaryCategories } from "./useCreateSummaryCategories";
 
 export const SummaryCategoryTransferContainer = () => {
   const [transferData, setTransferData] = useState<
@@ -9,8 +10,11 @@ export const SummaryCategoryTransferContainer = () => {
   >([[], []]);
 
   const { unselectCategories, selectedCategories } = useGetSummaryCategories();
+  const { mutation } = useCreateSummaryCategories();
 
-  const registerClickHandler = () => {};
+  const registerClickHandler = () => {
+    mutation({ selectedCategories: transferData[1] });
+  };
   const resetClickHandler = () => {
     setTransferData([unselectCategories, selectedCategories]);
   };
