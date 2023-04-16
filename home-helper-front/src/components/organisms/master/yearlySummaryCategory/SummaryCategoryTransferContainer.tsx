@@ -8,15 +8,21 @@ export const SummaryCategoryTransferContainer = () => {
   const [transferData, setTransferData] = useState<
     [TransferListItem[], TransferListItem[]]
   >([[], []]);
+  const [deleteIdListState, setDeleteIdListState] = useState<string[]>([]);
 
-  const { unselectCategories, selectedCategories } = useGetSummaryCategories();
+  const { unselectCategories, selectedCategories, deleteIdList } =
+    useGetSummaryCategories();
   const { mutation } = useCreateSummaryCategories();
 
   const registerClickHandler = () => {
-    mutation({ selectedCategories: transferData[1] });
+    mutation({
+      selectedCategories: transferData[1],
+      deleteIdList: deleteIdListState,
+    });
   };
   const resetClickHandler = () => {
     setTransferData([unselectCategories, selectedCategories]);
+    setDeleteIdListState(deleteIdList);
   };
 
   useEffect(resetClickHandler, []);

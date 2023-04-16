@@ -2,7 +2,6 @@ import { useUser } from "@hooks/user/useUser";
 import {
   useCreateSummaryCategoryMutation,
   useDeleteSummaryCategoryByIdMutation,
-  useGetSummaryCategoriesByUserIdQuery,
 } from "@graphql/postgraphile/generated/graphql";
 import { TransferListItem } from "@components/atoms/TransferList";
 import { useUuid } from "@hooks/uuid/useUuid";
@@ -14,20 +13,11 @@ export const useCreateSummaryCategories = () => {
     useDeleteSummaryCategoryByIdMutation();
   const [_createResult, createMutation] = useCreateSummaryCategoryMutation();
 
-  const [{ data: summaryCategoriesData }] =
-    useGetSummaryCategoriesByUserIdQuery({
-      variables: {
-        userId,
-      },
-    });
-  console.log(
-    "summaryCategoriesData",
-    summaryCategoriesData?.categories?.map((c) => c.category?.name).join(", ")
-  );
-  const deleteIdList: string[] =
-    summaryCategoriesData?.categories?.map((c) => c.id) ?? [];
-
-  const deleteSummaryCategories = () => {
+  const deleteSummaryCategories = ({
+    deleteIdList,
+  }: {
+    deleteIdList: string[];
+  }) => {
     deleteIdList.forEach((id) => {
       return deleteMutation({ id });
     });
@@ -35,7 +25,9 @@ export const useCreateSummaryCategories = () => {
 
   const createSummaryCategories = ({
     selectedCategories,
-  }: UseCreateSummaryCategoriesArgs) => {
+  }: {
+    selectedCategories: TransferListItem[];
+  }) => {
     selectedCategories.forEach((item, idx) => {
       return createMutation({
         id: get(),
@@ -46,9 +38,12 @@ export const useCreateSummaryCategories = () => {
     });
   };
 
-  const mutation = (args: UseCreateSummaryCategoriesArgs) => {
-    deleteSummaryCategories();
-    createSummaryCategories(args);
+  const mutation = ({
+    selectedCategories,
+    deleteIdList,
+  }: UseCreateSummaryCategoriesArgs) => {
+    deleteSummaryCategories({ deleteIdList });
+    createSummaryCategories({ selectedCategories });
   };
 
   return {
@@ -58,4 +53,5 @@ export const useCreateSummaryCategories = () => {
 
 type UseCreateSummaryCategoriesArgs = {
   selectedCategories: TransferListItem[];
+  deleteIdList: string[];
 };

@@ -14,6 +14,10 @@ export const useGetSummaryCategories = () => {
         userId,
       },
     });
+  console.log(
+    "summaryCategoriesData",
+    summaryCategoriesData?.categories?.map((c) => c.category?.name).join(", ")
+  );
 
   const selectedCategories: TransferListItem[] =
     summaryCategoriesData?.categories
@@ -40,8 +44,12 @@ export const useGetSummaryCategories = () => {
       });
     }) ?? [];
 
+  const deleteIdList: string[] =
+    summaryCategoriesData?.categories?.map((c) => c.id) ?? [];
+
   return {
     unselectCategories,
     selectedCategories,
+    deleteIdList,
   };
 };
