@@ -3,8 +3,11 @@ import { TransferListItem } from "@components/atoms/TransferList";
 import { SummaryCategoryPresenter } from "./SummaryCategoryPresenter";
 import { useGetSummaryCategories } from "./useGetSummaryCategories";
 import { useCreateSummaryCategories } from "./useCreateSummaryCategories";
+import { useRouter } from "next/router";
 
 export const SummaryCategoryTransferContainer = () => {
+  const router = useRouter();
+
   const [transferData, setTransferData] = useState<
     [TransferListItem[], TransferListItem[]]
   >([[], []]);
@@ -19,6 +22,8 @@ export const SummaryCategoryTransferContainer = () => {
       selectedCategories: transferData[1],
       deleteIdList: deleteIdListState,
     });
+    // ToDo ここでリロードするのは良くない
+    router.reload();
   };
   const resetClickHandler = () => {
     setTransferData([unselectCategories, selectedCategories]);
