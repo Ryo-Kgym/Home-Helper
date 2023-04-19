@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { TransferListItem } from "@components/atoms/TransferList";
-import { SummaryCategoryPresenter } from "./SummaryCategoryPresenter";
+import { SummaryCategoryTransferPresenter } from "./SummaryCategoryTransferPresenter";
 import { useGetSummaryCategories } from "./useGetSummaryCategories";
 import { useCreateSummaryCategories } from "./useCreateSummaryCategories";
-import { useRouter } from "next/router";
 
 export const SummaryCategoryTransferContainer = () => {
-  const router = useRouter();
-
   const [transferData, setTransferData] = useState<
     [TransferListItem[], TransferListItem[]]
   >([[], []]);
   const [deleteIdListState, setDeleteIdListState] = useState<string[]>([]);
+  const [opened, setOpened] = useState<boolean>(false);
+  const onClose = () => setOpened(false);
 
   const { unselectCategories, selectedCategories, deleteIdList } =
     useGetSummaryCategories();
@@ -22,8 +21,7 @@ export const SummaryCategoryTransferContainer = () => {
       selectedCategories: transferData[1],
       deleteIdList: deleteIdListState,
     });
-    // ToDo ここでリロードするのは良くない
-    router.reload();
+    onClose();
   };
   const resetClickHandler = () => {
     setTransferData([unselectCategories, selectedCategories]);
@@ -33,11 +31,14 @@ export const SummaryCategoryTransferContainer = () => {
   useEffect(resetClickHandler, []);
 
   return (
-    <SummaryCategoryPresenter
+    <SummaryCategoryTransferPresenter
       transferData={transferData}
       setTransferData={setTransferData}
       registerClickHandler={registerClickHandler}
       resetClickHandler={resetClickHandler}
+      opened={opened}
+      onOpen={() => setOpened(true)}
+      onClose={onClose}
     />
   );
 };
