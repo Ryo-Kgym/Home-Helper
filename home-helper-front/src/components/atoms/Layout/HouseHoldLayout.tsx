@@ -24,7 +24,7 @@ export const HouseHoldLayout: FC<HouseHoldLayoutProps> = ({
 
   useEffect(() => {
     setDisplayName(userName);
-  }, []);
+  }, [userName]);
 
   return (
     <AppShell navbar={navbar} header={header} navHidden={navHidden}>
