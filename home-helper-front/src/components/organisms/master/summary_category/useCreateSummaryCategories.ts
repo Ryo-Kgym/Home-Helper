@@ -17,18 +17,11 @@ export const useCreateSummaryCategories = () => {
       userId,
     },
   });
-  console.log("deleteData", deleteData);
   const [_createResult, createMutation] = useCreateSummaryCategoryMutation();
 
   const deleteSummaryCategories = () => {
     deleteData?.categories?.forEach((c) => {
-      deleteMutation({ id: c.id })
-        .then((res) => {
-          console.log("res", res);
-        })
-        .then((err) => {
-          console.log("err", err);
-        });
+      deleteMutation({ id: c.id });
     });
   };
 
