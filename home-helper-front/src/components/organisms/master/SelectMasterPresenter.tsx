@@ -1,14 +1,22 @@
-import { FC } from "react";
-import { TabProps } from "@components/atoms/Tab";
-import { TabNavigator } from "@components/atoms/TabNavigator";
+import { FC, ReactNode } from "react";
+import {
+  TabNavigator,
+  TabNavigatorProps,
+} from "@components/atoms/TabNavigator";
 
 type SelectMasterPresenterProps = {
-  tabPropsList: TabProps[];
+  tabPropsList: TabNavigatorProps[];
+  children: ReactNode;
 };
 export const SelectMasterPresenter: FC<SelectMasterPresenterProps> = ({
   tabPropsList,
+  children,
 }) => (
   <div>
-    <TabNavigator defaultSelect={"genre"} tabPropsList={tabPropsList} />
+    <TabNavigator
+      defaultSelect={"genre"}
+      tabPropsList={tabPropsList}
+      children={children}
+    />
   </div>
 );

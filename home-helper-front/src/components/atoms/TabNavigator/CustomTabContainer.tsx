@@ -1,21 +1,24 @@
-import { FC, useState } from "react";
+import { FC, ReactNode, useState } from "react";
 import { TabNavigatorProps } from "@components/atoms/TabNavigator/index";
 import { CustomTabPresenter } from "@components/atoms/TabNavigator/CustomTabPresenter";
+import { useRouter } from "next/router";
 
 type CustomTabContainerProps = {
   defaultSelect: string;
   tabPropsList: TabNavigatorProps[];
+  children: ReactNode;
 };
 export const CustomTabContainer: FC<CustomTabContainerProps> = ({
   defaultSelect,
   tabPropsList,
+  children,
 }) => {
-  const [contents, setContents] = useState<JSX.Element>(<></>);
+  const router = useRouter();
   const tabCount = tabPropsList.length;
   const [selectValue, setSelectValue] = useState<string>(defaultSelect);
-  const onClickTab = (value: string, contents: JSX.Element) => {
+  const onClickTab = ({ url, value }: { url: string; value: string }) => {
+    router.push(url);
     setSelectValue(value);
-    setContents(contents);
   };
   const selectClassName = (value: string) => {
     if (value === selectValue) {
@@ -30,8 +33,8 @@ export const CustomTabContainer: FC<CustomTabContainerProps> = ({
       tabCount={tabCount}
       tabPropsList={tabPropsList}
       onClickTab={onClickTab}
-      contents={contents}
       selectClassName={selectClassName}
+      children={children}
     />
   );
 };

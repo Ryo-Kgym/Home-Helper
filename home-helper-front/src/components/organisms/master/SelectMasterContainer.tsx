@@ -1,31 +1,38 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { SelectMasterPresenter } from "@components/organisms/master/SelectMasterPresenter";
 import { TabNavigatorProps } from "@components/atoms/TabNavigator";
-import { SummaryCategory } from "@components/organisms/master/summary_category";
 
-export const SelectMasterContainer: FC = () => {
+type SelectMasterContainerProps = {
+  children: ReactNode;
+};
+
+export const SelectMasterContainer: FC<SelectMasterContainerProps> = ({
+  children,
+}) => {
   const tabPropsList: TabNavigatorProps[] = [
     {
       value: "genre",
       label: "ジャンル",
-      contents: <></>,
+      url: "/household/master/genre",
     },
     {
       value: "category",
       label: "カテゴリ",
-      contents: <></>,
+      url: "/household/master/category",
     },
     {
       value: "account",
       label: "アカウント",
-      contents: <></>,
+      url: "/household/master/account",
     },
     {
       value: "summaryCategory",
       label: "サマリ",
-      contents: <SummaryCategory />,
+      url: "/household/master/summaryCategory",
     },
   ];
 
-  return <SelectMasterPresenter tabPropsList={tabPropsList} />;
+  return (
+    <SelectMasterPresenter tabPropsList={tabPropsList} children={children} />
+  );
 };
