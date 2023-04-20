@@ -2,6 +2,7 @@ import { useUser } from "@hooks/user/useUser";
 import {
   useCreateSummaryCategoryMutation,
   useDeleteSummaryCategoryByIdMutation,
+  useGetSummaryCategoriesByUserIdQuery,
 } from "@graphql/postgraphile/generated/graphql";
 import { TransferListItem } from "@components/atoms/TransferList";
 import { useUuid } from "@hooks/uuid/useUuid";
@@ -11,19 +12,27 @@ export const useCreateSummaryCategories = () => {
   const { get } = useUuid();
   const [_deleteResult, deleteMutation] =
     useDeleteSummaryCategoryByIdMutation();
+  const [{ data: deleteData }] = useGetSummaryCategoriesByUserIdQuery({
+    variables: {
+      userId,
+    },
+  });
+  console.log("deleteData", deleteData);
   const [_createResult, createMutation] = useCreateSummaryCategoryMutation();
 
-  const deleteSummaryCategories = ({
-    deleteIdList,
-  }: {
-    deleteIdList: string[];
-  }) => {
-    deleteIdList.forEach((id) => {
-      return deleteMutation({ id });
+  const deleteSummaryCategories = () => {
+    deleteData?.categories?.forEach((c) => {
+      deleteMutation({ id: c.id })
+        .then((res) => {
+          console.log("res", res);
+        })
+        .then((err) => {
+          console.log("err", err);
+        });
     });
   };
 
-  const createSummaryCategories = ({
+  const insertSummaryCategories = ({
     selectedCategories,
   }: {
     selectedCategories: TransferListItem[];
@@ -38,20 +47,18 @@ export const useCreateSummaryCategories = () => {
     });
   };
 
-  const mutation = ({
+  const createSummaryCategories = ({
     selectedCategories,
-    deleteIdList,
   }: UseCreateSummaryCategoriesArgs) => {
-    deleteSummaryCategories({ deleteIdList });
-    createSummaryCategories({ selectedCategories });
+    deleteSummaryCategories();
+    insertSummaryCategories({ selectedCategories });
   };
 
   return {
-    mutation,
+    createSummaryCategories,
   };
 };
 
 type UseCreateSummaryCategoriesArgs = {
   selectedCategories: TransferListItem[];
-  deleteIdList: string[];
 };

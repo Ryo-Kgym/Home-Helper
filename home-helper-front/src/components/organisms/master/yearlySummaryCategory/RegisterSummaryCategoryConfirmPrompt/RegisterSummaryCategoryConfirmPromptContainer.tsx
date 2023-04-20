@@ -12,10 +12,10 @@ type RegisterSummaryCategoryConfirmPromptContainerProps = {
 export const RegisterSummaryCategoryConfirmPromptContainer: FC<
   RegisterSummaryCategoryConfirmPromptContainerProps
 > = ({ opened, onClose, selectedCategories }) => {
-  const { mutation } = useCreateSummaryCategories();
+  const { createSummaryCategories } = useCreateSummaryCategories();
 
   const doneClickHandler = () => {
-    mutation({ selectedCategories, deleteIdList: [] });
+    createSummaryCategories({ selectedCategories });
     onClose();
   };
 
