@@ -5,7 +5,7 @@ import { SelectMaster } from "@components/organisms/master";
 export const Page: FC = () => {
   return (
     <HouseHoldLayout>
-      <SelectMaster>{"アカウント"}</SelectMaster>
+      <SelectMaster selectValue={"account"}>{"アカウント"}</SelectMaster>
     </HouseHoldLayout>
   );
 };

@@ -18,7 +18,7 @@ export const CustomTabPresenter: FC<CustomTabPresenterProps> = ({
   <div>
     <div className={"grid grid-cols-1"}>
       <div className={`grid grid-cols-${tabCount} mb-2`}>
-        {tabPropsList.map(({ value, icon, label, url }, i) => (
+        {tabPropsList.map(({ value, label, url }, i) => (
           <div
             key={"tab" + i}
             className={`text-xl p-2 text-center 

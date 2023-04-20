@@ -7,16 +7,16 @@ import {
 type SelectMasterPresenterProps = {
   tabPropsList: TabNavigatorProps[];
   children: ReactNode;
+  selectValue: string;
 };
 export const SelectMasterPresenter: FC<SelectMasterPresenterProps> = ({
   tabPropsList,
   children,
+  selectValue,
 }) => (
   <div>
-    <TabNavigator
-      defaultSelect={"genre"}
-      tabPropsList={tabPropsList}
-      children={children}
-    />
+    <TabNavigator selectValue={selectValue} tabPropsList={tabPropsList}>
+      {children}
+    </TabNavigator>
   </div>
 );

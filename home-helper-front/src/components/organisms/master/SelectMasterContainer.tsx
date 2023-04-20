@@ -4,10 +4,12 @@ import { TabNavigatorProps } from "@components/atoms/TabNavigator";
 
 type SelectMasterContainerProps = {
   children: ReactNode;
+  selectValue: string;
 };
 
 export const SelectMasterContainer: FC<SelectMasterContainerProps> = ({
   children,
+  selectValue,
 }) => {
   const tabPropsList: TabNavigatorProps[] = [
     {
@@ -33,6 +35,11 @@ export const SelectMasterContainer: FC<SelectMasterContainerProps> = ({
   ];
 
   return (
-    <SelectMasterPresenter tabPropsList={tabPropsList} children={children} />
+    <SelectMasterPresenter
+      selectValue={selectValue}
+      tabPropsList={tabPropsList}
+    >
+      {children}
+    </SelectMasterPresenter>
   );
 };

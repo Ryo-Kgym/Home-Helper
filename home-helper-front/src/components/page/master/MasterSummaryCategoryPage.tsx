@@ -6,7 +6,7 @@ import { SummaryCategory } from "@components/organisms/master/summary_category";
 export const Page: FC = () => {
   return (
     <HouseHoldLayout>
-      <SelectMaster>
+      <SelectMaster selectValue={"summaryCategory"}>
         <SummaryCategory />
       </SelectMaster>
     </HouseHoldLayout>
