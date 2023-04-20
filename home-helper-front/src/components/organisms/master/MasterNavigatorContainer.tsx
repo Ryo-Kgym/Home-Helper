@@ -1,13 +1,13 @@
 import { FC, ReactNode } from "react";
-import { SelectMasterPresenter } from "@components/organisms/master/SelectMasterPresenter";
+import { MasterNavigatorPresenter } from "@components/organisms/master/MasterNavigatorPresenter";
 import { TabNavigatorProps } from "@components/atoms/TabNavigator";
 
-type SelectMasterContainerProps = {
+type MasterNavigatorContainerProps = {
   children: ReactNode;
   selectValue: string;
 };
 
-export const SelectMasterContainer: FC<SelectMasterContainerProps> = ({
+export const MasterNavigatorContainer: FC<MasterNavigatorContainerProps> = ({
   children,
   selectValue,
 }) => {
@@ -35,11 +35,11 @@ export const SelectMasterContainer: FC<SelectMasterContainerProps> = ({
   ];
 
   return (
-    <SelectMasterPresenter
+    <MasterNavigatorPresenter
       selectValue={selectValue}
       tabPropsList={tabPropsList}
     >
       {children}
-    </SelectMasterPresenter>
+    </MasterNavigatorPresenter>
   );
 };

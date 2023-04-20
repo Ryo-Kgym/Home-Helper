@@ -1,1 +1,1 @@
-export { SelectMasterContainer as SelectMaster } from "./SelectMasterContainer";
+export { MasterNavigatorContainer as SelectMaster } from "./MasterNavigatorContainer";

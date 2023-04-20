@@ -4,12 +4,12 @@ import {
   TabNavigatorProps,
 } from "@components/atoms/TabNavigator";
 
-type SelectMasterPresenterProps = {
+type MasterNavigatorPresenterProps = {
   tabPropsList: TabNavigatorProps[];
   children: ReactNode;
   selectValue: string;
 };
-export const SelectMasterPresenter: FC<SelectMasterPresenterProps> = ({
+export const MasterNavigatorPresenter: FC<MasterNavigatorPresenterProps> = ({
   tabPropsList,
   children,
   selectValue,
