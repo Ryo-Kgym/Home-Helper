@@ -1,10 +1,10 @@
 import { FC, useState } from "react";
-import { TabProps } from "@components/atoms/TabNavigator/index";
+import { TabNavigatorProps } from "@components/atoms/TabNavigator/index";
 import { CustomTabPresenter } from "@components/atoms/TabNavigator/CustomTabPresenter";
 
 type CustomTabContainerProps = {
   defaultSelect: string;
-  tabPropsList: TabProps[];
+  tabPropsList: TabNavigatorProps[];
 };
 export const CustomTabContainer: FC<CustomTabContainerProps> = ({
   defaultSelect,

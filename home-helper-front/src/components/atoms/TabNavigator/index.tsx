@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from "react";
 
 export { CustomTabContainer as TabNavigator } from "./CustomTabContainer";
 
-export type TabProps = {
+export type TabNavigatorProps = {
   value: string;
   label: string;
   icon?: ReactNode;

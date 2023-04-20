@@ -1,10 +1,10 @@
 import { FC } from "react";
 import { SelectMasterPresenter } from "@components/organisms/master/SelectMasterPresenter";
-import { TabProps } from "@components/atoms/TabNavigator";
+import { TabNavigatorProps } from "@components/atoms/TabNavigator";
 import { SummaryCategory } from "@components/organisms/master/summary_category";
 
 export const SelectMasterContainer: FC = () => {
-  const tabPropsList: TabProps[] = [
+  const tabPropsList: TabNavigatorProps[] = [
     {
       value: "genre",
       label: "ジャンル",
