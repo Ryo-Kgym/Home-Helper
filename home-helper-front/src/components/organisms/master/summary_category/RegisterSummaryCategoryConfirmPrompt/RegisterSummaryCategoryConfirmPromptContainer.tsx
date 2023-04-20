@@ -2,6 +2,7 @@ import { FC } from "react";
 import { TransferListItem } from "@components/atoms/TransferList";
 import { useCreateSummaryCategories } from "@components/organisms/master/summary_category/useCreateSummaryCategories";
 import { RegisterSummaryCategoryConfirmPromptPresenter } from "./RegisterSummaryCategoryConfirmPromptPresenter";
+import { useRouter } from "next/router";
 
 type RegisterSummaryCategoryConfirmPromptContainerProps = {
   opened: boolean;
@@ -12,11 +13,13 @@ type RegisterSummaryCategoryConfirmPromptContainerProps = {
 export const RegisterSummaryCategoryConfirmPromptContainer: FC<
   RegisterSummaryCategoryConfirmPromptContainerProps
 > = ({ opened, onClose, selectedCategories }) => {
+  const router = useRouter();
   const { createSummaryCategories } = useCreateSummaryCategories();
 
   const doneClickHandler = () => {
     createSummaryCategories({ selectedCategories });
     onClose();
+    router.reload();
   };
 
   return (
