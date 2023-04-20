@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TransferListItem } from "@components/atoms/TransferList";
 import { SummaryCategoryTransferPresenter } from "./SummaryCategoryTransferPresenter";
 import { useGetSummaryCategories } from "./useGetSummaryCategories";
@@ -7,20 +7,21 @@ export const SummaryCategoryTransferContainer = () => {
   const [transferData, setTransferData] = useState<
     [TransferListItem[], TransferListItem[]]
   >([[], []]);
+  const isEmpty = transferData[0].length === 0 && transferData[1].length === 0;
   const [opened, setOpened] = useState<boolean>(false);
   const onClose = () => setOpened(false);
-
-  const { unselectCategories, selectedCategories } = useGetSummaryCategories();
 
   const resetClickHandler = () => {
     setTransferData([unselectCategories, selectedCategories]);
   };
 
-  useEffect(resetClickHandler, []);
+  const { unselectCategories, selectedCategories } = useGetSummaryCategories();
 
   return (
     <SummaryCategoryTransferPresenter
-      transferData={transferData}
+      transferData={
+        isEmpty ? [unselectCategories, selectedCategories] : transferData
+      }
       setTransferData={setTransferData}
       resetClickHandler={resetClickHandler}
       opened={opened}
