@@ -21,7 +21,9 @@ export const RegisterSummaryCategoryConfirmPromptPresenter: FC<
     <div className={"border-2"}>
       <ul>
         {selectedCategories.map((item) => (
-          <li key={item.value}>{item.label}</li>
+          <li key={item.value} className={"ml-6 my-3 list-disc"}>
+            {item.group + ": " + item.label}
+          </li>
         ))}
       </ul>
     </div>
