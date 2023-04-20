@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import { TabProps } from "@components/atoms/Tab/index";
-import { CustomTabPresenter } from "@components/atoms/Tab/CustomTabPresenter";
+import { TabProps } from "@components/atoms/TabNavigator/index";
+import { CustomTabPresenter } from "@components/atoms/TabNavigator/CustomTabPresenter";
 
 type CustomTabContainerProps = {
   defaultSelect: string;

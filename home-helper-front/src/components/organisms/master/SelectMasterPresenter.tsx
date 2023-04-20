@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Tab, TabProps } from "@components/atoms/Tab";
+import { TabProps } from "@components/atoms/Tab";
+import { TabNavigator } from "@components/atoms/TabNavigator";
 
 type SelectMasterPresenterProps = {
   tabPropsList: TabProps[];
@@ -8,6 +9,6 @@ export const SelectMasterPresenter: FC<SelectMasterPresenterProps> = ({
   tabPropsList,
 }) => (
   <div>
-    <Tab defaultSelect={"genre"} tabPropsList={tabPropsList} />
+    <TabNavigator defaultSelect={"genre"} tabPropsList={tabPropsList} />
   </div>
 );
