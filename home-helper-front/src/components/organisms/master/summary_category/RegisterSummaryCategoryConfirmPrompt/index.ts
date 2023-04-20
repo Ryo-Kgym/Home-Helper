@@ -1,0 +1,1 @@
+export { RegisterSummaryCategoryConfirmPromptContainer as RegisterSummaryCategoryConfirmPrompt } from "./RegisterSummaryCategoryConfirmPromptContainer";

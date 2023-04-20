@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode } from "react";
 
-export { TabContainer as Tab } from "./TabContainer";
+export { MantineTabContainer as Tab } from "./MantineTabContainer";
 
 export type TabProps = {
   value: string;

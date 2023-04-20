@@ -35,7 +35,9 @@ type ButtonColorType =
   | "reset"
   | "detail"
   | "import"
-  | "delete";
+  | "delete"
+  | "done"
+  | "cancel";
 
 type ButtonStyleProp = {
   className: string;
@@ -51,4 +53,6 @@ const PROP_MAP = new Map<ButtonColorType, ButtonStyleProp>([
   ["import", { className: "m-2", size: "xl", color: "blue" }],
   ["delete", { className: "m-2", size: "xl", color: "red" }],
   ["detail", { className: "", size: "sm", color: "blue" }],
+  ["done", { className: "m-2", size: "xl", color: "green" }],
+  ["cancel", { className: "m-2", size: "xl", color: "gray" }],
 ]);

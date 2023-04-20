@@ -3,11 +3,15 @@ import { StyledTabs } from "@components/atoms/Tab/StyledTabs";
 import { FC } from "react";
 import { TabProps } from "@components/atoms/Tab/index";
 
-type Props = {
+type MantineTabPresenterProps = {
   defaultSelect: string;
   tabPropsList: TabProps[];
 };
-export const TabPresenter: FC<Props> = ({ defaultSelect, tabPropsList }) => {
+
+export const MantineTabPresenter: FC<MantineTabPresenterProps> = ({
+  defaultSelect,
+  tabPropsList,
+}) => {
   return (
     <StyledTabs
       defaultValue={defaultSelect}
