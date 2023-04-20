@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { SelectMasterPresenter } from "@components/organisms/master/SelectMasterPresenter";
 import { TabProps } from "@components/atoms/Tab";
-import { SummaryCategory } from "@components/organisms/master/yearlySummaryCategory";
+import { SummaryCategory } from "@components/organisms/master/summary_category";
 
 export const SelectMasterContainer: FC = () => {
   const tabPropsList: TabProps[] = [

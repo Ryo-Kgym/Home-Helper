@@ -1,7 +1,7 @@
-import { RegisterSummaryCategoryConfirmPromptPresenter } from "@components/organisms/master/yearlySummaryCategory/RegisterSummaryCategoryConfirmPrompt/RegisterSummaryCategoryConfirmPromptPresenter";
-import { useCreateSummaryCategories } from "@components/organisms/master/yearlySummaryCategory/useCreateSummaryCategories";
 import { FC } from "react";
 import { TransferListItem } from "@components/atoms/TransferList";
+import { useCreateSummaryCategories } from "@components/organisms/master/summary_category/useCreateSummaryCategories";
+import { RegisterSummaryCategoryConfirmPromptPresenter } from "./RegisterSummaryCategoryConfirmPromptPresenter";
 
 type RegisterSummaryCategoryConfirmPromptContainerProps = {
   opened: boolean;

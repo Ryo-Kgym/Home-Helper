@@ -19,10 +19,11 @@ export const ConfirmPromptContainer: FC<ConfirmPromptContainerProps> = ({
   return (
     <ConfirmPromptPresenter
       title={title}
-      children={children}
       opened={opened}
       onClose={onClose}
       doneOnClickHandler={doneOnClickHandler}
-    />
+    >
+      {children}
+    </ConfirmPromptPresenter>
   );
 };
