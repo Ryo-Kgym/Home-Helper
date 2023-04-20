@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { SelectMasterPresenter } from "@components/organisms/master/SelectMasterPresenter";
-import { TabProps } from "@components/atoms/Tab";
+import { TabProps } from "@components/atoms/TabNavigator";
 import { SummaryCategory } from "@components/organisms/master/summary_category";
 
 export const SelectMasterContainer: FC = () => {
