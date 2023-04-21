@@ -35,7 +35,7 @@ export const dailyDetailConverter = ({
           { value: dailyDetail?.memo },
         ],
         onClick: () => {
-          onClickHandler(dailyDetail?.serialNo!);
+          onClickHandler(dailyDetail?.id!);
         },
       };
     }) ?? []
