@@ -4861,6 +4861,18 @@
             "deprecationReason": null
           },
           {
+            "name": "groupId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "iocomeType",
             "description": null,
             "args": [],
@@ -4938,6 +4950,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupId",
+            "description": "Checks for equality with the object’s `groupId` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
               "ofType": null
             },
             "defaultValue": null,
@@ -5041,6 +5065,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "IntFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupId",
+            "description": "Filter by the object’s `groupId` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UUIDFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -5160,6 +5196,18 @@
           },
           {
             "name": "DISPLAY_ORDER_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GROUP_ID_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GROUP_ID_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -6053,6 +6101,18 @@
             "deprecationReason": null
           },
           {
+            "name": "groupId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "iocomeType",
             "description": null,
             "args": [],
@@ -6094,6 +6154,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Date",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupId",
+            "description": "Checks for equality with the object’s `groupId` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
               "ofType": null
             },
             "defaultValue": null,
@@ -6161,6 +6233,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "DateFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupId",
+            "description": "Filter by the object’s `groupId` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UUIDFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -6244,6 +6328,18 @@
           },
           {
             "name": "DATE_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GROUP_ID_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GROUP_ID_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -13258,6 +13354,18 @@
                 "deprecationReason": null
               },
               {
+                "name": "groupId",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "UUID",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
                 "name": "offset",
                 "description": "Skip the first `n` values.",
                 "type": {
@@ -14817,6 +14925,18 @@
                 "deprecationReason": null
               },
               {
+                "name": "groupId",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "UUID",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
                 "name": "offset",
                 "description": "Skip the first `n` values.",
                 "type": {
@@ -15039,6 +15159,18 @@
                 "deprecationReason": null
               },
               {
+                "name": "groupId",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "UUID",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
                 "name": "offset",
                 "description": "Skip the first `n` values.",
                 "type": {
@@ -15196,6 +15328,18 @@
                 "type": {
                   "kind": "SCALAR",
                   "name": "Date",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "groupId",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "UUID",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -17157,6 +17301,18 @@
             "deprecationReason": null
           },
           {
+            "name": "groupId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "iocomeType",
             "description": null,
             "args": [],
@@ -17234,6 +17390,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupId",
+            "description": "Checks for equality with the object’s `groupId` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
               "ofType": null
             },
             "defaultValue": null,
@@ -17337,6 +17505,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "IntFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupId",
+            "description": "Filter by the object’s `groupId` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UUIDFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -17461,6 +17641,18 @@
             "deprecationReason": null
           },
           {
+            "name": "GROUP_ID_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GROUP_ID_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "IOCOME_TYPE_ASC",
             "description": null,
             "isDeprecated": false,
@@ -17559,6 +17751,18 @@
             "deprecationReason": null
           },
           {
+            "name": "groupId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "iocomeType",
             "description": null,
             "args": [],
@@ -17648,6 +17852,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupId",
+            "description": "Checks for equality with the object’s `groupId` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
               "ofType": null
             },
             "defaultValue": null,
@@ -17763,6 +17979,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupId",
+            "description": "Filter by the object’s `groupId` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UUIDFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -17899,6 +18127,18 @@
             "deprecationReason": null
           },
           {
+            "name": "GROUP_ID_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GROUP_ID_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "IOCOME_TYPE_ASC",
             "description": null,
             "isDeprecated": false,
@@ -17973,6 +18213,18 @@
             "deprecationReason": null
           },
           {
+            "name": "groupId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "iocomeType",
             "description": null,
             "args": [],
@@ -18038,6 +18290,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupId",
+            "description": "Checks for equality with the object’s `groupId` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
               "ofType": null
             },
             "defaultValue": null,
@@ -18129,6 +18393,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "groupId",
+            "description": "Filter by the object’s `groupId` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UUIDFilter",
               "ofType": null
             },
             "defaultValue": null,
@@ -18236,6 +18512,18 @@
           },
           {
             "name": "GENRE_NAME_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GROUP_ID_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "GROUP_ID_DESC",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

@@ -849,6 +849,7 @@ export type CreditCardSummaryTotalByAccountView = {
   accountName?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["Date"]>;
   displayOrder?: Maybe<Scalars["Int"]>;
+  groupId?: Maybe<Scalars["UUID"]>;
   iocomeType?: Maybe<IocomeType>;
   total?: Maybe<Scalars["BigFloat"]>;
 };
@@ -866,6 +867,8 @@ export type CreditCardSummaryTotalByAccountViewCondition = {
   date?: InputMaybe<Scalars["Date"]>;
   /** Checks for equality with the object’s `displayOrder` field. */
   displayOrder?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `groupId` field. */
+  groupId?: InputMaybe<Scalars["UUID"]>;
   /** Checks for equality with the object’s `iocomeType` field. */
   iocomeType?: InputMaybe<IocomeType>;
   /** Checks for equality with the object’s `total` field. */
@@ -884,6 +887,8 @@ export type CreditCardSummaryTotalByAccountViewFilter = {
   date?: InputMaybe<DateFilter>;
   /** Filter by the object’s `displayOrder` field. */
   displayOrder?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `groupId` field. */
+  groupId?: InputMaybe<UuidFilter>;
   /** Filter by the object’s `iocomeType` field. */
   iocomeType?: InputMaybe<IocomeTypeFilter>;
   /** Negates the expression. */
@@ -904,6 +909,8 @@ export enum CreditCardSummaryTotalByAccountViewsOrderBy {
   DateDesc = "DATE_DESC",
   DisplayOrderAsc = "DISPLAY_ORDER_ASC",
   DisplayOrderDesc = "DISPLAY_ORDER_DESC",
+  GroupIdAsc = "GROUP_ID_ASC",
+  GroupIdDesc = "GROUP_ID_DESC",
   IocomeTypeAsc = "IOCOME_TYPE_ASC",
   IocomeTypeDesc = "IOCOME_TYPE_DESC",
   Natural = "NATURAL",
@@ -1032,6 +1039,7 @@ export enum DailyDetailsOrderBy {
 export type DailyTotalView = {
   __typename?: "DailyTotalView";
   date?: Maybe<Scalars["Date"]>;
+  groupId?: Maybe<Scalars["UUID"]>;
   iocomeType?: Maybe<IocomeType>;
   total?: Maybe<Scalars["BigFloat"]>;
 };
@@ -1043,6 +1051,8 @@ export type DailyTotalView = {
 export type DailyTotalViewCondition = {
   /** Checks for equality with the object’s `date` field. */
   date?: InputMaybe<Scalars["Date"]>;
+  /** Checks for equality with the object’s `groupId` field. */
+  groupId?: InputMaybe<Scalars["UUID"]>;
   /** Checks for equality with the object’s `iocomeType` field. */
   iocomeType?: InputMaybe<IocomeType>;
   /** Checks for equality with the object’s `total` field. */
@@ -1055,6 +1065,8 @@ export type DailyTotalViewFilter = {
   and?: InputMaybe<Array<DailyTotalViewFilter>>;
   /** Filter by the object’s `date` field. */
   date?: InputMaybe<DateFilter>;
+  /** Filter by the object’s `groupId` field. */
+  groupId?: InputMaybe<UuidFilter>;
   /** Filter by the object’s `iocomeType` field. */
   iocomeType?: InputMaybe<IocomeTypeFilter>;
   /** Negates the expression. */
@@ -1069,6 +1081,8 @@ export type DailyTotalViewFilter = {
 export enum DailyTotalViewsOrderBy {
   DateAsc = "DATE_ASC",
   DateDesc = "DATE_DESC",
+  GroupIdAsc = "GROUP_ID_ASC",
+  GroupIdDesc = "GROUP_ID_DESC",
   IocomeTypeAsc = "IOCOME_TYPE_ASC",
   IocomeTypeDesc = "IOCOME_TYPE_DESC",
   Natural = "NATURAL",
@@ -2493,6 +2507,7 @@ export type QueryAccountTotalListArgs = {
   filter?: InputMaybe<TotalByAccountViewFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   fromDate?: InputMaybe<Scalars["Date"]>;
+  groupId?: InputMaybe<Scalars["UUID"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   toDate?: InputMaybe<Scalars["Date"]>;
 };
@@ -2656,6 +2671,7 @@ export type QueryCategoryTotalByMonthListArgs = {
   filter?: InputMaybe<TotalByCategoryViewFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   fromDate?: InputMaybe<Scalars["Date"]>;
+  groupId?: InputMaybe<Scalars["UUID"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   toDate?: InputMaybe<Scalars["Date"]>;
 };
@@ -2690,6 +2706,7 @@ export type QueryDailyDetailByDateListArgs = {
   filter?: InputMaybe<DailyDetailFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   fromDate?: InputMaybe<Scalars["Date"]>;
+  groupId?: InputMaybe<Scalars["UUID"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   toDate?: InputMaybe<Scalars["Date"]>;
 };
@@ -2714,6 +2731,7 @@ export type QueryGenreTotalByMonthListArgs = {
   filter?: InputMaybe<TotalByGenreViewFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   fromDate?: InputMaybe<Scalars["Date"]>;
+  groupId?: InputMaybe<Scalars["UUID"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   toDate?: InputMaybe<Scalars["Date"]>;
 };
@@ -3013,6 +3031,7 @@ export type TotalByAccountView = {
   accountName?: Maybe<Scalars["String"]>;
   date?: Maybe<Scalars["Date"]>;
   displayOrder?: Maybe<Scalars["Int"]>;
+  groupId?: Maybe<Scalars["UUID"]>;
   iocomeType?: Maybe<IocomeType>;
   total?: Maybe<Scalars["BigFloat"]>;
 };
@@ -3030,6 +3049,8 @@ export type TotalByAccountViewCondition = {
   date?: InputMaybe<Scalars["Date"]>;
   /** Checks for equality with the object’s `displayOrder` field. */
   displayOrder?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `groupId` field. */
+  groupId?: InputMaybe<Scalars["UUID"]>;
   /** Checks for equality with the object’s `iocomeType` field. */
   iocomeType?: InputMaybe<IocomeType>;
   /** Checks for equality with the object’s `total` field. */
@@ -3048,6 +3069,8 @@ export type TotalByAccountViewFilter = {
   date?: InputMaybe<DateFilter>;
   /** Filter by the object’s `displayOrder` field. */
   displayOrder?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `groupId` field. */
+  groupId?: InputMaybe<UuidFilter>;
   /** Filter by the object’s `iocomeType` field. */
   iocomeType?: InputMaybe<IocomeTypeFilter>;
   /** Negates the expression. */
@@ -3068,6 +3091,8 @@ export enum TotalByAccountViewsOrderBy {
   DateDesc = "DATE_DESC",
   DisplayOrderAsc = "DISPLAY_ORDER_ASC",
   DisplayOrderDesc = "DISPLAY_ORDER_DESC",
+  GroupIdAsc = "GROUP_ID_ASC",
+  GroupIdDesc = "GROUP_ID_DESC",
   IocomeTypeAsc = "IOCOME_TYPE_ASC",
   IocomeTypeDesc = "IOCOME_TYPE_DESC",
   Natural = "NATURAL",
@@ -3082,6 +3107,7 @@ export type TotalByCategoryView = {
   date?: Maybe<Scalars["Date"]>;
   genreId?: Maybe<Scalars["UUID"]>;
   genreName?: Maybe<Scalars["String"]>;
+  groupId?: Maybe<Scalars["UUID"]>;
   iocomeType?: Maybe<IocomeType>;
   total?: Maybe<Scalars["BigFloat"]>;
 };
@@ -3101,6 +3127,8 @@ export type TotalByCategoryViewCondition = {
   genreId?: InputMaybe<Scalars["UUID"]>;
   /** Checks for equality with the object’s `genreName` field. */
   genreName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `groupId` field. */
+  groupId?: InputMaybe<Scalars["UUID"]>;
   /** Checks for equality with the object’s `iocomeType` field. */
   iocomeType?: InputMaybe<IocomeType>;
   /** Checks for equality with the object’s `total` field. */
@@ -3121,6 +3149,8 @@ export type TotalByCategoryViewFilter = {
   genreId?: InputMaybe<UuidFilter>;
   /** Filter by the object’s `genreName` field. */
   genreName?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `groupId` field. */
+  groupId?: InputMaybe<UuidFilter>;
   /** Filter by the object’s `iocomeType` field. */
   iocomeType?: InputMaybe<IocomeTypeFilter>;
   /** Negates the expression. */
@@ -3143,6 +3173,8 @@ export enum TotalByCategoryViewsOrderBy {
   GenreIdDesc = "GENRE_ID_DESC",
   GenreNameAsc = "GENRE_NAME_ASC",
   GenreNameDesc = "GENRE_NAME_DESC",
+  GroupIdAsc = "GROUP_ID_ASC",
+  GroupIdDesc = "GROUP_ID_DESC",
   IocomeTypeAsc = "IOCOME_TYPE_ASC",
   IocomeTypeDesc = "IOCOME_TYPE_DESC",
   Natural = "NATURAL",
@@ -3155,6 +3187,7 @@ export type TotalByGenreView = {
   date?: Maybe<Scalars["Date"]>;
   genreId?: Maybe<Scalars["UUID"]>;
   genreName?: Maybe<Scalars["String"]>;
+  groupId?: Maybe<Scalars["UUID"]>;
   iocomeType?: Maybe<IocomeType>;
   total?: Maybe<Scalars["BigFloat"]>;
 };
@@ -3170,6 +3203,8 @@ export type TotalByGenreViewCondition = {
   genreId?: InputMaybe<Scalars["UUID"]>;
   /** Checks for equality with the object’s `genreName` field. */
   genreName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `groupId` field. */
+  groupId?: InputMaybe<Scalars["UUID"]>;
   /** Checks for equality with the object’s `iocomeType` field. */
   iocomeType?: InputMaybe<IocomeType>;
   /** Checks for equality with the object’s `total` field. */
@@ -3186,6 +3221,8 @@ export type TotalByGenreViewFilter = {
   genreId?: InputMaybe<UuidFilter>;
   /** Filter by the object’s `genreName` field. */
   genreName?: InputMaybe<StringFilter>;
+  /** Filter by the object’s `groupId` field. */
+  groupId?: InputMaybe<UuidFilter>;
   /** Filter by the object’s `iocomeType` field. */
   iocomeType?: InputMaybe<IocomeTypeFilter>;
   /** Negates the expression. */
@@ -3204,6 +3241,8 @@ export enum TotalByGenreViewsOrderBy {
   GenreIdDesc = "GENRE_ID_DESC",
   GenreNameAsc = "GENRE_NAME_ASC",
   GenreNameDesc = "GENRE_NAME_DESC",
+  GroupIdAsc = "GROUP_ID_ASC",
+  GroupIdDesc = "GROUP_ID_DESC",
   IocomeTypeAsc = "IOCOME_TYPE_ASC",
   IocomeTypeDesc = "IOCOME_TYPE_DESC",
   Natural = "NATURAL",
@@ -4350,7 +4389,9 @@ export type GetTotalBetweenDateQuery = {
   }> | null;
 };
 
-export type GetValidAccountsQueryVariables = Exact<{ [key: string]: never }>;
+export type GetValidAccountsQueryVariables = Exact<{
+  groupId: Scalars["UUID"];
+}>;
 
 export type GetValidAccountsQuery = {
   __typename?: "Query";
@@ -4363,6 +4404,7 @@ export type GetValidAccountsQuery = {
 
 export type GetValidCategoryByGenreIdQueryVariables = Exact<{
   genreId: Scalars["UUID"];
+  groupId: Scalars["UUID"];
 }>;
 
 export type GetValidCategoryByGenreIdQuery = {
@@ -4377,6 +4419,7 @@ export type GetValidCategoryByGenreIdQuery = {
 
 export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
   iocomeType: IocomeType;
+  groupId: Scalars["UUID"];
 }>;
 
 export type GetValidGenreListByIocomeTypeQuery = {
@@ -5185,9 +5228,9 @@ export function useGetTotalBetweenDateQuery(
   >({ query: GetTotalBetweenDateDocument, ...options });
 }
 export const GetValidAccountsDocument = gql`
-  query GetValidAccounts {
+  query GetValidAccounts($groupId: UUID!) {
     allAccountsList(
-      condition: { validFlag: true }
+      condition: { validFlag: true, groupId: $groupId }
       orderBy: DISPLAY_ORDER_ASC
     ) {
       accountId
@@ -5197,7 +5240,7 @@ export const GetValidAccountsDocument = gql`
 `;
 
 export function useGetValidAccountsQuery(
-  options?: Omit<Urql.UseQueryArgs<GetValidAccountsQueryVariables>, "query">
+  options: Omit<Urql.UseQueryArgs<GetValidAccountsQueryVariables>, "query">
 ) {
   return Urql.useQuery<GetValidAccountsQuery, GetValidAccountsQueryVariables>({
     query: GetValidAccountsDocument,
@@ -5205,9 +5248,9 @@ export function useGetValidAccountsQuery(
   });
 }
 export const GetValidCategoryByGenreIdDocument = gql`
-  query GetValidCategoryByGenreId($genreId: UUID!) {
+  query GetValidCategoryByGenreId($genreId: UUID!, $groupId: UUID!) {
     allCategoriesList(
-      condition: { genreId: $genreId, validFlag: true }
+      condition: { genreId: $genreId, validFlag: true, groupId: $groupId }
       orderBy: DISPLAY_ORDER_ASC
     ) {
       categoryId
@@ -5229,9 +5272,12 @@ export function useGetValidCategoryByGenreIdQuery(
   >({ query: GetValidCategoryByGenreIdDocument, ...options });
 }
 export const GetValidGenreListByIocomeTypeDocument = gql`
-  query GetValidGenreListByIocomeType($iocomeType: IocomeType!) {
+  query GetValidGenreListByIocomeType(
+    $iocomeType: IocomeType!
+    $groupId: UUID!
+  ) {
     allGenresList(
-      condition: { validFlag: true, iocomeType: $iocomeType }
+      condition: { validFlag: true, iocomeType: $iocomeType, groupId: $groupId }
       orderBy: DISPLAY_ORDER_ASC
     ) {
       genreId
