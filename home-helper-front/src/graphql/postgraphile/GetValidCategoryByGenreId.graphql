@@ -1,4 +1,4 @@
-query GetValidCategoryByGenreId($genreId: String!) {
+query GetValidCategoryById($genreId: UUID!) {
     allCategoriesList(
         condition: {genreId: $genreId, validFlag: true}
         orderBy: DISPLAY_ORDER_ASC

@@ -2,7 +2,7 @@ query GetAllCategoryListWithCriteria(
     $validCategoryIn: [Boolean!] = [true, false]
     $validGenreIn: [Boolean!] = [true, false]
     $iocomeTypeIn: [IocomeType!] = [INCOME, OUTCOME]
-    $categoryNotIn: [String!] = ""
+    $categoryNotIn: [UUID!] = ""
 ) {
     genres: allGenresList(
         filter: {

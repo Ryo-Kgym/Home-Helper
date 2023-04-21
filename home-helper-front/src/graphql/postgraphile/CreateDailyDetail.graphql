@@ -1,20 +1,24 @@
 mutation CreateDailyDetail(
+    $id: UUID!
     $date: Date!
-    $categoryId: String!
-    $accountId: String!
-    $userId: String!
+    $categoryId: UUID!
+    $accountId: UUID!
+    $userId: UUID!
     $amount: BigFloat!
     $memo: String
+    $groupId: UUID!
 ) {
     createDailyDetail(
         input: {
             dailyDetail: {
+                id: $id
                 date: $date
                 categoryId: $categoryId
                 accountId: $accountId
                 userId: $userId
                 amount: $amount
                 memo: $memo
+                groupId: $groupId
             }
         }
     ) {

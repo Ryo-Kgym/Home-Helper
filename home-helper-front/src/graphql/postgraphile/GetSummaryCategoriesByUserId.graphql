@@ -1,5 +1,5 @@
-query GetSummaryCategoriesByUserId($userId: String!) {
-    categories: allSummaryCategoriesList(
+query GetSummaryCategoriesByUserId($userId: UUID!) {
+    categories: allSummaryCategoryByUsersList(
         condition: { userId: $userId }
         orderBy: DISPLAY_ORDER_ASC
     ) {

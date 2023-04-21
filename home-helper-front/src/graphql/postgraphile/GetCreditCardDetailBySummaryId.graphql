@@ -2,7 +2,7 @@ query GetCreditCardDetailBySummaryId($id: UUID!) {
     creditCardSummaryById(id: $id) {
         id
         creditCardDetailsBySummaryIdList(orderBy: DATE_ASC) {
-            serialNo
+            id
             date
             memo
             amount

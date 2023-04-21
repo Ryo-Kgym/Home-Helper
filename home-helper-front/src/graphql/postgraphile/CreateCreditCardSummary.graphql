@@ -1,10 +1,11 @@
 mutation CreateCreditCardSummary(
     $id: UUID!
     $creditCard: String!
-    $accountId: String!
+    $accountId: UUID!
     $totalAmount: BigFloat!
     $count: Int!
     $withdrawalDate: Date!
+    $groupId: UUID!
 ) {
     createCreditCardSummary(
         input: {
@@ -15,6 +16,7 @@ mutation CreateCreditCardSummary(
                 totalAmount: $totalAmount
                 count: $count
                 withdrawalDate: $withdrawalDate
+                groupId: $groupId
             }
         }
     ) {

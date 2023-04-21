@@ -1,12 +1,12 @@
-mutation UpdateCreditCardDetailBySerialNo(
-    $serialNo: Int!
-    $categoryId: String!
+mutation UpdateCreditCardDetailById(
+    $id: UUID!
+    $categoryId: UUID!
     $memo: String
 ) {
-    updateCreditCardDetailBySerialNo(
+    updateCreditCardDetailById(
         input: {
             creditCardDetailPatch: { categoryId: $categoryId, memo: $memo }
-            serialNo: $serialNo
+            id: $id
         }
     ) {
         clientMutationId

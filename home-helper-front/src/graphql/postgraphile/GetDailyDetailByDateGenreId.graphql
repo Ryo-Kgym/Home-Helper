@@ -1,5 +1,5 @@
 query GetDailyDetailByDateGenreId(
-    $genreId: String!
+    $genreId: UUID!
     $fromDate: Date!
     $toDate: Date!
 ) {
@@ -10,7 +10,7 @@ query GetDailyDetailByDateGenreId(
                 and: { date: { lessThanOrEqualTo: $toDate } }
             }
         ) {
-            serialNo
+            id
             date
             amount
             memo
