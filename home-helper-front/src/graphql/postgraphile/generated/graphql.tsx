@@ -4279,11 +4279,11 @@ export type GetValidAccountsQuery = {
   }> | null;
 };
 
-export type GetValidCategoryByIdQueryVariables = Exact<{
+export type GetValidCategoryByGenreIdQueryVariables = Exact<{
   genreId: Scalars["UUID"];
 }>;
 
-export type GetValidCategoryByIdQuery = {
+export type GetValidCategoryByGenreIdQuery = {
   __typename?: "Query";
   allCategoriesList?: Array<{
     __typename?: "Category";
@@ -5118,8 +5118,8 @@ export function useGetValidAccountsQuery(
     ...options,
   });
 }
-export const GetValidCategoryByIdDocument = gql`
-  query GetValidCategoryById($genreId: UUID!) {
+export const GetValidCategoryByGenreIdDocument = gql`
+  query GetValidCategoryByGenreId($genreId: UUID!) {
     allCategoriesList(
       condition: { genreId: $genreId, validFlag: true }
       orderBy: DISPLAY_ORDER_ASC
@@ -5131,13 +5131,16 @@ export const GetValidCategoryByIdDocument = gql`
   }
 `;
 
-export function useGetValidCategoryByIdQuery(
-  options: Omit<Urql.UseQueryArgs<GetValidCategoryByIdQueryVariables>, "query">
+export function useGetValidCategoryByGenreIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetValidCategoryByGenreIdQueryVariables>,
+    "query"
+  >
 ) {
   return Urql.useQuery<
-    GetValidCategoryByIdQuery,
-    GetValidCategoryByIdQueryVariables
-  >({ query: GetValidCategoryByIdDocument, ...options });
+    GetValidCategoryByGenreIdQuery,
+    GetValidCategoryByGenreIdQueryVariables
+  >({ query: GetValidCategoryByGenreIdDocument, ...options });
 }
 export const GetValidGenreListByIocomeTypeDocument = gql`
   query GetValidGenreListByIocomeType($iocomeType: IocomeType!) {
