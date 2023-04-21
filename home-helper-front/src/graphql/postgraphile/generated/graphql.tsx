@@ -843,6 +843,74 @@ export type CreditCardSummaryPatch = {
   withdrawalDate?: InputMaybe<Scalars["Date"]>;
 };
 
+export type CreditCardSummaryTotalByAccountView = {
+  __typename?: "CreditCardSummaryTotalByAccountView";
+  accountId?: Maybe<Scalars["UUID"]>;
+  accountName?: Maybe<Scalars["String"]>;
+  date?: Maybe<Scalars["Date"]>;
+  displayOrder?: Maybe<Scalars["Int"]>;
+  iocomeType?: Maybe<IocomeType>;
+  total?: Maybe<Scalars["BigFloat"]>;
+};
+
+/**
+ * A condition to be used against `CreditCardSummaryTotalByAccountView` object
+ * types. All fields are tested for equality and combined with a logical ‘and.’
+ */
+export type CreditCardSummaryTotalByAccountViewCondition = {
+  /** Checks for equality with the object’s `accountId` field. */
+  accountId?: InputMaybe<Scalars["UUID"]>;
+  /** Checks for equality with the object’s `accountName` field. */
+  accountName?: InputMaybe<Scalars["String"]>;
+  /** Checks for equality with the object’s `date` field. */
+  date?: InputMaybe<Scalars["Date"]>;
+  /** Checks for equality with the object’s `displayOrder` field. */
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeType>;
+  /** Checks for equality with the object’s `total` field. */
+  total?: InputMaybe<Scalars["BigFloat"]>;
+};
+
+/** A filter to be used against `CreditCardSummaryTotalByAccountView` object types. All fields are combined with a logical ‘and.’ */
+export type CreditCardSummaryTotalByAccountViewFilter = {
+  /** Filter by the object’s `accountId` field. */
+  accountId?: InputMaybe<UuidFilter>;
+  /** Filter by the object’s `accountName` field. */
+  accountName?: InputMaybe<StringFilter>;
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewFilter>>;
+  /** Filter by the object’s `date` field. */
+  date?: InputMaybe<DateFilter>;
+  /** Filter by the object’s `displayOrder` field. */
+  displayOrder?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `iocomeType` field. */
+  iocomeType?: InputMaybe<IocomeTypeFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<CreditCardSummaryTotalByAccountViewFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewFilter>>;
+  /** Filter by the object’s `total` field. */
+  total?: InputMaybe<BigFloatFilter>;
+};
+
+/** Methods to use when ordering `CreditCardSummaryTotalByAccountView`. */
+export enum CreditCardSummaryTotalByAccountViewsOrderBy {
+  AccountIdAsc = "ACCOUNT_ID_ASC",
+  AccountIdDesc = "ACCOUNT_ID_DESC",
+  AccountNameAsc = "ACCOUNT_NAME_ASC",
+  AccountNameDesc = "ACCOUNT_NAME_DESC",
+  DateAsc = "DATE_ASC",
+  DateDesc = "DATE_DESC",
+  DisplayOrderAsc = "DISPLAY_ORDER_ASC",
+  DisplayOrderDesc = "DISPLAY_ORDER_DESC",
+  IocomeTypeAsc = "IOCOME_TYPE_ASC",
+  IocomeTypeDesc = "IOCOME_TYPE_DESC",
+  Natural = "NATURAL",
+  TotalAsc = "TOTAL_ASC",
+  TotalDesc = "TOTAL_DESC",
+}
+
 export type DailyDetail = Node & {
   __typename?: "DailyDetail";
   /** Reads a single `Account` that is related to this `DailyDetail`. */
@@ -2337,6 +2405,10 @@ export type Query = Node & {
   allCreditCardDetailsList?: Maybe<Array<CreditCardDetail>>;
   /** Reads a set of `CreditCardSummary`. */
   allCreditCardSummariesList?: Maybe<Array<CreditCardSummary>>;
+  /** Reads a set of `CreditCardSummaryTotalByAccountView`. */
+  allCreditCardSummaryTotalByAccountViewsList?: Maybe<
+    Array<CreditCardSummaryTotalByAccountView>
+  >;
   /** Reads a set of `DailyDetail`. */
   allDailyDetailsList?: Maybe<Array<DailyDetail>>;
   /** Reads a set of `DailyTotalView`. */
@@ -2459,6 +2531,15 @@ export type QueryAllCreditCardSummariesListArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardSummariesOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllCreditCardSummaryTotalByAccountViewsListArgs = {
+  condition?: InputMaybe<CreditCardSummaryTotalByAccountViewCondition>;
+  filter?: InputMaybe<CreditCardSummaryTotalByAccountViewFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewsOrderBy>>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -4574,7 +4655,7 @@ export const GetAllCategoryListWithCriteriaDocument = gql`
     $validCategoryIn: [Boolean!] = [true, false]
     $validGenreIn: [Boolean!] = [true, false]
     $iocomeTypeIn: [IocomeType!] = [INCOME, OUTCOME]
-    $categoryNotIn: [UUID!] = ""
+    $categoryNotIn: [UUID!] = []
   ) {
     genres: allGenresList(
       filter: {

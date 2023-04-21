@@ -4809,6 +4809,396 @@
       },
       {
         "kind": "OBJECT",
+        "name": "CreditCardSummaryTotalByAccountView",
+        "description": null,
+        "fields": [
+          {
+            "name": "accountId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "accountName",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "date",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "displayOrder",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "iocomeType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "IocomeType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "total",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "BigFloat",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "CreditCardSummaryTotalByAccountViewCondition",
+        "description": "A condition to be used against `CreditCardSummaryTotalByAccountView` object\ntypes. All fields are tested for equality and combined with a logical ‘and.’",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "accountId",
+            "description": "Checks for equality with the object’s `accountId` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UUID",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "accountName",
+            "description": "Checks for equality with the object’s `accountName` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "date",
+            "description": "Checks for equality with the object’s `date` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Date",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "displayOrder",
+            "description": "Checks for equality with the object’s `displayOrder` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "iocomeType",
+            "description": "Checks for equality with the object’s `iocomeType` field.",
+            "type": {
+              "kind": "ENUM",
+              "name": "IocomeType",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "total",
+            "description": "Checks for equality with the object’s `total` field.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "BigFloat",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "CreditCardSummaryTotalByAccountViewFilter",
+        "description": "A filter to be used against `CreditCardSummaryTotalByAccountView` object types. All fields are combined with a logical ‘and.’",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "accountId",
+            "description": "Filter by the object’s `accountId` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UUIDFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "accountName",
+            "description": "Filter by the object’s `accountName` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "and",
+            "description": "Checks for all expressions in this list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CreditCardSummaryTotalByAccountViewFilter",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "date",
+            "description": "Filter by the object’s `date` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "DateFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "displayOrder",
+            "description": "Filter by the object’s `displayOrder` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IntFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "iocomeType",
+            "description": "Filter by the object’s `iocomeType` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IocomeTypeFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "not",
+            "description": "Negates the expression.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "CreditCardSummaryTotalByAccountViewFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "or",
+            "description": "Checks for any expressions in this list.",
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CreditCardSummaryTotalByAccountViewFilter",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "total",
+            "description": "Filter by the object’s `total` field.",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BigFloatFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "CreditCardSummaryTotalByAccountViewsOrderBy",
+        "description": "Methods to use when ordering `CreditCardSummaryTotalByAccountView`.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "ACCOUNT_ID_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ACCOUNT_ID_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ACCOUNT_NAME_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ACCOUNT_NAME_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DATE_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DATE_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DISPLAY_ORDER_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DISPLAY_ORDER_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "IOCOME_TYPE_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "IOCOME_TYPE_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NATURAL",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TOTAL_ASC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "TOTAL_DESC",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "DailyDetail",
         "description": null,
         "fields": [
@@ -13253,6 +13643,95 @@
                 "ofType": {
                   "kind": "OBJECT",
                   "name": "CreditCardSummary",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "allCreditCardSummaryTotalByAccountViewsList",
+            "description": "Reads a set of `CreditCardSummaryTotalByAccountView`.",
+            "args": [
+              {
+                "name": "condition",
+                "description": "A condition to be used in determining which values should be returned by the collection.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CreditCardSummaryTotalByAccountViewCondition",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "filter",
+                "description": "A filter to be used in determining which values should be returned by the collection.",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CreditCardSummaryTotalByAccountViewFilter",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "first",
+                "description": "Only read the first `n` values of the set.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "offset",
+                "description": "Skip the first `n` values.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "orderBy",
+                "description": "The method to use when ordering `CreditCardSummaryTotalByAccountView`.",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "CreditCardSummaryTotalByAccountViewsOrderBy",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "CreditCardSummaryTotalByAccountView",
                   "ofType": null
                 }
               }
