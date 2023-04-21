@@ -3969,6 +3969,7 @@ export type DeleteSummaryCategoryByUserByIdMutation = {
 export type GetAccountBalanceListQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
+  groupId: Scalars["UUID"];
 }>;
 
 export type GetAccountBalanceListQuery = {
@@ -4679,8 +4680,12 @@ export function useDeleteSummaryCategoryByUserByIdMutation() {
   >(DeleteSummaryCategoryByUserByIdDocument);
 }
 export const GetAccountBalanceListDocument = gql`
-  query GetAccountBalanceList($fromDate: Date!, $toDate: Date!) {
-    accountTotalList(fromDate: $fromDate, toDate: $toDate) {
+  query GetAccountBalanceList(
+    $fromDate: Date!
+    $toDate: Date!
+    $groupId: UUID!
+  ) {
+    accountTotalList(fromDate: $fromDate, toDate: $toDate, groupId: $groupId) {
       accountId
       accountName
       total
