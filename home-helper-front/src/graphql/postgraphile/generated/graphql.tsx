@@ -4025,6 +4025,7 @@ export type GetAllUsersQuery = {
 export type GetCategoryTotalByMonthQueryVariables = Exact<{
   fromDate?: InputMaybe<Scalars["Date"]>;
   toDate?: InputMaybe<Scalars["Date"]>;
+  groupId: Scalars["UUID"];
 }>;
 
 export type GetCategoryTotalByMonthQuery = {
@@ -4771,8 +4772,16 @@ export function useGetAllUsersQuery(
   });
 }
 export const GetCategoryTotalByMonthDocument = gql`
-  query GetCategoryTotalByMonth($fromDate: Date, $toDate: Date) {
-    categoryTotalByMonthList(fromDate: $fromDate, toDate: $toDate) {
+  query GetCategoryTotalByMonth(
+    $fromDate: Date
+    $toDate: Date
+    $groupId: UUID!
+  ) {
+    categoryTotalByMonthList(
+      fromDate: $fromDate
+      toDate: $toDate
+      groupId: $groupId
+    ) {
       date
       iocomeType
       genreId
@@ -4785,7 +4794,7 @@ export const GetCategoryTotalByMonthDocument = gql`
 `;
 
 export function useGetCategoryTotalByMonthQuery(
-  options?: Omit<
+  options: Omit<
     Urql.UseQueryArgs<GetCategoryTotalByMonthQueryVariables>,
     "query"
   >
