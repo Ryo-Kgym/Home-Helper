@@ -3,19 +3,25 @@ import { HouseHoldPresenter } from "./HouseHoldPresenter";
 import { useGetAllUsersQuery } from "@graphql/postgraphile/generated/graphql";
 import { useUser } from "@hooks/user/useUser";
 import { LinkProps } from "@components/atoms/Card";
+import { useGroup } from "@hooks/group/useGroup";
 
 export const HouseHoldContainer: FC = () => {
   const { save } = useUser();
+  const { save: groupSave } = useGroup();
   const [{ data }] = useGetAllUsersQuery();
 
   const linkProps: LinkProps[] = [INIT_LINK_PROP].concat(
-    data?.allUsersList?.map((user) => {
+    data?.users?.map((user) => {
       return {
         href: "/household/account",
-        label: user.userName,
+        label: user.name,
         back: false,
         handleClick: () => {
-          save({ userId: user.userId, userName: user.userName });
+          save({ userId: user.id, userName: user.name });
+          groupSave({
+            id: user.group?.id ?? "",
+            name: user.group?.name ?? "",
+          });
         },
       };
     }) ?? []
