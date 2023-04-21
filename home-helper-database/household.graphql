@@ -85,23 +85,6 @@ type Query implements Node {
     condition: CreditCardSummaryCondition
   ): [CreditCardSummary!]
 
-  """Reads a set of `CreditCardSummaryTotalByAccountView`."""
-  allCreditCardSummaryTotalByAccountViewsList(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Skip the first `n` values."""
-    offset: Int
-
-    """The method to use when ordering `CreditCardSummaryTotalByAccountView`."""
-    orderBy: [CreditCardSummaryTotalByAccountViewsOrderBy!]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CreditCardSummaryTotalByAccountViewCondition
-  ): [CreditCardSummaryTotalByAccountView!]
-
   """Reads a set of `DailyDetail`."""
   allDailyDetailsList(
     """Only read the first `n` values of the set."""
@@ -153,6 +136,23 @@ type Query implements Node {
     condition: GenreCondition
   ): [Genre!]
 
+  """Reads a set of `Group`."""
+  allGroupsList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Group`."""
+    orderBy: [GroupsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GroupCondition
+  ): [Group!]
+
   """Reads a set of `ImportFileHistory`."""
   allImportFileHistoriesList(
     """Only read the first `n` values of the set."""
@@ -170,22 +170,39 @@ type Query implements Node {
     condition: ImportFileHistoryCondition
   ): [ImportFileHistory!]
 
-  """Reads a set of `SummaryCategory`."""
-  allSummaryCategoriesList(
+  """Reads a set of `SummaryCategoryByGroup`."""
+  allSummaryCategoryByGroupsList(
     """Only read the first `n` values of the set."""
     first: Int
 
     """Skip the first `n` values."""
     offset: Int
 
-    """The method to use when ordering `SummaryCategory`."""
-    orderBy: [SummaryCategoriesOrderBy!]
+    """The method to use when ordering `SummaryCategoryByGroup`."""
+    orderBy: [SummaryCategoryByGroupsOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: SummaryCategoryCondition
-  ): [SummaryCategory!]
+    condition: SummaryCategoryByGroupCondition
+  ): [SummaryCategoryByGroup!]
+
+  """Reads a set of `SummaryCategoryByUser`."""
+  allSummaryCategoryByUsersList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `SummaryCategoryByUser`."""
+    orderBy: [SummaryCategoryByUsersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: SummaryCategoryByUserCondition
+  ): [SummaryCategoryByUser!]
 
   """Reads a set of `TotalByAccountView`."""
   allTotalByAccountViewsList(
@@ -254,33 +271,17 @@ type Query implements Node {
     """
     condition: UserCondition
   ): [User!]
-
-  """Reads a set of `YearlySummaryCategory`."""
-  allYearlySummaryCategoriesList(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Skip the first `n` values."""
-    offset: Int
-
-    """The method to use when ordering `YearlySummaryCategory`."""
-    orderBy: [YearlySummaryCategoriesOrderBy!]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: YearlySummaryCategoryCondition
-  ): [YearlySummaryCategory!]
-  accountByAccountId(accountId: String!): Account
-  categoryByCategoryId(categoryId: String!): Category
-  creditCardDetailBySerialNo(serialNo: Int!): CreditCardDetail
+  accountByAccountId(accountId: UUID!): Account
+  categoryByCategoryId(categoryId: UUID!): Category
+  creditCardDetailById(id: UUID!): CreditCardDetail
   creditCardSummaryById(id: UUID!): CreditCardSummary
-  dailyDetailBySerialNo(serialNo: Int!): DailyDetail
-  genreByGenreId(genreId: String!): Genre
+  dailyDetailById(id: UUID!): DailyDetail
+  genreByGenreId(genreId: UUID!): Genre
+  groupByGroupId(groupId: UUID!): Group
   importFileHistoryById(id: UUID!): ImportFileHistory
-  summaryCategoryById(id: UUID!): SummaryCategory
-  userByUserId(userId: String!): User
-  yearlySummaryCategoryById(id: UUID!): YearlySummaryCategory
+  summaryCategoryByGroupById(id: UUID!): SummaryCategoryByGroup
+  summaryCategoryByUserById(id: UUID!): SummaryCategoryByUser
+  userByUserId(userId: UUID!): User
 
   """Reads and enables pagination through a set of `TotalByAccountView`."""
   accountTotalList(
@@ -372,6 +373,12 @@ type Query implements Node {
     nodeId: ID!
   ): Genre
 
+  """Reads a single `Group` using its globally unique `ID`."""
+  group(
+    """The globally unique `ID` to be used in selecting a single `Group`."""
+    nodeId: ID!
+  ): Group
+
   """Reads a single `ImportFileHistory` using its globally unique `ID`."""
   importFileHistory(
     """
@@ -380,27 +387,29 @@ type Query implements Node {
     nodeId: ID!
   ): ImportFileHistory
 
-  """Reads a single `SummaryCategory` using its globally unique `ID`."""
-  summaryCategory(
+  """
+  Reads a single `SummaryCategoryByGroup` using its globally unique `ID`.
+  """
+  summaryCategoryByGroup(
     """
-    The globally unique `ID` to be used in selecting a single `SummaryCategory`.
+    The globally unique `ID` to be used in selecting a single `SummaryCategoryByGroup`.
     """
     nodeId: ID!
-  ): SummaryCategory
+  ): SummaryCategoryByGroup
+
+  """Reads a single `SummaryCategoryByUser` using its globally unique `ID`."""
+  summaryCategoryByUser(
+    """
+    The globally unique `ID` to be used in selecting a single `SummaryCategoryByUser`.
+    """
+    nodeId: ID!
+  ): SummaryCategoryByUser
 
   """Reads a single `User` using its globally unique `ID`."""
   user(
     """The globally unique `ID` to be used in selecting a single `User`."""
     nodeId: ID!
   ): User
-
-  """Reads a single `YearlySummaryCategory` using its globally unique `ID`."""
-  yearlySummaryCategory(
-    """
-    The globally unique `ID` to be used in selecting a single `YearlySummaryCategory`.
-    """
-    nodeId: ID!
-  ): YearlySummaryCategory
 }
 
 """An object with a globally unique `ID`."""
@@ -416,14 +425,14 @@ type Account implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   nodeId: ID!
-  accountId: String!
+  accountId: UUID!
   accountName: String!
   validFlag: Boolean
   displayOrder: Int!
-  ownerUserId: String!
+  groupId: UUID!
 
-  """Reads a single `User` that is related to this `Account`."""
-  userByOwnerUserId: User
+  """Reads a single `Group` that is related to this `Account`."""
+  groupByGroupId: Group
 
   """Reads and enables pagination through a set of `DailyDetail`."""
   dailyDetailsByAccountIdList(
@@ -460,17 +469,72 @@ type Account implements Node {
   ): [CreditCardSummary!]!
 }
 
-type User implements Node {
+"""
+A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
+"""
+scalar UUID
+
+type Group implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   nodeId: ID!
-  userId: String!
-  userName: String!
-  displayOrder: Int!
+  groupId: UUID!
+  groupName: String!
+
+  """Reads and enables pagination through a set of `User`."""
+  usersByGroupIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserCondition
+  ): [User!]!
+
+  """Reads and enables pagination through a set of `Genre`."""
+  genresByGroupIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Genre`."""
+    orderBy: [GenresOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: GenreCondition
+  ): [Genre!]!
+
+  """Reads and enables pagination through a set of `Category`."""
+  categoriesByGroupIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `Category`."""
+    orderBy: [CategoriesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CategoryCondition
+  ): [Category!]!
 
   """Reads and enables pagination through a set of `Account`."""
-  accountsByOwnerUserIdList(
+  accountsByGroupIdList(
     """Only read the first `n` values of the set."""
     first: Int
 
@@ -485,6 +549,107 @@ type User implements Node {
     """
     condition: AccountCondition
   ): [Account!]!
+
+  """
+  Reads and enables pagination through a set of `SummaryCategoryByGroup`.
+  """
+  summaryCategoryByGroupsByGroupIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `SummaryCategoryByGroup`."""
+    orderBy: [SummaryCategoryByGroupsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: SummaryCategoryByGroupCondition
+  ): [SummaryCategoryByGroup!]!
+
+  """Reads and enables pagination through a set of `DailyDetail`."""
+  dailyDetailsByGroupIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `DailyDetail`."""
+    orderBy: [DailyDetailsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: DailyDetailCondition
+  ): [DailyDetail!]!
+
+  """Reads and enables pagination through a set of `ImportFileHistory`."""
+  importFileHistoriesByGroupIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `ImportFileHistory`."""
+    orderBy: [ImportFileHistoriesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ImportFileHistoryCondition
+  ): [ImportFileHistory!]!
+
+  """Reads and enables pagination through a set of `CreditCardSummary`."""
+  creditCardSummariesByGroupIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `CreditCardSummary`."""
+    orderBy: [CreditCardSummariesOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: CreditCardSummaryCondition
+  ): [CreditCardSummary!]!
+}
+
+type User implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  userId: UUID!
+  userName: String!
+  displayOrder: Int!
+  groupId: UUID!
+
+  """Reads a single `Group` that is related to this `User`."""
+  groupByGroupId: Group
+
+  """Reads and enables pagination through a set of `SummaryCategoryByUser`."""
+  summaryCategoryByUsersByUserIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `SummaryCategoryByUser`."""
+    orderBy: [SummaryCategoryByUsersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: SummaryCategoryByUserCondition
+  ): [SummaryCategoryByUser!]!
 
   """Reads and enables pagination through a set of `DailyDetail`."""
   dailyDetailsByUserIdList(
@@ -503,122 +668,96 @@ type User implements Node {
     condition: DailyDetailCondition
   ): [DailyDetail!]!
 
-  """Reads and enables pagination through a set of `YearlySummaryCategory`."""
-  yearlySummaryCategoriesByUserIdList(
+  """Reads and enables pagination through a set of `ImportFileHistory`."""
+  importFileHistoriesByImportUserIdList(
     """Only read the first `n` values of the set."""
     first: Int
 
     """Skip the first `n` values."""
     offset: Int
 
-    """The method to use when ordering `YearlySummaryCategory`."""
-    orderBy: [YearlySummaryCategoriesOrderBy!]
+    """The method to use when ordering `ImportFileHistory`."""
+    orderBy: [ImportFileHistoriesOrderBy!]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: YearlySummaryCategoryCondition
-  ): [YearlySummaryCategory!]!
-
-  """Reads and enables pagination through a set of `SummaryCategory`."""
-  summaryCategoriesByUserIdList(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Skip the first `n` values."""
-    offset: Int
-
-    """The method to use when ordering `SummaryCategory`."""
-    orderBy: [SummaryCategoriesOrderBy!]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: SummaryCategoryCondition
-  ): [SummaryCategory!]!
+    condition: ImportFileHistoryCondition
+  ): [ImportFileHistory!]!
 }
 
-"""Methods to use when ordering `Account`."""
-enum AccountsOrderBy {
-  NATURAL
-  ACCOUNT_ID_ASC
-  ACCOUNT_ID_DESC
-  ACCOUNT_NAME_ASC
-  ACCOUNT_NAME_DESC
-  VALID_FLAG_ASC
-  VALID_FLAG_DESC
-  DISPLAY_ORDER_ASC
-  DISPLAY_ORDER_DESC
-  OWNER_USER_ID_ASC
-  OWNER_USER_ID_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `Account` object types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input AccountCondition {
-  """Checks for equality with the object’s `accountId` field."""
-  accountId: String
-
-  """Checks for equality with the object’s `accountName` field."""
-  accountName: String
-
-  """Checks for equality with the object’s `validFlag` field."""
-  validFlag: Boolean
-
-  """Checks for equality with the object’s `displayOrder` field."""
-  displayOrder: Int
-
-  """Checks for equality with the object’s `ownerUserId` field."""
-  ownerUserId: String
-}
-
-type DailyDetail implements Node {
+type SummaryCategoryByUser implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   nodeId: ID!
-  serialNo: Int!
-  date: Date!
-  categoryId: String!
-  accountId: String!
-  userId: String!
-  amount: BigFloat!
-  memo: String
+  id: UUID!
+  categoryId: UUID!
+  displayOrder: Int!
+  userId: UUID!
 
-  """Reads a single `Category` that is related to this `DailyDetail`."""
+  """
+  Reads a single `Category` that is related to this `SummaryCategoryByUser`.
+  """
   categoryByCategoryId: Category
 
-  """Reads a single `Account` that is related to this `DailyDetail`."""
-  accountByAccountId: Account
-
-  """Reads a single `User` that is related to this `DailyDetail`."""
+  """Reads a single `User` that is related to this `SummaryCategoryByUser`."""
   userByUserId: User
 }
-
-"""The day, does not include a time."""
-scalar Date
-
-"""
-A floating point number that requires more precision than IEEE 754 binary 64
-"""
-scalar BigFloat
 
 type Category implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   nodeId: ID!
-  categoryId: String!
+  categoryId: UUID!
   categoryName: String!
-  genreId: String!
+  genreId: UUID!
   validFlag: Boolean
   displayOrder: Int!
+  groupId: UUID!
 
   """Reads a single `Genre` that is related to this `Category`."""
   genreByGenreId: Genre
+
+  """Reads a single `Group` that is related to this `Category`."""
+  groupByGroupId: Group
+
+  """Reads and enables pagination through a set of `SummaryCategoryByUser`."""
+  summaryCategoryByUsersByCategoryIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `SummaryCategoryByUser`."""
+    orderBy: [SummaryCategoryByUsersOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: SummaryCategoryByUserCondition
+  ): [SummaryCategoryByUser!]!
+
+  """
+  Reads and enables pagination through a set of `SummaryCategoryByGroup`.
+  """
+  summaryCategoryByGroupsByCategoryIdList(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Skip the first `n` values."""
+    offset: Int
+
+    """The method to use when ordering `SummaryCategoryByGroup`."""
+    orderBy: [SummaryCategoryByGroupsOrderBy!]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: SummaryCategoryByGroupCondition
+  ): [SummaryCategoryByGroup!]!
 
   """Reads and enables pagination through a set of `DailyDetail`."""
   dailyDetailsByCategoryIdList(
@@ -653,40 +792,6 @@ type Category implements Node {
     """
     condition: CreditCardDetailCondition
   ): [CreditCardDetail!]!
-
-  """Reads and enables pagination through a set of `YearlySummaryCategory`."""
-  yearlySummaryCategoriesByCategoryIdList(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Skip the first `n` values."""
-    offset: Int
-
-    """The method to use when ordering `YearlySummaryCategory`."""
-    orderBy: [YearlySummaryCategoriesOrderBy!]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: YearlySummaryCategoryCondition
-  ): [YearlySummaryCategory!]!
-
-  """Reads and enables pagination through a set of `SummaryCategory`."""
-  summaryCategoriesByCategoryIdList(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Skip the first `n` values."""
-    offset: Int
-
-    """The method to use when ordering `SummaryCategory`."""
-    orderBy: [SummaryCategoriesOrderBy!]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: SummaryCategoryCondition
-  ): [SummaryCategory!]!
 }
 
 type Genre implements Node {
@@ -694,12 +799,16 @@ type Genre implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   nodeId: ID!
-  genreId: String!
+  genreId: UUID!
   genreName: String!
   genreType: GenreType!
   iocomeType: IocomeType!
   validFlag: Boolean
   displayOrder: Int!
+  groupId: UUID!
+
+  """Reads a single `Group` that is related to this `Genre`."""
+  groupByGroupId: Group
 
   """Reads and enables pagination through a set of `Category`."""
   categoriesByGenreIdList(
@@ -742,6 +851,8 @@ enum CategoriesOrderBy {
   VALID_FLAG_DESC
   DISPLAY_ORDER_ASC
   DISPLAY_ORDER_DESC
+  GROUP_ID_ASC
+  GROUP_ID_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
@@ -752,26 +863,151 @@ for equality and combined with a logical ‘and.’
 """
 input CategoryCondition {
   """Checks for equality with the object’s `categoryId` field."""
-  categoryId: String
+  categoryId: UUID
 
   """Checks for equality with the object’s `categoryName` field."""
   categoryName: String
 
   """Checks for equality with the object’s `genreId` field."""
-  genreId: String
+  genreId: UUID
 
   """Checks for equality with the object’s `validFlag` field."""
   validFlag: Boolean
 
   """Checks for equality with the object’s `displayOrder` field."""
   displayOrder: Int
+
+  """Checks for equality with the object’s `groupId` field."""
+  groupId: UUID
 }
+
+"""Methods to use when ordering `SummaryCategoryByUser`."""
+enum SummaryCategoryByUsersOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  CATEGORY_ID_ASC
+  CATEGORY_ID_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `SummaryCategoryByUser` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input SummaryCategoryByUserCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `categoryId` field."""
+  categoryId: UUID
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: UUID
+}
+
+type SummaryCategoryByGroup implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  categoryId: UUID!
+  displayOrder: Int!
+  groupId: UUID!
+
+  """
+  Reads a single `Category` that is related to this `SummaryCategoryByGroup`.
+  """
+  categoryByCategoryId: Category
+
+  """
+  Reads a single `Group` that is related to this `SummaryCategoryByGroup`.
+  """
+  groupByGroupId: Group
+}
+
+"""Methods to use when ordering `SummaryCategoryByGroup`."""
+enum SummaryCategoryByGroupsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  CATEGORY_ID_ASC
+  CATEGORY_ID_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  GROUP_ID_ASC
+  GROUP_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `SummaryCategoryByGroup` object types. All fields
+are tested for equality and combined with a logical ‘and.’
+"""
+input SummaryCategoryByGroupCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `categoryId` field."""
+  categoryId: UUID
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+
+  """Checks for equality with the object’s `groupId` field."""
+  groupId: UUID
+}
+
+type DailyDetail implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  date: Date!
+  categoryId: UUID!
+  accountId: UUID!
+  userId: UUID!
+  amount: BigFloat!
+  memo: String
+  groupId: UUID!
+
+  """Reads a single `Category` that is related to this `DailyDetail`."""
+  categoryByCategoryId: Category
+
+  """Reads a single `Account` that is related to this `DailyDetail`."""
+  accountByAccountId: Account
+
+  """Reads a single `User` that is related to this `DailyDetail`."""
+  userByUserId: User
+
+  """Reads a single `Group` that is related to this `DailyDetail`."""
+  groupByGroupId: Group
+}
+
+"""The day, does not include a time."""
+scalar Date
+
+"""
+A floating point number that requires more precision than IEEE 754 binary 64
+"""
+scalar BigFloat
 
 """Methods to use when ordering `DailyDetail`."""
 enum DailyDetailsOrderBy {
   NATURAL
-  SERIAL_NO_ASC
-  SERIAL_NO_DESC
+  ID_ASC
+  ID_DESC
   DATE_ASC
   DATE_DESC
   CATEGORY_ID_ASC
@@ -784,6 +1020,8 @@ enum DailyDetailsOrderBy {
   AMOUNT_DESC
   MEMO_ASC
   MEMO_DESC
+  GROUP_ID_ASC
+  GROUP_ID_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
@@ -793,26 +1031,29 @@ A condition to be used against `DailyDetail` object types. All fields are tested
 for equality and combined with a logical ‘and.’
 """
 input DailyDetailCondition {
-  """Checks for equality with the object’s `serialNo` field."""
-  serialNo: Int
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
 
   """Checks for equality with the object’s `date` field."""
   date: Date
 
   """Checks for equality with the object’s `categoryId` field."""
-  categoryId: String
+  categoryId: UUID
 
   """Checks for equality with the object’s `accountId` field."""
-  accountId: String
+  accountId: UUID
 
   """Checks for equality with the object’s `userId` field."""
-  userId: String
+  userId: UUID
 
   """Checks for equality with the object’s `amount` field."""
   amount: BigFloat
 
   """Checks for equality with the object’s `memo` field."""
   memo: String
+
+  """Checks for equality with the object’s `groupId` field."""
+  groupId: UUID
 }
 
 type CreditCardDetail implements Node {
@@ -820,9 +1061,9 @@ type CreditCardDetail implements Node {
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   nodeId: ID!
-  serialNo: Int!
+  id: UUID!
   date: Date!
-  categoryId: String!
+  categoryId: UUID!
   amount: BigFloat!
   memo: String
   summaryId: UUID!
@@ -836,11 +1077,6 @@ type CreditCardDetail implements Node {
   creditCardSummaryBySummaryId: CreditCardSummary
 }
 
-"""
-A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
-"""
-scalar UUID
-
 type CreditCardSummary implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
@@ -849,9 +1085,10 @@ type CreditCardSummary implements Node {
   id: UUID!
   creditCard: String!
   withdrawalDate: Date!
-  accountId: String!
+  accountId: UUID!
   totalAmount: BigFloat!
   count: Int!
+  groupId: UUID!
 
   """
   Reads a single `ImportFileHistory` that is related to this `CreditCardSummary`.
@@ -860,6 +1097,9 @@ type CreditCardSummary implements Node {
 
   """Reads a single `Account` that is related to this `CreditCardSummary`."""
   accountByAccountId: Account
+
+  """Reads a single `Group` that is related to this `CreditCardSummary`."""
+  groupByGroupId: Group
 
   """Reads and enables pagination through a set of `CreditCardDetail`."""
   creditCardDetailsBySummaryIdList(
@@ -888,7 +1128,14 @@ type ImportFileHistory implements Node {
   fileName: String!
   fileType: String!
   importDatetime: Datetime!
-  importUserId: String!
+  importUserId: UUID!
+  groupId: UUID!
+
+  """Reads a single `User` that is related to this `ImportFileHistory`."""
+  userByImportUserId: User
+
+  """Reads a single `Group` that is related to this `ImportFileHistory`."""
+  groupByGroupId: Group
 
   """
   Reads a single `CreditCardSummary` that is related to this `ImportFileHistory`.
@@ -905,8 +1152,8 @@ scalar Datetime
 """Methods to use when ordering `CreditCardDetail`."""
 enum CreditCardDetailsOrderBy {
   NATURAL
-  SERIAL_NO_ASC
-  SERIAL_NO_DESC
+  ID_ASC
+  ID_DESC
   DATE_ASC
   DATE_DESC
   CATEGORY_ID_ASC
@@ -926,14 +1173,14 @@ A condition to be used against `CreditCardDetail` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
 input CreditCardDetailCondition {
-  """Checks for equality with the object’s `serialNo` field."""
-  serialNo: Int
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
 
   """Checks for equality with the object’s `date` field."""
   date: Date
 
   """Checks for equality with the object’s `categoryId` field."""
-  categoryId: String
+  categoryId: UUID
 
   """Checks for equality with the object’s `amount` field."""
   amount: BigFloat
@@ -945,106 +1192,163 @@ input CreditCardDetailCondition {
   summaryId: UUID
 }
 
-type YearlySummaryCategory implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  id: UUID!
-  userId: String!
-  categoryId: String!
-  displayOrder: Int!
-
-  """Reads a single `User` that is related to this `YearlySummaryCategory`."""
-  userByUserId: User
-
-  """
-  Reads a single `Category` that is related to this `YearlySummaryCategory`.
-  """
-  categoryByCategoryId: Category
-}
-
-"""Methods to use when ordering `YearlySummaryCategory`."""
-enum YearlySummaryCategoriesOrderBy {
+"""Methods to use when ordering `ImportFileHistory`."""
+enum ImportFileHistoriesOrderBy {
   NATURAL
   ID_ASC
   ID_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-  CATEGORY_ID_ASC
-  CATEGORY_ID_DESC
-  DISPLAY_ORDER_ASC
-  DISPLAY_ORDER_DESC
+  FILE_NAME_ASC
+  FILE_NAME_DESC
+  FILE_TYPE_ASC
+  FILE_TYPE_DESC
+  IMPORT_DATETIME_ASC
+  IMPORT_DATETIME_DESC
+  IMPORT_USER_ID_ASC
+  IMPORT_USER_ID_DESC
+  GROUP_ID_ASC
+  GROUP_ID_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
 
 """
-A condition to be used against `YearlySummaryCategory` object types. All fields
-are tested for equality and combined with a logical ‘and.’
-"""
-input YearlySummaryCategoryCondition {
-  """Checks for equality with the object’s `id` field."""
-  id: UUID
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: String
-
-  """Checks for equality with the object’s `categoryId` field."""
-  categoryId: String
-
-  """Checks for equality with the object’s `displayOrder` field."""
-  displayOrder: Int
-}
-
-type SummaryCategory implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  id: UUID!
-  userId: String!
-  categoryId: String!
-  displayOrder: Int!
-
-  """Reads a single `User` that is related to this `SummaryCategory`."""
-  userByUserId: User
-
-  """Reads a single `Category` that is related to this `SummaryCategory`."""
-  categoryByCategoryId: Category
-}
-
-"""Methods to use when ordering `SummaryCategory`."""
-enum SummaryCategoriesOrderBy {
-  NATURAL
-  ID_ASC
-  ID_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-  CATEGORY_ID_ASC
-  CATEGORY_ID_DESC
-  DISPLAY_ORDER_ASC
-  DISPLAY_ORDER_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `SummaryCategory` object types. All fields are
+A condition to be used against `ImportFileHistory` object types. All fields are
 tested for equality and combined with a logical ‘and.’
 """
-input SummaryCategoryCondition {
+input ImportFileHistoryCondition {
   """Checks for equality with the object’s `id` field."""
   id: UUID
 
-  """Checks for equality with the object’s `userId` field."""
-  userId: String
+  """Checks for equality with the object’s `fileName` field."""
+  fileName: String
 
-  """Checks for equality with the object’s `categoryId` field."""
-  categoryId: String
+  """Checks for equality with the object’s `fileType` field."""
+  fileType: String
+
+  """Checks for equality with the object’s `importDatetime` field."""
+  importDatetime: Datetime
+
+  """Checks for equality with the object’s `importUserId` field."""
+  importUserId: UUID
+
+  """Checks for equality with the object’s `groupId` field."""
+  groupId: UUID
+}
+
+"""Methods to use when ordering `User`."""
+enum UsersOrderBy {
+  NATURAL
+  USER_ID_ASC
+  USER_ID_DESC
+  USER_NAME_ASC
+  USER_NAME_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  GROUP_ID_ASC
+  GROUP_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input UserCondition {
+  """Checks for equality with the object’s `userId` field."""
+  userId: UUID
+
+  """Checks for equality with the object’s `userName` field."""
+  userName: String
 
   """Checks for equality with the object’s `displayOrder` field."""
   displayOrder: Int
+
+  """Checks for equality with the object’s `groupId` field."""
+  groupId: UUID
+}
+
+"""Methods to use when ordering `Genre`."""
+enum GenresOrderBy {
+  NATURAL
+  GENRE_ID_ASC
+  GENRE_ID_DESC
+  GENRE_NAME_ASC
+  GENRE_NAME_DESC
+  GENRE_TYPE_ASC
+  GENRE_TYPE_DESC
+  IOCOME_TYPE_ASC
+  IOCOME_TYPE_DESC
+  VALID_FLAG_ASC
+  VALID_FLAG_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  GROUP_ID_ASC
+  GROUP_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Genre` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input GenreCondition {
+  """Checks for equality with the object’s `genreId` field."""
+  genreId: UUID
+
+  """Checks for equality with the object’s `genreName` field."""
+  genreName: String
+
+  """Checks for equality with the object’s `genreType` field."""
+  genreType: GenreType
+
+  """Checks for equality with the object’s `iocomeType` field."""
+  iocomeType: IocomeType
+
+  """Checks for equality with the object’s `validFlag` field."""
+  validFlag: Boolean
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+
+  """Checks for equality with the object’s `groupId` field."""
+  groupId: UUID
+}
+
+"""Methods to use when ordering `Account`."""
+enum AccountsOrderBy {
+  NATURAL
+  ACCOUNT_ID_ASC
+  ACCOUNT_ID_DESC
+  ACCOUNT_NAME_ASC
+  ACCOUNT_NAME_DESC
+  VALID_FLAG_ASC
+  VALID_FLAG_DESC
+  DISPLAY_ORDER_ASC
+  DISPLAY_ORDER_DESC
+  GROUP_ID_ASC
+  GROUP_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Account` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input AccountCondition {
+  """Checks for equality with the object’s `accountId` field."""
+  accountId: UUID
+
+  """Checks for equality with the object’s `accountName` field."""
+  accountName: String
+
+  """Checks for equality with the object’s `validFlag` field."""
+  validFlag: Boolean
+
+  """Checks for equality with the object’s `displayOrder` field."""
+  displayOrder: Int
+
+  """Checks for equality with the object’s `groupId` field."""
+  groupId: UUID
 }
 
 """Methods to use when ordering `CreditCardSummary`."""
@@ -1062,6 +1366,8 @@ enum CreditCardSummariesOrderBy {
   TOTAL_AMOUNT_DESC
   COUNT_ASC
   COUNT_DESC
+  GROUP_ID_ASC
+  GROUP_ID_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
@@ -1081,63 +1387,16 @@ input CreditCardSummaryCondition {
   withdrawalDate: Date
 
   """Checks for equality with the object’s `accountId` field."""
-  accountId: String
+  accountId: UUID
 
   """Checks for equality with the object’s `totalAmount` field."""
   totalAmount: BigFloat
 
   """Checks for equality with the object’s `count` field."""
   count: Int
-}
 
-type CreditCardSummaryTotalByAccountView {
-  date: Date
-  accountId: String
-  accountName: String
-  displayOrder: Int
-  iocomeType: IocomeType
-  total: BigFloat
-}
-
-"""Methods to use when ordering `CreditCardSummaryTotalByAccountView`."""
-enum CreditCardSummaryTotalByAccountViewsOrderBy {
-  NATURAL
-  DATE_ASC
-  DATE_DESC
-  ACCOUNT_ID_ASC
-  ACCOUNT_ID_DESC
-  ACCOUNT_NAME_ASC
-  ACCOUNT_NAME_DESC
-  DISPLAY_ORDER_ASC
-  DISPLAY_ORDER_DESC
-  IOCOME_TYPE_ASC
-  IOCOME_TYPE_DESC
-  TOTAL_ASC
-  TOTAL_DESC
-}
-
-"""
-A condition to be used against `CreditCardSummaryTotalByAccountView` object
-types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input CreditCardSummaryTotalByAccountViewCondition {
-  """Checks for equality with the object’s `date` field."""
-  date: Date
-
-  """Checks for equality with the object’s `accountId` field."""
-  accountId: String
-
-  """Checks for equality with the object’s `accountName` field."""
-  accountName: String
-
-  """Checks for equality with the object’s `displayOrder` field."""
-  displayOrder: Int
-
-  """Checks for equality with the object’s `iocomeType` field."""
-  iocomeType: IocomeType
-
-  """Checks for equality with the object’s `total` field."""
-  total: BigFloat
+  """Checks for equality with the object’s `groupId` field."""
+  groupId: UUID
 }
 
 type DailyTotalView {
@@ -1172,89 +1431,31 @@ input DailyTotalViewCondition {
   total: BigFloat
 }
 
-"""Methods to use when ordering `Genre`."""
-enum GenresOrderBy {
+"""Methods to use when ordering `Group`."""
+enum GroupsOrderBy {
   NATURAL
-  GENRE_ID_ASC
-  GENRE_ID_DESC
-  GENRE_NAME_ASC
-  GENRE_NAME_DESC
-  GENRE_TYPE_ASC
-  GENRE_TYPE_DESC
-  IOCOME_TYPE_ASC
-  IOCOME_TYPE_DESC
-  VALID_FLAG_ASC
-  VALID_FLAG_DESC
-  DISPLAY_ORDER_ASC
-  DISPLAY_ORDER_DESC
+  GROUP_ID_ASC
+  GROUP_ID_DESC
+  GROUP_NAME_ASC
+  GROUP_NAME_DESC
   PRIMARY_KEY_ASC
   PRIMARY_KEY_DESC
 }
 
 """
-A condition to be used against `Genre` object types. All fields are tested for equality and combined with a logical ‘and.’
+A condition to be used against `Group` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
-input GenreCondition {
-  """Checks for equality with the object’s `genreId` field."""
-  genreId: String
+input GroupCondition {
+  """Checks for equality with the object’s `groupId` field."""
+  groupId: UUID
 
-  """Checks for equality with the object’s `genreName` field."""
-  genreName: String
-
-  """Checks for equality with the object’s `genreType` field."""
-  genreType: GenreType
-
-  """Checks for equality with the object’s `iocomeType` field."""
-  iocomeType: IocomeType
-
-  """Checks for equality with the object’s `validFlag` field."""
-  validFlag: Boolean
-
-  """Checks for equality with the object’s `displayOrder` field."""
-  displayOrder: Int
-}
-
-"""Methods to use when ordering `ImportFileHistory`."""
-enum ImportFileHistoriesOrderBy {
-  NATURAL
-  ID_ASC
-  ID_DESC
-  FILE_NAME_ASC
-  FILE_NAME_DESC
-  FILE_TYPE_ASC
-  FILE_TYPE_DESC
-  IMPORT_DATETIME_ASC
-  IMPORT_DATETIME_DESC
-  IMPORT_USER_ID_ASC
-  IMPORT_USER_ID_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `ImportFileHistory` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input ImportFileHistoryCondition {
-  """Checks for equality with the object’s `id` field."""
-  id: UUID
-
-  """Checks for equality with the object’s `fileName` field."""
-  fileName: String
-
-  """Checks for equality with the object’s `fileType` field."""
-  fileType: String
-
-  """Checks for equality with the object’s `importDatetime` field."""
-  importDatetime: Datetime
-
-  """Checks for equality with the object’s `importUserId` field."""
-  importUserId: String
+  """Checks for equality with the object’s `groupName` field."""
+  groupName: String
 }
 
 type TotalByAccountView {
   date: Date
-  accountId: String
+  accountId: UUID
   accountName: String
   displayOrder: Int
   iocomeType: IocomeType
@@ -1287,7 +1488,7 @@ input TotalByAccountViewCondition {
   date: Date
 
   """Checks for equality with the object’s `accountId` field."""
-  accountId: String
+  accountId: UUID
 
   """Checks for equality with the object’s `accountName` field."""
   accountName: String
@@ -1305,9 +1506,9 @@ input TotalByAccountViewCondition {
 type TotalByCategoryView {
   date: Date
   iocomeType: IocomeType
-  genreId: String
+  genreId: UUID
   genreName: String
-  categoryId: String
+  categoryId: UUID
   categoryName: String
   total: BigFloat
 }
@@ -1343,13 +1544,13 @@ input TotalByCategoryViewCondition {
   iocomeType: IocomeType
 
   """Checks for equality with the object’s `genreId` field."""
-  genreId: String
+  genreId: UUID
 
   """Checks for equality with the object’s `genreName` field."""
   genreName: String
 
   """Checks for equality with the object’s `categoryId` field."""
-  categoryId: String
+  categoryId: UUID
 
   """Checks for equality with the object’s `categoryName` field."""
   categoryName: String
@@ -1361,7 +1562,7 @@ input TotalByCategoryViewCondition {
 type TotalByGenreView {
   date: Date
   iocomeType: IocomeType
-  genreId: String
+  genreId: UUID
   genreName: String
   total: BigFloat
 }
@@ -1393,40 +1594,13 @@ input TotalByGenreViewCondition {
   iocomeType: IocomeType
 
   """Checks for equality with the object’s `genreId` field."""
-  genreId: String
+  genreId: UUID
 
   """Checks for equality with the object’s `genreName` field."""
   genreName: String
 
   """Checks for equality with the object’s `total` field."""
   total: BigFloat
-}
-
-"""Methods to use when ordering `User`."""
-enum UsersOrderBy {
-  NATURAL
-  USER_ID_ASC
-  USER_ID_DESC
-  USER_NAME_ASC
-  USER_NAME_DESC
-  DISPLAY_ORDER_ASC
-  DISPLAY_ORDER_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input UserCondition {
-  """Checks for equality with the object’s `userId` field."""
-  userId: String
-
-  """Checks for equality with the object’s `userName` field."""
-  userName: String
-
-  """Checks for equality with the object’s `displayOrder` field."""
-  displayOrder: Int
 }
 
 """
@@ -1481,6 +1655,14 @@ type Mutation {
     input: CreateGenreInput!
   ): CreateGenrePayload
 
+  """Creates a single `Group`."""
+  createGroup(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateGroupInput!
+  ): CreateGroupPayload
+
   """Creates a single `ImportFileHistory`."""
   createImportFileHistory(
     """
@@ -1489,13 +1671,21 @@ type Mutation {
     input: CreateImportFileHistoryInput!
   ): CreateImportFileHistoryPayload
 
-  """Creates a single `SummaryCategory`."""
-  createSummaryCategory(
+  """Creates a single `SummaryCategoryByGroup`."""
+  createSummaryCategoryByGroup(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateSummaryCategoryInput!
-  ): CreateSummaryCategoryPayload
+    input: CreateSummaryCategoryByGroupInput!
+  ): CreateSummaryCategoryByGroupPayload
+
+  """Creates a single `SummaryCategoryByUser`."""
+  createSummaryCategoryByUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateSummaryCategoryByUserInput!
+  ): CreateSummaryCategoryByUserPayload
 
   """Creates a single `User`."""
   createUser(
@@ -1504,14 +1694,6 @@ type Mutation {
     """
     input: CreateUserInput!
   ): CreateUserPayload
-
-  """Creates a single `YearlySummaryCategory`."""
-  createYearlySummaryCategory(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateYearlySummaryCategoryInput!
-  ): CreateYearlySummaryCategoryPayload
 
   """Updates a single `Account` using its globally unique id and a patch."""
   updateAccount(
@@ -1556,11 +1738,11 @@ type Mutation {
   ): UpdateCreditCardDetailPayload
 
   """Updates a single `CreditCardDetail` using a unique key and a patch."""
-  updateCreditCardDetailBySerialNo(
+  updateCreditCardDetailById(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateCreditCardDetailBySerialNoInput!
+    input: UpdateCreditCardDetailByIdInput!
   ): UpdateCreditCardDetailPayload
 
   """
@@ -1592,11 +1774,11 @@ type Mutation {
   ): UpdateDailyDetailPayload
 
   """Updates a single `DailyDetail` using a unique key and a patch."""
-  updateDailyDetailBySerialNo(
+  updateDailyDetailById(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateDailyDetailBySerialNoInput!
+    input: UpdateDailyDetailByIdInput!
   ): UpdateDailyDetailPayload
 
   """Updates a single `Genre` using its globally unique id and a patch."""
@@ -1614,6 +1796,22 @@ type Mutation {
     """
     input: UpdateGenreByGenreIdInput!
   ): UpdateGenrePayload
+
+  """Updates a single `Group` using its globally unique id and a patch."""
+  updateGroup(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateGroupInput!
+  ): UpdateGroupPayload
+
+  """Updates a single `Group` using a unique key and a patch."""
+  updateGroupByGroupId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateGroupByGroupIdInput!
+  ): UpdateGroupPayload
 
   """
   Updates a single `ImportFileHistory` using its globally unique id and a patch.
@@ -1634,22 +1832,44 @@ type Mutation {
   ): UpdateImportFileHistoryPayload
 
   """
-  Updates a single `SummaryCategory` using its globally unique id and a patch.
+  Updates a single `SummaryCategoryByGroup` using its globally unique id and a patch.
   """
-  updateSummaryCategory(
+  updateSummaryCategoryByGroup(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateSummaryCategoryInput!
-  ): UpdateSummaryCategoryPayload
+    input: UpdateSummaryCategoryByGroupInput!
+  ): UpdateSummaryCategoryByGroupPayload
 
-  """Updates a single `SummaryCategory` using a unique key and a patch."""
-  updateSummaryCategoryById(
+  """
+  Updates a single `SummaryCategoryByGroup` using a unique key and a patch.
+  """
+  updateSummaryCategoryByGroupById(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: UpdateSummaryCategoryByIdInput!
-  ): UpdateSummaryCategoryPayload
+    input: UpdateSummaryCategoryByGroupByIdInput!
+  ): UpdateSummaryCategoryByGroupPayload
+
+  """
+  Updates a single `SummaryCategoryByUser` using its globally unique id and a patch.
+  """
+  updateSummaryCategoryByUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateSummaryCategoryByUserInput!
+  ): UpdateSummaryCategoryByUserPayload
+
+  """
+  Updates a single `SummaryCategoryByUser` using a unique key and a patch.
+  """
+  updateSummaryCategoryByUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateSummaryCategoryByUserByIdInput!
+  ): UpdateSummaryCategoryByUserPayload
 
   """Updates a single `User` using its globally unique id and a patch."""
   updateUser(
@@ -1666,26 +1886,6 @@ type Mutation {
     """
     input: UpdateUserByUserIdInput!
   ): UpdateUserPayload
-
-  """
-  Updates a single `YearlySummaryCategory` using its globally unique id and a patch.
-  """
-  updateYearlySummaryCategory(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateYearlySummaryCategoryInput!
-  ): UpdateYearlySummaryCategoryPayload
-
-  """
-  Updates a single `YearlySummaryCategory` using a unique key and a patch.
-  """
-  updateYearlySummaryCategoryById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateYearlySummaryCategoryByIdInput!
-  ): UpdateYearlySummaryCategoryPayload
 
   """Deletes a single `Account` using its globally unique id."""
   deleteAccount(
@@ -1728,11 +1928,11 @@ type Mutation {
   ): DeleteCreditCardDetailPayload
 
   """Deletes a single `CreditCardDetail` using a unique key."""
-  deleteCreditCardDetailBySerialNo(
+  deleteCreditCardDetailById(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteCreditCardDetailBySerialNoInput!
+    input: DeleteCreditCardDetailByIdInput!
   ): DeleteCreditCardDetailPayload
 
   """Deletes a single `CreditCardSummary` using its globally unique id."""
@@ -1760,11 +1960,11 @@ type Mutation {
   ): DeleteDailyDetailPayload
 
   """Deletes a single `DailyDetail` using a unique key."""
-  deleteDailyDetailBySerialNo(
+  deleteDailyDetailById(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteDailyDetailBySerialNoInput!
+    input: DeleteDailyDetailByIdInput!
   ): DeleteDailyDetailPayload
 
   """Deletes a single `Genre` using its globally unique id."""
@@ -1783,6 +1983,22 @@ type Mutation {
     input: DeleteGenreByGenreIdInput!
   ): DeleteGenrePayload
 
+  """Deletes a single `Group` using its globally unique id."""
+  deleteGroup(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteGroupInput!
+  ): DeleteGroupPayload
+
+  """Deletes a single `Group` using a unique key."""
+  deleteGroupByGroupId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteGroupByGroupIdInput!
+  ): DeleteGroupPayload
+
   """Deletes a single `ImportFileHistory` using its globally unique id."""
   deleteImportFileHistory(
     """
@@ -1799,21 +2015,39 @@ type Mutation {
     input: DeleteImportFileHistoryByIdInput!
   ): DeleteImportFileHistoryPayload
 
-  """Deletes a single `SummaryCategory` using its globally unique id."""
-  deleteSummaryCategory(
+  """
+  Deletes a single `SummaryCategoryByGroup` using its globally unique id.
+  """
+  deleteSummaryCategoryByGroup(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteSummaryCategoryInput!
-  ): DeleteSummaryCategoryPayload
+    input: DeleteSummaryCategoryByGroupInput!
+  ): DeleteSummaryCategoryByGroupPayload
 
-  """Deletes a single `SummaryCategory` using a unique key."""
-  deleteSummaryCategoryById(
+  """Deletes a single `SummaryCategoryByGroup` using a unique key."""
+  deleteSummaryCategoryByGroupById(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: DeleteSummaryCategoryByIdInput!
-  ): DeleteSummaryCategoryPayload
+    input: DeleteSummaryCategoryByGroupByIdInput!
+  ): DeleteSummaryCategoryByGroupPayload
+
+  """Deletes a single `SummaryCategoryByUser` using its globally unique id."""
+  deleteSummaryCategoryByUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteSummaryCategoryByUserInput!
+  ): DeleteSummaryCategoryByUserPayload
+
+  """Deletes a single `SummaryCategoryByUser` using a unique key."""
+  deleteSummaryCategoryByUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteSummaryCategoryByUserByIdInput!
+  ): DeleteSummaryCategoryByUserPayload
 
   """Deletes a single `User` using its globally unique id."""
   deleteUser(
@@ -1830,22 +2064,6 @@ type Mutation {
     """
     input: DeleteUserByUserIdInput!
   ): DeleteUserPayload
-
-  """Deletes a single `YearlySummaryCategory` using its globally unique id."""
-  deleteYearlySummaryCategory(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteYearlySummaryCategoryInput!
-  ): DeleteYearlySummaryCategoryPayload
-
-  """Deletes a single `YearlySummaryCategory` using a unique key."""
-  deleteYearlySummaryCategoryById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteYearlySummaryCategoryByIdInput!
-  ): DeleteYearlySummaryCategoryPayload
 }
 
 """The output of our create `Account` mutation."""
@@ -1864,8 +2082,8 @@ type CreateAccountPayload {
   """
   query: Query
 
-  """Reads a single `User` that is related to this `Account`."""
-  userByOwnerUserId: User
+  """Reads a single `Group` that is related to this `Account`."""
+  groupByGroupId: Group
 }
 
 """All input for the create `Account` mutation."""
@@ -1882,11 +2100,11 @@ input CreateAccountInput {
 
 """An input for mutations affecting `Account`"""
 input AccountInput {
-  accountId: String!
+  accountId: UUID!
   accountName: String!
   validFlag: Boolean
   displayOrder: Int!
-  ownerUserId: String!
+  groupId: UUID!
 }
 
 """The output of our create `Category` mutation."""
@@ -1907,6 +2125,9 @@ type CreateCategoryPayload {
 
   """Reads a single `Genre` that is related to this `Category`."""
   genreByGenreId: Genre
+
+  """Reads a single `Group` that is related to this `Category`."""
+  groupByGroupId: Group
 }
 
 """All input for the create `Category` mutation."""
@@ -1923,11 +2144,12 @@ input CreateCategoryInput {
 
 """An input for mutations affecting `Category`"""
 input CategoryInput {
-  categoryId: String!
+  categoryId: UUID!
   categoryName: String!
-  genreId: String!
+  genreId: UUID!
   validFlag: Boolean
   displayOrder: Int!
+  groupId: UUID!
 }
 
 """The output of our create `CreditCardDetail` mutation."""
@@ -1969,9 +2191,9 @@ input CreateCreditCardDetailInput {
 
 """An input for mutations affecting `CreditCardDetail`"""
 input CreditCardDetailInput {
-  serialNo: Int
+  id: UUID!
   date: Date!
-  categoryId: String!
+  categoryId: UUID!
   amount: BigFloat!
   memo: String
   summaryId: UUID!
@@ -2000,6 +2222,9 @@ type CreateCreditCardSummaryPayload {
 
   """Reads a single `Account` that is related to this `CreditCardSummary`."""
   accountByAccountId: Account
+
+  """Reads a single `Group` that is related to this `CreditCardSummary`."""
+  groupByGroupId: Group
 }
 
 """All input for the create `CreditCardSummary` mutation."""
@@ -2019,9 +2244,10 @@ input CreditCardSummaryInput {
   id: UUID!
   creditCard: String!
   withdrawalDate: Date!
-  accountId: String!
+  accountId: UUID!
   totalAmount: BigFloat!
   count: Int!
+  groupId: UUID!
 }
 
 """The output of our create `DailyDetail` mutation."""
@@ -2048,6 +2274,9 @@ type CreateDailyDetailPayload {
 
   """Reads a single `User` that is related to this `DailyDetail`."""
   userByUserId: User
+
+  """Reads a single `Group` that is related to this `DailyDetail`."""
+  groupByGroupId: Group
 }
 
 """All input for the create `DailyDetail` mutation."""
@@ -2064,13 +2293,14 @@ input CreateDailyDetailInput {
 
 """An input for mutations affecting `DailyDetail`"""
 input DailyDetailInput {
-  serialNo: Int
+  id: UUID!
   date: Date!
-  categoryId: String!
-  accountId: String!
-  userId: String!
+  categoryId: UUID!
+  accountId: UUID!
+  userId: UUID!
   amount: BigFloat!
   memo: String
+  groupId: UUID!
 }
 
 """The output of our create `Genre` mutation."""
@@ -2088,6 +2318,9 @@ type CreateGenrePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `Group` that is related to this `Genre`."""
+  groupByGroupId: Group
 }
 
 """All input for the create `Genre` mutation."""
@@ -2104,12 +2337,48 @@ input CreateGenreInput {
 
 """An input for mutations affecting `Genre`"""
 input GenreInput {
-  genreId: String!
+  genreId: UUID!
   genreName: String!
   genreType: GenreType!
   iocomeType: IocomeType!
   validFlag: Boolean
   displayOrder: Int!
+  groupId: UUID!
+}
+
+"""The output of our create `Group` mutation."""
+type CreateGroupPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Group` that was created by this mutation."""
+  group: Group
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the create `Group` mutation."""
+input CreateGroupInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Group` to be created by this mutation."""
+  group: GroupInput!
+}
+
+"""An input for mutations affecting `Group`"""
+input GroupInput {
+  groupId: UUID!
+  groupName: String!
 }
 
 """The output of our create `ImportFileHistory` mutation."""
@@ -2127,6 +2396,12 @@ type CreateImportFileHistoryPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `User` that is related to this `ImportFileHistory`."""
+  userByImportUserId: User
+
+  """Reads a single `Group` that is related to this `ImportFileHistory`."""
+  groupByGroupId: Group
 }
 
 """All input for the create `ImportFileHistory` mutation."""
@@ -2147,50 +2422,100 @@ input ImportFileHistoryInput {
   fileName: String!
   fileType: String!
   importDatetime: Datetime!
-  importUserId: String!
+  importUserId: UUID!
+  groupId: UUID!
 }
 
-"""The output of our create `SummaryCategory` mutation."""
-type CreateSummaryCategoryPayload {
+"""The output of our create `SummaryCategoryByGroup` mutation."""
+type CreateSummaryCategoryByGroupPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `SummaryCategory` that was created by this mutation."""
-  summaryCategory: SummaryCategory
+  """The `SummaryCategoryByGroup` that was created by this mutation."""
+  summaryCategoryByGroup: SummaryCategoryByGroup
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """Reads a single `User` that is related to this `SummaryCategory`."""
-  userByUserId: User
-
-  """Reads a single `Category` that is related to this `SummaryCategory`."""
+  """
+  Reads a single `Category` that is related to this `SummaryCategoryByGroup`.
+  """
   categoryByCategoryId: Category
+
+  """
+  Reads a single `Group` that is related to this `SummaryCategoryByGroup`.
+  """
+  groupByGroupId: Group
 }
 
-"""All input for the create `SummaryCategory` mutation."""
-input CreateSummaryCategoryInput {
+"""All input for the create `SummaryCategoryByGroup` mutation."""
+input CreateSummaryCategoryByGroupInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """The `SummaryCategory` to be created by this mutation."""
-  summaryCategory: SummaryCategoryInput!
+  """The `SummaryCategoryByGroup` to be created by this mutation."""
+  summaryCategoryByGroup: SummaryCategoryByGroupInput!
 }
 
-"""An input for mutations affecting `SummaryCategory`"""
-input SummaryCategoryInput {
+"""An input for mutations affecting `SummaryCategoryByGroup`"""
+input SummaryCategoryByGroupInput {
   id: UUID!
-  userId: String!
-  categoryId: String!
+  categoryId: UUID!
   displayOrder: Int!
+  groupId: UUID!
+}
+
+"""The output of our create `SummaryCategoryByUser` mutation."""
+type CreateSummaryCategoryByUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `SummaryCategoryByUser` that was created by this mutation."""
+  summaryCategoryByUser: SummaryCategoryByUser
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `Category` that is related to this `SummaryCategoryByUser`.
+  """
+  categoryByCategoryId: Category
+
+  """Reads a single `User` that is related to this `SummaryCategoryByUser`."""
+  userByUserId: User
+}
+
+"""All input for the create `SummaryCategoryByUser` mutation."""
+input CreateSummaryCategoryByUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `SummaryCategoryByUser` to be created by this mutation."""
+  summaryCategoryByUser: SummaryCategoryByUserInput!
+}
+
+"""An input for mutations affecting `SummaryCategoryByUser`"""
+input SummaryCategoryByUserInput {
+  id: UUID!
+  categoryId: UUID!
+  displayOrder: Int!
+  userId: UUID!
 }
 
 """The output of our create `User` mutation."""
@@ -2208,6 +2533,9 @@ type CreateUserPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `Group` that is related to this `User`."""
+  groupByGroupId: Group
 }
 
 """All input for the create `User` mutation."""
@@ -2224,54 +2552,10 @@ input CreateUserInput {
 
 """An input for mutations affecting `User`"""
 input UserInput {
-  userId: String!
+  userId: UUID!
   userName: String!
   displayOrder: Int!
-}
-
-"""The output of our create `YearlySummaryCategory` mutation."""
-type CreateYearlySummaryCategoryPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `YearlySummaryCategory` that was created by this mutation."""
-  yearlySummaryCategory: YearlySummaryCategory
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `YearlySummaryCategory`."""
-  userByUserId: User
-
-  """
-  Reads a single `Category` that is related to this `YearlySummaryCategory`.
-  """
-  categoryByCategoryId: Category
-}
-
-"""All input for the create `YearlySummaryCategory` mutation."""
-input CreateYearlySummaryCategoryInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `YearlySummaryCategory` to be created by this mutation."""
-  yearlySummaryCategory: YearlySummaryCategoryInput!
-}
-
-"""An input for mutations affecting `YearlySummaryCategory`"""
-input YearlySummaryCategoryInput {
-  id: UUID!
-  userId: String!
-  categoryId: String!
-  displayOrder: Int!
+  groupId: UUID!
 }
 
 """The output of our update `Account` mutation."""
@@ -2290,8 +2574,8 @@ type UpdateAccountPayload {
   """
   query: Query
 
-  """Reads a single `User` that is related to this `Account`."""
-  userByOwnerUserId: User
+  """Reads a single `Group` that is related to this `Account`."""
+  groupByGroupId: Group
 }
 
 """All input for the `updateAccount` mutation."""
@@ -2317,11 +2601,11 @@ input UpdateAccountInput {
 Represents an update to a `Account`. Fields that are set will be updated.
 """
 input AccountPatch {
-  accountId: String
+  accountId: UUID
   accountName: String
   validFlag: Boolean
   displayOrder: Int
-  ownerUserId: String
+  groupId: UUID
 }
 
 """All input for the `updateAccountByAccountId` mutation."""
@@ -2336,7 +2620,7 @@ input UpdateAccountByAccountIdInput {
   An object where the defined keys will be set on the `Account` being updated.
   """
   accountPatch: AccountPatch!
-  accountId: String!
+  accountId: UUID!
 }
 
 """The output of our update `Category` mutation."""
@@ -2357,6 +2641,9 @@ type UpdateCategoryPayload {
 
   """Reads a single `Genre` that is related to this `Category`."""
   genreByGenreId: Genre
+
+  """Reads a single `Group` that is related to this `Category`."""
+  groupByGroupId: Group
 }
 
 """All input for the `updateCategory` mutation."""
@@ -2382,11 +2669,12 @@ input UpdateCategoryInput {
 Represents an update to a `Category`. Fields that are set will be updated.
 """
 input CategoryPatch {
-  categoryId: String
+  categoryId: UUID
   categoryName: String
-  genreId: String
+  genreId: UUID
   validFlag: Boolean
   displayOrder: Int
+  groupId: UUID
 }
 
 """All input for the `updateCategoryByCategoryId` mutation."""
@@ -2401,7 +2689,7 @@ input UpdateCategoryByCategoryIdInput {
   An object where the defined keys will be set on the `Category` being updated.
   """
   categoryPatch: CategoryPatch!
-  categoryId: String!
+  categoryId: UUID!
 }
 
 """The output of our update `CreditCardDetail` mutation."""
@@ -2452,16 +2740,16 @@ input UpdateCreditCardDetailInput {
 Represents an update to a `CreditCardDetail`. Fields that are set will be updated.
 """
 input CreditCardDetailPatch {
-  serialNo: Int
+  id: UUID
   date: Date
-  categoryId: String
+  categoryId: UUID
   amount: BigFloat
   memo: String
   summaryId: UUID
 }
 
-"""All input for the `updateCreditCardDetailBySerialNo` mutation."""
-input UpdateCreditCardDetailBySerialNoInput {
+"""All input for the `updateCreditCardDetailById` mutation."""
+input UpdateCreditCardDetailByIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2472,7 +2760,7 @@ input UpdateCreditCardDetailBySerialNoInput {
   An object where the defined keys will be set on the `CreditCardDetail` being updated.
   """
   creditCardDetailPatch: CreditCardDetailPatch!
-  serialNo: Int!
+  id: UUID!
 }
 
 """The output of our update `CreditCardSummary` mutation."""
@@ -2498,6 +2786,9 @@ type UpdateCreditCardSummaryPayload {
 
   """Reads a single `Account` that is related to this `CreditCardSummary`."""
   accountByAccountId: Account
+
+  """Reads a single `Group` that is related to this `CreditCardSummary`."""
+  groupByGroupId: Group
 }
 
 """All input for the `updateCreditCardSummary` mutation."""
@@ -2526,9 +2817,10 @@ input CreditCardSummaryPatch {
   id: UUID
   creditCard: String
   withdrawalDate: Date
-  accountId: String
+  accountId: UUID
   totalAmount: BigFloat
   count: Int
+  groupId: UUID
 }
 
 """All input for the `updateCreditCardSummaryById` mutation."""
@@ -2570,6 +2862,9 @@ type UpdateDailyDetailPayload {
 
   """Reads a single `User` that is related to this `DailyDetail`."""
   userByUserId: User
+
+  """Reads a single `Group` that is related to this `DailyDetail`."""
+  groupByGroupId: Group
 }
 
 """All input for the `updateDailyDetail` mutation."""
@@ -2595,17 +2890,18 @@ input UpdateDailyDetailInput {
 Represents an update to a `DailyDetail`. Fields that are set will be updated.
 """
 input DailyDetailPatch {
-  serialNo: Int
+  id: UUID
   date: Date
-  categoryId: String
-  accountId: String
-  userId: String
+  categoryId: UUID
+  accountId: UUID
+  userId: UUID
   amount: BigFloat
   memo: String
+  groupId: UUID
 }
 
-"""All input for the `updateDailyDetailBySerialNo` mutation."""
-input UpdateDailyDetailBySerialNoInput {
+"""All input for the `updateDailyDetailById` mutation."""
+input UpdateDailyDetailByIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2616,7 +2912,7 @@ input UpdateDailyDetailBySerialNoInput {
   An object where the defined keys will be set on the `DailyDetail` being updated.
   """
   dailyDetailPatch: DailyDetailPatch!
-  serialNo: Int!
+  id: UUID!
 }
 
 """The output of our update `Genre` mutation."""
@@ -2634,6 +2930,9 @@ type UpdateGenrePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `Group` that is related to this `Genre`."""
+  groupByGroupId: Group
 }
 
 """All input for the `updateGenre` mutation."""
@@ -2659,12 +2958,13 @@ input UpdateGenreInput {
 Represents an update to a `Genre`. Fields that are set will be updated.
 """
 input GenrePatch {
-  genreId: String
+  genreId: UUID
   genreName: String
   genreType: GenreType
   iocomeType: IocomeType
   validFlag: Boolean
   displayOrder: Int
+  groupId: UUID
 }
 
 """All input for the `updateGenreByGenreId` mutation."""
@@ -2679,7 +2979,66 @@ input UpdateGenreByGenreIdInput {
   An object where the defined keys will be set on the `Genre` being updated.
   """
   genrePatch: GenrePatch!
-  genreId: String!
+  genreId: UUID!
+}
+
+"""The output of our update `Group` mutation."""
+type UpdateGroupPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Group` that was updated by this mutation."""
+  group: Group
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `updateGroup` mutation."""
+input UpdateGroupInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Group` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Group` being updated.
+  """
+  groupPatch: GroupPatch!
+}
+
+"""
+Represents an update to a `Group`. Fields that are set will be updated.
+"""
+input GroupPatch {
+  groupId: UUID
+  groupName: String
+}
+
+"""All input for the `updateGroupByGroupId` mutation."""
+input UpdateGroupByGroupIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Group` being updated.
+  """
+  groupPatch: GroupPatch!
+  groupId: UUID!
 }
 
 """The output of our update `ImportFileHistory` mutation."""
@@ -2697,6 +3056,12 @@ type UpdateImportFileHistoryPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `User` that is related to this `ImportFileHistory`."""
+  userByImportUserId: User
+
+  """Reads a single `Group` that is related to this `ImportFileHistory`."""
+  groupByGroupId: Group
 }
 
 """All input for the `updateImportFileHistory` mutation."""
@@ -2726,7 +3091,8 @@ input ImportFileHistoryPatch {
   fileName: String
   fileType: String
   importDatetime: Datetime
-  importUserId: String
+  importUserId: UUID
+  groupId: UUID
 }
 
 """All input for the `updateImportFileHistoryById` mutation."""
@@ -2744,31 +3110,35 @@ input UpdateImportFileHistoryByIdInput {
   id: UUID!
 }
 
-"""The output of our update `SummaryCategory` mutation."""
-type UpdateSummaryCategoryPayload {
+"""The output of our update `SummaryCategoryByGroup` mutation."""
+type UpdateSummaryCategoryByGroupPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `SummaryCategory` that was updated by this mutation."""
-  summaryCategory: SummaryCategory
+  """The `SummaryCategoryByGroup` that was updated by this mutation."""
+  summaryCategoryByGroup: SummaryCategoryByGroup
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """Reads a single `User` that is related to this `SummaryCategory`."""
-  userByUserId: User
-
-  """Reads a single `Category` that is related to this `SummaryCategory`."""
+  """
+  Reads a single `Category` that is related to this `SummaryCategoryByGroup`.
+  """
   categoryByCategoryId: Category
+
+  """
+  Reads a single `Group` that is related to this `SummaryCategoryByGroup`.
+  """
+  groupByGroupId: Group
 }
 
-"""All input for the `updateSummaryCategory` mutation."""
-input UpdateSummaryCategoryInput {
+"""All input for the `updateSummaryCategoryByGroup` mutation."""
+input UpdateSummaryCategoryByGroupInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2776,28 +3146,28 @@ input UpdateSummaryCategoryInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `SummaryCategory` to be updated.
+  The globally unique `ID` which will identify a single `SummaryCategoryByGroup` to be updated.
   """
   nodeId: ID!
 
   """
-  An object where the defined keys will be set on the `SummaryCategory` being updated.
+  An object where the defined keys will be set on the `SummaryCategoryByGroup` being updated.
   """
-  summaryCategoryPatch: SummaryCategoryPatch!
+  summaryCategoryByGroupPatch: SummaryCategoryByGroupPatch!
 }
 
 """
-Represents an update to a `SummaryCategory`. Fields that are set will be updated.
+Represents an update to a `SummaryCategoryByGroup`. Fields that are set will be updated.
 """
-input SummaryCategoryPatch {
+input SummaryCategoryByGroupPatch {
   id: UUID
-  userId: String
-  categoryId: String
+  categoryId: UUID
   displayOrder: Int
+  groupId: UUID
 }
 
-"""All input for the `updateSummaryCategoryById` mutation."""
-input UpdateSummaryCategoryByIdInput {
+"""All input for the `updateSummaryCategoryByGroupById` mutation."""
+input UpdateSummaryCategoryByGroupByIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2805,9 +3175,78 @@ input UpdateSummaryCategoryByIdInput {
   clientMutationId: String
 
   """
-  An object where the defined keys will be set on the `SummaryCategory` being updated.
+  An object where the defined keys will be set on the `SummaryCategoryByGroup` being updated.
   """
-  summaryCategoryPatch: SummaryCategoryPatch!
+  summaryCategoryByGroupPatch: SummaryCategoryByGroupPatch!
+  id: UUID!
+}
+
+"""The output of our update `SummaryCategoryByUser` mutation."""
+type UpdateSummaryCategoryByUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `SummaryCategoryByUser` that was updated by this mutation."""
+  summaryCategoryByUser: SummaryCategoryByUser
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `Category` that is related to this `SummaryCategoryByUser`.
+  """
+  categoryByCategoryId: Category
+
+  """Reads a single `User` that is related to this `SummaryCategoryByUser`."""
+  userByUserId: User
+}
+
+"""All input for the `updateSummaryCategoryByUser` mutation."""
+input UpdateSummaryCategoryByUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `SummaryCategoryByUser` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `SummaryCategoryByUser` being updated.
+  """
+  summaryCategoryByUserPatch: SummaryCategoryByUserPatch!
+}
+
+"""
+Represents an update to a `SummaryCategoryByUser`. Fields that are set will be updated.
+"""
+input SummaryCategoryByUserPatch {
+  id: UUID
+  categoryId: UUID
+  displayOrder: Int
+  userId: UUID
+}
+
+"""All input for the `updateSummaryCategoryByUserById` mutation."""
+input UpdateSummaryCategoryByUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `SummaryCategoryByUser` being updated.
+  """
+  summaryCategoryByUserPatch: SummaryCategoryByUserPatch!
   id: UUID!
 }
 
@@ -2826,6 +3265,9 @@ type UpdateUserPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `Group` that is related to this `User`."""
+  groupByGroupId: Group
 }
 
 """All input for the `updateUser` mutation."""
@@ -2849,9 +3291,10 @@ input UpdateUserInput {
 
 """Represents an update to a `User`. Fields that are set will be updated."""
 input UserPatch {
-  userId: String
+  userId: UUID
   userName: String
   displayOrder: Int
+  groupId: UUID
 }
 
 """All input for the `updateUserByUserId` mutation."""
@@ -2866,76 +3309,7 @@ input UpdateUserByUserIdInput {
   An object where the defined keys will be set on the `User` being updated.
   """
   userPatch: UserPatch!
-  userId: String!
-}
-
-"""The output of our update `YearlySummaryCategory` mutation."""
-type UpdateYearlySummaryCategoryPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `YearlySummaryCategory` that was updated by this mutation."""
-  yearlySummaryCategory: YearlySummaryCategory
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `YearlySummaryCategory`."""
-  userByUserId: User
-
-  """
-  Reads a single `Category` that is related to this `YearlySummaryCategory`.
-  """
-  categoryByCategoryId: Category
-}
-
-"""All input for the `updateYearlySummaryCategory` mutation."""
-input UpdateYearlySummaryCategoryInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `YearlySummaryCategory` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `YearlySummaryCategory` being updated.
-  """
-  yearlySummaryCategoryPatch: YearlySummaryCategoryPatch!
-}
-
-"""
-Represents an update to a `YearlySummaryCategory`. Fields that are set will be updated.
-"""
-input YearlySummaryCategoryPatch {
-  id: UUID
-  userId: String
-  categoryId: String
-  displayOrder: Int
-}
-
-"""All input for the `updateYearlySummaryCategoryById` mutation."""
-input UpdateYearlySummaryCategoryByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `YearlySummaryCategory` being updated.
-  """
-  yearlySummaryCategoryPatch: YearlySummaryCategoryPatch!
-  id: UUID!
+  userId: UUID!
 }
 
 """The output of our delete `Account` mutation."""
@@ -2955,8 +3329,8 @@ type DeleteAccountPayload {
   """
   query: Query
 
-  """Reads a single `User` that is related to this `Account`."""
-  userByOwnerUserId: User
+  """Reads a single `Group` that is related to this `Account`."""
+  groupByGroupId: Group
 }
 
 """All input for the `deleteAccount` mutation."""
@@ -2980,7 +3354,7 @@ input DeleteAccountByAccountIdInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  accountId: String!
+  accountId: UUID!
 }
 
 """The output of our delete `Category` mutation."""
@@ -3002,6 +3376,9 @@ type DeleteCategoryPayload {
 
   """Reads a single `Genre` that is related to this `Category`."""
   genreByGenreId: Genre
+
+  """Reads a single `Group` that is related to this `Category`."""
+  groupByGroupId: Group
 }
 
 """All input for the `deleteCategory` mutation."""
@@ -3025,7 +3402,7 @@ input DeleteCategoryByCategoryIdInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  categoryId: String!
+  categoryId: UUID!
 }
 
 """The output of our delete `CreditCardDetail` mutation."""
@@ -3068,14 +3445,14 @@ input DeleteCreditCardDetailInput {
   nodeId: ID!
 }
 
-"""All input for the `deleteCreditCardDetailBySerialNo` mutation."""
-input DeleteCreditCardDetailBySerialNoInput {
+"""All input for the `deleteCreditCardDetailById` mutation."""
+input DeleteCreditCardDetailByIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  serialNo: Int!
+  id: UUID!
 }
 
 """The output of our delete `CreditCardSummary` mutation."""
@@ -3102,6 +3479,9 @@ type DeleteCreditCardSummaryPayload {
 
   """Reads a single `Account` that is related to this `CreditCardSummary`."""
   accountByAccountId: Account
+
+  """Reads a single `Group` that is related to this `CreditCardSummary`."""
+  groupByGroupId: Group
 }
 
 """All input for the `deleteCreditCardSummary` mutation."""
@@ -3153,6 +3533,9 @@ type DeleteDailyDetailPayload {
 
   """Reads a single `User` that is related to this `DailyDetail`."""
   userByUserId: User
+
+  """Reads a single `Group` that is related to this `DailyDetail`."""
+  groupByGroupId: Group
 }
 
 """All input for the `deleteDailyDetail` mutation."""
@@ -3169,14 +3552,14 @@ input DeleteDailyDetailInput {
   nodeId: ID!
 }
 
-"""All input for the `deleteDailyDetailBySerialNo` mutation."""
-input DeleteDailyDetailBySerialNoInput {
+"""All input for the `deleteDailyDetailById` mutation."""
+input DeleteDailyDetailByIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  serialNo: Int!
+  id: UUID!
 }
 
 """The output of our delete `Genre` mutation."""
@@ -3195,6 +3578,9 @@ type DeleteGenrePayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `Group` that is related to this `Genre`."""
+  groupByGroupId: Group
 }
 
 """All input for the `deleteGenre` mutation."""
@@ -3218,7 +3604,49 @@ input DeleteGenreByGenreIdInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  genreId: String!
+  genreId: UUID!
+}
+
+"""The output of our delete `Group` mutation."""
+type DeleteGroupPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Group` that was deleted by this mutation."""
+  group: Group
+  deletedGroupId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+}
+
+"""All input for the `deleteGroup` mutation."""
+input DeleteGroupInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Group` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteGroupByGroupId` mutation."""
+input DeleteGroupByGroupIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  groupId: UUID!
 }
 
 """The output of our delete `ImportFileHistory` mutation."""
@@ -3237,6 +3665,12 @@ type DeleteImportFileHistoryPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `User` that is related to this `ImportFileHistory`."""
+  userByImportUserId: User
+
+  """Reads a single `Group` that is related to this `ImportFileHistory`."""
+  groupByGroupId: Group
 }
 
 """All input for the `deleteImportFileHistory` mutation."""
@@ -3263,32 +3697,36 @@ input DeleteImportFileHistoryByIdInput {
   id: UUID!
 }
 
-"""The output of our delete `SummaryCategory` mutation."""
-type DeleteSummaryCategoryPayload {
+"""The output of our delete `SummaryCategoryByGroup` mutation."""
+type DeleteSummaryCategoryByGroupPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `SummaryCategory` that was deleted by this mutation."""
-  summaryCategory: SummaryCategory
-  deletedSummaryCategoryId: ID
+  """The `SummaryCategoryByGroup` that was deleted by this mutation."""
+  summaryCategoryByGroup: SummaryCategoryByGroup
+  deletedSummaryCategoryByGroupId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """Reads a single `User` that is related to this `SummaryCategory`."""
-  userByUserId: User
-
-  """Reads a single `Category` that is related to this `SummaryCategory`."""
+  """
+  Reads a single `Category` that is related to this `SummaryCategoryByGroup`.
+  """
   categoryByCategoryId: Category
+
+  """
+  Reads a single `Group` that is related to this `SummaryCategoryByGroup`.
+  """
+  groupByGroupId: Group
 }
 
-"""All input for the `deleteSummaryCategory` mutation."""
-input DeleteSummaryCategoryInput {
+"""All input for the `deleteSummaryCategoryByGroup` mutation."""
+input DeleteSummaryCategoryByGroupInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -3296,13 +3734,63 @@ input DeleteSummaryCategoryInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `SummaryCategory` to be deleted.
+  The globally unique `ID` which will identify a single `SummaryCategoryByGroup` to be deleted.
   """
   nodeId: ID!
 }
 
-"""All input for the `deleteSummaryCategoryById` mutation."""
-input DeleteSummaryCategoryByIdInput {
+"""All input for the `deleteSummaryCategoryByGroupById` mutation."""
+input DeleteSummaryCategoryByGroupByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `SummaryCategoryByUser` mutation."""
+type DeleteSummaryCategoryByUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `SummaryCategoryByUser` that was deleted by this mutation."""
+  summaryCategoryByUser: SummaryCategoryByUser
+  deletedSummaryCategoryByUserId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `Category` that is related to this `SummaryCategoryByUser`.
+  """
+  categoryByCategoryId: Category
+
+  """Reads a single `User` that is related to this `SummaryCategoryByUser`."""
+  userByUserId: User
+}
+
+"""All input for the `deleteSummaryCategoryByUser` mutation."""
+input DeleteSummaryCategoryByUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `SummaryCategoryByUser` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteSummaryCategoryByUserById` mutation."""
+input DeleteSummaryCategoryByUserByIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -3327,6 +3815,9 @@ type DeleteUserPayload {
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
+
+  """Reads a single `Group` that is related to this `User`."""
+  groupByGroupId: Group
 }
 
 """All input for the `deleteUser` mutation."""
@@ -3350,55 +3841,5 @@ input DeleteUserByUserIdInput {
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  userId: String!
-}
-
-"""The output of our delete `YearlySummaryCategory` mutation."""
-type DeleteYearlySummaryCategoryPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `YearlySummaryCategory` that was deleted by this mutation."""
-  yearlySummaryCategory: YearlySummaryCategory
-  deletedYearlySummaryCategoryId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `YearlySummaryCategory`."""
-  userByUserId: User
-
-  """
-  Reads a single `Category` that is related to this `YearlySummaryCategory`.
-  """
-  categoryByCategoryId: Category
-}
-
-"""All input for the `deleteYearlySummaryCategory` mutation."""
-input DeleteYearlySummaryCategoryInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `YearlySummaryCategory` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""All input for the `deleteYearlySummaryCategoryById` mutation."""
-input DeleteYearlySummaryCategoryByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: UUID!
+  userId: UUID!
 }
