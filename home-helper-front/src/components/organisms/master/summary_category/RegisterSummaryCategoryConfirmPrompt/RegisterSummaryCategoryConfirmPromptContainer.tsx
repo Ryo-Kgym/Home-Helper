@@ -17,9 +17,13 @@ export const RegisterSummaryCategoryConfirmPromptContainer: FC<
   const { createSummaryCategories } = useCreateSummaryCategories();
 
   const doneClickHandler = () => {
-    createSummaryCategories({ selectedCategories });
-    onClose();
-    router.reload();
+    setTimeout(() => {
+      createSummaryCategories({ selectedCategories });
+      onClose();
+    }, 0);
+    setTimeout(() => {
+      router.reload();
+    }, 100);
   };
 
   return (
