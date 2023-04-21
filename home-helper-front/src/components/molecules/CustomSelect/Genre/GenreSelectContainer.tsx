@@ -2,6 +2,7 @@ import { FC } from "react";
 import { GenreSelectPresenter } from "./GenreSelectPresenter";
 import { useGetValidGenreListByIocomeTypeQuery } from "@graphql/postgraphile/generated/graphql";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { useGroup } from "@hooks/group/useGroup";
 
 type GenreSelectContainerProps = {
   genreId: string | null;
@@ -15,8 +16,9 @@ export const GenreSelectContainer: FC<GenreSelectContainerProps> = ({
   iocomeType,
   setGenreName = () => {},
 }) => {
+  const { groupId } = useGroup();
   const [{ data }] = useGetValidGenreListByIocomeTypeQuery({
-    variables: { iocomeType: iocomeType },
+    variables: { iocomeType: iocomeType, groupId },
   });
 
   const genres =

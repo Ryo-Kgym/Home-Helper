@@ -1,9 +1,11 @@
 import { useGetCreditCardSummaryBetweenWithdrawalDateQuery } from "@graphql/postgraphile/generated/graphql";
+import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetCreditCardSummaryBetweenMonth = (
   fromMonth: Date | null,
   toMonth: Date | null
 ) => {
+  const { groupId } = useGroup();
   const correctedFromMonth = fromMonth ?? new Date();
   const correctedToMonth = toMonth ?? new Date();
 
@@ -23,6 +25,7 @@ export const useGetCreditCardSummaryBetweenMonth = (
       variables: {
         fromDate: firstDay.toISOString(),
         toDate: lastDay.toISOString(),
+        groupId,
       },
     });
 

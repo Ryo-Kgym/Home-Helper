@@ -1,14 +1,17 @@
 import { useGetCreditCardSummaryBetweenWithdrawalDateQuery } from "@graphql/postgraphile/generated/graphql";
+import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetCreditCardSummaryBetweenDate = (
   fromDate: Date | null,
   toDate: Date | null
 ) => {
-  const [{ data, fetching, error }, refetch] =
+  const { groupId } = useGroup();
+  const [{ data, fetching, error }] =
     useGetCreditCardSummaryBetweenWithdrawalDateQuery({
       variables: {
         fromDate,
         toDate,
+        groupId,
       },
     });
 
@@ -22,9 +25,6 @@ export const useGetCreditCardSummaryBetweenDate = (
     data,
     fetching,
     error,
-    refetch: () => {
-      refetch({ requestPolicy: "network-only" });
-    },
     incomeTotal,
     outcomeTotal,
   };

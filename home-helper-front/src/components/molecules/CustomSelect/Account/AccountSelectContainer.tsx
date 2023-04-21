@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { AccountSelectPresenter } from "./AccountSelectPresenter";
 import { useGetValidAccountsQuery } from "@graphql/postgraphile/generated/graphql";
+import { useGroup } from "@hooks/group/useGroup";
 
 type AccountSelectContainerProps = {
   accountId: string | null;
@@ -10,7 +11,12 @@ export const AccountSelectContainer: FC<AccountSelectContainerProps> = ({
   accountId,
   setAccountId,
 }) => {
-  const [{ data }] = useGetValidAccountsQuery();
+  const { groupId } = useGroup();
+  const [{ data }] = useGetValidAccountsQuery({
+    variables: {
+      groupId,
+    },
+  });
 
   const accounts =
     data?.allAccountsList?.map((account) => {
