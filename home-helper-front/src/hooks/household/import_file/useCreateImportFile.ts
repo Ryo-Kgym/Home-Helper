@@ -11,6 +11,7 @@ import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile"
 import { useRegisterDailyDetails } from "@hooks/household/import_file/useRegisterDailyDetails";
 import { useRegisterCreditCard } from "@hooks/household/import_file/useRegisterCreditCard";
 import { useUser } from "@hooks/user/useUser";
+import { useGroup } from "@hooks/group/useGroup";
 
 type useCreateImportFileArgs = {
   fileType: FileType;
@@ -29,6 +30,7 @@ export const useCreateImportFile = ({
   const { userId } = useUser();
   const { get } = useUuid();
   const { now } = useDate();
+  const { groupId } = useGroup();
 
   // Common table
   const [ignore, createImportFileMutation] =
@@ -40,6 +42,7 @@ export const useCreateImportFile = ({
     fileName: fileName,
     importUserId: userId,
     importDatetime: now,
+    groupId,
   };
 
   // Credit card Only
