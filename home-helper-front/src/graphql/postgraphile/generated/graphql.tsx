@@ -4618,7 +4618,7 @@ export function useGetAllCategoryListWithCriteriaQuery(
 }
 export const GetAllUsersDocument = gql`
   query GetAllUsers {
-    users: allUsersList {
+    users: allUsersList(orderBy: DISPLAY_ORDER_ASC) {
       id: userId
       name: userName
       group: groupByGroupId {
