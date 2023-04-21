@@ -14,7 +14,8 @@ CREATE TABLE daily_detail (
     CONSTRAINT daily_detail_group_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
 
-CREATE INDEX daily_detail_date_index ON daily_detail (date);
+CREATE INDEX daily_detail_date_idx ON daily_detail (date);
+CREATE INDEX daily_detail_group_id_idx ON daily_detail (group_id);
 
 DROP TABLE IF EXISTS import_file_history CASCADE;
 CREATE TABLE import_file_history (
@@ -27,6 +28,8 @@ CREATE TABLE import_file_history (
     CONSTRAINT import_file_history_import_user_fk FOREIGN KEY (import_user_id) REFERENCES "user" (user_id),
     CONSTRAINT import_file_history_group_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
+
+CREATE INDEX import_file_history_group_id_idx ON import_file_history (group_id);
 
 DROP TABLE IF EXISTS credit_card_summary CASCADE;
 CREATE TABLE credit_card_summary (
@@ -41,6 +44,8 @@ CREATE TABLE credit_card_summary (
     CONSTRAINT credit_card_summary_account_fk FOREIGN KEY (account_id) REFERENCES account (account_id),
     CONSTRAINT credit_card_summary_group_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
+
+CREATE INDEX credit_card_summary_group_id_idx ON credit_card_summary (group_id);
 
 DROP TABLE IF EXISTS credit_card_detail CASCADE;
 CREATE TABLE credit_card_detail (
