@@ -1,6 +1,6 @@
-query GetTotalBetweenDate($fromDate: Date!, $toDate: Date!) {
+query GetTotalBetweenDate($fromDate: Date!, $toDate: Date!, $groupId: UUID!) {
     incomeTotalByDate: allDailyTotalViewsList(
-        condition: { iocomeType: INCOME }
+        condition: { iocomeType: INCOME, groupId: $groupId }
         filter: {
             date: { greaterThanOrEqualTo: $fromDate }
             and: { date: { lessThanOrEqualTo: $toDate } }
@@ -11,7 +11,7 @@ query GetTotalBetweenDate($fromDate: Date!, $toDate: Date!) {
         total
     }
     outcomeTotalByDate: allDailyTotalViewsList(
-        condition: { iocomeType: OUTCOME }
+        condition: { iocomeType: OUTCOME, groupId: $groupId }
         filter: {
             date: { greaterThanOrEqualTo: $fromDate }
             and: { date: { lessThanOrEqualTo: $toDate } }

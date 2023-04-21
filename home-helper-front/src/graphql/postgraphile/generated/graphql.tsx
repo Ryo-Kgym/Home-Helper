@@ -4170,6 +4170,7 @@ export type GetCreditCardSummaryByAccountIdBetweenDateQuery = {
 export type GetDailyDetailByDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
+  groupId: Scalars["UUID"];
 }>;
 
 export type GetDailyDetailByDateQuery = {
@@ -4328,6 +4329,7 @@ export type GetDailyDetailByDateGenreIdQuery = {
 export type GetGenreTotalByMonthQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
+  groupId: Scalars["UUID"];
 }>;
 
 export type GetGenreTotalByMonthQuery = {
@@ -4371,6 +4373,7 @@ export type GetSummaryCategoriesByUserIdQuery = {
 export type GetTotalBetweenDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
+  groupId: Scalars["UUID"];
 }>;
 
 export type GetTotalBetweenDateQuery = {
@@ -4955,8 +4958,16 @@ export function useGetCreditCardSummaryByAccountIdBetweenDateQuery(
   >({ query: GetCreditCardSummaryByAccountIdBetweenDateDocument, ...options });
 }
 export const GetDailyDetailByDateDocument = gql`
-  query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
-    dailyDetailByDateList(fromDate: $fromDate, toDate: $toDate) {
+  query GetDailyDetailByDate(
+    $fromDate: Date!
+    $toDate: Date!
+    $groupId: UUID!
+  ) {
+    dailyDetailByDateList(
+      fromDate: $fromDate
+      toDate: $toDate
+      groupId: $groupId
+    ) {
       id
       date
       amount
@@ -5139,8 +5150,16 @@ export function useGetDailyDetailByDateGenreIdQuery(
   >({ query: GetDailyDetailByDateGenreIdDocument, ...options });
 }
 export const GetGenreTotalByMonthDocument = gql`
-  query GetGenreTotalByMonth($fromDate: Date!, $toDate: Date!) {
-    genreTotalByMonthList(fromDate: $fromDate, toDate: $toDate) {
+  query GetGenreTotalByMonth(
+    $fromDate: Date!
+    $toDate: Date!
+    $groupId: UUID!
+  ) {
+    genreTotalByMonthList(
+      fromDate: $fromDate
+      toDate: $toDate
+      groupId: $groupId
+    ) {
       date
       iocomeType
       genreId
@@ -5193,9 +5212,9 @@ export function useGetSummaryCategoriesByUserIdQuery(
   >({ query: GetSummaryCategoriesByUserIdDocument, ...options });
 }
 export const GetTotalBetweenDateDocument = gql`
-  query GetTotalBetweenDate($fromDate: Date!, $toDate: Date!) {
+  query GetTotalBetweenDate($fromDate: Date!, $toDate: Date!, $groupId: UUID!) {
     incomeTotalByDate: allDailyTotalViewsList(
-      condition: { iocomeType: INCOME }
+      condition: { iocomeType: INCOME, groupId: $groupId }
       filter: {
         date: { greaterThanOrEqualTo: $fromDate }
         and: { date: { lessThanOrEqualTo: $toDate } }
@@ -5206,7 +5225,7 @@ export const GetTotalBetweenDateDocument = gql`
       total
     }
     outcomeTotalByDate: allDailyTotalViewsList(
-      condition: { iocomeType: OUTCOME }
+      condition: { iocomeType: OUTCOME, groupId: $groupId }
       filter: {
         date: { greaterThanOrEqualTo: $fromDate }
         and: { date: { lessThanOrEqualTo: $toDate } }

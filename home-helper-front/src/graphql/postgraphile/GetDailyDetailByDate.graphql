@@ -1,5 +1,5 @@
-query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
-    dailyDetailByDateList(fromDate: $fromDate, toDate: $toDate) {
+query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!, $groupId: UUID!) {
+    dailyDetailByDateList(fromDate: $fromDate, toDate: $toDate, groupId: $groupId) {
         id
         date
         amount
