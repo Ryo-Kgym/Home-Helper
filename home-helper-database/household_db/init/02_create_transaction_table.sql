@@ -22,8 +22,9 @@ CREATE TABLE import_file_history (
     file_name       VARCHAR(128) NOT NULL,
     file_type       VARCHAR(16)  NOT NULL,
     import_datetime TIMESTAMP    NOT NULL,
-    import_user_id  VARCHAR(8)   NOT NULL,
+    import_user_id  uuid         NOT NULL,
     group_id        uuid         NOT NULL,
+    CONSTRAINT import_file_history_import_user_fk FOREIGN KEY (import_user_id) REFERENCES "user" (user_id),
     CONSTRAINT import_file_history_group_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
 
