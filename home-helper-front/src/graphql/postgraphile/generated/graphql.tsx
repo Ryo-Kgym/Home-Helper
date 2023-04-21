@@ -4127,6 +4127,7 @@ export type GetCreditCardListQuery = {
 export type GetCreditCardSummaryBetweenWithdrawalDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
+  groupId: Scalars["UUID"];
 }>;
 
 export type GetCreditCardSummaryBetweenWithdrawalDateQuery = {
@@ -4889,6 +4890,7 @@ export const GetCreditCardSummaryBetweenWithdrawalDateDocument = gql`
   query GetCreditCardSummaryBetweenWithdrawalDate(
     $fromDate: Date!
     $toDate: Date!
+    $groupId: UUID!
   ) {
     allCreditCardSummariesList(
       filter: {
@@ -4896,6 +4898,7 @@ export const GetCreditCardSummaryBetweenWithdrawalDateDocument = gql`
         and: { withdrawalDate: { lessThanOrEqualTo: $toDate } }
       }
       orderBy: WITHDRAWAL_DATE_ASC
+      condition: { groupId: $groupId }
     ) {
       id
       withdrawalDate
