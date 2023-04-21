@@ -1,6 +1,10 @@
 query GetAllUsers {
-    allUsersList {
-        userId
-        userName
+    users: allUsersList {
+        id: userId
+        name: userName
+        group: groupByGroupId {
+            id: groupId
+            name: groupName
+        }
     }
 }
