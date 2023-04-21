@@ -21,7 +21,7 @@ export const UpdateDailyDetailContainer: FC<
   const [memo, setMemo] = useState<string>("");
 
   const { updateHandler } = useUpdateDailyDetailBySerialNo({
-    serialNo: initData?.serialNo!,
+    id: initData?.id!,
     date: date!,
     categoryId: categoryId!,
     accountId: accountId!,
@@ -29,7 +29,7 @@ export const UpdateDailyDetailContainer: FC<
     memo: memo,
   });
   const { deleteHandler } = useDeleteDailyDetailBySerialNo({
-    serialNo: initData?.serialNo!,
+    id: initData?.id!,
   });
 
   const resetClickHandler = () => {

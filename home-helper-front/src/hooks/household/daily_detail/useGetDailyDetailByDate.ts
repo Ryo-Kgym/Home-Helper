@@ -35,7 +35,7 @@ export const useGetDailyDetailByDate = (
     );
 
     return {
-      serialNo: dailyDetail?.serialNo ?? null,
+      id: dailyDetail?.serialNo ?? null,
       date: new Date(dailyDetail?.date),
       amount: Number(dailyDetail?.amount) ?? "",
       iocomeType:

@@ -1,7 +1,7 @@
-import { useUpdateDailyDetailBySerialNoMutation } from "@graphql/postgraphile/generated/graphql";
+import { useUpdateDailyDetailByIdMutation } from "@graphql/postgraphile/generated/graphql";
 
 type useUpdateDailyDetailBySerialNoArgs = {
-  serialNo: number;
+  id: string;
   date: Date;
   categoryId: string;
   accountId: string;
@@ -9,23 +9,23 @@ type useUpdateDailyDetailBySerialNoArgs = {
   memo: string | null;
 };
 export const useUpdateDailyDetailBySerialNo = ({
-  serialNo,
+  id,
   date,
   categoryId,
   accountId,
   amount,
   memo,
 }: useUpdateDailyDetailBySerialNoArgs) => {
-  const [ignore, updateMutation] = useUpdateDailyDetailBySerialNoMutation();
+  const [ignore, updateMutation] = useUpdateDailyDetailByIdMutation();
 
   const updateHandler = () => {
     updateMutation({
-      serialNo: serialNo,
-      date: date,
-      categoryId: categoryId,
-      accountId: accountId,
-      amount: amount,
-      memo: memo,
+      id,
+      date,
+      categoryId,
+      accountId,
+      amount,
+      memo,
     });
   };
 
