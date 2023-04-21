@@ -7,7 +7,7 @@ from
 where date between from_date and to_date
 order by
     date,
-    serial_no;
+    id;
 $$ language sql stable;
 
 drop function if exists category_total_by_month cascade;

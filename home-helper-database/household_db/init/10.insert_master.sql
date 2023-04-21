@@ -23,8 +23,3 @@ INSERT INTO account (account_id, account_name, valid_flag, display_order, owner_
 INSERT INTO account (account_id, account_name, valid_flag, display_order, owner_user_id) VALUES ('ACT00002', '財布2                                               ', true, 2, 'USR00002');
 INSERT INTO account (account_id, account_name, valid_flag, display_order, owner_user_id) VALUES ('ACT00003', 'A銀行                                               ', true, 3, 'USR00001');
 INSERT INTO account (account_id, account_name, valid_flag, display_order, owner_user_id) VALUES ('ACT00004', 'B銀行                                               ', true, 4, 'USR00002');
-
-INSERT INTO account_balance (account_id, balance) VALUES ('ACT00001', 1000);
-INSERT INTO account_balance (account_id, balance) VALUES ('ACT00003', 20000);
-INSERT INTO account_balance (account_id, balance) VALUES ('ACT00002', 1000);
-INSERT INTO account_balance (account_id, balance) VALUES ('ACT00004', 20000);

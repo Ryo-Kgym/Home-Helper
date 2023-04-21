@@ -1,51 +1,51 @@
-drop table if exists daily_detail cascade;
-create table daily_detail (
-    serial_no   serial      not null primary key,
-    date        date        not null,
-    category_id varchar(8)  not null,
-    account_id  varchar(8)  not null,
-    user_id     varchar(8)  not null,
-    amount      numeric(10) not null,
-    memo        varchar(64) null,
-    constraint daily_detail_category foreign key (category_id) references "category" (category_id),
-    constraint daily_detail_account foreign key (account_id) references account (account_id),
-    constraint daily_detail_user foreign key (user_id) references "user" (user_id)
+DROP TABLE IF EXISTS daily_detail CASCADE;
+CREATE TABLE daily_detail (
+    id          uuid        NOT NULL PRIMARY KEY,
+    date        DATE        NOT NULL,
+    category_id uuid        NOT NULL,
+    account_id  uuid        NOT NULL,
+    user_id     uuid        NOT NULL,
+    amount      NUMERIC(10) NOT NULL,
+    memo        VARCHAR(64) NULL,
+    CONSTRAINT daily_detail_category FOREIGN KEY (category_id) REFERENCES "category" (category_id),
+    CONSTRAINT daily_detail_account FOREIGN KEY (account_id) REFERENCES account (account_id),
+    CONSTRAINT daily_detail_user FOREIGN KEY (user_id) REFERENCES "user" (user_id)
 );
 
-create index daily_detail_date_index on daily_detail (date);
+CREATE INDEX daily_detail_date_index ON daily_detail (date);
 
-drop table if exists import_file_history cascade;
-create table import_file_history (
-    id uuid not null primary key,
-    file_name varchar(128) not null,
-    file_type varchar(16) not null,
-    import_datetime timestamp not null,
-    import_user_id varchar(8) not null
+DROP TABLE IF EXISTS import_file_history CASCADE;
+CREATE TABLE import_file_history (
+    id              uuid         NOT NULL PRIMARY KEY,
+    file_name       VARCHAR(128) NOT NULL,
+    file_type       VARCHAR(16)  NOT NULL,
+    import_datetime TIMESTAMP    NOT NULL,
+    import_user_id  VARCHAR(8)   NOT NULL
 );
 
-drop table if exists credit_card_summary cascade;
-create table credit_card_summary (
-    id uuid not null primary key,
-    credit_card varchar(16) not null,
-    withdrawal_date date not null,
-    account_id varchar(8) not null,
-    total_amount numeric(10) not null,
-    count integer not null,
-    constraint credit_card_summary_import_file_history foreign key (id) references import_file_history (id),
-    constraint credit_card_summary_account foreign key (account_id) references account (account_id)
+DROP TABLE IF EXISTS credit_card_summary CASCADE;
+CREATE TABLE credit_card_summary (
+    id              uuid        NOT NULL PRIMARY KEY,
+    credit_card     VARCHAR(16) NOT NULL,
+    withdrawal_date DATE        NOT NULL,
+    account_id      uuid        NOT NULL,
+    total_amount    NUMERIC(10) NOT NULL,
+    count           INTEGER     NOT NULL,
+    CONSTRAINT credit_card_summary_import_file_history FOREIGN KEY (id) REFERENCES import_file_history (id),
+    CONSTRAINT credit_card_summary_account FOREIGN KEY (account_id) REFERENCES account (account_id)
 );
 
-drop table if exists credit_card_detail cascade;
-create table credit_card_detail (
-    serial_no   serial      not null primary key,
-    date        date        not null,
-    category_id varchar(8)  not null,
-    amount      numeric(10) not null,
-    memo        varchar(64) null,
-    summary_id  uuid        not null,
-    constraint credit_card_detail_credit_card_summary foreign key (summary_id) references credit_card_summary (id),
-    constraint credit_card_detail_category foreign key (category_id) references "category" (category_id)
+DROP TABLE IF EXISTS credit_card_detail CASCADE;
+CREATE TABLE credit_card_detail (
+    id          uuid        NOT NULL PRIMARY KEY,
+    date        DATE        NOT NULL,
+    category_id uuid        NOT NULL,
+    amount      NUMERIC(10) NOT NULL,
+    memo        VARCHAR(64) NULL,
+    summary_id  uuid        NOT NULL,
+    CONSTRAINT credit_card_detail_credit_card_summary FOREIGN KEY (summary_id) REFERENCES credit_card_summary (id),
+    CONSTRAINT credit_card_detail_category FOREIGN KEY (category_id) REFERENCES "category" (category_id)
 );
 
-create index credit_card_detail_date_index on credit_card_detail (date);
-create index credit_card_detail_summary_id_index on credit_card_detail (summary_id);
+CREATE INDEX credit_card_detail_date_index ON credit_card_detail (date);
+CREATE INDEX credit_card_detail_summary_id_index ON credit_card_detail (summary_id);
