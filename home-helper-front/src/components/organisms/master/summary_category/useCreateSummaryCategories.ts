@@ -1,7 +1,7 @@
 import { useUser } from "@hooks/user/useUser";
 import {
   useCreateSummaryCategoryMutation,
-  useDeleteSummaryCategoryByIdMutation,
+  useDeleteSummaryCategoryByUserByIdMutation,
   useGetSummaryCategoriesByUserIdQuery,
 } from "@graphql/postgraphile/generated/graphql";
 import { TransferListItem } from "@components/atoms/TransferList";
@@ -11,7 +11,7 @@ export const useCreateSummaryCategories = () => {
   const { userId } = useUser();
   const { get } = useUuid();
   const [_deleteResult, deleteMutation] =
-    useDeleteSummaryCategoryByIdMutation();
+    useDeleteSummaryCategoryByUserByIdMutation();
   const [{ data: deleteData }] = useGetSummaryCategoriesByUserIdQuery({
     variables: {
       userId,
