@@ -3893,10 +3893,11 @@ export type GetAllUsersQueryVariables = Exact<{ [key: string]: never }>;
 
 export type GetAllUsersQuery = {
   __typename?: "Query";
-  allUsersList?: Array<{
+  users?: Array<{
     __typename?: "User";
-    userId: any;
-    userName: string;
+    id: any;
+    name: string;
+    group?: { __typename?: "Group"; id: any; name: string } | null;
   }> | null;
 };
 
@@ -4617,9 +4618,13 @@ export function useGetAllCategoryListWithCriteriaQuery(
 }
 export const GetAllUsersDocument = gql`
   query GetAllUsers {
-    allUsersList {
-      userId
-      userName
+    users: allUsersList {
+      id: userId
+      name: userName
+      group: groupByGroupId {
+        id: groupId
+        name: groupName
+      }
     }
   }
 `;
