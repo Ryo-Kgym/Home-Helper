@@ -6,7 +6,7 @@ export const useGetDailyDetailByDate = (
   fromDate: Date | null,
   toDate: Date | null
 ) => {
-  const [{ data, fetching, error }, refetch] = useGetDailyDetailByDateQuery({
+  const [{ data, fetching, error }] = useGetDailyDetailByDateQuery({
     variables: {
       fromDate: fromDate,
       toDate: toDate,
@@ -29,13 +29,11 @@ export const useGetDailyDetailByDate = (
     )
     .reduce((a, b) => a + Number(b!.amount!), 0);
 
-  const getDetail = (serialNo: number): DailyDetail => {
-    const dailyDetail = data?.dailyDetailByDateList?.find(
-      (e) => e!.serialNo === serialNo
-    );
+  const getDetail = (id: string): DailyDetail => {
+    const dailyDetail = data?.dailyDetailByDateList?.find((e) => e!.id === id);
 
     return {
-      id: dailyDetail?.serialNo ?? null,
+      id: dailyDetail?.id ?? null,
       date: new Date(dailyDetail?.date),
       amount: Number(dailyDetail?.amount) ?? "",
       iocomeType:
@@ -55,8 +53,5 @@ export const useGetDailyDetailByDate = (
     incomeTotal,
     outcomeTotal,
     getDetail,
-    refetch: () => {
-      refetch({ requestPolicy: "network-only" });
-    },
   };
 };

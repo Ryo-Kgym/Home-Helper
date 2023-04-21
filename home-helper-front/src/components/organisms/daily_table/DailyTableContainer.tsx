@@ -47,8 +47,8 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
     dailyDetailTableProps ??
     dailyDetailConverter({
       data,
-      onClickHandler: (serialNo) => {
-        setDailyDetail(getDetail(serialNo));
+      onClickHandler: (id) => {
+        setDailyDetail(getDetail(id));
         setModalOpen(true);
       },
     })
