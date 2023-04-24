@@ -2,34 +2,34 @@ import { FC, useEffect, useMemo, useState } from "react";
 import { UpdateCreditCardDetailPresenter } from "./UpdateCreditCardDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import {
-  useGetCreditCardDetailBySerialNoQuery,
-  useUpdateCreditCardDetailBySerialNoMutation,
+  useGetCreditCardDetailByIdQuery,
+  useUpdateCreditCardDetailByIdMutation,
 } from "@graphql/postgraphile/generated/graphql";
 import { successPopup } from "@function/successPopup";
 
 type UpdateCreditCardDetailContainerProps = {
-  serialNo: number | null;
+  id: string | null;
   onClose: () => void;
 };
 export const UpdateCreditCardDetailContainer: FC<
   UpdateCreditCardDetailContainerProps
-> = ({ serialNo, onClose }) => {
+> = ({ id, onClose }) => {
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
   const [genreId, setGenreId] = useState<string | null>(null);
   const [categoryId, setCategoryId] = useState<string | null>(null);
   const [memo, setMemo] = useState<string | null>(null);
 
-  const [{ data }] = useGetCreditCardDetailBySerialNoQuery({
+  const [{ data }] = useGetCreditCardDetailByIdQuery({
     variables: {
-      serialNo: serialNo == null ? Number.MIN_VALUE : serialNo,
+      id: id == null ? Number.MIN_VALUE : id,
     },
   });
 
-  const [ignore, update] = useUpdateCreditCardDetailBySerialNoMutation();
+  const [ignore, update] = useUpdateCreditCardDetailByIdMutation();
 
   const updateHandler = () => {
     update({
-      serialNo: serialNo!,
+      id: id!,
       categoryId: categoryId!,
       memo: memo,
     });
@@ -39,18 +39,17 @@ export const UpdateCreditCardDetailContainer: FC<
 
   const initData = useMemo(
     () => ({
-      date: new Date(data?.creditCardDetailBySerialNo?.date),
+      date: new Date(data?.creditCardDetailById?.date),
       iocomeType:
-        data?.creditCardDetailBySerialNo?.categoryByCategoryId?.genreByGenreId
+        data?.creditCardDetailById?.categoryByCategoryId?.genreByGenreId
           ?.iocomeType ?? IocomeType.Income,
       genreId:
-        data?.creditCardDetailBySerialNo?.categoryByCategoryId?.genreByGenreId
+        data?.creditCardDetailById?.categoryByCategoryId?.genreByGenreId
           ?.genreId ?? null,
       categoryId:
-        data?.creditCardDetailBySerialNo?.categoryByCategoryId?.categoryId ??
-        null,
-      amount: Number(data?.creditCardDetailBySerialNo?.amount) ?? "",
-      memo: data?.creditCardDetailBySerialNo?.memo,
+        data?.creditCardDetailById?.categoryByCategoryId?.categoryId ?? null,
+      amount: Number(data?.creditCardDetailById?.amount) ?? "",
+      memo: data?.creditCardDetailById?.memo,
     }),
     [data]
   );

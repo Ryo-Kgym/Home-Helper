@@ -5,8 +5,10 @@ import {
 import { createDateList } from "@components/organisms/calendar/createDateList";
 import { DailyTotal } from "@domain/model/household/DailyTotal";
 import { useDate } from "@hooks/date/useDate";
+import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetTotalForMonth = (date: Date) => {
+  const { groupId } = useGroup();
   const year = date.getFullYear();
   const month = date.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
@@ -17,6 +19,7 @@ export const useGetTotalForMonth = (date: Date) => {
     variables: {
       fromDate: firstDate,
       toDate: lastDate,
+      groupId,
     },
   });
   const [{ data: creditData }] =
@@ -24,6 +27,7 @@ export const useGetTotalForMonth = (date: Date) => {
       variables: {
         fromDate: firstDate,
         toDate: lastDate,
+        groupId,
       },
     });
   const { convertToYmd } = useDate();

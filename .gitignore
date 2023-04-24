@@ -77,3 +77,4 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 /home-helper-database/docker/data/
 /home-helper-database/volume/
+/home-helper-database/household_db/.to_uuid/

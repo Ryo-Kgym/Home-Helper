@@ -11,9 +11,9 @@ export const CreditCardDetailTableContainer: FC<
   CreditCardDetailTableContainerProps
 > = ({ creditCardSummaryId }) => {
   const [isOpen, setOpened] = useState(false);
-  const [detailSerialNo, setDetailSerialNo] = useState<number | null>(null);
+  const [detailId, setDetailId] = useState<string | null>(null);
 
-  const [{ data }, refetch] = useGetCreditCardDetailBySummaryIdQuery({
+  const [{ data }] = useGetCreditCardDetailBySummaryIdQuery({
     variables: {
       id: creditCardSummaryId,
     },
@@ -43,7 +43,7 @@ export const CreditCardDetailTableContainer: FC<
           { value: detail.memo },
         ],
         onClick: () => {
-          setDetailSerialNo(detail.serialNo);
+          setDetailId(detail.id);
           setOpened(true);
         },
       })
@@ -56,7 +56,7 @@ export const CreditCardDetailTableContainer: FC<
       onClose={() => {
         setOpened(false);
       }}
-      detailSerialNo={detailSerialNo}
+      detailId={detailId}
     />
   );
 };

@@ -1,12 +1,12 @@
-mutation UpdateDailyDetailBySerialNo(
-    $serialNo: Int!
+mutation UpdateDailyDetailById(
+    $id: UUID!
     $date: Date!
-    $categoryId: String!
-    $accountId: String!
+    $categoryId: UUID!
+    $accountId: UUID!
     $amount: BigFloat!
     $memo: String
 ) {
-    updateDailyDetailBySerialNo(
+    updateDailyDetailById(
         input: {
             dailyDetailPatch: {
                 date: $date
@@ -15,11 +15,11 @@ mutation UpdateDailyDetailBySerialNo(
                 amount: $amount
                 memo: $memo
             }
-            serialNo: $serialNo
+            id: $id
         }
     ) {
         dailyDetail {
-            serialNo
+            id
         }
     }
 }

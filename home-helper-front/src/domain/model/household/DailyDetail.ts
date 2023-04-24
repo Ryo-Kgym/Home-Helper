@@ -1,7 +1,7 @@
 import { IocomeType } from "@domain/model/household/IocomeType";
 
 export type DailyDetail = {
-  serialNo: number | null;
+  id: string | null;
   date: Date | null;
   amount: number | "";
   iocomeType: IocomeType | null;

@@ -1,14 +1,14 @@
 query GetDailyDetailByDateCategoryId(
     $fromDate: Date!
     $toDate: Date!
-    $categoryId: String!
+    $categoryId: UUID!
 ) {
     dailyDetailByDateList(
         fromDate: $fromDate
         toDate: $toDate
         filter: { categoryId: { equalTo: $categoryId } }
     ) {
-        serialNo
+        id
         date
         amount
         memo

@@ -1,5 +1,5 @@
-query GetAccountBalanceList($fromDate: Date!, $toDate: Date!) {
-    accountTotalList(fromDate: $fromDate, toDate: $toDate) {
+query GetAccountBalanceList($fromDate: Date!, $toDate: Date!, $groupId: UUID!) {
+    accountTotalList(fromDate: $fromDate, toDate: $toDate, groupId: $groupId) {
         accountId
         accountName
         total

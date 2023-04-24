@@ -1,6 +1,6 @@
-query GetValidGenreListByIocomeType($iocomeType: IocomeType!) {
+query GetValidGenreListByIocomeType($iocomeType: IocomeType!, $groupId: UUID!) {
     allGenresList(
-        condition: {validFlag: true, iocomeType: $iocomeType}
+        condition: {validFlag: true, iocomeType: $iocomeType, groupId: $groupId}
         orderBy: DISPLAY_ORDER_ASC
     ) {
         genreId

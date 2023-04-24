@@ -4,7 +4,7 @@ import { TableProps } from "@components/atoms/Table/";
 
 type dailyDetailConverterArgs = {
   data: GetDailyDetailByDateQuery | undefined;
-  onClickHandler?: (serialNo: number) => void;
+  onClickHandler?: (id: string) => void;
 };
 export const dailyDetailConverter = ({
   data,
@@ -35,7 +35,7 @@ export const dailyDetailConverter = ({
           { value: dailyDetail?.memo },
         ],
         onClick: () => {
-          onClickHandler(dailyDetail?.serialNo!);
+          onClickHandler(dailyDetail?.id!);
         },
       };
     }) ?? []

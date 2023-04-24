@@ -1,6 +1,6 @@
-query GetCreditCardDetailBySerialNo($serialNo: Int!) {
-    creditCardDetailBySerialNo(serialNo: $serialNo) {
-        serialNo
+query GetCreditCardDetailById($id: UUID!) {
+    creditCardDetailById(id: $id) {
+        id
         date
         amount
         memo

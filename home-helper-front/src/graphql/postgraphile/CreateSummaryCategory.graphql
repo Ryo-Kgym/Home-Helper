@@ -1,12 +1,12 @@
 mutation CreateSummaryCategory(
     $id: UUID!
-    $userId: String!
-    $categoryId: String!
+    $userId: UUID!
+    $categoryId: UUID!
     $displayOrder: Int!
 ) {
-    createSummaryCategory(
+    createSummaryCategoryByUser(
         input: {
-            summaryCategory: {
+            summaryCategoryByUser: {
                 id: $id
                 userId: $userId
                 categoryId: $categoryId

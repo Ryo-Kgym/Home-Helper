@@ -1,10 +1,12 @@
 import { useGetCategoryTotalByMonthQuery } from "@graphql/postgraphile/generated/graphql";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetCategoryTotalByMonth = (
   fromMonth: Date | null,
   toMonth: Date | null
 ) => {
+  const { groupId } = useGroup();
   const correctedFromMonth = fromMonth ?? new Date();
   const correctedToMonth = toMonth ?? new Date();
 
@@ -19,10 +21,11 @@ export const useGetCategoryTotalByMonth = (
     0
   );
 
-  const [{ data, fetching, error }, refetch] = useGetCategoryTotalByMonthQuery({
+  const [{ data, fetching, error }] = useGetCategoryTotalByMonthQuery({
     variables: {
       fromDate: firstDay.toISOString(),
       toDate: lastDay.toISOString(),
+      groupId,
     },
   });
 
@@ -38,9 +41,6 @@ export const useGetCategoryTotalByMonth = (
     data,
     fetching,
     error,
-    refetch: () => {
-      refetch({ requestPolicy: "network-only" });
-    },
     incomeTotal,
     outcomeTotal,
   };

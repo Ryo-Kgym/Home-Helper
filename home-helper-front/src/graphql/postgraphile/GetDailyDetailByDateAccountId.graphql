@@ -1,14 +1,14 @@
 query GetDailyDetailByDateAccountId(
     $fromDate: Date!
     $toDate: Date!
-    $accountId: String!
+    $accountId: UUID!
 ) {
     dailyDetailByDateList(
         fromDate: $fromDate
         toDate: $toDate
         filter: { accountId: { equalTo: $accountId } }
     ) {
-        serialNo
+        id
         date
         amount
         memo

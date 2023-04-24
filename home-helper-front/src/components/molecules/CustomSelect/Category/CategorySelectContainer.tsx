@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { CategorySelectPresenter } from "./CategorySelectPresenter";
 import { useGetValidCategoryByGenreIdQuery } from "@graphql/postgraphile/generated/graphql";
+import { useGroup } from "@hooks/group/useGroup";
 
 type CategorySelectContainerProps = {
   categoryId: string | null;
@@ -14,8 +15,9 @@ export const CategorySelectContainer: FC<CategorySelectContainerProps> = ({
   genreId,
   setCategoryName = () => {},
 }) => {
+  const { groupId } = useGroup();
   const [{ data }] = useGetValidCategoryByGenreIdQuery({
-    variables: { genreId: genreId ?? "" },
+    variables: { genreId: genreId ?? "", groupId },
   });
 
   const categories =

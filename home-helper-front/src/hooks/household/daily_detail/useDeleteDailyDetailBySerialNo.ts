@@ -1,16 +1,16 @@
 import { useDeleteDailyDetailBySerialNoMutation } from "@graphql/postgraphile/generated/graphql";
 
 type useDeleteDailyDetailBySerialNoArgs = {
-  serialNo: number;
+  id: string;
 };
 export const useDeleteDailyDetailBySerialNo = ({
-  serialNo,
+  id,
 }: useDeleteDailyDetailBySerialNoArgs) => {
   const [ignore, deleteMutation] = useDeleteDailyDetailBySerialNoMutation();
 
   const deleteHandler = () => {
     deleteMutation({
-      serialNo: serialNo,
+      id: id,
     });
   };
 

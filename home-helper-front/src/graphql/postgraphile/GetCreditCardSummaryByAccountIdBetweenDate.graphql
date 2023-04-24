@@ -1,7 +1,7 @@
 query GetCreditCardSummaryByAccountIdBetweenDate(
     $fromDate: Date!
     $toDate: Date!
-    $accountId: String!
+    $accountId: UUID!
 ) {
     allCreditCardSummariesList(
         filter: {

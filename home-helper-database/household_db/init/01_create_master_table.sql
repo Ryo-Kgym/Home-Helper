@@ -1,53 +1,76 @@
-drop type if exists iocome_type cascade;
-create type iocome_type as enum ( 'INCOME', 'OUTCOME' );
+DROP TYPE IF EXISTS iocome_type CASCADE;
+CREATE TYPE iocome_type AS ENUM ( 'INCOME', 'OUTCOME' );
 
-drop type if exists genre_type cascade;
-create type genre_type as enum ( 'FIXED', 'FLUCTUATION' );
+DROP TYPE IF EXISTS genre_type CASCADE;
+CREATE TYPE genre_type AS ENUM ( 'FIXED', 'FLUCTUATION' );
 
-drop table if exists "user" cascade;
-create table "user" (
-    user_id       varchar(8)  not null primary key,
-    user_name     varchar(50) not null,
-    display_order int         not null
+DROP TABLE IF EXISTS "group" CASCADE;
+CREATE TABLE "group" (
+    group_id   uuid        NOT NULL PRIMARY KEY,
+    group_name VARCHAR(50) NOT NULL
 );
 
-drop table if exists genre cascade;
-create table genre (
-    genre_id      varchar(8)  not null primary key,
-    genre_name    varchar(50) not null,
-    genre_type    genre_type  not null,
-    iocome_type   iocome_type not null,
-    valid_flag    boolean default true,
-    display_order int         not null
+DROP TABLE IF EXISTS "user" CASCADE;
+CREATE TABLE "user" (
+    user_id       uuid        NOT NULL PRIMARY KEY,
+    user_name     VARCHAR(50) NOT NULL,
+    display_order INT         NOT NULL,
+    group_id      uuid        NOT NULL,
+    CONSTRAINT user_group_id_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
 
-drop table if exists "category" cascade;
-create table "category" (
-    category_id   varchar(8)  not null primary key,
-    category_name varchar(50) not null,
-    genre_id      varchar(8)  not null,
-    valid_flag    boolean default true,
-    display_order int         not null,
-    constraint category_genre_id_fk foreign key (genre_id) references genre (genre_id)
+DROP TABLE IF EXISTS genre CASCADE;
+CREATE TABLE genre (
+    genre_id      uuid        NOT NULL PRIMARY KEY,
+    genre_name    VARCHAR(50) NOT NULL,
+    genre_type    genre_type  NOT NULL,
+    iocome_type   iocome_type NOT NULL,
+    valid_flag    BOOLEAN DEFAULT TRUE,
+    display_order INT         NOT NULL,
+    group_id      uuid        NOT NULL,
+    CONSTRAINT genre_group_id_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
 
-drop table if exists account cascade;
-create table account (
-    account_id    varchar(8)  not null primary key,
-    account_name  varchar(50) not null,
-    valid_flag    boolean default true,
-    display_order int         not null,
-    owner_user_id varchar(8)  not null,
-    constraint account_owner_user_id foreign key (owner_user_id) references "user" (user_id)
+DROP TABLE IF EXISTS "category" CASCADE;
+CREATE TABLE "category" (
+    category_id   uuid        NOT NULL PRIMARY KEY,
+    category_name VARCHAR(50) NOT NULL,
+    genre_id      uuid        NOT NULL,
+    valid_flag    BOOLEAN DEFAULT TRUE,
+    display_order INT         NOT NULL,
+    group_id      uuid        NOT NULL,
+    CONSTRAINT category_genre_id_fk FOREIGN KEY (genre_id) REFERENCES genre (genre_id),
+    CONSTRAINT category_group_id_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
 
-drop table if exists summary_category cascade;
-create table summary_category (
-    id          uuid       not null primary key,
-    user_id     varchar(8) not null,
-    category_id varchar(8) not null,
-    display_order int      not null,
-    constraint yearly_summary_category_user_id_fk foreign key (user_id) references "user" (user_id),
-    constraint yearly_summary_category_category_id_fk foreign key (category_id) references "category" (category_id)
+DROP TABLE IF EXISTS account CASCADE;
+CREATE TABLE account (
+    account_id    uuid        NOT NULL PRIMARY KEY,
+    account_name  VARCHAR(50) NOT NULL,
+    valid_flag    BOOLEAN DEFAULT TRUE,
+    display_order INT         NOT NULL,
+    group_id      uuid        NOT NULL,
+    CONSTRAINT account_group_id_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
-create index summary_category_user_id_idx on summary_category (user_id);
+
+DROP TABLE IF EXISTS summary_category_by_user CASCADE;
+CREATE TABLE summary_category_by_user (
+    id            uuid NOT NULL PRIMARY KEY,
+    category_id   uuid NOT NULL,
+    display_order INT  NOT NULL,
+    user_id       uuid NOT NULL,
+    CONSTRAINT summary_category_by_user_category_id_fk FOREIGN KEY (category_id) REFERENCES "category" (category_id),
+    CONSTRAINT summary_category_by_user_user_id_fk FOREIGN KEY (user_id) REFERENCES "user" (user_id)
+);
+CREATE INDEX summary_category_by_user_user_id_idx ON summary_category_by_user (user_id);
+
+DROP TABLE IF EXISTS summary_category_by_group CASCADE;
+CREATE TABLE summary_category_by_group (
+    id            uuid NOT NULL PRIMARY KEY,
+    category_id   uuid NOT NULL,
+    display_order INT  NOT NULL,
+    group_id      uuid NOT NULL,
+    CONSTRAINT summary_category_by_group_category_id_fk FOREIGN KEY (category_id) REFERENCES "category" (category_id),
+    CONSTRAINT summary_category_by_group_group_id_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
+);
+CREATE INDEX summary_category_by_group_group_id_idx ON summary_category_by_group (group_id);

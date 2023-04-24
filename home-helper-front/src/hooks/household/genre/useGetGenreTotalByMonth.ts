@@ -1,10 +1,12 @@
 import { useGetGenreTotalByMonthQuery } from "@graphql/postgraphile/generated/graphql";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetGenreTotalByMonth = (
   fromMonth: Date | null,
   toMonth: Date | null
 ) => {
+  const { groupId } = useGroup();
   const correctedFromMonth = fromMonth ?? new Date();
   const correctedToMonth = toMonth ?? new Date();
 
@@ -23,6 +25,7 @@ export const useGetGenreTotalByMonth = (
     variables: {
       fromDate: firstDay.toISOString(),
       toDate: lastDay.toISOString(),
+      groupId,
     },
   });
 

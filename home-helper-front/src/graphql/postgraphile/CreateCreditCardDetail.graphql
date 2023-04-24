@@ -1,6 +1,7 @@
 mutation CreateCreditCardDetail(
+    $id: UUID!
     $date: Date!
-    $categoryId: String!
+    $categoryId: UUID!
     $amount: BigFloat!
     $memo: String
     $summaryId: UUID!
@@ -8,6 +9,7 @@ mutation CreateCreditCardDetail(
     createCreditCardDetail(
         input: {
             creditCardDetail: {
+                id: $id
                 date: $date
                 categoryId: $categoryId
                 amount: $amount
@@ -17,7 +19,7 @@ mutation CreateCreditCardDetail(
         }
     ) {
         creditCardDetail {
-            serialNo
+            id
         }
     }
 }

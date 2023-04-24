@@ -1,15 +1,18 @@
 import { useGetDailyDetailByDateQuery } from "@graphql/postgraphile/generated/graphql";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
+import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetDailyDetailByDate = (
   fromDate: Date | null,
   toDate: Date | null
 ) => {
-  const [{ data, fetching, error }, refetch] = useGetDailyDetailByDateQuery({
+  const { groupId } = useGroup();
+  const [{ data, fetching, error }] = useGetDailyDetailByDateQuery({
     variables: {
-      fromDate: fromDate,
-      toDate: toDate,
+      fromDate,
+      toDate,
+      groupId,
     },
   });
 
@@ -29,13 +32,11 @@ export const useGetDailyDetailByDate = (
     )
     .reduce((a, b) => a + Number(b!.amount!), 0);
 
-  const getDetail = (serialNo: number): DailyDetail => {
-    const dailyDetail = data?.dailyDetailByDateList?.find(
-      (e) => e!.serialNo === serialNo
-    );
+  const getDetail = (id: string): DailyDetail => {
+    const dailyDetail = data?.dailyDetailByDateList?.find((e) => e!.id === id);
 
     return {
-      serialNo: dailyDetail?.serialNo ?? null,
+      id: dailyDetail?.id ?? null,
       date: new Date(dailyDetail?.date),
       amount: Number(dailyDetail?.amount) ?? "",
       iocomeType:
@@ -55,8 +56,5 @@ export const useGetDailyDetailByDate = (
     incomeTotal,
     outcomeTotal,
     getDetail,
-    refetch: () => {
-      refetch({ requestPolicy: "network-only" });
-    },
   };
 };

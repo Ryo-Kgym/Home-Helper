@@ -7,11 +7,11 @@ type CreditCardDetailTablePresenterProps = {
   tableProps: TableProps[];
   opened: boolean;
   onClose: () => void;
-  detailSerialNo: number | null;
+  detailId: string | null;
 };
 export const CreditCardDetailTablePresenter: FC<
   CreditCardDetailTablePresenterProps
-> = ({ tableProps, opened, onClose, detailSerialNo }) => (
+> = ({ tableProps, opened, onClose, detailId }) => (
   <div className={"grid col-span-1"}>
     <Table
       header={["日付", "ジャンル", "カテゴリ", "金額", "メモ"]}
@@ -19,7 +19,7 @@ export const CreditCardDetailTablePresenter: FC<
       size={"xs"}
     />
     <Modal opened={opened} onClose={onClose}>
-      <UpdateCreditCardDetail serialNo={detailSerialNo} onClose={onClose} />
+      <UpdateCreditCardDetail id={detailId} onClose={onClose} />
     </Modal>
   </div>
 );

@@ -1,6 +1,6 @@
-query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!) {
-    dailyDetailByDateList(fromDate: $fromDate, toDate: $toDate) {
-        serialNo
+query GetDailyDetailByDate($fromDate: Date!, $toDate: Date!, $groupId: UUID!) {
+    dailyDetailByDateList(fromDate: $fromDate, toDate: $toDate, groupId: $groupId) {
+        id
         date
         amount
         memo
