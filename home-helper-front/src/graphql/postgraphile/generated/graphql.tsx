@@ -398,6 +398,8 @@ export type CreateCreditCardDetailPayload = {
   creditCardSummaryBySummaryId?: Maybe<CreditCardSummary>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `CreditCardDetail`. */
+  userByUserId?: Maybe<User>;
 };
 
 /** All input for the create `CreditCardSummary` mutation. */
@@ -644,6 +646,9 @@ export type CreditCardDetail = Node & {
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
   nodeId: Scalars["ID"];
   summaryId: Scalars["UUID"];
+  /** Reads a single `User` that is related to this `CreditCardDetail`. */
+  userByUserId?: Maybe<User>;
+  userId: Scalars["UUID"];
 };
 
 /**
@@ -663,6 +668,8 @@ export type CreditCardDetailCondition = {
   memo?: InputMaybe<Scalars["String"]>;
   /** Checks for equality with the object’s `summaryId` field. */
   summaryId?: InputMaybe<Scalars["UUID"]>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: InputMaybe<Scalars["UUID"]>;
 };
 
 /** A filter to be used against `CreditCardDetail` object types. All fields are combined with a logical ‘and.’ */
@@ -685,6 +692,8 @@ export type CreditCardDetailFilter = {
   or?: InputMaybe<Array<CreditCardDetailFilter>>;
   /** Filter by the object’s `summaryId` field. */
   summaryId?: InputMaybe<UuidFilter>;
+  /** Filter by the object’s `userId` field. */
+  userId?: InputMaybe<UuidFilter>;
 };
 
 /** An input for mutations affecting `CreditCardDetail` */
@@ -695,6 +704,7 @@ export type CreditCardDetailInput = {
   id: Scalars["UUID"];
   memo?: InputMaybe<Scalars["String"]>;
   summaryId: Scalars["UUID"];
+  userId: Scalars["UUID"];
 };
 
 /** Represents an update to a `CreditCardDetail`. Fields that are set will be updated. */
@@ -705,6 +715,7 @@ export type CreditCardDetailPatch = {
   id?: InputMaybe<Scalars["UUID"]>;
   memo?: InputMaybe<Scalars["String"]>;
   summaryId?: InputMaybe<Scalars["UUID"]>;
+  userId?: InputMaybe<Scalars["UUID"]>;
 };
 
 /** Methods to use when ordering `CreditCardDetail`. */
@@ -724,6 +735,8 @@ export enum CreditCardDetailsOrderBy {
   PrimaryKeyDesc = "PRIMARY_KEY_DESC",
   SummaryIdAsc = "SUMMARY_ID_ASC",
   SummaryIdDesc = "SUMMARY_ID_DESC",
+  UserIdAsc = "USER_ID_ASC",
+  UserIdDesc = "USER_ID_DESC",
 }
 
 /** Methods to use when ordering `CreditCardSummary`. */
@@ -1258,6 +1271,8 @@ export type DeleteCreditCardDetailPayload = {
   deletedCreditCardDetailId?: Maybe<Scalars["ID"]>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `CreditCardDetail`. */
+  userByUserId?: Maybe<User>;
 };
 
 /** All input for the `deleteCreditCardSummaryById` mutation. */
@@ -3401,6 +3416,8 @@ export type UpdateCreditCardDetailPayload = {
   creditCardSummaryBySummaryId?: Maybe<CreditCardSummary>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `CreditCardDetail`. */
+  userByUserId?: Maybe<User>;
 };
 
 /** All input for the `updateCreditCardSummaryById` mutation. */
@@ -3747,6 +3764,8 @@ export type UpdateUserPayload = {
 
 export type User = Node & {
   __typename?: "User";
+  /** Reads and enables pagination through a set of `CreditCardDetail`. */
+  creditCardDetailsByUserIdList: Array<CreditCardDetail>;
   /** Reads and enables pagination through a set of `DailyDetail`. */
   dailyDetailsByUserIdList: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
@@ -3761,6 +3780,14 @@ export type User = Node & {
   summaryCategoryByUsersByUserIdList: Array<SummaryCategoryByUser>;
   userId: Scalars["UUID"];
   userName: Scalars["String"];
+};
+
+export type UserCreditCardDetailsByUserIdListArgs = {
+  condition?: InputMaybe<CreditCardDetailCondition>;
+  filter?: InputMaybe<CreditCardDetailFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailsOrderBy>>;
 };
 
 export type UserDailyDetailsByUserIdListArgs = {
@@ -3855,6 +3882,7 @@ export type CreateCreditCardDetailMutationVariables = Exact<{
   amount: Scalars["BigFloat"];
   memo?: InputMaybe<Scalars["String"]>;
   summaryId: Scalars["UUID"];
+  userId: Scalars["UUID"];
 }>;
 
 export type CreateCreditCardDetailMutation = {
@@ -4485,6 +4513,7 @@ export const CreateCreditCardDetailDocument = gql`
     $amount: BigFloat!
     $memo: String
     $summaryId: UUID!
+    $userId: UUID!
   ) {
     createCreditCardDetail(
       input: {
@@ -4495,6 +4524,7 @@ export const CreateCreditCardDetailDocument = gql`
           amount: $amount
           summaryId: $summaryId
           memo: $memo
+          userId: $userId
         }
       }
     ) {

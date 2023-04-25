@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import { FileType } from "@provider/file/FileType";
 import { RegistrationArgs } from "@hooks/household/import_file/useCreateImportFile";
 
@@ -16,6 +12,7 @@ export const useRegisterCreditCard = ({
   accountId,
   withdrawalDate,
   loadData,
+  userId,
 }: RegistrationArgs) => {
   const summaryVariableList = {
     id: uuid,
@@ -32,6 +29,7 @@ export const useRegisterCreditCard = ({
     amount: data.price,
     memo: data.note,
     summaryId: uuid,
+    userId: userId,
   }));
 
   return () => {
