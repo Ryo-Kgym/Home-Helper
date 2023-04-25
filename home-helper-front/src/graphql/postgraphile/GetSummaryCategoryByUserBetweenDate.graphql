@@ -1,0 +1,39 @@
+query GetSummaryCategoryByUserBetweenDate(
+    $userId: UUID!
+    $fromDate: Date!
+    $toDate: Date!
+) {
+    summaryCategory: allSummaryCategoryByUsersList(
+        orderBy: DISPLAY_ORDER_ASC
+        condition: { userId: $userId }
+    ) {
+        category: categoryByCategoryId {
+            name: categoryName
+            genre: genreByGenreId {
+                iocomeType
+            }
+            daily: dailyDetailsByCategoryIdList(
+                condition: { userId: $userId }
+                filter: {
+                    date: { greaterThanOrEqualTo: $fromDate }
+                    and: { date: { lessThanOrEqualTo: $toDate } }
+                }
+                orderBy: DATE_ASC
+            ) {
+                date
+                amount
+            }
+            creditCard: creditCardDetailsByCategoryIdList(
+                condition: { userId: $userId }
+                filter: {
+                    date: { greaterThanOrEqualTo: $fromDate }
+                    and: { date: { lessThanOrEqualTo: $toDate } }
+                }
+                orderBy: DATE_ASC
+            ) {
+                date
+                amount
+            }
+        }
+    }
+}

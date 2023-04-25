@@ -4401,6 +4401,30 @@ export type GetSummaryCategoriesByUserIdQuery = {
   }> | null;
 };
 
+export type GetSummaryCategoryByUserBetweenDateQueryVariables = Exact<{
+  userId: Scalars["UUID"];
+  fromDate: Scalars["Date"];
+  toDate: Scalars["Date"];
+}>;
+
+export type GetSummaryCategoryByUserBetweenDateQuery = {
+  __typename?: "Query";
+  summaryCategory?: Array<{
+    __typename?: "SummaryCategoryByUser";
+    category?: {
+      __typename?: "Category";
+      name: string;
+      genre?: { __typename?: "Genre"; iocomeType: IocomeType } | null;
+      daily: Array<{ __typename?: "DailyDetail"; date: any; amount: any }>;
+      creditCard: Array<{
+        __typename?: "CreditCardDetail";
+        date: any;
+        amount: any;
+      }>;
+    } | null;
+  }> | null;
+};
+
 export type GetTotalBetweenDateQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
@@ -5257,6 +5281,59 @@ export function useGetSummaryCategoriesByUserIdQuery(
     GetSummaryCategoriesByUserIdQuery,
     GetSummaryCategoriesByUserIdQueryVariables
   >({ query: GetSummaryCategoriesByUserIdDocument, ...options });
+}
+export const GetSummaryCategoryByUserBetweenDateDocument = gql`
+  query GetSummaryCategoryByUserBetweenDate(
+    $userId: UUID!
+    $fromDate: Date!
+    $toDate: Date!
+  ) {
+    summaryCategory: allSummaryCategoryByUsersList(
+      orderBy: DISPLAY_ORDER_ASC
+      condition: { userId: $userId }
+    ) {
+      category: categoryByCategoryId {
+        name: categoryName
+        genre: genreByGenreId {
+          iocomeType
+        }
+        daily: dailyDetailsByCategoryIdList(
+          condition: { userId: $userId }
+          filter: {
+            date: { greaterThanOrEqualTo: $fromDate }
+            and: { date: { lessThanOrEqualTo: $toDate } }
+          }
+          orderBy: DATE_ASC
+        ) {
+          date
+          amount
+        }
+        creditCard: creditCardDetailsByCategoryIdList(
+          condition: { userId: $userId }
+          filter: {
+            date: { greaterThanOrEqualTo: $fromDate }
+            and: { date: { lessThanOrEqualTo: $toDate } }
+          }
+          orderBy: DATE_ASC
+        ) {
+          date
+          amount
+        }
+      }
+    }
+  }
+`;
+
+export function useGetSummaryCategoryByUserBetweenDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetSummaryCategoryByUserBetweenDateQueryVariables>,
+    "query"
+  >
+) {
+  return Urql.useQuery<
+    GetSummaryCategoryByUserBetweenDateQuery,
+    GetSummaryCategoryByUserBetweenDateQueryVariables
+  >({ query: GetSummaryCategoryByUserBetweenDateDocument, ...options });
 }
 export const GetTotalBetweenDateDocument = gql`
   query GetTotalBetweenDate($fromDate: Date!, $toDate: Date!, $groupId: UUID!) {
