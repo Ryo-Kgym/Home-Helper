@@ -24,6 +24,7 @@ export const MonthlyCategoryPresenter: FC<MonthlyCategoryPresenterProps> = ({
         "10月",
         "11月",
         "12月",
+        "合計",
       ]}
       tablePropsList={tablePropsList}
       size={"xs"}

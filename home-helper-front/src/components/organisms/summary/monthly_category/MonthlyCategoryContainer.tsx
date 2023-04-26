@@ -20,12 +20,23 @@ export const MonthlyCategoryContainer: FC<MonthlyCategoryContainerProps> = ({
           value: d.key.categoryName as any,
           align: "left",
         },
-      ].concat(
-        d.monthlyTotal.map((mt) => ({
-          value: <FormatPrice iocomeType={d.key.iocomeType} price={mt} />,
-          align: "right",
-        }))
-      ) as ColumnProps[],
+      ]
+        .concat(
+          d.monthlyTotal.map((mt) => ({
+            value: <FormatPrice iocomeType={d.key.iocomeType} price={mt} />,
+            align: "right",
+          }))
+        )
+        .concat([
+          {
+            value: (
+              <div className={"font-bold"}>
+                <FormatPrice iocomeType={d.key.iocomeType} price={d.total} />
+              </div>
+            ),
+            align: "right",
+          },
+        ]) as ColumnProps[],
     };
   });
 
