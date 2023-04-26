@@ -34,12 +34,12 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
       list: (
         sc.category?.daily.map((d) => ({
           month: d.date.slice(5, 7) as string,
-          amount: d.amount as number,
+          amount: Number(d.amount),
         })) ?? []
       ).concat(
         sc.category?.creditCard.map((cc) => ({
           month: cc.date.slice(5, 7) as string,
-          amount: cc.amount as number,
+          amount: Number(cc.amount),
         })) ?? []
       ),
     })) ?? [];
