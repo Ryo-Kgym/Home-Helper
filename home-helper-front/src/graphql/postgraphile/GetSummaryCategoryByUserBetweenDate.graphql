@@ -3,7 +3,7 @@ query GetSummaryCategoryByUserBetweenDate(
     $fromDate: Date!
     $toDate: Date!
 ) {
-    summaryCategory: allSummaryCategoryByUsersList(
+    summaryCategoryList: allSummaryCategoryByUsersList(
         orderBy: DISPLAY_ORDER_ASC
         condition: { userId: $userId }
     ) {

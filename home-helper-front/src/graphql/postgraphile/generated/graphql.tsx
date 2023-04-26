@@ -4409,7 +4409,7 @@ export type GetSummaryCategoryByUserBetweenDateQueryVariables = Exact<{
 
 export type GetSummaryCategoryByUserBetweenDateQuery = {
   __typename?: "Query";
-  summaryCategory?: Array<{
+  summaryCategoryList?: Array<{
     __typename?: "SummaryCategoryByUser";
     category?: {
       __typename?: "Category";
@@ -5288,7 +5288,7 @@ export const GetSummaryCategoryByUserBetweenDateDocument = gql`
     $fromDate: Date!
     $toDate: Date!
   ) {
-    summaryCategory: allSummaryCategoryByUsersList(
+    summaryCategoryList: allSummaryCategoryByUsersList(
       orderBy: DISPLAY_ORDER_ASC
       condition: { userId: $userId }
     ) {
