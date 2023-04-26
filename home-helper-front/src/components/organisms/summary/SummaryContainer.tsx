@@ -8,8 +8,7 @@ type SummaryContainerProps = {};
 
 export const SummaryContainer: FC<SummaryContainerProps> = () => {
   const { data } = useFetchSummaryCategoryAmountByUser({
-    fromDate: new Date("2022-01-01"),
-    toDate: new Date("2022-12-31"),
+    year: 2022,
   });
 
   const tabProps: TabProps[] = [

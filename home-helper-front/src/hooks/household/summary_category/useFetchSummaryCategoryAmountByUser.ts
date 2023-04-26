@@ -7,8 +7,7 @@ import {
 } from "@function/monthly/totalAmountByMonthly";
 
 type Args = {
-  fromDate: Date;
-  toDate: Date;
+  year: number;
 };
 
 type InterfaceType = (args: Args) => {
@@ -16,10 +15,11 @@ type InterfaceType = (args: Args) => {
 };
 
 export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
-  fromDate,
-  toDate,
+  year,
 }) => {
   const { userId } = useUser();
+  const fromDate = new Date(year, 0, 1);
+  const toDate = new Date(year, 11, 31);
   const [{ data }] = useGetSummaryCategoryByUserBetweenDateQuery({
     variables: {
       userId,
