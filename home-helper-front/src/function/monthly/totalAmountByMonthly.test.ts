@@ -42,6 +42,7 @@ describe("totalAmountByMonthly", () => {
         monthlyTotal: [
           100, 400, 600, 800, 1000, 600, 1400, 1600, 1800, 2000, 2200, 0,
         ],
+        total: 12500,
       });
     }
   );

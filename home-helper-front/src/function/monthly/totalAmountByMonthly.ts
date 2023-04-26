@@ -9,6 +9,7 @@ export interface TotalAmountByMonthlyArgs<T> {
 export type TotalAmountByMonthly<T> = {
   key: T;
   monthlyTotal: number[];
+  total: number;
 };
 
 export const totalAmountByMonthly = <T>({
@@ -16,6 +17,7 @@ export const totalAmountByMonthly = <T>({
   list,
 }: TotalAmountByMonthlyArgs<T>): TotalAmountByMonthly<T> => {
   const monthlyTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let total = 0;
 
   const monthlyFunctionMap = new Map([
     ["01", (amount: number) => (monthlyTotal[0] += amount)],
@@ -34,7 +36,8 @@ export const totalAmountByMonthly = <T>({
 
   list.forEach(({ month, amount }) => {
     monthlyFunctionMap.get(month)!(amount);
+    total += amount;
   });
 
-  return { key, monthlyTotal };
+  return { key, monthlyTotal, total };
 };
