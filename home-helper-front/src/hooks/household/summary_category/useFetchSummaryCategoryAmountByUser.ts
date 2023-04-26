@@ -29,25 +29,20 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
   });
 
   const args: TotalAmountByMonthlyArgs<string>[] =
-    data?.summaryCategory!.flatMap((sc) =>
-      (
-        sc.category?.daily.map((d) => {
-          return {
-            key: sc.category!.name as string,
-            month: d.date.slice(5, 7) as string,
-            amount: d.amount as number,
-          };
-        }) ?? []
+    data?.summaryCategoryList!.map((sc) => ({
+      key: sc.category?.name!,
+      list: (
+        sc.category?.daily.map((d) => ({
+          month: d.date.slice(5, 7) as string,
+          amount: d.amount as number,
+        })) ?? []
       ).concat(
-        sc.category?.creditCard.map((cc) => {
-          return {
-            key: sc.category!.name as string,
-            month: cc.date.slice(5, 7) as string,
-            amount: cc.amount as number,
-          };
-        }) ?? []
-      )
-    ) ?? [];
+        sc.category?.creditCard.map((cc) => ({
+          month: cc.date.slice(5, 7) as string,
+          amount: cc.amount as number,
+        })) ?? []
+      ),
+    })) ?? [];
 
   return { data: args.map((a) => totalAmountByMonthly(a)) };
 };

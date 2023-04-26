@@ -1,37 +1,40 @@
 export interface TotalAmountByMonthlyArgs<T> {
   key: T;
-  month: string;
-  amount: number;
+  list: {
+    month: string;
+    amount: number;
+  }[];
 }
 
 export type TotalAmountByMonthly<T> = {
   key: T;
-  monthlyAmounts: number[];
+  monthlyTotal: number[];
 };
 
 export const totalAmountByMonthly = <T extends string>({
   key,
-  month,
-  amount,
+  list,
 }: TotalAmountByMonthlyArgs<T>): TotalAmountByMonthly<T> => {
-  const monthlyAmounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const monthlyTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   const monthlyFunctionMap = new Map([
-    ["01", (amount: number) => (monthlyAmounts[0] += amount)],
-    ["02", (amount: number) => (monthlyAmounts[1] += amount)],
-    ["03", (amount: number) => (monthlyAmounts[2] += amount)],
-    ["04", (amount: number) => (monthlyAmounts[3] += amount)],
-    ["05", (amount: number) => (monthlyAmounts[4] += amount)],
-    ["06", (amount: number) => (monthlyAmounts[5] += amount)],
-    ["07", (amount: number) => (monthlyAmounts[6] += amount)],
-    ["08", (amount: number) => (monthlyAmounts[7] += amount)],
-    ["09", (amount: number) => (monthlyAmounts[8] += amount)],
-    ["10", (amount: number) => (monthlyAmounts[9] += amount)],
-    ["11", (amount: number) => (monthlyAmounts[10] += amount)],
-    ["12", (amount: number) => (monthlyAmounts[11] += amount)],
+    ["01", (amount: number) => (monthlyTotal[0] += amount)],
+    ["02", (amount: number) => (monthlyTotal[1] += amount)],
+    ["03", (amount: number) => (monthlyTotal[2] += amount)],
+    ["04", (amount: number) => (monthlyTotal[3] += amount)],
+    ["05", (amount: number) => (monthlyTotal[4] += amount)],
+    ["06", (amount: number) => (monthlyTotal[5] += amount)],
+    ["07", (amount: number) => (monthlyTotal[6] += amount)],
+    ["08", (amount: number) => (monthlyTotal[7] += amount)],
+    ["09", (amount: number) => (monthlyTotal[8] += amount)],
+    ["10", (amount: number) => (monthlyTotal[9] += amount)],
+    ["11", (amount: number) => (monthlyTotal[10] += amount)],
+    ["12", (amount: number) => (monthlyTotal[11] += amount)],
   ]);
 
-  monthlyFunctionMap.get(month)!(amount);
+  list.forEach(({ month, amount }) => {
+    monthlyFunctionMap.get(month)!(amount);
+  });
 
-  return { key, monthlyAmounts };
+  return { key, monthlyTotal };
 };
