@@ -11,7 +11,7 @@ export type TotalAmountByMonthly<T> = {
   monthlyTotal: number[];
 };
 
-export const totalAmountByMonthly = <T extends string>({
+export const totalAmountByMonthly = <T>({
   key,
   list,
 }: TotalAmountByMonthlyArgs<T>): TotalAmountByMonthly<T> => {

@@ -5,13 +5,14 @@ import {
   totalAmountByMonthly,
   TotalAmountByMonthlyArgs,
 } from "@function/monthly/totalAmountByMonthly";
+import { IocomeType } from "@domain/model/household/IocomeType";
 
 type Args = {
   year: number;
 };
 
 type InterfaceType = (args: Args) => {
-  data: TotalAmountByMonthly<string>[];
+  data: TotalAmountByMonthly<MonthlyCategoryKey>[];
 };
 
 export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
@@ -28,9 +29,12 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
     },
   });
 
-  const args: TotalAmountByMonthlyArgs<string>[] =
+  const args: TotalAmountByMonthlyArgs<MonthlyCategoryKey>[] =
     data?.summaryCategoryList!.map((sc) => ({
-      key: sc.category?.name!,
+      key: {
+        categoryName: sc.category?.name!,
+        iocomeType: sc.category?.genre?.iocomeType!,
+      },
       list: (
         sc.category?.daily.map((d) => ({
           month: d.date.slice(5, 7) as string,
@@ -38,6 +42,10 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
         })) ?? []
       ).concat(
         sc.category?.creditCard.map((cc) => ({
+          key: {
+            categoryName: sc.category?.name!,
+            iocomeType: sc.category?.genre?.iocomeType!,
+          },
           month: cc.date.slice(5, 7) as string,
           amount: Number(cc.amount),
         })) ?? []
@@ -45,4 +53,9 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
     })) ?? [];
 
   return { data: args.map((a) => totalAmountByMonthly(a)) };
+};
+
+export type MonthlyCategoryKey = {
+  categoryName: string;
+  iocomeType: IocomeType;
 };

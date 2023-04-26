@@ -3,10 +3,10 @@ import { MonthlyCategoryPresenter } from "@components/organisms/summary/monthly_
 import { TotalAmountByMonthly } from "@function/monthly/totalAmountByMonthly";
 import { ColumnProps, TableProps } from "@components/atoms/Table";
 import { FormatPrice } from "@components/molecules/FormatPrice";
-import { IocomeType } from "@domain/model/household/IocomeType";
+import { MonthlyCategoryKey } from "@hooks/household/summary_category/useFetchSummaryCategoryAmountByUser";
 
 type MonthlyCategoryContainerProps = {
-  data: TotalAmountByMonthly<string>[];
+  data: TotalAmountByMonthly<MonthlyCategoryKey>[];
 };
 
 export const MonthlyCategoryContainer: FC<MonthlyCategoryContainerProps> = ({
@@ -14,15 +14,15 @@ export const MonthlyCategoryContainer: FC<MonthlyCategoryContainerProps> = ({
 }) => {
   const tablePropsList: TableProps[] = data.map((d) => {
     return {
-      keyPrefix: d.key,
+      keyPrefix: d.key.categoryName,
       columns: [
         {
-          value: d.key as any,
+          value: d.key.categoryName as any,
           align: "left",
         },
       ].concat(
         d.monthlyTotal.map((mt) => ({
-          value: <FormatPrice iocomeType={IocomeType.Income} price={mt} />,
+          value: <FormatPrice iocomeType={d.key.iocomeType} price={mt} />,
           align: "right",
         }))
       ) as ColumnProps[],
