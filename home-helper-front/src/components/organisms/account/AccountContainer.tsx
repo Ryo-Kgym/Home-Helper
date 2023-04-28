@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useGetAccountBalanceList } from "@hooks/household/account/useGetAccountBalanceList";
 import { Button } from "@components/atoms/Button";
 import { DailyTableByAccount } from "@components/organisms/daily_table/account";
+import { CalendarContainer } from "@components/organisms/calendar/CalendarContainer";
+import { Split } from "@components/atoms/Split";
 
 export const AccountContainer = () => {
   const today = new Date();
@@ -41,24 +43,26 @@ export const AccountContainer = () => {
       };
     }) ?? [];
 
-  if (openDailyDetail) {
-    return (
-      <DailyTableByAccount
-        fromDate={fromDate ?? new Date("2019-01-01")}
-        toDate={toDate!}
-        accountId={selectedAccountId}
-      />
-    );
-  }
-
   return (
-    <AccountPresenter
-      fromDate={fromDate}
-      changeFromDate={setFromDate}
-      toDate={toDate}
-      changeToDate={setToDate}
-      tableProps={tableProps}
-      total={total}
+    <Split
+      size={40}
+      first={
+        <AccountPresenter
+          fromDate={fromDate}
+          changeFromDate={setFromDate}
+          toDate={toDate}
+          changeToDate={setToDate}
+          tableProps={tableProps}
+          total={total}
+        />
+      }
+      second={
+        <DailyTableByAccount
+          fromDate={fromDate ?? new Date("2019-01-01")}
+          toDate={toDate!}
+          accountId={selectedAccountId}
+        />
+      }
     />
   );
 };
