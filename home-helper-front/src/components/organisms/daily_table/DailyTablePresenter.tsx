@@ -45,6 +45,7 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
       tablePropsList={tablePropsList}
       size={"xs"}
       height={"75vh"}
+      toBottom
     />
     <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
     <Modal opened={modalOpen} onClose={onClose}>
