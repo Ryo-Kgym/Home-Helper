@@ -26,20 +26,11 @@ export const AccountContainer = () => {
             value: Number(account?.total).toLocaleString(),
             align: "right",
           },
-          {
-            value: (
-              <Button
-                colorType={"detail"}
-                label={"詳細"}
-                onClick={() => {
-                  setSelectedAccountId(account?.accountId!);
-                  setOpenDailyDetail(true);
-                }}
-              />
-            ),
-            align: "center",
-          },
         ],
+        onClick: () => {
+          setSelectedAccountId(account?.accountId!);
+          setOpenDailyDetail(true);
+        },
       };
     }) ?? [];
 

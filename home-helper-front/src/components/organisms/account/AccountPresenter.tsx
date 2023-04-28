@@ -27,9 +27,9 @@ export const AccountPresenter: FC<AccountPresenterProps> = ({
       changeToDate={changeToDate}
     />
     <Table
-      header={["アカウント", "残高", "詳細"]}
+      header={["アカウント", "残高"]}
       tablePropsList={tableProps}
-      size={"sm"}
+      size={"xs"}
     />
     <Total total={total} />
   </div>
