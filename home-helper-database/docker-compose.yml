@@ -1,18 +1,18 @@
 version: "3.3"
 services:
-  home_helper_db_ci:
-    platform: linux/x86_64
-    container_name: home_helper_db_ci
-    image: mysql:latest
-    env_file:
-      - .env
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    ports:
-      - 23306:3306
-    volumes:
-      - ./home_helper_db/init:/docker-entrypoint-initdb.d
-      - ./volume/data/home_helper/ci:/var/lib/mysql
-      - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
+#  home_helper_db_ci:
+#    platform: linux/x86_64
+#    container_name: home_helper_db_ci
+#    image: mysql:latest
+#    env_file:
+#      - .env
+#    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+#    ports:
+#      - 23306:3306
+#    volumes:
+#      - ./home_helper_db/init:/docker-entrypoint-initdb.d
+#      - ./volume/data/home_helper/ci:/var/lib/mysql
+#      - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
 
   db:
     container_name: household-db
@@ -30,21 +30,21 @@ services:
     ports:
       - "5432:5432"
 
-  db_ci:
-    container_name: household-db-ci
-    restart: always
-    image: postgres:latest
-    build:
-      context: household_db
-    volumes:
-      - db_ci:/var/lib/postgresql/data
-      - ./volume/data/household/ci:/var/lib/postgresql/data
-    env_file:
-      - .env
-    networks:
-      - network
-    ports:
-      - "25432:5432"
+#  db_ci:
+#    container_name: household-db-ci
+#    restart: always
+#    image: postgres:latest
+#    build:
+#      context: household_db
+#    volumes:
+#      - db_ci:/var/lib/postgresql/data
+#      - ./volume/data/household/ci:/var/lib/postgresql/data
+#    env_file:
+#      - .env
+#    networks:
+#      - network
+#    ports:
+#      - "25432:5432"
 
   graphql:
     container_name: household-graphql
@@ -85,4 +85,4 @@ volumes:
   database:
     driver: local
   db:
-  db_ci:
+#  db_ci:
