@@ -1,5 +1,6 @@
-import { FC, ReactElement } from "react";
-import { ScrollArea, Table } from "@mantine/core";
+import { FC, ReactElement, RefObject } from "react";
+import { ActionIcon, ScrollArea, Table } from "@mantine/core";
+import { IconArrowBarToDown } from "@tabler/icons-react";
 
 type TablePresenterProps = {
   headerTr: ReactElement;
@@ -12,6 +13,8 @@ type TablePresenterProps = {
   fontSize: number;
   horizontalSpacing: number;
   verticalSpacing: number;
+  viewport: RefObject<HTMLDivElement>;
+  scrollToBottom?: () => void;
 };
 export const TablePresenter: FC<TablePresenterProps> = ({
   headerTr,
@@ -24,11 +27,14 @@ export const TablePresenter: FC<TablePresenterProps> = ({
   fontSize,
   horizontalSpacing,
   verticalSpacing,
-}) => {
-  return (
+  scrollToBottom,
+  viewport,
+}) => (
+  <>
     <ScrollArea
       sx={{ height: height }}
       onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
+      viewportRef={viewport}
     >
       <Table
         striped
@@ -44,6 +50,23 @@ export const TablePresenter: FC<TablePresenterProps> = ({
         </thead>
         {tbody}
       </Table>
+      <JumpToBottom scrollToBottom={scrollToBottom} />
     </ScrollArea>
+  </>
+);
+
+const JumpToBottom: FC<{ scrollToBottom: (() => void) | undefined }> = ({
+  scrollToBottom,
+}) =>
+  scrollToBottom ? (
+    <div
+      className={"z-10 absolute bottom-20 right-10 border-0"}
+      onClick={scrollToBottom}
+    >
+      <ActionIcon variant="default" size={"3em"}>
+        <IconArrowBarToDown size="3em" className={"text-slate-400"} />
+      </ActionIcon>
+    </div>
+  ) : (
+    <></>
   );
-};

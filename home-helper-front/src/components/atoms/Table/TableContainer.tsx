@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { TablePresenter } from "@components/atoms/Table/TablePresenter";
 import { ColumnProps, TableProps } from "@components/atoms/Table/index";
 import { createStyles } from "@mantine/core";
@@ -10,12 +10,14 @@ type Props = {
   height?: string;
   fontSize?: number;
   size?: MantineSize;
+  toBottom?: boolean;
 };
 export const TableContainer: FC<Props> = ({
   header,
   tablePropsList,
   height = "80vh",
   size = "xl",
+  toBottom = false,
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const { classes, cx } = useStyles();
@@ -57,6 +59,16 @@ export const TableContainer: FC<Props> = ({
 
   const tbody = <tbody>{tablePropsList.map(generateRow)}</tbody>;
 
+  const viewport = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = toBottom
+    ? () =>
+        viewport?.current?.scrollTo({
+          top: viewport.current.scrollHeight,
+          behavior: "smooth",
+        })
+    : undefined;
+
   return (
     <TablePresenter
       headerTr={thead}
@@ -69,6 +81,8 @@ export const TableContainer: FC<Props> = ({
       fontSize={paddingMap.get(size)!.fontSize}
       horizontalSpacing={paddingMap.get(size)!.horizontalSpacing}
       verticalSpacing={paddingMap.get(size)!.verticalSpacing}
+      viewport={viewport}
+      scrollToBottom={scrollToBottom}
     />
   );
 };
