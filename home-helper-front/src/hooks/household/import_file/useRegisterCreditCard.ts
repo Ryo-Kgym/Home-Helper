@@ -7,15 +7,16 @@ import { RegistrationArgs } from "@hooks/household/import_file/useCreateImportFi
 export const useRegisterCreditCard = ({
   createCreditCardSummaryMutation,
   createCreditCardDetailMutation,
-  uuid,
+  summaryId,
   fileType,
   accountId,
   withdrawalDate,
   loadData,
   userId,
+  uuidList,
 }: RegistrationArgs) => {
   const summaryVariableList = {
-    id: uuid,
+    id: summaryId,
     creditCard: CreditCardMap.get(fileType) || "other",
     accountId: accountId,
     totalAmount: loadData.reduce((acc, cur) => acc + cur.price, 0),
@@ -23,12 +24,13 @@ export const useRegisterCreditCard = ({
     withdrawalDate: withdrawalDate,
   };
 
-  const detailVariableList = loadData.map((data) => ({
+  const detailVariableList = loadData.map((data, idx) => ({
+    id: uuidList[idx],
     date: data.date,
     categoryId: data.categoryId!,
     amount: data.price,
     memo: data.note,
-    summaryId: uuid,
+    summaryId: summaryId,
     userId: userId,
   }));
 
