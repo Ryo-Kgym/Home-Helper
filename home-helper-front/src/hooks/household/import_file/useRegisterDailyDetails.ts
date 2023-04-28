@@ -12,19 +12,25 @@ export const useRegisterDailyDetails = ({
   accountId,
   loadData,
   userId,
+  groupId,
+  uuidList,
 }: RegistrationArgs) => {
-  const createDailyDetailVariableList = loadData.map((data) => ({
+  const createDailyDetailVariableList = loadData.map((data, idx) => ({
+    id: uuidList[idx],
     date: data.date,
     categoryId: data.categoryId!,
     accountId: accountId,
     amount: data.price,
     memo: data.note,
-    userId: userId,
+    userId,
+    groupId,
   }));
 
   return () => {
     createDailyDetailVariableList.map((variable) =>
-      createDailyDetailMutation(variable)
+      setTimeout(() => {
+        createDailyDetailMutation(variable);
+      }, 100)
     );
   };
 };

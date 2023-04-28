@@ -55,9 +55,13 @@ CREATE TABLE credit_card_detail (
     amount      NUMERIC(10) NOT NULL,
     memo        VARCHAR(64) NULL,
     summary_id  uuid        NOT NULL,
+    user_id     uuid        NOT NULL,
     CONSTRAINT credit_card_detail_credit_card_summary_fk FOREIGN KEY (summary_id) REFERENCES credit_card_summary (id),
-    CONSTRAINT credit_card_detail_category_fk FOREIGN KEY (category_id) REFERENCES "category" (category_id)
+    CONSTRAINT credit_card_detail_category_fk FOREIGN KEY (category_id) REFERENCES "category" (category_id),
+    CONSTRAINT credit_card_detail_user_fk FOREIGN KEY (user_id) REFERENCES "user" (user_id)
 );
 
 CREATE INDEX credit_card_detail_date_index ON credit_card_detail (date);
 CREATE INDEX credit_card_detail_summary_id_index ON credit_card_detail (summary_id);
+CREATE INDEX credit_card_detail_user_id_index ON credit_card_detail (user_id);
+

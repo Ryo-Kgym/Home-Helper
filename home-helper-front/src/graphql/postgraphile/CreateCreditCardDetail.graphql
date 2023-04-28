@@ -5,6 +5,7 @@ mutation CreateCreditCardDetail(
     $amount: BigFloat!
     $memo: String
     $summaryId: UUID!
+    $userId: UUID!
 ) {
     createCreditCardDetail(
         input: {
@@ -15,6 +16,7 @@ mutation CreateCreditCardDetail(
                 amount: $amount
                 summaryId: $summaryId
                 memo: $memo
+                userId: $userId
             }
         }
     ) {

@@ -41,5 +41,6 @@ const cardListProps = [
   { href: "/household/genre", label: "GENRE" },
   { href: "/household/category", label: "CATEGORY" },
   { href: "/household/fileImport", label: "FILE" },
+  { href: "/household/summary", label: "SUMMARY" },
   { href: "/household/master", label: "MASTER" },
 ];

@@ -64,12 +64,14 @@ export const useCreateImportFile = ({
         createCreditCardSummaryMutation,
         createCreditCardDetailMutation,
         createDailyDetailMutation,
-        uuid: get(),
+        summaryId: get(),
         fileType,
         accountId,
         withdrawalDate,
         loadData,
         userId,
+        groupId,
+        uuidList: loadData.map((_) => get()),
       }),
       100
     );
@@ -80,12 +82,14 @@ export type RegistrationArgs = {
   createCreditCardSummaryMutation: any;
   createCreditCardDetailMutation: any;
   createDailyDetailMutation: any;
-  uuid: string;
+  summaryId: string;
   fileType: FileType;
   accountId: string;
   withdrawalDate: Date;
   loadData: LoadFileProps[];
   userId: string;
+  groupId: string;
+  uuidList: string[];
 };
 
 const RegistrationMap = new Map<
