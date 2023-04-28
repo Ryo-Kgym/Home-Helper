@@ -4241,6 +4241,7 @@ export type GetDailyDetailByDateAccountIdQueryVariables = Exact<{
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
   accountId: Scalars["UUID"];
+  groupId: Scalars["UUID"];
 }>;
 
 export type GetDailyDetailByDateAccountIdQuery = {
@@ -5078,8 +5079,10 @@ export const GetDailyDetailByDateAccountIdDocument = gql`
     $fromDate: Date!
     $toDate: Date!
     $accountId: UUID!
+    $groupId: UUID!
   ) {
     dailyDetailByDateList(
+      groupId: $groupId
       fromDate: $fromDate
       toDate: $toDate
       filter: { accountId: { equalTo: $accountId } }

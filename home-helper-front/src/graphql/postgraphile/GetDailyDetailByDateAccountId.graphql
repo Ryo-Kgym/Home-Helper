@@ -2,11 +2,15 @@ query GetDailyDetailByDateAccountId(
     $fromDate: Date!
     $toDate: Date!
     $accountId: UUID!
+    $groupId: UUID!
 ) {
     dailyDetailByDateList(
+        groupId: $groupId
         fromDate: $fromDate
         toDate: $toDate
-        filter: { accountId: { equalTo: $accountId } }
+        filter: {
+            accountId: { equalTo: $accountId }
+        }
     ) {
         id
         date
