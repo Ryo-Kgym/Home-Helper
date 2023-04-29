@@ -8,6 +8,7 @@ type NumberInputContainerProps = {
   placeholder?: string;
   withAsterisk?: boolean;
   disabled?: boolean;
+  maxLength?: number;
 };
 export const NumberInputContainer: FC<NumberInputContainerProps> = ({
   label,
@@ -16,12 +17,13 @@ export const NumberInputContainer: FC<NumberInputContainerProps> = ({
   placeholder,
   withAsterisk,
   disabled = false,
+  maxLength = 9,
 }) => {
   const checkValue = (value: number | "") => {
     if (value === "") {
       return "Required";
     }
-    if (String(value).length > 9) {
+    if (String(value).length > maxLength) {
       return "Too long";
     }
     return "";
