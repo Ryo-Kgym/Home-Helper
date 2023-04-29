@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { TableProps } from "@components/atoms/Table";
-import { DailyTableContainer } from "@components/organisms/daily_table/DailyTableContainer";
+import { DailySearchContainer } from "@components/organisms/daily_table/DailySearchContainer";
 
 type DailyTableByCategoryPresenterProps = {
   firstDay: Date;
@@ -13,7 +13,7 @@ export const DailyTableByGenrePresenter: FC<
   DailyTableByCategoryPresenterProps
 > = ({ firstDay, lastDay, tableProps, incomeTotal, outcomeTotal }) => {
   return (
-    <DailyTableContainer
+    <DailySearchContainer
       dailyDetail={tableProps}
       defaultFromDate={firstDay}
       defaultToDate={lastDay}

@@ -6,7 +6,7 @@ import { Modal } from "@components/atoms/Modal";
 import { UpdateDailyDetail } from "@components/organisms/update_daily_detail";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
 
-type DailyTablePresenterProps = {
+type DailySearchPresenterProps = {
   fromDate: Date | null;
   changeFromDate: (date: Date) => void;
   toDate: Date | null;
@@ -19,7 +19,7 @@ type DailyTablePresenterProps = {
   onClose: () => void;
   detailForUpdate: DailyDetail | null;
 };
-export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
+export const DailySearchPresenter: FC<DailySearchPresenterProps> = ({
   fromDate,
   changeFromDate,
   toDate,
