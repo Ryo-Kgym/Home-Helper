@@ -17,7 +17,7 @@ export const useCreateAccount = ({
   const [ignore, mutation] = useCreateAccountMutation();
 
   const registerAccount = () => {
-    mutation({
+    return mutation({
       accountId: get(),
       accountName,
       displayOrder,
