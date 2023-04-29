@@ -11,7 +11,7 @@ export const AccountContainer = () => {
   const today = new Date();
   const [fromDate, setFromDate] = useState<Date | null>(null);
   const [toDate, setToDate] = useState<Date | null>(today);
-  const [openDailyDetail, setOpenDailyDetail] = useState(false);
+  const [isOpenRegister, setIsOpenRegister] = useState(false);
   const [selectedAccountId, setSelectedAccountId] = useState<string>("");
 
   const { data, total } = useGetAccountBalanceList(fromDate, toDate!);
@@ -29,7 +29,6 @@ export const AccountContainer = () => {
         ],
         onClick: () => {
           setSelectedAccountId(account?.accountId!);
-          setOpenDailyDetail(true);
         },
       };
     }) ?? [];
@@ -45,6 +44,9 @@ export const AccountContainer = () => {
           changeToDate={setToDate}
           tableProps={tableProps}
           total={total}
+          isOpenRegister={isOpenRegister}
+          onCloseRegister={() => setIsOpenRegister(false)}
+          onOpenRegister={() => setIsOpenRegister(true)}
         />
       }
       second={
