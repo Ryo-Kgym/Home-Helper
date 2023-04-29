@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { DailyTablePresenter } from "./DailyTablePresenter";
+import { DailySearchPresenter } from "./DailySearchPresenter";
 import { TableProps, tablePropsDateSorter } from "@components/atoms/Table";
 import { dailyDetailConverter } from "@components/organisms/daily_table/dailyDetailConverter";
 import { useGetDailyDetailByDate } from "@hooks/household/daily_detail/useGetDailyDetailByDate";
@@ -7,14 +7,14 @@ import { DailyDetail } from "@domain/model/household/DailyDetail";
 import { creditCardSummaryConverter } from "@components/organisms/daily_table/creditCardSummaryConverter";
 import { useGetCreditCardSummaryBetweenDate } from "@hooks/household/credit_card/useGetCreditCardSummaryBetweenDate";
 
-type DailyTableContainerProps = {
+type DailySearchContainerProps = {
   dailyDetail?: TableProps[];
   defaultFromDate?: Date;
   defaultToDate?: Date;
   defaultIncomeTotal?: number;
   defaultOutcomeTotal?: number;
 };
-export const DailyTableContainer: FC<DailyTableContainerProps> = ({
+export const DailySearchContainer: FC<DailySearchContainerProps> = ({
   dailyDetail: dailyDetailTableProps,
   defaultFromDate,
   defaultToDate,
@@ -62,7 +62,7 @@ export const DailyTableContainer: FC<DailyTableContainerProps> = ({
   const disabled = dailyDetailTableProps?.length != undefined;
 
   return (
-    <DailyTablePresenter
+    <DailySearchPresenter
       fromDate={fromDate}
       changeFromDate={setFromDate}
       toDate={toDate}

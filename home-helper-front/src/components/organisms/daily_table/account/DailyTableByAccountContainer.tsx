@@ -36,8 +36,6 @@ export const DailyTableByAccountContainer: FC<
 
   return (
     <DailyTableByAccountPresenter
-      firstDay={fromDate}
-      lastDay={toDate}
       tableProps={tableProps}
       incomeTotal={(incomeTotal ?? 0) + creditCardIncomeTotal}
       outcomeTotal={(outcomeTotal ?? 0) + (creditCardOutcomeTotal ?? 0)}

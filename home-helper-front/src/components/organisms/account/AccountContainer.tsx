@@ -4,12 +4,14 @@ import { useState } from "react";
 import { useGetAccountBalanceList } from "@hooks/household/account/useGetAccountBalanceList";
 import { Button } from "@components/atoms/Button";
 import { DailyTableByAccount } from "@components/organisms/daily_table/account";
+import { CalendarContainer } from "@components/organisms/calendar/CalendarContainer";
+import { Split } from "@components/atoms/Split";
 
 export const AccountContainer = () => {
   const today = new Date();
   const [fromDate, setFromDate] = useState<Date | null>(null);
   const [toDate, setToDate] = useState<Date | null>(today);
-  const [openDailyDetail, setOpenDailyDetail] = useState(false);
+  const [isOpenRegister, setIsOpenRegister] = useState(false);
   const [selectedAccountId, setSelectedAccountId] = useState<string>("");
 
   const { data, total } = useGetAccountBalanceList(fromDate, toDate!);
@@ -24,41 +26,36 @@ export const AccountContainer = () => {
             value: Number(account?.total).toLocaleString(),
             align: "right",
           },
-          {
-            value: (
-              <Button
-                colorType={"detail"}
-                label={"詳細"}
-                onClick={() => {
-                  setSelectedAccountId(account?.accountId!);
-                  setOpenDailyDetail(true);
-                }}
-              />
-            ),
-            align: "center",
-          },
         ],
+        onClick: () => {
+          setSelectedAccountId(account?.accountId!);
+        },
       };
     }) ?? [];
 
-  if (openDailyDetail) {
-    return (
-      <DailyTableByAccount
-        fromDate={fromDate ?? new Date("2019-01-01")}
-        toDate={toDate!}
-        accountId={selectedAccountId}
-      />
-    );
-  }
-
   return (
-    <AccountPresenter
-      fromDate={fromDate}
-      changeFromDate={setFromDate}
-      toDate={toDate}
-      changeToDate={setToDate}
-      tableProps={tableProps}
-      total={total}
+    <Split
+      size={40}
+      first={
+        <AccountPresenter
+          fromDate={fromDate}
+          changeFromDate={setFromDate}
+          toDate={toDate}
+          changeToDate={setToDate}
+          tableProps={tableProps}
+          total={total}
+          isOpenRegister={isOpenRegister}
+          onCloseRegister={() => setIsOpenRegister(false)}
+          onOpenRegister={() => setIsOpenRegister(true)}
+        />
+      }
+      second={
+        <DailyTableByAccount
+          fromDate={fromDate ?? new Date("2019-01-01")}
+          toDate={toDate!}
+          accountId={selectedAccountId}
+        />
+      }
     />
   );
 };

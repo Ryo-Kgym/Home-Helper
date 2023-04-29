@@ -1,12 +1,12 @@
 import { FC } from "react";
-import { Table, TableProps } from "@components/atoms/Table";
+import { TableProps } from "@components/atoms/Table";
 import { RangeDatePicker } from "@components/molecules/RangeDatePicker";
-import { IocomeTotal } from "@components/molecules/Total";
 import { Modal } from "@components/atoms/Modal";
 import { UpdateDailyDetail } from "@components/organisms/update_daily_detail";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
+import { DailyTable } from "@components/organisms/daily_table/DailyTable";
 
-type DailyTablePresenterProps = {
+type DailySearchPresenterProps = {
   fromDate: Date | null;
   changeFromDate: (date: Date) => void;
   toDate: Date | null;
@@ -19,7 +19,7 @@ type DailyTablePresenterProps = {
   onClose: () => void;
   detailForUpdate: DailyDetail | null;
 };
-export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
+export const DailySearchPresenter: FC<DailySearchPresenterProps> = ({
   fromDate,
   changeFromDate,
   toDate,
@@ -40,13 +40,11 @@ export const DailyTablePresenter: FC<DailyTablePresenterProps> = ({
       changeToDate={changeToDate}
       disabled={disabled}
     />
-    <Table
-      header={["日付", "ジャンル", "カテゴリ", "アカウント", "金額", "メモ"]}
+    <DailyTable
       tablePropsList={tablePropsList}
-      size={"xs"}
-      height={"75vh"}
+      incomeTotal={incomeTotal}
+      outcomeTotal={outcomeTotal}
     />
-    <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
     <Modal opened={modalOpen} onClose={onClose}>
       <UpdateDailyDetail initData={detailForUpdate} onClose={onClose} />
     </Modal>

@@ -3875,6 +3875,22 @@ export enum UsersOrderBy {
   UserNameDesc = "USER_NAME_DESC",
 }
 
+export type CreateAccountMutationVariables = Exact<{
+  accountId: Scalars["UUID"];
+  accountName: Scalars["String"];
+  displayOrder: Scalars["Int"];
+  groupId: Scalars["UUID"];
+}>;
+
+export type CreateAccountMutation = {
+  __typename?: "Mutation";
+  createAccount?: {
+    __typename?: "CreateAccountPayload";
+    clientMutationId?: string | null;
+    account?: { __typename?: "Account"; accountId: any } | null;
+  } | null;
+};
+
 export type CreateCreditCardDetailMutationVariables = Exact<{
   id: Scalars["UUID"];
   date: Scalars["Date"];
@@ -4530,6 +4546,38 @@ export type UpdateDailyDetailByIdMutation = {
   } | null;
 };
 
+export const CreateAccountDocument = gql`
+  mutation CreateAccount(
+    $accountId: UUID!
+    $accountName: String!
+    $displayOrder: Int!
+    $groupId: UUID!
+  ) {
+    createAccount(
+      input: {
+        account: {
+          accountId: $accountId
+          accountName: $accountName
+          displayOrder: $displayOrder
+          groupId: $groupId
+          validFlag: true
+        }
+      }
+    ) {
+      clientMutationId
+      account {
+        accountId
+      }
+    }
+  }
+`;
+
+export function useCreateAccountMutation() {
+  return Urql.useMutation<
+    CreateAccountMutation,
+    CreateAccountMutationVariables
+  >(CreateAccountDocument);
+}
 export const CreateCreditCardDetailDocument = gql`
   mutation CreateCreditCardDetail(
     $id: UUID!

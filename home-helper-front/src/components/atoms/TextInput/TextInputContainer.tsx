@@ -1,39 +1,39 @@
 import { FC } from "react";
-import { NumberInputPresenter } from "@components/atoms/NumberInput/NumberInputPresenter";
+import { TextInputPresenter } from "@components/atoms/TextInput/TextInputPresenter";
 
 type NumberInputContainerProps = {
   label: string;
-  value: number | "";
-  onChange: (value: number | "") => void;
+  value: string;
+  onChange: (value: string) => void;
   placeholder?: string;
   withAsterisk?: boolean;
   disabled?: boolean;
   maxLength?: number;
 };
-export const NumberInputContainer: FC<NumberInputContainerProps> = ({
+export const TextInputContainer: FC<NumberInputContainerProps> = ({
   label,
   value,
   onChange,
   placeholder,
   withAsterisk,
   disabled = false,
-  maxLength = 9,
+  maxLength = 32,
 }) => {
-  const checkValue = (value: number | "") => {
+  const checkValue = (value: string) => {
     if (value === "") {
       return "Required";
     }
-    if (String(value).length > maxLength) {
-      return "Too long";
+    if (value.length > maxLength) {
+      return `Too long. Until ${maxLength} characters}`;
     }
     return "";
   };
 
   return (
-    <NumberInputPresenter
+    <TextInputPresenter
       label={label}
       value={value}
-      onChange={onChange}
+      onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       error={checkValue(value)}
       withAsterisk={withAsterisk}
