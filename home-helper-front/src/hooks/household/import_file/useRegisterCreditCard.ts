@@ -13,6 +13,7 @@ export const useRegisterCreditCard = ({
   withdrawalDate,
   loadData,
   userId,
+  groupId,
   uuidList,
 }: RegistrationArgs) => {
   const summaryVariableList = {
@@ -22,6 +23,7 @@ export const useRegisterCreditCard = ({
     totalAmount: loadData.reduce((acc, cur) => acc + cur.price, 0),
     count: loadData.length,
     withdrawalDate: withdrawalDate,
+    groupId,
   };
 
   const detailVariableList = loadData.map((data, idx) => ({

@@ -31,13 +31,14 @@ export const useCreateImportFile = ({
   const { get } = useUuid();
   const { now } = useDate();
   const { groupId } = useGroup();
+  const fileImportId = get();
 
   // Common table
   const [ignore, createImportFileMutation] =
     useCreateImportFileHistoryMutation();
 
   const createImportFileVariables = {
-    id: get(),
+    id: fileImportId,
     fileType: fileType,
     fileName: fileName,
     importUserId: userId,
@@ -64,7 +65,7 @@ export const useCreateImportFile = ({
         createCreditCardSummaryMutation,
         createCreditCardDetailMutation,
         createDailyDetailMutation,
-        summaryId: get(),
+        summaryId: fileImportId,
         fileType,
         accountId,
         withdrawalDate,
