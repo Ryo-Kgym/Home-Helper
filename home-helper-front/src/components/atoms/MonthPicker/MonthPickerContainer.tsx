@@ -7,6 +7,7 @@ type MonthPickerContainerProps = {
   changeValue: (value: Date | null) => void;
   label?: string;
   clearable?: boolean;
+  isLastDay?: boolean;
 };
 
 export const MonthPickerContainer: FC<MonthPickerContainerProps> = ({
@@ -14,12 +15,19 @@ export const MonthPickerContainer: FC<MonthPickerContainerProps> = ({
   changeValue,
   label = "YEAR MONTH",
   clearable = false,
+  isLastDay = false,
 }) => {
   const { offsetDate } = useDate();
 
   const setValue = (value: Date | null) => {
     if (value === null) {
       changeValue(null);
+      return;
+    }
+    if (isLastDay) {
+      changeValue(
+        offsetDate(new Date(value.getFullYear(), value.getMonth() + 1, 0))
+      );
       return;
     }
     changeValue(offsetDate(value));
