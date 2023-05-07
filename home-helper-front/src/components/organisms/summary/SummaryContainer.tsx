@@ -25,8 +25,8 @@ export const SummaryContainer: FC<SummaryContainerProps> = () => {
   const { userName } = useUser();
 
   const { data } = useFetchSummaryCategoryAmountByUser({
-    fromMonth,
-    toMonth,
+    fromMonth: fromMonth!,
+    toMonth: toMonth!,
   });
 
   const createMonthNames = () => {

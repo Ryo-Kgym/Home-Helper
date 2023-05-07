@@ -6,11 +6,10 @@ import {
   TotalAmountByMonthlyArgs,
 } from "@function/monthly/totalAmountByMonthly";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { useDate } from "@hooks/date/useDate";
 
 type Args = {
-  fromMonth: Date | null;
-  toMonth: Date | null;
+  fromMonth: Date;
+  toMonth: Date;
 };
 
 type InterfaceType = (args: Args) => {
@@ -22,17 +21,12 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
   toMonth,
 }) => {
   const { userId } = useUser();
-  const { offsetDate } = useDate();
-  const today = new Date();
-
-  const fromDate = fromMonth ?? offsetDate(new Date(today.getFullYear(), 0, 1));
-  const toDate = toMonth ?? offsetDate(new Date(today.getFullYear(), 11, 31));
 
   const [{ data }] = useGetSummaryCategoryByUserBetweenDateQuery({
     variables: {
       userId,
-      fromDate: fromDate.toISOString().slice(0, 10),
-      toDate: toDate.toISOString().slice(0, 10),
+      fromDate: fromMonth!.toISOString().slice(0, 10),
+      toDate: toMonth!.toISOString().slice(0, 10),
     },
   });
 
@@ -57,8 +51,8 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
           amount: Number(cc.amount),
         })) ?? []
       ),
-      fromDate,
-      toDate,
+      fromDate: fromMonth,
+      toDate: toMonth,
     })) ?? [];
 
   return { data: args.map((a) => totalAmountByMonthly(a)) };
