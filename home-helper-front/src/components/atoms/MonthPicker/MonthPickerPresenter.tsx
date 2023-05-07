@@ -3,13 +3,13 @@ import { MonthPickerInput } from "@mantine/dates";
 
 type MonthPickerPresenterProps = {
   value: Date | null;
-  setValue: (value: Date | null) => void;
+  onChange: (value: Date | null) => void;
   label: string;
   clearable: boolean;
 };
 export const MonthPickerPresenter: FC<MonthPickerPresenterProps> = ({
   value,
-  setValue,
+  onChange,
   label,
   clearable,
 }) => (
@@ -20,7 +20,7 @@ export const MonthPickerPresenter: FC<MonthPickerPresenterProps> = ({
     yearLabelFormat={"YYYY"}
     monthsListFormat={"MM"}
     value={value}
-    onChange={setValue}
+    onChange={onChange}
     size={"lg"}
     clearable={clearable}
   />

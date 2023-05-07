@@ -17,7 +17,7 @@ export const DualMonthPickerPresenter: FC<DualMonthPickerPresenterProps> = ({
     <div className={"col-span-2"}>
       <MonthPicker
         value={fromMonth}
-        changeValue={changeFromMonth}
+        setValue={changeFromMonth}
         label={"FROM"}
       />
     </div>
@@ -25,7 +25,7 @@ export const DualMonthPickerPresenter: FC<DualMonthPickerPresenterProps> = ({
     <div className={"col-span-2"}>
       <MonthPicker
         value={toMonth}
-        changeValue={changeToMonth}
+        setValue={changeToMonth}
         label={"TO"}
         isLastDay
       />
