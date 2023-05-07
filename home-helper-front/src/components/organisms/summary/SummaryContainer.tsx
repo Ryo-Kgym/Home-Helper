@@ -74,9 +74,9 @@ export const SummaryContainer: FC<SummaryContainerProps> = () => {
   return (
     <SummaryPresenter
       fromMonth={fromMonth}
-      changeFromMonth={setFromMonth}
+      setFromMonth={setFromMonth}
       toMonth={toMonth}
-      changeToMonth={setToMonth}
+      setToMonth={setToMonth}
       defaultSelect="monthlyCategory"
       tabPropsList={tabProps}
     />

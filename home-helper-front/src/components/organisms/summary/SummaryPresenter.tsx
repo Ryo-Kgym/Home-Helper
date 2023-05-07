@@ -4,27 +4,27 @@ import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker";
 
 type SummaryPresenterProps = {
   fromMonth: Date | null;
-  changeFromMonth: (fromMonth: Date | null) => void;
+  setFromMonth: (fromMonth: Date | null) => void;
   toMonth: Date | null;
-  changeToMonth: (toMonth: Date | null) => void;
+  setToMonth: (toMonth: Date | null) => void;
   defaultSelect: string;
   tabPropsList: TabProps[];
 };
 
 export const SummaryPresenter: FC<SummaryPresenterProps> = ({
   fromMonth,
-  changeFromMonth,
+  setFromMonth,
   toMonth,
-  changeToMonth,
+  setToMonth,
   defaultSelect,
   tabPropsList,
 }) => (
   <div>
     <RangeMonthPicker
       fromMonth={fromMonth}
-      changeFromMonth={changeFromMonth}
+      changeFromMonth={setFromMonth}
       toMonth={toMonth}
-      changeToMonth={changeToMonth}
+      changeToMonth={setToMonth}
     />
     <Tab defaultSelect={defaultSelect} tabPropsList={tabPropsList} />
   </div>
