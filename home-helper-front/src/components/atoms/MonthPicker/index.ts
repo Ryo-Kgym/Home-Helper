@@ -1,1 +1,1 @@
-export { MonthPickerPresenter as MonthPicker } from "./MonthPickerPresenter";
+export { MonthPickerContainer as MonthPicker } from "./MonthPickerContainer";
