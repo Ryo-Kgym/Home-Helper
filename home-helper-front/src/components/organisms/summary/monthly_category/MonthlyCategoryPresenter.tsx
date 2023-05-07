@@ -28,6 +28,8 @@ export const MonthlyCategoryPresenter: FC<MonthlyCategoryPresenterProps> = ({
       ]}
       tablePropsList={tablePropsList}
       size={"xs"}
+      height={"75vh"}
+      toBottom
     />
   </div>
 );
