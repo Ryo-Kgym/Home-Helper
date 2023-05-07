@@ -1,22 +1,31 @@
 import { FC } from "react";
 import { Tab, TabProps } from "@components/atoms/Tab";
-import { YearPicker } from "@components/atoms/YearPicker";
+import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker";
 
 type SummaryPresenterProps = {
-  year: Date | null;
-  setYear: (year: Date | null) => void;
+  fromMonth: Date | null;
+  changeFromMonth: (fromMonth: Date | null) => void;
+  toMonth: Date | null;
+  changeToMonth: (toMonth: Date | null) => void;
   defaultSelect: string;
   tabPropsList: TabProps[];
 };
 
 export const SummaryPresenter: FC<SummaryPresenterProps> = ({
-  year,
-  setYear,
+  fromMonth,
+  changeFromMonth,
+  toMonth,
+  changeToMonth,
   defaultSelect,
   tabPropsList,
 }) => (
   <div>
-    <YearPicker year={year} setYear={setYear} />
+    <RangeMonthPicker
+      fromMonth={fromMonth}
+      changeFromMonth={changeFromMonth}
+      toMonth={toMonth}
+      changeToMonth={changeToMonth}
+    />
     <Tab defaultSelect={defaultSelect} tabPropsList={tabPropsList} />
   </div>
 );

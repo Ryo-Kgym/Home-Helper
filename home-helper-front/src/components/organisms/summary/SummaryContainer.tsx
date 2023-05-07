@@ -5,17 +5,28 @@ import { MonthlyCategory } from "@components/organisms/summary/monthly_category"
 import { useFetchSummaryCategoryAmountByUser } from "@hooks/household/summary_category/useFetchSummaryCategoryAmountByUser";
 import { useUser } from "@hooks/user/useUser";
 import { SummaryCategory } from "@components/organisms/master/summary_category";
+import { useDate } from "@hooks/date/useDate";
 
 type SummaryContainerProps = {};
 
 export const SummaryContainer: FC<SummaryContainerProps> = () => {
-  const [year, setYear] = useState<Date | null>(new Date());
+  const { offsetDate } = useDate();
+
   const [displayUserName, setDisplayUserName] = useState<string>("");
+
+  const thisYearFirstDay = offsetDate(new Date(new Date().getFullYear(), 0, 1));
+  const thisYearLastDay = offsetDate(
+    new Date(new Date().getFullYear(), 11, 31)
+  );
+
+  const [fromMonth, setFromMonth] = useState<Date | null>(thisYearFirstDay);
+  const [toMonth, setToMonth] = useState<Date | null>(thisYearLastDay);
 
   const { userName } = useUser();
 
   const { data } = useFetchSummaryCategoryAmountByUser({
-    year: year?.getFullYear() ?? new Date().getFullYear(),
+    fromMonth,
+    toMonth,
   });
 
   const tabProps: TabProps[] = [
@@ -42,8 +53,10 @@ export const SummaryContainer: FC<SummaryContainerProps> = () => {
 
   return (
     <SummaryPresenter
-      year={year}
-      setYear={setYear}
+      fromMonth={fromMonth}
+      changeFromMonth={setFromMonth}
+      toMonth={toMonth}
+      changeToMonth={setToMonth}
       defaultSelect="monthlyCategory"
       tabPropsList={tabProps}
     />

@@ -9,7 +9,8 @@ import { IocomeType } from "@domain/model/household/IocomeType";
 import { useDate } from "@hooks/date/useDate";
 
 type Args = {
-  year: number;
+  fromMonth: Date | null;
+  toMonth: Date | null;
 };
 
 type InterfaceType = (args: Args) => {
@@ -17,13 +18,15 @@ type InterfaceType = (args: Args) => {
 };
 
 export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
-  year,
+  fromMonth,
+  toMonth,
 }) => {
   const { userId } = useUser();
   const { offsetDate } = useDate();
+  const today = new Date();
 
-  const fromDate = offsetDate(new Date(year, 0, 1));
-  const toDate = offsetDate(new Date(year, 11, 31));
+  const fromDate = fromMonth ?? offsetDate(new Date(today.getFullYear(), 0, 1));
+  const toDate = toMonth ?? offsetDate(new Date(today.getFullYear(), 11, 31));
 
   const [{ data }] = useGetSummaryCategoryByUserBetweenDateQuery({
     variables: {
