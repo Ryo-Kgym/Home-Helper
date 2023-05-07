@@ -46,7 +46,7 @@ const createMonthlyTotalMap = ({
   const monthlyTotalMap = new Map<string, number>();
   let startDate = fromDate;
   while (startDate <= toDate) {
-    monthlyTotalMap.set(startDate.toISOString().slice(5, 7), 0);
+    monthlyTotalMap.set(startDate.toISOString().slice(0, 7), 0);
     const date = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 1);
     const offset = date.getTimezoneOffset();
     startDate = new Date(date.getTime() - offset * 60 * 1000);
