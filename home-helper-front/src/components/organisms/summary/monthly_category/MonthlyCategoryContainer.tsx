@@ -7,10 +7,12 @@ import { MonthlyCategoryKey } from "@hooks/household/summary_category/useFetchSu
 
 type MonthlyCategoryContainerProps = {
   data: TotalAmountByMonthly<MonthlyCategoryKey>[];
+  monthNames: string[];
 };
 
 export const MonthlyCategoryContainer: FC<MonthlyCategoryContainerProps> = ({
   data,
+  monthNames,
 }) => {
   const tablePropsList: TableProps[] = data.map((d) => {
     return {
@@ -40,5 +42,10 @@ export const MonthlyCategoryContainer: FC<MonthlyCategoryContainerProps> = ({
     };
   });
 
-  return <MonthlyCategoryPresenter tablePropsList={tablePropsList} />;
+  return (
+    <MonthlyCategoryPresenter
+      tablePropsList={tablePropsList}
+      monthNames={monthNames}
+    />
+  );
 };

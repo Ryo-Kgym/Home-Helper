@@ -29,11 +29,31 @@ export const SummaryContainer: FC<SummaryContainerProps> = () => {
     toMonth,
   });
 
+  const createMonthNames = () => {
+    let iterator = fromMonth;
+    let prevYear = 0;
+    let monthNames: string[] = [];
+    while (iterator && iterator <= toMonth!) {
+      let year = "";
+      if (prevYear !== iterator.getFullYear()) {
+        prevYear = iterator.getFullYear();
+        year = `${iterator.getFullYear()}年`;
+      }
+      const month = iterator.toISOString().slice(5, 7);
+      monthNames.push(`${year}${month}月`);
+      iterator = offsetDate(
+        new Date(iterator.getFullYear(), iterator.getMonth() + 1, 1)
+      );
+    }
+
+    return monthNames;
+  };
+
   const tabProps: TabProps[] = [
     {
       value: "monthlyCategory",
       label: `月次カテゴリ（${displayUserName}）`,
-      contents: <MonthlyCategory data={data} />,
+      contents: <MonthlyCategory data={data} monthNames={createMonthNames()} />,
     },
     {
       value: "monthlyCategoryAll",
