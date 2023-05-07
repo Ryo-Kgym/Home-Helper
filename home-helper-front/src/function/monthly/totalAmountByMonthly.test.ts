@@ -32,11 +32,13 @@ describe("totalAmountByMonthly", () => {
         { month: "10", amount: 1000 },
         { month: "11", amount: 1100 },
       ],
+      fromDate: new Date("2023-01-01"),
+      toDate: new Date("2023-12-31"),
     },
   ])(
     "totalAmountByMonthly",
-    ({ key, list }: TotalAmountByMonthlyArgs<string>) => {
-      const actual = totalAmountByMonthly({ key, list });
+    ({ key, list, fromDate, toDate }: TotalAmountByMonthlyArgs<string>) => {
+      const actual = totalAmountByMonthly({ key, list, fromDate, toDate });
       expect(actual).toEqual({
         key,
         monthlyTotal: [

@@ -50,6 +50,8 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
           amount: Number(cc.amount),
         })) ?? []
       ),
+      fromDate,
+      toDate,
     })) ?? [];
 
   return { data: args.map((a) => totalAmountByMonthly(a)) };
