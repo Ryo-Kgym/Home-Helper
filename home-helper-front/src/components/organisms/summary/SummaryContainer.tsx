@@ -24,10 +24,11 @@ export const SummaryContainer: FC<SummaryContainerProps> = () => {
 
   const { userName } = useUser();
 
-  const { data } = useFetchSummaryCategoryAmountByUser({
-    fromMonth: fromMonth!,
-    toMonth: toMonth!,
-  });
+  const { data, incomeTotal, outcomeTotal } =
+    useFetchSummaryCategoryAmountByUser({
+      fromMonth: fromMonth!,
+      toMonth: toMonth!,
+    });
 
   const createMonthNames = () => {
     let iterator = fromMonth;
@@ -53,7 +54,14 @@ export const SummaryContainer: FC<SummaryContainerProps> = () => {
     {
       value: "monthlyCategory",
       label: `月次カテゴリ（${displayUserName}）`,
-      contents: <MonthlyCategory data={data} monthNames={createMonthNames()} />,
+      contents: (
+        <MonthlyCategory
+          data={data}
+          incomeTotal={incomeTotal}
+          outcomeTotal={outcomeTotal}
+          monthNames={createMonthNames()}
+        />
+      ),
     },
     {
       value: "monthlyCategoryAll",

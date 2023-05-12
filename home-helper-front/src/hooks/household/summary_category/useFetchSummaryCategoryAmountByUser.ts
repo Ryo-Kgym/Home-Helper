@@ -14,6 +14,8 @@ type Args = {
 
 type InterfaceType = (args: Args) => {
   data: TotalAmountByMonthly<MonthlyCategoryKey>[];
+  incomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>;
+  outcomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>;
 };
 
 export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
@@ -92,7 +94,7 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
       );
 
   return {
-    data: monthlyTotalByCategory.concat(incomeTotal).concat(outcomeTotal),
+    data: monthlyTotalByCategory,
     incomeTotal,
     outcomeTotal,
   };
