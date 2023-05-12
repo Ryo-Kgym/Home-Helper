@@ -4,6 +4,8 @@ export interface TotalAmountByMonthlyArgs<T> {
     month: string;
     amount: number;
   }[];
+  fromDate: Date;
+  toDate: Date;
 }
 
 export type TotalAmountByMonthly<T> = {
@@ -15,29 +17,40 @@ export type TotalAmountByMonthly<T> = {
 export const totalAmountByMonthly = <T>({
   key,
   list,
+  fromDate,
+  toDate,
 }: TotalAmountByMonthlyArgs<T>): TotalAmountByMonthly<T> => {
-  const monthlyTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   let total = 0;
 
-  const monthlyFunctionMap = new Map([
-    ["01", (amount: number) => (monthlyTotal[0] += amount)],
-    ["02", (amount: number) => (monthlyTotal[1] += amount)],
-    ["03", (amount: number) => (monthlyTotal[2] += amount)],
-    ["04", (amount: number) => (monthlyTotal[3] += amount)],
-    ["05", (amount: number) => (monthlyTotal[4] += amount)],
-    ["06", (amount: number) => (monthlyTotal[5] += amount)],
-    ["07", (amount: number) => (monthlyTotal[6] += amount)],
-    ["08", (amount: number) => (monthlyTotal[7] += amount)],
-    ["09", (amount: number) => (monthlyTotal[8] += amount)],
-    ["10", (amount: number) => (monthlyTotal[9] += amount)],
-    ["11", (amount: number) => (monthlyTotal[10] += amount)],
-    ["12", (amount: number) => (monthlyTotal[11] += amount)],
-  ]);
+  const monthlyTotalMap = createMonthlyTotalMap({ fromDate, toDate });
 
   list.forEach(({ month, amount }) => {
-    monthlyFunctionMap.get(month)!(amount);
+    const v = monthlyTotalMap.get(month) ?? 0;
+    monthlyTotalMap.set(month, v + amount);
+
     total += amount;
   });
 
+  const monthlyTotal = Array.from(monthlyTotalMap.values());
+
   return { key, monthlyTotal, total };
+};
+
+const createMonthlyTotalMap = ({
+  fromDate,
+  toDate,
+}: {
+  fromDate: Date;
+  toDate: Date;
+}) => {
+  const monthlyTotalMap = new Map<string, number>();
+  let startDate = fromDate;
+  while (startDate <= toDate) {
+    monthlyTotalMap.set(startDate.toISOString().slice(0, 7), 0);
+    const date = new Date(startDate.getFullYear(), startDate.getMonth() + 1, 1);
+    const offset = date.getTimezoneOffset();
+    startDate = new Date(date.getTime() - offset * 60 * 1000);
+  }
+
+  return monthlyTotalMap;
 };

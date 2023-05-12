@@ -17,9 +17,15 @@ export const useDate = () => {
     return dayjs(date).tz().format("YYYY-MM-DD");
   };
 
+  const offsetDate = (date: Date) => {
+    const offset = date.getTimezoneOffset();
+    return new Date(date.getTime() - offset * 60 * 1000);
+  };
+
   return {
     now,
     convertToFull,
     convertToYmd,
+    offsetDate,
   };
 };

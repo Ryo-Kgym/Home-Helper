@@ -5,10 +5,11 @@ import { IconArrowBarToDown } from "@tabler/icons-react";
 type TablePresenterProps = {
   headerTr: ReactElement;
   tbody: ReactElement;
+  tfoot?: ReactElement;
   height: string;
   scrolled: boolean;
   setScrolled: (scrolled: boolean) => void;
-  classes: Record<"header" | "scrolled", string>;
+  classes: Record<"header" | "footer" | "scrolled", string>;
   cx: (a: string, b?: Record<string, boolean>) => string;
   fontSize: number;
   horizontalSpacing: number;
@@ -19,6 +20,7 @@ type TablePresenterProps = {
 export const TablePresenter: FC<TablePresenterProps> = ({
   headerTr,
   tbody,
+  tfoot,
   height,
   scrolled,
   setScrolled,
@@ -49,6 +51,13 @@ export const TablePresenter: FC<TablePresenterProps> = ({
           {headerTr}
         </thead>
         {tbody}
+        {tfoot && (
+          <tfoot
+            className={cx(classes.footer, { [classes.scrolled]: scrolled })}
+          >
+            {tfoot}
+          </tfoot>
+        )}
       </Table>
       <JumpToBottom scrollToBottom={scrollToBottom} />
     </ScrollArea>

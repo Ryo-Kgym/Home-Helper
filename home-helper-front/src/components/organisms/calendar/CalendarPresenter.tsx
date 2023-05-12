@@ -18,7 +18,7 @@ export const CalendarPresenter: FC<CalendarPresenterProps> = ({
   return (
     <div className={"grid grid-cols-1 w-full"}>
       <div className={"justify-center"}>
-        <MonthPicker value={baseDate} changeValue={setBaseDate} />
+        <MonthPicker value={baseDate} setValue={setBaseDate} />
       </div>
 
       <div className={"w-full grid grid-cols-7 border-l-2"}>

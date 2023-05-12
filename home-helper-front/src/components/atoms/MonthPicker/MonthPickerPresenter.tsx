@@ -3,27 +3,25 @@ import { MonthPickerInput } from "@mantine/dates";
 
 type MonthPickerPresenterProps = {
   value: Date | null;
-  changeValue: (value: Date | null) => void;
-  label?: string;
-  clearable?: boolean;
+  onChange: (value: Date | null) => void;
+  label: string;
+  clearable: boolean;
 };
 export const MonthPickerPresenter: FC<MonthPickerPresenterProps> = ({
   value,
-  changeValue,
-  label = "YEAR MONTH",
-  clearable = false,
-}) => {
-  return (
-    <MonthPickerInput
-      label={label}
-      placeholder="YYYY-MM"
-      valueFormat={"YYYY-MM"}
-      yearLabelFormat={"YYYY"}
-      monthsListFormat={"MM"}
-      value={value}
-      onChange={changeValue}
-      size={"lg"}
-      clearable={clearable}
-    />
-  );
-};
+  onChange,
+  label,
+  clearable,
+}) => (
+  <MonthPickerInput
+    label={label}
+    placeholder="YYYY-MM"
+    valueFormat={"YYYY-MM"}
+    yearLabelFormat={"YYYY"}
+    monthsListFormat={"MM"}
+    value={value}
+    onChange={onChange}
+    size={"lg"}
+    clearable={clearable}
+  />
+);

@@ -17,13 +17,18 @@ export const DualMonthPickerPresenter: FC<DualMonthPickerPresenterProps> = ({
     <div className={"col-span-2"}>
       <MonthPicker
         value={fromMonth}
-        changeValue={changeFromMonth}
+        setValue={changeFromMonth}
         label={"FROM"}
       />
     </div>
     <div className={"text-center pt-7"}>〜</div>
     <div className={"col-span-2"}>
-      <MonthPicker value={toMonth} changeValue={changeToMonth} label={"TO"} />
+      <MonthPicker
+        value={toMonth}
+        setValue={changeToMonth}
+        label={"TO"}
+        isLastDay
+      />
     </div>
   </div>
 );

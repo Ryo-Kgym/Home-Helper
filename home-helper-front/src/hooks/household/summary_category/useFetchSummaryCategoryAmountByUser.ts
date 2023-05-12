@@ -8,24 +8,27 @@ import {
 import { IocomeType } from "@domain/model/household/IocomeType";
 
 type Args = {
-  year: number;
+  fromMonth: Date;
+  toMonth: Date;
 };
 
 type InterfaceType = (args: Args) => {
   data: TotalAmountByMonthly<MonthlyCategoryKey>[];
+  incomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>;
+  outcomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>;
 };
 
 export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
-  year,
+  fromMonth,
+  toMonth,
 }) => {
   const { userId } = useUser();
-  const fromDate = new Date(year, 0, 1);
-  const toDate = new Date(year, 11, 31);
+
   const [{ data }] = useGetSummaryCategoryByUserBetweenDateQuery({
     variables: {
       userId,
-      fromDate: fromDate.toISOString().slice(0, 10),
-      toDate: toDate.toISOString().slice(0, 10),
+      fromDate: fromMonth!.toISOString().slice(0, 10),
+      toDate: toMonth!.toISOString().slice(0, 10),
     },
   });
 
@@ -37,7 +40,7 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
       },
       list: (
         sc.category?.daily.map((d) => ({
-          month: d.date.slice(5, 7) as string,
+          month: d.date.slice(0, 7) as string,
           amount: Number(d.amount),
         })) ?? []
       ).concat(
@@ -46,13 +49,55 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
             categoryName: sc.category?.name!,
             iocomeType: sc.category?.genre?.iocomeType!,
           },
-          month: cc.date.slice(5, 7) as string,
+          month: cc.date.slice(0, 7) as string,
           amount: Number(cc.amount),
         })) ?? []
       ),
+      fromDate: fromMonth,
+      toDate: toMonth,
     })) ?? [];
 
-  return { data: args.map((a) => totalAmountByMonthly(a)) };
+  const monthlyTotalByCategory = args.map((a) => totalAmountByMonthly(a));
+  const size = monthlyTotalByCategory[0]?.monthlyTotal.length ?? 0;
+  const defaultMonthlyTotal = new Array<number>(size).fill(0);
+
+  const incomeTotal: TotalAmountByMonthly<MonthlyCategoryKey> =
+    monthlyTotalByCategory
+      .filter((d) => d.key.iocomeType === IocomeType.Income)
+      .reduce(
+        (a, b) => ({
+          key: { categoryName: "収入", iocomeType: IocomeType.Income },
+          monthlyTotal: a.monthlyTotal.map((v, i) => v + b.monthlyTotal[i]),
+          total: a.total + b.total,
+        }),
+        {
+          key: { categoryName: "収入", iocomeType: IocomeType.Income },
+          monthlyTotal: defaultMonthlyTotal,
+          total: 0,
+        }
+      );
+
+  const outcomeTotal: TotalAmountByMonthly<MonthlyCategoryKey> =
+    monthlyTotalByCategory
+      .filter((d) => d.key.iocomeType === IocomeType.Outcome)
+      .reduce(
+        (a, b) => ({
+          key: { categoryName: "支出", iocomeType: IocomeType.Outcome },
+          monthlyTotal: a.monthlyTotal.map((v, i) => v + b.monthlyTotal[i]),
+          total: a.total + b.total,
+        }),
+        {
+          key: { categoryName: "支出", iocomeType: IocomeType.Outcome },
+          monthlyTotal: defaultMonthlyTotal,
+          total: 0,
+        }
+      );
+
+  return {
+    data: monthlyTotalByCategory,
+    incomeTotal,
+    outcomeTotal,
+  };
 };
 
 export type MonthlyCategoryKey = {
