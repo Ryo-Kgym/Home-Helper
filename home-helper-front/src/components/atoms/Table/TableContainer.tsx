@@ -7,6 +7,7 @@ import { MantineSize } from "@mantine/styles";
 type Props = {
   header: string[];
   tablePropsList: TableProps[];
+  footer?: ColumnProps[][];
   height?: string;
   fontSize?: number;
   size?: MantineSize;
@@ -15,6 +16,7 @@ type Props = {
 export const TableContainer: FC<Props> = ({
   header,
   tablePropsList,
+  footer,
   height = "80vh",
   size = "xl",
   toBottom = false,
@@ -33,31 +35,44 @@ export const TableContainer: FC<Props> = ({
   const generateRow = (
     { keyPrefix, onClick, columns }: TableProps,
     i: number
-  ) => {
-    return (
-      <tr
-        key={keyPrefix + i}
-        onClick={onClick ?? (() => {})}
-        className={onClick ? "cursor-pointer" : ""}
-      >
-        {columns.map(generateColumn)}
-      </tr>
-    );
-  };
+  ) => (
+    <tr
+      key={keyPrefix + i}
+      onClick={onClick ?? (() => {})}
+      className={onClick ? "cursor-pointer" : ""}
+    >
+      {columns.map(generateColumn)}
+    </tr>
+  );
 
-  const generateColumn = (columnProps: ColumnProps, j: number) => {
-    return (
-      <td
-        key={"td" + j}
-        align={columnProps.align ?? "left"}
-        hidden={columnProps.hidden ?? false}
-      >
-        {columnProps.value}
-      </td>
-    );
-  };
+  const generateColumn = (columnProps: ColumnProps, j: number) => (
+    <td
+      key={"td" + j}
+      align={columnProps.align ?? "left"}
+      hidden={columnProps.hidden ?? false}
+    >
+      {columnProps.value}
+    </td>
+  );
+
+  const generateFooterRow = (row: ColumnProps[], i: number) => (
+    <tr key={"tfoot" + i}>
+      {row.map((columnProps: ColumnProps, j: number) => (
+        <td
+          key={"td" + j}
+          align={columnProps.align ?? "left"}
+          hidden={columnProps.hidden ?? false}
+          className={"p-2 border-2 font-bold bg-white"}
+        >
+          {columnProps.value}
+        </td>
+      ))}
+    </tr>
+  );
 
   const tbody = <tbody>{tablePropsList.map(generateRow)}</tbody>;
+
+  const tfoot = footer ? <>{footer.map(generateFooterRow)}</> : undefined;
 
   const viewport = useRef<HTMLDivElement>(null);
 
@@ -73,6 +88,7 @@ export const TableContainer: FC<Props> = ({
     <TablePresenter
       headerTr={thead}
       tbody={tbody}
+      tfoot={tfoot}
       height={height}
       scrolled={scrolled}
       setScrolled={setScrolled}
@@ -91,6 +107,27 @@ const useStyles = createStyles((theme) => ({
   header: {
     position: "sticky",
     top: 0,
+    backgroundColor:
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+    transition: "box-shadow 150ms ease",
+    zIndex: 5,
+
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      left: 0,
+      right: 0,
+      bottom: 0,
+      borderBottom: `1px solid ${
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[3]
+          : theme.colors.gray[2]
+      }`,
+    },
+  },
+  footer: {
+    position: "sticky",
+    bottom: 0,
     backgroundColor:
       theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
     transition: "box-shadow 150ms ease",
