@@ -55,7 +55,47 @@ export const useFetchSummaryCategoryAmountByUser: InterfaceType = ({
       toDate: toMonth,
     })) ?? [];
 
-  return { data: args.map((a) => totalAmountByMonthly(a)) };
+  const monthlyTotalByCategory = args.map((a) => totalAmountByMonthly(a));
+  const size = monthlyTotalByCategory[0]?.monthlyTotal.length ?? 0;
+  const defaultMonthlyTotal = new Array<number>(size).fill(0);
+
+  const incomeTotal: TotalAmountByMonthly<MonthlyCategoryKey> =
+    monthlyTotalByCategory
+      .filter((d) => d.key.iocomeType === IocomeType.Income)
+      .reduce(
+        (a, b) => ({
+          key: { categoryName: "収入", iocomeType: IocomeType.Income },
+          monthlyTotal: a.monthlyTotal.map((v, i) => v + b.monthlyTotal[i]),
+          total: a.total + b.total,
+        }),
+        {
+          key: { categoryName: "収入", iocomeType: IocomeType.Income },
+          monthlyTotal: defaultMonthlyTotal,
+          total: 0,
+        }
+      );
+
+  const outcomeTotal: TotalAmountByMonthly<MonthlyCategoryKey> =
+    monthlyTotalByCategory
+      .filter((d) => d.key.iocomeType === IocomeType.Outcome)
+      .reduce(
+        (a, b) => ({
+          key: { categoryName: "支出", iocomeType: IocomeType.Outcome },
+          monthlyTotal: a.monthlyTotal.map((v, i) => v + b.monthlyTotal[i]),
+          total: a.total + b.total,
+        }),
+        {
+          key: { categoryName: "支出", iocomeType: IocomeType.Outcome },
+          monthlyTotal: defaultMonthlyTotal,
+          total: 0,
+        }
+      );
+
+  return {
+    data: monthlyTotalByCategory.concat(incomeTotal).concat(outcomeTotal),
+    incomeTotal,
+    outcomeTotal,
+  };
 };
 
 export type MonthlyCategoryKey = {
