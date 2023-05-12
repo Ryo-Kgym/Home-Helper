@@ -58,21 +58,19 @@ export const MonthlyCategoryContainer: FC<MonthlyCategoryContainerProps> = ({
 };
 
 const createFooter = (
-  outcomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>,
+  totalByMonthly: TotalAmountByMonthly<MonthlyCategoryKey>,
   iocomeType: IocomeType
 ): ColumnProps[] => {
   const ioMap = new Map([
     [IocomeType.Income, "収入"],
     [IocomeType.Outcome, "支出"],
   ]);
-  const { monthlyTotal, total } = outcomeTotal;
+  const { monthlyTotal, total } = totalByMonthly;
 
-  const dataColumns: ColumnProps[] = monthlyTotal.map((mt) => {
-    return {
-      value: <FormatPrice iocomeType={iocomeType} price={mt} />,
-      align: "right",
-    };
-  });
+  const dataColumns: ColumnProps[] = monthlyTotal.map((mt) => ({
+    value: <FormatPrice iocomeType={iocomeType} price={mt} />,
+    align: "right",
+  }));
 
   return [
     { value: ioMap.get(iocomeType) + "合計", align: "center" },
