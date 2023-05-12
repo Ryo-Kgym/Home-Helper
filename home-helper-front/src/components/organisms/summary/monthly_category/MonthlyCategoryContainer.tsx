@@ -48,10 +48,25 @@ export const MonthlyCategoryContainer: FC<MonthlyCategoryContainerProps> = ({
   const incomeFooter = createFooter(incomeTotal, IocomeType.Income);
   const outcomeFooter = createFooter(outcomeTotal, IocomeType.Outcome);
 
+  const diff: ColumnProps[] = incomeTotal.monthlyTotal.map((mt, idx) => {
+    return {
+      value: Number(mt - outcomeTotal.monthlyTotal[idx]).toLocaleString(),
+      align: "right",
+    };
+  });
+  const diffFooter: ColumnProps[] = [
+    { value: "残金", align: "center" },
+    ...diff,
+    {
+      value: Number(incomeTotal.total - outcomeTotal.total).toLocaleString(),
+      align: "right",
+    },
+  ];
+
   return (
     <MonthlyCategoryPresenter
       tablePropsList={tablePropsList}
-      footer={[incomeFooter, outcomeFooter]}
+      footer={[incomeFooter, outcomeFooter, diffFooter]}
       monthNames={monthNames}
     />
   );
