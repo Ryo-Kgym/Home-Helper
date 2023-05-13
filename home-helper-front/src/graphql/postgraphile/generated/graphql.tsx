@@ -4037,6 +4037,28 @@ export type CreateSummaryCategoryMutation = {
   } | null;
 };
 
+export type CreateUserMutationVariables = Exact<{
+  userId: Scalars["UUID"];
+  userName: Scalars["String"];
+  email: Scalars["String"];
+  displayOrder: Scalars["Int"];
+  groupId: Scalars["UUID"];
+}>;
+
+export type CreateUserMutation = {
+  __typename?: "Mutation";
+  createUser?: {
+    __typename?: "CreateUserPayload";
+    clientMutationId?: string | null;
+    user?: {
+      __typename?: "User";
+      userId: any;
+      userName: string;
+      email: string;
+    } | null;
+  } | null;
+};
+
 export type DeleteDailyDetailBySerialNoMutationVariables = Exact<{
   id: Scalars["UUID"];
 }>;
@@ -4826,6 +4848,40 @@ export function useCreateSummaryCategoryMutation() {
     CreateSummaryCategoryMutation,
     CreateSummaryCategoryMutationVariables
   >(CreateSummaryCategoryDocument);
+}
+export const CreateUserDocument = gql`
+  mutation CreateUser(
+    $userId: UUID!
+    $userName: String!
+    $email: String!
+    $displayOrder: Int!
+    $groupId: UUID!
+  ) {
+    createUser(
+      input: {
+        user: {
+          userId: $userId
+          userName: $userName
+          displayOrder: $displayOrder
+          email: $email
+          groupId: $groupId
+        }
+      }
+    ) {
+      clientMutationId
+      user {
+        userId
+        userName
+        email
+      }
+    }
+  }
+`;
+
+export function useCreateUserMutation() {
+  return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(
+    CreateUserDocument
+  );
 }
 export const DeleteDailyDetailBySerialNoDocument = gql`
   mutation DeleteDailyDetailBySerialNo($id: UUID!) {

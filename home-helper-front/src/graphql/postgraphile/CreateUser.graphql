@@ -1,0 +1,26 @@
+mutation CreateUser(
+    $userId: UUID!
+    $userName: String!
+    $email: String!
+    $displayOrder: Int!
+    $groupId: UUID!
+) {
+    createUser(
+        input: {
+            user: {
+                userId: $userId
+                userName: $userName
+                displayOrder: $displayOrder
+                email: $email
+                groupId: $groupId
+            }
+        }
+    ) {
+        clientMutationId
+        user {
+            userId
+            userName
+            email
+        }
+    }
+}
