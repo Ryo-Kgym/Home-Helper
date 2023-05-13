@@ -16,6 +16,9 @@ type TablePresenterProps = {
   verticalSpacing: number;
   viewport: RefObject<HTMLDivElement>;
   scrollToBottom?: () => void;
+  toButtonOpen: boolean;
+  onMouseMoveHandler: () => void;
+  onMouseOutHandler: () => void;
 };
 export const TablePresenter: FC<TablePresenterProps> = ({
   headerTr,
@@ -31,12 +34,17 @@ export const TablePresenter: FC<TablePresenterProps> = ({
   verticalSpacing,
   scrollToBottom,
   viewport,
+  toButtonOpen,
+  onMouseMoveHandler,
+  onMouseOutHandler,
 }) => (
   <>
     <ScrollArea
       sx={{ height: height }}
       onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
       viewportRef={viewport}
+      onMouseOver={onMouseMoveHandler}
+      onMouseOut={onMouseOutHandler}
     >
       <Table
         striped
@@ -50,7 +58,7 @@ export const TablePresenter: FC<TablePresenterProps> = ({
         <thead className={cx(classes.header, { [classes.scrolled]: scrolled })}>
           {headerTr}
         </thead>
-        {tbody}
+        <tbody>{tbody}</tbody>
         {tfoot && (
           <tfoot
             className={cx(classes.footer, { [classes.scrolled]: scrolled })}
@@ -59,7 +67,7 @@ export const TablePresenter: FC<TablePresenterProps> = ({
           </tfoot>
         )}
       </Table>
-      <JumpToBottom scrollToBottom={scrollToBottom} />
+      {toButtonOpen && <JumpToBottom scrollToBottom={scrollToBottom} />}
     </ScrollArea>
   </>
 );
