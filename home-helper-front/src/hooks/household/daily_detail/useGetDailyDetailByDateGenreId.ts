@@ -1,16 +1,19 @@
 import { useGetDailyDetailByDateGenreIdQuery } from "@graphql/postgraphile/generated/graphql";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { useGroup } from "@hooks/group/useGroup";
 
 export const useGetDailyDetailByDateGenreId = (
   genreId: string,
   fromDate: Date | null,
   toDate: Date | null
 ) => {
+  const { groupId } = useGroup();
   const [{ data, fetching, error }] = useGetDailyDetailByDateGenreIdQuery({
     variables: {
-      genreId: genreId,
-      fromDate: fromDate,
-      toDate: toDate,
+      genreId,
+      fromDate,
+      toDate,
+      groupId,
     },
   });
 
