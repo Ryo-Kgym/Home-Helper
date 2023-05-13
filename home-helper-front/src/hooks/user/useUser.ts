@@ -4,5 +4,11 @@ export const useUser = () => {
   const { data: session } = useSession();
 
   const save = (user: { userId: string; userName: string }) => {};
-  return { userId: session?.user?.email, userName: session?.user?.name, save };
+
+  return {
+    userId: session?.user?.email ?? undefined,
+    email: session?.user?.email ?? undefined,
+    userName: session?.user?.name ?? undefined,
+    save,
+  };
 };
