@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { push } = useRouter();
 
   const checkAuth = () => {
-    if (userId.length === 0) {
+    if (!userId) {
       push("/");
     }
   };
