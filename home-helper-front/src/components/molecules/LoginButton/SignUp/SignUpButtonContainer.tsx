@@ -1,9 +1,20 @@
 import { LoginButton } from "@components/molecules/LoginButton";
-import React from "react";
+import { useState } from "react";
+import { Modal } from "@components/atoms/Modal";
+import { SignUp } from "@components/organisms/sign_up";
 
 export const SignUpButtonContainer = () => {
-  const label = "Sign Up";
-  const onClickHandler = () => {};
+  const [isOpen, setIsOpen] = useState(false);
 
-  return <LoginButton label={label} onClickHandler={onClickHandler} />;
+  const label = "Sign Up";
+  const onClickHandler = () => setIsOpen(true);
+
+  return (
+    <>
+      <LoginButton label={label} onClickHandler={onClickHandler} />
+      <Modal opened={isOpen} onClose={() => setIsOpen(false)}>
+        <SignUp />
+      </Modal>
+    </>
+  );
 };
