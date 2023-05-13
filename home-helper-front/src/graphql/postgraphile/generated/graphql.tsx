@@ -1555,6 +1555,16 @@ export type DeleteSummaryCategoryByUserPayload = {
   userByUserId?: Maybe<User>;
 };
 
+/** All input for the `deleteUserByEmail` mutation. */
+export type DeleteUserByEmailInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  email: Scalars["String"];
+};
+
 /** All input for the `deleteUserByUserId` mutation. */
 export type DeleteUserByUserIdInput = {
   /**
@@ -2090,6 +2100,8 @@ export type Mutation = {
   /** Deletes a single `User` using its globally unique id. */
   deleteUser?: Maybe<DeleteUserPayload>;
   /** Deletes a single `User` using a unique key. */
+  deleteUserByEmail?: Maybe<DeleteUserPayload>;
+  /** Deletes a single `User` using a unique key. */
   deleteUserByUserId?: Maybe<DeleteUserPayload>;
   /** Updates a single `Account` using its globally unique id and a patch. */
   updateAccount?: Maybe<UpdateAccountPayload>;
@@ -2133,6 +2145,8 @@ export type Mutation = {
   updateSummaryCategoryByUserById?: Maybe<UpdateSummaryCategoryByUserPayload>;
   /** Updates a single `User` using its globally unique id and a patch. */
   updateUser?: Maybe<UpdateUserPayload>;
+  /** Updates a single `User` using a unique key and a patch. */
+  updateUserByEmail?: Maybe<UpdateUserPayload>;
   /** Updates a single `User` using a unique key and a patch. */
   updateUserByUserId?: Maybe<UpdateUserPayload>;
 };
@@ -2298,6 +2312,11 @@ export type MutationDeleteUserArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteUserByEmailArgs = {
+  input: DeleteUserByEmailInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteUserByUserIdArgs = {
   input: DeleteUserByUserIdInput;
 };
@@ -2408,6 +2427,11 @@ export type MutationUpdateUserArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateUserByEmailArgs = {
+  input: UpdateUserByEmailInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateUserByUserIdArgs = {
   input: UpdateUserByUserIdInput;
 };
@@ -2504,6 +2528,7 @@ export type Query = Node & {
   summaryCategoryByUserById?: Maybe<SummaryCategoryByUser>;
   /** Reads a single `User` using its globally unique `ID`. */
   user?: Maybe<User>;
+  userByEmail?: Maybe<User>;
   userByUserId?: Maybe<User>;
 };
 
@@ -2799,6 +2824,11 @@ export type QuerySummaryCategoryByUserByIdArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryUserArgs = {
   nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryUserByEmailArgs = {
+  email: Scalars["String"];
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -3721,6 +3751,18 @@ export type UpdateSummaryCategoryByUserPayload = {
   userByUserId?: Maybe<User>;
 };
 
+/** All input for the `updateUserByEmail` mutation. */
+export type UpdateUserByEmailInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  email: Scalars["String"];
+  /** An object where the defined keys will be set on the `User` being updated. */
+  userPatch: UserPatch;
+};
+
 /** All input for the `updateUserByUserId` mutation. */
 export type UpdateUserByUserIdInput = {
   /**
@@ -3769,6 +3811,7 @@ export type User = Node & {
   /** Reads and enables pagination through a set of `DailyDetail`. */
   dailyDetailsByUserIdList: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
+  email: Scalars["String"];
   /** Reads a single `Group` that is related to this `User`. */
   groupByGroupId?: Maybe<Group>;
   groupId: Scalars["UUID"];
@@ -3818,6 +3861,8 @@ export type UserSummaryCategoryByUsersByUserIdListArgs = {
 export type UserCondition = {
   /** Checks for equality with the object’s `displayOrder` field. */
   displayOrder?: InputMaybe<Scalars["Int"]>;
+  /** Checks for equality with the object’s `email` field. */
+  email?: InputMaybe<Scalars["String"]>;
   /** Checks for equality with the object’s `groupId` field. */
   groupId?: InputMaybe<Scalars["UUID"]>;
   /** Checks for equality with the object’s `userId` field. */
@@ -3832,6 +3877,8 @@ export type UserFilter = {
   and?: InputMaybe<Array<UserFilter>>;
   /** Filter by the object’s `displayOrder` field. */
   displayOrder?: InputMaybe<IntFilter>;
+  /** Filter by the object’s `email` field. */
+  email?: InputMaybe<StringFilter>;
   /** Filter by the object’s `groupId` field. */
   groupId?: InputMaybe<UuidFilter>;
   /** Negates the expression. */
@@ -3847,6 +3894,7 @@ export type UserFilter = {
 /** An input for mutations affecting `User` */
 export type UserInput = {
   displayOrder: Scalars["Int"];
+  email: Scalars["String"];
   groupId: Scalars["UUID"];
   userId: Scalars["UUID"];
   userName: Scalars["String"];
@@ -3855,6 +3903,7 @@ export type UserInput = {
 /** Represents an update to a `User`. Fields that are set will be updated. */
 export type UserPatch = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
+  email?: InputMaybe<Scalars["String"]>;
   groupId?: InputMaybe<Scalars["UUID"]>;
   userId?: InputMaybe<Scalars["UUID"]>;
   userName?: InputMaybe<Scalars["String"]>;
@@ -3864,6 +3913,8 @@ export type UserPatch = {
 export enum UsersOrderBy {
   DisplayOrderAsc = "DISPLAY_ORDER_ASC",
   DisplayOrderDesc = "DISPLAY_ORDER_DESC",
+  EmailAsc = "EMAIL_ASC",
+  EmailDesc = "EMAIL_DESC",
   GroupIdAsc = "GROUP_ID_ASC",
   GroupIdDesc = "GROUP_ID_DESC",
   Natural = "NATURAL",
@@ -4464,6 +4515,25 @@ export type GetTotalBetweenDateQuery = {
     iocomeType?: IocomeType | null;
     total?: any | null;
   }> | null;
+};
+
+export type GetUserByEmailQueryVariables = Exact<{
+  email: Scalars["String"];
+}>;
+
+export type GetUserByEmailQuery = {
+  __typename?: "Query";
+  userByEmail?: {
+    __typename?: "User";
+    email: string;
+    userId: any;
+    userName: string;
+    groupByGroupId?: {
+      __typename?: "Group";
+      groupId: any;
+      groupName: string;
+    } | null;
+  } | null;
 };
 
 export type GetValidAccountsQueryVariables = Exact<{
@@ -5426,6 +5496,28 @@ export function useGetTotalBetweenDateQuery(
     GetTotalBetweenDateQuery,
     GetTotalBetweenDateQueryVariables
   >({ query: GetTotalBetweenDateDocument, ...options });
+}
+export const GetUserByEmailDocument = gql`
+  query GetUserByEmail($email: String!) {
+    userByEmail(email: $email) {
+      email
+      userId
+      userName
+      groupByGroupId {
+        groupId
+        groupName
+      }
+    }
+  }
+`;
+
+export function useGetUserByEmailQuery(
+  options: Omit<Urql.UseQueryArgs<GetUserByEmailQueryVariables>, "query">
+) {
+  return Urql.useQuery<GetUserByEmailQuery, GetUserByEmailQueryVariables>({
+    query: GetUserByEmailDocument,
+    ...options,
+  });
 }
 export const GetValidAccountsDocument = gql`
   query GetValidAccounts($groupId: UUID!) {

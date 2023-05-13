@@ -1,0 +1,11 @@
+query GetUserByEmail($email: String!) {
+    userByEmail(email: $email) {
+        email
+        userId
+        userName
+        groupByGroupId {
+            groupId
+            groupName
+        }
+    }
+}
