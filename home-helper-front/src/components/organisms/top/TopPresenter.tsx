@@ -7,7 +7,7 @@ const linkListProps = [{ href: "/household", label: "家計簿アプリ" }];
 export const TopPresenter: FC = () => {
   return (
     <>
-      <MainTitle label={"うちのアプリへようこそ！"} />
+      <MainTitle label={"Select App!"} />
       <LinkList props={linkListProps} />
     </>
   );

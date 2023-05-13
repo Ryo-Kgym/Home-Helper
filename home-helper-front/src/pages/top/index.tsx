@@ -1,4 +1,4 @@
-import { Page } from "@components/page/login/LoginPage";
+import { Page } from "@components/page/top/TopPage";
 import { NextPage } from "next";
 
 const index: NextPage = () => {
