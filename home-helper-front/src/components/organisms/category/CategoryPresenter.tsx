@@ -20,21 +20,19 @@ export const CategoryPresenter: FC<CategoryPresenterProps> = ({
   tableProps,
   incomeTotal,
   outcomeTotal,
-}) => {
-  return (
-    <div>
-      <RangeMonthPicker
-        fromMonth={fromMonth}
-        changeFromMonth={changeFromMonth}
-        toMonth={toMonth}
-        changeToMonth={changeToMonth}
-      />
-      <Table
-        header={["ジャンル", "カテゴリ", "金額", "詳細"]}
-        tablePropsList={tableProps}
-        size={"sm"}
-      />
-      <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
-    </div>
-  );
-};
+}) => (
+  <div>
+    <RangeMonthPicker
+      fromMonth={fromMonth}
+      changeFromMonth={changeFromMonth}
+      toMonth={toMonth}
+      changeToMonth={changeToMonth}
+    />
+    <Table
+      header={["ジャンル", "カテゴリ", "金額"]}
+      tablePropsList={tableProps}
+      size={"xs"}
+    />
+    <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
+  </div>
+);
