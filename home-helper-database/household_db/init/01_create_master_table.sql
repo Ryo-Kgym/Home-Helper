@@ -12,10 +12,11 @@ CREATE TABLE "group" (
 
 DROP TABLE IF EXISTS "user" CASCADE;
 CREATE TABLE "user" (
-    user_id       uuid        NOT NULL PRIMARY KEY,
-    user_name     VARCHAR(50) NOT NULL,
-    display_order INT         NOT NULL,
-    group_id      uuid        NOT NULL,
+    user_id       uuid         NOT NULL PRIMARY KEY,
+    user_name     VARCHAR(50)  NOT NULL,
+    display_order INT          NOT NULL,
+    group_id      uuid         NOT NULL,
+    email         VARCHAR(256) NOT NULL CONSTRAINT user_email_uk UNIQUE,
     CONSTRAINT user_group_id_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
 
