@@ -69,7 +69,7 @@ const JumpToBottom: FC<{ scrollToBottom: (() => void) | undefined }> = ({
 }) =>
   scrollToBottom ? (
     <div
-      className={"z-10 absolute bottom-20 right-10 border-0"}
+      className={"z-10 absolute bottom-10 right-10 border-0"}
       onClick={scrollToBottom}
     >
       <ActionIcon variant="default" size={"3em"}>

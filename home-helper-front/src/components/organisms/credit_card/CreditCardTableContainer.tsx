@@ -25,7 +25,7 @@ export const CreditCardTableContainer: FC<
       second={
         <CreditCardDetailTable creditCardSummaryId={creditCardSummaryId} />
       }
-      size={40}
+      size={50}
     />
   );
 };

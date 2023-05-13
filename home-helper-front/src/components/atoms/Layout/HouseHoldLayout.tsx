@@ -35,11 +35,11 @@ export const HouseHoldLayout: FC<HouseHoldLayoutProps> = ({
 
 const cardListProps = [
   { href: "/household", label: "戻る", back: true },
-  { href: "/household/daily", label: "DAILY" },
-  { href: "/household/creditCard", label: "CREDIT CARD" },
   { href: "/household/account", label: "ACCOUNT" },
+  { href: "/household/daily", label: "DAILY" },
   { href: "/household/genre", label: "GENRE" },
   { href: "/household/category", label: "CATEGORY" },
-  { href: "/household/fileImport", label: "FILE" },
   { href: "/household/summary", label: "SUMMARY" },
+  { href: "/household/creditCard", label: "CREDIT CARD" },
+  { href: "/household/fileImport", label: "FILE" },
 ];

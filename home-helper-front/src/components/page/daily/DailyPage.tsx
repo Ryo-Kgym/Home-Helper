@@ -8,7 +8,7 @@ export const Page: FC = () => {
   return (
     <HouseHoldLayout>
       <Split
-        size={35}
+        size={50}
         first={<CalendarContainer />}
         second={<DailySearchContainer />}
       />

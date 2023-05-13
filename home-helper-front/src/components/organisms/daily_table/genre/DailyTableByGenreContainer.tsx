@@ -24,44 +24,38 @@ export const DailyTableByGenreContainer: FC<
 
   const tableProps: TableProps[] =
     data?.allCategoriesList?.flatMap((category) => {
-      return category.dailyDetailsByCategoryIdList.flatMap((dailyDetail) => {
-        return {
-          keyPrefix: "dailyDetail",
-          columns: [
-            {
-              value: getLabel(
-                dailyDetail.categoryByCategoryId?.genreByGenreId?.iocomeType!
-              ),
-              align: "center",
-            },
-            {
-              value:
-                dailyDetail.categoryByCategoryId?.genreByGenreId?.genreName,
-            },
-            {
-              value: dailyDetail.categoryByCategoryId?.categoryName,
-            },
-            {
-              value: dailyDetail.accountByAccountId?.accountName,
-            },
-            {
-              value: (
-                <FormatPrice
-                  price={dailyDetail.amount!}
-                  iocomeType={
-                    dailyDetail.categoryByCategoryId?.genreByGenreId
-                      ?.iocomeType!
-                  }
-                />
-              ),
-              align: "right",
-            },
-            {
-              value: dailyDetail.memo,
-            },
-          ],
-        };
-      });
+      return category.dailyDetailsByCategoryIdList.flatMap((dailyDetail) => ({
+        keyPrefix: "dailyDetail",
+        columns: [
+          {
+            value: dailyDetail.date,
+            align: "center",
+          },
+          {
+            value: dailyDetail.categoryByCategoryId?.genreByGenreId?.genreName,
+          },
+          {
+            value: dailyDetail.categoryByCategoryId?.categoryName,
+          },
+          {
+            value: dailyDetail.accountByAccountId?.accountName,
+          },
+          {
+            value: (
+              <FormatPrice
+                price={dailyDetail.amount!}
+                iocomeType={
+                  dailyDetail.categoryByCategoryId?.genreByGenreId?.iocomeType!
+                }
+              />
+            ),
+            align: "right",
+          },
+          {
+            value: dailyDetail.memo,
+          },
+        ],
+      }));
     }) ?? [];
 
   return (
