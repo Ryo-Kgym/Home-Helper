@@ -1,2 +1,2 @@
 export { TotalPresenter as Total } from "./TotalPresenter";
-export { IocomeTotalPresenter as IocomeTotal } from "./IocomeTotalPresenter";
+export { IocomeTotalContainer as IocomeTotal } from "./IocomeTotalContainer";
