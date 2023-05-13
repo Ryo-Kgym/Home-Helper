@@ -12,6 +12,8 @@ export const CreditCardTablePresenter: FC<CreditCardTablePresenterProps> = ({
       header={["引落日", "種類", "アカウント", "合計"]}
       tablePropsList={tableProps}
       size={"xs"}
+      toBottom
+      height={"90vh"}
     />
   </div>
 );

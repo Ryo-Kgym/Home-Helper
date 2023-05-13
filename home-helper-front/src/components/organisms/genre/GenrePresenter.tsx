@@ -33,6 +33,7 @@ export const GenrePresenter: FC<CategoryPresenterProps> = ({
         header={["ジャンル", "金額"]}
         tablePropsList={tableProps}
         size={"xs"}
+        height={"75vh"}
       />
       <IocomeTotal income={incomeTotal} outcome={outcomeTotal} />
     </div>

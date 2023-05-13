@@ -35,7 +35,7 @@ export const AccountContainer = () => {
 
   return (
     <Split
-      size={40}
+      size={50}
       first={
         <AccountPresenter
           fromDate={fromDate}

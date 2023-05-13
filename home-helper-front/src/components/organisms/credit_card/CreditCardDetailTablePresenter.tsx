@@ -17,6 +17,8 @@ export const CreditCardDetailTablePresenter: FC<
       header={["日付", "ジャンル", "カテゴリ", "金額", "メモ"]}
       tablePropsList={tableProps}
       size={"xs"}
+      toBottom
+      height={"90vh"}
     />
     <Modal opened={opened} onClose={onClose}>
       <UpdateCreditCardDetail id={detailId} onClose={onClose} />
