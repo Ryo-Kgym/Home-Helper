@@ -1,12 +1,14 @@
 query GetDailyDetailByDateCategoryId(
     $fromDate: Date!
     $toDate: Date!
+    $groupId: UUID!
     $categoryId: UUID!
 ) {
     dailyDetailByDateList(
         fromDate: $fromDate
         toDate: $toDate
-        filter: { categoryId: { equalTo: $categoryId } }
+        groupId: $groupId
+        filter: {categoryId: {equalTo: $categoryId}}
     ) {
         id
         date
