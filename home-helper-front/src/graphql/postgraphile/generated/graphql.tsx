@@ -4337,6 +4337,7 @@ export type GetDailyDetailByDateGenreIdQueryVariables = Exact<{
   genreId: Scalars["UUID"];
   fromDate: Scalars["Date"];
   toDate: Scalars["Date"];
+  groupId: Scalars["UUID"];
 }>;
 
 export type GetDailyDetailByDateGenreIdQuery = {
@@ -5228,6 +5229,7 @@ export const GetDailyDetailByDateGenreIdDocument = gql`
     $genreId: UUID!
     $fromDate: Date!
     $toDate: Date!
+    $groupId: UUID!
   ) {
     allCategoriesList(condition: { genreId: $genreId }) {
       dailyDetailsByCategoryIdList(
@@ -5235,6 +5237,7 @@ export const GetDailyDetailByDateGenreIdDocument = gql`
           date: { greaterThanOrEqualTo: $fromDate }
           and: { date: { lessThanOrEqualTo: $toDate } }
         }
+        condition: { groupId: $groupId }
       ) {
         id
         date

@@ -2,13 +2,13 @@ query GetDailyDetailByDateGenreId(
     $genreId: UUID!
     $fromDate: Date!
     $toDate: Date!
+    $groupId: UUID!
 ) {
-    allCategoriesList(condition: { genreId: $genreId }) {
+    allCategoriesList(condition: {genreId: $genreId}) {
         dailyDetailsByCategoryIdList(
-            filter: {
-                date: { greaterThanOrEqualTo: $fromDate }
-                and: { date: { lessThanOrEqualTo: $toDate } }
-            }
+            filter: {date: {greaterThanOrEqualTo: $fromDate},
+                and: {date: {lessThanOrEqualTo: $toDate}}}
+            condition: {groupId: $groupId}
         ) {
             id
             date
