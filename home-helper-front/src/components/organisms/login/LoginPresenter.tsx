@@ -1,15 +1,25 @@
 import { FC, ReactNode } from "react";
 import { GoogleLoginButton } from "@components/molecules/LoginButton";
+import { SignUp } from "@components/molecules/LoginButton/SignUp";
 
 type LoginPresenterProps = {
   message: string | undefined;
+  nonRegisteredUser: boolean;
 };
 
-export const LoginPresenter: FC<LoginPresenterProps> = ({ message }) => (
+export const LoginPresenter: FC<LoginPresenterProps> = ({
+  message,
+  nonRegisteredUser,
+}) => (
   <div className="flex flex-col items-center justify-center min-h-screen py-2">
     <Title />
     <LoginButtonArea>
-      <GoogleLoginButton />
+      {!nonRegisteredUser && (
+        <>
+          <GoogleLoginButton />
+        </>
+      )}
+      <SignUp />
     </LoginButtonArea>
     {message && <p className={"p-4 text-red-500"}>{message}</p>}
   </div>
