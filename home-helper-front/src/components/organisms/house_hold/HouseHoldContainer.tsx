@@ -19,8 +19,8 @@ export const HouseHoldContainer: FC = () => {
         handleClick: () => {
           save({ userId: user.id, userName: user.name });
           groupSave({
-            id: user.group?.id ?? "",
-            name: user.group?.name ?? "",
+            id: user.affiliation[0].group?.id ?? "",
+            name: user.affiliation[0].group?.name ?? "",
           });
         },
       };

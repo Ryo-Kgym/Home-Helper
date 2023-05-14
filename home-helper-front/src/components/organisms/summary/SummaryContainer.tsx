@@ -76,8 +76,8 @@ export const SummaryContainer: FC<SummaryContainerProps> = () => {
   ];
 
   useEffect(() => {
-    setDisplayUserName(userName);
-  }, []);
+    setDisplayUserName(userName ?? "");
+  }, [userName]);
 
   return (
     <SummaryPresenter

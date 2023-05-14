@@ -11,7 +11,6 @@ export const useCreateUser = () => {
       userName,
       email,
       displayOrder: 0,
-      groupId: "",
     });
   };
 

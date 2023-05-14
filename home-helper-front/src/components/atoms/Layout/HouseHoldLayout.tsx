@@ -23,7 +23,7 @@ export const HouseHoldLayout: FC<HouseHoldLayoutProps> = ({
   const navbar = <LinkList props={cardListProps} />;
 
   useEffect(() => {
-    setDisplayName(userName);
+    setDisplayName(userName ?? "");
   }, [userName]);
 
   return (
