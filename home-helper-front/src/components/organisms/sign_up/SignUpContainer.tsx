@@ -4,10 +4,8 @@ import { useState } from "react";
 import { useCreateUser } from "@hooks/user/useCreateUser";
 import { errorPopup, successPopup } from "@function/successPopup";
 import { signOut } from "next-auth/react";
-import { useRouter } from "next/router";
 
 export const SignUpContainer = () => {
-  const { push } = useRouter();
   const { email: defaultEmail, userName: defaultUserName } = useUser();
   const { create } = useCreateUser();
 
@@ -19,8 +17,7 @@ export const SignUpContainer = () => {
     create({ email, userName })
       .then(() => {
         successPopup("登録しました。ログインしてください。");
-        signOut();
-        push("/");
+        setTimeout(signOut, 2000);
       })
       .catch((error) => {
         errorPopup(error.message);
