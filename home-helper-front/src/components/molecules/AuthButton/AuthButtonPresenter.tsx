@@ -1,12 +1,12 @@
 import { FC } from "react";
-import { Frame } from "@components/molecules/LoginButton";
+import { Frame } from "./";
 
-type GoogleLoginButtonPresenterProps = {
+type AuthButtonPresenterProps = {
   onClickHandler: () => void;
   label: string;
 };
 
-export const LoginButtonPresenter: FC<GoogleLoginButtonPresenterProps> = ({
+export const AuthButtonPresenter: FC<AuthButtonPresenterProps> = ({
   onClickHandler,
   label,
 }) => (
