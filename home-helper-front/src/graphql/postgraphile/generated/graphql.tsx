@@ -5027,11 +5027,12 @@ export type GetUserByEmailQuery = {
   userByEmail?: {
     __typename?: "User";
     email: string;
-    userId: any;
-    userName: string;
+    id: any;
+    name: string;
     affiliation: Array<{
       __typename?: "Affiliation";
       group?: { __typename?: "Group"; id: any; name: string } | null;
+      groupRole?: { __typename?: "GroupRole"; role: string; id: any } | null;
     }>;
   } | null;
 };
@@ -6037,12 +6038,16 @@ export const GetUserByEmailDocument = gql`
   query GetUserByEmail($email: String!) {
     userByEmail(email: $email) {
       email
-      userId
-      userName
+      id: userId
+      name: userName
       affiliation: affiliationsByUserIdList {
         group: groupByGroupId {
           id: groupId
           name: groupName
+        }
+        groupRole: groupRoleByGroupRoleId {
+          id: groupRoleId
+          role
         }
       }
     }

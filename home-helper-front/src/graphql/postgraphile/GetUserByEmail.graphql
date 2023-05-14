@@ -1,12 +1,16 @@
 query GetUserByEmail($email: String!) {
     userByEmail(email: $email) {
         email
-        userId
-        userName
+        id: userId
+        name: userName
         affiliation: affiliationsByUserIdList {
             group: groupByGroupId {
                 id: groupId
                 name: groupName
+            }
+            groupRole: groupRoleByGroupRoleId {
+                id: groupRoleId
+                role
             }
         }
     }
