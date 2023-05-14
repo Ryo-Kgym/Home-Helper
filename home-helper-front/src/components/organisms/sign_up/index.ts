@@ -1,1 +1,1 @@
-export { SignUpPresenter as SignUp } from "./SignUpPresenter";
+export { SignUpContainer as SignUp } from "./SignUpContainer";
