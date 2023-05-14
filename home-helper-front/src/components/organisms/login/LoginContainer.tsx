@@ -1,25 +1,30 @@
 import { LoginPresenter } from "./LoginPresenter";
-import { useUser } from "@hooks/user/useUser";
 import { useRouter } from "next/router";
-import { useGetUserByEmailQuery } from "@graphql/postgraphile/generated/graphql";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { useGetGroup } from "@hooks/group/useGetGroup";
+import { SelectGroupContainer } from "@components/organisms/select_group/SelectGroupContainer";
 
 export const LoginContainer = () => {
-  const { email } = useUser();
+  const { data: session } = useSession();
+  const email = session?.user?.email ?? undefined;
   const { push } = useRouter();
-  const [{ data }] = useGetUserByEmailQuery({
-    variables: {
-      email: email ?? "",
-    },
-  });
+  const { user } = useGetGroup();
+  const [message, setMessage] = useState<string | undefined>(undefined);
 
-  if (data?.userByEmail) {
-    push("/top");
+  useEffect(() => {
+    const nonRegisteredUser = email !== undefined && user === undefined;
+    setMessage(
+      nonRegisteredUser
+        ? "ログインに失敗しました。初めての方は「Sign Up」を押してください。"
+        : undefined
+    );
+  }, []);
+
+  if (user) {
+    return <SelectGroupContainer />;
+    // push("/select");
   }
-
-  const nonRegisteredUser = email !== undefined && data?.userByEmail === null;
-  const message = nonRegisteredUser
-    ? "ログインに失敗しました。初めての方は「Sign Up」を押してください。"
-    : undefined;
 
   return <LoginPresenter message={message} />;
 };

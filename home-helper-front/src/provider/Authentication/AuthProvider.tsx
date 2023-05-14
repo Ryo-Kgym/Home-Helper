@@ -1,13 +1,13 @@
 import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/router";
-import { useUser } from "@hooks/user/useUser";
+import { useSession } from "next-auth/react";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const { userId } = useUser();
+  const { data: session } = useSession();
   const { push } = useRouter();
 
   const checkAuth = () => {
-    if (!userId) {
+    if (!session) {
       push("/");
     }
   };
