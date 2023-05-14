@@ -3,10 +3,11 @@ import { useUser } from "@hooks/user/useUser";
 import { useState } from "react";
 import { useCreateUser } from "@hooks/user/useCreateUser";
 import { errorPopup, successPopup } from "@function/successPopup";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export const SignUpContainer = () => {
-  const { email: defaultEmail, userName: defaultUserName } = useUser();
+  const { data: session } = useSession();
+  const { email: defaultEmail, name: defaultUserName } = session?.user ?? {};
   const { create } = useCreateUser();
 
   const [email, setEmail] = useState<string>(defaultEmail ?? "");
