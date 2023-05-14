@@ -5,8 +5,9 @@ import { User } from "@domain/model/User";
 export const userState = atom<User>({
   key: "user",
   default: {
-    userId: "",
-    userName: "",
+    id: "",
+    name: "",
+    email: "",
   },
   effects_UNSTABLE: [persist("user").persistAtom],
 });

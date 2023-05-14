@@ -1,6 +1,5 @@
 import { atom } from "recoil";
 import { persist } from "@recoil/recoilPersist";
-import { User } from "@domain/model/User";
 import { Group } from "@domain/model/Group";
 
 export const groupState = atom<Group>({

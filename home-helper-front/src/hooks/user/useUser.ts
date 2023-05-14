@@ -1,14 +1,18 @@
-import { useSession } from "next-auth/react";
+import { useRecoilState } from "recoil";
+import { userState } from "@recoil/userState";
+import { User } from "@domain/model/User";
 
 export const useUser = () => {
-  const { data: session } = useSession();
+  const [user, setUser] = useRecoilState(userState);
 
-  const save = (user: { userId: string; userName: string }) => {};
+  const save = (user: User) => {
+    setUser(user);
+  };
 
   return {
-    userId: session?.user?.email ?? undefined,
-    email: session?.user?.email ?? undefined,
-    userName: session?.user?.name ?? undefined,
+    userId: user.id,
+    email: user.email,
+    userName: user.name,
     save,
   };
 };
