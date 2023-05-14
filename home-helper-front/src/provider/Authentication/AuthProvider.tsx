@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const checkAuth = () => {
     if (!session) {
-      push("/");
+      // push("/");
     }
   };
 

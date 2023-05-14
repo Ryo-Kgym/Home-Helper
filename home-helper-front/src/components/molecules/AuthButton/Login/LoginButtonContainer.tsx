@@ -4,7 +4,9 @@ import { AuthButtonPresenter } from "@components/molecules/AuthButton/AuthButton
 
 export const LoginButtonContainer = () => {
   const label = "Login";
-  const onClickHandler = signIn;
+  const onClickHandler = () => {
+    signIn("*", { callbackUrl: "/select" });
+  };
 
   return <AuthButtonPresenter label={label} onClickHandler={onClickHandler} />;
 };

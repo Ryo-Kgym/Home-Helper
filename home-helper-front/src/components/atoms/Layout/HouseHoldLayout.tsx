@@ -34,7 +34,7 @@ export const HouseHoldLayout: FC<HouseHoldLayoutProps> = ({
 };
 
 const cardListProps = [
-  { href: "/household", label: "戻る", back: true },
+  { href: "/top", label: "戻る", back: true },
   { href: "/household/account", label: "ACCOUNT" },
   { href: "/household/daily", label: "DAILY" },
   { href: "/household/genre", label: "GENRE" },
