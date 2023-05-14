@@ -15,8 +15,8 @@ export const SignUpContainer = () => {
   const [userName, setUserName] = useState<string>(defaultUserName ?? "");
   const emailDisabled = defaultEmail !== undefined;
 
-  const registerHandler = async () => {
-    await create({ email, userName })
+  const registerHandler = () => {
+    create({ email, userName })
       .then(() => {
         successPopup("登録しました。ログインしてください。");
         signOut();

@@ -4,21 +4,13 @@ import { SignUp } from "@components/molecules/LoginButton/SignUp";
 
 type LoginPresenterProps = {
   message: string | undefined;
-  nonRegisteredUser: boolean;
 };
 
-export const LoginPresenter: FC<LoginPresenterProps> = ({
-  message,
-  nonRegisteredUser,
-}) => (
+export const LoginPresenter: FC<LoginPresenterProps> = ({ message }) => (
   <div className="flex flex-col items-center justify-center min-h-screen py-2">
     <Title />
     <LoginButtonArea>
-      {!nonRegisteredUser && (
-        <>
-          <GoogleLoginButton />
-        </>
-      )}
+      <GoogleLoginButton />
       <SignUp />
     </LoginButtonArea>
     {message && <p className={"p-4 text-red-500"}>{message}</p>}

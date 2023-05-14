@@ -16,12 +16,10 @@ export const LoginContainer = () => {
     push("/top");
   }
 
-  const nonRegisteredUser = data?.userByEmail === null;
+  const nonRegisteredUser = email !== undefined && data?.userByEmail === null;
   const message = nonRegisteredUser
-    ? "登録されてないユーザです。「Sign Up」を押してください"
+    ? "ログインに失敗しました。初めての方は「Sign Up」を押してください。"
     : undefined;
 
-  return (
-    <LoginPresenter message={message} nonRegisteredUser={nonRegisteredUser} />
-  );
+  return <LoginPresenter message={message} />;
 };

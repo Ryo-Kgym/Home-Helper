@@ -5,13 +5,7 @@ export const useCreateUser = () => {
   const { get } = useUuid();
   const [ignore, mutation] = useCreateUserMutation();
 
-  const create = async ({
-    email,
-    userName,
-  }: {
-    email: string;
-    userName: string;
-  }) => {
+  const create = ({ email, userName }: { email: string; userName: string }) => {
     return mutation({
       userId: get(),
       userName,
