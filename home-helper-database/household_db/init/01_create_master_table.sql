@@ -15,9 +15,25 @@ CREATE TABLE "user" (
     user_id       uuid         NOT NULL PRIMARY KEY,
     user_name     VARCHAR(50)  NOT NULL,
     display_order INT          NOT NULL,
-    group_id      uuid         NOT NULL,
-    email         VARCHAR(256) NOT NULL CONSTRAINT user_email_uk UNIQUE,
-    CONSTRAINT user_group_id_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
+    email         VARCHAR(256) NOT NULL
+        CONSTRAINT user_email_uk UNIQUE
+);
+
+DROP TABLE IF EXISTS group_role CASCADE;
+CREATE TABLE group_role (
+    group_role_id uuid        NOT NULL PRIMARY KEY,
+    role          VARCHAR(32) NOT NULL
+);
+
+DROP TABLE IF EXISTS affiliation CASCADE;
+CREATE TABLE affiliation (
+    affiliation_id uuid NOT NULL PRIMARY KEY,
+    user_id        uuid NOT NULL,
+    group_id       uuid NOT NULL,
+    group_role_id  uuid NOT NULL,
+    CONSTRAINT affiliation_user_id_fk FOREIGN KEY (user_id) REFERENCES "user" (user_id),
+    CONSTRAINT affiliation_group_id_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id),
+    CONSTRAINT affiliation_group_role_id_fk FOREIGN KEY (group_role_id) REFERENCES group_role (group_role_id)
 );
 
 DROP TABLE IF EXISTS genre CASCADE;
