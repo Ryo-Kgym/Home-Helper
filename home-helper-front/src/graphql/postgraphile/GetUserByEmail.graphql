@@ -3,9 +3,11 @@ query GetUserByEmail($email: String!) {
         email
         userId
         userName
-        groupByGroupId {
-            groupId
-            groupName
+        affiliation: affiliationsByUserIdList {
+            group: groupByGroupId {
+                id: groupId
+                name: groupName
+            }
         }
     }
 }

@@ -3,7 +3,6 @@ mutation CreateUser(
     $userName: String!
     $email: String!
     $displayOrder: Int!
-    $groupId: UUID!
 ) {
     createUser(
         input: {
@@ -12,7 +11,6 @@ mutation CreateUser(
                 userName: $userName
                 displayOrder: $displayOrder
                 email: $email
-                groupId: $groupId
             }
         }
     ) {
@@ -20,6 +18,7 @@ mutation CreateUser(
         user {
             userId
             userName
+            displayOrder
             email
         }
     }

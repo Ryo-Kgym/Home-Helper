@@ -2,9 +2,12 @@ query GetAllUsers {
     users: allUsersList(orderBy: DISPLAY_ORDER_ASC) {
         id: userId
         name: userName
-        group: groupByGroupId {
-            id: groupId
-            name: groupName
+        email
+        affiliation: affiliationsByUserIdList {
+            group: groupByGroupId {
+                id: groupId
+                name: groupName
+            }
         }
     }
 }
