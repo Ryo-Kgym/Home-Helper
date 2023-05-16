@@ -3,7 +3,6 @@ import { useGroup } from "@hooks/group/useGroup";
 import { SelectGroupPresenter } from "@components/organisms/select_group/SelectGroupPresenter";
 import { useGetGroup } from "@hooks/group/useGetGroup";
 import { useAuth } from "@hooks/authentication/useAuth";
-import { useEffect } from "react";
 
 export const SelectGroupContainer = () => {
   const { save: userSave } = useUser();
@@ -24,14 +23,11 @@ export const SelectGroupContainer = () => {
       label: group.name,
       back: false,
       handleClick: () => {
+        userSave(user!);
         groupSave(group);
       },
     })) ?? []
   );
-
-  useEffect(() => {
-    userSave(user!);
-  }, []);
 
   return <SelectGroupPresenter linkProps={linkProps} />;
 };
