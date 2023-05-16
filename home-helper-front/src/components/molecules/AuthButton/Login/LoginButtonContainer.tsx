@@ -1,12 +1,10 @@
 import React from "react";
-import { signIn } from "next-auth/react";
 import { AuthButtonPresenter } from "@components/molecules/AuthButton/AuthButtonPresenter";
+import { useAuth } from "@hooks/authentication/useAuth";
 
 export const LoginButtonContainer = () => {
+  const { login } = useAuth();
   const label = "Login";
-  const onClickHandler = () => {
-    signIn("*", { callbackUrl: "/select" });
-  };
 
-  return <AuthButtonPresenter label={label} onClickHandler={onClickHandler} />;
+  return <AuthButtonPresenter label={label} onClickHandler={login} />;
 };
