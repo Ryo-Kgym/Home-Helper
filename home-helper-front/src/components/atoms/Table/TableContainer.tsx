@@ -22,6 +22,7 @@ export const TableContainer: FC<Props> = ({
   toBottom = false,
 }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [toButtonOpen, setToButtonOpen] = useState(false);
   const { classes, cx } = useStyles();
 
   const thead = (
@@ -70,7 +71,7 @@ export const TableContainer: FC<Props> = ({
     </tr>
   );
 
-  const tbody = <tbody>{tablePropsList.map(generateRow)}</tbody>;
+  const tbody = <>{tablePropsList.map(generateRow)}</>;
 
   const tfoot = footer ? <>{footer.map(generateFooterRow)}</> : undefined;
 
@@ -83,6 +84,13 @@ export const TableContainer: FC<Props> = ({
           behavior: "smooth",
         })
     : undefined;
+
+  const onMouseMoveHandler = () => {
+    setToButtonOpen(true);
+    setTimeout(() => {
+      setToButtonOpen(false);
+    }, 2000);
+  };
 
   return (
     <TablePresenter
@@ -99,6 +107,11 @@ export const TableContainer: FC<Props> = ({
       verticalSpacing={paddingMap.get(size)!.verticalSpacing}
       viewport={viewport}
       scrollToBottom={scrollToBottom}
+      toButtonOpen={toButtonOpen}
+      onMouseMoveHandler={onMouseMoveHandler}
+      onMouseOutHandler={() => {
+        setToButtonOpen(false);
+      }}
     />
   );
 };

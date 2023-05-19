@@ -70,7 +70,8 @@ export const useCreateImportFile = ({
         accountId,
         withdrawalDate,
         loadData,
-        userId,
+        // TODO
+        userId: userId ?? "",
         groupId,
         uuidList: loadData.map((_) => get()),
       }),

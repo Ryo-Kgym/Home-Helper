@@ -1,11 +1,18 @@
 import { useRecoilState } from "recoil";
 import { userState } from "@recoil/userState";
+import { User } from "@domain/model/User";
 
 export const useUser = () => {
   const [user, setUser] = useRecoilState(userState);
 
-  const save = (user: { userId: string; userName: string }) => {
+  const save = (user: User) => {
     setUser(user);
   };
-  return { userId: user.userId, userName: user.userName, save };
+
+  return {
+    userId: user.id,
+    email: user.email,
+    userName: user.name,
+    save,
+  };
 };

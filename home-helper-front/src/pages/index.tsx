@@ -1,6 +1,7 @@
-import { Page } from "@components/page/top/TopPage";
+import { Page } from "@components/page/login/LoginPage";
+import { NextPage } from "next";
 
-const index = () => {
+const index: NextPage = () => {
   return <Page />;
 };
 export default index;

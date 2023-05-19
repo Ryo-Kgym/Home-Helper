@@ -127,6 +127,86 @@ export enum AccountsOrderBy {
   ValidFlagDesc = "VALID_FLAG_DESC",
 }
 
+export type Affiliation = Node & {
+  __typename?: "Affiliation";
+  affiliationId: Scalars["UUID"];
+  /** Reads a single `Group` that is related to this `Affiliation`. */
+  groupByGroupId?: Maybe<Group>;
+  groupId: Scalars["UUID"];
+  /** Reads a single `GroupRole` that is related to this `Affiliation`. */
+  groupRoleByGroupRoleId?: Maybe<GroupRole>;
+  groupRoleId: Scalars["UUID"];
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars["ID"];
+  /** Reads a single `User` that is related to this `Affiliation`. */
+  userByUserId?: Maybe<User>;
+  userId: Scalars["UUID"];
+};
+
+/**
+ * A condition to be used against `Affiliation` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ */
+export type AffiliationCondition = {
+  /** Checks for equality with the object’s `affiliationId` field. */
+  affiliationId?: InputMaybe<Scalars["UUID"]>;
+  /** Checks for equality with the object’s `groupId` field. */
+  groupId?: InputMaybe<Scalars["UUID"]>;
+  /** Checks for equality with the object’s `groupRoleId` field. */
+  groupRoleId?: InputMaybe<Scalars["UUID"]>;
+  /** Checks for equality with the object’s `userId` field. */
+  userId?: InputMaybe<Scalars["UUID"]>;
+};
+
+/** A filter to be used against `Affiliation` object types. All fields are combined with a logical ‘and.’ */
+export type AffiliationFilter = {
+  /** Filter by the object’s `affiliationId` field. */
+  affiliationId?: InputMaybe<UuidFilter>;
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<AffiliationFilter>>;
+  /** Filter by the object’s `groupId` field. */
+  groupId?: InputMaybe<UuidFilter>;
+  /** Filter by the object’s `groupRoleId` field. */
+  groupRoleId?: InputMaybe<UuidFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<AffiliationFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<AffiliationFilter>>;
+  /** Filter by the object’s `userId` field. */
+  userId?: InputMaybe<UuidFilter>;
+};
+
+/** An input for mutations affecting `Affiliation` */
+export type AffiliationInput = {
+  affiliationId: Scalars["UUID"];
+  groupId: Scalars["UUID"];
+  groupRoleId: Scalars["UUID"];
+  userId: Scalars["UUID"];
+};
+
+/** Represents an update to a `Affiliation`. Fields that are set will be updated. */
+export type AffiliationPatch = {
+  affiliationId?: InputMaybe<Scalars["UUID"]>;
+  groupId?: InputMaybe<Scalars["UUID"]>;
+  groupRoleId?: InputMaybe<Scalars["UUID"]>;
+  userId?: InputMaybe<Scalars["UUID"]>;
+};
+
+/** Methods to use when ordering `Affiliation`. */
+export enum AffiliationsOrderBy {
+  AffiliationIdAsc = "AFFILIATION_ID_ASC",
+  AffiliationIdDesc = "AFFILIATION_ID_DESC",
+  GroupIdAsc = "GROUP_ID_ASC",
+  GroupIdDesc = "GROUP_ID_DESC",
+  GroupRoleIdAsc = "GROUP_ROLE_ID_ASC",
+  GroupRoleIdDesc = "GROUP_ROLE_ID_DESC",
+  Natural = "NATURAL",
+  PrimaryKeyAsc = "PRIMARY_KEY_ASC",
+  PrimaryKeyDesc = "PRIMARY_KEY_DESC",
+  UserIdAsc = "USER_ID_ASC",
+  UserIdDesc = "USER_ID_DESC",
+}
+
 /** A filter to be used against BigFloat fields. All fields are combined with a logical ‘and.’ */
 export type BigFloatFilter = {
   /** Not equal to the specified value, treating null like an ordinary value. */
@@ -342,6 +422,37 @@ export type CreateAccountPayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the create `Affiliation` mutation. */
+export type CreateAffiliationInput = {
+  /** The `Affiliation` to be created by this mutation. */
+  affiliation: AffiliationInput;
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+};
+
+/** The output of our create `Affiliation` mutation. */
+export type CreateAffiliationPayload = {
+  __typename?: "CreateAffiliationPayload";
+  /** The `Affiliation` that was created by this mutation. */
+  affiliation?: Maybe<Affiliation>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** Reads a single `Group` that is related to this `Affiliation`. */
+  groupByGroupId?: Maybe<Group>;
+  /** Reads a single `GroupRole` that is related to this `Affiliation`. */
+  groupRoleByGroupRoleId?: Maybe<GroupRole>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `Affiliation`. */
+  userByUserId?: Maybe<User>;
+};
+
 /** All input for the create `Category` mutation. */
 export type CreateCategoryInput = {
   /** The `Category` to be created by this mutation. */
@@ -518,6 +629,31 @@ export type CreateGroupPayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the create `GroupRole` mutation. */
+export type CreateGroupRoleInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The `GroupRole` to be created by this mutation. */
+  groupRole: GroupRoleInput;
+};
+
+/** The output of our create `GroupRole` mutation. */
+export type CreateGroupRolePayload = {
+  __typename?: "CreateGroupRolePayload";
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `GroupRole` that was created by this mutation. */
+  groupRole?: Maybe<GroupRole>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
 /** All input for the create `ImportFileHistory` mutation. */
 export type CreateImportFileHistoryInput = {
   /**
@@ -624,8 +760,6 @@ export type CreateUserPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars["String"]>;
-  /** Reads a single `Group` that is related to this `User`. */
-  groupByGroupId?: Maybe<Group>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
   /** The `User` that was created by this mutation. */
@@ -1193,6 +1327,48 @@ export type DeleteAccountPayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the `deleteAffiliationByAffiliationId` mutation. */
+export type DeleteAffiliationByAffiliationIdInput = {
+  affiliationId: Scalars["UUID"];
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+};
+
+/** All input for the `deleteAffiliation` mutation. */
+export type DeleteAffiliationInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The globally unique `ID` which will identify a single `Affiliation` to be deleted. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our delete `Affiliation` mutation. */
+export type DeleteAffiliationPayload = {
+  __typename?: "DeleteAffiliationPayload";
+  /** The `Affiliation` that was deleted by this mutation. */
+  affiliation?: Maybe<Affiliation>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  deletedAffiliationId?: Maybe<Scalars["ID"]>;
+  /** Reads a single `Group` that is related to this `Affiliation`. */
+  groupByGroupId?: Maybe<Group>;
+  /** Reads a single `GroupRole` that is related to this `Affiliation`. */
+  groupRoleByGroupRoleId?: Maybe<GroupRole>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `Affiliation`. */
+  userByUserId?: Maybe<User>;
+};
+
 /** All input for the `deleteCategoryByCategoryId` mutation. */
 export type DeleteCategoryByCategoryIdInput = {
   categoryId: Scalars["UUID"];
@@ -1435,6 +1611,42 @@ export type DeleteGroupPayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the `deleteGroupRoleByGroupRoleId` mutation. */
+export type DeleteGroupRoleByGroupRoleIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  groupRoleId: Scalars["UUID"];
+};
+
+/** All input for the `deleteGroupRole` mutation. */
+export type DeleteGroupRoleInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The globally unique `ID` which will identify a single `GroupRole` to be deleted. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our delete `GroupRole` mutation. */
+export type DeleteGroupRolePayload = {
+  __typename?: "DeleteGroupRolePayload";
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  deletedGroupRoleId?: Maybe<Scalars["ID"]>;
+  /** The `GroupRole` that was deleted by this mutation. */
+  groupRole?: Maybe<GroupRole>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
 /** All input for the `deleteImportFileHistoryById` mutation. */
 export type DeleteImportFileHistoryByIdInput = {
   /**
@@ -1555,6 +1767,16 @@ export type DeleteSummaryCategoryByUserPayload = {
   userByUserId?: Maybe<User>;
 };
 
+/** All input for the `deleteUserByEmail` mutation. */
+export type DeleteUserByEmailInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  email: Scalars["String"];
+};
+
 /** All input for the `deleteUserByUserId` mutation. */
 export type DeleteUserByUserIdInput = {
   /**
@@ -1585,8 +1807,6 @@ export type DeleteUserPayload = {
    */
   clientMutationId?: Maybe<Scalars["String"]>;
   deletedUserId?: Maybe<Scalars["ID"]>;
-  /** Reads a single `Group` that is related to this `User`. */
-  groupByGroupId?: Maybe<Group>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
   /** The `User` that was deleted by this mutation. */
@@ -1738,6 +1958,8 @@ export type Group = Node & {
   __typename?: "Group";
   /** Reads and enables pagination through a set of `Account`. */
   accountsByGroupIdList: Array<Account>;
+  /** Reads and enables pagination through a set of `Affiliation`. */
+  affiliationsByGroupIdList: Array<Affiliation>;
   /** Reads and enables pagination through a set of `Category`. */
   categoriesByGroupIdList: Array<Category>;
   /** Reads and enables pagination through a set of `CreditCardSummary`. */
@@ -1754,8 +1976,6 @@ export type Group = Node & {
   nodeId: Scalars["ID"];
   /** Reads and enables pagination through a set of `SummaryCategoryByGroup`. */
   summaryCategoryByGroupsByGroupIdList: Array<SummaryCategoryByGroup>;
-  /** Reads and enables pagination through a set of `User`. */
-  usersByGroupIdList: Array<User>;
 };
 
 export type GroupAccountsByGroupIdListArgs = {
@@ -1764,6 +1984,14 @@ export type GroupAccountsByGroupIdListArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AccountsOrderBy>>;
+};
+
+export type GroupAffiliationsByGroupIdListArgs = {
+  condition?: InputMaybe<AffiliationCondition>;
+  filter?: InputMaybe<AffiliationFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AffiliationsOrderBy>>;
 };
 
 export type GroupCategoriesByGroupIdListArgs = {
@@ -1814,14 +2042,6 @@ export type GroupSummaryCategoryByGroupsByGroupIdListArgs = {
   orderBy?: InputMaybe<Array<SummaryCategoryByGroupsOrderBy>>;
 };
 
-export type GroupUsersByGroupIdListArgs = {
-  condition?: InputMaybe<UserCondition>;
-  filter?: InputMaybe<UserFilter>;
-  first?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<UsersOrderBy>>;
-};
-
 /** A condition to be used against `Group` object types. All fields are tested for equality and combined with a logical ‘and.’ */
 export type GroupCondition = {
   /** Checks for equality with the object’s `groupId` field. */
@@ -1855,6 +2075,72 @@ export type GroupPatch = {
   groupId?: InputMaybe<Scalars["UUID"]>;
   groupName?: InputMaybe<Scalars["String"]>;
 };
+
+export type GroupRole = Node & {
+  __typename?: "GroupRole";
+  /** Reads and enables pagination through a set of `Affiliation`. */
+  affiliationsByGroupRoleIdList: Array<Affiliation>;
+  groupRoleId: Scalars["UUID"];
+  /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
+  nodeId: Scalars["ID"];
+  role: Scalars["String"];
+};
+
+export type GroupRoleAffiliationsByGroupRoleIdListArgs = {
+  condition?: InputMaybe<AffiliationCondition>;
+  filter?: InputMaybe<AffiliationFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AffiliationsOrderBy>>;
+};
+
+/**
+ * A condition to be used against `GroupRole` object types. All fields are tested
+ * for equality and combined with a logical ‘and.’
+ */
+export type GroupRoleCondition = {
+  /** Checks for equality with the object’s `groupRoleId` field. */
+  groupRoleId?: InputMaybe<Scalars["UUID"]>;
+  /** Checks for equality with the object’s `role` field. */
+  role?: InputMaybe<Scalars["String"]>;
+};
+
+/** A filter to be used against `GroupRole` object types. All fields are combined with a logical ‘and.’ */
+export type GroupRoleFilter = {
+  /** Checks for all expressions in this list. */
+  and?: InputMaybe<Array<GroupRoleFilter>>;
+  /** Filter by the object’s `groupRoleId` field. */
+  groupRoleId?: InputMaybe<UuidFilter>;
+  /** Negates the expression. */
+  not?: InputMaybe<GroupRoleFilter>;
+  /** Checks for any expressions in this list. */
+  or?: InputMaybe<Array<GroupRoleFilter>>;
+  /** Filter by the object’s `role` field. */
+  role?: InputMaybe<StringFilter>;
+};
+
+/** An input for mutations affecting `GroupRole` */
+export type GroupRoleInput = {
+  groupRoleId: Scalars["UUID"];
+  role: Scalars["String"];
+};
+
+/** Represents an update to a `GroupRole`. Fields that are set will be updated. */
+export type GroupRolePatch = {
+  groupRoleId?: InputMaybe<Scalars["UUID"]>;
+  role?: InputMaybe<Scalars["String"]>;
+};
+
+/** Methods to use when ordering `GroupRole`. */
+export enum GroupRolesOrderBy {
+  GroupRoleIdAsc = "GROUP_ROLE_ID_ASC",
+  GroupRoleIdDesc = "GROUP_ROLE_ID_DESC",
+  Natural = "NATURAL",
+  PrimaryKeyAsc = "PRIMARY_KEY_ASC",
+  PrimaryKeyDesc = "PRIMARY_KEY_DESC",
+  RoleAsc = "ROLE_ASC",
+  RoleDesc = "ROLE_DESC",
+}
 
 /** Methods to use when ordering `Group`. */
 export enum GroupsOrderBy {
@@ -2027,6 +2313,8 @@ export type Mutation = {
   __typename?: "Mutation";
   /** Creates a single `Account`. */
   createAccount?: Maybe<CreateAccountPayload>;
+  /** Creates a single `Affiliation`. */
+  createAffiliation?: Maybe<CreateAffiliationPayload>;
   /** Creates a single `Category`. */
   createCategory?: Maybe<CreateCategoryPayload>;
   /** Creates a single `CreditCardDetail`. */
@@ -2039,6 +2327,8 @@ export type Mutation = {
   createGenre?: Maybe<CreateGenrePayload>;
   /** Creates a single `Group`. */
   createGroup?: Maybe<CreateGroupPayload>;
+  /** Creates a single `GroupRole`. */
+  createGroupRole?: Maybe<CreateGroupRolePayload>;
   /** Creates a single `ImportFileHistory`. */
   createImportFileHistory?: Maybe<CreateImportFileHistoryPayload>;
   /** Creates a single `SummaryCategoryByGroup`. */
@@ -2051,6 +2341,10 @@ export type Mutation = {
   deleteAccount?: Maybe<DeleteAccountPayload>;
   /** Deletes a single `Account` using a unique key. */
   deleteAccountByAccountId?: Maybe<DeleteAccountPayload>;
+  /** Deletes a single `Affiliation` using its globally unique id. */
+  deleteAffiliation?: Maybe<DeleteAffiliationPayload>;
+  /** Deletes a single `Affiliation` using a unique key. */
+  deleteAffiliationByAffiliationId?: Maybe<DeleteAffiliationPayload>;
   /** Deletes a single `Category` using its globally unique id. */
   deleteCategory?: Maybe<DeleteCategoryPayload>;
   /** Deletes a single `Category` using a unique key. */
@@ -2075,6 +2369,10 @@ export type Mutation = {
   deleteGroup?: Maybe<DeleteGroupPayload>;
   /** Deletes a single `Group` using a unique key. */
   deleteGroupByGroupId?: Maybe<DeleteGroupPayload>;
+  /** Deletes a single `GroupRole` using its globally unique id. */
+  deleteGroupRole?: Maybe<DeleteGroupRolePayload>;
+  /** Deletes a single `GroupRole` using a unique key. */
+  deleteGroupRoleByGroupRoleId?: Maybe<DeleteGroupRolePayload>;
   /** Deletes a single `ImportFileHistory` using its globally unique id. */
   deleteImportFileHistory?: Maybe<DeleteImportFileHistoryPayload>;
   /** Deletes a single `ImportFileHistory` using a unique key. */
@@ -2090,11 +2388,17 @@ export type Mutation = {
   /** Deletes a single `User` using its globally unique id. */
   deleteUser?: Maybe<DeleteUserPayload>;
   /** Deletes a single `User` using a unique key. */
+  deleteUserByEmail?: Maybe<DeleteUserPayload>;
+  /** Deletes a single `User` using a unique key. */
   deleteUserByUserId?: Maybe<DeleteUserPayload>;
   /** Updates a single `Account` using its globally unique id and a patch. */
   updateAccount?: Maybe<UpdateAccountPayload>;
   /** Updates a single `Account` using a unique key and a patch. */
   updateAccountByAccountId?: Maybe<UpdateAccountPayload>;
+  /** Updates a single `Affiliation` using its globally unique id and a patch. */
+  updateAffiliation?: Maybe<UpdateAffiliationPayload>;
+  /** Updates a single `Affiliation` using a unique key and a patch. */
+  updateAffiliationByAffiliationId?: Maybe<UpdateAffiliationPayload>;
   /** Updates a single `Category` using its globally unique id and a patch. */
   updateCategory?: Maybe<UpdateCategoryPayload>;
   /** Updates a single `Category` using a unique key and a patch. */
@@ -2119,6 +2423,10 @@ export type Mutation = {
   updateGroup?: Maybe<UpdateGroupPayload>;
   /** Updates a single `Group` using a unique key and a patch. */
   updateGroupByGroupId?: Maybe<UpdateGroupPayload>;
+  /** Updates a single `GroupRole` using its globally unique id and a patch. */
+  updateGroupRole?: Maybe<UpdateGroupRolePayload>;
+  /** Updates a single `GroupRole` using a unique key and a patch. */
+  updateGroupRoleByGroupRoleId?: Maybe<UpdateGroupRolePayload>;
   /** Updates a single `ImportFileHistory` using its globally unique id and a patch. */
   updateImportFileHistory?: Maybe<UpdateImportFileHistoryPayload>;
   /** Updates a single `ImportFileHistory` using a unique key and a patch. */
@@ -2134,12 +2442,19 @@ export type Mutation = {
   /** Updates a single `User` using its globally unique id and a patch. */
   updateUser?: Maybe<UpdateUserPayload>;
   /** Updates a single `User` using a unique key and a patch. */
+  updateUserByEmail?: Maybe<UpdateUserPayload>;
+  /** Updates a single `User` using a unique key and a patch. */
   updateUserByUserId?: Maybe<UpdateUserPayload>;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateAccountArgs = {
   input: CreateAccountInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateAffiliationArgs = {
+  input: CreateAffiliationInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2173,6 +2488,11 @@ export type MutationCreateGroupArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationCreateGroupRoleArgs = {
+  input: CreateGroupRoleInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationCreateImportFileHistoryArgs = {
   input: CreateImportFileHistoryInput;
 };
@@ -2200,6 +2520,16 @@ export type MutationDeleteAccountArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteAccountByAccountIdArgs = {
   input: DeleteAccountByAccountIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAffiliationArgs = {
+  input: DeleteAffiliationInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteAffiliationByAffiliationIdArgs = {
+  input: DeleteAffiliationByAffiliationIdInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2263,6 +2593,16 @@ export type MutationDeleteGroupByGroupIdArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteGroupRoleArgs = {
+  input: DeleteGroupRoleInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteGroupRoleByGroupRoleIdArgs = {
+  input: DeleteGroupRoleByGroupRoleIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteImportFileHistoryArgs = {
   input: DeleteImportFileHistoryInput;
 };
@@ -2298,6 +2638,11 @@ export type MutationDeleteUserArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationDeleteUserByEmailArgs = {
+  input: DeleteUserByEmailInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationDeleteUserByUserIdArgs = {
   input: DeleteUserByUserIdInput;
 };
@@ -2310,6 +2655,16 @@ export type MutationUpdateAccountArgs = {
 /** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateAccountByAccountIdArgs = {
   input: UpdateAccountByAccountIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAffiliationArgs = {
+  input: UpdateAffiliationInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateAffiliationByAffiliationIdArgs = {
+  input: UpdateAffiliationByAffiliationIdInput;
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
@@ -2373,6 +2728,16 @@ export type MutationUpdateGroupByGroupIdArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateGroupRoleArgs = {
+  input: UpdateGroupRoleInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateGroupRoleByGroupRoleIdArgs = {
+  input: UpdateGroupRoleByGroupRoleIdInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateImportFileHistoryArgs = {
   input: UpdateImportFileHistoryInput;
 };
@@ -2408,6 +2773,11 @@ export type MutationUpdateUserArgs = {
 };
 
 /** The root mutation type which contains root level fields which mutate data. */
+export type MutationUpdateUserByEmailArgs = {
+  input: UpdateUserByEmailInput;
+};
+
+/** The root mutation type which contains root level fields which mutate data. */
 export type MutationUpdateUserByUserIdArgs = {
   input: UpdateUserByUserIdInput;
 };
@@ -2426,8 +2796,13 @@ export type Query = Node & {
   accountByAccountId?: Maybe<Account>;
   /** Reads and enables pagination through a set of `TotalByAccountView`. */
   accountTotalList?: Maybe<Array<Maybe<TotalByAccountView>>>;
+  /** Reads a single `Affiliation` using its globally unique `ID`. */
+  affiliation?: Maybe<Affiliation>;
+  affiliationByAffiliationId?: Maybe<Affiliation>;
   /** Reads a set of `Account`. */
   allAccountsList?: Maybe<Array<Account>>;
+  /** Reads a set of `Affiliation`. */
+  allAffiliationsList?: Maybe<Array<Affiliation>>;
   /** Reads a set of `Category`. */
   allCategoriesList?: Maybe<Array<Category>>;
   /** Reads a set of `CreditCardDetail`. */
@@ -2444,6 +2819,8 @@ export type Query = Node & {
   allDailyTotalViewsList?: Maybe<Array<DailyTotalView>>;
   /** Reads a set of `Genre`. */
   allGenresList?: Maybe<Array<Genre>>;
+  /** Reads a set of `GroupRole`. */
+  allGroupRolesList?: Maybe<Array<GroupRole>>;
   /** Reads a set of `Group`. */
   allGroupsList?: Maybe<Array<Group>>;
   /** Reads a set of `ImportFileHistory`. */
@@ -2484,6 +2861,9 @@ export type Query = Node & {
   /** Reads a single `Group` using its globally unique `ID`. */
   group?: Maybe<Group>;
   groupByGroupId?: Maybe<Group>;
+  /** Reads a single `GroupRole` using its globally unique `ID`. */
+  groupRole?: Maybe<GroupRole>;
+  groupRoleByGroupRoleId?: Maybe<GroupRole>;
   /** Reads a single `ImportFileHistory` using its globally unique `ID`. */
   importFileHistory?: Maybe<ImportFileHistory>;
   importFileHistoryById?: Maybe<ImportFileHistory>;
@@ -2504,6 +2884,7 @@ export type Query = Node & {
   summaryCategoryByUserById?: Maybe<SummaryCategoryByUser>;
   /** Reads a single `User` using its globally unique `ID`. */
   user?: Maybe<User>;
+  userByEmail?: Maybe<User>;
   userByUserId?: Maybe<User>;
 };
 
@@ -2528,12 +2909,31 @@ export type QueryAccountTotalListArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QueryAffiliationArgs = {
+  nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAffiliationByAffiliationIdArgs = {
+  affiliationId: Scalars["UUID"];
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryAllAccountsListArgs = {
   condition?: InputMaybe<AccountCondition>;
   filter?: InputMaybe<AccountFilter>;
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AccountsOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllAffiliationsListArgs = {
+  condition?: InputMaybe<AffiliationCondition>;
+  filter?: InputMaybe<AffiliationFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AffiliationsOrderBy>>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -2597,6 +2997,15 @@ export type QueryAllGenresListArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GenresOrderBy>>;
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryAllGroupRolesListArgs = {
+  condition?: InputMaybe<GroupRoleCondition>;
+  filter?: InputMaybe<GroupRoleFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<GroupRolesOrderBy>>;
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -2762,6 +3171,16 @@ export type QueryGroupByGroupIdArgs = {
 };
 
 /** The root query type which gives access points into the data universe. */
+export type QueryGroupRoleArgs = {
+  nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryGroupRoleByGroupRoleIdArgs = {
+  groupRoleId: Scalars["UUID"];
+};
+
+/** The root query type which gives access points into the data universe. */
 export type QueryImportFileHistoryArgs = {
   nodeId: Scalars["ID"];
 };
@@ -2799,6 +3218,11 @@ export type QuerySummaryCategoryByUserByIdArgs = {
 /** The root query type which gives access points into the data universe. */
 export type QueryUserArgs = {
   nodeId: Scalars["ID"];
+};
+
+/** The root query type which gives access points into the data universe. */
+export type QueryUserByEmailArgs = {
+  email: Scalars["String"];
 };
 
 /** The root query type which gives access points into the data universe. */
@@ -3332,6 +3756,51 @@ export type UpdateAccountPayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the `updateAffiliationByAffiliationId` mutation. */
+export type UpdateAffiliationByAffiliationIdInput = {
+  affiliationId: Scalars["UUID"];
+  /** An object where the defined keys will be set on the `Affiliation` being updated. */
+  affiliationPatch: AffiliationPatch;
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+};
+
+/** All input for the `updateAffiliation` mutation. */
+export type UpdateAffiliationInput = {
+  /** An object where the defined keys will be set on the `Affiliation` being updated. */
+  affiliationPatch: AffiliationPatch;
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The globally unique `ID` which will identify a single `Affiliation` to be updated. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our update `Affiliation` mutation. */
+export type UpdateAffiliationPayload = {
+  __typename?: "UpdateAffiliationPayload";
+  /** The `Affiliation` that was updated by this mutation. */
+  affiliation?: Maybe<Affiliation>;
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** Reads a single `Group` that is related to this `Affiliation`. */
+  groupByGroupId?: Maybe<Group>;
+  /** Reads a single `GroupRole` that is related to this `Affiliation`. */
+  groupRoleByGroupRoleId?: Maybe<GroupRole>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+  /** Reads a single `User` that is related to this `Affiliation`. */
+  userByUserId?: Maybe<User>;
+};
+
 /** All input for the `updateCategoryByCategoryId` mutation. */
 export type UpdateCategoryByCategoryIdInput = {
   categoryId: Scalars["UUID"];
@@ -3592,6 +4061,45 @@ export type UpdateGroupPayload = {
   query?: Maybe<Query>;
 };
 
+/** All input for the `updateGroupRoleByGroupRoleId` mutation. */
+export type UpdateGroupRoleByGroupRoleIdInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  groupRoleId: Scalars["UUID"];
+  /** An object where the defined keys will be set on the `GroupRole` being updated. */
+  groupRolePatch: GroupRolePatch;
+};
+
+/** All input for the `updateGroupRole` mutation. */
+export type UpdateGroupRoleInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** An object where the defined keys will be set on the `GroupRole` being updated. */
+  groupRolePatch: GroupRolePatch;
+  /** The globally unique `ID` which will identify a single `GroupRole` to be updated. */
+  nodeId: Scalars["ID"];
+};
+
+/** The output of our update `GroupRole` mutation. */
+export type UpdateGroupRolePayload = {
+  __typename?: "UpdateGroupRolePayload";
+  /**
+   * The exact same `clientMutationId` that was provided in the mutation input,
+   * unchanged and unused. May be used by a client to track mutations.
+   */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The `GroupRole` that was updated by this mutation. */
+  groupRole?: Maybe<GroupRole>;
+  /** Our root query field type. Allows us to run any query from our mutation payload. */
+  query?: Maybe<Query>;
+};
+
 /** All input for the `updateImportFileHistoryById` mutation. */
 export type UpdateImportFileHistoryByIdInput = {
   /**
@@ -3721,6 +4229,18 @@ export type UpdateSummaryCategoryByUserPayload = {
   userByUserId?: Maybe<User>;
 };
 
+/** All input for the `updateUserByEmail` mutation. */
+export type UpdateUserByEmailInput = {
+  /**
+   * An arbitrary string value with no semantic meaning. Will be included in the
+   * payload verbatim. May be used to track mutations by the client.
+   */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  email: Scalars["String"];
+  /** An object where the defined keys will be set on the `User` being updated. */
+  userPatch: UserPatch;
+};
+
 /** All input for the `updateUserByUserId` mutation. */
 export type UpdateUserByUserIdInput = {
   /**
@@ -3754,8 +4274,6 @@ export type UpdateUserPayload = {
    * unchanged and unused. May be used by a client to track mutations.
    */
   clientMutationId?: Maybe<Scalars["String"]>;
-  /** Reads a single `Group` that is related to this `User`. */
-  groupByGroupId?: Maybe<Group>;
   /** Our root query field type. Allows us to run any query from our mutation payload. */
   query?: Maybe<Query>;
   /** The `User` that was updated by this mutation. */
@@ -3764,14 +4282,14 @@ export type UpdateUserPayload = {
 
 export type User = Node & {
   __typename?: "User";
+  /** Reads and enables pagination through a set of `Affiliation`. */
+  affiliationsByUserIdList: Array<Affiliation>;
   /** Reads and enables pagination through a set of `CreditCardDetail`. */
   creditCardDetailsByUserIdList: Array<CreditCardDetail>;
   /** Reads and enables pagination through a set of `DailyDetail`. */
   dailyDetailsByUserIdList: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
-  /** Reads a single `Group` that is related to this `User`. */
-  groupByGroupId?: Maybe<Group>;
-  groupId: Scalars["UUID"];
+  email: Scalars["String"];
   /** Reads and enables pagination through a set of `ImportFileHistory`. */
   importFileHistoriesByImportUserIdList: Array<ImportFileHistory>;
   /** A globally unique identifier. Can be used in various places throughout the system to identify this single value. */
@@ -3780,6 +4298,14 @@ export type User = Node & {
   summaryCategoryByUsersByUserIdList: Array<SummaryCategoryByUser>;
   userId: Scalars["UUID"];
   userName: Scalars["String"];
+};
+
+export type UserAffiliationsByUserIdListArgs = {
+  condition?: InputMaybe<AffiliationCondition>;
+  filter?: InputMaybe<AffiliationFilter>;
+  first?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AffiliationsOrderBy>>;
 };
 
 export type UserCreditCardDetailsByUserIdListArgs = {
@@ -3818,8 +4344,8 @@ export type UserSummaryCategoryByUsersByUserIdListArgs = {
 export type UserCondition = {
   /** Checks for equality with the object’s `displayOrder` field. */
   displayOrder?: InputMaybe<Scalars["Int"]>;
-  /** Checks for equality with the object’s `groupId` field. */
-  groupId?: InputMaybe<Scalars["UUID"]>;
+  /** Checks for equality with the object’s `email` field. */
+  email?: InputMaybe<Scalars["String"]>;
   /** Checks for equality with the object’s `userId` field. */
   userId?: InputMaybe<Scalars["UUID"]>;
   /** Checks for equality with the object’s `userName` field. */
@@ -3832,8 +4358,8 @@ export type UserFilter = {
   and?: InputMaybe<Array<UserFilter>>;
   /** Filter by the object’s `displayOrder` field. */
   displayOrder?: InputMaybe<IntFilter>;
-  /** Filter by the object’s `groupId` field. */
-  groupId?: InputMaybe<UuidFilter>;
+  /** Filter by the object’s `email` field. */
+  email?: InputMaybe<StringFilter>;
   /** Negates the expression. */
   not?: InputMaybe<UserFilter>;
   /** Checks for any expressions in this list. */
@@ -3847,7 +4373,7 @@ export type UserFilter = {
 /** An input for mutations affecting `User` */
 export type UserInput = {
   displayOrder: Scalars["Int"];
-  groupId: Scalars["UUID"];
+  email: Scalars["String"];
   userId: Scalars["UUID"];
   userName: Scalars["String"];
 };
@@ -3855,7 +4381,7 @@ export type UserInput = {
 /** Represents an update to a `User`. Fields that are set will be updated. */
 export type UserPatch = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["UUID"]>;
+  email?: InputMaybe<Scalars["String"]>;
   userId?: InputMaybe<Scalars["UUID"]>;
   userName?: InputMaybe<Scalars["String"]>;
 };
@@ -3864,8 +4390,8 @@ export type UserPatch = {
 export enum UsersOrderBy {
   DisplayOrderAsc = "DISPLAY_ORDER_ASC",
   DisplayOrderDesc = "DISPLAY_ORDER_DESC",
-  GroupIdAsc = "GROUP_ID_ASC",
-  GroupIdDesc = "GROUP_ID_DESC",
+  EmailAsc = "EMAIL_ASC",
+  EmailDesc = "EMAIL_DESC",
   Natural = "NATURAL",
   PrimaryKeyAsc = "PRIMARY_KEY_ASC",
   PrimaryKeyDesc = "PRIMARY_KEY_DESC",
@@ -3986,6 +4512,28 @@ export type CreateSummaryCategoryMutation = {
   } | null;
 };
 
+export type CreateUserMutationVariables = Exact<{
+  userId: Scalars["UUID"];
+  userName: Scalars["String"];
+  email: Scalars["String"];
+  displayOrder: Scalars["Int"];
+}>;
+
+export type CreateUserMutation = {
+  __typename?: "Mutation";
+  createUser?: {
+    __typename?: "CreateUserPayload";
+    clientMutationId?: string | null;
+    user?: {
+      __typename?: "User";
+      userId: any;
+      userName: string;
+      displayOrder: number;
+      email: string;
+    } | null;
+  } | null;
+};
+
 export type DeleteDailyDetailBySerialNoMutationVariables = Exact<{
   id: Scalars["UUID"];
 }>;
@@ -4060,9 +4608,13 @@ export type GetAllUsersQuery = {
   __typename?: "Query";
   users?: Array<{
     __typename?: "User";
+    email: string;
     id: any;
     name: string;
-    group?: { __typename?: "Group"; id: any; name: string } | null;
+    affiliation: Array<{
+      __typename?: "Affiliation";
+      group?: { __typename?: "Group"; id: any; name: string } | null;
+    }>;
   }> | null;
 };
 
@@ -4466,6 +5018,25 @@ export type GetTotalBetweenDateQuery = {
   }> | null;
 };
 
+export type GetUserByEmailQueryVariables = Exact<{
+  email: Scalars["String"];
+}>;
+
+export type GetUserByEmailQuery = {
+  __typename?: "Query";
+  userByEmail?: {
+    __typename?: "User";
+    email: string;
+    id: any;
+    name: string;
+    affiliation: Array<{
+      __typename?: "Affiliation";
+      group?: { __typename?: "Group"; id: any; name: string } | null;
+      groupRole?: { __typename?: "GroupRole"; role: string; id: any } | null;
+    }>;
+  } | null;
+};
+
 export type GetValidAccountsQueryVariables = Exact<{
   groupId: Scalars["UUID"];
 }>;
@@ -4757,6 +5328,39 @@ export function useCreateSummaryCategoryMutation() {
     CreateSummaryCategoryMutationVariables
   >(CreateSummaryCategoryDocument);
 }
+export const CreateUserDocument = gql`
+  mutation CreateUser(
+    $userId: UUID!
+    $userName: String!
+    $email: String!
+    $displayOrder: Int!
+  ) {
+    createUser(
+      input: {
+        user: {
+          userId: $userId
+          userName: $userName
+          displayOrder: $displayOrder
+          email: $email
+        }
+      }
+    ) {
+      clientMutationId
+      user {
+        userId
+        userName
+        displayOrder
+        email
+      }
+    }
+  }
+`;
+
+export function useCreateUserMutation() {
+  return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(
+    CreateUserDocument
+  );
+}
 export const DeleteDailyDetailBySerialNoDocument = gql`
   mutation DeleteDailyDetailBySerialNo($id: UUID!) {
     deleteDailyDetailById(input: { id: $id }) {
@@ -4860,9 +5464,12 @@ export const GetAllUsersDocument = gql`
     users: allUsersList(orderBy: DISPLAY_ORDER_ASC) {
       id: userId
       name: userName
-      group: groupByGroupId {
-        id: groupId
-        name: groupName
+      email
+      affiliation: affiliationsByUserIdList {
+        group: groupByGroupId {
+          id: groupId
+          name: groupName
+        }
       }
     }
   }
@@ -5426,6 +6033,34 @@ export function useGetTotalBetweenDateQuery(
     GetTotalBetweenDateQuery,
     GetTotalBetweenDateQueryVariables
   >({ query: GetTotalBetweenDateDocument, ...options });
+}
+export const GetUserByEmailDocument = gql`
+  query GetUserByEmail($email: String!) {
+    userByEmail(email: $email) {
+      email
+      id: userId
+      name: userName
+      affiliation: affiliationsByUserIdList {
+        group: groupByGroupId {
+          id: groupId
+          name: groupName
+        }
+        groupRole: groupRoleByGroupRoleId {
+          id: groupRoleId
+          role
+        }
+      }
+    }
+  }
+`;
+
+export function useGetUserByEmailQuery(
+  options: Omit<Urql.UseQueryArgs<GetUserByEmailQueryVariables>, "query">
+) {
+  return Urql.useQuery<GetUserByEmailQuery, GetUserByEmailQueryVariables>({
+    query: GetUserByEmailDocument,
+    ...options,
+  });
 }
 export const GetValidAccountsDocument = gql`
   query GetValidAccounts($groupId: UUID!) {
