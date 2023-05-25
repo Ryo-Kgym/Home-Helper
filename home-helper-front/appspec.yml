@@ -1,9 +1,0 @@
-version: 0.0
-os: linux
-files:
-  - source: /
-    destination: /home/ec2-user/deploy/home-helper/front
-hooks:
-  ApplicationStart:
-    - location: restart.sh
-      timeout: 180

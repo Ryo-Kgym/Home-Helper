@@ -1,9 +1,0 @@
-query GetGenreTotalByMonth($fromDate: Date!, $toDate: Date!, $groupId: UUID!) {
-    genreTotalByMonthList(fromDate: $fromDate, toDate: $toDate, groupId: $groupId) {
-        date
-        iocomeType
-        genreId
-        genreName
-        total
-    }
-}
