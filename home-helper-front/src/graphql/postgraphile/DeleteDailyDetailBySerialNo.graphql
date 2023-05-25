@@ -1,5 +1,0 @@
-mutation DeleteDailyDetailBySerialNo($id: UUID!) {
-    deleteDailyDetailById(input: { id: $id }) {
-        clientMutationId
-    }
-}
