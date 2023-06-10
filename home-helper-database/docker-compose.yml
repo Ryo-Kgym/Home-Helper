@@ -14,21 +14,21 @@ services:
 #      - ./volume/data/home_helper/ci:/var/lib/mysql
 #      - ./docker/my.cnf:/etc/mysql/conf.d/my.cnf
 
-  db:
-    container_name: household-db
-    restart: always
-    image: postgres:latest
-    build:
-      context: household_db
-    volumes:
-      - db:/var/lib/postgresql/data
-      - ./volume/data/household/main:/var/lib/postgresql/data
-    env_file:
-      - .env
-    networks:
-      - network
-    ports:
-      - "5432:5432"
+#  db:
+#    container_name: household-db
+#    restart: always
+#    image: postgres:latest
+#    build:
+#      context: household_db
+#    volumes:
+#      - db:/var/lib/postgresql/data
+#      - ./volume/data/household/main:/var/lib/postgresql/data
+#    env_file:
+#      - .env
+#    networks:
+#      - network
+#    ports:
+#      - "5432:5432"
 
 #  db_ci:
 #    container_name: household-db-ci
@@ -54,8 +54,8 @@ services:
       context: graphql
     env_file:
       - .env
-    depends_on:
-      - db
+#    depends_on:
+#      - db
     networks:
       - network
     ports:
