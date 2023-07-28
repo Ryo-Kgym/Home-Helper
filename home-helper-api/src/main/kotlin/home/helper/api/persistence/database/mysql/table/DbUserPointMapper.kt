@@ -3,7 +3,6 @@
  */
 package home.helper.api.persistence.database.mysql.table
 
-import home.helper.api.persistence.database.mysql.table.DbUserPointRecord
 import org.apache.ibatis.annotations.DeleteProvider
 import org.apache.ibatis.annotations.InsertProvider
 import org.apache.ibatis.annotations.Mapper

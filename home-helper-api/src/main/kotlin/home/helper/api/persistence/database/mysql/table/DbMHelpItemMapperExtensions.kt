@@ -10,7 +10,6 @@ import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSup
 import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.memo
 import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.name
 import home.helper.api.persistence.database.mysql.table.DbMHelpItemDynamicSqlSupport.DbMHelpItem.point
-import home.helper.api.persistence.database.mysql.table.DbMHelpItemRecord
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
 import org.mybatis.dynamic.sql.util.kotlin.*
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.*

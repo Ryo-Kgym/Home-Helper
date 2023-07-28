@@ -9,7 +9,6 @@ import home.helper.api.persistence.database.mysql.table.DbMExchangeItemDynamicSq
 import home.helper.api.persistence.database.mysql.table.DbMExchangeItemDynamicSqlSupport.DbMExchangeItem.id
 import home.helper.api.persistence.database.mysql.table.DbMExchangeItemDynamicSqlSupport.DbMExchangeItem.name
 import home.helper.api.persistence.database.mysql.table.DbMExchangeItemDynamicSqlSupport.DbMExchangeItem.point
-import home.helper.api.persistence.database.mysql.table.DbMExchangeItemRecord
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
 import org.mybatis.dynamic.sql.util.kotlin.*
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.*

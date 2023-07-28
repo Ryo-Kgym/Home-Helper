@@ -12,7 +12,6 @@ import home.helper.api.persistence.database.mysql.table.DbHelpPointExchangedAchi
 import home.helper.api.persistence.database.mysql.table.DbHelpPointExchangedAchievementDynamicSqlSupport.DbHelpPointExchangedAchievement.exchangedDatetime
 import home.helper.api.persistence.database.mysql.table.DbHelpPointExchangedAchievementDynamicSqlSupport.DbHelpPointExchangedAchievement.id
 import home.helper.api.persistence.database.mysql.table.DbHelpPointExchangedAchievementDynamicSqlSupport.DbHelpPointExchangedAchievement.userId
-import home.helper.api.persistence.database.mysql.table.DbHelpPointExchangedAchievementRecord
 import org.mybatis.dynamic.sql.SqlBuilder.isEqualTo
 import org.mybatis.dynamic.sql.util.kotlin.*
 import org.mybatis.dynamic.sql.util.kotlin.mybatis3.*

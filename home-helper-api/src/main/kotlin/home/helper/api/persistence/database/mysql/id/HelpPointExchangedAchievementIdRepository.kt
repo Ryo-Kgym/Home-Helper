@@ -20,6 +20,6 @@ class HelpPointExchangedAchievementIdRepository(
 
     override fun getId(): HelpPointExchangedAchievementId {
         val id = idHolderCustomRepository.getCurrentId(idType)
-        return HelpPointExchangedAchievementId.valueOf(id.toString())
+        return HelpPointExchangedAchievementId.valueOf(id)
     }
 }
