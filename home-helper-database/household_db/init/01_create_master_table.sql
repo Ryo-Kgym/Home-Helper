@@ -91,3 +91,17 @@ CREATE TABLE summary_category_by_group (
     CONSTRAINT summary_category_by_group_group_id_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
 CREATE INDEX summary_category_by_group_group_id_idx ON summary_category_by_group (group_id);
+
+DROP TABLE IF EXISTS transfer_category CASCADE;
+create table transfer_category (
+    income_category_id  uuid not null
+        constraint transfer_category_income_category_id_fk references category on update cascade on delete cascade,
+    outcome_category_id uuid not null
+        constraint transfer_category_outcome_category_id_fk references category on update cascade on delete cascade
+);
+
+comment on table transfer_category is '振替カテゴリ';
+comment on column transfer_category.income_category_id is '収入カテゴリID';
+comment on column transfer_category.outcome_category_id is '支出カテゴリID';
+
+
