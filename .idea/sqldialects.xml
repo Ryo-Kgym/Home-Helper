@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/home-helper-database/home_helper_db/init/01_create_master.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/home-helper-database/home_helper_db/init/02_create_transaction.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/home-helper-database/household_db/.miglation/from.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/home-helper-database/household_db/.miglation/to.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/home-helper-database/household_db/.to_uuid/transfer.sql" dialect="PostgreSQL" />
