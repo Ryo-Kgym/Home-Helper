@@ -12,18 +12,13 @@ create table home_helper.helper_kid_point (
     helper_kid_id      uuid      not null primary key,
     point              int       not null default 0,
     last_help_datetime timestamp not null default current_timestamp,
-    group_id           uuid      not null,
-    constraint fk_helper_kid_point_helper_kid_id foreign key (helper_kid_id) references home_helper.helper_kid (helper_kid_id),
-    constraint fk_helper_kid_point_group_id foreign key (group_id) references "group" (group_id)
+    constraint fk_helper_kid_point_helper_kid_id foreign key (helper_kid_id) references home_helper.helper_kid (helper_kid_id)
 );
-
-create index helper_kid_point_group_id_idx on home_helper.helper_kid_point (group_id);
 
 comment on table home_helper.helper_kid_point is 'お手伝いキッズポイント';
 comment on column home_helper.helper_kid_point.helper_kid_id is 'お手伝いキッズID';
 comment on column home_helper.helper_kid_point.point is 'ポイント';
 comment on column home_helper.helper_kid_point.last_help_datetime is '最後のお手伝い日時';
-comment on column home_helper.helper_kid_point.group_id is 'グループID';
 
 drop table if exists home_helper.help_point_earned_achievement cascade;
 create table home_helper.help_point_earned_achievement (
