@@ -7,6 +7,11 @@ create table home_helper.helper_kid_parent (
     constraint fk_helper_kid_parent_parent_id foreign key (parent_user_id) references "user" (user_id)
 );
 
+comment on table home_helper.helper_kid_parent is 'お手伝いキッズ親';
+comment on column home_helper.helper_kid_parent.helper_kid_parent_id is 'ID';
+comment on column home_helper.helper_kid_parent.helper_kid_id is 'お手伝いキッズID';
+comment on column home_helper.helper_kid_parent.parent_user_id is '親ユーザーID';
+
 drop table if exists home_helper.helper_kid_point cascade;
 create table home_helper.helper_kid_point (
     helper_kid_id      uuid      not null primary key,
