@@ -1,3 +1,15 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 DROP TABLE IF EXISTS daily_detail CASCADE;
 CREATE TABLE daily_detail (
     id          uuid        NOT NULL PRIMARY KEY,
@@ -56,12 +68,14 @@ CREATE TABLE credit_card_detail (
     memo        VARCHAR(64) NULL,
     summary_id  uuid        NOT NULL,
     user_id     uuid        NOT NULL,
+    group_id    uuid references "group",
     CONSTRAINT credit_card_detail_credit_card_summary_fk FOREIGN KEY (summary_id) REFERENCES credit_card_summary (id),
     CONSTRAINT credit_card_detail_category_fk FOREIGN KEY (category_id) REFERENCES "category" (category_id),
-    CONSTRAINT credit_card_detail_user_fk FOREIGN KEY (user_id) REFERENCES "user" (user_id)
+    CONSTRAINT credit_card_detail_user_fk FOREIGN KEY (user_id) REFERENCES "user" (user_id),
+    CONSTRAINT credit_card_detail_group_fk FOREIGN KEY (group_id) REFERENCES "group"(group_id)
 );
 
-CREATE INDEX credit_card_detail_date_index ON credit_card_detail (date);
-CREATE INDEX credit_card_detail_summary_id_index ON credit_card_detail (summary_id);
-CREATE INDEX credit_card_detail_user_id_index ON credit_card_detail (user_id);
-
+create index credit_card_detail_date_index on credit_card_detail (date);
+create index credit_card_detail_summary_id_index on credit_card_detail (summary_id);
+create index credit_card_detail_user_id_index on credit_card_detail (user_id);
+create index credit_card_detail_group_id_index on credit_card_detail (group_id);

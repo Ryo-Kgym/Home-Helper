@@ -8,7 +8,7 @@
       <jdbc-url>jdbc:postgresql://localhost:5432/household_db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="home-helper@AWS" uuid="aaf5b38b-bae6-4e74-b6b7-47ef302651f8">
+    <data-source source="LOCAL" name="home-helper@NeonDB" uuid="aaf5b38b-bae6-4e74-b6b7-47ef302651f8">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
