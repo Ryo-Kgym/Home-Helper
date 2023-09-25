@@ -10,46 +10,6 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 DROP TABLE IF EXISTS daily_detail CASCADE;
 CREATE TABLE daily_detail (
     id          uuid        NOT NULL PRIMARY KEY,

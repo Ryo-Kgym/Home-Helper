@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 DROP TYPE IF EXISTS iocome_type CASCADE;
 CREATE TYPE iocome_type AS ENUM ( 'INCOME', 'OUTCOME' );
 
@@ -69,17 +77,6 @@ CREATE TABLE account (
     group_id      uuid        NOT NULL,
     CONSTRAINT account_group_id_fk FOREIGN KEY (group_id) REFERENCES "group" (group_id)
 );
-
-DROP TABLE IF EXISTS summary_category_by_user CASCADE;
-CREATE TABLE summary_category_by_user (
-    id            uuid NOT NULL PRIMARY KEY,
-    category_id   uuid NOT NULL,
-    display_order INT  NOT NULL,
-    user_id       uuid NOT NULL,
-    CONSTRAINT summary_category_by_user_category_id_fk FOREIGN KEY (category_id) REFERENCES "category" (category_id),
-    CONSTRAINT summary_category_by_user_user_id_fk FOREIGN KEY (user_id) REFERENCES "user" (user_id)
-);
-CREATE INDEX summary_category_by_user_user_id_idx ON summary_category_by_user (user_id);
 
 DROP TABLE IF EXISTS summary_category_by_group CASCADE;
 CREATE TABLE summary_category_by_group (
