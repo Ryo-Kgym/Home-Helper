@@ -1,9 +1,13 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 "use client";
 
-import { TopPresenter } from "./TopPresenter";
+import { LinkProps } from "@components/atoms/Card";
 import { useGetApplicationByGroupIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
-import { LinkProps } from "@components/atoms/Card";
+import { TopPresenter } from "./TopPresenter";
 
 export const TopContainer = () => {
   const { groupId } = useGroup();
@@ -12,7 +16,7 @@ export const TopContainer = () => {
   });
 
   const props: LinkProps[] = [
-    { href: "/select", label: "戻る", back: true } as LinkProps,
+    { href: "/group", label: "戻る", back: true } as LinkProps,
   ].concat(
     data?.group.map(({ app }) => ({
       href: app.topUrl,
