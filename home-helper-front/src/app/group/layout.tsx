@@ -2,14 +2,13 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { LoginStatus } from "@components/molecules/LoginStatus/index";
 import { ReactNode } from "react";
+import { SelectPageLayout } from "@app/_layout/SelectPageLayout";
 
 const Layout = ({ children }: { children: ReactNode }) => (
-  <div>
-    <LoginStatus />
+  <SelectPageLayout title={"グループを選択してください"}>
     {children}
-  </div>
+  </SelectPageLayout>
 );
 
 export default Layout;
