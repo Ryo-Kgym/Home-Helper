@@ -1,0 +1,25 @@
+mutation CreateCreditCardSummary(
+  $accountId: uuid!
+  $count: Int!
+  $creditCard: String!
+  $groupId: uuid!
+  $id: uuid!
+  $totalAmount: numeric!
+  $withdrawalDate: date!
+) {
+  insertCreditCardSummary(
+    objects: {
+      id: $id
+      creditCard: $creditCard
+      accountId: $accountId
+      totalAmount: $totalAmount
+      count: $count
+      withdrawalDate: $withdrawalDate
+      groupId: $groupId
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+}

@@ -1,0 +1,19 @@
+mutation CreateSummaryCategory(
+  $id: uuid!
+  $displayOrder: Int!
+  $categoryId: uuid!
+  $groupId: uuid!
+) {
+  insertSummaryCategoryByGroup(
+    objects: {
+      id: $id
+      categoryId: $categoryId
+      groupId: $groupId
+      displayOrder: $displayOrder
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+}

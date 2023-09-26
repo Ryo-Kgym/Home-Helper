@@ -1,0 +1,20 @@
+mutation CreateAccount(
+  $accountId: uuid!
+  $accountName: String!
+  $displayOrder: Int!
+  $groupId: uuid!
+) {
+  insertAccount(
+    objects: {
+      accountId: $accountId
+      accountName: $accountName
+      displayOrder: $displayOrder
+      groupId: $groupId
+      validFlag: true
+    }
+  ) {
+    returning {
+      accountId
+    }
+  }
+}

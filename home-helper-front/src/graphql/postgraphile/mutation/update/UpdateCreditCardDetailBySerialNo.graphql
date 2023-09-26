@@ -1,0 +1,14 @@
+mutation UpdateCreditCardDetailById(
+    $id: UUID!
+    $categoryId: UUID!
+    $memo: String
+) {
+    updateCreditCardDetailById(
+        input: {
+            creditCardDetailPatch: { categoryId: $categoryId, memo: $memo }
+            id: $id
+        }
+    ) {
+        clientMutationId
+    }
+}

@@ -1,0 +1,7 @@
+query GetTransferCategoryBy($groupId: uuid!) {
+  transferCategory: transferCategoryByPk(groupId: $groupId) {
+    id: groupId
+    incomeCategoryId
+    outcomeCategoryId
+  }
+}

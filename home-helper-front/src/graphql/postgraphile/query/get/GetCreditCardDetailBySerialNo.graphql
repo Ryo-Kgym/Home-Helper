@@ -1,0 +1,19 @@
+query GetCreditCardDetailById($id: UUID!) {
+    creditCardDetailById(id: $id) {
+        id
+        date
+        amount
+        memo
+        summaryId
+        categoryByCategoryId {
+            categoryId
+            categoryName
+            genreByGenreId {
+                genreId
+                genreName
+                genreType
+                iocomeType
+            }
+        }
+    }
+}

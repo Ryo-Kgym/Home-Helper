@@ -1,0 +1,59 @@
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    border-color: #222;
+  }
+}
+
+.counter {
+  .counterBox {
+    background-color: yellowgreen;
+    width: 1.5em;
+    height: 1.5em;
+    font-size: 50px;
+  }
+
+  .counterBox:hover {
+    background-color: green;
+  }
+
+  .count {
+    alignment: center;
+    width: 3em;
+    font-size: 30px;
+    justify-content: center;
+  }
+
+  .blank {
+    alignment: center;
+    width: 2em;
+    font-size: 30px;
+    justify-content: center;
+  }
+
+  .clearBox {
+    background-color: gray;
+  }
+}

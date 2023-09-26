@@ -1,0 +1,33 @@
+query GetAllCategoryListWithCriteria(
+  $validCategoryIn: [Boolean!] = [true, false]
+  $validGenreIn: [Boolean!] = [true, false]
+  $iocomeTypeIn: [iocome_type!] = [INCOME, OUTCOME]
+  $categoryNotIn: [uuid!] = []
+) {
+  genres: genre(
+    where: {
+      validFlag: { _in: $validCategoryIn }
+      _and: { iocomeType: { _in: $iocomeTypeIn } }
+    }
+    orderBy: { displayOrder: ASC }
+  ) {
+    id: genreId
+    name: genreName
+    type: genreType
+    iocomeType
+    validFlag
+    displayOrder
+    categories(
+      where: {
+        validFlag: { _in: $validGenreIn }
+        _and: { categoryId: { _nin: $categoryNotIn } }
+      }
+      orderBy: { displayOrder: ASC }
+    ) {
+      id: categoryId
+      name: categoryName
+      validFlag
+      displayOrder
+    }
+  }
+}

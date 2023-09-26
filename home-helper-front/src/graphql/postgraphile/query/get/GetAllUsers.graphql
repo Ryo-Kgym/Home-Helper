@@ -1,0 +1,13 @@
+query GetAllUsers {
+    users: allUsersList(orderBy: DISPLAY_ORDER_ASC) {
+        id: userId
+        name: userName
+        email
+        affiliation: affiliationsByUserIdList {
+            group: groupByGroupId {
+                id: groupId
+                name: groupName
+            }
+        }
+    }
+}

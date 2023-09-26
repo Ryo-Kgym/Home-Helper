@@ -1,0 +1,38 @@
+query GetDailyDetailByDateGenreId(
+  $genreId: uuid!
+  $fromDate: date!
+  $toDate: date!
+  $groupId: uuid!
+) {
+  allCategoriesList: category(where: { genreId: { _eq: $genreId } }) {
+    dailyDetailsByCategoryIdList: daily_details(
+      where: {
+        date: { _gte: $fromDate }
+        _and: { date: { _lte: $toDate }, _and: { groupId: { _eq: $groupId } } }
+      }
+    ) {
+      id
+      date
+      amount
+      memo
+      categoryByCategoryId: category {
+        categoryId
+        categoryName
+        genreByGenreId: genre {
+          genreId
+          genreName
+          genreType
+          iocomeType
+        }
+      }
+      accountByAccountId: account {
+        accountId
+        accountName
+      }
+      userByUserId: user {
+        userId
+        userName
+      }
+    }
+  }
+}

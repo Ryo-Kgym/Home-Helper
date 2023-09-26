@@ -1,0 +1,27 @@
+query GetValidGenreListByIocomeType(
+  $iocomeType: iocome_type!
+  $groupId: uuid!
+) {
+  allGenresList: genre(
+    where: {
+      validFlag: { _eq: true }
+      iocomeType: { _eq: $iocomeType }
+      groupId: { _eq: $groupId }
+    }
+    orderBy: { displayOrder: ASC }
+  ) {
+    genreId
+    genreName
+    genreType
+    iocomeType
+    displayOrder
+    categoriesByGenreIdList: categories(
+      orderBy: { displayOrder: ASC }
+      where: { validFlag: { _eq: true } }
+    ) {
+      categoryId
+      categoryName
+      displayOrder
+    }
+  }
+}

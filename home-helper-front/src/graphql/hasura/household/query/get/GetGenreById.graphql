@@ -1,0 +1,14 @@
+query GetGenreById($genreId: uuid!) {
+    genreById: genreByPk(genreId: $genreId) {
+        id: genreId
+        genreName
+        genreType
+        iocomeType
+        validFlag
+        displayOrder
+        categories(where: {validFlag: {_eq: true}}) {
+            categoryId
+            categoryName
+        }
+    }
+}

@@ -1,0 +1,6 @@
+query GetValidAccounts($groupId: UUID!) {
+    allAccountsList(condition: {validFlag: true, groupId: $groupId}, orderBy: DISPLAY_ORDER_ASC) {
+        accountId
+        accountName
+    }
+}

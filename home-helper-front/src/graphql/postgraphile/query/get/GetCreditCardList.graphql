@@ -1,0 +1,18 @@
+query GetCreditCardList {
+    allCreditCardSummariesList(orderBy: WITHDRAWAL_DATE_DESC) {
+        id
+        creditCard
+        accountByAccountId {
+            accountId
+            accountName
+        }
+        count
+        withdrawalDate
+        totalAmount
+        importFileHistoryById {
+            importDatetime
+            fileName
+            fileType
+        }
+    }
+}

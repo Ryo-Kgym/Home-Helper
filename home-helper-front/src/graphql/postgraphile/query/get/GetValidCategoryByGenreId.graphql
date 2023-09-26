@@ -1,0 +1,10 @@
+query GetValidCategoryByGenreId($genreId: UUID!, $groupId: UUID!) {
+    allCategoriesList(
+        condition: {genreId: $genreId, validFlag: true, groupId: $groupId}
+        orderBy: DISPLAY_ORDER_ASC
+    ) {
+        categoryId
+        categoryName
+        displayOrder
+    }
+}

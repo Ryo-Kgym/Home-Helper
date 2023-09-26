@@ -1,0 +1,34 @@
+query GetDailyDetailByDateCategoryId(
+  $fromDate: date!
+  $toDate: date!
+  $groupId: uuid!
+  $categoryId: uuid!
+) {
+  dailyDetailByDateList: dailyDetailByDate(
+    args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
+    where: { categoryId: { _eq: $categoryId } }
+  ) {
+    id
+    date
+    amount
+    memo
+    categoryByCategoryId: category {
+      categoryId
+      categoryName
+      genreByGenreId: genre {
+        genreId
+        genreName
+        genreType
+        iocomeType
+      }
+    }
+    accountByAccountId: account {
+      accountId
+      accountName
+    }
+    userByUserId: user {
+      userId
+      userName
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation DeleteSummaryCategory($groupId: uuid!) {
+  deleteSummaryCategoryByGroup(where: {groupId:  { _eq: $groupId } }) {
+    returning {
+      id
+    }
+  }
+}

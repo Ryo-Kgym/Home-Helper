@@ -1,0 +1,14 @@
+query GetValidCategoryByGenreId($genreId: uuid!, $groupId: uuid!) {
+  allCategoriesList: category(
+    where: {
+      genreId: { _eq: $genreId }
+      validFlag: { _eq: true }
+      groupId: { _eq: $groupId }
+    }
+    orderBy: { displayOrder: ASC }
+  ) {
+    categoryId
+    categoryName
+    displayOrder
+  }
+}
