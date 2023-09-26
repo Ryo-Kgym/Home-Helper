@@ -11,18 +11,16 @@ export type LinkProps = {
   handleClick?: () => void;
 };
 
-export const LinkList = ({ props }: { props: LinkProps[] }) => {
-  return (
-    <div className={"grid"}>
-      {props.map((p, i) => (
-        <LinkContainer
-          href={p.href}
-          label={p.label}
-          back={p.back}
-          handleClick={p.handleClick}
-          key={"link" + i}
-        />
-      ))}
-    </div>
-  );
-};
+export const LinkList = ({ props }: { props: LinkProps[] }) => (
+  <div className={"space-y-5"}>
+    {props.map((p, i) => (
+      <LinkContainer
+        href={p.href}
+        label={p.label}
+        back={p.back}
+        handleClick={p.handleClick}
+        key={"link" + i}
+      />
+    ))}
+  </div>
+);

@@ -11,7 +11,8 @@ type SelectGroupPresenterProps = {
 export const SelectGroupPresenter = ({
   linkProps,
 }: SelectGroupPresenterProps) => (
-  <div>
+  <div className={"grid w-1/2 mx-auto"}>
+    <div className={"text-2xl m-10"}>グループを選択してください</div>
     <LinkList props={linkProps} />
   </div>
 );

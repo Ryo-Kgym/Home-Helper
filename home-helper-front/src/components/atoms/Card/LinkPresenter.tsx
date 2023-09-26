@@ -1,5 +1,9 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import Link from "next/link";
-import { FC, ReactElement } from "react";
+import { ReactElement } from "react";
 
 type CardProps = {
   text: ReactElement;
@@ -7,14 +11,14 @@ type CardProps = {
   handleClick?: () => void;
 };
 
-export const LinkPresenter: FC<CardProps> = ({ text, href, handleClick }) => {
-  return (
-    <Link
-      href={href}
-      className={"border-b-2 hover:border-b-4 py-2 pl-2 w-full text-sm"}
-      onClick={handleClick}
-    >
+export const LinkPresenter = ({ text, href, handleClick }: CardProps) => (
+  <div
+    className={
+      "border-2 rounded-2xl border-gray-300 hover:border-red-500 p-[2em]"
+    }
+  >
+    <Link href={href} className={"text-2xl"} onClick={handleClick}>
       {text}
     </Link>
-  );
-};
+  </div>
+);
