@@ -2,11 +2,23 @@
 ## 概要
 我が家の支援システム
 次のサブシステムを備えています。
-1. （工事中）お手伝い記録
 1. 家計簿
+    2. アカウント、カテゴリごとに家計簿を登録することが可能
+    3. アカウント、カテゴリはマスタ登録可能
+    4. 年間を通した月毎の収支を参照可能
+    5. クレジットカード明細のCSV取込みが可能
+        6. 大分銀行、Au Pay, 楽天カード, SMBC 対応
+1. お手伝い記録
+    2. こどものお手伝いに応じたポイント管理
+    3. ためる、つかうを登録可能
+    4. お手伝い項目、交換品はマスタ登録可能
 
 ## 要素技術
-1. Kotlin, SpringBoot FW
-1. GraphQL, PostGraphile
-1. MySQL, MyBatisFW
-1. Next.js, Container / Presentational Structure
+1. Next.js, App Router
+1. GraphQL, Hasura, Apollo
+1. PostgreSQL
+
+## 今後やってみたいこと
+1. クレジットカード明細CSV取込みをユーザでフォーマットを作成してもらうようにしたい。
+2. 収支状況をチャート化したい。
+3. Spring Batchを用いた集計処理を実装したい。
