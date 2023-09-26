@@ -1,0 +1,5 @@
+mutation DeleteDailyDetailBySerialNo($id: uuid!) {
+  deleteDailyDetailByPk(id: $id) {
+    id
+  }
+}

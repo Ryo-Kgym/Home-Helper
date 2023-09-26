@@ -1,0 +1,19 @@
+mutation UpdateCategoryById(
+  $categoryId: uuid!
+  $categoryName: String!
+  $genreId: uuid!
+  $displayOrder: Int!
+  $validFlag: Boolean!
+) {
+  updateCategoryByPk(
+    pkColumns: { categoryId: $categoryId }
+    _set: {
+      categoryName: $categoryName
+      genreId: $genreId
+      displayOrder: $displayOrder
+      validFlag: $validFlag
+    }
+  ) {
+    id: categoryId
+  }
+}

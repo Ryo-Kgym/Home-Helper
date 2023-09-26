@@ -1,0 +1,12 @@
+mutation UpdateCreditCardDetailById(
+    $id: uuid!
+    $categoryId: uuid!
+    $memo: String
+) {
+    updateCreditCardDetailByPk(
+        pkColumns: { id: $id }
+        _set: { categoryId: $categoryId, memo: $memo }
+    ) {
+        id
+    }
+}

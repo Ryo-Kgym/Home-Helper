@@ -1,0 +1,23 @@
+mutation CreateImportFileHistory(
+  $fileName: String!
+  $fileType: String!
+  $groupId: uuid!
+  $id: uuid!
+  $importDatetime: timestamp!
+  $importUserId: uuid!
+) {
+  insertImportFileHistory(
+    objects: {
+      id: $id
+      fileType: $fileType
+      fileName: $fileName
+      importUserId: $importUserId
+      importDatetime: $importDatetime
+      groupId: $groupId
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+}

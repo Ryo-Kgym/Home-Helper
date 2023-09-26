@@ -1,0 +1,21 @@
+mutation UpdateDailyDetailById(
+  $id: uuid!
+  $date: date!
+  $categoryId: uuid!
+  $accountId: uuid!
+  $amount: numeric!
+  $memo: String
+) {
+  updateDailyDetailByPk(
+    _set: {
+      date: $date
+      categoryId: $categoryId
+      accountId: $accountId
+      amount: $amount
+      memo: $memo
+    }
+    pkColumns: { id: $id }
+  ) {
+    id
+  }
+}

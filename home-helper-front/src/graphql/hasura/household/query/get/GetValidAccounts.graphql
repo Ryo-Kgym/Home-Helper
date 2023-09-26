@@ -1,0 +1,9 @@
+query GetValidAccounts($groupId: uuid!) {
+  allAccountsList: account(
+    where: { validFlag: { _eq: true }, _and: { groupId: { _eq: $groupId } } }
+    orderBy: { displayOrder: ASC }
+  ) {
+    accountId
+    accountName
+  }
+}

@@ -1,0 +1,19 @@
+mutation CreateSummaryCategory(
+    $id: UUID!
+    $userId: UUID!
+    $categoryId: UUID!
+    $displayOrder: Int!
+) {
+    createSummaryCategoryByUser(
+        input: {
+            summaryCategoryByUser: {
+                id: $id
+                userId: $userId
+                categoryId: $categoryId
+                displayOrder: $displayOrder
+            }
+        }
+    ) {
+        clientMutationId
+    }
+}

@@ -1,0 +1,13 @@
+query GetCategoryTotalByMonth($fromDate: date, $toDate: date, $groupId: uuid!) {
+  categoryTotalByMonth(
+    args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
+  ) {
+    date
+    iocomeType
+    genreId
+    genreName
+    categoryId
+    categoryName
+    total
+  }
+}

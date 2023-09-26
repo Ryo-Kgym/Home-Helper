@@ -1,0 +1,5 @@
+mutation DeleteSummaryCategoryByUserById($id: UUID!) {
+    deleteSummaryCategoryByUserById(input: {id: $id}) {
+        clientMutationId
+    }
+}

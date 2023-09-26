@@ -1,0 +1,25 @@
+mutation UpdateDailyDetailById(
+    $id: UUID!
+    $date: Date!
+    $categoryId: UUID!
+    $accountId: UUID!
+    $amount: BigFloat!
+    $memo: String
+) {
+    updateDailyDetailById(
+        input: {
+            dailyDetailPatch: {
+                date: $date
+                categoryId: $categoryId
+                accountId: $accountId
+                amount: $amount
+                memo: $memo
+            }
+            id: $id
+        }
+    ) {
+        dailyDetail {
+            id
+        }
+    }
+}

@@ -1,0 +1,17 @@
+query GetUserByEmail($email: String!) {
+  userByEmail: user(where: { email: { _eq: $email } }) {
+    email
+    id: userId
+    name: userName
+    affiliation: affiliations {
+      group: group {
+        id: groupId
+        name: groupName
+      }
+      groupRole: group_role {
+        id: groupRoleId
+        role
+      }
+    }
+  }
+}

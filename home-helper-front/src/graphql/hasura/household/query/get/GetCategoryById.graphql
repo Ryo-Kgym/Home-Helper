@@ -1,0 +1,11 @@
+query GetCategoryById($categoryId: uuid!) {
+  category: categoryByPk(categoryId: $categoryId) {
+    categoryName
+    validFlag
+    displayOrder
+    genre {
+      genreId
+      iocomeType
+    }
+  }
+}

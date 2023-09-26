@@ -1,0 +1,16 @@
+query GetCreditCardList($groupId: uuid!) {
+  allCreditCardSummariesList: creditCardSummary(
+    where: { groupId: { _eq: $groupId}}
+    orderBy: { withdrawalDate: DESC }
+  ) {
+    id
+    creditCard
+    account {
+      id: accountId
+      name: accountName
+    }
+    count
+    withdrawalDate
+    totalAmount
+  }
+}

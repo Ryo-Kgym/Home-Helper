@@ -1,0 +1,15 @@
+query GetAllCategories($groupId: uuid!) {
+  categories: category(
+    where: { groupId: { _eq: $groupId } }
+    orderBy: [{ genre: { displayOrder: ASC } }, { displayOrder: ASC }]
+  ) {
+    id: categoryId
+    categoryName
+    displayOrder
+    validFlag
+    genre {
+      genreId
+      genreName
+    }
+  }
+}

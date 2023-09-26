@@ -1,0 +1,27 @@
+mutation CreateDailyDetail(
+  $accountId: uuid!
+  $amount: numeric!
+  $categoryId: uuid!
+  $date: date!
+  $groupId: uuid!
+  $id: uuid!
+  $memo: String
+  $userId: uuid!
+) {
+  insertDailyDetail(
+    objects: {
+      id: $id
+      date: $date
+      categoryId: $categoryId
+      accountId: $accountId
+      userId: $userId
+      amount: $amount
+      memo: $memo
+      groupId: $groupId
+    }
+  ) {
+    returning {
+      id
+    }
+  }
+}

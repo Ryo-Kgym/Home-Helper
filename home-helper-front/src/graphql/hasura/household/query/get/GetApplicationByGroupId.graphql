@@ -1,0 +1,9 @@
+query getApplicationByGroupId($groupId: uuid!) {
+  group: groupApplication(where: {groupId: {_eq: $groupId}}) {
+    app: application {
+      id: applicationId
+      name: application
+      topUrl
+    }
+  }
+}

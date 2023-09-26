@@ -1,0 +1,27 @@
+mutation CreateCreditCardDetail(
+    $id: UUID!
+    $date: Date!
+    $categoryId: UUID!
+    $amount: BigFloat!
+    $memo: String
+    $summaryId: UUID!
+    $userId: UUID!
+) {
+    createCreditCardDetail(
+        input: {
+            creditCardDetail: {
+                id: $id
+                date: $date
+                categoryId: $categoryId
+                amount: $amount
+                summaryId: $summaryId
+                memo: $memo
+                userId: $userId
+            }
+        }
+    ) {
+        creditCardDetail {
+            id
+        }
+    }
+}

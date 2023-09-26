@@ -1,0 +1,23 @@
+query GetCreditCardSummaryBetweenWithdrawalDate(
+    $fromDate: Date!
+    $toDate: Date!
+    $groupId: UUID!
+) {
+    allCreditCardSummariesList(
+        filter: {
+            withdrawalDate: { greaterThanOrEqualTo: $fromDate }
+            and: { withdrawalDate: { lessThanOrEqualTo: $toDate } }
+        }
+        orderBy: WITHDRAWAL_DATE_ASC
+        condition: { groupId: $groupId }
+    ) {
+        id
+        withdrawalDate
+        totalAmount
+        creditCard
+        accountByAccountId {
+            accountId
+            accountName
+        }
+    }
+}

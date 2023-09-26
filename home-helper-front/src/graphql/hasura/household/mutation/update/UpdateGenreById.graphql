@@ -1,0 +1,21 @@
+mutation UpdateGenreById(
+  $genreId: uuid!
+  $validFlag: Boolean!
+  $iocomeType: iocome_type!
+  $genreType: genre_type!
+  $genreName: String!
+  $displayOrder: Int!
+) {
+  updateGenreByPk(
+    pkColumns: { genreId: $genreId }
+    _set: {
+      genreName: $genreName
+      genreType: $genreType
+      iocomeType: $iocomeType
+      validFlag: $validFlag
+      displayOrder: $displayOrder
+    }
+  ) {
+    id: genreId
+  }
+}
