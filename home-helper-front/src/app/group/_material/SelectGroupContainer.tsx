@@ -8,7 +8,7 @@ import { useAuth } from "@hooks/authentication/useAuth";
 import { useGetGroup } from "@hooks/group/useGetGroup";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
-import { SelectGroupPresenter } from "./SelectGroupPresenter";
+import { LinkList } from "@components/atoms/Card/index";
 
 export const SelectGroupContainer = () => {
   const { save: userSave } = useUser();
@@ -19,7 +19,7 @@ export const SelectGroupContainer = () => {
   const linkProps = [
     {
       href: "/",
-      label: "ログアウト",
+      label: "Logout",
       back: true,
       handleClick: logout,
     },
@@ -35,5 +35,5 @@ export const SelectGroupContainer = () => {
     })) ?? [],
   );
 
-  return <SelectGroupPresenter linkProps={linkProps} />;
+  return <LinkList props={linkProps} />;
 };
