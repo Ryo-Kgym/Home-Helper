@@ -25,12 +25,15 @@ export const LinkList = ({ props }: { props: LinkProps[] }) => (
   </div>
 );
 
+// TODO description を追加する
 const Card = ({ back, label, href, handleClick }: LinkProps) => {
   const text = back ? <h2>&larr; {label}</h2> : <h2> {label} </h2>;
 
   return (
     <div
-      className={"border-2 rounded-2xl border-gray-300 hover:border-blue-500"}
+      className={
+        "border-2 rounded-2xl border-gray-300 hover:border-blue-500 shadow"
+      }
     >
       <Link href={href} onClick={handleClick}>
         <div className={"text-2xl p-[2em]"}>{text}</div>
