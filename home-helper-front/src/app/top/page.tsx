@@ -1,4 +1,8 @@
-import { TopContainer } from "@components/organisms/top/TopContainer";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
 
-const SelectAppPage = () => <TopContainer />;
+import { SelectAppContainer } from "@app/top/_material/SelectAppContainer";
+
+const SelectAppPage = () => <SelectAppContainer />;
 export default SelectAppPage;

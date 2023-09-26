@@ -4,18 +4,17 @@
 
 "use client";
 
-import { LinkProps } from "@components/atoms/Card";
+import { LinkProps, LinkList } from "@components/atoms/Card/index";
 import { useGetApplicationByGroupIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
-import { TopPresenter } from "./TopPresenter";
 
-export const TopContainer = () => {
+export const SelectAppContainer = () => {
   const { groupId } = useGroup();
   const [{ data }] = useGetApplicationByGroupIdQuery({
     variables: { groupId },
   });
 
-  const props: LinkProps[] = [
+  const linkListProps: LinkProps[] = [
     { href: "/group", label: "戻る", back: true } as LinkProps,
   ].concat(
     data?.group.map(({ app }) => ({
@@ -23,5 +22,6 @@ export const TopContainer = () => {
       label: app.name,
     })) ?? [],
   );
-  return <TopPresenter linkListProps={props} />;
+
+  return <LinkList props={linkListProps} />;
 };
