@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { LinkContainer } from "./LinkContainer";
+import Link from "next/link";
 
 export type LinkProps = {
   href: string;
@@ -14,7 +14,7 @@ export type LinkProps = {
 export const LinkList = ({ props }: { props: LinkProps[] }) => (
   <div className={"space-y-5"}>
     {props.map((p, i) => (
-      <LinkContainer
+      <Card
         href={p.href}
         label={p.label}
         back={p.back}
@@ -24,3 +24,17 @@ export const LinkList = ({ props }: { props: LinkProps[] }) => (
     ))}
   </div>
 );
+
+const Card = ({ back, label, href, handleClick }: LinkProps) => {
+  const text = back ? <h2>&larr; {label}</h2> : <h2> {label} </h2>;
+
+  return (
+    <div
+      className={"border-2 rounded-2xl border-gray-300 hover:border-blue-500"}
+    >
+      <Link href={href} onClick={handleClick}>
+        <div className={"text-2xl p-[2em]"}>{text}</div>
+      </Link>
+    </div>
+  );
+};
