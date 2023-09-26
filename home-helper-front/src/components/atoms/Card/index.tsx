@@ -1,5 +1,8 @@
-import { FC } from "react";
-import { LinkContainer } from "@components/atoms/Card/LinkContainer";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { LinkContainer } from "./LinkContainer";
 
 export type LinkProps = {
   href: string;
@@ -8,7 +11,7 @@ export type LinkProps = {
   handleClick?: () => void;
 };
 
-export const LinkList: FC<{ props: LinkProps[] }> = ({ props }) => {
+export const LinkList = ({ props }: { props: LinkProps[] }) => {
   return (
     <div className={"grid"}>
       {props.map((p, i) => (
