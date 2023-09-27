@@ -1,2 +1,5 @@
-export * from "./HouseholdMenu";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 export * from "./RegisterDailyButton";
