@@ -1,4 +1,8 @@
-import { Modal, useMantineTheme } from "@mantine/core";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { Modal } from "@mantine/core";
 import { ReactNode } from "react";
 
 type ModalPresenterProps = {
@@ -11,18 +15,8 @@ export const ModalPresenter = ({
   opened,
   onClose,
   children,
-}: ModalPresenterProps) => {
-  const theme = useMantineTheme();
-  const overlayProps = {
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[9]
-        : theme.colors.gray[2],
-    opacity: 0.55,
-  };
-  return (
-    <Modal opened={opened} onClose={onClose} overlayProps={overlayProps}>
-      {children}
-    </Modal>
-  );
-};
+}: ModalPresenterProps) => (
+  <Modal opened={opened} onClose={onClose}>
+    {children}
+  </Modal>
+);
