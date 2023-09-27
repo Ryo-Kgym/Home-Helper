@@ -1,8 +1,10 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 "use client";
 
 import { Tabs } from "@mantine/core";
-import { StyledTabs } from "@components/atoms/Tab/StyledTabs";
-import { FC } from "react";
 import { TabProps } from "@components/atoms/Tab/index";
 
 type MantineTabPresenterProps = {
@@ -10,40 +12,33 @@ type MantineTabPresenterProps = {
   tabPropsList: TabProps[];
 };
 
-export const MantineTabPresenter: FC<MantineTabPresenterProps> = ({
+export const MantineTabPresenter = ({
   defaultSelect,
   tabPropsList,
-}) => {
+}: MantineTabPresenterProps) => {
   const normalClassName = "";
   const mobileClassName: string = "max-sm:text-sm max-sm:h-5 max-sm:p-0";
 
   return (
-    <StyledTabs
-      defaultValue={defaultSelect}
-      className={"w-full justify-center"}
-    >
+    <Tabs defaultValue={defaultSelect} className={"w-full justify-center"}>
       <Tabs.List grow>
-        {tabPropsList.map(({ value, icon, label }, i) => {
-          return (
-            <Tabs.Tab
-              value={value}
-              icon={icon}
-              key={"tab" + i}
-              className={`${normalClassName} ${mobileClassName}`}
-            >
-              {label}
-            </Tabs.Tab>
-          );
-        })}
+        {tabPropsList.map((tab, i) => (
+          <Tabs.Tab
+            value={tab.value}
+            leftSection={tab.icon}
+            key={"tab" + i}
+            className={`${normalClassName} ${mobileClassName}`}
+          >
+            {tab.label}
+          </Tabs.Tab>
+        ))}
       </Tabs.List>
 
-      {tabPropsList.map(({ value, contents }, i) => {
-        return (
-          <Tabs.Panel value={value} pt="lg" pb="lg" key={"panel" + i}>
-            {contents}
-          </Tabs.Panel>
-        );
-      })}
-    </StyledTabs>
+      {tabPropsList.map(({ value, contents }, i) => (
+        <Tabs.Panel value={value} pt="lg" pb="lg" key={"panel" + i}>
+          {contents}
+        </Tabs.Panel>
+      ))}
+    </Tabs>
   );
 };
