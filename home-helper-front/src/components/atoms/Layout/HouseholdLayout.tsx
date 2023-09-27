@@ -1,25 +1,52 @@
-import { ReactElement, ReactNode } from "react";
-import { index as AppShell } from "./";
-import { HouseholdHeader } from "@components/atoms/Layout/HouseholdHeader";
-import { HouseholdMenu } from "@components/molecules";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
 
-type HouseHoldLayoutProps = {
-  children: ReactElement | ReactNode;
-  navHidden?: boolean;
-};
-export const HouseholdLayout = ({
-  children,
-  navHidden,
-}: HouseHoldLayoutProps) => {
-  const nav = (
-    <div className={"max-sm:hidden mt-12"}>
-      <HouseholdMenu hidden={navHidden} />
-    </div>
-  );
+import { PropsWithChildren } from "react";
+import { NavbarSection } from "@app/_layout/NavbarSection";
+import { Menu } from "@app/_layout/menu";
 
-  return (
-    <AppShell header={<HouseholdHeader />} nav={nav}>
-      {children}
-    </AppShell>
-  );
-};
+export const HouseholdLayout = ({ children }: PropsWithChildren) => (
+  <NavbarSection header={"家計簿アプリ"} menus={householdMenu}>
+    {children}
+  </NavbarSection>
+);
+
+const householdMenu: Menu[] = [
+  {
+    label: "戻る",
+    url: "/top",
+  },
+  {
+    label: "アカウント",
+    url: "/household/account",
+  },
+  {
+    label: "カレンダー",
+    url: "/household/daily",
+  },
+  {
+    label: "ジャンル",
+    url: "/household/genre",
+  },
+  {
+    label: "カテゴリ",
+    url: "/household/category",
+  },
+  {
+    label: "サマリ",
+    url: "/household/summary",
+  },
+  {
+    label: "クレカ履歴",
+    url: "/household/creditCard",
+  },
+  {
+    label: "ファイル取込",
+    url: "/household/fileImport",
+  },
+  {
+    label: "設定",
+    url: "/household/setting",
+  },
+];
