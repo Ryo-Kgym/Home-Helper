@@ -1,5 +1,9 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { DateInput } from "@mantine/dates";
-import { MantineSize } from "@mantine/styles";
+import { MantineSize } from "@mantine/core";
 
 type DatePickerPresenterProps = {
   value: Date;

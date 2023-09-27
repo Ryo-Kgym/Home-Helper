@@ -1,4 +1,8 @@
-import { MantineSize } from "@mantine/styles";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { MantineSize } from "@mantine/core";
 import { DatePickerPresenter } from "@components/atoms/DatePicker/DatePickerPresenter";
 
 type DatePickerContainerProps = {
