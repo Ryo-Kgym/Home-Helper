@@ -1,4 +1,8 @@
-import { FileInput, rem } from "@mantine/core";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { FileInput } from "@mantine/core";
 import { IconUpload } from "@tabler/icons-react";
 
 type FileInputPresenterProps = {
@@ -14,7 +18,7 @@ export const FileInputPresenter = ({
     onChange={setFile}
     label="UPLOAD FILE"
     placeholder="ファイルを選択してください"
-    icon={<IconUpload size={rem(18)} />}
+    leftSection={<IconUpload size={24} />}
     size={"lg"}
     withAsterisk
     error={file === null ? "Required" : undefined}
