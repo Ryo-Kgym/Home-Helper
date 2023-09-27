@@ -9,12 +9,14 @@ import { useUser } from "@hooks/user/useUser";
 
 export const LoginButtonContainer = () => {
   const { push } = useRouter();
-  const { userId } = useUser();
+  const { hasUserId } = useUser();
 
   const label = "Login";
   const onClickHandler = () => {
-    if (userId) return push("/group");
-    return push("/sign-in");
+    if (hasUserId()) {
+      push("/group");
+    }
+    push("/sign-in");
   };
 
   return <AuthButtonPresenter label={label} onClickHandler={onClickHandler} />;
