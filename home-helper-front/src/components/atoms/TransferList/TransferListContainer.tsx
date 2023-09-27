@@ -2,20 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { TransferListPresenter } from "./TransferListPresenter";
 import { TransferListItem } from "@components/atoms/TransferList/index";
-
-type TransferListContainerProps = {
-  data: [TransferListItem[], TransferListItem[]];
-  setData: (_: [TransferListItem[], TransferListItem[]]) => void;
-};
-
-export const TransferListContainer = ({
-  data,
-  setData,
-}: TransferListContainerProps) => (
-  <TransferListPresenter data={data} setData={setData} />
-);
 
 import { useState } from "react";
 import { IconChevronRight } from "@tabler/icons-react";
@@ -27,6 +14,11 @@ import {
   ActionIcon,
   Group,
 } from "@mantine/core";
+
+type TransferListContainerProps = {
+  data: [TransferListItem[], TransferListItem[]];
+  setData: (_: [TransferListItem[], TransferListItem[]]) => void;
+};
 
 interface RenderListProps {
   options: TransferListItem[];
