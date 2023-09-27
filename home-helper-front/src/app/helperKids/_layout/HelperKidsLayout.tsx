@@ -3,30 +3,44 @@
  */
 
 import { ReactNode } from "react";
-import { index as AppShell } from "@components/atoms/Layout";
-import { HelperKidsMenu } from "./HelperKidsMenu";
+import { Navi } from "@app/_layout/navi";
+import { NavbarSection } from "@app/_layout/NavbarSection";
 
-type HelperKidsLayoutProps = {
-  children: ReactNode;
-  navHidden?: boolean;
-};
-export const HelperKidsLayout = ({
-  children,
-  navHidden,
-}: HelperKidsLayoutProps) => {
-  const header = <div className={"font-bold text-2xl"}>お手伝いアプリ</div>;
-
-  const nav = (
-    <div className={"max-sm:hidden mt-12"}>
-      <HelperKidsMenu hidden={navHidden} />
+export const HelperKidsLayout = ({ children }: { children: ReactNode }) => (
+  <NavbarSection header={"お手伝いアプリ"} navis={helperKidsNavis}>
+    <div className={"flex flex-col items-center justify-center min-h-full"}>
+      {children}
     </div>
-  );
+  </NavbarSection>
+);
 
-  return (
-    <AppShell header={header} nav={nav}>
-      <div className={"flex flex-col items-center justify-center min-h-full"}>
-        {children}
-      </div>
-    </AppShell>
-  );
-};
+const helperKidsNavis: Navi[] = [
+  {
+    label: "戻る",
+    url: "/top",
+  },
+  {
+    label: "キッズ",
+    url: "/helperKids/kid",
+  },
+  {
+    label: "ためる",
+    url: "/helperKids/chargePoint",
+  },
+  {
+    label: "つかう",
+    url: "/helperKids/exchangePoint",
+  },
+  {
+    label: "履歴",
+    url: "/helperKids/pointHistory",
+  },
+  // {
+  // label: "お手伝い項目",
+  // url: "/helperKids/helpItem/register",
+  // },
+  // {
+  // label: "交換品",
+  // url: "/helperKids/exchangeItem/register",
+  // },
+];

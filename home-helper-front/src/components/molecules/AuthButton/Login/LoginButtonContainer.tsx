@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import React from "react";
 import { AuthButtonPresenter } from "@components/molecules/AuthButton/AuthButtonPresenter";
 import { useRouter } from "next/navigation";
@@ -9,7 +13,7 @@ export const LoginButtonContainer = () => {
 
   const label = "Login";
   const onClickHandler = () => {
-    if (userId) return push("/select");
+    if (userId) return push("/group");
     return push("/sign-in");
   };
 

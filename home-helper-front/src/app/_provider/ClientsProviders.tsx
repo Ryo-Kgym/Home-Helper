@@ -14,7 +14,7 @@ import { Provider as UrqlProvider } from "urql";
 export const ClientsProviders = ({ children }: PropsWithChildren) => (
   <RecoilRoot>
     <UrqlProvider value={client}>
-      <MantineProvider withNormalizeCSS withGlobalStyles>
+      <MantineProvider>
         {children}
         <Toaster />
       </MantineProvider>

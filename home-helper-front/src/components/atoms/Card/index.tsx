@@ -1,5 +1,8 @@
-import { FC } from "react";
-import { LinkContainer } from "@components/atoms/Card/LinkContainer";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import Link from "next/link";
 
 export type LinkProps = {
   href: string;
@@ -8,18 +11,33 @@ export type LinkProps = {
   handleClick?: () => void;
 };
 
-export const LinkList: FC<{ props: LinkProps[] }> = ({ props }) => {
+export const LinkList = ({ props }: { props: LinkProps[] }) => (
+  <div className={"space-y-5"}>
+    {props.map((p, i) => (
+      <Card
+        href={p.href}
+        label={p.label}
+        back={p.back}
+        handleClick={p.handleClick}
+        key={"link" + i}
+      />
+    ))}
+  </div>
+);
+
+// TODO description を追加する
+const Card = ({ back, label, href, handleClick }: LinkProps) => {
+  const text = back ? <h2>&larr; {label}</h2> : <h2> {label} </h2>;
+
   return (
-    <div className={"grid"}>
-      {props.map((p, i) => (
-        <LinkContainer
-          href={p.href}
-          label={p.label}
-          back={p.back}
-          handleClick={p.handleClick}
-          key={"link" + i}
-        />
-      ))}
+    <div
+      className={
+        "border-2 rounded-2xl border-gray-300 hover:border-blue-500 shadow"
+      }
+    >
+      <Link href={href} onClick={handleClick}>
+        <div className={"text-2xl p-[2em]"}>{text}</div>
+      </Link>
     </div>
   );
 };

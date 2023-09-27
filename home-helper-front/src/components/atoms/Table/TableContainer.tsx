@@ -1,8 +1,12 @@
-import { FC, useRef, useState } from "react";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { useRef, useState } from "react";
 import { TablePresenter } from "@components/atoms/Table/TablePresenter";
 import { ColumnProps, TableProps } from "@components/atoms/Table/index";
-import { createStyles } from "@mantine/core";
-import { MantineSize } from "@mantine/styles";
+import { MantineSize, createStyles } from "@mantine/styles";
+import { Table } from "@mantine/core";
 
 type Props = {
   header: string[];
@@ -13,63 +17,62 @@ type Props = {
   size?: MantineSize;
   toBottom?: boolean;
 };
-export const TableContainer: FC<Props> = ({
+export const TableContainer = ({
   header,
   tablePropsList,
   footer,
   height = "80vh",
   size = "xl",
   toBottom = false,
-}) => {
+}: Props) => {
   const [scrolled, setScrolled] = useState(false);
   const [toButtonOpen, setToButtonOpen] = useState(false);
   const { classes, cx } = useStyles();
 
-  const thead =
-    header.length > 0 ? (
-      <tr>
-        {header.map((title, i) => {
-          return <th key={"th" + i}>{title}</th>;
-        })}
-      </tr>
-    ) : undefined;
+  const thead = (
+    <Table.Tr>
+      {header.map((title, i) => {
+        return <Table.Th key={"th" + i}>{title}</Table.Th>;
+      })}
+    </Table.Tr>
+  );
 
   const generateRow = (
     { keyPrefix, onClick, columns }: TableProps,
-    i: number
+    i: number,
   ) => (
-    <tr
+    <Table.Tr
       key={keyPrefix + i}
       onClick={onClick ?? (() => {})}
       className={onClick ? "cursor-pointer" : ""}
     >
       {columns.map(generateColumn)}
-    </tr>
+    </Table.Tr>
   );
 
   const generateColumn = (columnProps: ColumnProps, j: number) => (
-    <td
+    <Table.Td
       key={"td" + j}
       align={columnProps.align ?? "left"}
       hidden={columnProps.hidden ?? false}
     >
       {columnProps.value}
-    </td>
+    </Table.Td>
   );
 
   const generateFooterRow = (row: ColumnProps[], i: number) => (
-    <tr key={"tfoot" + i}>
+    <Table.Tr key={"tfoot" + i}>
       {row.map((columnProps: ColumnProps, j: number) => (
-        <td
+        <Table.Td
           key={"td" + j}
           align={columnProps.align ?? "left"}
           hidden={columnProps.hidden ?? false}
           className={"p-2 border-2 font-bold bg-white"}
         >
           {columnProps.value}
-        </td>
+        </Table.Td>
       ))}
-    </tr>
+    </Table.Tr>
   );
 
   const tbody = <>{tablePropsList.map(generateRow)}</>;

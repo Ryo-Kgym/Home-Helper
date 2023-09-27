@@ -1,4 +1,7 @@
-import { FC } from "react";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { Group, Button } from "@mantine/core";
 import { IconCheck } from "@tabler/icons";
 import { showNotification, updateNotification } from "@mantine/notifications";
@@ -15,7 +18,7 @@ type UpdateNotificationProps = {
   autoClose?: number;
 };
 
-export const UpdateNotification: FC<UpdateNotificationProps> = ({
+export const UpdateNotification = ({
   label,
   showTitle,
   showMessage,
@@ -25,37 +28,35 @@ export const UpdateNotification: FC<UpdateNotificationProps> = ({
   handleAfterProcess,
   updateTime,
   autoClose,
-}) => {
-  return (
-    <Group position="center">
-      <Button
-        onClick={() => {
-          showNotification({
+}: UpdateNotificationProps) => (
+  <Group>
+    <Button
+      onClick={() => {
+        showNotification({
+          id: "load-data",
+          loading: true,
+          title: showTitle,
+          message: showMessage,
+          autoClose: false,
+        });
+
+        handleClick();
+
+        setTimeout(() => {
+          updateNotification({
             id: "load-data",
-            loading: true,
-            title: showTitle,
-            message: showMessage,
-            autoClose: false,
+            color: "teal",
+            title: updateTitle,
+            message: updateMessage,
+            icon: <IconCheck size={16} />,
+            autoClose: autoClose ?? 2000,
           });
-
-          handleClick();
-
-          setTimeout(() => {
-            updateNotification({
-              id: "load-data",
-              color: "teal",
-              title: updateTitle,
-              message: updateMessage,
-              icon: <IconCheck size={16} />,
-              autoClose: autoClose ?? 2000,
-            });
-            handleAfterProcess();
-          }, updateTime ?? 3000);
-        }}
-        className={"h-24 w-30 text-3xl bg-blue-500"}
-      >
-        {label}
-      </Button>
-    </Group>
-  );
-};
+          handleAfterProcess();
+        }, updateTime ?? 3000);
+      }}
+      className={"h-24 w-30 text-3xl bg-blue-500"}
+    >
+      {label}
+    </Button>
+  </Group>
+);

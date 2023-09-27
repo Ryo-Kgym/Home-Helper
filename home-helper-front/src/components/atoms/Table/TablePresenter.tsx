@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { ReactElement, RefObject } from "react";
 import { ActionIcon, ScrollArea, Table } from "@mantine/core";
 import { IconArrowBarToDown } from "@tabler/icons-react";
@@ -40,37 +44,36 @@ export const TablePresenter = ({
 }: TablePresenterProps) => (
   <>
     <ScrollArea
-      sx={{ height: height }}
       onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
       viewportRef={viewport}
       onMouseOver={onMouseMoveHandler}
       onMouseOut={onMouseOutHandler}
+      h={height}
     >
       <Table
         striped
         highlightOnHover
         horizontalSpacing={horizontalSpacing}
         verticalSpacing={verticalSpacing}
-        fontSize={fontSize}
         withColumnBorders
-        className={"bg-slate-100 sm:table-fixed"}
+        className={`bg-slate-100 sm:table-fixed text-[${fontSize}px]`}
       >
         {headerTr && (
-          <thead
+          <Table.Thead
             className={cx(classes.header, {
               [classes.scrolled]: scrolled,
             })}
           >
             {headerTr}
-          </thead>
+          </Table.Thead>
         )}
-        <tbody>{tbody}</tbody>
+        <Table.Tbody>{tbody}</Table.Tbody>
         {tfoot && (
-          <tfoot
+          <Table.Tfoot
             className={cx(classes.footer, { [classes.scrolled]: scrolled })}
           >
             {tfoot}
-          </tfoot>
+          </Table.Tfoot>
         )}
       </Table>
       {toButtonOpen && <JumpToBottom scrollToBottom={scrollToBottom} />}

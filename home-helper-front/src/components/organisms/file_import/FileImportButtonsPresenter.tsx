@@ -1,4 +1,7 @@
-import { FC } from "react";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { Button } from "@components/atoms/Button";
 
 type FileImportPresenterProps = {
@@ -8,26 +11,24 @@ type FileImportPresenterProps = {
   clearClickHandler: () => void;
   registerClickHandler: () => void;
 };
-export const FileImportButtonsPresenter: FC<FileImportPresenterProps> = ({
+export const FileImportButtonsPresenter = ({
   importDisabled,
   registerDisabled,
   importClickHandler,
   clearClickHandler,
   registerClickHandler,
-}) => (
-  <div className={"grid"}>
-    <div className={"py-2"}>
-      <Button
-        onClick={importClickHandler}
-        disabled={importDisabled}
-        colorType={"import"}
-      />
-      <Button onClick={clearClickHandler} colorType={"clear"} />
-      <Button
-        onClick={registerClickHandler}
-        colorType={"register"}
-        disabled={registerDisabled}
-      />
-    </div>
+}: FileImportPresenterProps) => (
+  <div className={"flex"}>
+    <Button
+      onClick={importClickHandler}
+      disabled={importDisabled}
+      colorType={"import"}
+    />
+    <Button onClick={clearClickHandler} colorType={"clear"} />
+    <Button
+      onClick={registerClickHandler}
+      colorType={"register"}
+      disabled={registerDisabled}
+    />
   </div>
 );
