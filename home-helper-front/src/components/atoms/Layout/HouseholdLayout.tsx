@@ -4,15 +4,15 @@
 
 import { PropsWithChildren } from "react";
 import { NavbarSection } from "@app/_layout/NavbarSection";
-import { Menu } from "@app/_layout/menu";
+import { Navi } from "@app/_layout/navi";
 
 export const HouseholdLayout = ({ children }: PropsWithChildren) => (
-  <NavbarSection header={"家計簿アプリ"} menus={householdMenu}>
+  <NavbarSection header={"家計簿アプリ"} navis={householdNavis}>
     {children}
   </NavbarSection>
 );
 
-const householdMenu: Menu[] = [
+const householdNavis: Navi[] = [
   {
     label: "戻る",
     url: "/top",

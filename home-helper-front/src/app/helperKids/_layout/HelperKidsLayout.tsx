@@ -3,18 +3,18 @@
  */
 
 import { ReactNode } from "react";
-import { Menu } from "@app/_layout/menu";
+import { Navi } from "@app/_layout/navi";
 import { NavbarSection } from "@app/_layout/NavbarSection";
 
 export const HelperKidsLayout = ({ children }: { children: ReactNode }) => (
-  <NavbarSection header={"お手伝いアプリ"} menus={helperKidsMenu}>
+  <NavbarSection header={"お手伝いアプリ"} navis={helperKidsNavis}>
     <div className={"flex flex-col items-center justify-center min-h-full"}>
       {children}
     </div>
   </NavbarSection>
 );
 
-const helperKidsMenu: Menu[] = [
+const helperKidsNavis: Navi[] = [
   {
     label: "戻る",
     url: "/top",

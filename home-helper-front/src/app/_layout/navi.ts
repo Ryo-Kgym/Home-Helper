@@ -4,7 +4,7 @@
 
 import { ReactNode } from "react";
 
-export type Menu = {
+export type Navi = {
   label: string;
   url: string;
   icon?: ReactNode;

@@ -6,16 +6,16 @@
 import { useDisclosure } from "@mantine/hooks";
 import { AppShell, Burger, Group, ScrollArea } from "@mantine/core";
 import { ReactNode } from "react";
-import { Menu } from "@app/_layout/menu";
+import { Navi } from "@app/_layout/navi";
 import Link from "next/link";
 
 export const NavbarSection = ({
   header,
-  menus,
+  navis,
   children,
 }: {
   header: string;
-  menus: Menu[];
+  navis: Navi[];
   children: ReactNode;
 }) => {
   const [opened, { toggle }] = useDisclosure();
@@ -35,7 +35,7 @@ export const NavbarSection = ({
 
       <AppShell.Navbar p="md">
         <AppShell.Section grow component={ScrollArea}>
-          {menus.map((menu, index) => (
+          {navis.map((menu, index) => (
             <Link key={`menu-${index}`} href={menu.url}>
               <div className={"py-3 my-1 hover:font-bold hover:bg-gray-50"}>
                 {menu.icon && <div>{menu.icon}</div>}
