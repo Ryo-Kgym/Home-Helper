@@ -21,7 +21,6 @@ export const RangeDatePickerPresenter = ({
   <div className={"grid grid-cols-5 items-center"}>
     <div className={"col-span-2"}>
       <DatePicker
-        label={"FROM"}
         value={fromDate!}
         onChange={changeFromDate}
         disabled={disabled}
@@ -30,7 +29,6 @@ export const RangeDatePickerPresenter = ({
     <div className={"text-center pt-7"}>〜</div>
     <div className={"col-span-2"}>
       <DatePicker
-        label={"TO"}
         value={toDate!}
         onChange={changeToDate}
         disabled={disabled}

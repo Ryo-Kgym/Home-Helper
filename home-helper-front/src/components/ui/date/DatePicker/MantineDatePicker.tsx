@@ -7,7 +7,7 @@ import { DateInput } from "@mantine/dates";
 export const MantineDatePicker = ({
   value,
   onChange,
-  label = "DATE",
+  label,
   defaultValue = new Date(),
   placeholder = "",
   size = "lg",
