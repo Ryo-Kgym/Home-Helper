@@ -1,4 +1,8 @@
-import { FC, useState } from "react";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { useState } from "react";
 import { RegisterDailyDetailPresenter } from "./RegisterDailyDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useRegisterDailyDetail } from "@hooks/household/daily_detail/useRegisterDailyDetail";
@@ -7,14 +11,14 @@ import { errorPopup, successPopup } from "@function/successPopup";
 type RegisterDailyDetailContainerProps = {
   date: Date;
 };
-export const RegisterDailyDetailContainer: FC<
-  RegisterDailyDetailContainerProps
-> = ({ date }) => {
+export const RegisterDailyDetailContainer = ({
+  date,
+}: RegisterDailyDetailContainerProps) => {
   const [registerDate, setRegisterDate] = useState<Date>(date);
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
-  const [categoryId, setCategoryId] = useState<string | null>("");
-  const [genreId, setGenreId] = useState<string | null>("");
-  const [accountId, setAccountId] = useState<string | null>("");
+  const [categoryId, setCategoryId] = useState<string | null>(null);
+  const [genreId, setGenreId] = useState<string | null>(null);
+  const [accountId, setAccountId] = useState<string | null>(null);
   const [amount, setAmount] = useState<number | "">("");
   const [memo, setMemo] = useState("");
 
