@@ -3,7 +3,7 @@
  */
 
 import { Table, TableProps } from "@components/atoms/Table/index";
-import { RangeDatePicker } from "@components/molecules/RangeDatePicker/index";
+import { RangeDatePicker } from "@components/ui/date";
 import { Total } from "@components/molecules/Total/index";
 
 type AccountPresenterProps = {

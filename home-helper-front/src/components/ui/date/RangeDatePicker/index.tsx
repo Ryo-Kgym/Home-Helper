@@ -2,22 +2,21 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { DatePicker } from "components/ui/date";
+import { DatePicker } from "@components/ui/date";
 
-type RangeDatePickerPresenterProps = {
-  fromDate: Date | null;
-  changeFromDate: (_: Date) => void;
-  toDate: Date | null;
-  changeToDate: (_: Date) => void;
-  disabled?: boolean;
-};
-export const RangeDatePickerPresenter = ({
+export const RangeDatePicker = ({
   fromDate = new Date("2010-01-01"),
   changeFromDate,
   toDate = new Date("2099-12-31"),
   changeToDate,
   disabled = false,
-}: RangeDatePickerPresenterProps) => (
+}: {
+  fromDate: Date | null;
+  changeFromDate: (_: Date) => void;
+  toDate: Date | null;
+  changeToDate: (_: Date) => void;
+  disabled?: boolean;
+}) => (
   <div className={"grid grid-cols-5 items-center"}>
     <div className={"col-span-2"}>
       <DatePicker
@@ -26,7 +25,7 @@ export const RangeDatePickerPresenter = ({
         disabled={disabled}
       />
     </div>
-    <div className={"text-center pt-7"}>〜</div>
+    <div className={"text-center"}>〜</div>
     <div className={"col-span-2"}>
       <DatePicker
         value={toDate!}

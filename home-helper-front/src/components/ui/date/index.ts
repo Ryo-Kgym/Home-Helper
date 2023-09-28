@@ -3,3 +3,4 @@
  */
 export * from "./DatePicker";
 export * from "./DateSelectButton";
+export * from "./RangeDatePicker";
