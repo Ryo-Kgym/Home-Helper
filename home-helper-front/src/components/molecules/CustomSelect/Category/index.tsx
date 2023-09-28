@@ -1,19 +1,23 @@
-import { CategorySelectPresenter } from "./CategorySelectPresenter";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { useGetValidCategoryByGenreIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
+import { Select } from "@components/ui";
 
-type CategorySelectContainerProps = {
+type CategorySelectProps = {
   categoryId: string | null;
   setCategoryId: (_: string | null) => void;
   genreId: string | null;
   setCategoryName?: (_: string | null) => void;
 };
-export const CategorySelectContainer = ({
+export const CategorySelect = ({
   categoryId,
   setCategoryId,
   genreId,
   setCategoryName = () => {},
-}: CategorySelectContainerProps) => {
+}: CategorySelectProps) => {
   const { groupId } = useGroup();
   const [{ data }] = useGetValidCategoryByGenreIdQuery({
     variables: { genreId: genreId ?? "", groupId },
@@ -24,12 +28,12 @@ export const CategorySelectContainer = ({
       return {
         label: genre.categoryName,
         value: genre.categoryId,
-        description: genre.categoryName,
       };
     }) ?? [];
 
   return (
-    <CategorySelectPresenter
+    <Select
+      label={"CATEGORY"}
       value={categoryId}
       onChange={(value) => {
         const categoryName =
@@ -37,7 +41,9 @@ export const CategorySelectContainer = ({
         setCategoryId(value);
         setCategoryName(categoryName);
       }}
-      categories={categories}
+      data={categories}
+      placeholder={"カテゴリを選択してください"}
+      withAsterisk
     />
   );
 };
