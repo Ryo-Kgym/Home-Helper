@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { TransferListItem } from "@components/atoms/TransferList/index";
+import { TransferListItem } from "..";
 import { Combobox, useCombobox, ScrollArea } from "@mantine/core";
 
 const TransferBox = ({
@@ -99,11 +99,9 @@ type TransferListContainerProps = {
 export const MantineTransferList = ({
   data,
   setData,
-}: TransferListContainerProps) => {
-  return (
-    <div className={"grid grid-cols-2"}>
-      <TransferBox index={0} data={data} setData={setData} />
-      <TransferBox index={1} data={data} setData={setData} />
-    </div>
-  );
-};
+}: TransferListContainerProps) => (
+  <div className={"grid grid-cols-2"}>
+    <TransferBox index={0} data={data} setData={setData} />
+    <TransferBox index={1} data={data} setData={setData} />
+  </div>
+);

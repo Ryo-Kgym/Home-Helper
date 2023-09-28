@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { TransferListItem } from "@components/atoms/TransferList";
+import { TransferListItem } from "components/ui";
 import { useCreateSummaryCategories } from "@components/organisms/master/summary_category/useCreateSummaryCategories";
 import { FC } from "react";
 import { RegisterSummaryCategoryConfirmPromptPresenter } from "./RegisterSummaryCategoryConfirmPromptPresenter";

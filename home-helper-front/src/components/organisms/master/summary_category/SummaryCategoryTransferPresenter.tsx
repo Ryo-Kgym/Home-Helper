@@ -3,7 +3,7 @@
  */
 
 import { Button } from "@components/atoms/Button";
-import { TransferList, TransferListItem } from "@components/atoms/TransferList";
+import { TransferList, TransferListItem } from "components/ui";
 import { RegisterSummaryCategoryConfirmPrompt } from "./RegisterSummaryCategoryConfirmPrompt";
 
 type SalaryTransferPresenterProps = {

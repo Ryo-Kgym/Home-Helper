@@ -1,5 +1,9 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { useState } from "react";
-import { TransferListItem } from "@components/atoms/TransferList";
+import { TransferListItem } from "components/ui";
 import { SummaryCategoryTransferPresenter } from "./SummaryCategoryTransferPresenter";
 import { useGetSummaryCategories } from "./useGetSummaryCategories";
 

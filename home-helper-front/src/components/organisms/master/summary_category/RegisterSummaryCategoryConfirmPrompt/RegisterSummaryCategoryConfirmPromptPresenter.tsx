@@ -1,5 +1,9 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { ConfirmPrompt } from "@components/molecules/ConfirmPrompt";
-import { TransferListItem } from "@components/atoms/TransferList";
+import { TransferListItem } from "components/ui";
 import { FC } from "react";
 
 type RegisterSummaryCategoryConfirmPromptPresenterProps = {
