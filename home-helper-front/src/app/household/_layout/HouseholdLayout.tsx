@@ -5,10 +5,14 @@
 import { PropsWithChildren } from "react";
 import { NavbarSection } from "@app/_layout/NavbarSection";
 import { Navi } from "@app/_layout/navi";
+import { RegisterDailyButton } from "@components/molecules";
 
 export const HouseholdLayout = ({ children }: PropsWithChildren) => (
   <NavbarSection header={"家計簿アプリ"} navis={householdNavis}>
     {children}
+    <div className={"z-100 absolute right-5 bottom-5"}>
+      <RegisterDailyButton />
+    </div>
   </NavbarSection>
 );
 

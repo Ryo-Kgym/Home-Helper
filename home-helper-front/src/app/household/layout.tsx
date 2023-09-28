@@ -3,14 +3,7 @@
  */
 
 import { HouseholdLayout } from "./_layout/HouseholdLayout";
-import { PropsWithChildren } from "react";
-import { RegisterDailyButton } from "@components/molecules";
 
-const Layout = ({ children }: PropsWithChildren) => (
-  <HouseholdLayout>
-    {children}
-    <RegisterDailyButton />
-  </HouseholdLayout>
-);
+const Layout = HouseholdLayout;
 
 export default Layout;
