@@ -3,7 +3,7 @@
  */
 
 import { MantineSize } from "@mantine/styles";
-import { OptionsFilter, ComboboxItem, Select } from "@mantine/core";
+import { Select } from "@mantine/core";
 import { SelectData } from "../Select";
 
 type MantineSelectProps = {
@@ -27,16 +27,18 @@ export const MantineV7Select = ({
   size = "lg",
   withAsterisk = false,
 }: MantineSelectProps) => {
-  const optionsFilter: OptionsFilter = ({ options, search }) => {
-    const splittedSearch = search.toLowerCase().trim().split(" ");
-
-    return (options as ComboboxItem[]).filter((option) => {
-      const words = option.label.toLowerCase().trim().split(" ");
-      return splittedSearch.every((searchWord) =>
-        words.some((word) => word.includes(searchWord)),
-      );
-    });
-  };
+  // TODO 必要性を検討する。
+  // const optionsFilter: OptionsFilter = ({ options, search }) => {
+  //   return options.filter((option) => {
+  //     if ("items" in option) {
+  //       return option.items.some((item) =>
+  //         item.label.toLowerCase().includes(search.toLowerCase()),
+  //       );
+  //     } else {
+  //       return option.label.toLowerCase().includes(search.toLowerCase());
+  //     }
+  //   });
+  // };
 
   const valueIsInvalid = value === null || value?.length === 0;
 
@@ -49,9 +51,9 @@ export const MantineV7Select = ({
       onChange={onChange}
       placeholder={placeholder}
       data={data}
-      searchable
+      // searchable
       maxDropdownHeight={maxDropdownHeight}
-      filter={optionsFilter}
+      // filter={optionsFilter}
       size={size}
       withAsterisk={withAsterisk}
       error={error}
