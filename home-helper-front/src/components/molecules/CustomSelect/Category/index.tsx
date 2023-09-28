@@ -4,7 +4,7 @@
 
 import { useGetValidCategoryByGenreIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
-import { Select } from "@components/ui";
+import { Select, SelectData } from "@components/ui";
 
 type CategorySelectProps = {
   categoryId: string | null;
@@ -19,26 +19,37 @@ export const CategorySelect = ({
   setCategoryName = () => {},
 }: CategorySelectProps) => {
   const { groupId } = useGroup();
+
   const [{ data }] = useGetValidCategoryByGenreIdQuery({
-    variables: { genreId: genreId ?? "", groupId },
+    variables: { genreId, groupId },
   });
 
   const categories =
-    data?.allCategoriesList?.map((genre) => {
-      return {
-        label: genre.categoryName,
-        value: genre.categoryId,
-      };
-    }) ?? [];
+    data?.genreById?.map(
+      (genre) =>
+        ({
+          group: genre.name ?? "",
+          items:
+            genre.categories.map((category) => ({
+              label: category.name ?? "",
+              value: category.id ?? "",
+            })) ?? [],
+        }) as SelectData,
+    ) ?? [];
 
   return (
     <Select
       label={"CATEGORY"}
       value={categoryId}
-      onChange={(value) => {
+      onChange={(_categoryId) => {
+        setCategoryId(_categoryId);
+
         const categoryName =
-          categories.find((c) => c.value === value)?.label ?? "";
-        setCategoryId(value);
+          data?.genreById
+            .flatMap((genre) =>
+              genre.categories.filter((c) => c.id === _categoryId),
+            )
+            .map((c) => c.name)[0] ?? "";
         setCategoryName(categoryName);
       }}
       data={categories}
