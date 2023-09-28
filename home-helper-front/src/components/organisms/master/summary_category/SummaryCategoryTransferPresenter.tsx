@@ -23,12 +23,12 @@ export const SummaryCategoryTransferPresenter = ({
   onOpen,
   onClose,
 }: SalaryTransferPresenterProps) => (
-  <div className={"grid"}>
-    <TransferList data={transferData} setData={setTransferData} />
+  <div>
     <div className={"flex"}>
       <Button colorType={"register"} onClick={onOpen} />
       <Button colorType={"reset"} onClick={resetClickHandler} />
     </div>
+    <TransferList data={transferData} setData={setTransferData} />
     <RegisterSummaryCategoryConfirmPrompt
       opened={opened}
       onClose={onClose}
