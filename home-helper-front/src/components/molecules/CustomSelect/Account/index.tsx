@@ -1,15 +1,19 @@
-import { AccountSelectPresenter } from "./AccountSelectPresenter";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { useGetValidAccountsQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
+import { Select } from "@components/ui/index";
 
-type AccountSelectContainerProps = {
+type AccountSelectProps = {
   accountId: string | null;
   setAccountId: (_: string | null) => void;
 };
-export const AccountSelectContainer = ({
+export const AccountSelect = ({
   accountId,
   setAccountId,
-}: AccountSelectContainerProps) => {
+}: AccountSelectProps) => {
   const { groupId } = useGroup();
   const [{ data }] = useGetValidAccountsQuery({
     variables: {
@@ -18,19 +22,19 @@ export const AccountSelectContainer = ({
   });
 
   const accounts =
-    data?.allAccountsList?.map((account) => {
-      return {
-        label: account.accountName,
-        value: account.accountId,
-        description: account.accountName,
-      };
-    }) ?? [];
+    data?.allAccountsList?.map((account) => ({
+      label: account.accountName,
+      value: account.accountId,
+    })) ?? [];
 
   return (
-    <AccountSelectPresenter
+    <Select
+      label={"ACCOUNT"}
       value={accountId}
       onChange={setAccountId}
-      accounts={accounts}
+      data={accounts}
+      placeholder={"アカウントを選択してください"}
+      withAsterisk
     />
   );
 };
