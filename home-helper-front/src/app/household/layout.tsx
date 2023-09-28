@@ -1,4 +1,8 @@
-import { HouseholdLayout } from "@components/atoms/Layout/HouseholdLayout";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { HouseholdLayout } from "./_layout/HouseholdLayout";
 import { PropsWithChildren } from "react";
 import { RegisterDailyButton } from "@components/molecules";
 
