@@ -1,10 +1,5 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import gql from "graphql-tag";
 import * as Urql from "urql";
-
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -859,12 +854,8 @@ export type Category = {
   outcome_transfer_category: Array<TransferCategory>;
   /** An aggregate relationship */
   summaryCategoryByGroupsAggregate: SummaryCategoryByGroupAggregate;
-  /** An aggregate relationship */
-  summaryCategoryByUsersAggregate: SummaryCategoryByUserAggregate;
   /** An array relationship */
   summary_category_by_groups: Array<SummaryCategoryByGroup>;
-  /** An array relationship */
-  summary_category_by_users: Array<SummaryCategoryByUser>;
   validFlag?: Maybe<Scalars["Boolean"]>;
 };
 
@@ -950,30 +941,12 @@ export type CategorySummaryCategoryByGroupsAggregateArgs = {
 };
 
 /** columns and relationships of "category" */
-export type CategorySummaryCategoryByUsersAggregateArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByUserSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByUserOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByUserBoolExp>;
-};
-
-/** columns and relationships of "category" */
 export type CategorySummary_Category_By_GroupsArgs = {
   distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<SummaryCategoryByGroupOrderBy>>;
   where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
-};
-
-/** columns and relationships of "category" */
-export type CategorySummary_Category_By_UsersArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByUserSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByUserOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByUserBoolExp>;
 };
 
 /** aggregated selection of "category" */
@@ -1066,8 +1039,6 @@ export type CategoryBoolExp = {
   outcome_transfer_categoryAggregate?: InputMaybe<TransferCategoryAggregateBoolExp>;
   summary_category_by_groups?: InputMaybe<SummaryCategoryByGroupBoolExp>;
   summary_category_by_groupsAggregate?: InputMaybe<SummaryCategoryByGroupAggregateBoolExp>;
-  summary_category_by_users?: InputMaybe<SummaryCategoryByUserBoolExp>;
-  summary_category_by_usersAggregate?: InputMaybe<SummaryCategoryByUserAggregateBoolExp>;
   validFlag?: InputMaybe<BooleanComparisonExp>;
 };
 
@@ -1096,7 +1067,6 @@ export type CategoryInsertInput = {
   income_transfer_category?: InputMaybe<TransferCategoryArrRelInsertInput>;
   outcome_transfer_category?: InputMaybe<TransferCategoryArrRelInsertInput>;
   summary_category_by_groups?: InputMaybe<SummaryCategoryByGroupArrRelInsertInput>;
-  summary_category_by_users?: InputMaybe<SummaryCategoryByUserArrRelInsertInput>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
@@ -1175,7 +1145,6 @@ export type CategoryOrderBy = {
   income_transfer_categoryAggregate?: InputMaybe<TransferCategoryAggregateOrderBy>;
   outcome_transfer_categoryAggregate?: InputMaybe<TransferCategoryAggregateOrderBy>;
   summary_category_by_groupsAggregate?: InputMaybe<SummaryCategoryByGroupAggregateOrderBy>;
-  summary_category_by_usersAggregate?: InputMaybe<SummaryCategoryByUserAggregateOrderBy>;
   validFlag?: InputMaybe<OrderBy>;
 };
 
@@ -7753,318 +7722,6 @@ export type SummaryCategoryByGroupVarianceOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** columns and relationships of "summary_category_by_user" */
-export type SummaryCategoryByUser = {
-  __typename?: "SummaryCategoryByUser";
-  /** An object relationship */
-  category: Category;
-  categoryId: Scalars["uuid"];
-  displayOrder: Scalars["Int"];
-  id: Scalars["uuid"];
-  /** An object relationship */
-  user: User;
-  userId: Scalars["uuid"];
-};
-
-/** aggregated selection of "summary_category_by_user" */
-export type SummaryCategoryByUserAggregate = {
-  __typename?: "SummaryCategoryByUserAggregate";
-  aggregate?: Maybe<SummaryCategoryByUserAggregateFields>;
-  nodes: Array<SummaryCategoryByUser>;
-};
-
-export type SummaryCategoryByUserAggregateBoolExp = {
-  count?: InputMaybe<SummaryCategoryByUserAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "summary_category_by_user" */
-export type SummaryCategoryByUserAggregateFields = {
-  __typename?: "SummaryCategoryByUserAggregateFields";
-  avg?: Maybe<SummaryCategoryByUserAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<SummaryCategoryByUserMaxFields>;
-  min?: Maybe<SummaryCategoryByUserMinFields>;
-  stddev?: Maybe<SummaryCategoryByUserStddevFields>;
-  stddevPop?: Maybe<SummaryCategoryByUserStddevPopFields>;
-  stddevSamp?: Maybe<SummaryCategoryByUserStddevSampFields>;
-  sum?: Maybe<SummaryCategoryByUserSumFields>;
-  varPop?: Maybe<SummaryCategoryByUserVarPopFields>;
-  varSamp?: Maybe<SummaryCategoryByUserVarSampFields>;
-  variance?: Maybe<SummaryCategoryByUserVarianceFields>;
-};
-
-/** aggregate fields of "summary_category_by_user" */
-export type SummaryCategoryByUserAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<SummaryCategoryByUserSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** order by aggregate values of table "summary_category_by_user" */
-export type SummaryCategoryByUserAggregateOrderBy = {
-  avg?: InputMaybe<SummaryCategoryByUserAvgOrderBy>;
-  count?: InputMaybe<OrderBy>;
-  max?: InputMaybe<SummaryCategoryByUserMaxOrderBy>;
-  min?: InputMaybe<SummaryCategoryByUserMinOrderBy>;
-  stddev?: InputMaybe<SummaryCategoryByUserStddevOrderBy>;
-  stddevPop?: InputMaybe<SummaryCategoryByUserStddevPopOrderBy>;
-  stddevSamp?: InputMaybe<SummaryCategoryByUserStddevSampOrderBy>;
-  sum?: InputMaybe<SummaryCategoryByUserSumOrderBy>;
-  varPop?: InputMaybe<SummaryCategoryByUserVarPopOrderBy>;
-  varSamp?: InputMaybe<SummaryCategoryByUserVarSampOrderBy>;
-  variance?: InputMaybe<SummaryCategoryByUserVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "summary_category_by_user" */
-export type SummaryCategoryByUserArrRelInsertInput = {
-  data: Array<SummaryCategoryByUserInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<SummaryCategoryByUserOnConflict>;
-};
-
-/** aggregate avg on columns */
-export type SummaryCategoryByUserAvgFields = {
-  __typename?: "SummaryCategoryByUserAvgFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** order by avg() on columns of table "summary_category_by_user" */
-export type SummaryCategoryByUserAvgOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** Boolean expression to filter rows from the table "summary_category_by_user". All fields are combined with a logical 'AND'. */
-export type SummaryCategoryByUserBoolExp = {
-  _and?: InputMaybe<Array<SummaryCategoryByUserBoolExp>>;
-  _not?: InputMaybe<SummaryCategoryByUserBoolExp>;
-  _or?: InputMaybe<Array<SummaryCategoryByUserBoolExp>>;
-  category?: InputMaybe<CategoryBoolExp>;
-  categoryId?: InputMaybe<UuidComparisonExp>;
-  displayOrder?: InputMaybe<IntComparisonExp>;
-  id?: InputMaybe<UuidComparisonExp>;
-  user?: InputMaybe<UserBoolExp>;
-  userId?: InputMaybe<UuidComparisonExp>;
-};
-
-/** unique or primary key constraints on table "summary_category_by_user" */
-export enum SummaryCategoryByUserConstraint {
-  /** unique or primary key constraint on columns "id" */
-  SummaryCategoryByUserPkey = "summary_category_by_user_pkey",
-}
-
-/** input type for incrementing numeric columns in table "summary_category_by_user" */
-export type SummaryCategoryByUserIncInput = {
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-};
-
-/** input type for inserting data into table "summary_category_by_user" */
-export type SummaryCategoryByUserInsertInput = {
-  category?: InputMaybe<CategoryObjRelInsertInput>;
-  categoryId?: InputMaybe<Scalars["uuid"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  id?: InputMaybe<Scalars["uuid"]>;
-  user?: InputMaybe<UserObjRelInsertInput>;
-  userId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate max on columns */
-export type SummaryCategoryByUserMaxFields = {
-  __typename?: "SummaryCategoryByUserMaxFields";
-  categoryId?: Maybe<Scalars["uuid"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  userId?: Maybe<Scalars["uuid"]>;
-};
-
-/** order by max() on columns of table "summary_category_by_user" */
-export type SummaryCategoryByUserMaxOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  userId?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type SummaryCategoryByUserMinFields = {
-  __typename?: "SummaryCategoryByUserMinFields";
-  categoryId?: Maybe<Scalars["uuid"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  userId?: Maybe<Scalars["uuid"]>;
-};
-
-/** order by min() on columns of table "summary_category_by_user" */
-export type SummaryCategoryByUserMinOrderBy = {
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  userId?: InputMaybe<OrderBy>;
-};
-
-/** response of any mutation on the table "summary_category_by_user" */
-export type SummaryCategoryByUserMutationResponse = {
-  __typename?: "SummaryCategoryByUserMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<SummaryCategoryByUser>;
-};
-
-/** on_conflict condition type for table "summary_category_by_user" */
-export type SummaryCategoryByUserOnConflict = {
-  constraint: SummaryCategoryByUserConstraint;
-  updateColumns?: Array<SummaryCategoryByUserUpdateColumn>;
-  where?: InputMaybe<SummaryCategoryByUserBoolExp>;
-};
-
-/** Ordering options when selecting data from "summary_category_by_user". */
-export type SummaryCategoryByUserOrderBy = {
-  category?: InputMaybe<CategoryOrderBy>;
-  categoryId?: InputMaybe<OrderBy>;
-  displayOrder?: InputMaybe<OrderBy>;
-  id?: InputMaybe<OrderBy>;
-  user?: InputMaybe<UserOrderBy>;
-  userId?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: summary_category_by_user */
-export type SummaryCategoryByUserPkColumnsInput = {
-  id: Scalars["uuid"];
-};
-
-/** select columns of table "summary_category_by_user" */
-export enum SummaryCategoryByUserSelectColumn {
-  /** column name */
-  CategoryId = "categoryId",
-  /** column name */
-  DisplayOrder = "displayOrder",
-  /** column name */
-  Id = "id",
-  /** column name */
-  UserId = "userId",
-}
-
-/** input type for updating data in table "summary_category_by_user" */
-export type SummaryCategoryByUserSetInput = {
-  categoryId?: InputMaybe<Scalars["uuid"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  id?: InputMaybe<Scalars["uuid"]>;
-  userId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate stddev on columns */
-export type SummaryCategoryByUserStddevFields = {
-  __typename?: "SummaryCategoryByUserStddevFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** order by stddev() on columns of table "summary_category_by_user" */
-export type SummaryCategoryByUserStddevOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevPop on columns */
-export type SummaryCategoryByUserStddevPopFields = {
-  __typename?: "SummaryCategoryByUserStddevPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** order by stddevPop() on columns of table "summary_category_by_user" */
-export type SummaryCategoryByUserStddevPopOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type SummaryCategoryByUserStddevSampFields = {
-  __typename?: "SummaryCategoryByUserStddevSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** order by stddevSamp() on columns of table "summary_category_by_user" */
-export type SummaryCategoryByUserStddevSampOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** Streaming cursor of the table "summary_category_by_user" */
-export type SummaryCategoryByUserStreamCursorInput = {
-  /** Stream column input with initial value */
-  initialValue: SummaryCategoryByUserStreamCursorValueInput;
-  /** cursor ordering */
-  ordering?: InputMaybe<CursorOrdering>;
-};
-
-/** Initial value of the column from where the streaming should start */
-export type SummaryCategoryByUserStreamCursorValueInput = {
-  categoryId?: InputMaybe<Scalars["uuid"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  id?: InputMaybe<Scalars["uuid"]>;
-  userId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate sum on columns */
-export type SummaryCategoryByUserSumFields = {
-  __typename?: "SummaryCategoryByUserSumFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
-};
-
-/** order by sum() on columns of table "summary_category_by_user" */
-export type SummaryCategoryByUserSumOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** update columns of table "summary_category_by_user" */
-export enum SummaryCategoryByUserUpdateColumn {
-  /** column name */
-  CategoryId = "categoryId",
-  /** column name */
-  DisplayOrder = "displayOrder",
-  /** column name */
-  Id = "id",
-  /** column name */
-  UserId = "userId",
-}
-
-export type SummaryCategoryByUserUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<SummaryCategoryByUserIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<SummaryCategoryByUserSetInput>;
-  /** filter the rows which have to be updated */
-  where: SummaryCategoryByUserBoolExp;
-};
-
-/** aggregate varPop on columns */
-export type SummaryCategoryByUserVarPopFields = {
-  __typename?: "SummaryCategoryByUserVarPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** order by varPop() on columns of table "summary_category_by_user" */
-export type SummaryCategoryByUserVarPopOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate varSamp on columns */
-export type SummaryCategoryByUserVarSampFields = {
-  __typename?: "SummaryCategoryByUserVarSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** order by varSamp() on columns of table "summary_category_by_user" */
-export type SummaryCategoryByUserVarSampOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type SummaryCategoryByUserVarianceFields = {
-  __typename?: "SummaryCategoryByUserVarianceFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** order by variance() on columns of table "summary_category_by_user" */
-export type SummaryCategoryByUserVarianceOrderBy = {
-  displayOrder?: InputMaybe<OrderBy>;
-};
-
 /** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
 export type TimestampComparisonExp = {
   _eq?: InputMaybe<Scalars["timestamp"]>;
@@ -8857,10 +8514,6 @@ export type User = {
   importFileHistoriesAggregate: ImportFileHistoryAggregate;
   /** An array relationship */
   import_file_histories: Array<ImportFileHistory>;
-  /** An aggregate relationship */
-  summaryCategoryByUsersAggregate: SummaryCategoryByUserAggregate;
-  /** An array relationship */
-  summary_category_by_users: Array<SummaryCategoryByUser>;
   userId: Scalars["uuid"];
   userName?: Maybe<Scalars["String"]>;
 };
@@ -8955,24 +8608,6 @@ export type UserImport_File_HistoriesArgs = {
   where?: InputMaybe<ImportFileHistoryBoolExp>;
 };
 
-/** ユーザ */
-export type UserSummaryCategoryByUsersAggregateArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByUserSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByUserOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByUserBoolExp>;
-};
-
-/** ユーザ */
-export type UserSummary_Category_By_UsersArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByUserSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByUserOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByUserBoolExp>;
-};
-
 /** aggregated selection of "user" */
 export type UserAggregate = {
   __typename?: "UserAggregate";
@@ -9025,8 +8660,6 @@ export type UserBoolExp = {
   helperKidParentsAggregate?: InputMaybe<HelperKidsHelperKidParentAggregateBoolExp>;
   import_file_histories?: InputMaybe<ImportFileHistoryBoolExp>;
   import_file_historiesAggregate?: InputMaybe<ImportFileHistoryAggregateBoolExp>;
-  summary_category_by_users?: InputMaybe<SummaryCategoryByUserBoolExp>;
-  summary_category_by_usersAggregate?: InputMaybe<SummaryCategoryByUserAggregateBoolExp>;
   userId?: InputMaybe<UuidComparisonExp>;
   userName?: InputMaybe<StringComparisonExp>;
 };
@@ -9053,7 +8686,6 @@ export type UserInsertInput = {
   email?: InputMaybe<Scalars["String"]>;
   helperKidParents?: InputMaybe<HelperKidsHelperKidParentArrRelInsertInput>;
   import_file_histories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
-  summary_category_by_users?: InputMaybe<SummaryCategoryByUserArrRelInsertInput>;
   userId?: InputMaybe<Scalars["uuid"]>;
   userName?: InputMaybe<Scalars["String"]>;
 };
@@ -9108,7 +8740,6 @@ export type UserOrderBy = {
   email?: InputMaybe<OrderBy>;
   helperKidParentsAggregate?: InputMaybe<HelperKidsHelperKidParentAggregateOrderBy>;
   import_file_historiesAggregate?: InputMaybe<ImportFileHistoryAggregateOrderBy>;
-  summary_category_by_usersAggregate?: InputMaybe<SummaryCategoryByUserAggregateOrderBy>;
   userId?: InputMaybe<OrderBy>;
   userName?: InputMaybe<OrderBy>;
 };
@@ -9499,10 +9130,6 @@ export type Mutation_Root = {
   deleteSummaryCategoryByGroup?: Maybe<SummaryCategoryByGroupMutationResponse>;
   /** delete single row from the table: "summary_category_by_group" */
   deleteSummaryCategoryByGroupByPk?: Maybe<SummaryCategoryByGroup>;
-  /** delete data from the table: "summary_category_by_user" */
-  deleteSummaryCategoryByUser?: Maybe<SummaryCategoryByUserMutationResponse>;
-  /** delete single row from the table: "summary_category_by_user" */
-  deleteSummaryCategoryByUserByPk?: Maybe<SummaryCategoryByUser>;
   /** delete data from the table: "transfer_category" */
   deleteTransferCategory?: Maybe<TransferCategoryMutationResponse>;
   /** delete single row from the table: "transfer_category" */
@@ -9595,10 +9222,6 @@ export type Mutation_Root = {
   insertSummaryCategoryByGroup?: Maybe<SummaryCategoryByGroupMutationResponse>;
   /** insert a single row into the table: "summary_category_by_group" */
   insertSummaryCategoryByGroupOne?: Maybe<SummaryCategoryByGroup>;
-  /** insert data into the table: "summary_category_by_user" */
-  insertSummaryCategoryByUser?: Maybe<SummaryCategoryByUserMutationResponse>;
-  /** insert a single row into the table: "summary_category_by_user" */
-  insertSummaryCategoryByUserOne?: Maybe<SummaryCategoryByUser>;
   /** insert data into the table: "transfer_category" */
   insertTransferCategory?: Maybe<TransferCategoryMutationResponse>;
   /** insert a single row into the table: "transfer_category" */
@@ -9758,14 +9381,6 @@ export type Mutation_Root = {
   /** update multiples rows of table: "summary_category_by_group" */
   updateSummaryCategoryByGroupMany?: Maybe<
     Array<Maybe<SummaryCategoryByGroupMutationResponse>>
-  >;
-  /** update data of the table: "summary_category_by_user" */
-  updateSummaryCategoryByUser?: Maybe<SummaryCategoryByUserMutationResponse>;
-  /** update single row of the table: "summary_category_by_user" */
-  updateSummaryCategoryByUserByPk?: Maybe<SummaryCategoryByUser>;
-  /** update multiples rows of table: "summary_category_by_user" */
-  updateSummaryCategoryByUserMany?: Maybe<
-    Array<Maybe<SummaryCategoryByUserMutationResponse>>
   >;
   /** update data of the table: "transfer_category" */
   updateTransferCategory?: Maybe<TransferCategoryMutationResponse>;
@@ -9991,16 +9606,6 @@ export type Mutation_RootDeleteSummaryCategoryByGroupArgs = {
 
 /** mutation root */
 export type Mutation_RootDeleteSummaryCategoryByGroupByPkArgs = {
-  id: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteSummaryCategoryByUserArgs = {
-  where: SummaryCategoryByUserBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteSummaryCategoryByUserByPkArgs = {
   id: Scalars["uuid"];
 };
 
@@ -10275,18 +9880,6 @@ export type Mutation_RootInsertSummaryCategoryByGroupArgs = {
 export type Mutation_RootInsertSummaryCategoryByGroupOneArgs = {
   object: SummaryCategoryByGroupInsertInput;
   onConflict?: InputMaybe<SummaryCategoryByGroupOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertSummaryCategoryByUserArgs = {
-  objects: Array<SummaryCategoryByUserInsertInput>;
-  onConflict?: InputMaybe<SummaryCategoryByUserOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertSummaryCategoryByUserOneArgs = {
-  object: SummaryCategoryByUserInsertInput;
-  onConflict?: InputMaybe<SummaryCategoryByUserOnConflict>;
 };
 
 /** mutation root */
@@ -10699,25 +10292,6 @@ export type Mutation_RootUpdateSummaryCategoryByGroupManyArgs = {
 };
 
 /** mutation root */
-export type Mutation_RootUpdateSummaryCategoryByUserArgs = {
-  _inc?: InputMaybe<SummaryCategoryByUserIncInput>;
-  _set?: InputMaybe<SummaryCategoryByUserSetInput>;
-  where: SummaryCategoryByUserBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateSummaryCategoryByUserByPkArgs = {
-  _inc?: InputMaybe<SummaryCategoryByUserIncInput>;
-  _set?: InputMaybe<SummaryCategoryByUserSetInput>;
-  pkColumns: SummaryCategoryByUserPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateSummaryCategoryByUserManyArgs = {
-  updates: Array<SummaryCategoryByUserUpdates>;
-};
-
-/** mutation root */
 export type Mutation_RootUpdateTransferCategoryArgs = {
   _set?: InputMaybe<TransferCategorySetInput>;
   where: TransferCategoryBoolExp;
@@ -10905,12 +10479,6 @@ export type Query_Root = {
   summaryCategoryByGroupAggregate: SummaryCategoryByGroupAggregate;
   /** fetch data from the table: "summary_category_by_group" using primary key columns */
   summaryCategoryByGroupByPk?: Maybe<SummaryCategoryByGroup>;
-  /** fetch data from the table: "summary_category_by_user" */
-  summaryCategoryByUser: Array<SummaryCategoryByUser>;
-  /** fetch aggregated fields from the table: "summary_category_by_user" */
-  summaryCategoryByUserAggregate: SummaryCategoryByUserAggregate;
-  /** fetch data from the table: "summary_category_by_user" using primary key columns */
-  summaryCategoryByUserByPk?: Maybe<SummaryCategoryByUser>;
   /** fetch data from the table: "total_by_account_view" */
   totalByAccountView: Array<TotalByAccountView>;
   /** fetch aggregated fields from the table: "total_by_account_view" */
@@ -11473,26 +11041,6 @@ export type Query_RootSummaryCategoryByGroupByPkArgs = {
   id: Scalars["uuid"];
 };
 
-export type Query_RootSummaryCategoryByUserArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByUserSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByUserOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByUserBoolExp>;
-};
-
-export type Query_RootSummaryCategoryByUserAggregateArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByUserSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByUserOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByUserBoolExp>;
-};
-
-export type Query_RootSummaryCategoryByUserByPkArgs = {
-  id: Scalars["uuid"];
-};
-
 export type Query_RootTotalByAccountViewArgs = {
   distinctOn?: InputMaybe<Array<TotalByAccountViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -11779,14 +11327,6 @@ export type Subscription_Root = {
   summaryCategoryByGroupByPk?: Maybe<SummaryCategoryByGroup>;
   /** fetch data from the table in a streaming manner: "summary_category_by_group" */
   summaryCategoryByGroupStream: Array<SummaryCategoryByGroup>;
-  /** fetch data from the table: "summary_category_by_user" */
-  summaryCategoryByUser: Array<SummaryCategoryByUser>;
-  /** fetch aggregated fields from the table: "summary_category_by_user" */
-  summaryCategoryByUserAggregate: SummaryCategoryByUserAggregate;
-  /** fetch data from the table: "summary_category_by_user" using primary key columns */
-  summaryCategoryByUserByPk?: Maybe<SummaryCategoryByUser>;
-  /** fetch data from the table in a streaming manner: "summary_category_by_user" */
-  summaryCategoryByUserStream: Array<SummaryCategoryByUser>;
   /** fetch data from the table: "total_by_account_view" */
   totalByAccountView: Array<TotalByAccountView>;
   /** fetch aggregated fields from the table: "total_by_account_view" */
@@ -12507,32 +12047,6 @@ export type Subscription_RootSummaryCategoryByGroupStreamArgs = {
   where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
 };
 
-export type Subscription_RootSummaryCategoryByUserArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByUserSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByUserOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByUserBoolExp>;
-};
-
-export type Subscription_RootSummaryCategoryByUserAggregateArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByUserSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByUserOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByUserBoolExp>;
-};
-
-export type Subscription_RootSummaryCategoryByUserByPkArgs = {
-  id: Scalars["uuid"];
-};
-
-export type Subscription_RootSummaryCategoryByUserStreamArgs = {
-  batchSize: Scalars["Int"];
-  cursor: Array<InputMaybe<SummaryCategoryByUserStreamCursorInput>>;
-  where?: InputMaybe<SummaryCategoryByUserBoolExp>;
-};
-
 export type Subscription_RootTotalByAccountViewArgs = {
   distinctOn?: InputMaybe<Array<TotalByAccountViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -12655,13 +12169,6 @@ export type SummaryCategoryByGroupAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<SummaryCategoryByGroupBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type SummaryCategoryByUserAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<SummaryCategoryByUserSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<SummaryCategoryByUserBoolExp>;
   predicate: IntComparisonExp;
 };
 
@@ -13454,17 +12961,22 @@ export type GetValidAccountsQuery = {
 };
 
 export type GetValidCategoryByGenreIdQueryVariables = Exact<{
-  genreId: Scalars["uuid"];
   groupId: Scalars["uuid"];
+  genreId?: InputMaybe<Scalars["uuid"]>;
 }>;
 
 export type GetValidCategoryByGenreIdQuery = {
   __typename?: "query_root";
-  allCategoriesList: Array<{
-    __typename?: "Category";
-    categoryId: any;
-    categoryName: string;
-    displayOrder: number;
+  genreById: Array<{
+    __typename?: "Genre";
+    id: any;
+    name: string;
+    categories: Array<{
+      __typename?: "Category";
+      displayOrder: number;
+      id: any;
+      name: string;
+    }>;
   }>;
 };
 
@@ -14693,18 +14205,21 @@ export function useGetValidAccountsQuery(
   });
 }
 export const GetValidCategoryByGenreIdDocument = gql`
-  query GetValidCategoryByGenreId($genreId: uuid!, $groupId: uuid!) {
-    allCategoriesList: category(
+  query GetValidCategoryByGenreId($groupId: uuid!, $genreId: uuid) {
+    genreById: genre(
       where: {
-        genreId: { _eq: $genreId }
-        validFlag: { _eq: true }
         groupId: { _eq: $groupId }
+        _and: { validFlag: { _eq: true }, _and: { genreId: { _eq: $genreId } } }
       }
       orderBy: { displayOrder: ASC }
     ) {
-      categoryId
-      categoryName
-      displayOrder
+      id: genreId
+      name: genreName
+      categories(where: { validFlag: { _eq: true } }) {
+        id: categoryId
+        name: categoryName
+        displayOrder
+      }
     }
   }
 `;
