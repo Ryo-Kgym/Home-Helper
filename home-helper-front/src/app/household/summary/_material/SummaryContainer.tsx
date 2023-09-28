@@ -7,7 +7,7 @@
 import { MonthlyCategoryContainer } from "@app/household/summary/_material/MonthlyCategoryContainer";
 import { SummaryPresenter } from "@app/household/summary/_material/SummaryPresenter";
 import { TabProps } from "@components/atoms/Tab/index";
-import { SummaryCategory } from "@components/organisms/master/summary_category/index";
+import { SummaryCategory } from "@app/household/summary/@summaryCategory/index";
 import { useDate } from "@hooks/date/useDate";
 import { useFetchSummaryCategoryAmount } from "@hooks/household/summary_category/useFetchSummaryCategoryAmount";
 import { useState } from "react";

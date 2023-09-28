@@ -3,10 +3,10 @@
  */
 
 import { useState } from "react";
-import { TransferListItem } from "components/ui";
+import { TransferListItem } from "@components/ui/index";
 import { SummaryCategoryTransferPresenter } from "./SummaryCategoryTransferPresenter";
 import { useGetSummaryCategories } from "./useGetSummaryCategories";
-import { useCreateSummaryCategories } from "@components/organisms/master/summary_category/useCreateSummaryCategories";
+import { useCreateSummaryCategories } from "@app/household/summary/@summaryCategory/useCreateSummaryCategories";
 import { successPopup, errorPopup } from "@function/successPopup";
 
 export const SummaryCategoryTransferContainer = () => {
