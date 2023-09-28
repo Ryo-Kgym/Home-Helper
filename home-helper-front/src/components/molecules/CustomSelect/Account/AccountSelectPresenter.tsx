@@ -1,5 +1,8 @@
-import { Select } from "@components/atoms/Select";
-import { SelectData } from "@components/atoms/Select/SelectPresenter";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { Select, SelectData } from "@components/atoms";
 
 type AccountSelectPresenterProps = {
   value: string | null;
