@@ -23,7 +23,7 @@ export const NavbarSection = ({
   return (
     <AppShell
       header={{ height: 60 }}
-      navbar={{ width: 200, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      navbar={{ width: 150, breakpoint: "sm", collapsed: { mobile: !opened } }}
       padding="md"
     >
       <AppShell.Header>
@@ -37,7 +37,12 @@ export const NavbarSection = ({
         <AppShell.Section grow component={ScrollArea}>
           {navis.map((menu, index) => (
             <Link key={`menu-${index}`} href={menu.url}>
-              <div className={"py-3 my-1 hover:font-bold hover:bg-gray-50"}>
+              <div
+                className={
+                  "py-3 my-1 hover:font-bold hover:bg-gray-50 " +
+                  "max-sm:text-3xl max-sm:my-3 max-sm:ml-10"
+                }
+              >
                 {menu.icon && <div>{menu.icon}</div>}
                 <div>{menu.label}</div>
               </div>
