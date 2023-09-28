@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { SelectData } from "@components/atoms";
+import { SelectData } from "@components/ui";
 import { FileType } from "@provider/file/FileType";
 import { FileTypeSelectPresenter } from "./FileTypeSelectPresenter";
 

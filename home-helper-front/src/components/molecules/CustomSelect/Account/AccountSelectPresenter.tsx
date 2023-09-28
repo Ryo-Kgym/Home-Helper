@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Select, SelectData } from "@components/atoms";
+import { Select, SelectData } from "@components/ui";
 
 type AccountSelectPresenterProps = {
   value: string | null;
