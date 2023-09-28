@@ -3,20 +3,8 @@
  */
 
 import { MantineSize } from "@mantine/core";
-import { DatePickerPresenter } from "@components/atoms/DatePicker/DatePickerPresenter";
-
-type DatePickerContainerProps = {
-  value: Date;
-  onChange: (_: Date) => void;
-  label?: string;
-  defaultValue?: Date;
-  placeholder?: string;
-  size?: MantineSize;
-  disabled?: boolean;
-  required?: boolean;
-};
-
-export const DatePickerContainer = ({
+import { DateInput } from "@mantine/dates";
+export const MantineDatePicker = ({
   value,
   onChange,
   label = "DATE",
@@ -25,20 +13,33 @@ export const DatePickerContainer = ({
   size = "lg",
   disabled = false,
   required = false,
-}: DatePickerContainerProps) => {
+}: {
+  value: Date;
+  onChange: (_: Date) => void;
+  label?: string;
+  defaultValue?: Date;
+  placeholder?: string;
+  size?: MantineSize;
+  disabled?: boolean;
+  required?: boolean;
+}) => {
   const error = required && value === null ? "Required" : "";
 
   return (
-    <DatePickerPresenter
+    <DateInput
       value={new Date(value)}
       onChange={onChange}
       label={label}
       defaultValue={defaultValue}
       placeholder={placeholder}
+      withAsterisk={required}
       size={size}
-      disabled={disabled}
-      required={required}
+      valueFormat="YYYY-MM-DD"
+      monthLabelFormat={"YYYY-MM"}
+      monthsListFormat={"MM"}
+      firstDayOfWeek={0}
       error={error}
+      disabled={disabled}
     />
   );
 };
