@@ -1,6 +1,10 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { FileInput } from "@components/atoms/FileInput";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account";
-import { DatePicker } from "@components/atoms/DatePicker";
+import { DatePicker } from "components/ui/date";
 import { FileTypeSelect } from "@components/molecules/CustomSelect/FileType";
 import { FileType } from "@provider/file/FileType";
 

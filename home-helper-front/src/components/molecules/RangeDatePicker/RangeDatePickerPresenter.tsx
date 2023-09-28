@@ -1,4 +1,8 @@
-import { DatePicker } from "@components/atoms/DatePicker";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { DatePicker } from "components/ui/date";
 
 type RangeDatePickerPresenterProps = {
   fromDate: Date | null;
