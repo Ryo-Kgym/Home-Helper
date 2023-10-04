@@ -1,6 +1,10 @@
-import { Table, TableProps } from "@components/atoms/Table";
-import { RangeDatePicker } from "@components/molecules/RangeDatePicker";
-import { Total } from "@components/molecules/Total";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { Table, TableProps } from "@components/atoms/Table/index";
+import { RangeDatePicker } from "@components/ui/date";
+import { Total } from "@components/molecules/Total/index";
 
 type AccountPresenterProps = {
   fromDate: Date | null;

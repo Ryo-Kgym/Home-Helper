@@ -1,5 +1,9 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { TableProps } from "@components/atoms/Table";
-import { RangeDatePicker } from "@components/molecules/RangeDatePicker";
+import { RangeDatePicker } from "components/ui/date";
 import { Modal } from "@components/atoms/Modal";
 import { UpdateDailyDetail } from "@components/organisms/update_daily_detail";
 import { DailyDetail } from "@domain/model/household/DailyDetail";

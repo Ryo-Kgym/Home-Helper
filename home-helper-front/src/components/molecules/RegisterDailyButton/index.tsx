@@ -6,14 +6,20 @@
 import { Modal } from "@components/atoms/Modal";
 import { useState } from "react";
 import { RegisterDailyDetail } from "@components/organisms/register_daily_detail";
-import { Button } from "@components/atoms/Button";
 
 export const RegisterDailyButton = ({ date = new Date() }: { date?: Date }) => {
   const [opened, setOpened] = useState<boolean>(false);
 
   return (
-    <div className={"z-10 absolute bottom-5 left-5 "}>
-      <Button colorType={"register"} onClick={() => setOpened(true)} />
+    <div>
+      <div
+        className={
+          "text-5xl text-center cursor-pointer border-2 border-green-300 rounded-full w-13 h-13 shadow bg-green-300 hover:bg-green-400 hover:shadow-md hover:text-white"
+        }
+        onClick={() => setOpened(true)}
+      >
+        ＋
+      </div>
       <Modal opened={opened} onClose={() => setOpened(false)}>
         <RegisterDailyDetail date={date} />
       </Modal>

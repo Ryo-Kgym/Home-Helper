@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2023 Ryo-Kgym.
  */
-export { TransferList } from "./TransferListContainer";
+export { MantineTransferList as TransferList } from "./MantineTransferList";
 
 export type TransferListItem = {
   value: string;

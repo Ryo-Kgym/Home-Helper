@@ -4,6 +4,7 @@
 
 import "../styles/globals.css";
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
 import { PropsWithChildren } from "react";

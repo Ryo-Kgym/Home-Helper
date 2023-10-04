@@ -1,12 +1,9 @@
-import { HouseholdLayout } from "@components/atoms/Layout/HouseholdLayout";
-import { PropsWithChildren } from "react";
-import { RegisterDailyButton } from "@components/molecules";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
 
-const Layout = ({ children }: PropsWithChildren) => (
-  <HouseholdLayout>
-    {children}
-    <RegisterDailyButton />
-  </HouseholdLayout>
-);
+import { HouseholdLayout } from "./_layout/HouseholdLayout";
+
+const Layout = HouseholdLayout;
 
 export default Layout;

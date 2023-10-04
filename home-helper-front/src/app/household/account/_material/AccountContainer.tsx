@@ -1,16 +1,19 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 "use client";
 
-import { AccountPresenter } from "@components/organisms/account/AccountPresenter";
-import { TableProps } from "@components/atoms/Table";
+import { AccountPresenter } from "@app/household/account/_material/AccountPresenter";
+import { TableProps } from "@components/atoms/Table/index";
 import { useState } from "react";
 import { useGetAccountBalanceList } from "@hooks/household/account/useGetAccountBalanceList";
-import { DailyTableByAccount } from "@components/organisms/daily_table/account";
-import { ResponsiveSwitcher } from "@components/page/ResponsiveSwitcher";
+import { DailyTableByAccount } from "@components/organisms/daily_table/account/index";
+import { ResponsiveSwitcher } from "@components/page/ResponsiveSwitcher/index";
 
 export const AccountContainer = () => {
-  const today = new Date();
-  const [fromDate, setFromDate] = useState<Date | null>(null);
-  const [toDate, setToDate] = useState<Date | null>(today);
+  const [fromDate, setFromDate] = useState<Date | null>(new Date("2019-01-01"));
+  const [toDate, setToDate] = useState<Date | null>(new Date());
   const [selectedAccountId, setSelectedAccountId] = useState<string>("");
 
   const { data, total } = useGetAccountBalanceList(fromDate, toDate!);

@@ -16,7 +16,7 @@ export const CreditCardTablePresenter = ({
       tablePropsList={tableProps}
       size={"xs"}
       toBottom
-      height={"90vh"}
+      height={"85vh"}
     />
   </div>
 );

@@ -1,5 +1,9 @@
-import { AccountContainer } from "@components/organisms/account/AccountContainer";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
 
-const AccountPage = () => <AccountContainer />;
+import { AccountContainer } from "./_material/AccountContainer";
 
-export default AccountPage;
+const Page = () => <AccountContainer />;
+
+export default Page;
