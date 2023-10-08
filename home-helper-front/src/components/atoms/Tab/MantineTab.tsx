@@ -12,7 +12,7 @@ type MantineTabPresenterProps = {
   tabPropsList: TabProps[];
 };
 
-export const MantineTabPresenter = ({
+export const MantineTab = ({
   defaultSelect,
   tabPropsList,
 }: MantineTabPresenterProps) => {
