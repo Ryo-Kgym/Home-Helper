@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Tab, TabProps } from "@components/atoms/Tab/index";
+import { Tab, TabProps } from "@components/ui/Tabs/index";
 import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker/index";
 
 type SummaryPresenterProps = {

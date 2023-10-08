@@ -5,17 +5,9 @@
 "use client";
 
 import { Tabs } from "@mantine/core";
-import { TabProps } from "@components/atoms/Tab/index";
+import { TabsProps } from "@components/ui/Tabs/index";
 
-type MantineTabPresenterProps = {
-  defaultSelect: string;
-  tabPropsList: TabProps[];
-};
-
-export const MantineTab = ({
-  defaultSelect,
-  tabPropsList,
-}: MantineTabPresenterProps) => {
+export const MantineTabs = ({ defaultSelect, tabPropsList }: TabsProps) => {
   const normalClassName = "";
   const mobileClassName: string = "max-sm:text-sm max-sm:h-5 max-sm:p-0";
 

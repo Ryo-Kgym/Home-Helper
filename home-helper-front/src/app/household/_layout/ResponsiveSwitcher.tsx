@@ -4,7 +4,7 @@
 
 import { Split } from "@components/atoms/Split/index";
 import { ReactElement, ReactNode } from "react";
-import { Tab } from "@components/atoms/Tab/index";
+import { Tab } from "@components/ui/Tabs/index";
 
 type Props = {
   first: ReactElement | ReactNode;

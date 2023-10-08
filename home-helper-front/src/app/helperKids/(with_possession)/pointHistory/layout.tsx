@@ -3,7 +3,7 @@
  */
 "use client";
 
-import { Tab } from "@components/atoms/Tab/index";
+import { Tab } from "@components/ui/Tabs/index";
 import { ReactNode } from "react";
 
 const Layout = ({

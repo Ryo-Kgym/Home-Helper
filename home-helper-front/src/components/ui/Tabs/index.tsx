@@ -4,7 +4,12 @@
 
 import { ReactElement, ReactNode } from "react";
 
-export { MantineTab as Tab } from "./MantineTab";
+export { MantineTabs as Tab } from "./MantineTabs";
+
+export type TabsProps = {
+  defaultSelect: string;
+  tabPropsList: TabProps[];
+};
 
 export type TabProps = {
   value: string;

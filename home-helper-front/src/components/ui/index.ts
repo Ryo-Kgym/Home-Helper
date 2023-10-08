@@ -4,3 +4,4 @@
 
 export * from "./Select";
 export * from "./TransferList";
+export * from "./Tabs";
