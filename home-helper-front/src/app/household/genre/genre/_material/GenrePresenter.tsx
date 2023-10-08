@@ -1,6 +1,10 @@
-import { Table, TableProps } from "@components/atoms/Table";
-import { IocomeTotal } from "@components/molecules/Total";
-import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { Table, TableProps } from "@components/atoms/Table/index";
+import { IocomeTotal } from "@components/molecules/Total/index";
+import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker/index";
 
 type CategoryPresenterProps = {
   fromMonth: Date | null;
