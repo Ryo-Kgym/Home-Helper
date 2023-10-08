@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 "use client";
 
 import { TableProps } from "@components/atoms/Table";
@@ -8,7 +12,7 @@ import { DailyTableByCategory } from "@components/organisms/daily_table/category
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { useGetCreditCardSummaryBetweenMonth } from "@hooks/household/credit_card/useGetCreditCardSummaryBetweenMonth";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { ResponsiveSwitcher } from "@components/page/ResponsiveSwitcher";
+import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
 
 export const CategoryContainer: FC = () => {
   const [fromMonth, setFromMonth] = useState<Date | null>(new Date());

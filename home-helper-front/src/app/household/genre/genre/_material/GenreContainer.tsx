@@ -12,7 +12,7 @@ import { GenrePresenter } from "./GenrePresenter";
 import { useGetGenreTotalByMonth } from "@hooks/household/genre/useGetGenreTotalByMonth";
 import { DailyTableByGenre } from "@components/organisms/daily_table/genre/index";
 import { useGetCreditCardSummaryBetweenMonth } from "@hooks/household/credit_card/useGetCreditCardSummaryBetweenMonth";
-import { ResponsiveSwitcher } from "@components/page/ResponsiveSwitcher/index";
+import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
 
 export const GenreContainer = () => {
   const [fromMonth, setFromMonth] = useState<Date | null>(new Date());

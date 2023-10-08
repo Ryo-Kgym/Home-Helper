@@ -1,6 +1,10 @@
-import { Split } from "@components/atoms/Split";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { Split } from "@components/atoms/Split/index";
 import { ReactElement, ReactNode } from "react";
-import { Tab } from "@components/atoms/Tab";
+import { Tab } from "@components/atoms/Tab/index";
 
 type Props = {
   first: ReactElement | ReactNode;
