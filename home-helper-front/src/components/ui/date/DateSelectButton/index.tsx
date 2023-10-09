@@ -2,16 +2,18 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Button } from "components/ui";
+import { Button } from "@mantine/core";
 import { useDateHolder } from "@hooks/date/useDateHolder";
 import { useDate } from "@hooks/date/useDate";
+import { MantineColor } from "@mantine/core/lib/core/index";
 
-type DateSelectButtonProps = { type?: ButtonType };
-
-export const DateSelectButton = ({ type = "today" }: DateSelectButtonProps) => {
+export const DateSelectButton = (
+  // @formatter:off
+  { type = "today" }: { type?: ButtonType },
+) => {
   const { getNow, getThisFirstDate, getThisLastDate } = useDate();
   const { saveTerm } = useDateHolder();
-  const { label } = TypeMap.get(type)!;
+  const { label, color } = TypeMap.get(type)!;
 
   const { getFromDate, getToDate } = new Map<
     ButtonType,
@@ -23,9 +25,12 @@ export const DateSelectButton = ({ type = "today" }: DateSelectButtonProps) => {
 
   return (
     <Button
-      label={label}
       onClick={() => saveTerm(getFromDate(), getToDate())}
-    />
+      color={color}
+      size={"md"}
+    >
+      {label}
+    </Button>
   );
 };
 
@@ -33,9 +38,10 @@ type ButtonType = "today" | "month";
 
 type MappedType = {
   label: string;
+  color: MantineColor;
 };
 
 const TypeMap = new Map<ButtonType, MappedType>([
-  ["today", { label: "今日" }],
-  ["month", { label: "今月" }],
+  ["today", { label: "今日", color: "teal" }],
+  ["month", { label: "今月", color: "pink" }],
 ]);
