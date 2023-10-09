@@ -1,4 +1,8 @@
-import { Button } from "@components/atoms";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { Button } from "@components/ui";
 import { Input } from "@components/atoms/Input";
 import { InputValidationMessage } from "@components/atoms/Input/InputValidator";
 import { ReactElement } from "react";
