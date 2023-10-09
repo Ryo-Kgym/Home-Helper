@@ -10,7 +10,7 @@ import { RegisterDailyButton } from "@components/molecules";
 export const HouseholdLayout = ({ children }: PropsWithChildren) => (
   <NavbarSection header={"家計簿アプリ"} navis={householdNavis}>
     {children}
-    <div className={"z-100 absolute right-5 bottom-5"}>
+    <div className={"z-100 absolute right-5 bottom-16"}>
       <RegisterDailyButton />
     </div>
   </NavbarSection>
