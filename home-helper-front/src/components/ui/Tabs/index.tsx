@@ -5,6 +5,7 @@
 import { ReactElement, ReactNode } from "react";
 
 export { MantineTabs as Tab } from "./MantineTabs";
+export { MobileTabs } from "./MobileTabs";
 
 export type TabsProps = {
   defaultSelect: string;

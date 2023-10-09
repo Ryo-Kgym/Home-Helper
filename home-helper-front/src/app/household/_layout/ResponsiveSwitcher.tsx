@@ -4,27 +4,27 @@
 
 import { Split } from "@components/atoms/Split/index";
 import { ReactElement, ReactNode } from "react";
-import { Tab } from "@components/ui/Tabs/index";
+import { MobileTabs } from "@components/ui";
 
-type Props = {
+export const ResponsiveSwitcher = ({
+  first,
+  second,
+}: {
   first: ReactElement | ReactNode;
   second: ReactElement | ReactNode;
-};
-export const ResponsiveSwitcher = ({ first, second }: Props) => {
-  return (
-    <div>
-      <div className={"max-sm:hidden"}>
-        <Split size={50} first={first} second={second} />
-      </div>
-      <div className={"sm:hidden"}>
-        <Tab
-          defaultSelect={"first"}
-          tabPropsList={[
-            { value: "first", label: "選択", contents: first },
-            { value: "second", label: "明細", contents: second },
-          ]}
-        />
-      </div>
+}) => (
+  <div>
+    <div className={"max-sm:hidden"}>
+      <Split size={50} first={first} second={second} />
     </div>
-  );
-};
+    <div className={"sm:hidden"}>
+      <MobileTabs
+        defaultSelect={"first"}
+        tabPropsList={[
+          { value: "first", label: "Main", contents: first },
+          { value: "second", label: "Sub", contents: second },
+        ]}
+      />
+    </div>
+  </div>
+);
