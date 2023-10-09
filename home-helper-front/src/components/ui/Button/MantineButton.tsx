@@ -1,62 +1,37 @@
-import { Button as MButton } from "@mantine/core";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
 
+import { Button } from "@mantine/core";
 import { MantineColor, MantineSize } from "@mantine/styles";
+import { ButtonColorType, ButtonProps } from "./";
 
-type ButtonProps = {
-  onClick: () => void;
-  colorType?: ButtonColorType;
-  label?: string;
-  disabled?: boolean;
-};
-export const Button = ({
+export const MantineButton = ({
   onClick,
   colorType = "default",
   label = colorType.toUpperCase(),
   disabled = false,
 }: ButtonProps) => {
-  const { className, size, color } = PropMap.get(colorType) ?? {};
+  const {
+    // @formatter:off
+    className,
+    size,
+    color,
+  } = PropMap.get(colorType) ?? {};
 
   return (
-    <>
-      <div className={"max-sm:hidden"}>
-        <MButton
-          radius="sm"
-          className={className}
-          size={size}
-          color={color}
-          onClick={onClick}
-          disabled={disabled}
-        >
-          {label}
-        </MButton>
-      </div>
-      <div className={"sm:hidden"}>
-        <MButton
-          radius="sm"
-          className={className}
-          size={"xs"}
-          color={color}
-          onClick={onClick}
-          disabled={disabled}
-        >
-          {label}
-        </MButton>
-      </div>
-    </>
+    <Button
+      radius="sm"
+      className={className}
+      size={size}
+      color={color}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {label}
+    </Button>
   );
 };
-
-type ButtonColorType =
-  | "default"
-  | "register"
-  | "update"
-  | "clear"
-  | "reset"
-  | "detail"
-  | "import"
-  | "delete"
-  | "done"
-  | "cancel";
 
 type ButtonStyleProp = {
   className: string;
