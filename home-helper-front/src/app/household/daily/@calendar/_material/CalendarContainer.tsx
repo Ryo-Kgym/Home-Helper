@@ -1,7 +1,11 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 "use client";
 
 import { useState } from "react";
-import { CalendarPresenter } from "@components/organisms/calendar/CalendarPresenter";
+import { CalendarPresenter } from "./CalendarPresenter";
 import { useGetTotalForMonth } from "@hooks/household/iocome/useGetTotalForMonth";
 
 export const CalendarContainer = () => {

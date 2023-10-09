@@ -1,4 +1,8 @@
-import { ChangeMonthPresenter } from "@components/organisms/calendar/change_month/ChangeMonthPresenter";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { ChangeMonthPresenter } from "@app/household/daily/@calendar/_material/change_month/ChangeMonthPresenter";
 
 type ChangeMonthContainerProps = {
   baseDate: Date;

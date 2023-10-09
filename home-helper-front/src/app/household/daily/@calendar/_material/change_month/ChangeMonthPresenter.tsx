@@ -1,6 +1,10 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { FC } from "react";
-import { PrevIcon } from "@components/atoms/Icon/PrevIcon";
-import { NextIcon } from "@components/atoms/Icon/NextIcon";
+import { PrevIcon } from "@components/atoms/Icon/PrevIcon/index";
+import { NextIcon } from "@components/atoms/Icon/NextIcon/index";
 
 type ChangeMonthPresenterProps = {
   displayYearMonth: string;

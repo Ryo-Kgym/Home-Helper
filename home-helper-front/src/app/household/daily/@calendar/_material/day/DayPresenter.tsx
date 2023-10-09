@@ -1,6 +1,10 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { ReactNode } from "react";
-import { Modal } from "@components/atoms/Modal";
-import { RegisterDailyDetail } from "@components/organisms/register_daily_detail";
+import { Modal } from "@components/atoms/Modal/index";
+import { RegisterDailyDetail } from "@components/organisms/register_daily_detail/index";
 
 type DayPresenterProps = {
   date: Date;
