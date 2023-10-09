@@ -1,4 +1,8 @@
-import { MonthPicker } from "@components/atoms/MonthPicker";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { MonthPicker } from "components/ui/date";
 
 type DualMonthPickerPresenterProps = {
   fromMonth: Date | null;
