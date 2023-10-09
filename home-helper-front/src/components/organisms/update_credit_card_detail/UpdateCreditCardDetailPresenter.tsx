@@ -9,7 +9,7 @@ import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeTyp
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
 import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
-import { Button } from "@components/atoms/Button";
+import { Button } from "components/ui";
 import { DatePicker } from "components/ui/date";
 
 type UpdateDailyDetailPresenterProps = {

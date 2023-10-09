@@ -8,7 +8,7 @@ import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
 import { CategorySelect } from "@components/molecules/CustomSelect/Category";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
 import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
-import { Button } from "@components/atoms/Button";
+import { Button } from "components/ui";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { DatePicker } from "components/ui/date";
 

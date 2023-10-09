@@ -1,5 +1,9 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { FC, ReactNode } from "react";
-import { Button } from "@components/atoms/Button";
+import { Button } from "components/ui";
 import { Modal } from "@components/atoms/Modal";
 
 type ConfirmPromptPresenterProps = {

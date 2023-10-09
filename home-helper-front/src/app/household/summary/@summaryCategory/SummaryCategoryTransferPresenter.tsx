@@ -2,8 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Button } from "@components/atoms/Button/index";
-import { TransferList, TransferListItem } from "@components/ui/index";
+import { Button, TransferList, TransferListItem } from "@components/ui";
 
 type SalaryTransferPresenterProps = {
   transferData: [TransferListItem[], TransferListItem[]];
