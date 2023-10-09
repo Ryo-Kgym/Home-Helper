@@ -5,7 +5,7 @@
 "use client";
 
 import { Tabs } from "@mantine/core";
-import { TabsProps } from "@components/ui/Tabs/index";
+import { TabsProps } from "@components/ui";
 
 export const MantineTabs = ({ defaultSelect, tabPropsList }: TabsProps) => {
   const normalClassName = "";
