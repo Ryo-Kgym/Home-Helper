@@ -1,7 +1,11 @@
-import { Day } from "@components/organisms/calendar/day";
-import { MonthPicker } from "@components/atoms/MonthPicker";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { Day } from "@app/household/daily/@calendar/_material/day";
+import { DateSelectButton } from "@components/ui";
+import { MonthPicker } from "@components/ui/date";
 import { DailyTotal } from "@domain/model/household/DailyTotal";
-import { DateSelectButton } from "@components/ui/date";
 
 type CalendarPresenterProps = {
   baseDate: Date | null;
@@ -15,15 +19,15 @@ export const CalendarPresenter = ({
   dailyTotalList,
   refetch,
 }: CalendarPresenterProps) => (
-  <div className={"grid grid-cols-1 w-full"}>
-    <div className={"grid grid-cols-6"}>
-      <div className={"mx-auto"}>
+  <div className={"w-full"}>
+    <div className={"flex w-full"}>
+      <div className={"flex items-center"}>
         <DateSelectButton />
       </div>
-      <div className={"col-span-4"}>
+      <div className={"flex-1"}>
         <MonthPicker value={baseDate} setValue={setBaseDate} />
       </div>
-      <div className={"mx-auto"}>
+      <div className={"flex items-center"}>
         <DateSelectButton type={"month"} />
       </div>
     </div>

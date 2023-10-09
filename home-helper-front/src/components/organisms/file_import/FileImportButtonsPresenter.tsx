@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Button } from "@components/atoms/Button";
+import { Button } from "components/ui";
 
 type FileImportPresenterProps = {
   importDisabled: boolean;

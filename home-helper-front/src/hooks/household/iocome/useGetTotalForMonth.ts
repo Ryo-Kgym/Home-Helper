@@ -1,8 +1,12 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import {
   useGetCreditCardSummaryBetweenWithdrawalDateQuery,
   useGetTotalBetweenDateQuery,
 } from "@graphql/hasura/generated/hasuraGraphql";
-import { createDateList } from "@components/organisms/calendar/createDateList";
+import { createDateList } from "@hooks/household/iocome/createDateList";
 import { DailyTotal } from "@domain/model/household/DailyTotal";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
@@ -35,21 +39,21 @@ export const useGetTotalForMonth = (date: Date) => {
 
   const dailyTotalList: DailyTotal[] = createDateList(date).map((date) => {
     const incomeTotal = data?.incomeTotalByDate?.find(
-      (e) => e.date === convertToYmd(date)
+      (e) => e.date === convertToYmd(date),
     )?.total;
     const outcomeTotal = data?.outcomeTotalByDate?.find(
-      (e) => e.date === convertToYmd(date)
+      (e) => e.date === convertToYmd(date),
     )?.total;
     const filteredCreditCardSummary =
       creditData?.allCreditCardSummariesList?.filter(
-        (e) => e.withdrawalDate === convertToYmd(date)
+        (e) => e.withdrawalDate === convertToYmd(date),
       ) ?? [];
 
     const creditCardTotal =
       filteredCreditCardSummary.length > 0
         ? filteredCreditCardSummary.reduce(
             (acc, cur) => acc + Number(cur.totalAmount),
-            0
+            0,
           )
         : undefined;
 
@@ -71,7 +75,7 @@ export const useGetTotalForMonth = (date: Date) => {
 
 const calcOutcomeTotal = (
   outcomeTotal: number | undefined,
-  creditCardTotal: number | undefined
+  creditCardTotal: number | undefined,
 ) => {
   if (outcomeTotal === undefined && creditCardTotal === undefined) {
     return undefined;

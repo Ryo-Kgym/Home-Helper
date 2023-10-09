@@ -9,7 +9,7 @@ import { TableProps } from "@components/atoms/Table/index";
 import { useState } from "react";
 import { useGetAccountBalanceList } from "@hooks/household/account/useGetAccountBalanceList";
 import { DailyTableByAccount } from "@components/organisms/daily_table/account/index";
-import { ResponsiveSwitcher } from "@components/page/ResponsiveSwitcher/index";
+import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
 
 export const AccountContainer = () => {
   const [fromDate, setFromDate] = useState<Date | null>(new Date("2019-01-01"));

@@ -1,4 +1,8 @@
-import { GenreContainer } from "@components/organisms/genre/GenreContainer";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { GenreContainer } from "@app/household/genre/genre/_material/GenreContainer";
 
 const Page = () => <GenreContainer />;
 

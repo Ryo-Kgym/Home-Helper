@@ -5,7 +5,7 @@
 "use client";
 
 import { TableProps } from "@components/atoms/Table";
-import { ResponsiveSwitcher } from "@components/page/ResponsiveSwitcher";
+import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
 import { useGetCreditCardListQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 import { useState } from "react";

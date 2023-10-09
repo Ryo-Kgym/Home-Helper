@@ -1,22 +1,19 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { ReactNode } from "react";
-import { MonthPickerPresenter } from "@components/atoms/MonthPicker/MonthPickerPresenter";
 import { useDate } from "@hooks/date/useDate";
+import { MonthPickerInput } from "@mantine/dates";
+import { MantineMonthPickerProps } from "@components/ui/date/index";
 
-type MonthPickerContainerProps = {
-  value: Date | null;
-  setValue: (_: Date | null) => void;
-  label?: string;
-  clearable?: boolean;
-  isLastDay?: boolean;
-};
-
-export const MonthPickerContainer = ({
+export const MantineMonthPicker = ({
   value,
   setValue,
   label = "",
   clearable = false,
   isLastDay = false,
-}: MonthPickerContainerProps) => {
+}: MantineMonthPickerProps) => {
   const { offsetDate } = useDate();
 
   const onChange = (value: Date | null) => {
@@ -55,10 +52,15 @@ export const MonthPickerContainer = ({
     <div className={"grid grid-cols-4"}>
       <JumpIcon onClick={prevMonthHandler}>&lt;</JumpIcon>
       <div className={"col-span-2 py-2"}>
-        <MonthPickerPresenter
+        <MonthPickerInput
+          label={label}
+          placeholder="YYYY-MM"
+          valueFormat={"YYYY-MM"}
+          yearLabelFormat={"YYYY"}
+          monthsListFormat={"MM"}
           value={value}
           onChange={onChange}
-          label={label}
+          size={"lg"}
           clearable={clearable}
         />
       </div>

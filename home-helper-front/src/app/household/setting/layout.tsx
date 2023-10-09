@@ -3,7 +3,7 @@
  */
 
 import { ReactNode } from "react";
-import { Tab } from "@components/atoms/Tab";
+import { Tab } from "components/ui/Tabs";
 
 const Layout = ({
   genre,
