@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2023 Ryo-Kgym.
  */
+"use client";
 
-import { Button } from "@mantine/core";
+import { Button, MantineColor } from "@mantine/core";
 import { useDateHolder } from "@hooks/date/useDateHolder";
 import { useDate } from "@hooks/date/useDate";
-import { MantineColor } from "@mantine/core/lib/core/index";
 
 export const DateSelectButton = (
   // @formatter:off

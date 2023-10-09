@@ -3,6 +3,7 @@
  */
 
 export { MantineButton as Button } from "./MantineButton";
+export { DateSelectButton } from "./DateSelectButton";
 
 export type ButtonProps = {
   onClick: () => void;
