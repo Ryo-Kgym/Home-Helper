@@ -7,24 +7,29 @@ import { ReactElement, ReactNode } from "react";
 import { MobileTabs } from "@components/ui";
 
 export const ResponsiveSwitcher = ({
-  first,
-  second,
+  first: firstContents,
+  second: secondContents,
 }: {
   first: ReactElement | ReactNode;
   second: ReactElement | ReactNode;
-}) => (
-  <div>
-    <div className={"max-sm:hidden"}>
-      <Split size={50} first={first} second={second} />
+}) => {
+  const First = () => <div className={"p-1"}>{firstContents}</div>;
+  const Second = () => <div className={"p-1"}>{secondContents}</div>;
+
+  return (
+    <div>
+      <div className={"max-sm:hidden"}>
+        <Split size={50} first={<First />} second={<Second />} />
+      </div>
+      <div className={"sm:hidden"}>
+        <MobileTabs
+          defaultSelect={"first"}
+          tabPropsList={[
+            { value: "first", label: "Main", contents: <First /> },
+            { value: "second", label: "Sub", contents: <Second /> },
+          ]}
+        />
+      </div>
     </div>
-    <div className={"sm:hidden"}>
-      <MobileTabs
-        defaultSelect={"first"}
-        tabPropsList={[
-          { value: "first", label: "Main", contents: first },
-          { value: "second", label: "Sub", contents: second },
-        ]}
-      />
-    </div>
-  </div>
-);
+  );
+};

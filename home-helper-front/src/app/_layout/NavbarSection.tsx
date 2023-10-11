@@ -28,7 +28,6 @@ export const NavbarSection = ({
         breakpoint: "sm",
         collapsed: { desktop: !opened, mobile: !opened },
       }}
-      padding="md"
     >
       <AppShell.Header className={"bg-blue-500"}>
         <Group h="100%" px="md">
