@@ -42,7 +42,7 @@ const HelpItemTable = ({ tbodyProps }: { tbodyProps: TableProps[] }) => (
   <Table
     header={header}
     tablePropsList={tbodyProps}
-    height={"80vh"}
+    height={"70vh"}
     size={"sm"}
   />
 );

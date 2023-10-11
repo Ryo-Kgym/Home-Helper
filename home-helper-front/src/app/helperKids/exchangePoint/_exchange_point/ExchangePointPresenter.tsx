@@ -45,7 +45,7 @@ const ExchangeTable = ({ tableProps }: { tableProps: TableProps[] }) => (
   <Table
     header={header}
     tablePropsList={tableProps}
-    height={"80vh"}
+    height={"70vh"}
     size={"sm"}
   />
 );
