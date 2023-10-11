@@ -22,8 +22,9 @@ export const MonthlyCategoryPresenter: FC<MonthlyCategoryPresenterProps> = ({
       tablePropsList={tablePropsList}
       footer={footer}
       size={"xs"}
-      height={"75vh"}
+      height={"70vh"}
       toBottom
+      defaultBottom={false}
     />
   </div>
 );

@@ -58,7 +58,7 @@ const TransferBox = ({
 
       <Combobox.Dropdown>
         <Combobox.Options>
-          <ScrollArea.Autosize type="scroll" h={height}>
+          <ScrollArea type="scroll" h={height}>
             {groupedData.map((group) => (
               <Combobox.Group
                 key={group.group}
@@ -85,7 +85,7 @@ const TransferBox = ({
                 ))}
               </Combobox.Group>
             ))}
-          </ScrollArea.Autosize>
+          </ScrollArea>
         </Combobox.Options>
       </Combobox.Dropdown>
     </Combobox>

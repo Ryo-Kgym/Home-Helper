@@ -1,17 +1,20 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { NumberInput } from "@components/atoms/NumberInput";
 
-type AmountInputPresenterProps = {
-  value: number | "";
-  onChange: (_: number | "") => void;
-  disabled?: boolean;
-};
 export const DisplayOrderInputPresenter = ({
   value,
   onChange,
   disabled = false,
-}: AmountInputPresenterProps) => (
+}: {
+  value: number | "";
+  onChange: (_: number | "") => void;
+  disabled?: boolean;
+}) => (
   <NumberInput
-    label={"DISPLAY ORDER"}
+    label={""}
     value={value}
     onChange={onChange}
     placeholder="0 - 9999"

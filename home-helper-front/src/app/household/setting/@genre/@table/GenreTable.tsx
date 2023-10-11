@@ -62,6 +62,7 @@ export const GenreTable = () => {
         ) ?? []
       }
       size={"xs"}
+      defaultBottom={false}
     />
   );
 };

@@ -4,8 +4,6 @@
 
 import { Table, TableProps } from "@components/atoms/Table/index";
 import { UpdateNotification } from "@components/atoms/UpdateNotification";
-import { Flex } from "@mantine/core";
-import styles from "./styles.module.scss";
 
 type ChargePointPresenterProps = {
   fromDate: string;
@@ -17,74 +15,25 @@ type ChargePointPresenterProps = {
 };
 
 export const ChargePointPresenter = ({
-  fromDate,
   currentPoint,
   totalPoint,
   handleRegisterHelps,
   handleRegisterAfterProcess,
   tableProps,
 }: ChargePointPresenterProps) => (
-  <>
-    <Title fromDate={fromDate} />
-    <HelpItemTable tbodyProps={tableProps} />
-    <TotalPointBox
-      currentPoint={currentPoint}
-      totalUsePoint={totalPoint}
-      handleRegisterHelps={handleRegisterHelps}
-      handleAfterProcess={handleRegisterAfterProcess}
+  <div>
+    <Table
+      header={["お手伝い", "ポイント", "回数"]}
+      tablePropsList={tableProps}
+      height={"70vh"}
+      size={"sm"}
     />
-  </>
-);
-
-const header = ["お手伝い", "ポイント", "回数"];
-
-const HelpItemTable = ({ tbodyProps }: { tbodyProps: TableProps[] }) => (
-  <Table
-    header={header}
-    tablePropsList={tbodyProps}
-    height={"80vh"}
-    size={"sm"}
-  />
-);
-
-const Title = ({ fromDate }: { fromDate: string }) => (
-  <div className={"flex text-4xl"}>
-    <div>
-      {fromDate}
-      {"　〜　"}今日
-    </div>
-    <div className={"text-2xl pt-2"}>の登録をするよ</div>
-  </div>
-);
-
-const FormulaFlex = ({ label, point }: { label: string; point: number }) => (
-  <Flex wrap="wrap" className={styles.formulaSub}>
-    <Flex className={styles.rubi}>{label}</Flex>
-    <Flex className={styles.point}>{point.toLocaleString()}</Flex>
-  </Flex>
-);
-
-const TotalPointBox = ({
-  currentPoint,
-  totalUsePoint,
-  handleRegisterHelps,
-  handleAfterProcess,
-}: {
-  currentPoint: number;
-  totalUsePoint: number;
-  handleRegisterHelps: () => void;
-  handleAfterProcess: () => void;
-}) => (
-  <Flex className={styles.formula}>
-    <FormulaFlex label={"今のポイント"} point={currentPoint} />
-    <Flex>+</Flex>
-    <FormulaFlex label={"お手伝いしたポイント"} point={totalUsePoint} />
-    <Flex>=</Flex>
-    <FormulaFlex
-      label={"合計のポイント"}
-      point={currentPoint + totalUsePoint}
-    />
-    <Flex style={{ marginLeft: "50px" }}>
+    <div
+      className={
+        "justify-items-center sticky grid grid-cols-2 gap-4 max-md:grid-cols-1"
+      }
+    >
+      <TotalPointBox currentPoint={currentPoint} totalUsePoint={totalPoint} />
       <UpdateNotification
         label={"お手伝い申請"}
         showTitle={"お手伝いを申請中だよ！"}
@@ -92,8 +41,34 @@ const TotalPointBox = ({
         updateTitle={"お手伝いの申請が完了したよ！"}
         updateMessage={""}
         handleClick={handleRegisterHelps}
-        handleAfterProcess={handleAfterProcess}
+        handleAfterProcess={handleRegisterAfterProcess}
       />
-    </Flex>
-  </Flex>
+    </div>
+  </div>
+);
+
+const FormulaFlex = ({ label, point }: { label: string; point: number }) => (
+  <div>
+    <div className={"text-gray-400 text-xs"}>{label}</div>
+    <div className={"text-3xl text-right"}>{point.toLocaleString()}</div>
+  </div>
+);
+
+const TotalPointBox = ({
+  currentPoint,
+  totalUsePoint,
+}: {
+  currentPoint: number;
+  totalUsePoint: number;
+}) => (
+  <div className={"flex items-center space-x-5"}>
+    <FormulaFlex label={"今のポイント"} point={currentPoint} />
+    <div>+</div>
+    <FormulaFlex label={"お手伝いしたポイント"} point={totalUsePoint} />
+    <div>=</div>
+    <FormulaFlex
+      label={"合計のポイント"}
+      point={currentPoint + totalUsePoint}
+    />
+  </div>
 );

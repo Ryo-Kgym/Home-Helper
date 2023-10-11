@@ -23,25 +23,29 @@ export const NavbarSection = ({
   return (
     <AppShell
       header={{ height: 60 }}
-      navbar={{ width: 150, breakpoint: "sm", collapsed: { mobile: !opened } }}
-      padding="md"
+      navbar={{
+        width: 150,
+        breakpoint: "sm",
+        collapsed: { desktop: !opened, mobile: !opened },
+      }}
     >
-      <AppShell.Header>
+      <AppShell.Header className={"bg-blue-500"}>
         <Group h="100%" px="md">
-          <div className={"font-bold text-2xl"}>{header}</div>
-          <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+          <div className={"font-bold text-2xl text-white"}>{header}</div>
+          <Burger opened={opened} onClick={toggle} size="sm" />
         </Group>
       </AppShell.Header>
 
-      <AppShell.Navbar p="md">
-        <AppShell.Section grow component={ScrollArea}>
+      <AppShell.Navbar className={"bg-yellow-300"}>
+        <AppShell.Section component={ScrollArea}>
           {navis.map((menu, index) => (
             <Link key={`menu-${index}`} href={menu.url}>
               <div
-                className={
-                  "py-3 my-1 hover:font-bold hover:bg-gray-50 " +
-                  "max-sm:text-3xl max-sm:my-3 max-sm:ml-10"
-                }
+                className={"p-3 my-1 hover:font-bold max-sm:text-center"}
+                onClick={() => {
+                  // widthがsm以下の場合は、メニューを閉じる
+                  if (window.innerWidth < 640) toggle();
+                }}
               >
                 {menu.icon && <div>{menu.icon}</div>}
                 <div>{menu.label}</div>

@@ -9,11 +9,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <div className={"w-full"}>
-        <div className={"z-[100] absolute right-5 top-5"}>
+        <div className={"z-[100] absolute right-5 lg:top-5 max-lg:bottom-5"}>
           <div
             className={
               "border-double border-8 border-black rounded-full " +
-              "text-right text-4xl w-60 p-5"
+              "text-right text-4xl w-60 p-5 bg-white "
             }
           >
             <HelperPointCountUp />

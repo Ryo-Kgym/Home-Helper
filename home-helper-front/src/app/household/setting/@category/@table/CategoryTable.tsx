@@ -49,6 +49,7 @@ export const CategoryTable = () => {
         ) ?? []
       }
       size={"xs"}
+      defaultBottom={false}
     />
   );
 };
