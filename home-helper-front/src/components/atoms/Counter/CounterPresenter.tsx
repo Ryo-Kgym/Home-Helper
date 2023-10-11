@@ -3,7 +3,6 @@
  */
 
 import { Button, Flex } from "@mantine/core";
-import styles from "../ui.module.scss";
 
 type CounterProps = {
   count: number;
@@ -18,31 +17,33 @@ export const CounterPresenter = ({
   handleDecrement,
   clearHandler,
 }: CounterProps) => (
-  <Flex direction={"row"} align={"center"} className={styles.counter}>
-    <div className={"flex"}>
-      <Decrement handleClick={handleDecrement} />
+  <div className={"flex space-x-2"}>
+    <Decrement handleClick={handleDecrement} />
+    <div className={"flex items-center justify-center w-10 text-xl"}>
+      {count}
     </div>
-    <Flex className={styles.count}>{count}</Flex>
-    <div className={"flex"}>
-      <Increment handleClick={handleIncrement} />
-    </div>
-    <Flex className={styles.blank} />
-    <div className={"flex"}>
-      <Button className={styles.clearBox} onClick={clearHandler}>
+    <Increment handleClick={handleIncrement} />
+    <div className={"flex items-center justify-center"}>
+      <Button
+        className={"h-5 px-3"}
+        onClick={clearHandler}
+        color={"gray"}
+        size={"sm"}
+      >
         CLEAR
       </Button>
     </div>
-  </Flex>
+  </div>
 );
 
 const Increment = ({ handleClick }: { handleClick: () => void }) => (
-  <Button className={styles.counterBox} onClick={handleClick}>
+  <Button className={"bg-lime-500 text-xl w-10 h-10 p-0"} onClick={handleClick}>
     +
   </Button>
 );
 
 const Decrement = ({ handleClick }: { handleClick: () => void }) => (
-  <Button className={styles.counterBox} onClick={handleClick}>
+  <Button className={"bg-red-300 text-xl w-10 h-10 p-0"} onClick={handleClick}>
     -
   </Button>
 );
