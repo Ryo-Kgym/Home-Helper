@@ -4,8 +4,6 @@
 
 import { Table, TableProps } from "@components/atoms/Table/index";
 import { UpdateNotification } from "@components/atoms/UpdateNotification";
-import { Flex } from "@mantine/core";
-import styles from "./styles.module.scss";
 
 type ConsumePointPresenterProps = {
   currentPoint: number;
@@ -22,62 +20,22 @@ export const ExchangePointPresenter = ({
   handleRegisterAfterProcess,
   tableProps,
 }: ConsumePointPresenterProps) => (
-  <>
-    <Title />
-    <ExchangeTable tableProps={tableProps} />
-    <LeavePointBox
-      currentPoint={currentPoint}
-      totalUsePoint={totalUsePoint}
-      handleRequest={handleRequest}
-      handleAfterProcess={handleRegisterAfterProcess}
+  <div>
+    <Table
+      header={["交換品", "ポイント", "交換数"]}
+      tablePropsList={tableProps}
+      height={"70vh"}
+      size={"sm"}
     />
-  </>
-);
-
-const Title = () => (
-  <div className={"flex text-4xl"}>
-    <div>ポイントを交換するよ</div>
-  </div>
-);
-
-const header = ["交換品", "ポイント", "交換数"];
-const ExchangeTable = ({ tableProps }: { tableProps: TableProps[] }) => (
-  <Table
-    header={header}
-    tablePropsList={tableProps}
-    height={"70vh"}
-    size={"sm"}
-  />
-);
-
-const FormulaFlex = ({ label, point }: { label: string; point: number }) => (
-  <Flex wrap="wrap" className={styles.formulaSub}>
-    <Flex className={styles.rubi}>{label}</Flex>
-    <Flex className={styles.point}>{point.toLocaleString()}</Flex>
-  </Flex>
-);
-
-const LeavePointBox = ({
-  currentPoint,
-  totalUsePoint,
-  handleRequest,
-  handleAfterProcess,
-}: {
-  currentPoint: number;
-  totalUsePoint: number;
-  handleRequest: () => void;
-  handleAfterProcess: () => void;
-}) => (
-  <Flex className={styles.formula}>
-    <FormulaFlex label={"今のポイント"} point={currentPoint} />
-    <Flex>-</Flex>
-    <FormulaFlex label={"交換したいポイント"} point={totalUsePoint} />
-    <Flex>=</Flex>
-    <FormulaFlex
-      label={"残りのポイント"}
-      point={currentPoint - totalUsePoint}
-    />
-    <Flex style={{ marginLeft: "50px" }}>
+    <div
+      className={
+        "justify-items-center sticky grid grid-cols-2 gap-4 max-md:grid-cols-1"
+      }
+    >
+      <LeavePointBox
+        currentPoint={currentPoint}
+        totalUsePoint={totalUsePoint}
+      />
       <UpdateNotification
         label={"交換申請"}
         showTitle={"ポイント交換"}
@@ -85,8 +43,34 @@ const LeavePointBox = ({
         updateTitle={"ポイント交換完了"}
         updateMessage={"ポイントを交換したよ"}
         handleClick={handleRequest}
-        handleAfterProcess={handleAfterProcess}
+        handleAfterProcess={handleRegisterAfterProcess}
       />
-    </Flex>
-  </Flex>
+    </div>
+  </div>
+);
+
+const FormulaFlex = ({ label, point }: { label: string; point: number }) => (
+  <div>
+    <div className={"text-gray-400 text-xs"}>{label}</div>
+    <div className={"text-3xl text-right"}>{point.toLocaleString()}</div>
+  </div>
+);
+
+const LeavePointBox = ({
+  currentPoint,
+  totalUsePoint,
+}: {
+  currentPoint: number;
+  totalUsePoint: number;
+}) => (
+  <div className={"flex items-center space-x-5"}>
+    <FormulaFlex label={"今のポイント"} point={currentPoint} />
+    <div>-</div>
+    <FormulaFlex label={"交換したいポイント"} point={totalUsePoint} />
+    <div>=</div>
+    <FormulaFlex
+      label={"残りのポイント"}
+      point={currentPoint - totalUsePoint}
+    />
+  </div>
 );
