@@ -30,18 +30,24 @@ export const NavbarSection = ({
       }}
       padding="md"
     >
-      <AppShell.Header className={"bg-blue-400"}>
+      <AppShell.Header className={"bg-blue-500"}>
         <Group h="100%" px="md">
-          <div className={"font-bold text-2xl"}>{header}</div>
+          <div className={"font-bold text-2xl text-white"}>{header}</div>
           <Burger opened={opened} onClick={toggle} size="sm" />
         </Group>
       </AppShell.Header>
 
-      <AppShell.Navbar className={"bg-amber-100"}>
+      <AppShell.Navbar className={"bg-yellow-300"}>
         <AppShell.Section component={ScrollArea}>
           {navis.map((menu, index) => (
             <Link key={`menu-${index}`} href={menu.url}>
-              <div className={"p-3 my-1 hover:font-bold max-sm:text-center"}>
+              <div
+                className={"p-3 my-1 hover:font-bold max-sm:text-center"}
+                onClick={() => {
+                  // widthがsm以下の場合は、メニューを閉じる
+                  if (window.innerWidth < 640) toggle();
+                }}
+              >
                 {menu.icon && <div>{menu.icon}</div>}
                 <div>{menu.label}</div>
               </div>
