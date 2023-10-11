@@ -3,18 +3,14 @@
  */
 
 import { ReactElement, RefObject } from "react";
-import { ActionIcon, ScrollArea, Table } from "@mantine/core";
+import { ActionIcon, ScrollArea, Table, Button } from "@mantine/core";
 import { IconArrowBarToDown } from "@tabler/icons-react";
 
 type TablePresenterProps = {
-  headerTr: ReactElement | undefined;
+  headerTr: ReactElement;
   tbody: ReactElement;
   tfoot?: ReactElement;
   height: string;
-  scrolled: boolean;
-  setScrolled: (_: boolean) => void;
-  classes: Record<"header" | "footer" | "scrolled", string>;
-  cx: (_1: string, _2?: Record<string, boolean>) => string;
   fontSize: number;
   horizontalSpacing: number;
   verticalSpacing: number;
@@ -29,10 +25,6 @@ export const TablePresenter = ({
   tbody,
   tfoot,
   height,
-  scrolled,
-  setScrolled,
-  classes,
-  cx,
   fontSize,
   horizontalSpacing,
   verticalSpacing,
@@ -44,7 +36,6 @@ export const TablePresenter = ({
 }: TablePresenterProps) => (
   <>
     <ScrollArea
-      onScrollPositionChange={({ y }) => setScrolled(y !== 0)}
       viewportRef={viewport}
       onMouseOver={onMouseMoveHandler}
       onMouseOut={onMouseOutHandler}
@@ -58,20 +49,12 @@ export const TablePresenter = ({
         withColumnBorders
         className={`bg-slate-100 sm:table-fixed text-[${fontSize}px]`}
       >
-        {headerTr && (
-          <Table.Thead
-            className={cx(classes.header, {
-              [classes.scrolled]: scrolled,
-            })}
-          >
-            {headerTr}
-          </Table.Thead>
-        )}
+        <Table.Thead className={"sticky top-0 bg-white"}>
+          {headerTr}
+        </Table.Thead>
         <Table.Tbody>{tbody}</Table.Tbody>
         {tfoot && (
-          <Table.Tfoot
-            className={cx(classes.footer, { [classes.scrolled]: scrolled })}
-          >
+          <Table.Tfoot className={"sticky bottom-0 bg-white"}>
             {tfoot}
           </Table.Tfoot>
         )}
@@ -87,16 +70,17 @@ const JumpToBottom = ({
   scrollToBottom: (() => void) | undefined;
 }) =>
   scrollToBottom ? (
-    <div
+    <Button
       className={
         "z-10 absolute bottom-10 right-10 border-0 max-sm:button-1 max-sm:right-3"
       }
       onClick={scrollToBottom}
+      unstyled={true}
     >
       <ActionIcon variant="default" size={"3em"}>
         <IconArrowBarToDown size="3em" className={"text-slate-400"} />
       </ActionIcon>
-    </div>
+    </Button>
   ) : (
     <></>
   );

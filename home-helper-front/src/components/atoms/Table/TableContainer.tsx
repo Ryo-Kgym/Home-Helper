@@ -2,10 +2,10 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { TablePresenter } from "@components/atoms/Table/TablePresenter";
 import { ColumnProps, TableProps } from "@components/atoms/Table/index";
-import { MantineSize, createStyles } from "@mantine/styles";
+import { MantineSize } from "@mantine/styles";
 import { Table } from "@mantine/core";
 
 type Props = {
@@ -16,6 +16,7 @@ type Props = {
   fontSize?: number;
   size?: MantineSize;
   toBottom?: boolean;
+  defaultBottom?: boolean;
 };
 export const TableContainer = ({
   header,
@@ -24,10 +25,9 @@ export const TableContainer = ({
   height = "80vh",
   size = "xl",
   toBottom = false,
+  defaultBottom = true,
 }: Props) => {
-  const [scrolled, setScrolled] = useState(false);
   const [toButtonOpen, setToButtonOpen] = useState(false);
-  const { classes, cx } = useStyles();
 
   const thead = (
     <Table.Tr>
@@ -81,13 +81,14 @@ export const TableContainer = ({
 
   const viewport = useRef<HTMLDivElement>(null);
 
-  const scrollToBottom = toBottom
-    ? () =>
-        viewport?.current?.scrollTo({
-          top: viewport.current.scrollHeight,
-          behavior: "smooth",
-        })
-    : undefined;
+  const scrollToBottomHandler = () => {
+    viewport?.current?.scrollTo({
+      top: viewport.current.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToBottom = toBottom ? scrollToBottomHandler : undefined;
 
   const onMouseMoveHandler = () => {
     setToButtonOpen(true);
@@ -96,16 +97,16 @@ export const TableContainer = ({
     }, 2000);
   };
 
+  useEffect(() => {
+    if (defaultBottom) scrollToBottomHandler();
+  }, [defaultBottom, tablePropsList]);
+
   return (
     <TablePresenter
       headerTr={thead}
       tbody={tbody}
       tfoot={tfoot}
       height={height}
-      scrolled={scrolled}
-      setScrolled={setScrolled}
-      classes={classes}
-      cx={cx}
       fontSize={paddingMap.get(size)!.fontSize}
       horizontalSpacing={paddingMap.get(size)!.horizontalSpacing}
       verticalSpacing={paddingMap.get(size)!.verticalSpacing}
@@ -119,55 +120,6 @@ export const TableContainer = ({
     />
   );
 };
-
-const useStyles = createStyles((theme) => ({
-  header: {
-    position: "sticky",
-    top: 0,
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
-    transition: "box-shadow 150ms ease",
-    zIndex: 5,
-
-    "&::after": {
-      content: '""',
-      position: "absolute",
-      left: 0,
-      right: 0,
-      bottom: 0,
-      borderBottom: `1px solid ${
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[3]
-          : theme.colors.gray[2]
-      }`,
-    },
-  },
-  footer: {
-    position: "sticky",
-    bottom: 0,
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
-    transition: "box-shadow 150ms ease",
-    zIndex: 5,
-
-    "&::after": {
-      content: '""',
-      position: "absolute",
-      left: 0,
-      right: 0,
-      bottom: 0,
-      borderBottom: `1px solid ${
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[3]
-          : theme.colors.gray[2]
-      }`,
-    },
-  },
-
-  scrolled: {
-    boxShadow: theme.shadows.sm,
-  },
-}));
 
 const paddingMap = new Map<
   MantineSize,
