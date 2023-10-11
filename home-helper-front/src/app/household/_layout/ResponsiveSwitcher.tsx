@@ -8,13 +8,13 @@ import { MobileTabs } from "@components/ui";
 
 export const ResponsiveSwitcher = ({
   first: firstContents,
-  second: secondContents,
+  second: originalSecond,
 }: {
   first: ReactElement | ReactNode;
   second: ReactElement | ReactNode;
 }) => {
-  const First = () => <div className={"p-1"}>{firstContents}</div>;
-  const Second = () => <div className={"p-1"}>{secondContents}</div>;
+  const First = () => <div className={"p-1 w-full"}>{firstContents}</div>;
+  const Second = () => <div className={"p-1 w-full"}>{originalSecond}</div>;
 
   return (
     <div>
