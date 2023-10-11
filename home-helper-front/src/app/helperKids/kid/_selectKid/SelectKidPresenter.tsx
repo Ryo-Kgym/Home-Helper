@@ -10,12 +10,13 @@ type Props = {
 };
 
 export const SelectKidPresenter = ({ kids, saveKidHandler }: Props) => (
-  <div className={"grid w-full"}>
+  <div className={"w-full"}>
     {kids.map(({ id, name }) => (
       <div
         key={id}
         className={
-          "w-1/2 border-2 mx-auto my-10 rounded-2xl border-gray-300 hover:border-gray-500 cursor-pointer"
+          "w-1/2 border-2 mx-auto my-10 rounded-2xl border-gray-300 hover:border-gray-500 cursor-pointer " +
+          "max-sm:w-full"
         }
         onClick={() => saveKidHandler(id)}
       >
