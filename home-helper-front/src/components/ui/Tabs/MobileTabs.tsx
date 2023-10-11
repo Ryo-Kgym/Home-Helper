@@ -18,7 +18,7 @@ export const MobileTabs = ({ defaultSelect, tabPropsList }: TabsProps) => (
     <Tabs.List className={"absolute bottom-0 left-0 h-16 w-full"}>
       {tabPropsList.map((tab, i) => (
         <Tabs.Tab
-          className={`w-1/${tabPropsList.length} text-xl`}
+          className={`w-1/${tabPropsList.length} text-xl bg-gray-50`}
           value={tab.value}
           leftSection={tab.icon}
           key={"tab" + i}
