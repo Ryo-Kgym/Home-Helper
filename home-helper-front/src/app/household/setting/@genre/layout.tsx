@@ -3,10 +3,10 @@
  */
 
 import { ReactNode } from "react";
-import { Split } from "@components/atoms/Split";
+import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
 
 const Layout = ({ table, detail }: { table: ReactNode; detail: ReactNode }) => (
-  <Split first={table} second={detail} />
+  <ResponsiveSwitcher first={table} second={detail} />
 );
 
 export default Layout;
