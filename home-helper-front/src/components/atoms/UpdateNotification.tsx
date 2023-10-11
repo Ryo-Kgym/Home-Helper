@@ -54,7 +54,8 @@ export const UpdateNotification = ({
           handleAfterProcess();
         }, updateTime ?? 3000);
       }}
-      className={"h-24 w-30 text-3xl bg-blue-500"}
+      color={"blue"}
+      size={"xl"}
     >
       {label}
     </Button>
