@@ -96,7 +96,7 @@ export const FileImportContainer = () => {
   };
 
   return (
-    <>
+    <div className={"p-2 space-y-5"}>
       {loadData.length == 0 && (
         <FileImportFieldPresenter
           fileType={fileType}
@@ -128,6 +128,6 @@ export const FileImportContainer = () => {
           outcome={calcTotalPrice(loadData, IocomeType.Outcome)}
         />
       )}
-    </>
+    </div>
   );
 };

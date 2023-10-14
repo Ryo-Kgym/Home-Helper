@@ -25,6 +25,7 @@ export const CreditCardDetailTablePresenter = ({
       size={"xs"}
       toBottom
       height={"85vh"}
+      defaultBottom={false}
     />
     <Modal opened={opened} onClose={onClose}>
       <UpdateCreditCardDetail id={detailId} onClose={onClose} />
