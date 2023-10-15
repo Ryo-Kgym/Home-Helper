@@ -60,10 +60,10 @@ export const useCreateImportFile = ({
   // Not credit card
   const [, createDailyDetailMutation] = useCreateDailyDetailMutation();
 
-  return () => {
-    createImportFileMutation(createImportFileVariables);
+  const registerImported = async () => {
+    try {
+      await createImportFileMutation(createImportFileVariables);
 
-    setTimeout(
       RegistrationMap.get(fileType)!({
         createCreditCardSummaryMutation,
         createCreditCardDetailMutation,
@@ -77,9 +77,14 @@ export const useCreateImportFile = ({
         userId: userId ?? "",
         groupId,
         uuidList: loadData.map(() => get()),
-      }),
-      500,
-    );
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  return {
+    registerImported,
   };
 };
 
