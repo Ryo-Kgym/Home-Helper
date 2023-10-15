@@ -14,7 +14,7 @@ import {
   loadUploadFile,
 } from "@components/organisms/file_import/loadUploadFile";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { successPopup } from "@function/successPopup";
+import { successPopup, errorPopup } from "@function/successPopup";
 import { useCreateImportFile } from "@hooks/household/import_file/useCreateImportFile";
 import { FileType } from "@provider/file/FileType";
 import { useState } from "react";
@@ -63,7 +63,7 @@ export const FileImportContainer = () => {
     };
   });
 
-  const createImportFile = useCreateImportFile({
+  const { registerImported } = useCreateImportFile({
     fileType: fileType!,
     fileName: uploadFile?.name!,
     accountId: accountId!,
@@ -88,15 +88,18 @@ export const FileImportContainer = () => {
     setLoadData([]);
   };
 
-  const registerClickHandler = () => {
-    createImportFile();
-
-    successPopup(`${loadData.length}件、登録しました`);
-    clearClickHandler();
+  const registerClickHandler = async () => {
+    try {
+      await registerImported();
+      successPopup(`${loadData.length}件、登録しました`);
+      clearClickHandler();
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
-    <>
+    <div className={"p-2 space-y-5"}>
       {loadData.length == 0 && (
         <FileImportFieldPresenter
           fileType={fileType}
@@ -128,6 +131,6 @@ export const FileImportContainer = () => {
           outcome={calcTotalPrice(loadData, IocomeType.Outcome)}
         />
       )}
-    </>
+    </div>
   );
 };

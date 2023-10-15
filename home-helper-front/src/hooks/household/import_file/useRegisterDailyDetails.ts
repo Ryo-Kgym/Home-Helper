@@ -2,21 +2,30 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { RegistrationArgs } from "@hooks/household/import_file/useCreateImportFile";
+import { useCreateDailyDetailMutation } from "@graphql/hasura/generated/hasuraGraphql";
+import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
+import { useUuid } from "@hooks/uuid/useUuid";
+import { useGroup } from "@hooks/group/useGroup";
+import { useUser } from "@hooks/user/useUser";
 
 /**
  * Package Private
  */
 export const useRegisterDailyDetails = ({
-  createDailyDetailMutation,
   accountId,
   loadData,
-  userId,
-  groupId,
-  uuidList,
-}: RegistrationArgs) => {
+}: {
+  accountId: string;
+  loadData: LoadFileProps[];
+}) => {
+  const { get } = useUuid();
+  const { userId } = useUser();
+  const { groupId } = useGroup();
+
+  const [, createDailyDetailMutation] = useCreateDailyDetailMutation();
+
   const createDailyDetailVariableList = loadData.map((data, idx) => ({
-    id: uuidList[idx],
+    id: get(),
     date: data.date,
     categoryId: data.categoryId!,
     accountId: accountId,
@@ -26,11 +35,15 @@ export const useRegisterDailyDetails = ({
     groupId,
   }));
 
-  return () => {
-    createDailyDetailVariableList.map((variable) =>
-      setTimeout(() => {
-        createDailyDetailMutation(variable);
-      }, 100)
-    );
+  const registerDailyDetails = async () => {
+    try {
+      createDailyDetailVariableList.map(
+        async (variable) => await createDailyDetailMutation(variable),
+      );
+    } catch (e) {
+      console.error(e);
+    }
   };
+
+  return { registerDailyDetails };
 };

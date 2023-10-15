@@ -17,6 +17,7 @@ export const CreditCardTablePresenter = ({
       size={"xs"}
       toBottom
       height={"85vh"}
+      defaultBottom={false}
     />
   </div>
 );

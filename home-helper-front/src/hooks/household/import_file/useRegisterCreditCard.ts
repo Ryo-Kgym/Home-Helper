@@ -2,24 +2,42 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { RegistrationArgs } from "@hooks/household/import_file/useCreateImportFile";
 import { FileType } from "@provider/file/FileType";
+import {
+  useCreateCreditCardSummaryMutation,
+  useCreateCreditCardDetailMutation,
+} from "@graphql/hasura/generated/hasuraGraphql";
+import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
+import { useUuid } from "@hooks/uuid/useUuid";
+import { useGroup } from "@hooks/group/useGroup";
+import { useUser } from "@hooks/user/useUser";
 
 /**
  * Package Private
  */
 export const useRegisterCreditCard = ({
-  createCreditCardSummaryMutation,
-  createCreditCardDetailMutation,
   summaryId,
   fileType,
   accountId,
   withdrawalDate,
   loadData,
-  userId,
-  groupId,
-  uuidList,
-}: RegistrationArgs) => {
+}: {
+  summaryId: string;
+  fileType: FileType;
+  accountId: string;
+  withdrawalDate: Date;
+  loadData: LoadFileProps[];
+}) => {
+  const { get } = useUuid();
+  const { userId } = useUser();
+  const { groupId } = useGroup();
+
+  const [, createCreditCardSummaryMutation] =
+    useCreateCreditCardSummaryMutation();
+
+  const [result, createCreditCardDetailMutation] =
+    useCreateCreditCardDetailMutation();
+
   const summaryVariableList = {
     id: summaryId,
     creditCard: CreditCardMap.get(fileType) || "other",
@@ -31,7 +49,7 @@ export const useRegisterCreditCard = ({
   };
 
   const detailVariableList = loadData.map((data, idx) => ({
-    id: uuidList[idx],
+    id: get(),
     date: data.date,
     categoryId: data.categoryId!,
     amount: data.price,
@@ -41,17 +59,20 @@ export const useRegisterCreditCard = ({
     groupId,
   }));
 
-  return async () => {
+  const registerCreditCard = async () => {
     try {
       await createCreditCardSummaryMutation(summaryVariableList);
 
-      for (const detailVariable of detailVariableList) {
-        await createCreditCardDetailMutation(detailVariable);
-      }
+      detailVariableList.map(async (variable) => {
+        await createCreditCardDetailMutation(variable);
+        console.debug(result.data?.insertCreditCardDetail);
+      });
     } catch (e) {
       console.error(e);
     }
   };
+
+  return { registerCreditCard };
 };
 
 const CreditCardMap = new Map<FileType, string>([

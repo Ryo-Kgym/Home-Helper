@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { Table, TableProps } from "@components/atoms/Table";
 import { Modal } from "@components/atoms/Modal";
 import { SetProperties } from "@components/organisms/file_import/SetProperties";
@@ -31,6 +35,7 @@ export const FileImportTablePresenter = ({
         tablePropsList={tableProps}
         size={"xs"}
         height={"75vh"}
+        defaultBottom={false}
       />
     </div>
     <div>
