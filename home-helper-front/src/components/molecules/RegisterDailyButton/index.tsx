@@ -6,6 +6,8 @@
 import { Modal } from "@components/atoms/Modal";
 import { useState } from "react";
 import { RegisterDailyDetail } from "@components/organisms/register_daily_detail";
+import { Tab } from "@components/ui";
+import { Transfer } from "@components/organisms/transfer/index";
 
 export const RegisterDailyButton = ({ date = new Date() }: { date?: Date }) => {
   const [opened, setOpened] = useState<boolean>(false);
@@ -21,7 +23,21 @@ export const RegisterDailyButton = ({ date = new Date() }: { date?: Date }) => {
         ＋
       </div>
       <Modal opened={opened} onClose={() => setOpened(false)}>
-        <RegisterDailyDetail date={date} />
+        <Tab
+          defaultSelect="daily"
+          tabPropsList={[
+            {
+              value: "daily",
+              label: "日次",
+              contents: <RegisterDailyDetail date={date} />,
+            },
+            {
+              value: "transfer",
+              label: "振替",
+              contents: <Transfer date={date} />,
+            },
+          ]}
+        />
       </Modal>
     </div>
   );
