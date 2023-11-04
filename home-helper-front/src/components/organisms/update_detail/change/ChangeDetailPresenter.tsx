@@ -3,15 +3,15 @@
  */
 
 import { FC, ReactNode } from "react";
-import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
-import { CategorySelect } from "@components/molecules/CustomSelect/Category";
-import { AccountSelect } from "@components/molecules/CustomSelect/Account";
-import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
+import { GenreSelect } from "@components/molecules/CustomSelect/Genre/index";
+import { CategorySelect } from "@components/molecules/CustomSelect/Category/index";
+import { AccountSelect } from "@components/molecules/CustomSelect/Account/index";
+import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType/index";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
-import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
-import { Button } from "components/ui";
-import { DatePicker } from "components/ui/date";
+import { AmountInput } from "@components/molecules/CustomNumberInput/Amount/index";
+import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo/index";
+import { Button } from "@components/ui/index";
+import { DatePicker } from "@components/ui/date/index";
 
 type UpdateDailyDetailPresenterProps = {
   date: Date | null;
@@ -32,9 +32,7 @@ type UpdateDailyDetailPresenterProps = {
   updateClickHandler: () => void;
   deleteClickHandler: () => void;
 };
-export const UpdateDailyDetailPresenter: FC<
-  UpdateDailyDetailPresenterProps
-> = ({
+export const ChangeDetailPresenter: FC<UpdateDailyDetailPresenterProps> = ({
   date,
   setDate,
   iocomeType,

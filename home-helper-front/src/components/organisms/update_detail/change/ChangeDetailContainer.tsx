@@ -1,5 +1,9 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { FC, useEffect, useState } from "react";
-import { UpdateDailyDetailPresenter } from "./UpdateDailyDetailPresenter";
+import { ChangeDetailPresenter } from "./ChangeDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useUpdateDailyDetailBySerialNo } from "@hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
 import { useDeleteDailyDetailBySerialNo } from "@hooks/household/daily_detail/useDeleteDailyDetailBySerialNo";
@@ -9,9 +13,10 @@ type UpdateDailyDetailContainerProps = {
   initData: DailyDetail | null;
   onClose: () => void;
 };
-export const UpdateDailyDetailContainer: FC<
-  UpdateDailyDetailContainerProps
-> = ({ initData, onClose }) => {
+export const ChangeDetailContainer: FC<UpdateDailyDetailContainerProps> = ({
+  initData,
+  onClose,
+}) => {
   const [date, setDate] = useState<Date | null>(null);
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
   const [genreId, setGenreId] = useState<string | null>(null);
@@ -45,7 +50,7 @@ export const UpdateDailyDetailContainer: FC<
   useEffect(resetClickHandler, [initData]);
 
   return (
-    <UpdateDailyDetailPresenter
+    <ChangeDetailPresenter
       date={date}
       setDate={setDate}
       iocomeType={iocomeType}
