@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import { GenreSelect } from "@components/molecules/CustomSelect/Genre/index";
 import { CategorySelect } from "@components/molecules/CustomSelect/Category/index";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account/index";
@@ -13,26 +13,7 @@ import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo/index";
 import { Button } from "@components/ui/index";
 import { DatePicker } from "@components/ui/date/index";
 
-type UpdateDailyDetailPresenterProps = {
-  date: Date | null;
-  setDate: (_: Date | null) => void;
-  iocomeType: IocomeType;
-  changeIocomeTypeHandler: (_: IocomeType) => void;
-  categoryId: string | null;
-  changeCategoryIdHandler: (_: string | null) => void;
-  genreId: string | null;
-  changeGenreIdHandler: (_: string | null) => void;
-  accountId: string | null;
-  changeAccountIdHandler: (_: string | null) => void;
-  amount: number | "";
-  changeAmountHandler: (_: number | "") => void;
-  memo: string;
-  changeMemoHandler: (_: string) => void;
-  resetClickHandler: () => void;
-  updateClickHandler: () => void;
-  deleteClickHandler: () => void;
-};
-export const ChangeDetailPresenter: FC<UpdateDailyDetailPresenterProps> = ({
+export const ChangeDetailPresenter = ({
   date,
   setDate,
   iocomeType,
@@ -50,6 +31,24 @@ export const ChangeDetailPresenter: FC<UpdateDailyDetailPresenterProps> = ({
   resetClickHandler,
   updateClickHandler,
   deleteClickHandler,
+}: {
+  date: Date | null;
+  setDate: (_: Date | null) => void;
+  iocomeType: IocomeType;
+  changeIocomeTypeHandler: (_: IocomeType) => void;
+  categoryId: string | null;
+  changeCategoryIdHandler: (_: string | null) => void;
+  genreId: string | null;
+  changeGenreIdHandler: (_: string | null) => void;
+  accountId: string | null;
+  changeAccountIdHandler: (_: string | null) => void;
+  amount: number | "";
+  changeAmountHandler: (_: number | "") => void;
+  memo: string;
+  changeMemoHandler: (_: string) => void;
+  resetClickHandler: () => void;
+  updateClickHandler: () => void;
+  deleteClickHandler: () => void;
 }) => (
   <div className={"grid grid-cols-1 w-full"}>
     <Field>

@@ -2,20 +2,19 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChangeDetailPresenter } from "./ChangeDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useUpdateDailyDetailBySerialNo } from "@hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
 import { useDeleteDailyDetailBySerialNo } from "@hooks/household/daily_detail/useDeleteDailyDetailBySerialNo";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
 
-type UpdateDailyDetailContainerProps = {
-  initData: DailyDetail | null;
-  onClose: () => void;
-};
-export const ChangeDetailContainer: FC<UpdateDailyDetailContainerProps> = ({
+export const ChangeDetailContainer = ({
   initData,
   onClose,
+}: {
+  initData: DailyDetail | null;
+  onClose: () => void;
 }) => {
   const [date, setDate] = useState<Date | null>(null);
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
@@ -78,7 +77,6 @@ export const ChangeDetailContainer: FC<UpdateDailyDetailContainerProps> = ({
         onClose();
       }}
       deleteClickHandler={() => {
-        // TODO リングしたい
         deleteHandler();
         onClose();
       }}

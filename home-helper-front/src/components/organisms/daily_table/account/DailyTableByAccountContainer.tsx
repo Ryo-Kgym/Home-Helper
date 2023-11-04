@@ -1,4 +1,8 @@
-import { FC, useState } from "react";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { useState } from "react";
 import { TableProps, tablePropsDateSorter } from "@components/atoms/Table";
 import { DailyTableByAccountPresenter } from "./DailyTableByAccountPresenter";
 import { dailyDetailConverter } from "@components/organisms/daily_table/dailyDetailConverter";
@@ -7,14 +11,15 @@ import { useGetCreditCardSummaryByAccountIdBetweenDate } from "@hooks/household/
 import { creditCardSummaryConverter } from "@components/organisms/daily_table/creditCardSummaryConverter";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
 
-type DailyTableByAccountContainerProps = {
+export const DailyTableByAccountContainer = ({
+  fromDate,
+  toDate,
+  accountId,
+}: {
   fromDate: Date;
   toDate: Date;
   accountId: string;
-};
-export const DailyTableByAccountContainer: FC<
-  DailyTableByAccountContainerProps
-> = ({ fromDate, toDate, accountId }) => {
+}) => {
   const [modifyModalOpen, setModifyModalOpen] = useState<boolean>(false);
   const [dailyDetail, setDailyDetail] = useState<DailyDetail | null>(null);
 

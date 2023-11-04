@@ -8,14 +8,6 @@ import { Modal } from "@components/atoms/Modal";
 import { ChangeDetail } from "@components/organisms/";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
 
-type DailyTableByCategoryPresenterProps = {
-  tableProps: TableProps[];
-  incomeTotal: number | undefined;
-  outcomeTotal: number | undefined;
-  modifyModalOpen: boolean;
-  modifyOnClose: () => void;
-  detailForUpdate: DailyDetail | null;
-};
 export const DailyTableByAccountPresenter = ({
   tableProps,
   incomeTotal,
@@ -23,7 +15,14 @@ export const DailyTableByAccountPresenter = ({
   modifyModalOpen,
   modifyOnClose,
   detailForUpdate,
-}: DailyTableByCategoryPresenterProps) => (
+}: {
+  tableProps: TableProps[];
+  incomeTotal: number | undefined;
+  outcomeTotal: number | undefined;
+  modifyModalOpen: boolean;
+  modifyOnClose: () => void;
+  detailForUpdate: DailyDetail | null;
+}) => (
   <div>
     <DailyTable
       tablePropsList={tableProps}
