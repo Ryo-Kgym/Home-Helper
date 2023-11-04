@@ -11,12 +11,14 @@ type CategorySelectProps = {
   setCategoryId: (_: string | null) => void;
   genreId: string | null;
   setCategoryName?: (_: string | null) => void;
+  disabled?: boolean;
 };
 export const CategorySelect = ({
   categoryId,
   setCategoryId,
   genreId,
   setCategoryName = () => {},
+  disabled = false,
 }: CategorySelectProps) => {
   const { groupId } = useGroup();
 
@@ -55,6 +57,7 @@ export const CategorySelect = ({
       data={categories}
       placeholder={"カテゴリを選択してください"}
       withAsterisk
+      disabled={disabled}
     />
   );
 };
