@@ -8,3 +8,4 @@ export * from "./Select";
 export * from "./TransferList";
 export * from "./Tabs";
 export * from "@components/atoms/Table";
+export * from "./TextArea";
