@@ -2,10 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { TableProps } from "@components/atoms/Table";
-import { DailyTable } from "@components/organisms/daily_table/DailyTable";
-import { Modal } from "@components/atoms/Modal";
-import { ChangeDetail } from "@components/organisms/";
+import { DailyTable, UpdateDetail } from "@components/organisms";
+import { TableProps } from "@components/ui";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
 
 export const DailyTableByAccountPresenter = ({
@@ -29,8 +27,10 @@ export const DailyTableByAccountPresenter = ({
       incomeTotal={incomeTotal}
       outcomeTotal={outcomeTotal}
     />
-    <Modal opened={modifyModalOpen} onClose={modifyOnClose}>
-      <ChangeDetail initData={detailForUpdate} onClose={modifyOnClose} />
-    </Modal>
+    <UpdateDetail
+      initData={detailForUpdate}
+      isOpen={modifyModalOpen}
+      onCloseHandler={modifyOnClose}
+    />
   </div>
 );

@@ -2,4 +2,4 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-export { ChangeDetailContainer as ChangeDetail } from "./change/ChangeDetailContainer";
+export { UpdateDetailPresenter as UpdateDetail } from "./UpdateDetailPresenter";
