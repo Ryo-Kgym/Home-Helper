@@ -5,7 +5,7 @@
 import { TableProps } from "@components/atoms/Table";
 import { RangeDatePicker } from "components/ui/date";
 import { Modal } from "@components/atoms/Modal";
-import { UpdateDailyDetail } from "@components/organisms/update_daily_detail";
+import { ChangeDetail } from "@components/organisms/";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
 import { DailyTable } from "@components/organisms/daily_table/DailyTable";
 
@@ -49,7 +49,7 @@ export const DailySearchPresenter = ({
       outcomeTotal={outcomeTotal}
     />
     <Modal opened={modifyModalOpen} onClose={modifyOnClose}>
-      <UpdateDailyDetail initData={detailForUpdate} onClose={modifyOnClose} />
+      <ChangeDetail initData={detailForUpdate} onClose={modifyOnClose} />
     </Modal>
   </div>
 );

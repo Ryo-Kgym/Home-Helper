@@ -1,1 +1,5 @@
-export { UpdateDailyDetailContainer as UpdateDailyDetail } from "./UpdateDailyDetailContainer";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+export { UpdateDailyDetailContainer as ChangeDetail } from "./UpdateDailyDetailContainer";
