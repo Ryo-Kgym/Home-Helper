@@ -5,6 +5,8 @@
 import { DailyDetail } from "@domain/model/household/DailyDetail";
 import { CutDetailPresenter } from "@components/organisms/update_detail/cut/CutDetailPresenter";
 import { useState } from "react";
+import { useCutDetail } from "@hooks/household/daily_detail/useCutDetail";
+import { errorPopup, successPopup } from "@function/successPopup";
 
 export const CutDetailContainer = ({
   initData,
@@ -18,6 +20,7 @@ export const CutDetailContainer = ({
   const [categoryId, setCategoryId] = useState<string | null>(
     initData?.categoryId,
   );
+  const [accountId, setAccountId] = useState<string | null>(initData.accountId);
   const [amount, setAmount] = useState<number | "">(0);
   const [newMemo, setNewMemo] = useState<string>("");
   const [cutAfterMemo, setCutAfterMemo] = useState<string>(
@@ -27,6 +30,43 @@ export const CutDetailContainer = ({
 
   const updateButtonDisabled =
     amount === 0 || amount === "" || cutAfterAmount < 0;
+
+  const { cutDetailHandler } = useCutDetail({
+    origin: {
+      initData,
+      deductedAmount: cutAfterAmount,
+      rewrittenMemo: cutAfterMemo,
+    },
+    newDetail: {
+      detailDate: detailDate!,
+      genreId: genreId!,
+      categoryId: categoryId!,
+      accountId: accountId!,
+      amount: Number(amount!),
+      memo: newMemo,
+    },
+  });
+
+  const updateHandler = async () => {
+    try {
+      await cutDetailHandler();
+      successPopup("更新しました。");
+      onClose();
+    } catch (e) {
+      console.error(e);
+      errorPopup("更新に失敗しました。");
+    }
+  };
+
+  const clearHandler = () => {
+    setDetailDate(initData?.date!);
+    setGenreId(initData?.genreId);
+    setCategoryId(initData?.categoryId);
+    setAccountId(initData.accountId);
+    setAmount(0);
+    setNewMemo("");
+    setCutAfterMemo(initData?.memo ?? "");
+  };
 
   return (
     <CutDetailPresenter
@@ -50,8 +90,8 @@ export const CutDetailContainer = ({
       changeNewMemoHandler={setNewMemo}
       cutAfterMemo={cutAfterMemo}
       changeCutAfterMemoHandler={setCutAfterMemo}
-      updateHandler={() => {}}
-      clearHandler={() => {}}
+      updateHandler={updateHandler}
+      clearHandler={clearHandler}
       updateButtonDisabled={updateButtonDisabled}
     />
   );
