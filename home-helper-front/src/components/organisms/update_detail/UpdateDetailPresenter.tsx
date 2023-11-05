@@ -6,6 +6,7 @@ import { ChangeDetailContainer } from "./change/ChangeDetailContainer";
 import { CutDetailContainer } from "./cut/CutDetailContainer";
 import { Tab, Modal } from "@components/ui";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
+import { IocomeType } from "@domain/model/household/IocomeType";
 
 export const UpdateDetailPresenter = ({
   initData,
@@ -36,7 +37,21 @@ export const UpdateDetailPresenter = ({
           label: "分解",
           icon: null,
           contents: (
-            <CutDetailContainer initData={initData} onClose={onCloseHandler} />
+            <CutDetailContainer
+              initData={
+                initData ?? {
+                  id: "",
+                  date: new Date(),
+                  iocomeType: IocomeType.Income,
+                  genreId: "",
+                  categoryId: "",
+                  accountId: "",
+                  amount: 0,
+                  memo: "",
+                }
+              }
+              onClose={onCloseHandler}
+            />
           ),
         },
       ]}
