@@ -78,4 +78,3 @@ fabric.properties
 /home-helper-database/docker/data/
 /home-helper-database/volume/
 /home-helper-database/household_db/.to_uuid/
-/home-helper-front/.yarn/
