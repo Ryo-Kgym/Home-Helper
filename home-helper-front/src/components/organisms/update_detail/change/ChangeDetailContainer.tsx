@@ -72,8 +72,8 @@ export const ChangeDetailContainer = ({
       memo={memo ?? ""}
       changeMemoHandler={setMemo}
       resetClickHandler={resetClickHandler}
-      updateClickHandler={() => {
-        updateHandler();
+      updateClickHandler={async () => {
+        await updateHandler();
         onClose();
       }}
       deleteClickHandler={() => {
