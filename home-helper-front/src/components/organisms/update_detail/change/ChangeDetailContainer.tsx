@@ -1,17 +1,21 @@
-import { FC, useEffect, useState } from "react";
-import { UpdateDailyDetailPresenter } from "./UpdateDailyDetailPresenter";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { useEffect, useState } from "react";
+import { ChangeDetailPresenter } from "./ChangeDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useUpdateDailyDetailBySerialNo } from "@hooks/household/daily_detail/useUpdateDailyDetailBySerialNo";
 import { useDeleteDailyDetailBySerialNo } from "@hooks/household/daily_detail/useDeleteDailyDetailBySerialNo";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
 
-type UpdateDailyDetailContainerProps = {
+export const ChangeDetailContainer = ({
+  initData,
+  onClose,
+}: {
   initData: DailyDetail | null;
   onClose: () => void;
-};
-export const UpdateDailyDetailContainer: FC<
-  UpdateDailyDetailContainerProps
-> = ({ initData, onClose }) => {
+}) => {
   const [date, setDate] = useState<Date | null>(null);
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
   const [genreId, setGenreId] = useState<string | null>(null);
@@ -45,7 +49,7 @@ export const UpdateDailyDetailContainer: FC<
   useEffect(resetClickHandler, [initData]);
 
   return (
-    <UpdateDailyDetailPresenter
+    <ChangeDetailPresenter
       date={date}
       setDate={setDate}
       iocomeType={iocomeType}
@@ -68,12 +72,11 @@ export const UpdateDailyDetailContainer: FC<
       memo={memo ?? ""}
       changeMemoHandler={setMemo}
       resetClickHandler={resetClickHandler}
-      updateClickHandler={() => {
-        updateHandler();
+      updateClickHandler={async () => {
+        await updateHandler();
         onClose();
       }}
       deleteClickHandler={() => {
-        // TODO リングしたい
         deleteHandler();
         onClose();
       }}

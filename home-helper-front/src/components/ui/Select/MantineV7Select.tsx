@@ -15,6 +15,7 @@ type MantineSelectProps = {
   maxDropdownHeight?: number;
   size?: MantineSize;
   withAsterisk?: boolean;
+  disabled?: boolean;
 };
 
 export const MantineV7Select = ({
@@ -26,6 +27,7 @@ export const MantineV7Select = ({
   maxDropdownHeight = 200,
   size = "lg",
   withAsterisk = false,
+  disabled = false,
 }: MantineSelectProps) => {
   // TODO 必要性を検討する。
   // const optionsFilter: OptionsFilter = ({ options, search }) => {
@@ -57,6 +59,7 @@ export const MantineV7Select = ({
       size={size}
       withAsterisk={withAsterisk}
       error={error}
+      disabled={disabled}
     />
   );
 };

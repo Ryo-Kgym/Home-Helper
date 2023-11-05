@@ -1,12 +1,22 @@
-import { TextAreaContainer } from "@components/atoms/TextArea/TextAreaContainer";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
 
-type MemoTextAreaPresenterProps = {
-  memo: string;
-  setMemo: (_: string) => void;
-};
+import { TextArea } from "@components/ui";
+
 export const MemoTextAreaPresenter = ({
   memo,
   setMemo,
-}: MemoTextAreaPresenterProps) => (
-  <TextAreaContainer label={"Memo"} value={memo} setValue={setMemo} />
+  disabled = false,
+}: {
+  memo: string;
+  setMemo: (_: string) => void;
+  disabled?: boolean;
+}) => (
+  <TextArea
+    label={"Memo"}
+    value={memo}
+    setValue={setMemo}
+    disabled={disabled}
+  />
 );

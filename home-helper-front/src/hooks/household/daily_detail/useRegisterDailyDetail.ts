@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { useCreateDailyDetailMutation } from "@graphql/hasura/generated/hasuraGraphql";
 import { useDate } from "@hooks/date/useDate";
 import { useUser } from "@hooks/user/useUser";
@@ -37,7 +41,10 @@ export const useRegisterDailyDetail = ({
     userId,
   };
 
-  return () => {
-    dailyRegistrationMutation(variables);
+  const registerHandler = async () =>
+    await dailyRegistrationMutation(variables);
+
+  return {
+    registerHandler,
   };
 };

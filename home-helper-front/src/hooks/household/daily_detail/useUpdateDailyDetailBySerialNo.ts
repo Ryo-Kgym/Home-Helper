@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { useUpdateDailyDetailByIdMutation } from "@graphql/hasura/generated/hasuraGraphql";
 
 type useUpdateDailyDetailBySerialNoArgs = {
@@ -18,8 +22,8 @@ export const useUpdateDailyDetailBySerialNo = ({
 }: useUpdateDailyDetailBySerialNoArgs) => {
   const [, updateMutation] = useUpdateDailyDetailByIdMutation();
 
-  const updateHandler = () => {
-    updateMutation({
+  const updateHandler = async () =>
+    await updateMutation({
       id,
       date,
       categoryId,
@@ -27,7 +31,6 @@ export const useUpdateDailyDetailBySerialNo = ({
       amount,
       memo,
     });
-  };
 
   return {
     updateHandler,

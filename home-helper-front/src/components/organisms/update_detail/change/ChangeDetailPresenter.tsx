@@ -2,39 +2,18 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { FC, ReactNode } from "react";
-import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
-import { CategorySelect } from "@components/molecules/CustomSelect/Category";
-import { AccountSelect } from "@components/molecules/CustomSelect/Account";
-import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
+import { ReactNode } from "react";
+import { GenreSelect } from "@components/molecules/CustomSelect/Genre/index";
+import { CategorySelect } from "@components/molecules/CustomSelect/Category/index";
+import { AccountSelect } from "@components/molecules/CustomSelect/Account/index";
+import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType/index";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
-import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
-import { Button } from "components/ui";
-import { DatePicker } from "components/ui/date";
+import { AmountInput } from "@components/molecules/CustomNumberInput/Amount/index";
+import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo/index";
+import { Button } from "@components/ui/index";
+import { DatePicker } from "@components/ui/date/index";
 
-type UpdateDailyDetailPresenterProps = {
-  date: Date | null;
-  setDate: (_: Date | null) => void;
-  iocomeType: IocomeType;
-  changeIocomeTypeHandler: (_: IocomeType) => void;
-  categoryId: string | null;
-  changeCategoryIdHandler: (_: string | null) => void;
-  genreId: string | null;
-  changeGenreIdHandler: (_: string | null) => void;
-  accountId: string | null;
-  changeAccountIdHandler: (_: string | null) => void;
-  amount: number | "";
-  changeAmountHandler: (_: number | "") => void;
-  memo: string;
-  changeMemoHandler: (_: string) => void;
-  resetClickHandler: () => void;
-  updateClickHandler: () => void;
-  deleteClickHandler: () => void;
-};
-export const UpdateDailyDetailPresenter: FC<
-  UpdateDailyDetailPresenterProps
-> = ({
+export const ChangeDetailPresenter = ({
   date,
   setDate,
   iocomeType,
@@ -52,6 +31,24 @@ export const UpdateDailyDetailPresenter: FC<
   resetClickHandler,
   updateClickHandler,
   deleteClickHandler,
+}: {
+  date: Date | null;
+  setDate: (_: Date | null) => void;
+  iocomeType: IocomeType;
+  changeIocomeTypeHandler: (_: IocomeType) => void;
+  categoryId: string | null;
+  changeCategoryIdHandler: (_: string | null) => void;
+  genreId: string | null;
+  changeGenreIdHandler: (_: string | null) => void;
+  accountId: string | null;
+  changeAccountIdHandler: (_: string | null) => void;
+  amount: number | "";
+  changeAmountHandler: (_: number | "") => void;
+  memo: string;
+  changeMemoHandler: (_: string) => void;
+  resetClickHandler: () => void;
+  updateClickHandler: () => void;
+  deleteClickHandler: () => void;
 }) => (
   <div className={"grid grid-cols-1 w-full"}>
     <Field>

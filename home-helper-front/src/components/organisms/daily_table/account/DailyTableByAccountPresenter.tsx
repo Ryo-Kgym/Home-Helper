@@ -1,17 +1,11 @@
-import { TableProps } from "@components/atoms/Table";
-import { DailyTable } from "@components/organisms/daily_table/DailyTable";
-import { Modal } from "@components/atoms/Modal";
-import { UpdateDailyDetail } from "@components/organisms/update_daily_detail";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { DailyTable, UpdateDetail } from "@components/organisms";
+import { TableProps } from "@components/ui";
 import { DailyDetail } from "@domain/model/household/DailyDetail";
 
-type DailyTableByCategoryPresenterProps = {
-  tableProps: TableProps[];
-  incomeTotal: number | undefined;
-  outcomeTotal: number | undefined;
-  modifyModalOpen: boolean;
-  modifyOnClose: () => void;
-  detailForUpdate: DailyDetail | null;
-};
 export const DailyTableByAccountPresenter = ({
   tableProps,
   incomeTotal,
@@ -19,15 +13,24 @@ export const DailyTableByAccountPresenter = ({
   modifyModalOpen,
   modifyOnClose,
   detailForUpdate,
-}: DailyTableByCategoryPresenterProps) => (
+}: {
+  tableProps: TableProps[];
+  incomeTotal: number | undefined;
+  outcomeTotal: number | undefined;
+  modifyModalOpen: boolean;
+  modifyOnClose: () => void;
+  detailForUpdate: DailyDetail | null;
+}) => (
   <div>
     <DailyTable
       tablePropsList={tableProps}
       incomeTotal={incomeTotal}
       outcomeTotal={outcomeTotal}
     />
-    <Modal opened={modifyModalOpen} onClose={modifyOnClose}>
-      <UpdateDailyDetail initData={detailForUpdate} onClose={modifyOnClose} />
-    </Modal>
+    <UpdateDetail
+      initData={detailForUpdate}
+      isOpen={modifyModalOpen}
+      onCloseHandler={modifyOnClose}
+    />
   </div>
 );

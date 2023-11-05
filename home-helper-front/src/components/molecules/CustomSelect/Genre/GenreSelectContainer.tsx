@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { GenreSelectPresenter } from "./GenreSelectPresenter";
 import { useGetValidGenreListByIocomeTypeQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { IocomeType } from "@domain/model/household/IocomeType";
@@ -8,12 +12,14 @@ type GenreSelectContainerProps = {
   setGenreId: (_: string | null) => void;
   iocomeType: IocomeType;
   setGenreName?: (_: string | null) => void;
+  disabled?: boolean;
 };
 export const GenreSelectContainer = ({
   genreId,
   setGenreId,
   iocomeType,
   setGenreName = () => {},
+  disabled = false,
 }: GenreSelectContainerProps) => {
   const { groupId } = useGroup();
   const [{ data }] = useGetValidGenreListByIocomeTypeQuery({
@@ -21,15 +27,13 @@ export const GenreSelectContainer = ({
   });
 
   const genres =
-    data?.allGenresList?.map((genre) => {
-      return {
-        label: genre.genreName,
-        value: genre.genreId,
-        description: genre.categoriesByGenreIdList
-          .map((c) => c.categoryName)
-          .join(", "),
-      };
-    }) ?? [];
+    data?.allGenresList?.map((genre) => ({
+      label: genre.genreName,
+      value: genre.genreId,
+      description: genre.categoriesByGenreIdList
+        .map((c) => c.categoryName)
+        .join(", "),
+    })) ?? [];
 
   return (
     <GenreSelectPresenter
@@ -40,6 +44,7 @@ export const GenreSelectContainer = ({
         setGenreName(categoryName);
       }}
       genres={genres}
+      disabled={disabled}
     />
   );
 };

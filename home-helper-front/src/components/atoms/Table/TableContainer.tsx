@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2023 Ryo-Kgym.
  */
+"use client";
 
 import { useRef, useState, useEffect } from "react";
 import { TablePresenter } from "@components/atoms/Table/TablePresenter";

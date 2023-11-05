@@ -9,10 +9,12 @@ import { Select } from "@components/ui/index";
 type AccountSelectProps = {
   accountId: string | null;
   setAccountId: (_: string | null) => void;
+  disabled?: boolean;
 };
 export const AccountSelect = ({
   accountId,
   setAccountId,
+  disabled = false,
 }: AccountSelectProps) => {
   const { groupId } = useGroup();
   const [{ data }] = useGetValidAccountsQuery({
@@ -35,6 +37,7 @@ export const AccountSelect = ({
       data={accounts}
       placeholder={"アカウントを選択してください"}
       withAsterisk
+      disabled={disabled}
     />
   );
 };

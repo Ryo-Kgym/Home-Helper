@@ -45,7 +45,7 @@ export const RegisterDailyDetailContainer = ({
     );
   };
 
-  const register = useRegisterDailyDetail({
+  const { registerHandler } = useRegisterDailyDetail({
     date: registerDate,
     categoryId: categoryId!!,
     accountId: accountId!!,
@@ -53,15 +53,20 @@ export const RegisterDailyDetailContainer = ({
     memo: memo,
   });
 
-  const registerClickHandler = () => {
+  const registerClickHandler = async () => {
     if (anyFieldIsInvalid()) {
       errorPopup("入力に不備があります");
       return;
     }
-    register();
-    setAmount("");
-    setMemo("");
-    successPopup("登録しました");
+    try {
+      await registerHandler();
+      setAmount("");
+      setMemo("");
+      successPopup("登録しました");
+    } catch (e) {
+      console.error(e);
+      errorPopup("登録に失敗しました");
+    }
   };
 
   return (
