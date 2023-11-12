@@ -38,20 +38,22 @@ export const NavbarSection = ({
 
       <AppShell.Navbar className={"bg-yellow-300"}>
         <AppShell.Section component={ScrollArea}>
-          {navis.map((menu, index) => (
-            <Link key={`menu-${index}`} href={menu.url}>
-              <div
-                className={"p-3 my-1 hover:font-bold max-sm:text-center"}
-                onClick={() => {
-                  // widthがsm以下の場合は、メニューを閉じる
-                  if (window.innerWidth < 640) toggle();
-                }}
-              >
-                {menu.icon && <div>{menu.icon}</div>}
-                <div>{menu.label}</div>
-              </div>
-            </Link>
-          ))}
+          {navis
+            .filter(({ visible = true }) => visible)
+            .map((menu, index) => (
+              <Link key={`menu-${index}`} href={menu.url}>
+                <div
+                  className={"p-3 my-1 hover:font-bold max-sm:text-center"}
+                  onClick={() => {
+                    // widthがsm以下の場合は、メニューを閉じる
+                    if (window.innerWidth < 640) toggle();
+                  }}
+                >
+                  {menu.icon && <div>{menu.icon}</div>}
+                  <div>{menu.label}</div>
+                </div>
+              </Link>
+            ))}
         </AppShell.Section>
       </AppShell.Navbar>
 

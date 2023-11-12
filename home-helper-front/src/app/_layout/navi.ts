@@ -8,4 +8,5 @@ export type Navi = {
   label: string;
   url: string;
   icon?: ReactNode;
+  visible?: boolean;
 };
