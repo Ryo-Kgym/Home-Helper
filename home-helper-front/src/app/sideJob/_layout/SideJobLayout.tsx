@@ -27,9 +27,8 @@ const navigations: Navi[] = [
     visible: false,
   },
   {
-    label: "|- 収入登録",
+    label: "　収入登録",
     url: "/sideJob/income/registration",
-    visible: false,
   },
   {
     label: "経費",
