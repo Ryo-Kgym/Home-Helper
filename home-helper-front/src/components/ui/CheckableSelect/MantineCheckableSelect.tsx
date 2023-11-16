@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2023 Ryo-Kgym.
  */
+"use client";
 
 import { Checkbox } from "@mantine/core";
 import { ReactNode, useState } from "react";
