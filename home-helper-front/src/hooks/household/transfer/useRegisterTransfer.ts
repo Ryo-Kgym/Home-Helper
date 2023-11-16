@@ -10,6 +10,7 @@ import {
   useCreateDailyDetailMutation,
   useGetTransferCategoryByQuery,
 } from "@graphql/hasura/generated/hasuraGraphql";
+import { IocomeType } from "@domain/model/household/IocomeType";
 
 export const useRegisterTransfer = ({
   date,
@@ -38,15 +39,21 @@ export const useRegisterTransfer = ({
 
   const _registerDaily = async ({
     accountId,
+    genreId,
+    iocomeType,
     categoryId,
   }: {
     accountId: string;
+    genreId: string;
+    iocomeType: IocomeType;
     categoryId: string;
   }) =>
     dailyRegistrationMutation({
       accountId: accountId,
       amount: amount,
-      categoryId: categoryId,
+      genreId,
+      iocomeType,
+      categoryId,
       date: convertToFull(date),
       groupId,
       id: get(),
@@ -58,11 +65,15 @@ export const useRegisterTransfer = ({
     try {
       await _registerDaily({
         accountId: sendAccountId,
-        categoryId: data?.transferCategory?.outcomeCategoryId,
+        genreId: data?.transferCategory?.outcomeCategory.genre.genreId,
+        iocomeType: data?.transferCategory?.outcomeCategory.genre.iocomeType,
+        categoryId: data?.transferCategory?.outcomeCategory.categoryId,
       });
       await _registerDaily({
         accountId: receiveAccountId,
-        categoryId: data?.transferCategory?.incomeCategoryId,
+        genreId: data?.transferCategory?.incomeCategory.genre.genreId,
+        iocomeType: data?.transferCategory?.incomeCategory.genre.iocomeType,
+        categoryId: data?.transferCategory?.incomeCategory.categoryId,
       });
     } catch (e) {
       throw e;

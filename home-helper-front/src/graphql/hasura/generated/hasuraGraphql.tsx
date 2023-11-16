@@ -7480,9 +7480,17 @@ export type GetTransferCategoryByQuery = {
   __typename?: "query_root";
   transferCategory?: {
     __typename?: "TransferCategory";
-    incomeCategoryId: any;
-    outcomeCategoryId: any;
     id: any;
+    incomeCategory: {
+      __typename?: "Category";
+      categoryId: any;
+      genre: { __typename?: "Genre"; genreId: any; iocomeType: any };
+    };
+    outcomeCategory: {
+      __typename?: "Category";
+      categoryId: any;
+      genre: { __typename?: "Genre"; genreId: any; iocomeType: any };
+    };
   } | null;
 };
 
@@ -8709,8 +8717,20 @@ export const GetTransferCategoryByDocument = gql`
   query GetTransferCategoryBy($groupId: uuid!) {
     transferCategory: transferCategoryByPk(groupId: $groupId) {
       id: groupId
-      incomeCategoryId
-      outcomeCategoryId
+      incomeCategory: category {
+        categoryId
+        genre {
+          genreId
+          iocomeType
+        }
+      }
+      outcomeCategory: categoryByOutcomeCategoryId {
+        categoryId
+        genre {
+          genreId
+          iocomeType
+        }
+      }
     }
   }
 `;
