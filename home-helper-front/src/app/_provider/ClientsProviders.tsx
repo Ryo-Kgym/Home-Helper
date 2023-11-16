@@ -6,14 +6,14 @@
 
 import { PropsWithChildren } from "react";
 import { RecoilRoot } from "recoil";
-import { client } from "graphql/postgraphile/client";
+import { datasource } from "@graphql/datasource";
 import { MantineProvider } from "@mantine/core";
 import { Toaster } from "react-hot-toast";
 import { Provider as UrqlProvider } from "urql";
 
 export const ClientsProviders = ({ children }: PropsWithChildren) => (
   <RecoilRoot>
-    <UrqlProvider value={client}>
+    <UrqlProvider value={datasource}>
       <MantineProvider>
         {children}
         <Toaster />

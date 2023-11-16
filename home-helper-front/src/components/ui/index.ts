@@ -3,6 +3,7 @@
  */
 
 export * from "./Button/index";
+export * from "./CheckableSelect";
 export * from "@components/atoms/Modal";
 export * from "./Select";
 export * from "./TransferList";

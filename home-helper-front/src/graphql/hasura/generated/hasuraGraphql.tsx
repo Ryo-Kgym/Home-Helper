@@ -32,12 +32,8 @@ export type Account = {
   __typename?: "Account";
   accountId: Scalars["uuid"];
   accountName: Scalars["String"];
-  /** An aggregate relationship */
-  creditCardSummariesAggregate: CreditCardSummaryAggregate;
   /** An array relationship */
   credit_card_summaries: Array<CreditCardSummary>;
-  /** An aggregate relationship */
-  dailyDetailsAggregate: DailyDetailAggregate;
   /** An array relationship */
   daily_details: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
@@ -45,15 +41,6 @@ export type Account = {
   group: Group;
   groupId: Scalars["uuid"];
   validFlag?: Maybe<Scalars["Boolean"]>;
-};
-
-/** columns and relationships of "account" */
-export type AccountCreditCardSummariesAggregateArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardSummaryOrderBy>>;
-  where?: InputMaybe<CreditCardSummaryBoolExp>;
 };
 
 /** columns and relationships of "account" */
@@ -66,56 +53,12 @@ export type AccountCredit_Card_SummariesArgs = {
 };
 
 /** columns and relationships of "account" */
-export type AccountDailyDetailsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
-  where?: InputMaybe<DailyDetailBoolExp>;
-};
-
-/** columns and relationships of "account" */
 export type AccountDaily_DetailsArgs = {
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
-};
-
-/** aggregated selection of "account" */
-export type AccountAggregate = {
-  __typename?: "AccountAggregate";
-  aggregate?: Maybe<AccountAggregateFields>;
-  nodes: Array<Account>;
-};
-
-export type AccountAggregateBoolExp = {
-  bool_and?: InputMaybe<AccountAggregateBoolExpBool_And>;
-  bool_or?: InputMaybe<AccountAggregateBoolExpBool_Or>;
-  count?: InputMaybe<AccountAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "account" */
-export type AccountAggregateFields = {
-  __typename?: "AccountAggregateFields";
-  avg?: Maybe<AccountAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<AccountMaxFields>;
-  min?: Maybe<AccountMinFields>;
-  stddev?: Maybe<AccountStddevFields>;
-  stddevPop?: Maybe<AccountStddevPopFields>;
-  stddevSamp?: Maybe<AccountStddevSampFields>;
-  sum?: Maybe<AccountSumFields>;
-  varPop?: Maybe<AccountVarPopFields>;
-  varSamp?: Maybe<AccountVarSampFields>;
-  variance?: Maybe<AccountVarianceFields>;
-};
-
-/** aggregate fields of "account" */
-export type AccountAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<AccountSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "account" */
@@ -133,19 +76,6 @@ export type AccountAggregateOrderBy = {
   variance?: InputMaybe<AccountVarianceOrderBy>;
 };
 
-/** input type for inserting array relation for remote table "account" */
-export type AccountArrRelInsertInput = {
-  data: Array<AccountInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<AccountOnConflict>;
-};
-
-/** aggregate avg on columns */
-export type AccountAvgFields = {
-  __typename?: "AccountAvgFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by avg() on columns of table "account" */
 export type AccountAvgOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
@@ -159,9 +89,7 @@ export type AccountBoolExp = {
   accountId?: InputMaybe<UuidComparisonExp>;
   accountName?: InputMaybe<StringComparisonExp>;
   credit_card_summaries?: InputMaybe<CreditCardSummaryBoolExp>;
-  credit_card_summariesAggregate?: InputMaybe<CreditCardSummaryAggregateBoolExp>;
   daily_details?: InputMaybe<DailyDetailBoolExp>;
-  daily_detailsAggregate?: InputMaybe<DailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<UuidComparisonExp>;
@@ -174,11 +102,6 @@ export enum AccountConstraint {
   AccountPkey = "account_pkey",
 }
 
-/** input type for incrementing numeric columns in table "account" */
-export type AccountIncInput = {
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-};
-
 /** input type for inserting data into table "account" */
 export type AccountInsertInput = {
   accountId?: InputMaybe<Scalars["uuid"]>;
@@ -186,18 +109,8 @@ export type AccountInsertInput = {
   credit_card_summaries?: InputMaybe<CreditCardSummaryArrRelInsertInput>;
   daily_details?: InputMaybe<DailyDetailArrRelInsertInput>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate max on columns */
-export type AccountMaxFields = {
-  __typename?: "AccountMaxFields";
-  accountId?: Maybe<Scalars["uuid"]>;
-  accountName?: Maybe<Scalars["String"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "account" */
@@ -206,15 +119,6 @@ export type AccountMaxOrderBy = {
   accountName?: InputMaybe<OrderBy>;
   displayOrder?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type AccountMinFields = {
-  __typename?: "AccountMinFields";
-  accountId?: Maybe<Scalars["uuid"]>;
-  accountName?: Maybe<Scalars["String"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "account" */
@@ -260,11 +164,6 @@ export type AccountOrderBy = {
   validFlag?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: account */
-export type AccountPkColumnsInput = {
-  accountId: Scalars["uuid"];
-};
-
 /** select columns of table "account" */
 export enum AccountSelectColumn {
   /** column name */
@@ -279,53 +178,14 @@ export enum AccountSelectColumn {
   ValidFlag = "validFlag",
 }
 
-/** select "accountAggregateBoolExpBool_andArgumentsColumns" columns of table "account" */
-export enum AccountSelectColumnAccountAggregateBoolExpBool_AndArgumentsColumns {
-  /** column name */
-  ValidFlag = "validFlag",
-}
-
-/** select "accountAggregateBoolExpBool_orArgumentsColumns" columns of table "account" */
-export enum AccountSelectColumnAccountAggregateBoolExpBool_OrArgumentsColumns {
-  /** column name */
-  ValidFlag = "validFlag",
-}
-
-/** input type for updating data in table "account" */
-export type AccountSetInput = {
-  accountId?: InputMaybe<Scalars["uuid"]>;
-  accountName?: InputMaybe<Scalars["String"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate stddev on columns */
-export type AccountStddevFields = {
-  __typename?: "AccountStddevFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddev() on columns of table "account" */
 export type AccountStddevOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** aggregate stddevPop on columns */
-export type AccountStddevPopFields = {
-  __typename?: "AccountStddevPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddevPop() on columns of table "account" */
 export type AccountStddevPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type AccountStddevSampFields = {
-  __typename?: "AccountStddevSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "account" */
@@ -350,66 +210,25 @@ export type AccountStreamCursorValueInput = {
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
-/** aggregate sum on columns */
-export type AccountSumFields = {
-  __typename?: "AccountSumFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
-};
-
 /** order by sum() on columns of table "account" */
 export type AccountSumOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** update columns of table "account" */
+/** placeholder for update columns of table "account" (current role has no relevant permissions) */
 export enum AccountUpdateColumn {
-  /** column name */
-  AccountId = "accountId",
-  /** column name */
-  AccountName = "accountName",
-  /** column name */
-  DisplayOrder = "displayOrder",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  ValidFlag = "validFlag",
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
 }
-
-export type AccountUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<AccountIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<AccountSetInput>;
-  /** filter the rows which have to be updated */
-  where: AccountBoolExp;
-};
-
-/** aggregate varPop on columns */
-export type AccountVarPopFields = {
-  __typename?: "AccountVarPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
 
 /** order by varPop() on columns of table "account" */
 export type AccountVarPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** aggregate varSamp on columns */
-export type AccountVarSampFields = {
-  __typename?: "AccountVarSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varSamp() on columns of table "account" */
 export type AccountVarSampOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type AccountVarianceFields = {
-  __typename?: "AccountVarianceFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "account" */
@@ -432,43 +251,11 @@ export type Affiliation = {
   userId: Scalars["uuid"];
 };
 
-/** aggregated selection of "affiliation" */
-export type AffiliationAggregate = {
-  __typename?: "AffiliationAggregate";
-  aggregate?: Maybe<AffiliationAggregateFields>;
-  nodes: Array<Affiliation>;
-};
-
-export type AffiliationAggregateBoolExp = {
-  count?: InputMaybe<AffiliationAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "affiliation" */
-export type AffiliationAggregateFields = {
-  __typename?: "AffiliationAggregateFields";
-  count: Scalars["Int"];
-  max?: Maybe<AffiliationMaxFields>;
-  min?: Maybe<AffiliationMinFields>;
-};
-
-/** aggregate fields of "affiliation" */
-export type AffiliationAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<AffiliationSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
 /** order by aggregate values of table "affiliation" */
 export type AffiliationAggregateOrderBy = {
   count?: InputMaybe<OrderBy>;
   max?: InputMaybe<AffiliationMaxOrderBy>;
   min?: InputMaybe<AffiliationMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "affiliation" */
-export type AffiliationArrRelInsertInput = {
-  data: Array<AffiliationInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<AffiliationOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "affiliation". All fields are combined with a logical 'AND'. */
@@ -485,32 +272,6 @@ export type AffiliationBoolExp = {
   userId?: InputMaybe<UuidComparisonExp>;
 };
 
-/** unique or primary key constraints on table "affiliation" */
-export enum AffiliationConstraint {
-  /** unique or primary key constraint on columns "affiliation_id" */
-  AffiliationPkey = "affiliation_pkey",
-}
-
-/** input type for inserting data into table "affiliation" */
-export type AffiliationInsertInput = {
-  affiliationId?: InputMaybe<Scalars["uuid"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  groupRoleId?: InputMaybe<Scalars["uuid"]>;
-  group_role?: InputMaybe<GroupRoleObjRelInsertInput>;
-  user?: InputMaybe<UserObjRelInsertInput>;
-  userId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate max on columns */
-export type AffiliationMaxFields = {
-  __typename?: "AffiliationMaxFields";
-  affiliationId?: Maybe<Scalars["uuid"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  groupRoleId?: Maybe<Scalars["uuid"]>;
-  userId?: Maybe<Scalars["uuid"]>;
-};
-
 /** order by max() on columns of table "affiliation" */
 export type AffiliationMaxOrderBy = {
   affiliationId?: InputMaybe<OrderBy>;
@@ -519,37 +280,12 @@ export type AffiliationMaxOrderBy = {
   userId?: InputMaybe<OrderBy>;
 };
 
-/** aggregate min on columns */
-export type AffiliationMinFields = {
-  __typename?: "AffiliationMinFields";
-  affiliationId?: Maybe<Scalars["uuid"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  groupRoleId?: Maybe<Scalars["uuid"]>;
-  userId?: Maybe<Scalars["uuid"]>;
-};
-
 /** order by min() on columns of table "affiliation" */
 export type AffiliationMinOrderBy = {
   affiliationId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   groupRoleId?: InputMaybe<OrderBy>;
   userId?: InputMaybe<OrderBy>;
-};
-
-/** response of any mutation on the table "affiliation" */
-export type AffiliationMutationResponse = {
-  __typename?: "AffiliationMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<Affiliation>;
-};
-
-/** on_conflict condition type for table "affiliation" */
-export type AffiliationOnConflict = {
-  constraint: AffiliationConstraint;
-  updateColumns?: Array<AffiliationUpdateColumn>;
-  where?: InputMaybe<AffiliationBoolExp>;
 };
 
 /** Ordering options when selecting data from "affiliation". */
@@ -563,11 +299,6 @@ export type AffiliationOrderBy = {
   userId?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: affiliation */
-export type AffiliationPkColumnsInput = {
-  affiliationId: Scalars["uuid"];
-};
-
 /** select columns of table "affiliation" */
 export enum AffiliationSelectColumn {
   /** column name */
@@ -579,14 +310,6 @@ export enum AffiliationSelectColumn {
   /** column name */
   UserId = "userId",
 }
-
-/** input type for updating data in table "affiliation" */
-export type AffiliationSetInput = {
-  affiliationId?: InputMaybe<Scalars["uuid"]>;
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  groupRoleId?: InputMaybe<Scalars["uuid"]>;
-  userId?: InputMaybe<Scalars["uuid"]>;
-};
 
 /** Streaming cursor of the table "affiliation" */
 export type AffiliationStreamCursorInput = {
@@ -604,45 +327,15 @@ export type AffiliationStreamCursorValueInput = {
   userId?: InputMaybe<Scalars["uuid"]>;
 };
 
-/** update columns of table "affiliation" */
-export enum AffiliationUpdateColumn {
-  /** column name */
-  AffiliationId = "affiliationId",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  GroupRoleId = "groupRoleId",
-  /** column name */
-  UserId = "userId",
-}
-
-export type AffiliationUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<AffiliationSetInput>;
-  /** filter the rows which have to be updated */
-  where: AffiliationBoolExp;
-};
-
 /** columns and relationships of "application" */
 export type Application = {
   __typename?: "Application";
   application: Scalars["String"];
   applicationId: Scalars["uuid"];
-  /** An aggregate relationship */
-  groupApplicationsAggregate: GroupApplicationAggregate;
   /** An array relationship */
   group_applications: Array<GroupApplication>;
   topUrl: Scalars["String"];
   validFlag?: Maybe<Scalars["Boolean"]>;
-};
-
-/** columns and relationships of "application" */
-export type ApplicationGroupApplicationsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
-  where?: InputMaybe<GroupApplicationBoolExp>;
 };
 
 /** columns and relationships of "application" */
@@ -654,27 +347,6 @@ export type ApplicationGroup_ApplicationsArgs = {
   where?: InputMaybe<GroupApplicationBoolExp>;
 };
 
-/** aggregated selection of "application" */
-export type ApplicationAggregate = {
-  __typename?: "ApplicationAggregate";
-  aggregate?: Maybe<ApplicationAggregateFields>;
-  nodes: Array<Application>;
-};
-
-/** aggregate fields of "application" */
-export type ApplicationAggregateFields = {
-  __typename?: "ApplicationAggregateFields";
-  count: Scalars["Int"];
-  max?: Maybe<ApplicationMaxFields>;
-  min?: Maybe<ApplicationMinFields>;
-};
-
-/** aggregate fields of "application" */
-export type ApplicationAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<ApplicationSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
 /** Boolean expression to filter rows from the table "application". All fields are combined with a logical 'AND'. */
 export type ApplicationBoolExp = {
   _and?: InputMaybe<Array<ApplicationBoolExp>>;
@@ -683,63 +355,8 @@ export type ApplicationBoolExp = {
   application?: InputMaybe<StringComparisonExp>;
   applicationId?: InputMaybe<UuidComparisonExp>;
   group_applications?: InputMaybe<GroupApplicationBoolExp>;
-  group_applicationsAggregate?: InputMaybe<GroupApplicationAggregateBoolExp>;
   topUrl?: InputMaybe<StringComparisonExp>;
   validFlag?: InputMaybe<BooleanComparisonExp>;
-};
-
-/** unique or primary key constraints on table "application" */
-export enum ApplicationConstraint {
-  /** unique or primary key constraint on columns "application_id" */
-  ApplicationPkey = "application_pkey",
-}
-
-/** input type for inserting data into table "application" */
-export type ApplicationInsertInput = {
-  application?: InputMaybe<Scalars["String"]>;
-  applicationId?: InputMaybe<Scalars["uuid"]>;
-  group_applications?: InputMaybe<GroupApplicationArrRelInsertInput>;
-  topUrl?: InputMaybe<Scalars["String"]>;
-  validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate max on columns */
-export type ApplicationMaxFields = {
-  __typename?: "ApplicationMaxFields";
-  application?: Maybe<Scalars["String"]>;
-  applicationId?: Maybe<Scalars["uuid"]>;
-  topUrl?: Maybe<Scalars["String"]>;
-};
-
-/** aggregate min on columns */
-export type ApplicationMinFields = {
-  __typename?: "ApplicationMinFields";
-  application?: Maybe<Scalars["String"]>;
-  applicationId?: Maybe<Scalars["uuid"]>;
-  topUrl?: Maybe<Scalars["String"]>;
-};
-
-/** response of any mutation on the table "application" */
-export type ApplicationMutationResponse = {
-  __typename?: "ApplicationMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<Application>;
-};
-
-/** input type for inserting object relation for remote table "application" */
-export type ApplicationObjRelInsertInput = {
-  data: ApplicationInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<ApplicationOnConflict>;
-};
-
-/** on_conflict condition type for table "application" */
-export type ApplicationOnConflict = {
-  constraint: ApplicationConstraint;
-  updateColumns?: Array<ApplicationUpdateColumn>;
-  where?: InputMaybe<ApplicationBoolExp>;
 };
 
 /** Ordering options when selecting data from "application". */
@@ -749,11 +366,6 @@ export type ApplicationOrderBy = {
   group_applicationsAggregate?: InputMaybe<GroupApplicationAggregateOrderBy>;
   topUrl?: InputMaybe<OrderBy>;
   validFlag?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: application */
-export type ApplicationPkColumnsInput = {
-  applicationId: Scalars["uuid"];
 };
 
 /** select columns of table "application" */
@@ -767,14 +379,6 @@ export enum ApplicationSelectColumn {
   /** column name */
   ValidFlag = "validFlag",
 }
-
-/** input type for updating data in table "application" */
-export type ApplicationSetInput = {
-  application?: InputMaybe<Scalars["String"]>;
-  applicationId?: InputMaybe<Scalars["uuid"]>;
-  topUrl?: InputMaybe<Scalars["String"]>;
-  validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
 
 /** Streaming cursor of the table "application" */
 export type ApplicationStreamCursorInput = {
@@ -790,25 +394,6 @@ export type ApplicationStreamCursorValueInput = {
   applicationId?: InputMaybe<Scalars["uuid"]>;
   topUrl?: InputMaybe<Scalars["String"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** update columns of table "application" */
-export enum ApplicationUpdateColumn {
-  /** column name */
-  Application = "application",
-  /** column name */
-  ApplicationId = "applicationId",
-  /** column name */
-  TopUrl = "topUrl",
-  /** column name */
-  ValidFlag = "validFlag",
-}
-
-export type ApplicationUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ApplicationSetInput>;
-  /** filter the rows which have to be updated */
-  where: ApplicationBoolExp;
 };
 
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
@@ -829,12 +414,8 @@ export type Category = {
   __typename?: "Category";
   categoryId: Scalars["uuid"];
   categoryName: Scalars["String"];
-  /** An aggregate relationship */
-  creditCardDetailsAggregate: CreditCardDetailAggregate;
   /** An array relationship */
   credit_card_details: Array<CreditCardDetail>;
-  /** An aggregate relationship */
-  dailyDetailsAggregate: DailyDetailAggregate;
   /** An array relationship */
   daily_details: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
@@ -844,28 +425,13 @@ export type Category = {
   /** An object relationship */
   group: Group;
   groupId: Scalars["uuid"];
-  /** An aggregate relationship */
-  incomeTransferCategoryAggregate: TransferCategoryAggregate;
-  /** An array relationship */
-  income_transfer_category: Array<TransferCategory>;
-  /** An aggregate relationship */
-  outcomeTransferCategoryAggregate: TransferCategoryAggregate;
-  /** An array relationship */
-  outcome_transfer_category: Array<TransferCategory>;
-  /** An aggregate relationship */
-  summaryCategoryByGroupsAggregate: SummaryCategoryByGroupAggregate;
   /** An array relationship */
   summary_category_by_groups: Array<SummaryCategoryByGroup>;
+  /** An array relationship */
+  transfer_income_category: Array<TransferCategory>;
+  /** An array relationship */
+  transfer_outcome_category: Array<TransferCategory>;
   validFlag?: Maybe<Scalars["Boolean"]>;
-};
-
-/** columns and relationships of "category" */
-export type CategoryCreditCardDetailsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
-  where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
 /** columns and relationships of "category" */
@@ -878,66 +444,12 @@ export type CategoryCredit_Card_DetailsArgs = {
 };
 
 /** columns and relationships of "category" */
-export type CategoryDailyDetailsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
-  where?: InputMaybe<DailyDetailBoolExp>;
-};
-
-/** columns and relationships of "category" */
 export type CategoryDaily_DetailsArgs = {
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
-};
-
-/** columns and relationships of "category" */
-export type CategoryIncomeTransferCategoryAggregateArgs = {
-  distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
-  where?: InputMaybe<TransferCategoryBoolExp>;
-};
-
-/** columns and relationships of "category" */
-export type CategoryIncome_Transfer_CategoryArgs = {
-  distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
-  where?: InputMaybe<TransferCategoryBoolExp>;
-};
-
-/** columns and relationships of "category" */
-export type CategoryOutcomeTransferCategoryAggregateArgs = {
-  distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
-  where?: InputMaybe<TransferCategoryBoolExp>;
-};
-
-/** columns and relationships of "category" */
-export type CategoryOutcome_Transfer_CategoryArgs = {
-  distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
-  where?: InputMaybe<TransferCategoryBoolExp>;
-};
-
-/** columns and relationships of "category" */
-export type CategorySummaryCategoryByGroupsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByGroupOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
 };
 
 /** columns and relationships of "category" */
@@ -949,39 +461,22 @@ export type CategorySummary_Category_By_GroupsArgs = {
   where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
 };
 
-/** aggregated selection of "category" */
-export type CategoryAggregate = {
-  __typename?: "CategoryAggregate";
-  aggregate?: Maybe<CategoryAggregateFields>;
-  nodes: Array<Category>;
+/** columns and relationships of "category" */
+export type CategoryTransfer_Income_CategoryArgs = {
+  distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
+  where?: InputMaybe<TransferCategoryBoolExp>;
 };
 
-export type CategoryAggregateBoolExp = {
-  bool_and?: InputMaybe<CategoryAggregateBoolExpBool_And>;
-  bool_or?: InputMaybe<CategoryAggregateBoolExpBool_Or>;
-  count?: InputMaybe<CategoryAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "category" */
-export type CategoryAggregateFields = {
-  __typename?: "CategoryAggregateFields";
-  avg?: Maybe<CategoryAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<CategoryMaxFields>;
-  min?: Maybe<CategoryMinFields>;
-  stddev?: Maybe<CategoryStddevFields>;
-  stddevPop?: Maybe<CategoryStddevPopFields>;
-  stddevSamp?: Maybe<CategoryStddevSampFields>;
-  sum?: Maybe<CategorySumFields>;
-  varPop?: Maybe<CategoryVarPopFields>;
-  varSamp?: Maybe<CategoryVarSampFields>;
-  variance?: Maybe<CategoryVarianceFields>;
-};
-
-/** aggregate fields of "category" */
-export type CategoryAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<CategorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
+/** columns and relationships of "category" */
+export type CategoryTransfer_Outcome_CategoryArgs = {
+  distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
+  where?: InputMaybe<TransferCategoryBoolExp>;
 };
 
 /** order by aggregate values of table "category" */
@@ -1006,12 +501,6 @@ export type CategoryArrRelInsertInput = {
   onConflict?: InputMaybe<CategoryOnConflict>;
 };
 
-/** aggregate avg on columns */
-export type CategoryAvgFields = {
-  __typename?: "CategoryAvgFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by avg() on columns of table "category" */
 export type CategoryAvgOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
@@ -1025,20 +514,15 @@ export type CategoryBoolExp = {
   categoryId?: InputMaybe<UuidComparisonExp>;
   categoryName?: InputMaybe<StringComparisonExp>;
   credit_card_details?: InputMaybe<CreditCardDetailBoolExp>;
-  credit_card_detailsAggregate?: InputMaybe<CreditCardDetailAggregateBoolExp>;
   daily_details?: InputMaybe<DailyDetailBoolExp>;
-  daily_detailsAggregate?: InputMaybe<DailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   genre?: InputMaybe<GenreBoolExp>;
   genreId?: InputMaybe<UuidComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<UuidComparisonExp>;
-  income_transfer_category?: InputMaybe<TransferCategoryBoolExp>;
-  income_transfer_categoryAggregate?: InputMaybe<TransferCategoryAggregateBoolExp>;
-  outcome_transfer_category?: InputMaybe<TransferCategoryBoolExp>;
-  outcome_transfer_categoryAggregate?: InputMaybe<TransferCategoryAggregateBoolExp>;
   summary_category_by_groups?: InputMaybe<SummaryCategoryByGroupBoolExp>;
-  summary_category_by_groupsAggregate?: InputMaybe<SummaryCategoryByGroupAggregateBoolExp>;
+  transfer_income_category?: InputMaybe<TransferCategoryBoolExp>;
+  transfer_outcome_category?: InputMaybe<TransferCategoryBoolExp>;
   validFlag?: InputMaybe<BooleanComparisonExp>;
 };
 
@@ -1062,22 +546,11 @@ export type CategoryInsertInput = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
   genre?: InputMaybe<GenreObjRelInsertInput>;
   genreId?: InputMaybe<Scalars["uuid"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
   groupId?: InputMaybe<Scalars["uuid"]>;
-  income_transfer_category?: InputMaybe<TransferCategoryArrRelInsertInput>;
-  outcome_transfer_category?: InputMaybe<TransferCategoryArrRelInsertInput>;
   summary_category_by_groups?: InputMaybe<SummaryCategoryByGroupArrRelInsertInput>;
+  transfer_income_category?: InputMaybe<TransferCategoryArrRelInsertInput>;
+  transfer_outcome_category?: InputMaybe<TransferCategoryArrRelInsertInput>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate max on columns */
-export type CategoryMaxFields = {
-  __typename?: "CategoryMaxFields";
-  categoryId?: Maybe<Scalars["uuid"]>;
-  categoryName?: Maybe<Scalars["String"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  genreId?: Maybe<Scalars["uuid"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "category" */
@@ -1087,16 +560,6 @@ export type CategoryMaxOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
   genreId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type CategoryMinFields = {
-  __typename?: "CategoryMinFields";
-  categoryId?: Maybe<Scalars["uuid"]>;
-  categoryName?: Maybe<Scalars["String"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  genreId?: Maybe<Scalars["uuid"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "category" */
@@ -1142,9 +605,9 @@ export type CategoryOrderBy = {
   genreId?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
-  income_transfer_categoryAggregate?: InputMaybe<TransferCategoryAggregateOrderBy>;
-  outcome_transfer_categoryAggregate?: InputMaybe<TransferCategoryAggregateOrderBy>;
   summary_category_by_groupsAggregate?: InputMaybe<SummaryCategoryByGroupAggregateOrderBy>;
+  transfer_income_categoryAggregate?: InputMaybe<TransferCategoryAggregateOrderBy>;
+  transfer_outcome_categoryAggregate?: InputMaybe<TransferCategoryAggregateOrderBy>;
   validFlag?: InputMaybe<OrderBy>;
 };
 
@@ -1169,18 +632,6 @@ export enum CategorySelectColumn {
   ValidFlag = "validFlag",
 }
 
-/** select "categoryAggregateBoolExpBool_andArgumentsColumns" columns of table "category" */
-export enum CategorySelectColumnCategoryAggregateBoolExpBool_AndArgumentsColumns {
-  /** column name */
-  ValidFlag = "validFlag",
-}
-
-/** select "categoryAggregateBoolExpBool_orArgumentsColumns" columns of table "category" */
-export enum CategorySelectColumnCategoryAggregateBoolExpBool_OrArgumentsColumns {
-  /** column name */
-  ValidFlag = "validFlag",
-}
-
 /** input type for updating data in table "category" */
 export type CategorySetInput = {
   categoryId?: InputMaybe<Scalars["uuid"]>;
@@ -1191,32 +642,14 @@ export type CategorySetInput = {
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
-/** aggregate stddev on columns */
-export type CategoryStddevFields = {
-  __typename?: "CategoryStddevFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddev() on columns of table "category" */
 export type CategoryStddevOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** aggregate stddevPop on columns */
-export type CategoryStddevPopFields = {
-  __typename?: "CategoryStddevPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddevPop() on columns of table "category" */
 export type CategoryStddevPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type CategoryStddevSampFields = {
-  __typename?: "CategoryStddevSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "category" */
@@ -1240,12 +673,6 @@ export type CategoryStreamCursorValueInput = {
   genreId?: InputMaybe<Scalars["uuid"]>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate sum on columns */
-export type CategorySumFields = {
-  __typename?: "CategorySumFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
 };
 
 /** order by sum() on columns of table "category" */
@@ -1278,32 +705,14 @@ export type CategoryUpdates = {
   where: CategoryBoolExp;
 };
 
-/** aggregate varPop on columns */
-export type CategoryVarPopFields = {
-  __typename?: "CategoryVarPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varPop() on columns of table "category" */
 export type CategoryVarPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** aggregate varSamp on columns */
-export type CategoryVarSampFields = {
-  __typename?: "CategoryVarSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varSamp() on columns of table "category" */
 export type CategoryVarSampOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type CategoryVarianceFields = {
-  __typename?: "CategoryVarianceFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "category" */
@@ -1322,47 +731,18 @@ export type CreditCardDetail = {
   credit_card_summary: CreditCardSummary;
   date: Scalars["date"];
   /** An object relationship */
+  genre: Genre;
+  genreId: Scalars["uuid"];
+  /** An object relationship */
   group: Group;
   groupId: Scalars["uuid"];
   id: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
   memo?: Maybe<Scalars["String"]>;
   summaryId: Scalars["uuid"];
   /** An object relationship */
   user: User;
   userId: Scalars["uuid"];
-};
-
-/** aggregated selection of "credit_card_detail" */
-export type CreditCardDetailAggregate = {
-  __typename?: "CreditCardDetailAggregate";
-  aggregate?: Maybe<CreditCardDetailAggregateFields>;
-  nodes: Array<CreditCardDetail>;
-};
-
-export type CreditCardDetailAggregateBoolExp = {
-  count?: InputMaybe<CreditCardDetailAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "credit_card_detail" */
-export type CreditCardDetailAggregateFields = {
-  __typename?: "CreditCardDetailAggregateFields";
-  avg?: Maybe<CreditCardDetailAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<CreditCardDetailMaxFields>;
-  min?: Maybe<CreditCardDetailMinFields>;
-  stddev?: Maybe<CreditCardDetailStddevFields>;
-  stddevPop?: Maybe<CreditCardDetailStddevPopFields>;
-  stddevSamp?: Maybe<CreditCardDetailStddevSampFields>;
-  sum?: Maybe<CreditCardDetailSumFields>;
-  varPop?: Maybe<CreditCardDetailVarPopFields>;
-  varSamp?: Maybe<CreditCardDetailVarSampFields>;
-  variance?: Maybe<CreditCardDetailVarianceFields>;
-};
-
-/** aggregate fields of "credit_card_detail" */
-export type CreditCardDetailAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "credit_card_detail" */
@@ -1387,12 +767,6 @@ export type CreditCardDetailArrRelInsertInput = {
   onConflict?: InputMaybe<CreditCardDetailOnConflict>;
 };
 
-/** aggregate avg on columns */
-export type CreditCardDetailAvgFields = {
-  __typename?: "CreditCardDetailAvgFields";
-  amount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by avg() on columns of table "credit_card_detail" */
 export type CreditCardDetailAvgOrderBy = {
   amount?: InputMaybe<OrderBy>;
@@ -1408,9 +782,12 @@ export type CreditCardDetailBoolExp = {
   categoryId?: InputMaybe<UuidComparisonExp>;
   credit_card_summary?: InputMaybe<CreditCardSummaryBoolExp>;
   date?: InputMaybe<DateComparisonExp>;
+  genre?: InputMaybe<GenreBoolExp>;
+  genreId?: InputMaybe<UuidComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<UuidComparisonExp>;
   id?: InputMaybe<UuidComparisonExp>;
+  iocomeType?: InputMaybe<IocomeTypeComparisonExp>;
   memo?: InputMaybe<StringComparisonExp>;
   summaryId?: InputMaybe<UuidComparisonExp>;
   user?: InputMaybe<UserBoolExp>;
@@ -1435,26 +812,15 @@ export type CreditCardDetailInsertInput = {
   categoryId?: InputMaybe<Scalars["uuid"]>;
   credit_card_summary?: InputMaybe<CreditCardSummaryObjRelInsertInput>;
   date?: InputMaybe<Scalars["date"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
+  genre?: InputMaybe<GenreObjRelInsertInput>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
   memo?: InputMaybe<Scalars["String"]>;
   summaryId?: InputMaybe<Scalars["uuid"]>;
   user?: InputMaybe<UserObjRelInsertInput>;
   userId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate max on columns */
-export type CreditCardDetailMaxFields = {
-  __typename?: "CreditCardDetailMaxFields";
-  amount?: Maybe<Scalars["numeric"]>;
-  categoryId?: Maybe<Scalars["uuid"]>;
-  date?: Maybe<Scalars["date"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  memo?: Maybe<Scalars["String"]>;
-  summaryId?: Maybe<Scalars["uuid"]>;
-  userId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "credit_card_detail" */
@@ -1462,24 +828,13 @@ export type CreditCardDetailMaxOrderBy = {
   amount?: InputMaybe<OrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   summaryId?: InputMaybe<OrderBy>;
   userId?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type CreditCardDetailMinFields = {
-  __typename?: "CreditCardDetailMinFields";
-  amount?: Maybe<Scalars["numeric"]>;
-  categoryId?: Maybe<Scalars["uuid"]>;
-  date?: Maybe<Scalars["date"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  memo?: Maybe<Scalars["String"]>;
-  summaryId?: Maybe<Scalars["uuid"]>;
-  userId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "credit_card_detail" */
@@ -1487,8 +842,10 @@ export type CreditCardDetailMinOrderBy = {
   amount?: InputMaybe<OrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   summaryId?: InputMaybe<OrderBy>;
   userId?: InputMaybe<OrderBy>;
@@ -1517,9 +874,12 @@ export type CreditCardDetailOrderBy = {
   categoryId?: InputMaybe<OrderBy>;
   credit_card_summary?: InputMaybe<CreditCardSummaryOrderBy>;
   date?: InputMaybe<OrderBy>;
+  genre?: InputMaybe<GenreOrderBy>;
+  genreId?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   summaryId?: InputMaybe<OrderBy>;
   user?: InputMaybe<UserOrderBy>;
@@ -1540,9 +900,13 @@ export enum CreditCardDetailSelectColumn {
   /** column name */
   Date = "date",
   /** column name */
+  GenreId = "genreId",
+  /** column name */
   GroupId = "groupId",
   /** column name */
   Id = "id",
+  /** column name */
+  IocomeType = "iocomeType",
   /** column name */
   Memo = "memo",
   /** column name */
@@ -1556,17 +920,13 @@ export type CreditCardDetailSetInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
   categoryId?: InputMaybe<Scalars["uuid"]>;
   date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
   memo?: InputMaybe<Scalars["String"]>;
   summaryId?: InputMaybe<Scalars["uuid"]>;
   userId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate stddev on columns */
-export type CreditCardDetailStddevFields = {
-  __typename?: "CreditCardDetailStddevFields";
-  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddev() on columns of table "credit_card_detail" */
@@ -1574,21 +934,9 @@ export type CreditCardDetailStddevOrderBy = {
   amount?: InputMaybe<OrderBy>;
 };
 
-/** aggregate stddevPop on columns */
-export type CreditCardDetailStddevPopFields = {
-  __typename?: "CreditCardDetailStddevPopFields";
-  amount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddevPop() on columns of table "credit_card_detail" */
 export type CreditCardDetailStddevPopOrderBy = {
   amount?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type CreditCardDetailStddevSampFields = {
-  __typename?: "CreditCardDetailStddevSampFields";
-  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "credit_card_detail" */
@@ -1609,17 +957,13 @@ export type CreditCardDetailStreamCursorValueInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
   categoryId?: InputMaybe<Scalars["uuid"]>;
   date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
   memo?: InputMaybe<Scalars["String"]>;
   summaryId?: InputMaybe<Scalars["uuid"]>;
   userId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate sum on columns */
-export type CreditCardDetailSumFields = {
-  __typename?: "CreditCardDetailSumFields";
-  amount?: Maybe<Scalars["numeric"]>;
 };
 
 /** order by sum() on columns of table "credit_card_detail" */
@@ -1636,9 +980,13 @@ export enum CreditCardDetailUpdateColumn {
   /** column name */
   Date = "date",
   /** column name */
+  GenreId = "genreId",
+  /** column name */
   GroupId = "groupId",
   /** column name */
   Id = "id",
+  /** column name */
+  IocomeType = "iocomeType",
   /** column name */
   Memo = "memo",
   /** column name */
@@ -1656,32 +1004,14 @@ export type CreditCardDetailUpdates = {
   where: CreditCardDetailBoolExp;
 };
 
-/** aggregate varPop on columns */
-export type CreditCardDetailVarPopFields = {
-  __typename?: "CreditCardDetailVarPopFields";
-  amount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varPop() on columns of table "credit_card_detail" */
 export type CreditCardDetailVarPopOrderBy = {
   amount?: InputMaybe<OrderBy>;
 };
 
-/** aggregate varSamp on columns */
-export type CreditCardDetailVarSampFields = {
-  __typename?: "CreditCardDetailVarSampFields";
-  amount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varSamp() on columns of table "credit_card_detail" */
 export type CreditCardDetailVarSampOrderBy = {
   amount?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type CreditCardDetailVarianceFields = {
-  __typename?: "CreditCardDetailVarianceFields";
-  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "credit_card_detail" */
@@ -1697,8 +1027,6 @@ export type CreditCardSummary = {
   accountId: Scalars["uuid"];
   count: Scalars["Int"];
   creditCard: Scalars["String"];
-  /** An aggregate relationship */
-  creditCardDetailsAggregate: CreditCardDetailAggregate;
   /** An array relationship */
   credit_card_details: Array<CreditCardDetail>;
   /** An object relationship */
@@ -1712,54 +1040,12 @@ export type CreditCardSummary = {
 };
 
 /** columns and relationships of "credit_card_summary" */
-export type CreditCardSummaryCreditCardDetailsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
-  where?: InputMaybe<CreditCardDetailBoolExp>;
-};
-
-/** columns and relationships of "credit_card_summary" */
 export type CreditCardSummaryCredit_Card_DetailsArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
-};
-
-/** aggregated selection of "credit_card_summary" */
-export type CreditCardSummaryAggregate = {
-  __typename?: "CreditCardSummaryAggregate";
-  aggregate?: Maybe<CreditCardSummaryAggregateFields>;
-  nodes: Array<CreditCardSummary>;
-};
-
-export type CreditCardSummaryAggregateBoolExp = {
-  count?: InputMaybe<CreditCardSummaryAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "credit_card_summary" */
-export type CreditCardSummaryAggregateFields = {
-  __typename?: "CreditCardSummaryAggregateFields";
-  avg?: Maybe<CreditCardSummaryAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<CreditCardSummaryMaxFields>;
-  min?: Maybe<CreditCardSummaryMinFields>;
-  stddev?: Maybe<CreditCardSummaryStddevFields>;
-  stddevPop?: Maybe<CreditCardSummaryStddevPopFields>;
-  stddevSamp?: Maybe<CreditCardSummaryStddevSampFields>;
-  sum?: Maybe<CreditCardSummarySumFields>;
-  varPop?: Maybe<CreditCardSummaryVarPopFields>;
-  varSamp?: Maybe<CreditCardSummaryVarSampFields>;
-  variance?: Maybe<CreditCardSummaryVarianceFields>;
-};
-
-/** aggregate fields of "credit_card_summary" */
-export type CreditCardSummaryAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "credit_card_summary" */
@@ -1784,13 +1070,6 @@ export type CreditCardSummaryArrRelInsertInput = {
   onConflict?: InputMaybe<CreditCardSummaryOnConflict>;
 };
 
-/** aggregate avg on columns */
-export type CreditCardSummaryAvgFields = {
-  __typename?: "CreditCardSummaryAvgFields";
-  count?: Maybe<Scalars["Float"]>;
-  totalAmount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by avg() on columns of table "credit_card_summary" */
 export type CreditCardSummaryAvgOrderBy = {
   count?: InputMaybe<OrderBy>;
@@ -1807,7 +1086,6 @@ export type CreditCardSummaryBoolExp = {
   count?: InputMaybe<IntComparisonExp>;
   creditCard?: InputMaybe<StringComparisonExp>;
   credit_card_details?: InputMaybe<CreditCardDetailBoolExp>;
-  credit_card_detailsAggregate?: InputMaybe<CreditCardDetailAggregateBoolExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<UuidComparisonExp>;
   id?: InputMaybe<UuidComparisonExp>;
@@ -1822,12 +1100,6 @@ export enum CreditCardSummaryConstraint {
   CreditCardSummaryPkey = "credit_card_summary_pkey",
 }
 
-/** input type for incrementing numeric columns in table "credit_card_summary" */
-export type CreditCardSummaryIncInput = {
-  count?: InputMaybe<Scalars["Int"]>;
-  totalAmount?: InputMaybe<Scalars["numeric"]>;
-};
-
 /** input type for inserting data into table "credit_card_summary" */
 export type CreditCardSummaryInsertInput = {
   account?: InputMaybe<AccountObjRelInsertInput>;
@@ -1835,24 +1107,11 @@ export type CreditCardSummaryInsertInput = {
   count?: InputMaybe<Scalars["Int"]>;
   creditCard?: InputMaybe<Scalars["String"]>;
   credit_card_details?: InputMaybe<CreditCardDetailArrRelInsertInput>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   id?: InputMaybe<Scalars["uuid"]>;
   import_file_history?: InputMaybe<ImportFileHistoryObjRelInsertInput>;
   totalAmount?: InputMaybe<Scalars["numeric"]>;
   withdrawalDate?: InputMaybe<Scalars["date"]>;
-};
-
-/** aggregate max on columns */
-export type CreditCardSummaryMaxFields = {
-  __typename?: "CreditCardSummaryMaxFields";
-  accountId?: Maybe<Scalars["uuid"]>;
-  count?: Maybe<Scalars["Int"]>;
-  creditCard?: Maybe<Scalars["String"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  totalAmount?: Maybe<Scalars["numeric"]>;
-  withdrawalDate?: Maybe<Scalars["date"]>;
 };
 
 /** order by max() on columns of table "credit_card_summary" */
@@ -1864,18 +1123,6 @@ export type CreditCardSummaryMaxOrderBy = {
   id?: InputMaybe<OrderBy>;
   totalAmount?: InputMaybe<OrderBy>;
   withdrawalDate?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type CreditCardSummaryMinFields = {
-  __typename?: "CreditCardSummaryMinFields";
-  accountId?: Maybe<Scalars["uuid"]>;
-  count?: Maybe<Scalars["Int"]>;
-  creditCard?: Maybe<Scalars["String"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  totalAmount?: Maybe<Scalars["numeric"]>;
-  withdrawalDate?: Maybe<Scalars["date"]>;
 };
 
 /** order by min() on columns of table "credit_card_summary" */
@@ -1927,11 +1174,6 @@ export type CreditCardSummaryOrderBy = {
   withdrawalDate?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: credit_card_summary */
-export type CreditCardSummaryPkColumnsInput = {
-  id: Scalars["uuid"];
-};
-
 /** select columns of table "credit_card_summary" */
 export enum CreditCardSummarySelectColumn {
   /** column name */
@@ -1950,48 +1192,16 @@ export enum CreditCardSummarySelectColumn {
   WithdrawalDate = "withdrawalDate",
 }
 
-/** input type for updating data in table "credit_card_summary" */
-export type CreditCardSummarySetInput = {
-  accountId?: InputMaybe<Scalars["uuid"]>;
-  count?: InputMaybe<Scalars["Int"]>;
-  creditCard?: InputMaybe<Scalars["String"]>;
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  id?: InputMaybe<Scalars["uuid"]>;
-  totalAmount?: InputMaybe<Scalars["numeric"]>;
-  withdrawalDate?: InputMaybe<Scalars["date"]>;
-};
-
-/** aggregate stddev on columns */
-export type CreditCardSummaryStddevFields = {
-  __typename?: "CreditCardSummaryStddevFields";
-  count?: Maybe<Scalars["Float"]>;
-  totalAmount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddev() on columns of table "credit_card_summary" */
 export type CreditCardSummaryStddevOrderBy = {
   count?: InputMaybe<OrderBy>;
   totalAmount?: InputMaybe<OrderBy>;
 };
 
-/** aggregate stddevPop on columns */
-export type CreditCardSummaryStddevPopFields = {
-  __typename?: "CreditCardSummaryStddevPopFields";
-  count?: Maybe<Scalars["Float"]>;
-  totalAmount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddevPop() on columns of table "credit_card_summary" */
 export type CreditCardSummaryStddevPopOrderBy = {
   count?: InputMaybe<OrderBy>;
   totalAmount?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type CreditCardSummaryStddevSampFields = {
-  __typename?: "CreditCardSummaryStddevSampFields";
-  count?: Maybe<Scalars["Float"]>;
-  totalAmount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "credit_card_summary" */
@@ -2019,13 +1229,6 @@ export type CreditCardSummaryStreamCursorValueInput = {
   withdrawalDate?: InputMaybe<Scalars["date"]>;
 };
 
-/** aggregate sum on columns */
-export type CreditCardSummarySumFields = {
-  __typename?: "CreditCardSummarySumFields";
-  count?: Maybe<Scalars["Int"]>;
-  totalAmount?: Maybe<Scalars["numeric"]>;
-};
-
 /** order by sum() on columns of table "credit_card_summary" */
 export type CreditCardSummarySumOrderBy = {
   count?: InputMaybe<OrderBy>;
@@ -2044,42 +1247,6 @@ export type CreditCardSummaryTotalByAccountView = {
   total?: Maybe<Scalars["numeric"]>;
 };
 
-/** aggregated selection of "credit_card_summary_total_by_account_view" */
-export type CreditCardSummaryTotalByAccountViewAggregate = {
-  __typename?: "CreditCardSummaryTotalByAccountViewAggregate";
-  aggregate?: Maybe<CreditCardSummaryTotalByAccountViewAggregateFields>;
-  nodes: Array<CreditCardSummaryTotalByAccountView>;
-};
-
-/** aggregate fields of "credit_card_summary_total_by_account_view" */
-export type CreditCardSummaryTotalByAccountViewAggregateFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewAggregateFields";
-  avg?: Maybe<CreditCardSummaryTotalByAccountViewAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<CreditCardSummaryTotalByAccountViewMaxFields>;
-  min?: Maybe<CreditCardSummaryTotalByAccountViewMinFields>;
-  stddev?: Maybe<CreditCardSummaryTotalByAccountViewStddevFields>;
-  stddevPop?: Maybe<CreditCardSummaryTotalByAccountViewStddevPopFields>;
-  stddevSamp?: Maybe<CreditCardSummaryTotalByAccountViewStddevSampFields>;
-  sum?: Maybe<CreditCardSummaryTotalByAccountViewSumFields>;
-  varPop?: Maybe<CreditCardSummaryTotalByAccountViewVarPopFields>;
-  varSamp?: Maybe<CreditCardSummaryTotalByAccountViewVarSampFields>;
-  variance?: Maybe<CreditCardSummaryTotalByAccountViewVarianceFields>;
-};
-
-/** aggregate fields of "credit_card_summary_total_by_account_view" */
-export type CreditCardSummaryTotalByAccountViewAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate avg on columns */
-export type CreditCardSummaryTotalByAccountViewAvgFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewAvgFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** Boolean expression to filter rows from the table "credit_card_summary_total_by_account_view". All fields are combined with a logical 'AND'. */
 export type CreditCardSummaryTotalByAccountViewBoolExp = {
   _and?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewBoolExp>>;
@@ -2092,30 +1259,6 @@ export type CreditCardSummaryTotalByAccountViewBoolExp = {
   groupId?: InputMaybe<UuidComparisonExp>;
   iocomeType?: InputMaybe<IocomeTypeComparisonExp>;
   total?: InputMaybe<NumericComparisonExp>;
-};
-
-/** aggregate max on columns */
-export type CreditCardSummaryTotalByAccountViewMaxFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewMaxFields";
-  accountId?: Maybe<Scalars["uuid"]>;
-  accountName?: Maybe<Scalars["String"]>;
-  date?: Maybe<Scalars["date"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
-  total?: Maybe<Scalars["numeric"]>;
-};
-
-/** aggregate min on columns */
-export type CreditCardSummaryTotalByAccountViewMinFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewMinFields";
-  accountId?: Maybe<Scalars["uuid"]>;
-  accountName?: Maybe<Scalars["String"]>;
-  date?: Maybe<Scalars["date"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
-  total?: Maybe<Scalars["numeric"]>;
 };
 
 /** Ordering options when selecting data from "credit_card_summary_total_by_account_view". */
@@ -2147,27 +1290,6 @@ export enum CreditCardSummaryTotalByAccountViewSelectColumn {
   Total = "total",
 }
 
-/** aggregate stddev on columns */
-export type CreditCardSummaryTotalByAccountViewStddevFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewStddevFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevPop on columns */
-export type CreditCardSummaryTotalByAccountViewStddevPopFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewStddevPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevSamp on columns */
-export type CreditCardSummaryTotalByAccountViewStddevSampFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewStddevSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** Streaming cursor of the table "credit_card_summary_total_by_account_view" */
 export type CreditCardSummaryTotalByAccountViewStreamCursorInput = {
   /** Stream column input with initial value */
@@ -2187,67 +1309,11 @@ export type CreditCardSummaryTotalByAccountViewStreamCursorValueInput = {
   total?: InputMaybe<Scalars["numeric"]>;
 };
 
-/** aggregate sum on columns */
-export type CreditCardSummaryTotalByAccountViewSumFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewSumFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
-  total?: Maybe<Scalars["numeric"]>;
-};
-
-/** aggregate varPop on columns */
-export type CreditCardSummaryTotalByAccountViewVarPopFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewVarPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate varSamp on columns */
-export type CreditCardSummaryTotalByAccountViewVarSampFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewVarSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate variance on columns */
-export type CreditCardSummaryTotalByAccountViewVarianceFields = {
-  __typename?: "CreditCardSummaryTotalByAccountViewVarianceFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** update columns of table "credit_card_summary" */
+/** placeholder for update columns of table "credit_card_summary" (current role has no relevant permissions) */
 export enum CreditCardSummaryUpdateColumn {
-  /** column name */
-  AccountId = "accountId",
-  /** column name */
-  Count = "count",
-  /** column name */
-  CreditCard = "creditCard",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  Id = "id",
-  /** column name */
-  TotalAmount = "totalAmount",
-  /** column name */
-  WithdrawalDate = "withdrawalDate",
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
 }
-
-export type CreditCardSummaryUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<CreditCardSummaryIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<CreditCardSummarySetInput>;
-  /** filter the rows which have to be updated */
-  where: CreditCardSummaryBoolExp;
-};
-
-/** aggregate varPop on columns */
-export type CreditCardSummaryVarPopFields = {
-  __typename?: "CreditCardSummaryVarPopFields";
-  count?: Maybe<Scalars["Float"]>;
-  totalAmount?: Maybe<Scalars["Float"]>;
-};
 
 /** order by varPop() on columns of table "credit_card_summary" */
 export type CreditCardSummaryVarPopOrderBy = {
@@ -2255,24 +1321,10 @@ export type CreditCardSummaryVarPopOrderBy = {
   totalAmount?: InputMaybe<OrderBy>;
 };
 
-/** aggregate varSamp on columns */
-export type CreditCardSummaryVarSampFields = {
-  __typename?: "CreditCardSummaryVarSampFields";
-  count?: Maybe<Scalars["Float"]>;
-  totalAmount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varSamp() on columns of table "credit_card_summary" */
 export type CreditCardSummaryVarSampOrderBy = {
   count?: InputMaybe<OrderBy>;
   totalAmount?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type CreditCardSummaryVarianceFields = {
-  __typename?: "CreditCardSummaryVarianceFields";
-  count?: Maybe<Scalars["Float"]>;
-  totalAmount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "credit_card_summary" */
@@ -2301,46 +1353,17 @@ export type DailyDetail = {
   categoryId: Scalars["uuid"];
   date: Scalars["date"];
   /** An object relationship */
+  genre: Genre;
+  genreId: Scalars["uuid"];
+  /** An object relationship */
   group: Group;
   groupId: Scalars["uuid"];
   id: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
   memo?: Maybe<Scalars["String"]>;
   /** An object relationship */
   user: User;
   userId: Scalars["uuid"];
-};
-
-/** aggregated selection of "daily_detail" */
-export type DailyDetailAggregate = {
-  __typename?: "DailyDetailAggregate";
-  aggregate?: Maybe<DailyDetailAggregateFields>;
-  nodes: Array<DailyDetail>;
-};
-
-export type DailyDetailAggregateBoolExp = {
-  count?: InputMaybe<DailyDetailAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "daily_detail" */
-export type DailyDetailAggregateFields = {
-  __typename?: "DailyDetailAggregateFields";
-  avg?: Maybe<DailyDetailAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<DailyDetailMaxFields>;
-  min?: Maybe<DailyDetailMinFields>;
-  stddev?: Maybe<DailyDetailStddevFields>;
-  stddevPop?: Maybe<DailyDetailStddevPopFields>;
-  stddevSamp?: Maybe<DailyDetailStddevSampFields>;
-  sum?: Maybe<DailyDetailSumFields>;
-  varPop?: Maybe<DailyDetailVarPopFields>;
-  varSamp?: Maybe<DailyDetailVarSampFields>;
-  variance?: Maybe<DailyDetailVarianceFields>;
-};
-
-/** aggregate fields of "daily_detail" */
-export type DailyDetailAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "daily_detail" */
@@ -2365,12 +1388,6 @@ export type DailyDetailArrRelInsertInput = {
   onConflict?: InputMaybe<DailyDetailOnConflict>;
 };
 
-/** aggregate avg on columns */
-export type DailyDetailAvgFields = {
-  __typename?: "DailyDetailAvgFields";
-  amount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by avg() on columns of table "daily_detail" */
 export type DailyDetailAvgOrderBy = {
   amount?: InputMaybe<OrderBy>;
@@ -2387,9 +1404,12 @@ export type DailyDetailBoolExp = {
   category?: InputMaybe<CategoryBoolExp>;
   categoryId?: InputMaybe<UuidComparisonExp>;
   date?: InputMaybe<DateComparisonExp>;
+  genre?: InputMaybe<GenreBoolExp>;
+  genreId?: InputMaybe<UuidComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<UuidComparisonExp>;
   id?: InputMaybe<UuidComparisonExp>;
+  iocomeType?: InputMaybe<IocomeTypeComparisonExp>;
   memo?: InputMaybe<StringComparisonExp>;
   user?: InputMaybe<UserBoolExp>;
   userId?: InputMaybe<UuidComparisonExp>;
@@ -2414,25 +1434,14 @@ export type DailyDetailInsertInput = {
   category?: InputMaybe<CategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["uuid"]>;
   date?: InputMaybe<Scalars["date"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
+  genre?: InputMaybe<GenreObjRelInsertInput>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
   memo?: InputMaybe<Scalars["String"]>;
   user?: InputMaybe<UserObjRelInsertInput>;
   userId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate max on columns */
-export type DailyDetailMaxFields = {
-  __typename?: "DailyDetailMaxFields";
-  accountId?: Maybe<Scalars["uuid"]>;
-  amount?: Maybe<Scalars["numeric"]>;
-  categoryId?: Maybe<Scalars["uuid"]>;
-  date?: Maybe<Scalars["date"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  memo?: Maybe<Scalars["String"]>;
-  userId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "daily_detail" */
@@ -2441,23 +1450,12 @@ export type DailyDetailMaxOrderBy = {
   amount?: InputMaybe<OrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   userId?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type DailyDetailMinFields = {
-  __typename?: "DailyDetailMinFields";
-  accountId?: Maybe<Scalars["uuid"]>;
-  amount?: Maybe<Scalars["numeric"]>;
-  categoryId?: Maybe<Scalars["uuid"]>;
-  date?: Maybe<Scalars["date"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  memo?: Maybe<Scalars["String"]>;
-  userId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "daily_detail" */
@@ -2466,8 +1464,10 @@ export type DailyDetailMinOrderBy = {
   amount?: InputMaybe<OrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   userId?: InputMaybe<OrderBy>;
 };
@@ -2496,9 +1496,12 @@ export type DailyDetailOrderBy = {
   category?: InputMaybe<CategoryOrderBy>;
   categoryId?: InputMaybe<OrderBy>;
   date?: InputMaybe<OrderBy>;
+  genre?: InputMaybe<GenreOrderBy>;
+  genreId?: InputMaybe<OrderBy>;
   group?: InputMaybe<GroupOrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   user?: InputMaybe<UserOrderBy>;
   userId?: InputMaybe<OrderBy>;
@@ -2520,9 +1523,13 @@ export enum DailyDetailSelectColumn {
   /** column name */
   Date = "date",
   /** column name */
+  GenreId = "genreId",
+  /** column name */
   GroupId = "groupId",
   /** column name */
   Id = "id",
+  /** column name */
+  IocomeType = "iocomeType",
   /** column name */
   Memo = "memo",
   /** column name */
@@ -2535,16 +1542,12 @@ export type DailyDetailSetInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
   categoryId?: InputMaybe<Scalars["uuid"]>;
   date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
   memo?: InputMaybe<Scalars["String"]>;
   userId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate stddev on columns */
-export type DailyDetailStddevFields = {
-  __typename?: "DailyDetailStddevFields";
-  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddev() on columns of table "daily_detail" */
@@ -2552,21 +1555,9 @@ export type DailyDetailStddevOrderBy = {
   amount?: InputMaybe<OrderBy>;
 };
 
-/** aggregate stddevPop on columns */
-export type DailyDetailStddevPopFields = {
-  __typename?: "DailyDetailStddevPopFields";
-  amount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddevPop() on columns of table "daily_detail" */
 export type DailyDetailStddevPopOrderBy = {
   amount?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type DailyDetailStddevSampFields = {
-  __typename?: "DailyDetailStddevSampFields";
-  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "daily_detail" */
@@ -2588,16 +1579,12 @@ export type DailyDetailStreamCursorValueInput = {
   amount?: InputMaybe<Scalars["numeric"]>;
   categoryId?: InputMaybe<Scalars["uuid"]>;
   date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
   memo?: InputMaybe<Scalars["String"]>;
   userId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate sum on columns */
-export type DailyDetailSumFields = {
-  __typename?: "DailyDetailSumFields";
-  amount?: Maybe<Scalars["numeric"]>;
 };
 
 /** order by sum() on columns of table "daily_detail" */
@@ -2616,9 +1603,13 @@ export enum DailyDetailUpdateColumn {
   /** column name */
   Date = "date",
   /** column name */
+  GenreId = "genreId",
+  /** column name */
   GroupId = "groupId",
   /** column name */
   Id = "id",
+  /** column name */
+  IocomeType = "iocomeType",
   /** column name */
   Memo = "memo",
   /** column name */
@@ -2634,32 +1625,14 @@ export type DailyDetailUpdates = {
   where: DailyDetailBoolExp;
 };
 
-/** aggregate varPop on columns */
-export type DailyDetailVarPopFields = {
-  __typename?: "DailyDetailVarPopFields";
-  amount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varPop() on columns of table "daily_detail" */
 export type DailyDetailVarPopOrderBy = {
   amount?: InputMaybe<OrderBy>;
 };
 
-/** aggregate varSamp on columns */
-export type DailyDetailVarSampFields = {
-  __typename?: "DailyDetailVarSampFields";
-  amount?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varSamp() on columns of table "daily_detail" */
 export type DailyDetailVarSampOrderBy = {
   amount?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type DailyDetailVarianceFields = {
-  __typename?: "DailyDetailVarianceFields";
-  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "daily_detail" */
@@ -2676,41 +1649,6 @@ export type DailyTotalView = {
   total?: Maybe<Scalars["numeric"]>;
 };
 
-/** aggregated selection of "daily_total_view" */
-export type DailyTotalViewAggregate = {
-  __typename?: "DailyTotalViewAggregate";
-  aggregate?: Maybe<DailyTotalViewAggregateFields>;
-  nodes: Array<DailyTotalView>;
-};
-
-/** aggregate fields of "daily_total_view" */
-export type DailyTotalViewAggregateFields = {
-  __typename?: "DailyTotalViewAggregateFields";
-  avg?: Maybe<DailyTotalViewAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<DailyTotalViewMaxFields>;
-  min?: Maybe<DailyTotalViewMinFields>;
-  stddev?: Maybe<DailyTotalViewStddevFields>;
-  stddevPop?: Maybe<DailyTotalViewStddevPopFields>;
-  stddevSamp?: Maybe<DailyTotalViewStddevSampFields>;
-  sum?: Maybe<DailyTotalViewSumFields>;
-  varPop?: Maybe<DailyTotalViewVarPopFields>;
-  varSamp?: Maybe<DailyTotalViewVarSampFields>;
-  variance?: Maybe<DailyTotalViewVarianceFields>;
-};
-
-/** aggregate fields of "daily_total_view" */
-export type DailyTotalViewAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<DailyTotalViewSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate avg on columns */
-export type DailyTotalViewAvgFields = {
-  __typename?: "DailyTotalViewAvgFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** Boolean expression to filter rows from the table "daily_total_view". All fields are combined with a logical 'AND'. */
 export type DailyTotalViewBoolExp = {
   _and?: InputMaybe<Array<DailyTotalViewBoolExp>>;
@@ -2720,24 +1658,6 @@ export type DailyTotalViewBoolExp = {
   groupId?: InputMaybe<UuidComparisonExp>;
   iocomeType?: InputMaybe<IocomeTypeComparisonExp>;
   total?: InputMaybe<NumericComparisonExp>;
-};
-
-/** aggregate max on columns */
-export type DailyTotalViewMaxFields = {
-  __typename?: "DailyTotalViewMaxFields";
-  date?: Maybe<Scalars["date"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
-  total?: Maybe<Scalars["numeric"]>;
-};
-
-/** aggregate min on columns */
-export type DailyTotalViewMinFields = {
-  __typename?: "DailyTotalViewMinFields";
-  date?: Maybe<Scalars["date"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
-  total?: Maybe<Scalars["numeric"]>;
 };
 
 /** Ordering options when selecting data from "daily_total_view". */
@@ -2760,24 +1680,6 @@ export enum DailyTotalViewSelectColumn {
   Total = "total",
 }
 
-/** aggregate stddev on columns */
-export type DailyTotalViewStddevFields = {
-  __typename?: "DailyTotalViewStddevFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevPop on columns */
-export type DailyTotalViewStddevPopFields = {
-  __typename?: "DailyTotalViewStddevPopFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevSamp on columns */
-export type DailyTotalViewStddevSampFields = {
-  __typename?: "DailyTotalViewStddevSampFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** Streaming cursor of the table "daily_total_view" */
 export type DailyTotalViewStreamCursorInput = {
   /** Stream column input with initial value */
@@ -2792,30 +1694,6 @@ export type DailyTotalViewStreamCursorValueInput = {
   groupId?: InputMaybe<Scalars["uuid"]>;
   iocomeType?: InputMaybe<Scalars["iocome_type"]>;
   total?: InputMaybe<Scalars["numeric"]>;
-};
-
-/** aggregate sum on columns */
-export type DailyTotalViewSumFields = {
-  __typename?: "DailyTotalViewSumFields";
-  total?: Maybe<Scalars["numeric"]>;
-};
-
-/** aggregate varPop on columns */
-export type DailyTotalViewVarPopFields = {
-  __typename?: "DailyTotalViewVarPopFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate varSamp on columns */
-export type DailyTotalViewVarSampFields = {
-  __typename?: "DailyTotalViewVarSampFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate variance on columns */
-export type DailyTotalViewVarianceFields = {
-  __typename?: "DailyTotalViewVarianceFields";
-  total?: Maybe<Scalars["Float"]>;
 };
 
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
@@ -2836,8 +1714,10 @@ export type Genre = {
   __typename?: "Genre";
   /** An array relationship */
   categories: Array<Category>;
-  /** An aggregate relationship */
-  categoriesAggregate: CategoryAggregate;
+  /** An array relationship */
+  creditCardDetails: Array<CreditCardDetail>;
+  /** An array relationship */
+  dailyDetails: Array<DailyDetail>;
   displayOrder: Scalars["Int"];
   genreId: Scalars["uuid"];
   genreName: Scalars["String"];
@@ -2859,47 +1739,21 @@ export type GenreCategoriesArgs = {
 };
 
 /** columns and relationships of "genre" */
-export type GenreCategoriesAggregateArgs = {
-  distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
+export type GenreCreditCardDetailsArgs = {
+  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CategoryOrderBy>>;
-  where?: InputMaybe<CategoryBoolExp>;
+  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
+  where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
-/** aggregated selection of "genre" */
-export type GenreAggregate = {
-  __typename?: "GenreAggregate";
-  aggregate?: Maybe<GenreAggregateFields>;
-  nodes: Array<Genre>;
-};
-
-export type GenreAggregateBoolExp = {
-  bool_and?: InputMaybe<GenreAggregateBoolExpBool_And>;
-  bool_or?: InputMaybe<GenreAggregateBoolExpBool_Or>;
-  count?: InputMaybe<GenreAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "genre" */
-export type GenreAggregateFields = {
-  __typename?: "GenreAggregateFields";
-  avg?: Maybe<GenreAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<GenreMaxFields>;
-  min?: Maybe<GenreMinFields>;
-  stddev?: Maybe<GenreStddevFields>;
-  stddevPop?: Maybe<GenreStddevPopFields>;
-  stddevSamp?: Maybe<GenreStddevSampFields>;
-  sum?: Maybe<GenreSumFields>;
-  varPop?: Maybe<GenreVarPopFields>;
-  varSamp?: Maybe<GenreVarSampFields>;
-  variance?: Maybe<GenreVarianceFields>;
-};
-
-/** aggregate fields of "genre" */
-export type GenreAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<GenreSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
+/** columns and relationships of "genre" */
+export type GenreDailyDetailsArgs = {
+  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
+  where?: InputMaybe<DailyDetailBoolExp>;
 };
 
 /** order by aggregate values of table "genre" */
@@ -2917,19 +1771,6 @@ export type GenreAggregateOrderBy = {
   variance?: InputMaybe<GenreVarianceOrderBy>;
 };
 
-/** input type for inserting array relation for remote table "genre" */
-export type GenreArrRelInsertInput = {
-  data: Array<GenreInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<GenreOnConflict>;
-};
-
-/** aggregate avg on columns */
-export type GenreAvgFields = {
-  __typename?: "GenreAvgFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by avg() on columns of table "genre" */
 export type GenreAvgOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
@@ -2941,7 +1782,8 @@ export type GenreBoolExp = {
   _not?: InputMaybe<GenreBoolExp>;
   _or?: InputMaybe<Array<GenreBoolExp>>;
   categories?: InputMaybe<CategoryBoolExp>;
-  categoriesAggregate?: InputMaybe<CategoryAggregateBoolExp>;
+  creditCardDetails?: InputMaybe<CreditCardDetailBoolExp>;
+  dailyDetails?: InputMaybe<DailyDetailBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   genreId?: InputMaybe<UuidComparisonExp>;
   genreName?: InputMaybe<StringComparisonExp>;
@@ -2966,25 +1808,15 @@ export type GenreIncInput = {
 /** input type for inserting data into table "genre" */
 export type GenreInsertInput = {
   categories?: InputMaybe<CategoryArrRelInsertInput>;
+  creditCardDetails?: InputMaybe<CreditCardDetailArrRelInsertInput>;
+  dailyDetails?: InputMaybe<DailyDetailArrRelInsertInput>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   genreId?: InputMaybe<Scalars["uuid"]>;
   genreName?: InputMaybe<Scalars["String"]>;
   genreType?: InputMaybe<Scalars["genre_type"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   iocomeType?: InputMaybe<Scalars["iocome_type"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate max on columns */
-export type GenreMaxFields = {
-  __typename?: "GenreMaxFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
-  genreId?: Maybe<Scalars["uuid"]>;
-  genreName?: Maybe<Scalars["String"]>;
-  genreType?: Maybe<Scalars["genre_type"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
 };
 
 /** order by max() on columns of table "genre" */
@@ -2995,17 +1827,6 @@ export type GenreMaxOrderBy = {
   genreType?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   iocomeType?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type GenreMinFields = {
-  __typename?: "GenreMinFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
-  genreId?: Maybe<Scalars["uuid"]>;
-  genreName?: Maybe<Scalars["String"]>;
-  genreType?: Maybe<Scalars["genre_type"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
 };
 
 /** order by min() on columns of table "genre" */
@@ -3044,6 +1865,8 @@ export type GenreOnConflict = {
 /** Ordering options when selecting data from "genre". */
 export type GenreOrderBy = {
   categoriesAggregate?: InputMaybe<CategoryAggregateOrderBy>;
+  creditCardDetailsAggregate?: InputMaybe<CreditCardDetailAggregateOrderBy>;
+  dailyDetailsAggregate?: InputMaybe<DailyDetailAggregateOrderBy>;
   displayOrder?: InputMaybe<OrderBy>;
   genreId?: InputMaybe<OrderBy>;
   genreName?: InputMaybe<OrderBy>;
@@ -3077,18 +1900,6 @@ export enum GenreSelectColumn {
   ValidFlag = "validFlag",
 }
 
-/** select "genreAggregateBoolExpBool_andArgumentsColumns" columns of table "genre" */
-export enum GenreSelectColumnGenreAggregateBoolExpBool_AndArgumentsColumns {
-  /** column name */
-  ValidFlag = "validFlag",
-}
-
-/** select "genreAggregateBoolExpBool_orArgumentsColumns" columns of table "genre" */
-export enum GenreSelectColumnGenreAggregateBoolExpBool_OrArgumentsColumns {
-  /** column name */
-  ValidFlag = "validFlag",
-}
-
 /** input type for updating data in table "genre" */
 export type GenreSetInput = {
   displayOrder?: InputMaybe<Scalars["Int"]>;
@@ -3100,32 +1911,14 @@ export type GenreSetInput = {
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
-/** aggregate stddev on columns */
-export type GenreStddevFields = {
-  __typename?: "GenreStddevFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddev() on columns of table "genre" */
 export type GenreStddevOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** aggregate stddevPop on columns */
-export type GenreStddevPopFields = {
-  __typename?: "GenreStddevPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddevPop() on columns of table "genre" */
 export type GenreStddevPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type GenreStddevSampFields = {
-  __typename?: "GenreStddevSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "genre" */
@@ -3150,12 +1943,6 @@ export type GenreStreamCursorValueInput = {
   groupId?: InputMaybe<Scalars["uuid"]>;
   iocomeType?: InputMaybe<Scalars["iocome_type"]>;
   validFlag?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate sum on columns */
-export type GenreSumFields = {
-  __typename?: "GenreSumFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
 };
 
 /** order by sum() on columns of table "genre" */
@@ -3203,32 +1990,14 @@ export type GenreUpdates = {
   where: GenreBoolExp;
 };
 
-/** aggregate varPop on columns */
-export type GenreVarPopFields = {
-  __typename?: "GenreVarPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varPop() on columns of table "genre" */
 export type GenreVarPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** aggregate varSamp on columns */
-export type GenreVarSampFields = {
-  __typename?: "GenreVarSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varSamp() on columns of table "genre" */
 export type GenreVarSampOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type GenreVarianceFields = {
-  __typename?: "GenreVarianceFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "genre" */
@@ -3241,68 +2010,40 @@ export type Group = {
   __typename?: "Group";
   /** An array relationship */
   accounts: Array<Account>;
-  /** An aggregate relationship */
-  accountsAggregate: AccountAggregate;
   /** An array relationship */
   affiliations: Array<Affiliation>;
-  /** An aggregate relationship */
-  affiliationsAggregate: AffiliationAggregate;
   /** An array relationship */
   categories: Array<Category>;
-  /** An aggregate relationship */
-  categoriesAggregate: CategoryAggregate;
   /** An array relationship */
   creditCardDetails: Array<CreditCardDetail>;
-  /** An aggregate relationship */
-  creditCardDetailsAggregate: CreditCardDetailAggregate;
-  /** An aggregate relationship */
-  creditCardSummariesAggregate: CreditCardSummaryAggregate;
   /** An array relationship */
   credit_card_summaries: Array<CreditCardSummary>;
-  /** An aggregate relationship */
-  dailyDetailsAggregate: DailyDetailAggregate;
   /** An array relationship */
   daily_details: Array<DailyDetail>;
   /** An array relationship */
   exchangeItems: Array<HelperKidsExchangeItem>;
-  /** An aggregate relationship */
-  exchangeItemsAggregate: HelperKidsExchangeItemAggregate;
   /** An array relationship */
   genres: Array<Genre>;
-  /** An aggregate relationship */
-  genresAggregate: GenreAggregate;
-  /** An aggregate relationship */
-  groupApplicationsAggregate: GroupApplicationAggregate;
   groupId: Scalars["uuid"];
   groupName: Scalars["String"];
   /** An array relationship */
   group_applications: Array<GroupApplication>;
   /** An array relationship */
   helpItems: Array<HelperKidsHelpItem>;
-  /** An aggregate relationship */
-  helpItemsAggregate: HelperKidsHelpItemAggregate;
   /** An array relationship */
   helpPointEarnedAchievements: Array<HelperKidsHelpPointEarnedAchievement>;
   /** An aggregate relationship */
   helpPointEarnedAchievementsAggregate: HelperKidsHelpPointEarnedAchievementAggregate;
   /** An array relationship */
   helpPointEarnedDetails: Array<HelperKidsHelpPointEarnedDetail>;
-  /** An aggregate relationship */
-  helpPointEarnedDetailsAggregate: HelperKidsHelpPointEarnedDetailAggregate;
   /** An array relationship */
   helpPointExchangedAchievements: Array<HelperKidsHelpPointExchangedAchievement>;
   /** An aggregate relationship */
   helpPointExchangedAchievementsAggregate: HelperKidsHelpPointExchangedAchievementAggregate;
   /** An array relationship */
   helperKids: Array<HelperKidsHelperKid>;
-  /** An aggregate relationship */
-  helperKidsAggregate: HelperKidsHelperKidAggregate;
-  /** An aggregate relationship */
-  importFileHistoriesAggregate: ImportFileHistoryAggregate;
   /** An array relationship */
   import_file_histories: Array<ImportFileHistory>;
-  /** An aggregate relationship */
-  summaryCategoryByGroupsAggregate: SummaryCategoryByGroupAggregate;
   /** An array relationship */
   summary_category_by_groups: Array<SummaryCategoryByGroup>;
   /** An object relationship */
@@ -3311,15 +2052,6 @@ export type Group = {
 
 /** columns and relationships of "group" */
 export type GroupAccountsArgs = {
-  distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<AccountOrderBy>>;
-  where?: InputMaybe<AccountBoolExp>;
-};
-
-/** columns and relationships of "group" */
-export type GroupAccountsAggregateArgs = {
   distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -3337,25 +2069,7 @@ export type GroupAffiliationsArgs = {
 };
 
 /** columns and relationships of "group" */
-export type GroupAffiliationsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
-  where?: InputMaybe<AffiliationBoolExp>;
-};
-
-/** columns and relationships of "group" */
 export type GroupCategoriesArgs = {
-  distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CategoryOrderBy>>;
-  where?: InputMaybe<CategoryBoolExp>;
-};
-
-/** columns and relationships of "group" */
-export type GroupCategoriesAggregateArgs = {
   distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -3373,39 +2087,12 @@ export type GroupCreditCardDetailsArgs = {
 };
 
 /** columns and relationships of "group" */
-export type GroupCreditCardDetailsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
-  where?: InputMaybe<CreditCardDetailBoolExp>;
-};
-
-/** columns and relationships of "group" */
-export type GroupCreditCardSummariesAggregateArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardSummaryOrderBy>>;
-  where?: InputMaybe<CreditCardSummaryBoolExp>;
-};
-
-/** columns and relationships of "group" */
 export type GroupCredit_Card_SummariesArgs = {
   distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardSummaryOrderBy>>;
   where?: InputMaybe<CreditCardSummaryBoolExp>;
-};
-
-/** columns and relationships of "group" */
-export type GroupDailyDetailsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
-  where?: InputMaybe<DailyDetailBoolExp>;
 };
 
 /** columns and relationships of "group" */
@@ -3427,39 +2114,12 @@ export type GroupExchangeItemsArgs = {
 };
 
 /** columns and relationships of "group" */
-export type GroupExchangeItemsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsExchangeItemSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsExchangeItemOrderBy>>;
-  where?: InputMaybe<HelperKidsExchangeItemBoolExp>;
-};
-
-/** columns and relationships of "group" */
 export type GroupGenresArgs = {
   distinctOn?: InputMaybe<Array<GenreSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GenreOrderBy>>;
   where?: InputMaybe<GenreBoolExp>;
-};
-
-/** columns and relationships of "group" */
-export type GroupGenresAggregateArgs = {
-  distinctOn?: InputMaybe<Array<GenreSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GenreOrderBy>>;
-  where?: InputMaybe<GenreBoolExp>;
-};
-
-/** columns and relationships of "group" */
-export type GroupGroupApplicationsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
-  where?: InputMaybe<GroupApplicationBoolExp>;
 };
 
 /** columns and relationships of "group" */
@@ -3473,15 +2133,6 @@ export type GroupGroup_ApplicationsArgs = {
 
 /** columns and relationships of "group" */
 export type GroupHelpItemsArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelpItemOrderBy>>;
-  where?: InputMaybe<HelperKidsHelpItemBoolExp>;
-};
-
-/** columns and relationships of "group" */
-export type GroupHelpItemsAggregateArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -3521,15 +2172,6 @@ export type GroupHelpPointEarnedDetailsArgs = {
 };
 
 /** columns and relationships of "group" */
-export type GroupHelpPointEarnedDetailsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
-  where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
-};
-
-/** columns and relationships of "group" */
 export type GroupHelpPointExchangedAchievementsArgs = {
   distinctOn?: InputMaybe<
     Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
@@ -3561,24 +2203,6 @@ export type GroupHelperKidsArgs = {
 };
 
 /** columns and relationships of "group" */
-export type GroupHelperKidsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelperKidSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelperKidOrderBy>>;
-  where?: InputMaybe<HelperKidsHelperKidBoolExp>;
-};
-
-/** columns and relationships of "group" */
-export type GroupImportFileHistoriesAggregateArgs = {
-  distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<ImportFileHistoryOrderBy>>;
-  where?: InputMaybe<ImportFileHistoryBoolExp>;
-};
-
-/** columns and relationships of "group" */
 export type GroupImport_File_HistoriesArgs = {
   distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -3588,42 +2212,12 @@ export type GroupImport_File_HistoriesArgs = {
 };
 
 /** columns and relationships of "group" */
-export type GroupSummaryCategoryByGroupsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByGroupOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
-};
-
-/** columns and relationships of "group" */
 export type GroupSummary_Category_By_GroupsArgs = {
   distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<SummaryCategoryByGroupOrderBy>>;
   where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
-};
-
-/** aggregated selection of "group" */
-export type GroupAggregate = {
-  __typename?: "GroupAggregate";
-  aggregate?: Maybe<GroupAggregateFields>;
-  nodes: Array<Group>;
-};
-
-/** aggregate fields of "group" */
-export type GroupAggregateFields = {
-  __typename?: "GroupAggregateFields";
-  count: Scalars["Int"];
-  max?: Maybe<GroupMaxFields>;
-  min?: Maybe<GroupMinFields>;
-};
-
-/** aggregate fields of "group" */
-export type GroupAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<GroupSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** columns and relationships of "group_application" */
@@ -3638,43 +2232,11 @@ export type GroupApplication = {
   groupId: Scalars["uuid"];
 };
 
-/** aggregated selection of "group_application" */
-export type GroupApplicationAggregate = {
-  __typename?: "GroupApplicationAggregate";
-  aggregate?: Maybe<GroupApplicationAggregateFields>;
-  nodes: Array<GroupApplication>;
-};
-
-export type GroupApplicationAggregateBoolExp = {
-  count?: InputMaybe<GroupApplicationAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "group_application" */
-export type GroupApplicationAggregateFields = {
-  __typename?: "GroupApplicationAggregateFields";
-  count: Scalars["Int"];
-  max?: Maybe<GroupApplicationMaxFields>;
-  min?: Maybe<GroupApplicationMinFields>;
-};
-
-/** aggregate fields of "group_application" */
-export type GroupApplicationAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
 /** order by aggregate values of table "group_application" */
 export type GroupApplicationAggregateOrderBy = {
   count?: InputMaybe<OrderBy>;
   max?: InputMaybe<GroupApplicationMaxOrderBy>;
   min?: InputMaybe<GroupApplicationMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "group_application" */
-export type GroupApplicationArrRelInsertInput = {
-  data: Array<GroupApplicationInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<GroupApplicationOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "group_application". All fields are combined with a logical 'AND'. */
@@ -3689,29 +2251,6 @@ export type GroupApplicationBoolExp = {
   groupId?: InputMaybe<UuidComparisonExp>;
 };
 
-/** unique or primary key constraints on table "group_application" */
-export enum GroupApplicationConstraint {
-  /** unique or primary key constraint on columns "group_application_id" */
-  GroupApplicationPkey = "group_application_pkey",
-}
-
-/** input type for inserting data into table "group_application" */
-export type GroupApplicationInsertInput = {
-  application?: InputMaybe<ApplicationObjRelInsertInput>;
-  applicationId?: InputMaybe<Scalars["uuid"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
-  groupApplicationId?: InputMaybe<Scalars["uuid"]>;
-  groupId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate max on columns */
-export type GroupApplicationMaxFields = {
-  __typename?: "GroupApplicationMaxFields";
-  applicationId?: Maybe<Scalars["uuid"]>;
-  groupApplicationId?: Maybe<Scalars["uuid"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-};
-
 /** order by max() on columns of table "group_application" */
 export type GroupApplicationMaxOrderBy = {
   applicationId?: InputMaybe<OrderBy>;
@@ -3719,35 +2258,11 @@ export type GroupApplicationMaxOrderBy = {
   groupId?: InputMaybe<OrderBy>;
 };
 
-/** aggregate min on columns */
-export type GroupApplicationMinFields = {
-  __typename?: "GroupApplicationMinFields";
-  applicationId?: Maybe<Scalars["uuid"]>;
-  groupApplicationId?: Maybe<Scalars["uuid"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-};
-
 /** order by min() on columns of table "group_application" */
 export type GroupApplicationMinOrderBy = {
   applicationId?: InputMaybe<OrderBy>;
   groupApplicationId?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
-};
-
-/** response of any mutation on the table "group_application" */
-export type GroupApplicationMutationResponse = {
-  __typename?: "GroupApplicationMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<GroupApplication>;
-};
-
-/** on_conflict condition type for table "group_application" */
-export type GroupApplicationOnConflict = {
-  constraint: GroupApplicationConstraint;
-  updateColumns?: Array<GroupApplicationUpdateColumn>;
-  where?: InputMaybe<GroupApplicationBoolExp>;
 };
 
 /** Ordering options when selecting data from "group_application". */
@@ -3759,11 +2274,6 @@ export type GroupApplicationOrderBy = {
   groupId?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: group_application */
-export type GroupApplicationPkColumnsInput = {
-  groupApplicationId: Scalars["uuid"];
-};
-
 /** select columns of table "group_application" */
 export enum GroupApplicationSelectColumn {
   /** column name */
@@ -3773,13 +2283,6 @@ export enum GroupApplicationSelectColumn {
   /** column name */
   GroupId = "groupId",
 }
-
-/** input type for updating data in table "group_application" */
-export type GroupApplicationSetInput = {
-  applicationId?: InputMaybe<Scalars["uuid"]>;
-  groupApplicationId?: InputMaybe<Scalars["uuid"]>;
-  groupId?: InputMaybe<Scalars["uuid"]>;
-};
 
 /** Streaming cursor of the table "group_application" */
 export type GroupApplicationStreamCursorInput = {
@@ -3796,129 +2299,32 @@ export type GroupApplicationStreamCursorValueInput = {
   groupId?: InputMaybe<Scalars["uuid"]>;
 };
 
-/** update columns of table "group_application" */
-export enum GroupApplicationUpdateColumn {
-  /** column name */
-  ApplicationId = "applicationId",
-  /** column name */
-  GroupApplicationId = "groupApplicationId",
-  /** column name */
-  GroupId = "groupId",
-}
-
-export type GroupApplicationUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<GroupApplicationSetInput>;
-  /** filter the rows which have to be updated */
-  where: GroupApplicationBoolExp;
-};
-
 /** Boolean expression to filter rows from the table "group". All fields are combined with a logical 'AND'. */
 export type GroupBoolExp = {
   _and?: InputMaybe<Array<GroupBoolExp>>;
   _not?: InputMaybe<GroupBoolExp>;
   _or?: InputMaybe<Array<GroupBoolExp>>;
   accounts?: InputMaybe<AccountBoolExp>;
-  accountsAggregate?: InputMaybe<AccountAggregateBoolExp>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
-  affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
   categories?: InputMaybe<CategoryBoolExp>;
-  categoriesAggregate?: InputMaybe<CategoryAggregateBoolExp>;
   creditCardDetails?: InputMaybe<CreditCardDetailBoolExp>;
-  creditCardDetailsAggregate?: InputMaybe<CreditCardDetailAggregateBoolExp>;
   credit_card_summaries?: InputMaybe<CreditCardSummaryBoolExp>;
-  credit_card_summariesAggregate?: InputMaybe<CreditCardSummaryAggregateBoolExp>;
   daily_details?: InputMaybe<DailyDetailBoolExp>;
-  daily_detailsAggregate?: InputMaybe<DailyDetailAggregateBoolExp>;
   exchangeItems?: InputMaybe<HelperKidsExchangeItemBoolExp>;
-  exchangeItemsAggregate?: InputMaybe<HelperKidsExchangeItemAggregateBoolExp>;
   genres?: InputMaybe<GenreBoolExp>;
-  genresAggregate?: InputMaybe<GenreAggregateBoolExp>;
   groupId?: InputMaybe<UuidComparisonExp>;
   groupName?: InputMaybe<StringComparisonExp>;
   group_applications?: InputMaybe<GroupApplicationBoolExp>;
-  group_applicationsAggregate?: InputMaybe<GroupApplicationAggregateBoolExp>;
   helpItems?: InputMaybe<HelperKidsHelpItemBoolExp>;
-  helpItemsAggregate?: InputMaybe<HelperKidsHelpItemAggregateBoolExp>;
   helpPointEarnedAchievements?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
   helpPointEarnedAchievementsAggregate?: InputMaybe<HelperKidsHelpPointEarnedAchievementAggregateBoolExp>;
   helpPointEarnedDetails?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
-  helpPointEarnedDetailsAggregate?: InputMaybe<HelperKidsHelpPointEarnedDetailAggregateBoolExp>;
   helpPointExchangedAchievements?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
   helpPointExchangedAchievementsAggregate?: InputMaybe<HelperKidsHelpPointExchangedAchievementAggregateBoolExp>;
   helperKids?: InputMaybe<HelperKidsHelperKidBoolExp>;
-  helperKidsAggregate?: InputMaybe<HelperKidsHelperKidAggregateBoolExp>;
   import_file_histories?: InputMaybe<ImportFileHistoryBoolExp>;
-  import_file_historiesAggregate?: InputMaybe<ImportFileHistoryAggregateBoolExp>;
   summary_category_by_groups?: InputMaybe<SummaryCategoryByGroupBoolExp>;
-  summary_category_by_groupsAggregate?: InputMaybe<SummaryCategoryByGroupAggregateBoolExp>;
   transferCategory?: InputMaybe<TransferCategoryBoolExp>;
-};
-
-/** unique or primary key constraints on table "group" */
-export enum GroupConstraint {
-  /** unique or primary key constraint on columns "group_id" */
-  GroupPkey = "group_pkey",
-}
-
-/** input type for inserting data into table "group" */
-export type GroupInsertInput = {
-  accounts?: InputMaybe<AccountArrRelInsertInput>;
-  affiliations?: InputMaybe<AffiliationArrRelInsertInput>;
-  categories?: InputMaybe<CategoryArrRelInsertInput>;
-  creditCardDetails?: InputMaybe<CreditCardDetailArrRelInsertInput>;
-  credit_card_summaries?: InputMaybe<CreditCardSummaryArrRelInsertInput>;
-  daily_details?: InputMaybe<DailyDetailArrRelInsertInput>;
-  exchangeItems?: InputMaybe<HelperKidsExchangeItemArrRelInsertInput>;
-  genres?: InputMaybe<GenreArrRelInsertInput>;
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  groupName?: InputMaybe<Scalars["String"]>;
-  group_applications?: InputMaybe<GroupApplicationArrRelInsertInput>;
-  helpItems?: InputMaybe<HelperKidsHelpItemArrRelInsertInput>;
-  helpPointEarnedAchievements?: InputMaybe<HelperKidsHelpPointEarnedAchievementArrRelInsertInput>;
-  helpPointEarnedDetails?: InputMaybe<HelperKidsHelpPointEarnedDetailArrRelInsertInput>;
-  helpPointExchangedAchievements?: InputMaybe<HelperKidsHelpPointExchangedAchievementArrRelInsertInput>;
-  helperKids?: InputMaybe<HelperKidsHelperKidArrRelInsertInput>;
-  import_file_histories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
-  summary_category_by_groups?: InputMaybe<SummaryCategoryByGroupArrRelInsertInput>;
-  transferCategory?: InputMaybe<TransferCategoryObjRelInsertInput>;
-};
-
-/** aggregate max on columns */
-export type GroupMaxFields = {
-  __typename?: "GroupMaxFields";
-  groupId?: Maybe<Scalars["uuid"]>;
-  groupName?: Maybe<Scalars["String"]>;
-};
-
-/** aggregate min on columns */
-export type GroupMinFields = {
-  __typename?: "GroupMinFields";
-  groupId?: Maybe<Scalars["uuid"]>;
-  groupName?: Maybe<Scalars["String"]>;
-};
-
-/** response of any mutation on the table "group" */
-export type GroupMutationResponse = {
-  __typename?: "GroupMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<Group>;
-};
-
-/** input type for inserting object relation for remote table "group" */
-export type GroupObjRelInsertInput = {
-  data: GroupInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<GroupOnConflict>;
-};
-
-/** on_conflict condition type for table "group" */
-export type GroupOnConflict = {
-  constraint: GroupConstraint;
-  updateColumns?: Array<GroupUpdateColumn>;
-  where?: InputMaybe<GroupBoolExp>;
 };
 
 /** Ordering options when selecting data from "group". */
@@ -3944,18 +2350,11 @@ export type GroupOrderBy = {
   transferCategory?: InputMaybe<TransferCategoryOrderBy>;
 };
 
-/** primary key columns input for table: group */
-export type GroupPkColumnsInput = {
-  groupId: Scalars["uuid"];
-};
-
 /** columns and relationships of "group_role" */
 export type GroupRole = {
   __typename?: "GroupRole";
   /** An array relationship */
   affiliations: Array<Affiliation>;
-  /** An aggregate relationship */
-  affiliationsAggregate: AffiliationAggregate;
   groupRoleId: Scalars["uuid"];
   role: Scalars["String"];
 };
@@ -3969,95 +2368,14 @@ export type GroupRoleAffiliationsArgs = {
   where?: InputMaybe<AffiliationBoolExp>;
 };
 
-/** columns and relationships of "group_role" */
-export type GroupRoleAffiliationsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
-  where?: InputMaybe<AffiliationBoolExp>;
-};
-
-/** aggregated selection of "group_role" */
-export type GroupRoleAggregate = {
-  __typename?: "GroupRoleAggregate";
-  aggregate?: Maybe<GroupRoleAggregateFields>;
-  nodes: Array<GroupRole>;
-};
-
-/** aggregate fields of "group_role" */
-export type GroupRoleAggregateFields = {
-  __typename?: "GroupRoleAggregateFields";
-  count: Scalars["Int"];
-  max?: Maybe<GroupRoleMaxFields>;
-  min?: Maybe<GroupRoleMinFields>;
-};
-
-/** aggregate fields of "group_role" */
-export type GroupRoleAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<GroupRoleSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
 /** Boolean expression to filter rows from the table "group_role". All fields are combined with a logical 'AND'. */
 export type GroupRoleBoolExp = {
   _and?: InputMaybe<Array<GroupRoleBoolExp>>;
   _not?: InputMaybe<GroupRoleBoolExp>;
   _or?: InputMaybe<Array<GroupRoleBoolExp>>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
-  affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
   groupRoleId?: InputMaybe<UuidComparisonExp>;
   role?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "group_role" */
-export enum GroupRoleConstraint {
-  /** unique or primary key constraint on columns "group_role_id" */
-  GroupRolePkey = "group_role_pkey",
-}
-
-/** input type for inserting data into table "group_role" */
-export type GroupRoleInsertInput = {
-  affiliations?: InputMaybe<AffiliationArrRelInsertInput>;
-  groupRoleId?: InputMaybe<Scalars["uuid"]>;
-  role?: InputMaybe<Scalars["String"]>;
-};
-
-/** aggregate max on columns */
-export type GroupRoleMaxFields = {
-  __typename?: "GroupRoleMaxFields";
-  groupRoleId?: Maybe<Scalars["uuid"]>;
-  role?: Maybe<Scalars["String"]>;
-};
-
-/** aggregate min on columns */
-export type GroupRoleMinFields = {
-  __typename?: "GroupRoleMinFields";
-  groupRoleId?: Maybe<Scalars["uuid"]>;
-  role?: Maybe<Scalars["String"]>;
-};
-
-/** response of any mutation on the table "group_role" */
-export type GroupRoleMutationResponse = {
-  __typename?: "GroupRoleMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<GroupRole>;
-};
-
-/** input type for inserting object relation for remote table "group_role" */
-export type GroupRoleObjRelInsertInput = {
-  data: GroupRoleInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<GroupRoleOnConflict>;
-};
-
-/** on_conflict condition type for table "group_role" */
-export type GroupRoleOnConflict = {
-  constraint: GroupRoleConstraint;
-  updateColumns?: Array<GroupRoleUpdateColumn>;
-  where?: InputMaybe<GroupRoleBoolExp>;
 };
 
 /** Ordering options when selecting data from "group_role". */
@@ -4067,11 +2385,6 @@ export type GroupRoleOrderBy = {
   role?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: group_role */
-export type GroupRolePkColumnsInput = {
-  groupRoleId: Scalars["uuid"];
-};
-
 /** select columns of table "group_role" */
 export enum GroupRoleSelectColumn {
   /** column name */
@@ -4079,12 +2392,6 @@ export enum GroupRoleSelectColumn {
   /** column name */
   Role = "role",
 }
-
-/** input type for updating data in table "group_role" */
-export type GroupRoleSetInput = {
-  groupRoleId?: InputMaybe<Scalars["uuid"]>;
-  role?: InputMaybe<Scalars["String"]>;
-};
 
 /** Streaming cursor of the table "group_role" */
 export type GroupRoleStreamCursorInput = {
@@ -4100,21 +2407,6 @@ export type GroupRoleStreamCursorValueInput = {
   role?: InputMaybe<Scalars["String"]>;
 };
 
-/** update columns of table "group_role" */
-export enum GroupRoleUpdateColumn {
-  /** column name */
-  GroupRoleId = "groupRoleId",
-  /** column name */
-  Role = "role",
-}
-
-export type GroupRoleUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<GroupRoleSetInput>;
-  /** filter the rows which have to be updated */
-  where: GroupRoleBoolExp;
-};
-
 /** select columns of table "group" */
 export enum GroupSelectColumn {
   /** column name */
@@ -4122,12 +2414,6 @@ export enum GroupSelectColumn {
   /** column name */
   GroupName = "groupName",
 }
-
-/** input type for updating data in table "group" */
-export type GroupSetInput = {
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  groupName?: InputMaybe<Scalars["String"]>;
-};
 
 /** Streaming cursor of the table "group" */
 export type GroupStreamCursorInput = {
@@ -4141,21 +2427,6 @@ export type GroupStreamCursorInput = {
 export type GroupStreamCursorValueInput = {
   groupId?: InputMaybe<Scalars["uuid"]>;
   groupName?: InputMaybe<Scalars["String"]>;
-};
-
-/** update columns of table "group" */
-export enum GroupUpdateColumn {
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  GroupName = "groupName",
-}
-
-export type GroupUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<GroupSetInput>;
-  /** filter the rows which have to be updated */
-  where: GroupBoolExp;
 };
 
 /** 交換品マスタ */
@@ -4202,39 +2473,6 @@ export type HelperKidsExchangeItemHelpPointExchangedAchievementsAggregateArgs =
     where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
   };
 
-/** aggregated selection of "helper_kids.exchange_item" */
-export type HelperKidsExchangeItemAggregate = {
-  __typename?: "HelperKidsExchangeItemAggregate";
-  aggregate?: Maybe<HelperKidsExchangeItemAggregateFields>;
-  nodes: Array<HelperKidsExchangeItem>;
-};
-
-export type HelperKidsExchangeItemAggregateBoolExp = {
-  count?: InputMaybe<HelperKidsExchangeItemAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "helper_kids.exchange_item" */
-export type HelperKidsExchangeItemAggregateFields = {
-  __typename?: "HelperKidsExchangeItemAggregateFields";
-  avg?: Maybe<HelperKidsExchangeItemAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<HelperKidsExchangeItemMaxFields>;
-  min?: Maybe<HelperKidsExchangeItemMinFields>;
-  stddev?: Maybe<HelperKidsExchangeItemStddevFields>;
-  stddevPop?: Maybe<HelperKidsExchangeItemStddevPopFields>;
-  stddevSamp?: Maybe<HelperKidsExchangeItemStddevSampFields>;
-  sum?: Maybe<HelperKidsExchangeItemSumFields>;
-  varPop?: Maybe<HelperKidsExchangeItemVarPopFields>;
-  varSamp?: Maybe<HelperKidsExchangeItemVarSampFields>;
-  variance?: Maybe<HelperKidsExchangeItemVarianceFields>;
-};
-
-/** aggregate fields of "helper_kids.exchange_item" */
-export type HelperKidsExchangeItemAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<HelperKidsExchangeItemSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
 /** order by aggregate values of table "helper_kids.exchange_item" */
 export type HelperKidsExchangeItemAggregateOrderBy = {
   avg?: InputMaybe<HelperKidsExchangeItemAvgOrderBy>;
@@ -4248,20 +2486,6 @@ export type HelperKidsExchangeItemAggregateOrderBy = {
   varPop?: InputMaybe<HelperKidsExchangeItemVarPopOrderBy>;
   varSamp?: InputMaybe<HelperKidsExchangeItemVarSampOrderBy>;
   variance?: InputMaybe<HelperKidsExchangeItemVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "helper_kids.exchange_item" */
-export type HelperKidsExchangeItemArrRelInsertInput = {
-  data: Array<HelperKidsExchangeItemInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HelperKidsExchangeItemOnConflict>;
-};
-
-/** aggregate avg on columns */
-export type HelperKidsExchangeItemAvgFields = {
-  __typename?: "HelperKidsExchangeItemAvgFields";
-  /** 交換ポイント */
-  point?: Maybe<Scalars["Float"]>;
 };
 
 /** order by avg() on columns of table "helper_kids.exchange_item" */
@@ -4285,49 +2509,6 @@ export type HelperKidsExchangeItemBoolExp = {
   point?: InputMaybe<IntComparisonExp>;
 };
 
-/** unique or primary key constraints on table "helper_kids.exchange_item" */
-export enum HelperKidsExchangeItemConstraint {
-  /** unique or primary key constraint on columns "exchange_item_id" */
-  ExchangeItemPkey = "exchange_item_pkey",
-}
-
-/** input type for incrementing numeric columns in table "helper_kids.exchange_item" */
-export type HelperKidsExchangeItemIncInput = {
-  /** 交換ポイント */
-  point?: InputMaybe<Scalars["Int"]>;
-};
-
-/** input type for inserting data into table "helper_kids.exchange_item" */
-export type HelperKidsExchangeItemInsertInput = {
-  /** ID */
-  exchangeItemId?: InputMaybe<Scalars["uuid"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
-  /** グループID */
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  helpPointExchangedAchievements?: InputMaybe<HelperKidsHelpPointExchangedAchievementArrRelInsertInput>;
-  /** メモ */
-  memo?: InputMaybe<Scalars["String"]>;
-  /** 品名 */
-  name?: InputMaybe<Scalars["String"]>;
-  /** 交換ポイント */
-  point?: InputMaybe<Scalars["Int"]>;
-};
-
-/** aggregate max on columns */
-export type HelperKidsExchangeItemMaxFields = {
-  __typename?: "HelperKidsExchangeItemMaxFields";
-  /** ID */
-  exchangeItemId?: Maybe<Scalars["uuid"]>;
-  /** グループID */
-  groupId?: Maybe<Scalars["uuid"]>;
-  /** メモ */
-  memo?: Maybe<Scalars["String"]>;
-  /** 品名 */
-  name?: Maybe<Scalars["String"]>;
-  /** 交換ポイント */
-  point?: Maybe<Scalars["Int"]>;
-};
-
 /** order by max() on columns of table "helper_kids.exchange_item" */
 export type HelperKidsExchangeItemMaxOrderBy = {
   /** ID */
@@ -4340,21 +2521,6 @@ export type HelperKidsExchangeItemMaxOrderBy = {
   name?: InputMaybe<OrderBy>;
   /** 交換ポイント */
   point?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type HelperKidsExchangeItemMinFields = {
-  __typename?: "HelperKidsExchangeItemMinFields";
-  /** ID */
-  exchangeItemId?: Maybe<Scalars["uuid"]>;
-  /** グループID */
-  groupId?: Maybe<Scalars["uuid"]>;
-  /** メモ */
-  memo?: Maybe<Scalars["String"]>;
-  /** 品名 */
-  name?: Maybe<Scalars["String"]>;
-  /** 交換ポイント */
-  point?: Maybe<Scalars["Int"]>;
 };
 
 /** order by min() on columns of table "helper_kids.exchange_item" */
@@ -4371,29 +2537,6 @@ export type HelperKidsExchangeItemMinOrderBy = {
   point?: InputMaybe<OrderBy>;
 };
 
-/** response of any mutation on the table "helper_kids.exchange_item" */
-export type HelperKidsExchangeItemMutationResponse = {
-  __typename?: "HelperKidsExchangeItemMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<HelperKidsExchangeItem>;
-};
-
-/** input type for inserting object relation for remote table "helper_kids.exchange_item" */
-export type HelperKidsExchangeItemObjRelInsertInput = {
-  data: HelperKidsExchangeItemInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<HelperKidsExchangeItemOnConflict>;
-};
-
-/** on_conflict condition type for table "helper_kids.exchange_item" */
-export type HelperKidsExchangeItemOnConflict = {
-  constraint: HelperKidsExchangeItemConstraint;
-  updateColumns?: Array<HelperKidsExchangeItemUpdateColumn>;
-  where?: InputMaybe<HelperKidsExchangeItemBoolExp>;
-};
-
 /** Ordering options when selecting data from "helper_kids.exchange_item". */
 export type HelperKidsExchangeItemOrderBy = {
   exchangeItemId?: InputMaybe<OrderBy>;
@@ -4403,12 +2546,6 @@ export type HelperKidsExchangeItemOrderBy = {
   memo?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
   point?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: helper_kids.exchange_item */
-export type HelperKidsExchangeItemPkColumnsInput = {
-  /** ID */
-  exchangeItemId: Scalars["uuid"];
 };
 
 /** select columns of table "helper_kids.exchange_item" */
@@ -4425,51 +2562,16 @@ export enum HelperKidsExchangeItemSelectColumn {
   Point = "point",
 }
 
-/** input type for updating data in table "helper_kids.exchange_item" */
-export type HelperKidsExchangeItemSetInput = {
-  /** ID */
-  exchangeItemId?: InputMaybe<Scalars["uuid"]>;
-  /** グループID */
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  /** メモ */
-  memo?: InputMaybe<Scalars["String"]>;
-  /** 品名 */
-  name?: InputMaybe<Scalars["String"]>;
-  /** 交換ポイント */
-  point?: InputMaybe<Scalars["Int"]>;
-};
-
-/** aggregate stddev on columns */
-export type HelperKidsExchangeItemStddevFields = {
-  __typename?: "HelperKidsExchangeItemStddevFields";
-  /** 交換ポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddev() on columns of table "helper_kids.exchange_item" */
 export type HelperKidsExchangeItemStddevOrderBy = {
   /** 交換ポイント */
   point?: InputMaybe<OrderBy>;
 };
 
-/** aggregate stddevPop on columns */
-export type HelperKidsExchangeItemStddevPopFields = {
-  __typename?: "HelperKidsExchangeItemStddevPopFields";
-  /** 交換ポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddevPop() on columns of table "helper_kids.exchange_item" */
 export type HelperKidsExchangeItemStddevPopOrderBy = {
   /** 交換ポイント */
   point?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type HelperKidsExchangeItemStddevSampFields = {
-  __typename?: "HelperKidsExchangeItemStddevSampFields";
-  /** 交換ポイント */
-  point?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "helper_kids.exchange_item" */
@@ -4500,47 +2602,10 @@ export type HelperKidsExchangeItemStreamCursorValueInput = {
   point?: InputMaybe<Scalars["Int"]>;
 };
 
-/** aggregate sum on columns */
-export type HelperKidsExchangeItemSumFields = {
-  __typename?: "HelperKidsExchangeItemSumFields";
-  /** 交換ポイント */
-  point?: Maybe<Scalars["Int"]>;
-};
-
 /** order by sum() on columns of table "helper_kids.exchange_item" */
 export type HelperKidsExchangeItemSumOrderBy = {
   /** 交換ポイント */
   point?: InputMaybe<OrderBy>;
-};
-
-/** update columns of table "helper_kids.exchange_item" */
-export enum HelperKidsExchangeItemUpdateColumn {
-  /** column name */
-  ExchangeItemId = "exchangeItemId",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  Memo = "memo",
-  /** column name */
-  Name = "name",
-  /** column name */
-  Point = "point",
-}
-
-export type HelperKidsExchangeItemUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<HelperKidsExchangeItemIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<HelperKidsExchangeItemSetInput>;
-  /** filter the rows which have to be updated */
-  where: HelperKidsExchangeItemBoolExp;
-};
-
-/** aggregate varPop on columns */
-export type HelperKidsExchangeItemVarPopFields = {
-  __typename?: "HelperKidsExchangeItemVarPopFields";
-  /** 交換ポイント */
-  point?: Maybe<Scalars["Float"]>;
 };
 
 /** order by varPop() on columns of table "helper_kids.exchange_item" */
@@ -4549,24 +2614,10 @@ export type HelperKidsExchangeItemVarPopOrderBy = {
   point?: InputMaybe<OrderBy>;
 };
 
-/** aggregate varSamp on columns */
-export type HelperKidsExchangeItemVarSampFields = {
-  __typename?: "HelperKidsExchangeItemVarSampFields";
-  /** 交換ポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varSamp() on columns of table "helper_kids.exchange_item" */
 export type HelperKidsExchangeItemVarSampOrderBy = {
   /** 交換ポイント */
   point?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type HelperKidsExchangeItemVarianceFields = {
-  __typename?: "HelperKidsExchangeItemVarianceFields";
-  /** 交換ポイント */
-  point?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "helper_kids.exchange_item" */
@@ -4586,8 +2637,6 @@ export type HelperKidsHelpItem = {
   helpItemId: Scalars["uuid"];
   /** An array relationship */
   helpPointEarnedDetails: Array<HelperKidsHelpPointEarnedDetail>;
-  /** An aggregate relationship */
-  helpPointEarnedDetailsAggregate: HelperKidsHelpPointEarnedDetailAggregate;
   /** メモ */
   memo?: Maybe<Scalars["String"]>;
   /** 項目名 */
@@ -4605,48 +2654,6 @@ export type HelperKidsHelpItemHelpPointEarnedDetailsArgs = {
   where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
 };
 
-/** お手伝い項目マスタ */
-export type HelperKidsHelpItemHelpPointEarnedDetailsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
-  where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
-};
-
-/** aggregated selection of "helper_kids.help_item" */
-export type HelperKidsHelpItemAggregate = {
-  __typename?: "HelperKidsHelpItemAggregate";
-  aggregate?: Maybe<HelperKidsHelpItemAggregateFields>;
-  nodes: Array<HelperKidsHelpItem>;
-};
-
-export type HelperKidsHelpItemAggregateBoolExp = {
-  count?: InputMaybe<HelperKidsHelpItemAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "helper_kids.help_item" */
-export type HelperKidsHelpItemAggregateFields = {
-  __typename?: "HelperKidsHelpItemAggregateFields";
-  avg?: Maybe<HelperKidsHelpItemAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<HelperKidsHelpItemMaxFields>;
-  min?: Maybe<HelperKidsHelpItemMinFields>;
-  stddev?: Maybe<HelperKidsHelpItemStddevFields>;
-  stddevPop?: Maybe<HelperKidsHelpItemStddevPopFields>;
-  stddevSamp?: Maybe<HelperKidsHelpItemStddevSampFields>;
-  sum?: Maybe<HelperKidsHelpItemSumFields>;
-  varPop?: Maybe<HelperKidsHelpItemVarPopFields>;
-  varSamp?: Maybe<HelperKidsHelpItemVarSampFields>;
-  variance?: Maybe<HelperKidsHelpItemVarianceFields>;
-};
-
-/** aggregate fields of "helper_kids.help_item" */
-export type HelperKidsHelpItemAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
 /** order by aggregate values of table "helper_kids.help_item" */
 export type HelperKidsHelpItemAggregateOrderBy = {
   avg?: InputMaybe<HelperKidsHelpItemAvgOrderBy>;
@@ -4660,20 +2667,6 @@ export type HelperKidsHelpItemAggregateOrderBy = {
   varPop?: InputMaybe<HelperKidsHelpItemVarPopOrderBy>;
   varSamp?: InputMaybe<HelperKidsHelpItemVarSampOrderBy>;
   variance?: InputMaybe<HelperKidsHelpItemVarianceOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "helper_kids.help_item" */
-export type HelperKidsHelpItemArrRelInsertInput = {
-  data: Array<HelperKidsHelpItemInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HelperKidsHelpItemOnConflict>;
-};
-
-/** aggregate avg on columns */
-export type HelperKidsHelpItemAvgFields = {
-  __typename?: "HelperKidsHelpItemAvgFields";
-  /** お手伝いポイント */
-  point?: Maybe<Scalars["Float"]>;
 };
 
 /** order by avg() on columns of table "helper_kids.help_item" */
@@ -4691,53 +2684,9 @@ export type HelperKidsHelpItemBoolExp = {
   groupId?: InputMaybe<UuidComparisonExp>;
   helpItemId?: InputMaybe<UuidComparisonExp>;
   helpPointEarnedDetails?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
-  helpPointEarnedDetailsAggregate?: InputMaybe<HelperKidsHelpPointEarnedDetailAggregateBoolExp>;
   memo?: InputMaybe<StringComparisonExp>;
   name?: InputMaybe<StringComparisonExp>;
   point?: InputMaybe<IntComparisonExp>;
-};
-
-/** unique or primary key constraints on table "helper_kids.help_item" */
-export enum HelperKidsHelpItemConstraint {
-  /** unique or primary key constraint on columns "help_item_id" */
-  HelpItemPkey = "help_item_pkey",
-}
-
-/** input type for incrementing numeric columns in table "helper_kids.help_item" */
-export type HelperKidsHelpItemIncInput = {
-  /** お手伝いポイント */
-  point?: InputMaybe<Scalars["Int"]>;
-};
-
-/** input type for inserting data into table "helper_kids.help_item" */
-export type HelperKidsHelpItemInsertInput = {
-  group?: InputMaybe<GroupObjRelInsertInput>;
-  /** グループID */
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  /** ID */
-  helpItemId?: InputMaybe<Scalars["uuid"]>;
-  helpPointEarnedDetails?: InputMaybe<HelperKidsHelpPointEarnedDetailArrRelInsertInput>;
-  /** メモ */
-  memo?: InputMaybe<Scalars["String"]>;
-  /** 項目名 */
-  name?: InputMaybe<Scalars["String"]>;
-  /** お手伝いポイント */
-  point?: InputMaybe<Scalars["Int"]>;
-};
-
-/** aggregate max on columns */
-export type HelperKidsHelpItemMaxFields = {
-  __typename?: "HelperKidsHelpItemMaxFields";
-  /** グループID */
-  groupId?: Maybe<Scalars["uuid"]>;
-  /** ID */
-  helpItemId?: Maybe<Scalars["uuid"]>;
-  /** メモ */
-  memo?: Maybe<Scalars["String"]>;
-  /** 項目名 */
-  name?: Maybe<Scalars["String"]>;
-  /** お手伝いポイント */
-  point?: Maybe<Scalars["Int"]>;
 };
 
 /** order by max() on columns of table "helper_kids.help_item" */
@@ -4754,21 +2703,6 @@ export type HelperKidsHelpItemMaxOrderBy = {
   point?: InputMaybe<OrderBy>;
 };
 
-/** aggregate min on columns */
-export type HelperKidsHelpItemMinFields = {
-  __typename?: "HelperKidsHelpItemMinFields";
-  /** グループID */
-  groupId?: Maybe<Scalars["uuid"]>;
-  /** ID */
-  helpItemId?: Maybe<Scalars["uuid"]>;
-  /** メモ */
-  memo?: Maybe<Scalars["String"]>;
-  /** 項目名 */
-  name?: Maybe<Scalars["String"]>;
-  /** お手伝いポイント */
-  point?: Maybe<Scalars["Int"]>;
-};
-
 /** order by min() on columns of table "helper_kids.help_item" */
 export type HelperKidsHelpItemMinOrderBy = {
   /** グループID */
@@ -4783,29 +2717,6 @@ export type HelperKidsHelpItemMinOrderBy = {
   point?: InputMaybe<OrderBy>;
 };
 
-/** response of any mutation on the table "helper_kids.help_item" */
-export type HelperKidsHelpItemMutationResponse = {
-  __typename?: "HelperKidsHelpItemMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<HelperKidsHelpItem>;
-};
-
-/** input type for inserting object relation for remote table "helper_kids.help_item" */
-export type HelperKidsHelpItemObjRelInsertInput = {
-  data: HelperKidsHelpItemInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<HelperKidsHelpItemOnConflict>;
-};
-
-/** on_conflict condition type for table "helper_kids.help_item" */
-export type HelperKidsHelpItemOnConflict = {
-  constraint: HelperKidsHelpItemConstraint;
-  updateColumns?: Array<HelperKidsHelpItemUpdateColumn>;
-  where?: InputMaybe<HelperKidsHelpItemBoolExp>;
-};
-
 /** Ordering options when selecting data from "helper_kids.help_item". */
 export type HelperKidsHelpItemOrderBy = {
   group?: InputMaybe<GroupOrderBy>;
@@ -4815,12 +2726,6 @@ export type HelperKidsHelpItemOrderBy = {
   memo?: InputMaybe<OrderBy>;
   name?: InputMaybe<OrderBy>;
   point?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: helper_kids.help_item */
-export type HelperKidsHelpItemPkColumnsInput = {
-  /** ID */
-  helpItemId: Scalars["uuid"];
 };
 
 /** select columns of table "helper_kids.help_item" */
@@ -4837,51 +2742,16 @@ export enum HelperKidsHelpItemSelectColumn {
   Point = "point",
 }
 
-/** input type for updating data in table "helper_kids.help_item" */
-export type HelperKidsHelpItemSetInput = {
-  /** グループID */
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  /** ID */
-  helpItemId?: InputMaybe<Scalars["uuid"]>;
-  /** メモ */
-  memo?: InputMaybe<Scalars["String"]>;
-  /** 項目名 */
-  name?: InputMaybe<Scalars["String"]>;
-  /** お手伝いポイント */
-  point?: InputMaybe<Scalars["Int"]>;
-};
-
-/** aggregate stddev on columns */
-export type HelperKidsHelpItemStddevFields = {
-  __typename?: "HelperKidsHelpItemStddevFields";
-  /** お手伝いポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddev() on columns of table "helper_kids.help_item" */
 export type HelperKidsHelpItemStddevOrderBy = {
   /** お手伝いポイント */
   point?: InputMaybe<OrderBy>;
 };
 
-/** aggregate stddevPop on columns */
-export type HelperKidsHelpItemStddevPopFields = {
-  __typename?: "HelperKidsHelpItemStddevPopFields";
-  /** お手伝いポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddevPop() on columns of table "helper_kids.help_item" */
 export type HelperKidsHelpItemStddevPopOrderBy = {
   /** お手伝いポイント */
   point?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type HelperKidsHelpItemStddevSampFields = {
-  __typename?: "HelperKidsHelpItemStddevSampFields";
-  /** お手伝いポイント */
-  point?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "helper_kids.help_item" */
@@ -4912,47 +2782,10 @@ export type HelperKidsHelpItemStreamCursorValueInput = {
   point?: InputMaybe<Scalars["Int"]>;
 };
 
-/** aggregate sum on columns */
-export type HelperKidsHelpItemSumFields = {
-  __typename?: "HelperKidsHelpItemSumFields";
-  /** お手伝いポイント */
-  point?: Maybe<Scalars["Int"]>;
-};
-
 /** order by sum() on columns of table "helper_kids.help_item" */
 export type HelperKidsHelpItemSumOrderBy = {
   /** お手伝いポイント */
   point?: InputMaybe<OrderBy>;
-};
-
-/** update columns of table "helper_kids.help_item" */
-export enum HelperKidsHelpItemUpdateColumn {
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  HelpItemId = "helpItemId",
-  /** column name */
-  Memo = "memo",
-  /** column name */
-  Name = "name",
-  /** column name */
-  Point = "point",
-}
-
-export type HelperKidsHelpItemUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<HelperKidsHelpItemIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<HelperKidsHelpItemSetInput>;
-  /** filter the rows which have to be updated */
-  where: HelperKidsHelpItemBoolExp;
-};
-
-/** aggregate varPop on columns */
-export type HelperKidsHelpItemVarPopFields = {
-  __typename?: "HelperKidsHelpItemVarPopFields";
-  /** お手伝いポイント */
-  point?: Maybe<Scalars["Float"]>;
 };
 
 /** order by varPop() on columns of table "helper_kids.help_item" */
@@ -4961,24 +2794,10 @@ export type HelperKidsHelpItemVarPopOrderBy = {
   point?: InputMaybe<OrderBy>;
 };
 
-/** aggregate varSamp on columns */
-export type HelperKidsHelpItemVarSampFields = {
-  __typename?: "HelperKidsHelpItemVarSampFields";
-  /** お手伝いポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varSamp() on columns of table "helper_kids.help_item" */
 export type HelperKidsHelpItemVarSampOrderBy = {
   /** お手伝いポイント */
   point?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type HelperKidsHelpItemVarianceFields = {
-  __typename?: "HelperKidsHelpItemVarianceFields";
-  /** お手伝いポイント */
-  point?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "helper_kids.help_item" */
@@ -5002,8 +2821,6 @@ export type HelperKidsHelpPointEarnedAchievement = {
   helpPointEarnedAchievementId: Scalars["uuid"];
   /** An array relationship */
   helpPointEarnedDetails: Array<HelperKidsHelpPointEarnedDetail>;
-  /** An aggregate relationship */
-  helpPointEarnedDetailsAggregate: HelperKidsHelpPointEarnedDetailAggregate;
   /** An object relationship */
   helperKid: HelperKidsHelperKid;
   /** お手伝いキッズID */
@@ -5018,16 +2835,6 @@ export type HelperKidsHelpPointEarnedAchievementHelpPointEarnedDetailsArgs = {
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
 };
-
-/** お手伝いポイント獲得実績 */
-export type HelperKidsHelpPointEarnedAchievementHelpPointEarnedDetailsAggregateArgs =
-  {
-    distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-    limit?: InputMaybe<Scalars["Int"]>;
-    offset?: InputMaybe<Scalars["Int"]>;
-    orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
-    where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
-  };
 
 /** aggregated selection of "helper_kids.help_point_earned_achievement" */
 export type HelperKidsHelpPointEarnedAchievementAggregate = {
@@ -5077,13 +2884,6 @@ export type HelperKidsHelpPointEarnedAchievementAggregateOrderBy = {
   variance?: InputMaybe<HelperKidsHelpPointEarnedAchievementVarianceOrderBy>;
 };
 
-/** input type for inserting array relation for remote table "helper_kids.help_point_earned_achievement" */
-export type HelperKidsHelpPointEarnedAchievementArrRelInsertInput = {
-  data: Array<HelperKidsHelpPointEarnedAchievementInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HelperKidsHelpPointEarnedAchievementOnConflict>;
-};
-
 /** aggregate avg on columns */
 export type HelperKidsHelpPointEarnedAchievementAvgFields = {
   __typename?: "HelperKidsHelpPointEarnedAchievementAvgFields";
@@ -5108,7 +2908,6 @@ export type HelperKidsHelpPointEarnedAchievementBoolExp = {
   groupId?: InputMaybe<UuidComparisonExp>;
   helpPointEarnedAchievementId?: InputMaybe<UuidComparisonExp>;
   helpPointEarnedDetails?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
-  helpPointEarnedDetailsAggregate?: InputMaybe<HelperKidsHelpPointEarnedDetailAggregateBoolExp>;
   helperKid?: InputMaybe<HelperKidsHelperKidBoolExp>;
   helperKidId?: InputMaybe<UuidComparisonExp>;
 };
@@ -5119,25 +2918,17 @@ export enum HelperKidsHelpPointEarnedAchievementConstraint {
   HelpPointEarnedAchievementPkey = "help_point_earned_achievement_pkey",
 }
 
-/** input type for incrementing numeric columns in table "helper_kids.help_point_earned_achievement" */
-export type HelperKidsHelpPointEarnedAchievementIncInput = {
-  /** 獲得ポイント */
-  earnedPoint?: InputMaybe<Scalars["Int"]>;
-};
-
 /** input type for inserting data into table "helper_kids.help_point_earned_achievement" */
 export type HelperKidsHelpPointEarnedAchievementInsertInput = {
   /** 獲得日時 */
   earnedDatetime?: InputMaybe<Scalars["timestamp"]>;
   /** 獲得ポイント */
   earnedPoint?: InputMaybe<Scalars["Int"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
   /** グループID */
   groupId?: InputMaybe<Scalars["uuid"]>;
   /** ID */
   helpPointEarnedAchievementId?: InputMaybe<Scalars["uuid"]>;
   helpPointEarnedDetails?: InputMaybe<HelperKidsHelpPointEarnedDetailArrRelInsertInput>;
-  helperKid?: InputMaybe<HelperKidsHelperKidObjRelInsertInput>;
   /** お手伝いキッズID */
   helperKidId?: InputMaybe<Scalars["uuid"]>;
 };
@@ -5235,12 +3026,6 @@ export type HelperKidsHelpPointEarnedAchievementOrderBy = {
   helperKidId?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: helper_kids.help_point_earned_achievement */
-export type HelperKidsHelpPointEarnedAchievementPkColumnsInput = {
-  /** ID */
-  helpPointEarnedAchievementId: Scalars["uuid"];
-};
-
 /** select columns of table "helper_kids.help_point_earned_achievement" */
 export enum HelperKidsHelpPointEarnedAchievementSelectColumn {
   /** column name */
@@ -5254,20 +3039,6 @@ export enum HelperKidsHelpPointEarnedAchievementSelectColumn {
   /** column name */
   HelperKidId = "helperKidId",
 }
-
-/** input type for updating data in table "helper_kids.help_point_earned_achievement" */
-export type HelperKidsHelpPointEarnedAchievementSetInput = {
-  /** 獲得日時 */
-  earnedDatetime?: InputMaybe<Scalars["timestamp"]>;
-  /** 獲得ポイント */
-  earnedPoint?: InputMaybe<Scalars["Int"]>;
-  /** グループID */
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  /** ID */
-  helpPointEarnedAchievementId?: InputMaybe<Scalars["uuid"]>;
-  /** お手伝いキッズID */
-  helperKidId?: InputMaybe<Scalars["uuid"]>;
-};
 
 /** aggregate stddev on columns */
 export type HelperKidsHelpPointEarnedAchievementStddevFields = {
@@ -5343,28 +3114,11 @@ export type HelperKidsHelpPointEarnedAchievementSumOrderBy = {
   earnedPoint?: InputMaybe<OrderBy>;
 };
 
-/** update columns of table "helper_kids.help_point_earned_achievement" */
+/** placeholder for update columns of table "helper_kids.help_point_earned_achievement" (current role has no relevant permissions) */
 export enum HelperKidsHelpPointEarnedAchievementUpdateColumn {
-  /** column name */
-  EarnedDatetime = "earnedDatetime",
-  /** column name */
-  EarnedPoint = "earnedPoint",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  HelpPointEarnedAchievementId = "helpPointEarnedAchievementId",
-  /** column name */
-  HelperKidId = "helperKidId",
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
 }
-
-export type HelperKidsHelpPointEarnedAchievementUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<HelperKidsHelpPointEarnedAchievementIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<HelperKidsHelpPointEarnedAchievementSetInput>;
-  /** filter the rows which have to be updated */
-  where: HelperKidsHelpPointEarnedAchievementBoolExp;
-};
 
 /** aggregate varPop on columns */
 export type HelperKidsHelpPointEarnedAchievementVarPopFields = {
@@ -5428,39 +3182,6 @@ export type HelperKidsHelpPointEarnedDetail = {
   helpPointEarnedDetailId: Scalars["uuid"];
 };
 
-/** aggregated selection of "helper_kids.help_point_earned_detail" */
-export type HelperKidsHelpPointEarnedDetailAggregate = {
-  __typename?: "HelperKidsHelpPointEarnedDetailAggregate";
-  aggregate?: Maybe<HelperKidsHelpPointEarnedDetailAggregateFields>;
-  nodes: Array<HelperKidsHelpPointEarnedDetail>;
-};
-
-export type HelperKidsHelpPointEarnedDetailAggregateBoolExp = {
-  count?: InputMaybe<HelperKidsHelpPointEarnedDetailAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "helper_kids.help_point_earned_detail" */
-export type HelperKidsHelpPointEarnedDetailAggregateFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailAggregateFields";
-  avg?: Maybe<HelperKidsHelpPointEarnedDetailAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<HelperKidsHelpPointEarnedDetailMaxFields>;
-  min?: Maybe<HelperKidsHelpPointEarnedDetailMinFields>;
-  stddev?: Maybe<HelperKidsHelpPointEarnedDetailStddevFields>;
-  stddevPop?: Maybe<HelperKidsHelpPointEarnedDetailStddevPopFields>;
-  stddevSamp?: Maybe<HelperKidsHelpPointEarnedDetailStddevSampFields>;
-  sum?: Maybe<HelperKidsHelpPointEarnedDetailSumFields>;
-  varPop?: Maybe<HelperKidsHelpPointEarnedDetailVarPopFields>;
-  varSamp?: Maybe<HelperKidsHelpPointEarnedDetailVarSampFields>;
-  variance?: Maybe<HelperKidsHelpPointEarnedDetailVarianceFields>;
-};
-
-/** aggregate fields of "helper_kids.help_point_earned_detail" */
-export type HelperKidsHelpPointEarnedDetailAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
 /** order by aggregate values of table "helper_kids.help_point_earned_detail" */
 export type HelperKidsHelpPointEarnedDetailAggregateOrderBy = {
   avg?: InputMaybe<HelperKidsHelpPointEarnedDetailAvgOrderBy>;
@@ -5481,15 +3202,6 @@ export type HelperKidsHelpPointEarnedDetailArrRelInsertInput = {
   data: Array<HelperKidsHelpPointEarnedDetailInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<HelperKidsHelpPointEarnedDetailOnConflict>;
-};
-
-/** aggregate avg on columns */
-export type HelperKidsHelpPointEarnedDetailAvgFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailAvgFields";
-  /** お手伝い項目件数 */
-  helpItemCount?: Maybe<Scalars["Float"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by avg() on columns of table "helper_kids.help_point_earned_detail" */
@@ -5522,22 +3234,12 @@ export enum HelperKidsHelpPointEarnedDetailConstraint {
   HelpPointEarnedDetailPkey = "help_point_earned_detail_pkey",
 }
 
-/** input type for incrementing numeric columns in table "helper_kids.help_point_earned_detail" */
-export type HelperKidsHelpPointEarnedDetailIncInput = {
-  /** お手伝い項目件数 */
-  helpItemCount?: InputMaybe<Scalars["Int"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: InputMaybe<Scalars["Int"]>;
-};
-
 /** input type for inserting data into table "helper_kids.help_point_earned_detail" */
 export type HelperKidsHelpPointEarnedDetailInsertInput = {
   /** 獲得実績ID */
   earnedAchievementId?: InputMaybe<Scalars["uuid"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
   /** グループID */
   groupId?: InputMaybe<Scalars["uuid"]>;
-  helpItem?: InputMaybe<HelperKidsHelpItemObjRelInsertInput>;
   /** お手伝い項目件数 */
   helpItemCount?: InputMaybe<Scalars["Int"]>;
   /** お手伝い項目ID */
@@ -5547,23 +3249,6 @@ export type HelperKidsHelpPointEarnedDetailInsertInput = {
   helpPointEarnedAchievement?: InputMaybe<HelperKidsHelpPointEarnedAchievementObjRelInsertInput>;
   /** ID */
   helpPointEarnedDetailId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate max on columns */
-export type HelperKidsHelpPointEarnedDetailMaxFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailMaxFields";
-  /** 獲得実績ID */
-  earnedAchievementId?: Maybe<Scalars["uuid"]>;
-  /** グループID */
-  groupId?: Maybe<Scalars["uuid"]>;
-  /** お手伝い項目件数 */
-  helpItemCount?: Maybe<Scalars["Int"]>;
-  /** お手伝い項目ID */
-  helpItemId?: Maybe<Scalars["uuid"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: Maybe<Scalars["Int"]>;
-  /** ID */
-  helpPointEarnedDetailId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "helper_kids.help_point_earned_detail" */
@@ -5580,23 +3265,6 @@ export type HelperKidsHelpPointEarnedDetailMaxOrderBy = {
   helpItemTotalPoint?: InputMaybe<OrderBy>;
   /** ID */
   helpPointEarnedDetailId?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type HelperKidsHelpPointEarnedDetailMinFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailMinFields";
-  /** 獲得実績ID */
-  earnedAchievementId?: Maybe<Scalars["uuid"]>;
-  /** グループID */
-  groupId?: Maybe<Scalars["uuid"]>;
-  /** お手伝い項目件数 */
-  helpItemCount?: Maybe<Scalars["Int"]>;
-  /** お手伝い項目ID */
-  helpItemId?: Maybe<Scalars["uuid"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: Maybe<Scalars["Int"]>;
-  /** ID */
-  helpPointEarnedDetailId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "helper_kids.help_point_earned_detail" */
@@ -5644,12 +3312,6 @@ export type HelperKidsHelpPointEarnedDetailOrderBy = {
   helpPointEarnedDetailId?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: helper_kids.help_point_earned_detail */
-export type HelperKidsHelpPointEarnedDetailPkColumnsInput = {
-  /** ID */
-  helpPointEarnedDetailId: Scalars["uuid"];
-};
-
 /** select columns of table "helper_kids.help_point_earned_detail" */
 export enum HelperKidsHelpPointEarnedDetailSelectColumn {
   /** column name */
@@ -5666,31 +3328,6 @@ export enum HelperKidsHelpPointEarnedDetailSelectColumn {
   HelpPointEarnedDetailId = "helpPointEarnedDetailId",
 }
 
-/** input type for updating data in table "helper_kids.help_point_earned_detail" */
-export type HelperKidsHelpPointEarnedDetailSetInput = {
-  /** 獲得実績ID */
-  earnedAchievementId?: InputMaybe<Scalars["uuid"]>;
-  /** グループID */
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  /** お手伝い項目件数 */
-  helpItemCount?: InputMaybe<Scalars["Int"]>;
-  /** お手伝い項目ID */
-  helpItemId?: InputMaybe<Scalars["uuid"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: InputMaybe<Scalars["Int"]>;
-  /** ID */
-  helpPointEarnedDetailId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate stddev on columns */
-export type HelperKidsHelpPointEarnedDetailStddevFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailStddevFields";
-  /** お手伝い項目件数 */
-  helpItemCount?: Maybe<Scalars["Float"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddev() on columns of table "helper_kids.help_point_earned_detail" */
 export type HelperKidsHelpPointEarnedDetailStddevOrderBy = {
   /** お手伝い項目件数 */
@@ -5699,30 +3336,12 @@ export type HelperKidsHelpPointEarnedDetailStddevOrderBy = {
   helpItemTotalPoint?: InputMaybe<OrderBy>;
 };
 
-/** aggregate stddevPop on columns */
-export type HelperKidsHelpPointEarnedDetailStddevPopFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailStddevPopFields";
-  /** お手伝い項目件数 */
-  helpItemCount?: Maybe<Scalars["Float"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddevPop() on columns of table "helper_kids.help_point_earned_detail" */
 export type HelperKidsHelpPointEarnedDetailStddevPopOrderBy = {
   /** お手伝い項目件数 */
   helpItemCount?: InputMaybe<OrderBy>;
   /** お手伝い項目合計ポイント */
   helpItemTotalPoint?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type HelperKidsHelpPointEarnedDetailStddevSampFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailStddevSampFields";
-  /** お手伝い項目件数 */
-  helpItemCount?: Maybe<Scalars["Float"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "helper_kids.help_point_earned_detail" */
@@ -5757,15 +3376,6 @@ export type HelperKidsHelpPointEarnedDetailStreamCursorValueInput = {
   helpPointEarnedDetailId?: InputMaybe<Scalars["uuid"]>;
 };
 
-/** aggregate sum on columns */
-export type HelperKidsHelpPointEarnedDetailSumFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailSumFields";
-  /** お手伝い項目件数 */
-  helpItemCount?: Maybe<Scalars["Int"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: Maybe<Scalars["Int"]>;
-};
-
 /** order by sum() on columns of table "helper_kids.help_point_earned_detail" */
 export type HelperKidsHelpPointEarnedDetailSumOrderBy = {
   /** お手伝い項目件数 */
@@ -5774,39 +3384,11 @@ export type HelperKidsHelpPointEarnedDetailSumOrderBy = {
   helpItemTotalPoint?: InputMaybe<OrderBy>;
 };
 
-/** update columns of table "helper_kids.help_point_earned_detail" */
+/** placeholder for update columns of table "helper_kids.help_point_earned_detail" (current role has no relevant permissions) */
 export enum HelperKidsHelpPointEarnedDetailUpdateColumn {
-  /** column name */
-  EarnedAchievementId = "earnedAchievementId",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  HelpItemCount = "helpItemCount",
-  /** column name */
-  HelpItemId = "helpItemId",
-  /** column name */
-  HelpItemTotalPoint = "helpItemTotalPoint",
-  /** column name */
-  HelpPointEarnedDetailId = "helpPointEarnedDetailId",
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
 }
-
-export type HelperKidsHelpPointEarnedDetailUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<HelperKidsHelpPointEarnedDetailIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<HelperKidsHelpPointEarnedDetailSetInput>;
-  /** filter the rows which have to be updated */
-  where: HelperKidsHelpPointEarnedDetailBoolExp;
-};
-
-/** aggregate varPop on columns */
-export type HelperKidsHelpPointEarnedDetailVarPopFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailVarPopFields";
-  /** お手伝い項目件数 */
-  helpItemCount?: Maybe<Scalars["Float"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: Maybe<Scalars["Float"]>;
-};
 
 /** order by varPop() on columns of table "helper_kids.help_point_earned_detail" */
 export type HelperKidsHelpPointEarnedDetailVarPopOrderBy = {
@@ -5816,30 +3398,12 @@ export type HelperKidsHelpPointEarnedDetailVarPopOrderBy = {
   helpItemTotalPoint?: InputMaybe<OrderBy>;
 };
 
-/** aggregate varSamp on columns */
-export type HelperKidsHelpPointEarnedDetailVarSampFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailVarSampFields";
-  /** お手伝い項目件数 */
-  helpItemCount?: Maybe<Scalars["Float"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varSamp() on columns of table "helper_kids.help_point_earned_detail" */
 export type HelperKidsHelpPointEarnedDetailVarSampOrderBy = {
   /** お手伝い項目件数 */
   helpItemCount?: InputMaybe<OrderBy>;
   /** お手伝い項目合計ポイント */
   helpItemTotalPoint?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type HelperKidsHelpPointEarnedDetailVarianceFields = {
-  __typename?: "HelperKidsHelpPointEarnedDetailVarianceFields";
-  /** お手伝い項目件数 */
-  helpItemCount?: Maybe<Scalars["Float"]>;
-  /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "helper_kids.help_point_earned_detail" */
@@ -5925,13 +3489,6 @@ export type HelperKidsHelpPointExchangedAchievementAggregateOrderBy = {
   variance?: InputMaybe<HelperKidsHelpPointExchangedAchievementVarianceOrderBy>;
 };
 
-/** input type for inserting array relation for remote table "helper_kids.help_point_exchanged_achievement" */
-export type HelperKidsHelpPointExchangedAchievementArrRelInsertInput = {
-  data: Array<HelperKidsHelpPointExchangedAchievementInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HelperKidsHelpPointExchangedAchievementOnConflict>;
-};
-
 /** aggregate avg on columns */
 export type HelperKidsHelpPointExchangedAchievementAvgFields = {
   __typename?: "HelperKidsHelpPointExchangedAchievementAvgFields";
@@ -5972,31 +3529,20 @@ export enum HelperKidsHelpPointExchangedAchievementConstraint {
   HelpPointExchangedAchievementPkey = "help_point_exchanged_achievement_pkey",
 }
 
-/** input type for incrementing numeric columns in table "helper_kids.help_point_exchanged_achievement" */
-export type HelperKidsHelpPointExchangedAchievementIncInput = {
-  /** 交換件数 */
-  exchangeCount?: InputMaybe<Scalars["Int"]>;
-  /** 交換合計ポイント */
-  exchangeTotalPoint?: InputMaybe<Scalars["Int"]>;
-};
-
 /** input type for inserting data into table "helper_kids.help_point_exchanged_achievement" */
 export type HelperKidsHelpPointExchangedAchievementInsertInput = {
   /** 交換件数 */
   exchangeCount?: InputMaybe<Scalars["Int"]>;
-  exchangeItem?: InputMaybe<HelperKidsExchangeItemObjRelInsertInput>;
   /** 交換品ID */
   exchangeItemId?: InputMaybe<Scalars["uuid"]>;
   /** 交換合計ポイント */
   exchangeTotalPoint?: InputMaybe<Scalars["Int"]>;
   /** 交換日時 */
   exchangedDatetime?: InputMaybe<Scalars["timestamp"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
   /** グループID */
   groupId?: InputMaybe<Scalars["uuid"]>;
   /** ID */
   helpPointExchangedAchievementId?: InputMaybe<Scalars["uuid"]>;
-  helperKid?: InputMaybe<HelperKidsHelperKidObjRelInsertInput>;
   /** お手伝いキッズID */
   helperKidId?: InputMaybe<Scalars["uuid"]>;
 };
@@ -6105,12 +3651,6 @@ export type HelperKidsHelpPointExchangedAchievementOrderBy = {
   helperKidId?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: helper_kids.help_point_exchanged_achievement */
-export type HelperKidsHelpPointExchangedAchievementPkColumnsInput = {
-  /** ID */
-  helpPointExchangedAchievementId: Scalars["uuid"];
-};
-
 /** select columns of table "helper_kids.help_point_exchanged_achievement" */
 export enum HelperKidsHelpPointExchangedAchievementSelectColumn {
   /** column name */
@@ -6128,24 +3668,6 @@ export enum HelperKidsHelpPointExchangedAchievementSelectColumn {
   /** column name */
   HelperKidId = "helperKidId",
 }
-
-/** input type for updating data in table "helper_kids.help_point_exchanged_achievement" */
-export type HelperKidsHelpPointExchangedAchievementSetInput = {
-  /** 交換件数 */
-  exchangeCount?: InputMaybe<Scalars["Int"]>;
-  /** 交換品ID */
-  exchangeItemId?: InputMaybe<Scalars["uuid"]>;
-  /** 交換合計ポイント */
-  exchangeTotalPoint?: InputMaybe<Scalars["Int"]>;
-  /** 交換日時 */
-  exchangedDatetime?: InputMaybe<Scalars["timestamp"]>;
-  /** グループID */
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  /** ID */
-  helpPointExchangedAchievementId?: InputMaybe<Scalars["uuid"]>;
-  /** お手伝いキッズID */
-  helperKidId?: InputMaybe<Scalars["uuid"]>;
-};
 
 /** aggregate stddev on columns */
 export type HelperKidsHelpPointExchangedAchievementStddevFields = {
@@ -6241,32 +3763,11 @@ export type HelperKidsHelpPointExchangedAchievementSumOrderBy = {
   exchangeTotalPoint?: InputMaybe<OrderBy>;
 };
 
-/** update columns of table "helper_kids.help_point_exchanged_achievement" */
+/** placeholder for update columns of table "helper_kids.help_point_exchanged_achievement" (current role has no relevant permissions) */
 export enum HelperKidsHelpPointExchangedAchievementUpdateColumn {
-  /** column name */
-  ExchangeCount = "exchangeCount",
-  /** column name */
-  ExchangeItemId = "exchangeItemId",
-  /** column name */
-  ExchangeTotalPoint = "exchangeTotalPoint",
-  /** column name */
-  ExchangedDatetime = "exchangedDatetime",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  HelpPointExchangedAchievementId = "helpPointExchangedAchievementId",
-  /** column name */
-  HelperKidId = "helperKidId",
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
 }
-
-export type HelperKidsHelpPointExchangedAchievementUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<HelperKidsHelpPointExchangedAchievementIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<HelperKidsHelpPointExchangedAchievementSetInput>;
-  /** filter the rows which have to be updated */
-  where: HelperKidsHelpPointExchangedAchievementBoolExp;
-};
 
 /** aggregate varPop on columns */
 export type HelperKidsHelpPointExchangedAchievementVarPopFields = {
@@ -6338,8 +3839,6 @@ export type HelperKidsHelperKid = {
   helperKidId: Scalars["uuid"];
   /** An array relationship */
   helperKidParents: Array<HelperKidsHelperKidParent>;
-  /** An aggregate relationship */
-  helperKidParentsAggregate: HelperKidsHelperKidParentAggregate;
   /** An object relationship */
   helperKidPoint?: Maybe<HelperKidsHelperKidPoint>;
   /** 氏名 */
@@ -6401,52 +3900,11 @@ export type HelperKidsHelperKidHelperKidParentsArgs = {
   where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
 };
 
-/** お手伝いキッズマスタ */
-export type HelperKidsHelperKidHelperKidParentsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelperKidParentOrderBy>>;
-  where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
-};
-
-/** aggregated selection of "helper_kids.helper_kid" */
-export type HelperKidsHelperKidAggregate = {
-  __typename?: "HelperKidsHelperKidAggregate";
-  aggregate?: Maybe<HelperKidsHelperKidAggregateFields>;
-  nodes: Array<HelperKidsHelperKid>;
-};
-
-export type HelperKidsHelperKidAggregateBoolExp = {
-  count?: InputMaybe<HelperKidsHelperKidAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "helper_kids.helper_kid" */
-export type HelperKidsHelperKidAggregateFields = {
-  __typename?: "HelperKidsHelperKidAggregateFields";
-  count: Scalars["Int"];
-  max?: Maybe<HelperKidsHelperKidMaxFields>;
-  min?: Maybe<HelperKidsHelperKidMinFields>;
-};
-
-/** aggregate fields of "helper_kids.helper_kid" */
-export type HelperKidsHelperKidAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<HelperKidsHelperKidSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
 /** order by aggregate values of table "helper_kids.helper_kid" */
 export type HelperKidsHelperKidAggregateOrderBy = {
   count?: InputMaybe<OrderBy>;
   max?: InputMaybe<HelperKidsHelperKidMaxOrderBy>;
   min?: InputMaybe<HelperKidsHelperKidMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "helper_kids.helper_kid" */
-export type HelperKidsHelperKidArrRelInsertInput = {
-  data: Array<HelperKidsHelperKidInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HelperKidsHelperKidOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "helper_kids.helper_kid". All fields are combined with a logical 'AND'. */
@@ -6462,46 +3920,9 @@ export type HelperKidsHelperKidBoolExp = {
   helpPointExchangedAchievementsAggregate?: InputMaybe<HelperKidsHelpPointExchangedAchievementAggregateBoolExp>;
   helperKidId?: InputMaybe<UuidComparisonExp>;
   helperKidParents?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
-  helperKidParentsAggregate?: InputMaybe<HelperKidsHelperKidParentAggregateBoolExp>;
   helperKidPoint?: InputMaybe<HelperKidsHelperKidPointBoolExp>;
   name?: InputMaybe<StringComparisonExp>;
   nameSuffix?: InputMaybe<StringComparisonExp>;
-};
-
-/** unique or primary key constraints on table "helper_kids.helper_kid" */
-export enum HelperKidsHelperKidConstraint {
-  /** unique or primary key constraint on columns "helper_kid_id" */
-  HelperKidPkey = "helper_kid_pkey",
-}
-
-/** input type for inserting data into table "helper_kids.helper_kid" */
-export type HelperKidsHelperKidInsertInput = {
-  group?: InputMaybe<GroupObjRelInsertInput>;
-  /** グループID */
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  helpPointEarnedAchievements?: InputMaybe<HelperKidsHelpPointEarnedAchievementArrRelInsertInput>;
-  helpPointExchangedAchievements?: InputMaybe<HelperKidsHelpPointExchangedAchievementArrRelInsertInput>;
-  /** ID */
-  helperKidId?: InputMaybe<Scalars["uuid"]>;
-  helperKidParents?: InputMaybe<HelperKidsHelperKidParentArrRelInsertInput>;
-  helperKidPoint?: InputMaybe<HelperKidsHelperKidPointObjRelInsertInput>;
-  /** 氏名 */
-  name?: InputMaybe<Scalars["String"]>;
-  /** 名前 接尾辞 */
-  nameSuffix?: InputMaybe<Scalars["String"]>;
-};
-
-/** aggregate max on columns */
-export type HelperKidsHelperKidMaxFields = {
-  __typename?: "HelperKidsHelperKidMaxFields";
-  /** グループID */
-  groupId?: Maybe<Scalars["uuid"]>;
-  /** ID */
-  helperKidId?: Maybe<Scalars["uuid"]>;
-  /** 氏名 */
-  name?: Maybe<Scalars["String"]>;
-  /** 名前 接尾辞 */
-  nameSuffix?: Maybe<Scalars["String"]>;
 };
 
 /** order by max() on columns of table "helper_kids.helper_kid" */
@@ -6516,19 +3937,6 @@ export type HelperKidsHelperKidMaxOrderBy = {
   nameSuffix?: InputMaybe<OrderBy>;
 };
 
-/** aggregate min on columns */
-export type HelperKidsHelperKidMinFields = {
-  __typename?: "HelperKidsHelperKidMinFields";
-  /** グループID */
-  groupId?: Maybe<Scalars["uuid"]>;
-  /** ID */
-  helperKidId?: Maybe<Scalars["uuid"]>;
-  /** 氏名 */
-  name?: Maybe<Scalars["String"]>;
-  /** 名前 接尾辞 */
-  nameSuffix?: Maybe<Scalars["String"]>;
-};
-
 /** order by min() on columns of table "helper_kids.helper_kid" */
 export type HelperKidsHelperKidMinOrderBy = {
   /** グループID */
@@ -6539,29 +3947,6 @@ export type HelperKidsHelperKidMinOrderBy = {
   name?: InputMaybe<OrderBy>;
   /** 名前 接尾辞 */
   nameSuffix?: InputMaybe<OrderBy>;
-};
-
-/** response of any mutation on the table "helper_kids.helper_kid" */
-export type HelperKidsHelperKidMutationResponse = {
-  __typename?: "HelperKidsHelperKidMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<HelperKidsHelperKid>;
-};
-
-/** input type for inserting object relation for remote table "helper_kids.helper_kid" */
-export type HelperKidsHelperKidObjRelInsertInput = {
-  data: HelperKidsHelperKidInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<HelperKidsHelperKidOnConflict>;
-};
-
-/** on_conflict condition type for table "helper_kids.helper_kid" */
-export type HelperKidsHelperKidOnConflict = {
-  constraint: HelperKidsHelperKidConstraint;
-  updateColumns?: Array<HelperKidsHelperKidUpdateColumn>;
-  where?: InputMaybe<HelperKidsHelperKidBoolExp>;
 };
 
 /** Ordering options when selecting data from "helper_kids.helper_kid". */
@@ -6589,43 +3974,11 @@ export type HelperKidsHelperKidParent = {
   user: User;
 };
 
-/** aggregated selection of "helper_kids.helper_kid_parent" */
-export type HelperKidsHelperKidParentAggregate = {
-  __typename?: "HelperKidsHelperKidParentAggregate";
-  aggregate?: Maybe<HelperKidsHelperKidParentAggregateFields>;
-  nodes: Array<HelperKidsHelperKidParent>;
-};
-
-export type HelperKidsHelperKidParentAggregateBoolExp = {
-  count?: InputMaybe<HelperKidsHelperKidParentAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "helper_kids.helper_kid_parent" */
-export type HelperKidsHelperKidParentAggregateFields = {
-  __typename?: "HelperKidsHelperKidParentAggregateFields";
-  count: Scalars["Int"];
-  max?: Maybe<HelperKidsHelperKidParentMaxFields>;
-  min?: Maybe<HelperKidsHelperKidParentMinFields>;
-};
-
-/** aggregate fields of "helper_kids.helper_kid_parent" */
-export type HelperKidsHelperKidParentAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
 /** order by aggregate values of table "helper_kids.helper_kid_parent" */
 export type HelperKidsHelperKidParentAggregateOrderBy = {
   count?: InputMaybe<OrderBy>;
   max?: InputMaybe<HelperKidsHelperKidParentMaxOrderBy>;
   min?: InputMaybe<HelperKidsHelperKidParentMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "helper_kids.helper_kid_parent" */
-export type HelperKidsHelperKidParentArrRelInsertInput = {
-  data: Array<HelperKidsHelperKidParentInsertInput>;
-  /** upsert condition */
-  onConflict?: InputMaybe<HelperKidsHelperKidParentOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "helper_kids.helper_kid_parent". All fields are combined with a logical 'AND'. */
@@ -6640,29 +3993,6 @@ export type HelperKidsHelperKidParentBoolExp = {
   user?: InputMaybe<UserBoolExp>;
 };
 
-/** unique or primary key constraints on table "helper_kids.helper_kid_parent" */
-export enum HelperKidsHelperKidParentConstraint {
-  /** unique or primary key constraint on columns "helper_kid_parent_id" */
-  HelperKidParentPkey = "helper_kid_parent_pkey",
-}
-
-/** input type for inserting data into table "helper_kids.helper_kid_parent" */
-export type HelperKidsHelperKidParentInsertInput = {
-  helperKid?: InputMaybe<HelperKidsHelperKidObjRelInsertInput>;
-  helperKidId?: InputMaybe<Scalars["uuid"]>;
-  helperKidParentId?: InputMaybe<Scalars["uuid"]>;
-  parentUserId?: InputMaybe<Scalars["uuid"]>;
-  user?: InputMaybe<UserObjRelInsertInput>;
-};
-
-/** aggregate max on columns */
-export type HelperKidsHelperKidParentMaxFields = {
-  __typename?: "HelperKidsHelperKidParentMaxFields";
-  helperKidId?: Maybe<Scalars["uuid"]>;
-  helperKidParentId?: Maybe<Scalars["uuid"]>;
-  parentUserId?: Maybe<Scalars["uuid"]>;
-};
-
 /** order by max() on columns of table "helper_kids.helper_kid_parent" */
 export type HelperKidsHelperKidParentMaxOrderBy = {
   helperKidId?: InputMaybe<OrderBy>;
@@ -6670,35 +4000,11 @@ export type HelperKidsHelperKidParentMaxOrderBy = {
   parentUserId?: InputMaybe<OrderBy>;
 };
 
-/** aggregate min on columns */
-export type HelperKidsHelperKidParentMinFields = {
-  __typename?: "HelperKidsHelperKidParentMinFields";
-  helperKidId?: Maybe<Scalars["uuid"]>;
-  helperKidParentId?: Maybe<Scalars["uuid"]>;
-  parentUserId?: Maybe<Scalars["uuid"]>;
-};
-
 /** order by min() on columns of table "helper_kids.helper_kid_parent" */
 export type HelperKidsHelperKidParentMinOrderBy = {
   helperKidId?: InputMaybe<OrderBy>;
   helperKidParentId?: InputMaybe<OrderBy>;
   parentUserId?: InputMaybe<OrderBy>;
-};
-
-/** response of any mutation on the table "helper_kids.helper_kid_parent" */
-export type HelperKidsHelperKidParentMutationResponse = {
-  __typename?: "HelperKidsHelperKidParentMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<HelperKidsHelperKidParent>;
-};
-
-/** on_conflict condition type for table "helper_kids.helper_kid_parent" */
-export type HelperKidsHelperKidParentOnConflict = {
-  constraint: HelperKidsHelperKidParentConstraint;
-  updateColumns?: Array<HelperKidsHelperKidParentUpdateColumn>;
-  where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
 };
 
 /** Ordering options when selecting data from "helper_kids.helper_kid_parent". */
@@ -6710,11 +4016,6 @@ export type HelperKidsHelperKidParentOrderBy = {
   user?: InputMaybe<UserOrderBy>;
 };
 
-/** primary key columns input for table: helper_kids.helper_kid_parent */
-export type HelperKidsHelperKidParentPkColumnsInput = {
-  helperKidParentId: Scalars["uuid"];
-};
-
 /** select columns of table "helper_kids.helper_kid_parent" */
 export enum HelperKidsHelperKidParentSelectColumn {
   /** column name */
@@ -6724,13 +4025,6 @@ export enum HelperKidsHelperKidParentSelectColumn {
   /** column name */
   ParentUserId = "parentUserId",
 }
-
-/** input type for updating data in table "helper_kids.helper_kid_parent" */
-export type HelperKidsHelperKidParentSetInput = {
-  helperKidId?: InputMaybe<Scalars["uuid"]>;
-  helperKidParentId?: InputMaybe<Scalars["uuid"]>;
-  parentUserId?: InputMaybe<Scalars["uuid"]>;
-};
 
 /** Streaming cursor of the table "helper_kids_helper_kid_parent" */
 export type HelperKidsHelperKidParentStreamCursorInput = {
@@ -6747,29 +4041,6 @@ export type HelperKidsHelperKidParentStreamCursorValueInput = {
   parentUserId?: InputMaybe<Scalars["uuid"]>;
 };
 
-/** update columns of table "helper_kids.helper_kid_parent" */
-export enum HelperKidsHelperKidParentUpdateColumn {
-  /** column name */
-  HelperKidId = "helperKidId",
-  /** column name */
-  HelperKidParentId = "helperKidParentId",
-  /** column name */
-  ParentUserId = "parentUserId",
-}
-
-export type HelperKidsHelperKidParentUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<HelperKidsHelperKidParentSetInput>;
-  /** filter the rows which have to be updated */
-  where: HelperKidsHelperKidParentBoolExp;
-};
-
-/** primary key columns input for table: helper_kids.helper_kid */
-export type HelperKidsHelperKidPkColumnsInput = {
-  /** ID */
-  helperKidId: Scalars["uuid"];
-};
-
 /** お手伝いキッズポイント */
 export type HelperKidsHelperKidPoint = {
   __typename?: "HelperKidsHelperKidPoint";
@@ -6783,42 +4054,6 @@ export type HelperKidsHelperKidPoint = {
   point: Scalars["Int"];
 };
 
-/** aggregated selection of "helper_kids.helper_kid_point" */
-export type HelperKidsHelperKidPointAggregate = {
-  __typename?: "HelperKidsHelperKidPointAggregate";
-  aggregate?: Maybe<HelperKidsHelperKidPointAggregateFields>;
-  nodes: Array<HelperKidsHelperKidPoint>;
-};
-
-/** aggregate fields of "helper_kids.helper_kid_point" */
-export type HelperKidsHelperKidPointAggregateFields = {
-  __typename?: "HelperKidsHelperKidPointAggregateFields";
-  avg?: Maybe<HelperKidsHelperKidPointAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<HelperKidsHelperKidPointMaxFields>;
-  min?: Maybe<HelperKidsHelperKidPointMinFields>;
-  stddev?: Maybe<HelperKidsHelperKidPointStddevFields>;
-  stddevPop?: Maybe<HelperKidsHelperKidPointStddevPopFields>;
-  stddevSamp?: Maybe<HelperKidsHelperKidPointStddevSampFields>;
-  sum?: Maybe<HelperKidsHelperKidPointSumFields>;
-  varPop?: Maybe<HelperKidsHelperKidPointVarPopFields>;
-  varSamp?: Maybe<HelperKidsHelperKidPointVarSampFields>;
-  variance?: Maybe<HelperKidsHelperKidPointVarianceFields>;
-};
-
-/** aggregate fields of "helper_kids.helper_kid_point" */
-export type HelperKidsHelperKidPointAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<HelperKidsHelperKidPointSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate avg on columns */
-export type HelperKidsHelperKidPointAvgFields = {
-  __typename?: "HelperKidsHelperKidPointAvgFields";
-  /** ポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
 /** Boolean expression to filter rows from the table "helper_kids.helper_kid_point". All fields are combined with a logical 'AND'. */
 export type HelperKidsHelperKidPointBoolExp = {
   _and?: InputMaybe<Array<HelperKidsHelperKidPointBoolExp>>;
@@ -6830,86 +4065,12 @@ export type HelperKidsHelperKidPointBoolExp = {
   point?: InputMaybe<IntComparisonExp>;
 };
 
-/** unique or primary key constraints on table "helper_kids.helper_kid_point" */
-export enum HelperKidsHelperKidPointConstraint {
-  /** unique or primary key constraint on columns "helper_kid_id" */
-  HelperKidPointPkey = "helper_kid_point_pkey",
-}
-
-/** input type for incrementing numeric columns in table "helper_kids.helper_kid_point" */
-export type HelperKidsHelperKidPointIncInput = {
-  /** ポイント */
-  point?: InputMaybe<Scalars["Int"]>;
-};
-
-/** input type for inserting data into table "helper_kids.helper_kid_point" */
-export type HelperKidsHelperKidPointInsertInput = {
-  helperKid?: InputMaybe<HelperKidsHelperKidObjRelInsertInput>;
-  /** お手伝いキッズID */
-  helperKidId?: InputMaybe<Scalars["uuid"]>;
-  /** 最後のお手伝い日時 */
-  lastHelpDatetime?: InputMaybe<Scalars["timestamp"]>;
-  /** ポイント */
-  point?: InputMaybe<Scalars["Int"]>;
-};
-
-/** aggregate max on columns */
-export type HelperKidsHelperKidPointMaxFields = {
-  __typename?: "HelperKidsHelperKidPointMaxFields";
-  /** お手伝いキッズID */
-  helperKidId?: Maybe<Scalars["uuid"]>;
-  /** 最後のお手伝い日時 */
-  lastHelpDatetime?: Maybe<Scalars["timestamp"]>;
-  /** ポイント */
-  point?: Maybe<Scalars["Int"]>;
-};
-
-/** aggregate min on columns */
-export type HelperKidsHelperKidPointMinFields = {
-  __typename?: "HelperKidsHelperKidPointMinFields";
-  /** お手伝いキッズID */
-  helperKidId?: Maybe<Scalars["uuid"]>;
-  /** 最後のお手伝い日時 */
-  lastHelpDatetime?: Maybe<Scalars["timestamp"]>;
-  /** ポイント */
-  point?: Maybe<Scalars["Int"]>;
-};
-
-/** response of any mutation on the table "helper_kids.helper_kid_point" */
-export type HelperKidsHelperKidPointMutationResponse = {
-  __typename?: "HelperKidsHelperKidPointMutationResponse";
-  /** number of rows affected by the mutation */
-  affectedRows: Scalars["Int"];
-  /** data from the rows affected by the mutation */
-  returning: Array<HelperKidsHelperKidPoint>;
-};
-
-/** input type for inserting object relation for remote table "helper_kids.helper_kid_point" */
-export type HelperKidsHelperKidPointObjRelInsertInput = {
-  data: HelperKidsHelperKidPointInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<HelperKidsHelperKidPointOnConflict>;
-};
-
-/** on_conflict condition type for table "helper_kids.helper_kid_point" */
-export type HelperKidsHelperKidPointOnConflict = {
-  constraint: HelperKidsHelperKidPointConstraint;
-  updateColumns?: Array<HelperKidsHelperKidPointUpdateColumn>;
-  where?: InputMaybe<HelperKidsHelperKidPointBoolExp>;
-};
-
 /** Ordering options when selecting data from "helper_kids.helper_kid_point". */
 export type HelperKidsHelperKidPointOrderBy = {
   helperKid?: InputMaybe<HelperKidsHelperKidOrderBy>;
   helperKidId?: InputMaybe<OrderBy>;
   lastHelpDatetime?: InputMaybe<OrderBy>;
   point?: InputMaybe<OrderBy>;
-};
-
-/** primary key columns input for table: helper_kids.helper_kid_point */
-export type HelperKidsHelperKidPointPkColumnsInput = {
-  /** お手伝いキッズID */
-  helperKidId: Scalars["uuid"];
 };
 
 /** select columns of table "helper_kids.helper_kid_point" */
@@ -6921,37 +4082,6 @@ export enum HelperKidsHelperKidPointSelectColumn {
   /** column name */
   Point = "point",
 }
-
-/** input type for updating data in table "helper_kids.helper_kid_point" */
-export type HelperKidsHelperKidPointSetInput = {
-  /** お手伝いキッズID */
-  helperKidId?: InputMaybe<Scalars["uuid"]>;
-  /** 最後のお手伝い日時 */
-  lastHelpDatetime?: InputMaybe<Scalars["timestamp"]>;
-  /** ポイント */
-  point?: InputMaybe<Scalars["Int"]>;
-};
-
-/** aggregate stddev on columns */
-export type HelperKidsHelperKidPointStddevFields = {
-  __typename?: "HelperKidsHelperKidPointStddevFields";
-  /** ポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevPop on columns */
-export type HelperKidsHelperKidPointStddevPopFields = {
-  __typename?: "HelperKidsHelperKidPointStddevPopFields";
-  /** ポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevSamp on columns */
-export type HelperKidsHelperKidPointStddevSampFields = {
-  __typename?: "HelperKidsHelperKidPointStddevSampFields";
-  /** ポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
 
 /** Streaming cursor of the table "helper_kids_helper_kid_point" */
 export type HelperKidsHelperKidPointStreamCursorInput = {
@@ -6971,53 +4101,6 @@ export type HelperKidsHelperKidPointStreamCursorValueInput = {
   point?: InputMaybe<Scalars["Int"]>;
 };
 
-/** aggregate sum on columns */
-export type HelperKidsHelperKidPointSumFields = {
-  __typename?: "HelperKidsHelperKidPointSumFields";
-  /** ポイント */
-  point?: Maybe<Scalars["Int"]>;
-};
-
-/** update columns of table "helper_kids.helper_kid_point" */
-export enum HelperKidsHelperKidPointUpdateColumn {
-  /** column name */
-  HelperKidId = "helperKidId",
-  /** column name */
-  LastHelpDatetime = "lastHelpDatetime",
-  /** column name */
-  Point = "point",
-}
-
-export type HelperKidsHelperKidPointUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<HelperKidsHelperKidPointIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<HelperKidsHelperKidPointSetInput>;
-  /** filter the rows which have to be updated */
-  where: HelperKidsHelperKidPointBoolExp;
-};
-
-/** aggregate varPop on columns */
-export type HelperKidsHelperKidPointVarPopFields = {
-  __typename?: "HelperKidsHelperKidPointVarPopFields";
-  /** ポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate varSamp on columns */
-export type HelperKidsHelperKidPointVarSampFields = {
-  __typename?: "HelperKidsHelperKidPointVarSampFields";
-  /** ポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate variance on columns */
-export type HelperKidsHelperKidPointVarianceFields = {
-  __typename?: "HelperKidsHelperKidPointVarianceFields";
-  /** ポイント */
-  point?: Maybe<Scalars["Float"]>;
-};
-
 /** select columns of table "helper_kids.helper_kid" */
 export enum HelperKidsHelperKidSelectColumn {
   /** column name */
@@ -7029,18 +4112,6 @@ export enum HelperKidsHelperKidSelectColumn {
   /** column name */
   NameSuffix = "nameSuffix",
 }
-
-/** input type for updating data in table "helper_kids.helper_kid" */
-export type HelperKidsHelperKidSetInput = {
-  /** グループID */
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  /** ID */
-  helperKidId?: InputMaybe<Scalars["uuid"]>;
-  /** 氏名 */
-  name?: InputMaybe<Scalars["String"]>;
-  /** 名前 接尾辞 */
-  nameSuffix?: InputMaybe<Scalars["String"]>;
-};
 
 /** Streaming cursor of the table "helper_kids_helper_kid" */
 export type HelperKidsHelperKidStreamCursorInput = {
@@ -7062,25 +4133,6 @@ export type HelperKidsHelperKidStreamCursorValueInput = {
   nameSuffix?: InputMaybe<Scalars["String"]>;
 };
 
-/** update columns of table "helper_kids.helper_kid" */
-export enum HelperKidsHelperKidUpdateColumn {
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  HelperKidId = "helperKidId",
-  /** column name */
-  Name = "name",
-  /** column name */
-  NameSuffix = "nameSuffix",
-}
-
-export type HelperKidsHelperKidUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<HelperKidsHelperKidSetInput>;
-  /** filter the rows which have to be updated */
-  where: HelperKidsHelperKidBoolExp;
-};
-
 /** columns and relationships of "import_file_history" */
 export type ImportFileHistory = {
   __typename?: "ImportFileHistory";
@@ -7096,31 +4148,6 @@ export type ImportFileHistory = {
   importUserId: Scalars["uuid"];
   /** An object relationship */
   user: User;
-};
-
-/** aggregated selection of "import_file_history" */
-export type ImportFileHistoryAggregate = {
-  __typename?: "ImportFileHistoryAggregate";
-  aggregate?: Maybe<ImportFileHistoryAggregateFields>;
-  nodes: Array<ImportFileHistory>;
-};
-
-export type ImportFileHistoryAggregateBoolExp = {
-  count?: InputMaybe<ImportFileHistoryAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "import_file_history" */
-export type ImportFileHistoryAggregateFields = {
-  __typename?: "ImportFileHistoryAggregateFields";
-  count: Scalars["Int"];
-  max?: Maybe<ImportFileHistoryMaxFields>;
-  min?: Maybe<ImportFileHistoryMinFields>;
-};
-
-/** aggregate fields of "import_file_history" */
-export type ImportFileHistoryAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "import_file_history" */
@@ -7164,23 +4191,11 @@ export type ImportFileHistoryInsertInput = {
   credit_card_summary?: InputMaybe<CreditCardSummaryObjRelInsertInput>;
   fileName?: InputMaybe<Scalars["String"]>;
   fileType?: InputMaybe<Scalars["String"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   id?: InputMaybe<Scalars["uuid"]>;
   importDatetime?: InputMaybe<Scalars["timestamp"]>;
   importUserId?: InputMaybe<Scalars["uuid"]>;
   user?: InputMaybe<UserObjRelInsertInput>;
-};
-
-/** aggregate max on columns */
-export type ImportFileHistoryMaxFields = {
-  __typename?: "ImportFileHistoryMaxFields";
-  fileName?: Maybe<Scalars["String"]>;
-  fileType?: Maybe<Scalars["String"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  importDatetime?: Maybe<Scalars["timestamp"]>;
-  importUserId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "import_file_history" */
@@ -7191,17 +4206,6 @@ export type ImportFileHistoryMaxOrderBy = {
   id?: InputMaybe<OrderBy>;
   importDatetime?: InputMaybe<OrderBy>;
   importUserId?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type ImportFileHistoryMinFields = {
-  __typename?: "ImportFileHistoryMinFields";
-  fileName?: Maybe<Scalars["String"]>;
-  fileType?: Maybe<Scalars["String"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  importDatetime?: Maybe<Scalars["timestamp"]>;
-  importUserId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "import_file_history" */
@@ -7250,11 +4254,6 @@ export type ImportFileHistoryOrderBy = {
   user?: InputMaybe<UserOrderBy>;
 };
 
-/** primary key columns input for table: import_file_history */
-export type ImportFileHistoryPkColumnsInput = {
-  id: Scalars["uuid"];
-};
-
 /** select columns of table "import_file_history" */
 export enum ImportFileHistorySelectColumn {
   /** column name */
@@ -7270,16 +4269,6 @@ export enum ImportFileHistorySelectColumn {
   /** column name */
   ImportUserId = "importUserId",
 }
-
-/** input type for updating data in table "import_file_history" */
-export type ImportFileHistorySetInput = {
-  fileName?: InputMaybe<Scalars["String"]>;
-  fileType?: InputMaybe<Scalars["String"]>;
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  id?: InputMaybe<Scalars["uuid"]>;
-  importDatetime?: InputMaybe<Scalars["timestamp"]>;
-  importUserId?: InputMaybe<Scalars["uuid"]>;
-};
 
 /** Streaming cursor of the table "import_file_history" */
 export type ImportFileHistoryStreamCursorInput = {
@@ -7299,28 +4288,11 @@ export type ImportFileHistoryStreamCursorValueInput = {
   importUserId?: InputMaybe<Scalars["uuid"]>;
 };
 
-/** update columns of table "import_file_history" */
+/** placeholder for update columns of table "import_file_history" (current role has no relevant permissions) */
 export enum ImportFileHistoryUpdateColumn {
-  /** column name */
-  FileName = "fileName",
-  /** column name */
-  FileType = "fileType",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  Id = "id",
-  /** column name */
-  ImportDatetime = "importDatetime",
-  /** column name */
-  ImportUserId = "importUserId",
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
 }
-
-export type ImportFileHistoryUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<ImportFileHistorySetInput>;
-  /** filter the rows which have to be updated */
-  where: ImportFileHistoryBoolExp;
-};
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type IntComparisonExp = {
@@ -7423,39 +4395,6 @@ export type SummaryCategoryByGroup = {
   id: Scalars["uuid"];
 };
 
-/** aggregated selection of "summary_category_by_group" */
-export type SummaryCategoryByGroupAggregate = {
-  __typename?: "SummaryCategoryByGroupAggregate";
-  aggregate?: Maybe<SummaryCategoryByGroupAggregateFields>;
-  nodes: Array<SummaryCategoryByGroup>;
-};
-
-export type SummaryCategoryByGroupAggregateBoolExp = {
-  count?: InputMaybe<SummaryCategoryByGroupAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "summary_category_by_group" */
-export type SummaryCategoryByGroupAggregateFields = {
-  __typename?: "SummaryCategoryByGroupAggregateFields";
-  avg?: Maybe<SummaryCategoryByGroupAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<SummaryCategoryByGroupMaxFields>;
-  min?: Maybe<SummaryCategoryByGroupMinFields>;
-  stddev?: Maybe<SummaryCategoryByGroupStddevFields>;
-  stddevPop?: Maybe<SummaryCategoryByGroupStddevPopFields>;
-  stddevSamp?: Maybe<SummaryCategoryByGroupStddevSampFields>;
-  sum?: Maybe<SummaryCategoryByGroupSumFields>;
-  varPop?: Maybe<SummaryCategoryByGroupVarPopFields>;
-  varSamp?: Maybe<SummaryCategoryByGroupVarSampFields>;
-  variance?: Maybe<SummaryCategoryByGroupVarianceFields>;
-};
-
-/** aggregate fields of "summary_category_by_group" */
-export type SummaryCategoryByGroupAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
 /** order by aggregate values of table "summary_category_by_group" */
 export type SummaryCategoryByGroupAggregateOrderBy = {
   avg?: InputMaybe<SummaryCategoryByGroupAvgOrderBy>;
@@ -7476,12 +4415,6 @@ export type SummaryCategoryByGroupArrRelInsertInput = {
   data: Array<SummaryCategoryByGroupInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<SummaryCategoryByGroupOnConflict>;
-};
-
-/** aggregate avg on columns */
-export type SummaryCategoryByGroupAvgFields = {
-  __typename?: "SummaryCategoryByGroupAvgFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by avg() on columns of table "summary_category_by_group" */
@@ -7508,28 +4441,13 @@ export enum SummaryCategoryByGroupConstraint {
   SummaryCategoryByGroupPkey = "summary_category_by_group_pkey",
 }
 
-/** input type for incrementing numeric columns in table "summary_category_by_group" */
-export type SummaryCategoryByGroupIncInput = {
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-};
-
 /** input type for inserting data into table "summary_category_by_group" */
 export type SummaryCategoryByGroupInsertInput = {
   category?: InputMaybe<CategoryObjRelInsertInput>;
   categoryId?: InputMaybe<Scalars["uuid"]>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
   groupId?: InputMaybe<Scalars["uuid"]>;
   id?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate max on columns */
-export type SummaryCategoryByGroupMaxFields = {
-  __typename?: "SummaryCategoryByGroupMaxFields";
-  categoryId?: Maybe<Scalars["uuid"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  id?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "summary_category_by_group" */
@@ -7538,15 +4456,6 @@ export type SummaryCategoryByGroupMaxOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
   id?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type SummaryCategoryByGroupMinFields = {
-  __typename?: "SummaryCategoryByGroupMinFields";
-  categoryId?: Maybe<Scalars["uuid"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  id?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "summary_category_by_group" */
@@ -7583,11 +4492,6 @@ export type SummaryCategoryByGroupOrderBy = {
   id?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: summary_category_by_group */
-export type SummaryCategoryByGroupPkColumnsInput = {
-  id: Scalars["uuid"];
-};
-
 /** select columns of table "summary_category_by_group" */
 export enum SummaryCategoryByGroupSelectColumn {
   /** column name */
@@ -7600,40 +4504,14 @@ export enum SummaryCategoryByGroupSelectColumn {
   Id = "id",
 }
 
-/** input type for updating data in table "summary_category_by_group" */
-export type SummaryCategoryByGroupSetInput = {
-  categoryId?: InputMaybe<Scalars["uuid"]>;
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  id?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate stddev on columns */
-export type SummaryCategoryByGroupStddevFields = {
-  __typename?: "SummaryCategoryByGroupStddevFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddev() on columns of table "summary_category_by_group" */
 export type SummaryCategoryByGroupStddevOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** aggregate stddevPop on columns */
-export type SummaryCategoryByGroupStddevPopFields = {
-  __typename?: "SummaryCategoryByGroupStddevPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by stddevPop() on columns of table "summary_category_by_group" */
 export type SummaryCategoryByGroupStddevPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate stddevSamp on columns */
-export type SummaryCategoryByGroupStddevSampFields = {
-  __typename?: "SummaryCategoryByGroupStddevSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "summary_category_by_group" */
@@ -7657,64 +4535,25 @@ export type SummaryCategoryByGroupStreamCursorValueInput = {
   id?: InputMaybe<Scalars["uuid"]>;
 };
 
-/** aggregate sum on columns */
-export type SummaryCategoryByGroupSumFields = {
-  __typename?: "SummaryCategoryByGroupSumFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
-};
-
 /** order by sum() on columns of table "summary_category_by_group" */
 export type SummaryCategoryByGroupSumOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** update columns of table "summary_category_by_group" */
+/** placeholder for update columns of table "summary_category_by_group" (current role has no relevant permissions) */
 export enum SummaryCategoryByGroupUpdateColumn {
-  /** column name */
-  CategoryId = "categoryId",
-  /** column name */
-  DisplayOrder = "displayOrder",
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  Id = "id",
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
 }
-
-export type SummaryCategoryByGroupUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<SummaryCategoryByGroupIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<SummaryCategoryByGroupSetInput>;
-  /** filter the rows which have to be updated */
-  where: SummaryCategoryByGroupBoolExp;
-};
-
-/** aggregate varPop on columns */
-export type SummaryCategoryByGroupVarPopFields = {
-  __typename?: "SummaryCategoryByGroupVarPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
 
 /** order by varPop() on columns of table "summary_category_by_group" */
 export type SummaryCategoryByGroupVarPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
-/** aggregate varSamp on columns */
-export type SummaryCategoryByGroupVarSampFields = {
-  __typename?: "SummaryCategoryByGroupVarSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** order by varSamp() on columns of table "summary_category_by_group" */
 export type SummaryCategoryByGroupVarSampOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
-};
-
-/** aggregate variance on columns */
-export type SummaryCategoryByGroupVarianceFields = {
-  __typename?: "SummaryCategoryByGroupVarianceFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "summary_category_by_group" */
@@ -7747,41 +4586,6 @@ export type TotalByAccountView = {
   total?: Maybe<Scalars["numeric"]>;
 };
 
-export type TotalByAccountViewAggregate = {
-  __typename?: "TotalByAccountViewAggregate";
-  aggregate?: Maybe<TotalByAccountViewAggregateFields>;
-  nodes: Array<TotalByAccountView>;
-};
-
-/** aggregate fields of "total_by_account_view" */
-export type TotalByAccountViewAggregateFields = {
-  __typename?: "TotalByAccountViewAggregateFields";
-  avg?: Maybe<TotalByAccountViewAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<TotalByAccountViewMaxFields>;
-  min?: Maybe<TotalByAccountViewMinFields>;
-  stddev?: Maybe<TotalByAccountViewStddevFields>;
-  stddevPop?: Maybe<TotalByAccountViewStddevPopFields>;
-  stddevSamp?: Maybe<TotalByAccountViewStddevSampFields>;
-  sum?: Maybe<TotalByAccountViewSumFields>;
-  varPop?: Maybe<TotalByAccountViewVarPopFields>;
-  varSamp?: Maybe<TotalByAccountViewVarSampFields>;
-  variance?: Maybe<TotalByAccountViewVarianceFields>;
-};
-
-/** aggregate fields of "total_by_account_view" */
-export type TotalByAccountViewAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<TotalByAccountViewSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate avg on columns */
-export type TotalByAccountViewAvgFields = {
-  __typename?: "TotalByAccountViewAvgFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** Boolean expression to filter rows from the table "total_by_account_view". All fields are combined with a logical 'AND'. */
 export type TotalByAccountViewBoolExp = {
   _and?: InputMaybe<Array<TotalByAccountViewBoolExp>>;
@@ -7794,30 +4598,6 @@ export type TotalByAccountViewBoolExp = {
   groupId?: InputMaybe<UuidComparisonExp>;
   iocomeType?: InputMaybe<IocomeTypeComparisonExp>;
   total?: InputMaybe<NumericComparisonExp>;
-};
-
-/** aggregate max on columns */
-export type TotalByAccountViewMaxFields = {
-  __typename?: "TotalByAccountViewMaxFields";
-  accountId?: Maybe<Scalars["uuid"]>;
-  accountName?: Maybe<Scalars["String"]>;
-  date?: Maybe<Scalars["date"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
-  total?: Maybe<Scalars["numeric"]>;
-};
-
-/** aggregate min on columns */
-export type TotalByAccountViewMinFields = {
-  __typename?: "TotalByAccountViewMinFields";
-  accountId?: Maybe<Scalars["uuid"]>;
-  accountName?: Maybe<Scalars["String"]>;
-  date?: Maybe<Scalars["date"]>;
-  displayOrder?: Maybe<Scalars["Int"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
-  total?: Maybe<Scalars["numeric"]>;
 };
 
 /** Ordering options when selecting data from "total_by_account_view". */
@@ -7849,27 +4629,6 @@ export enum TotalByAccountViewSelectColumn {
   Total = "total",
 }
 
-/** aggregate stddev on columns */
-export type TotalByAccountViewStddevFields = {
-  __typename?: "TotalByAccountViewStddevFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevPop on columns */
-export type TotalByAccountViewStddevPopFields = {
-  __typename?: "TotalByAccountViewStddevPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevSamp on columns */
-export type TotalByAccountViewStddevSampFields = {
-  __typename?: "TotalByAccountViewStddevSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** Streaming cursor of the table "total_by_account_view" */
 export type TotalByAccountViewStreamCursorInput = {
   /** Stream column input with initial value */
@@ -7889,34 +4648,6 @@ export type TotalByAccountViewStreamCursorValueInput = {
   total?: InputMaybe<Scalars["numeric"]>;
 };
 
-/** aggregate sum on columns */
-export type TotalByAccountViewSumFields = {
-  __typename?: "TotalByAccountViewSumFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
-  total?: Maybe<Scalars["numeric"]>;
-};
-
-/** aggregate varPop on columns */
-export type TotalByAccountViewVarPopFields = {
-  __typename?: "TotalByAccountViewVarPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate varSamp on columns */
-export type TotalByAccountViewVarSampFields = {
-  __typename?: "TotalByAccountViewVarSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate variance on columns */
-export type TotalByAccountViewVarianceFields = {
-  __typename?: "TotalByAccountViewVarianceFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** columns and relationships of "total_by_category_view" */
 export type TotalByCategoryView = {
   __typename?: "TotalByCategoryView";
@@ -7928,40 +4659,6 @@ export type TotalByCategoryView = {
   groupId?: Maybe<Scalars["uuid"]>;
   iocomeType?: Maybe<Scalars["iocome_type"]>;
   total?: Maybe<Scalars["numeric"]>;
-};
-
-export type TotalByCategoryViewAggregate = {
-  __typename?: "TotalByCategoryViewAggregate";
-  aggregate?: Maybe<TotalByCategoryViewAggregateFields>;
-  nodes: Array<TotalByCategoryView>;
-};
-
-/** aggregate fields of "total_by_category_view" */
-export type TotalByCategoryViewAggregateFields = {
-  __typename?: "TotalByCategoryViewAggregateFields";
-  avg?: Maybe<TotalByCategoryViewAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<TotalByCategoryViewMaxFields>;
-  min?: Maybe<TotalByCategoryViewMinFields>;
-  stddev?: Maybe<TotalByCategoryViewStddevFields>;
-  stddevPop?: Maybe<TotalByCategoryViewStddevPopFields>;
-  stddevSamp?: Maybe<TotalByCategoryViewStddevSampFields>;
-  sum?: Maybe<TotalByCategoryViewSumFields>;
-  varPop?: Maybe<TotalByCategoryViewVarPopFields>;
-  varSamp?: Maybe<TotalByCategoryViewVarSampFields>;
-  variance?: Maybe<TotalByCategoryViewVarianceFields>;
-};
-
-/** aggregate fields of "total_by_category_view" */
-export type TotalByCategoryViewAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<TotalByCategoryViewSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate avg on columns */
-export type TotalByCategoryViewAvgFields = {
-  __typename?: "TotalByCategoryViewAvgFields";
-  total?: Maybe<Scalars["Float"]>;
 };
 
 /** Boolean expression to filter rows from the table "total_by_category_view". All fields are combined with a logical 'AND'. */
@@ -7977,32 +4674,6 @@ export type TotalByCategoryViewBoolExp = {
   groupId?: InputMaybe<UuidComparisonExp>;
   iocomeType?: InputMaybe<IocomeTypeComparisonExp>;
   total?: InputMaybe<NumericComparisonExp>;
-};
-
-/** aggregate max on columns */
-export type TotalByCategoryViewMaxFields = {
-  __typename?: "TotalByCategoryViewMaxFields";
-  categoryId?: Maybe<Scalars["uuid"]>;
-  categoryName?: Maybe<Scalars["String"]>;
-  date?: Maybe<Scalars["date"]>;
-  genreId?: Maybe<Scalars["uuid"]>;
-  genreName?: Maybe<Scalars["String"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
-  total?: Maybe<Scalars["numeric"]>;
-};
-
-/** aggregate min on columns */
-export type TotalByCategoryViewMinFields = {
-  __typename?: "TotalByCategoryViewMinFields";
-  categoryId?: Maybe<Scalars["uuid"]>;
-  categoryName?: Maybe<Scalars["String"]>;
-  date?: Maybe<Scalars["date"]>;
-  genreId?: Maybe<Scalars["uuid"]>;
-  genreName?: Maybe<Scalars["String"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
-  total?: Maybe<Scalars["numeric"]>;
 };
 
 /** Ordering options when selecting data from "total_by_category_view". */
@@ -8037,24 +4708,6 @@ export enum TotalByCategoryViewSelectColumn {
   Total = "total",
 }
 
-/** aggregate stddev on columns */
-export type TotalByCategoryViewStddevFields = {
-  __typename?: "TotalByCategoryViewStddevFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevPop on columns */
-export type TotalByCategoryViewStddevPopFields = {
-  __typename?: "TotalByCategoryViewStddevPopFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevSamp on columns */
-export type TotalByCategoryViewStddevSampFields = {
-  __typename?: "TotalByCategoryViewStddevSampFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** Streaming cursor of the table "total_by_category_view" */
 export type TotalByCategoryViewStreamCursorInput = {
   /** Stream column input with initial value */
@@ -8075,30 +4728,6 @@ export type TotalByCategoryViewStreamCursorValueInput = {
   total?: InputMaybe<Scalars["numeric"]>;
 };
 
-/** aggregate sum on columns */
-export type TotalByCategoryViewSumFields = {
-  __typename?: "TotalByCategoryViewSumFields";
-  total?: Maybe<Scalars["numeric"]>;
-};
-
-/** aggregate varPop on columns */
-export type TotalByCategoryViewVarPopFields = {
-  __typename?: "TotalByCategoryViewVarPopFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate varSamp on columns */
-export type TotalByCategoryViewVarSampFields = {
-  __typename?: "TotalByCategoryViewVarSampFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate variance on columns */
-export type TotalByCategoryViewVarianceFields = {
-  __typename?: "TotalByCategoryViewVarianceFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** columns and relationships of "total_by_genre_view" */
 export type TotalByGenreView = {
   __typename?: "TotalByGenreView";
@@ -8108,40 +4737,6 @@ export type TotalByGenreView = {
   groupId?: Maybe<Scalars["uuid"]>;
   iocomeType?: Maybe<Scalars["iocome_type"]>;
   total?: Maybe<Scalars["numeric"]>;
-};
-
-export type TotalByGenreViewAggregate = {
-  __typename?: "TotalByGenreViewAggregate";
-  aggregate?: Maybe<TotalByGenreViewAggregateFields>;
-  nodes: Array<TotalByGenreView>;
-};
-
-/** aggregate fields of "total_by_genre_view" */
-export type TotalByGenreViewAggregateFields = {
-  __typename?: "TotalByGenreViewAggregateFields";
-  avg?: Maybe<TotalByGenreViewAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<TotalByGenreViewMaxFields>;
-  min?: Maybe<TotalByGenreViewMinFields>;
-  stddev?: Maybe<TotalByGenreViewStddevFields>;
-  stddevPop?: Maybe<TotalByGenreViewStddevPopFields>;
-  stddevSamp?: Maybe<TotalByGenreViewStddevSampFields>;
-  sum?: Maybe<TotalByGenreViewSumFields>;
-  varPop?: Maybe<TotalByGenreViewVarPopFields>;
-  varSamp?: Maybe<TotalByGenreViewVarSampFields>;
-  variance?: Maybe<TotalByGenreViewVarianceFields>;
-};
-
-/** aggregate fields of "total_by_genre_view" */
-export type TotalByGenreViewAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<TotalByGenreViewSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate avg on columns */
-export type TotalByGenreViewAvgFields = {
-  __typename?: "TotalByGenreViewAvgFields";
-  total?: Maybe<Scalars["Float"]>;
 };
 
 /** Boolean expression to filter rows from the table "total_by_genre_view". All fields are combined with a logical 'AND'. */
@@ -8155,28 +4750,6 @@ export type TotalByGenreViewBoolExp = {
   groupId?: InputMaybe<UuidComparisonExp>;
   iocomeType?: InputMaybe<IocomeTypeComparisonExp>;
   total?: InputMaybe<NumericComparisonExp>;
-};
-
-/** aggregate max on columns */
-export type TotalByGenreViewMaxFields = {
-  __typename?: "TotalByGenreViewMaxFields";
-  date?: Maybe<Scalars["date"]>;
-  genreId?: Maybe<Scalars["uuid"]>;
-  genreName?: Maybe<Scalars["String"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
-  total?: Maybe<Scalars["numeric"]>;
-};
-
-/** aggregate min on columns */
-export type TotalByGenreViewMinFields = {
-  __typename?: "TotalByGenreViewMinFields";
-  date?: Maybe<Scalars["date"]>;
-  genreId?: Maybe<Scalars["uuid"]>;
-  genreName?: Maybe<Scalars["String"]>;
-  groupId?: Maybe<Scalars["uuid"]>;
-  iocomeType?: Maybe<Scalars["iocome_type"]>;
-  total?: Maybe<Scalars["numeric"]>;
 };
 
 /** Ordering options when selecting data from "total_by_genre_view". */
@@ -8205,24 +4778,6 @@ export enum TotalByGenreViewSelectColumn {
   Total = "total",
 }
 
-/** aggregate stddev on columns */
-export type TotalByGenreViewStddevFields = {
-  __typename?: "TotalByGenreViewStddevFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevPop on columns */
-export type TotalByGenreViewStddevPopFields = {
-  __typename?: "TotalByGenreViewStddevPopFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevSamp on columns */
-export type TotalByGenreViewStddevSampFields = {
-  __typename?: "TotalByGenreViewStddevSampFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** Streaming cursor of the table "total_by_genre_view" */
 export type TotalByGenreViewStreamCursorInput = {
   /** Stream column input with initial value */
@@ -8241,30 +4796,6 @@ export type TotalByGenreViewStreamCursorValueInput = {
   total?: InputMaybe<Scalars["numeric"]>;
 };
 
-/** aggregate sum on columns */
-export type TotalByGenreViewSumFields = {
-  __typename?: "TotalByGenreViewSumFields";
-  total?: Maybe<Scalars["numeric"]>;
-};
-
-/** aggregate varPop on columns */
-export type TotalByGenreViewVarPopFields = {
-  __typename?: "TotalByGenreViewVarPopFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate varSamp on columns */
-export type TotalByGenreViewVarSampFields = {
-  __typename?: "TotalByGenreViewVarSampFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate variance on columns */
-export type TotalByGenreViewVarianceFields = {
-  __typename?: "TotalByGenreViewVarianceFields";
-  total?: Maybe<Scalars["Float"]>;
-};
-
 /** 振替カテゴリ */
 export type TransferCategory = {
   __typename?: "TransferCategory";
@@ -8280,31 +4811,6 @@ export type TransferCategory = {
   incomeCategoryId: Scalars["uuid"];
   /** 支出カテゴリID */
   outcomeCategoryId: Scalars["uuid"];
-};
-
-/** aggregated selection of "transfer_category" */
-export type TransferCategoryAggregate = {
-  __typename?: "TransferCategoryAggregate";
-  aggregate?: Maybe<TransferCategoryAggregateFields>;
-  nodes: Array<TransferCategory>;
-};
-
-export type TransferCategoryAggregateBoolExp = {
-  count?: InputMaybe<TransferCategoryAggregateBoolExpCount>;
-};
-
-/** aggregate fields of "transfer_category" */
-export type TransferCategoryAggregateFields = {
-  __typename?: "TransferCategoryAggregateFields";
-  count: Scalars["Int"];
-  max?: Maybe<TransferCategoryMaxFields>;
-  min?: Maybe<TransferCategoryMinFields>;
-};
-
-/** aggregate fields of "transfer_category" */
-export type TransferCategoryAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "transfer_category" */
@@ -8344,24 +4850,12 @@ export enum TransferCategoryConstraint {
 export type TransferCategoryInsertInput = {
   category?: InputMaybe<CategoryObjRelInsertInput>;
   categoryByOutcomeCategoryId?: InputMaybe<CategoryObjRelInsertInput>;
-  group?: InputMaybe<GroupObjRelInsertInput>;
   /** グループID */
   groupId?: InputMaybe<Scalars["uuid"]>;
   /** 収入カテゴリID */
   incomeCategoryId?: InputMaybe<Scalars["uuid"]>;
   /** 支出カテゴリID */
   outcomeCategoryId?: InputMaybe<Scalars["uuid"]>;
-};
-
-/** aggregate max on columns */
-export type TransferCategoryMaxFields = {
-  __typename?: "TransferCategoryMaxFields";
-  /** グループID */
-  groupId?: Maybe<Scalars["uuid"]>;
-  /** 収入カテゴリID */
-  incomeCategoryId?: Maybe<Scalars["uuid"]>;
-  /** 支出カテゴリID */
-  outcomeCategoryId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "transfer_category" */
@@ -8372,17 +4866,6 @@ export type TransferCategoryMaxOrderBy = {
   incomeCategoryId?: InputMaybe<OrderBy>;
   /** 支出カテゴリID */
   outcomeCategoryId?: InputMaybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type TransferCategoryMinFields = {
-  __typename?: "TransferCategoryMinFields";
-  /** グループID */
-  groupId?: Maybe<Scalars["uuid"]>;
-  /** 収入カテゴリID */
-  incomeCategoryId?: Maybe<Scalars["uuid"]>;
-  /** 支出カテゴリID */
-  outcomeCategoryId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "transfer_category" */
@@ -8404,13 +4887,6 @@ export type TransferCategoryMutationResponse = {
   returning: Array<TransferCategory>;
 };
 
-/** input type for inserting object relation for remote table "transfer_category" */
-export type TransferCategoryObjRelInsertInput = {
-  data: TransferCategoryInsertInput;
-  /** upsert condition */
-  onConflict?: InputMaybe<TransferCategoryOnConflict>;
-};
-
 /** on_conflict condition type for table "transfer_category" */
 export type TransferCategoryOnConflict = {
   constraint: TransferCategoryConstraint;
@@ -8428,12 +4904,6 @@ export type TransferCategoryOrderBy = {
   outcomeCategoryId?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: transfer_category */
-export type TransferCategoryPkColumnsInput = {
-  /** グループID */
-  groupId: Scalars["uuid"];
-};
-
 /** select columns of table "transfer_category" */
 export enum TransferCategorySelectColumn {
   /** column name */
@@ -8443,16 +4913,6 @@ export enum TransferCategorySelectColumn {
   /** column name */
   OutcomeCategoryId = "outcomeCategoryId",
 }
-
-/** input type for updating data in table "transfer_category" */
-export type TransferCategorySetInput = {
-  /** グループID */
-  groupId?: InputMaybe<Scalars["uuid"]>;
-  /** 収入カテゴリID */
-  incomeCategoryId?: InputMaybe<Scalars["uuid"]>;
-  /** 支出カテゴリID */
-  outcomeCategoryId?: InputMaybe<Scalars["uuid"]>;
-};
 
 /** Streaming cursor of the table "transfer_category" */
 export type TransferCategoryStreamCursorInput = {
@@ -8472,46 +4932,25 @@ export type TransferCategoryStreamCursorValueInput = {
   outcomeCategoryId?: InputMaybe<Scalars["uuid"]>;
 };
 
-/** update columns of table "transfer_category" */
+/** placeholder for update columns of table "transfer_category" (current role has no relevant permissions) */
 export enum TransferCategoryUpdateColumn {
-  /** column name */
-  GroupId = "groupId",
-  /** column name */
-  IncomeCategoryId = "incomeCategoryId",
-  /** column name */
-  OutcomeCategoryId = "outcomeCategoryId",
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
 }
-
-export type TransferCategoryUpdates = {
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<TransferCategorySetInput>;
-  /** filter the rows which have to be updated */
-  where: TransferCategoryBoolExp;
-};
 
 /** ユーザ */
 export type User = {
   __typename?: "User";
   /** An array relationship */
   affiliations: Array<Affiliation>;
-  /** An aggregate relationship */
-  affiliationsAggregate: AffiliationAggregate;
-  /** An aggregate relationship */
-  creditCardDetailsAggregate: CreditCardDetailAggregate;
   /** An array relationship */
   credit_card_details: Array<CreditCardDetail>;
-  /** An aggregate relationship */
-  dailyDetailsAggregate: DailyDetailAggregate;
   /** An array relationship */
   daily_details: Array<DailyDetail>;
   displayOrder?: Maybe<Scalars["Int"]>;
   email?: Maybe<Scalars["String"]>;
   /** An array relationship */
   helperKidParents: Array<HelperKidsHelperKidParent>;
-  /** An aggregate relationship */
-  helperKidParentsAggregate: HelperKidsHelperKidParentAggregate;
-  /** An aggregate relationship */
-  importFileHistoriesAggregate: ImportFileHistoryAggregate;
   /** An array relationship */
   import_file_histories: Array<ImportFileHistory>;
   userId: Scalars["uuid"];
@@ -8528,39 +4967,12 @@ export type UserAffiliationsArgs = {
 };
 
 /** ユーザ */
-export type UserAffiliationsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
-  where?: InputMaybe<AffiliationBoolExp>;
-};
-
-/** ユーザ */
-export type UserCreditCardDetailsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
-  where?: InputMaybe<CreditCardDetailBoolExp>;
-};
-
-/** ユーザ */
 export type UserCredit_Card_DetailsArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
-};
-
-/** ユーザ */
-export type UserDailyDetailsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
-  where?: InputMaybe<DailyDetailBoolExp>;
 };
 
 /** ユーザ */
@@ -8582,24 +4994,6 @@ export type UserHelperKidParentsArgs = {
 };
 
 /** ユーザ */
-export type UserHelperKidParentsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelperKidParentOrderBy>>;
-  where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
-};
-
-/** ユーザ */
-export type UserImportFileHistoriesAggregateArgs = {
-  distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<ImportFileHistoryOrderBy>>;
-  where?: InputMaybe<ImportFileHistoryBoolExp>;
-};
-
-/** ユーザ */
 export type UserImport_File_HistoriesArgs = {
   distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -8608,58 +5002,18 @@ export type UserImport_File_HistoriesArgs = {
   where?: InputMaybe<ImportFileHistoryBoolExp>;
 };
 
-/** aggregated selection of "user" */
-export type UserAggregate = {
-  __typename?: "UserAggregate";
-  aggregate?: Maybe<UserAggregateFields>;
-  nodes: Array<User>;
-};
-
-/** aggregate fields of "user" */
-export type UserAggregateFields = {
-  __typename?: "UserAggregateFields";
-  avg?: Maybe<UserAvgFields>;
-  count: Scalars["Int"];
-  max?: Maybe<UserMaxFields>;
-  min?: Maybe<UserMinFields>;
-  stddev?: Maybe<UserStddevFields>;
-  stddevPop?: Maybe<UserStddevPopFields>;
-  stddevSamp?: Maybe<UserStddevSampFields>;
-  sum?: Maybe<UserSumFields>;
-  varPop?: Maybe<UserVarPopFields>;
-  varSamp?: Maybe<UserVarSampFields>;
-  variance?: Maybe<UserVarianceFields>;
-};
-
-/** aggregate fields of "user" */
-export type UserAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<UserSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-};
-
-/** aggregate avg on columns */
-export type UserAvgFields = {
-  __typename?: "UserAvgFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
 /** Boolean expression to filter rows from the table "user". All fields are combined with a logical 'AND'. */
 export type UserBoolExp = {
   _and?: InputMaybe<Array<UserBoolExp>>;
   _not?: InputMaybe<UserBoolExp>;
   _or?: InputMaybe<Array<UserBoolExp>>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
-  affiliationsAggregate?: InputMaybe<AffiliationAggregateBoolExp>;
   credit_card_details?: InputMaybe<CreditCardDetailBoolExp>;
-  credit_card_detailsAggregate?: InputMaybe<CreditCardDetailAggregateBoolExp>;
   daily_details?: InputMaybe<DailyDetailBoolExp>;
-  daily_detailsAggregate?: InputMaybe<DailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   email?: InputMaybe<StringComparisonExp>;
   helperKidParents?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
-  helperKidParentsAggregate?: InputMaybe<HelperKidsHelperKidParentAggregateBoolExp>;
   import_file_histories?: InputMaybe<ImportFileHistoryBoolExp>;
-  import_file_historiesAggregate?: InputMaybe<ImportFileHistoryAggregateBoolExp>;
   userId?: InputMaybe<UuidComparisonExp>;
   userName?: InputMaybe<StringComparisonExp>;
 };
@@ -8672,40 +5026,15 @@ export enum UserConstraint {
   UserPkey = "user_pkey",
 }
 
-/** input type for incrementing numeric columns in table "user" */
-export type UserIncInput = {
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-};
-
 /** input type for inserting data into table "user" */
 export type UserInsertInput = {
-  affiliations?: InputMaybe<AffiliationArrRelInsertInput>;
   credit_card_details?: InputMaybe<CreditCardDetailArrRelInsertInput>;
   daily_details?: InputMaybe<DailyDetailArrRelInsertInput>;
   displayOrder?: InputMaybe<Scalars["Int"]>;
   email?: InputMaybe<Scalars["String"]>;
-  helperKidParents?: InputMaybe<HelperKidsHelperKidParentArrRelInsertInput>;
   import_file_histories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
   userId?: InputMaybe<Scalars["uuid"]>;
   userName?: InputMaybe<Scalars["String"]>;
-};
-
-/** aggregate max on columns */
-export type UserMaxFields = {
-  __typename?: "UserMaxFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
-  email?: Maybe<Scalars["String"]>;
-  userId?: Maybe<Scalars["uuid"]>;
-  userName?: Maybe<Scalars["String"]>;
-};
-
-/** aggregate min on columns */
-export type UserMinFields = {
-  __typename?: "UserMinFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
-  email?: Maybe<Scalars["String"]>;
-  userId?: Maybe<Scalars["uuid"]>;
-  userName?: Maybe<Scalars["String"]>;
 };
 
 /** response of any mutation on the table "user" */
@@ -8744,11 +5073,6 @@ export type UserOrderBy = {
   userName?: InputMaybe<OrderBy>;
 };
 
-/** primary key columns input for table: user */
-export type UserPkColumnsInput = {
-  userId: Scalars["uuid"];
-};
-
 /** select columns of table "user" */
 export enum UserSelectColumn {
   /** column name */
@@ -8760,32 +5084,6 @@ export enum UserSelectColumn {
   /** column name */
   UserName = "userName",
 }
-
-/** input type for updating data in table "user" */
-export type UserSetInput = {
-  displayOrder?: InputMaybe<Scalars["Int"]>;
-  email?: InputMaybe<Scalars["String"]>;
-  userId?: InputMaybe<Scalars["uuid"]>;
-  userName?: InputMaybe<Scalars["String"]>;
-};
-
-/** aggregate stddev on columns */
-export type UserStddevFields = {
-  __typename?: "UserStddevFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevPop on columns */
-export type UserStddevPopFields = {
-  __typename?: "UserStddevPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate stddevSamp on columns */
-export type UserStddevSampFields = {
-  __typename?: "UserStddevSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
 
 /** Streaming cursor of the table "user" */
 export type UserStreamCursorInput = {
@@ -8803,50 +5101,11 @@ export type UserStreamCursorValueInput = {
   userName?: InputMaybe<Scalars["String"]>;
 };
 
-/** aggregate sum on columns */
-export type UserSumFields = {
-  __typename?: "UserSumFields";
-  displayOrder?: Maybe<Scalars["Int"]>;
-};
-
-/** update columns of table "user" */
+/** placeholder for update columns of table "user" (current role has no relevant permissions) */
 export enum UserUpdateColumn {
-  /** column name */
-  DisplayOrder = "displayOrder",
-  /** column name */
-  Email = "email",
-  /** column name */
-  UserId = "userId",
-  /** column name */
-  UserName = "userName",
+  /** placeholder (do not use) */
+  Placeholder = "_PLACEHOLDER",
 }
-
-export type UserUpdates = {
-  /** increments the numeric columns with given value of the filtered values */
-  _inc?: InputMaybe<UserIncInput>;
-  /** sets the columns of the filtered rows to the given values */
-  _set?: InputMaybe<UserSetInput>;
-  /** filter the rows which have to be updated */
-  where: UserBoolExp;
-};
-
-/** aggregate varPop on columns */
-export type UserVarPopFields = {
-  __typename?: "UserVarPopFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate varSamp on columns */
-export type UserVarSampFields = {
-  __typename?: "UserVarSampFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
-
-/** aggregate variance on columns */
-export type UserVarianceFields = {
-  __typename?: "UserVarianceFields";
-  displayOrder?: Maybe<Scalars["Float"]>;
-};
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 export type UuidComparisonExp = {
@@ -8861,59 +5120,10 @@ export type UuidComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["uuid"]>>;
 };
 
-export type AccountAggregateBoolExpBool_And = {
-  arguments: AccountSelectColumnAccountAggregateBoolExpBool_AndArgumentsColumns;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<AccountBoolExp>;
-  predicate: BooleanComparisonExp;
-};
-
-export type AccountAggregateBoolExpBool_Or = {
-  arguments: AccountSelectColumnAccountAggregateBoolExpBool_OrArgumentsColumns;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<AccountBoolExp>;
-  predicate: BooleanComparisonExp;
-};
-
-export type AccountAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<AccountSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<AccountBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type AccountTotalArgs = {
   from_date?: InputMaybe<Scalars["date"]>;
   group_id?: InputMaybe<Scalars["uuid"]>;
   to_date?: InputMaybe<Scalars["date"]>;
-};
-
-export type AffiliationAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<AffiliationSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<AffiliationBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type CategoryAggregateBoolExpBool_And = {
-  arguments: CategorySelectColumnCategoryAggregateBoolExpBool_AndArgumentsColumns;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<CategoryBoolExp>;
-  predicate: BooleanComparisonExp;
-};
-
-export type CategoryAggregateBoolExpBool_Or = {
-  arguments: CategorySelectColumnCategoryAggregateBoolExpBool_OrArgumentsColumns;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<CategoryBoolExp>;
-  predicate: BooleanComparisonExp;
-};
-
-export type CategoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<CategorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<CategoryBoolExp>;
-  predicate: IntComparisonExp;
 };
 
 export type CategoryTotalByMonthArgs = {
@@ -8922,52 +5132,10 @@ export type CategoryTotalByMonthArgs = {
   to_date?: InputMaybe<Scalars["date"]>;
 };
 
-export type CreditCardDetailAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<CreditCardDetailBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type CreditCardSummaryAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<CreditCardSummaryBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type DailyDetailAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<DailyDetailBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type DailyDetailByDateArgs = {
   from_date?: InputMaybe<Scalars["date"]>;
   group_id?: InputMaybe<Scalars["uuid"]>;
   to_date?: InputMaybe<Scalars["date"]>;
-};
-
-export type GenreAggregateBoolExpBool_And = {
-  arguments: GenreSelectColumnGenreAggregateBoolExpBool_AndArgumentsColumns;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<GenreBoolExp>;
-  predicate: BooleanComparisonExp;
-};
-
-export type GenreAggregateBoolExpBool_Or = {
-  arguments: GenreSelectColumnGenreAggregateBoolExpBool_OrArgumentsColumns;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<GenreBoolExp>;
-  predicate: BooleanComparisonExp;
-};
-
-export type GenreAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<GenreSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<GenreBoolExp>;
-  predicate: IntComparisonExp;
 };
 
 export type GenreTotalByMonthArgs = {
@@ -8976,40 +5144,12 @@ export type GenreTotalByMonthArgs = {
   to_date?: InputMaybe<Scalars["date"]>;
 };
 
-export type GroupApplicationAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<GroupApplicationBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type HelperKidsExchangeItemAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HelperKidsExchangeItemSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HelperKidsExchangeItemBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type HelperKidsHelpItemAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HelperKidsHelpItemBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 export type HelperKidsHelpPointEarnedAchievementAggregateBoolExpCount = {
   arguments?: InputMaybe<
     Array<HelperKidsHelpPointEarnedAchievementSelectColumn>
   >;
   distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type HelperKidsHelpPointEarnedDetailAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
   predicate: IntComparisonExp;
 };
 
@@ -9022,134 +5162,21 @@ export type HelperKidsHelpPointExchangedAchievementAggregateBoolExpCount = {
   predicate: IntComparisonExp;
 };
 
-export type HelperKidsHelperKidAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HelperKidsHelperKidSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HelperKidsHelperKidBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type HelperKidsHelperKidParentAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type ImportFileHistoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<ImportFileHistoryBoolExp>;
-  predicate: IntComparisonExp;
-};
-
 /** mutation root */
 export type Mutation_Root = {
   __typename?: "mutation_root";
-  /** delete data from the table: "account" */
-  deleteAccount?: Maybe<AccountMutationResponse>;
-  /** delete single row from the table: "account" */
-  deleteAccountByPk?: Maybe<Account>;
-  /** delete data from the table: "affiliation" */
-  deleteAffiliation?: Maybe<AffiliationMutationResponse>;
-  /** delete single row from the table: "affiliation" */
-  deleteAffiliationByPk?: Maybe<Affiliation>;
-  /** delete data from the table: "application" */
-  deleteApplication?: Maybe<ApplicationMutationResponse>;
-  /** delete single row from the table: "application" */
-  deleteApplicationByPk?: Maybe<Application>;
-  /** delete data from the table: "category" */
-  deleteCategory?: Maybe<CategoryMutationResponse>;
-  /** delete single row from the table: "category" */
-  deleteCategoryByPk?: Maybe<Category>;
-  /** delete data from the table: "credit_card_detail" */
-  deleteCreditCardDetail?: Maybe<CreditCardDetailMutationResponse>;
-  /** delete single row from the table: "credit_card_detail" */
-  deleteCreditCardDetailByPk?: Maybe<CreditCardDetail>;
-  /** delete data from the table: "credit_card_summary" */
-  deleteCreditCardSummary?: Maybe<CreditCardSummaryMutationResponse>;
-  /** delete single row from the table: "credit_card_summary" */
-  deleteCreditCardSummaryByPk?: Maybe<CreditCardSummary>;
   /** delete data from the table: "daily_detail" */
   deleteDailyDetail?: Maybe<DailyDetailMutationResponse>;
   /** delete single row from the table: "daily_detail" */
   deleteDailyDetailByPk?: Maybe<DailyDetail>;
-  /** delete data from the table: "genre" */
-  deleteGenre?: Maybe<GenreMutationResponse>;
-  /** delete single row from the table: "genre" */
-  deleteGenreByPk?: Maybe<Genre>;
-  /** delete data from the table: "group" */
-  deleteGroup?: Maybe<GroupMutationResponse>;
-  /** delete data from the table: "group_application" */
-  deleteGroupApplication?: Maybe<GroupApplicationMutationResponse>;
-  /** delete single row from the table: "group_application" */
-  deleteGroupApplicationByPk?: Maybe<GroupApplication>;
-  /** delete single row from the table: "group" */
-  deleteGroupByPk?: Maybe<Group>;
-  /** delete data from the table: "group_role" */
-  deleteGroupRole?: Maybe<GroupRoleMutationResponse>;
-  /** delete single row from the table: "group_role" */
-  deleteGroupRoleByPk?: Maybe<GroupRole>;
-  /** delete data from the table: "helper_kids.exchange_item" */
-  deleteHelperKidsExchangeItem?: Maybe<HelperKidsExchangeItemMutationResponse>;
-  /** delete single row from the table: "helper_kids.exchange_item" */
-  deleteHelperKidsExchangeItemByPk?: Maybe<HelperKidsExchangeItem>;
-  /** delete data from the table: "helper_kids.help_item" */
-  deleteHelperKidsHelpItem?: Maybe<HelperKidsHelpItemMutationResponse>;
-  /** delete single row from the table: "helper_kids.help_item" */
-  deleteHelperKidsHelpItemByPk?: Maybe<HelperKidsHelpItem>;
-  /** delete data from the table: "helper_kids.help_point_earned_achievement" */
-  deleteHelperKidsHelpPointEarnedAchievement?: Maybe<HelperKidsHelpPointEarnedAchievementMutationResponse>;
-  /** delete single row from the table: "helper_kids.help_point_earned_achievement" */
-  deleteHelperKidsHelpPointEarnedAchievementByPk?: Maybe<HelperKidsHelpPointEarnedAchievement>;
-  /** delete data from the table: "helper_kids.help_point_earned_detail" */
-  deleteHelperKidsHelpPointEarnedDetail?: Maybe<HelperKidsHelpPointEarnedDetailMutationResponse>;
-  /** delete single row from the table: "helper_kids.help_point_earned_detail" */
-  deleteHelperKidsHelpPointEarnedDetailByPk?: Maybe<HelperKidsHelpPointEarnedDetail>;
-  /** delete data from the table: "helper_kids.help_point_exchanged_achievement" */
-  deleteHelperKidsHelpPointExchangedAchievement?: Maybe<HelperKidsHelpPointExchangedAchievementMutationResponse>;
-  /** delete single row from the table: "helper_kids.help_point_exchanged_achievement" */
-  deleteHelperKidsHelpPointExchangedAchievementByPk?: Maybe<HelperKidsHelpPointExchangedAchievement>;
-  /** delete data from the table: "helper_kids.helper_kid" */
-  deleteHelperKidsHelperKid?: Maybe<HelperKidsHelperKidMutationResponse>;
-  /** delete single row from the table: "helper_kids.helper_kid" */
-  deleteHelperKidsHelperKidByPk?: Maybe<HelperKidsHelperKid>;
-  /** delete data from the table: "helper_kids.helper_kid_parent" */
-  deleteHelperKidsHelperKidParent?: Maybe<HelperKidsHelperKidParentMutationResponse>;
-  /** delete single row from the table: "helper_kids.helper_kid_parent" */
-  deleteHelperKidsHelperKidParentByPk?: Maybe<HelperKidsHelperKidParent>;
-  /** delete data from the table: "helper_kids.helper_kid_point" */
-  deleteHelperKidsHelperKidPoint?: Maybe<HelperKidsHelperKidPointMutationResponse>;
-  /** delete single row from the table: "helper_kids.helper_kid_point" */
-  deleteHelperKidsHelperKidPointByPk?: Maybe<HelperKidsHelperKidPoint>;
-  /** delete data from the table: "import_file_history" */
-  deleteImportFileHistory?: Maybe<ImportFileHistoryMutationResponse>;
-  /** delete single row from the table: "import_file_history" */
-  deleteImportFileHistoryByPk?: Maybe<ImportFileHistory>;
   /** delete data from the table: "summary_category_by_group" */
   deleteSummaryCategoryByGroup?: Maybe<SummaryCategoryByGroupMutationResponse>;
   /** delete single row from the table: "summary_category_by_group" */
   deleteSummaryCategoryByGroupByPk?: Maybe<SummaryCategoryByGroup>;
-  /** delete data from the table: "transfer_category" */
-  deleteTransferCategory?: Maybe<TransferCategoryMutationResponse>;
-  /** delete single row from the table: "transfer_category" */
-  deleteTransferCategoryByPk?: Maybe<TransferCategory>;
-  /** delete data from the table: "user" */
-  deleteUser?: Maybe<UserMutationResponse>;
-  /** delete single row from the table: "user" */
-  deleteUserByPk?: Maybe<User>;
   /** insert data into the table: "account" */
   insertAccount?: Maybe<AccountMutationResponse>;
   /** insert a single row into the table: "account" */
   insertAccountOne?: Maybe<Account>;
-  /** insert data into the table: "affiliation" */
-  insertAffiliation?: Maybe<AffiliationMutationResponse>;
-  /** insert a single row into the table: "affiliation" */
-  insertAffiliationOne?: Maybe<Affiliation>;
-  /** insert data into the table: "application" */
-  insertApplication?: Maybe<ApplicationMutationResponse>;
-  /** insert a single row into the table: "application" */
-  insertApplicationOne?: Maybe<Application>;
   /** insert data into the table: "category" */
   insertCategory?: Maybe<CategoryMutationResponse>;
   /** insert a single row into the table: "category" */
@@ -9170,26 +5197,6 @@ export type Mutation_Root = {
   insertGenre?: Maybe<GenreMutationResponse>;
   /** insert a single row into the table: "genre" */
   insertGenreOne?: Maybe<Genre>;
-  /** insert data into the table: "group" */
-  insertGroup?: Maybe<GroupMutationResponse>;
-  /** insert data into the table: "group_application" */
-  insertGroupApplication?: Maybe<GroupApplicationMutationResponse>;
-  /** insert a single row into the table: "group_application" */
-  insertGroupApplicationOne?: Maybe<GroupApplication>;
-  /** insert a single row into the table: "group" */
-  insertGroupOne?: Maybe<Group>;
-  /** insert data into the table: "group_role" */
-  insertGroupRole?: Maybe<GroupRoleMutationResponse>;
-  /** insert a single row into the table: "group_role" */
-  insertGroupRoleOne?: Maybe<GroupRole>;
-  /** insert data into the table: "helper_kids.exchange_item" */
-  insertHelperKidsExchangeItem?: Maybe<HelperKidsExchangeItemMutationResponse>;
-  /** insert a single row into the table: "helper_kids.exchange_item" */
-  insertHelperKidsExchangeItemOne?: Maybe<HelperKidsExchangeItem>;
-  /** insert data into the table: "helper_kids.help_item" */
-  insertHelperKidsHelpItem?: Maybe<HelperKidsHelpItemMutationResponse>;
-  /** insert a single row into the table: "helper_kids.help_item" */
-  insertHelperKidsHelpItemOne?: Maybe<HelperKidsHelpItem>;
   /** insert data into the table: "helper_kids.help_point_earned_achievement" */
   insertHelperKidsHelpPointEarnedAchievement?: Maybe<HelperKidsHelpPointEarnedAchievementMutationResponse>;
   /** insert a single row into the table: "helper_kids.help_point_earned_achievement" */
@@ -9202,18 +5209,6 @@ export type Mutation_Root = {
   insertHelperKidsHelpPointExchangedAchievement?: Maybe<HelperKidsHelpPointExchangedAchievementMutationResponse>;
   /** insert a single row into the table: "helper_kids.help_point_exchanged_achievement" */
   insertHelperKidsHelpPointExchangedAchievementOne?: Maybe<HelperKidsHelpPointExchangedAchievement>;
-  /** insert data into the table: "helper_kids.helper_kid" */
-  insertHelperKidsHelperKid?: Maybe<HelperKidsHelperKidMutationResponse>;
-  /** insert a single row into the table: "helper_kids.helper_kid" */
-  insertHelperKidsHelperKidOne?: Maybe<HelperKidsHelperKid>;
-  /** insert data into the table: "helper_kids.helper_kid_parent" */
-  insertHelperKidsHelperKidParent?: Maybe<HelperKidsHelperKidParentMutationResponse>;
-  /** insert a single row into the table: "helper_kids.helper_kid_parent" */
-  insertHelperKidsHelperKidParentOne?: Maybe<HelperKidsHelperKidParent>;
-  /** insert data into the table: "helper_kids.helper_kid_point" */
-  insertHelperKidsHelperKidPoint?: Maybe<HelperKidsHelperKidPointMutationResponse>;
-  /** insert a single row into the table: "helper_kids.helper_kid_point" */
-  insertHelperKidsHelperKidPointOne?: Maybe<HelperKidsHelperKidPoint>;
   /** insert data into the table: "import_file_history" */
   insertImportFileHistory?: Maybe<ImportFileHistoryMutationResponse>;
   /** insert a single row into the table: "import_file_history" */
@@ -9230,24 +5225,6 @@ export type Mutation_Root = {
   insertUser?: Maybe<UserMutationResponse>;
   /** insert a single row into the table: "user" */
   insertUserOne?: Maybe<User>;
-  /** update data of the table: "account" */
-  updateAccount?: Maybe<AccountMutationResponse>;
-  /** update single row of the table: "account" */
-  updateAccountByPk?: Maybe<Account>;
-  /** update multiples rows of table: "account" */
-  updateAccountMany?: Maybe<Array<Maybe<AccountMutationResponse>>>;
-  /** update data of the table: "affiliation" */
-  updateAffiliation?: Maybe<AffiliationMutationResponse>;
-  /** update single row of the table: "affiliation" */
-  updateAffiliationByPk?: Maybe<Affiliation>;
-  /** update multiples rows of table: "affiliation" */
-  updateAffiliationMany?: Maybe<Array<Maybe<AffiliationMutationResponse>>>;
-  /** update data of the table: "application" */
-  updateApplication?: Maybe<ApplicationMutationResponse>;
-  /** update single row of the table: "application" */
-  updateApplicationByPk?: Maybe<Application>;
-  /** update multiples rows of table: "application" */
-  updateApplicationMany?: Maybe<Array<Maybe<ApplicationMutationResponse>>>;
   /** update data of the table: "category" */
   updateCategory?: Maybe<CategoryMutationResponse>;
   /** update single row of the table: "category" */
@@ -9262,14 +5239,6 @@ export type Mutation_Root = {
   updateCreditCardDetailMany?: Maybe<
     Array<Maybe<CreditCardDetailMutationResponse>>
   >;
-  /** update data of the table: "credit_card_summary" */
-  updateCreditCardSummary?: Maybe<CreditCardSummaryMutationResponse>;
-  /** update single row of the table: "credit_card_summary" */
-  updateCreditCardSummaryByPk?: Maybe<CreditCardSummary>;
-  /** update multiples rows of table: "credit_card_summary" */
-  updateCreditCardSummaryMany?: Maybe<
-    Array<Maybe<CreditCardSummaryMutationResponse>>
-  >;
   /** update data of the table: "daily_detail" */
   updateDailyDetail?: Maybe<DailyDetailMutationResponse>;
   /** update single row of the table: "daily_detail" */
@@ -9282,180 +5251,6 @@ export type Mutation_Root = {
   updateGenreByPk?: Maybe<Genre>;
   /** update multiples rows of table: "genre" */
   updateGenreMany?: Maybe<Array<Maybe<GenreMutationResponse>>>;
-  /** update data of the table: "group" */
-  updateGroup?: Maybe<GroupMutationResponse>;
-  /** update data of the table: "group_application" */
-  updateGroupApplication?: Maybe<GroupApplicationMutationResponse>;
-  /** update single row of the table: "group_application" */
-  updateGroupApplicationByPk?: Maybe<GroupApplication>;
-  /** update multiples rows of table: "group_application" */
-  updateGroupApplicationMany?: Maybe<
-    Array<Maybe<GroupApplicationMutationResponse>>
-  >;
-  /** update single row of the table: "group" */
-  updateGroupByPk?: Maybe<Group>;
-  /** update multiples rows of table: "group" */
-  updateGroupMany?: Maybe<Array<Maybe<GroupMutationResponse>>>;
-  /** update data of the table: "group_role" */
-  updateGroupRole?: Maybe<GroupRoleMutationResponse>;
-  /** update single row of the table: "group_role" */
-  updateGroupRoleByPk?: Maybe<GroupRole>;
-  /** update multiples rows of table: "group_role" */
-  updateGroupRoleMany?: Maybe<Array<Maybe<GroupRoleMutationResponse>>>;
-  /** update data of the table: "helper_kids.exchange_item" */
-  updateHelperKidsExchangeItem?: Maybe<HelperKidsExchangeItemMutationResponse>;
-  /** update single row of the table: "helper_kids.exchange_item" */
-  updateHelperKidsExchangeItemByPk?: Maybe<HelperKidsExchangeItem>;
-  /** update multiples rows of table: "helper_kids.exchange_item" */
-  updateHelperKidsExchangeItemMany?: Maybe<
-    Array<Maybe<HelperKidsExchangeItemMutationResponse>>
-  >;
-  /** update data of the table: "helper_kids.help_item" */
-  updateHelperKidsHelpItem?: Maybe<HelperKidsHelpItemMutationResponse>;
-  /** update single row of the table: "helper_kids.help_item" */
-  updateHelperKidsHelpItemByPk?: Maybe<HelperKidsHelpItem>;
-  /** update multiples rows of table: "helper_kids.help_item" */
-  updateHelperKidsHelpItemMany?: Maybe<
-    Array<Maybe<HelperKidsHelpItemMutationResponse>>
-  >;
-  /** update data of the table: "helper_kids.help_point_earned_achievement" */
-  updateHelperKidsHelpPointEarnedAchievement?: Maybe<HelperKidsHelpPointEarnedAchievementMutationResponse>;
-  /** update single row of the table: "helper_kids.help_point_earned_achievement" */
-  updateHelperKidsHelpPointEarnedAchievementByPk?: Maybe<HelperKidsHelpPointEarnedAchievement>;
-  /** update multiples rows of table: "helper_kids.help_point_earned_achievement" */
-  updateHelperKidsHelpPointEarnedAchievementMany?: Maybe<
-    Array<Maybe<HelperKidsHelpPointEarnedAchievementMutationResponse>>
-  >;
-  /** update data of the table: "helper_kids.help_point_earned_detail" */
-  updateHelperKidsHelpPointEarnedDetail?: Maybe<HelperKidsHelpPointEarnedDetailMutationResponse>;
-  /** update single row of the table: "helper_kids.help_point_earned_detail" */
-  updateHelperKidsHelpPointEarnedDetailByPk?: Maybe<HelperKidsHelpPointEarnedDetail>;
-  /** update multiples rows of table: "helper_kids.help_point_earned_detail" */
-  updateHelperKidsHelpPointEarnedDetailMany?: Maybe<
-    Array<Maybe<HelperKidsHelpPointEarnedDetailMutationResponse>>
-  >;
-  /** update data of the table: "helper_kids.help_point_exchanged_achievement" */
-  updateHelperKidsHelpPointExchangedAchievement?: Maybe<HelperKidsHelpPointExchangedAchievementMutationResponse>;
-  /** update single row of the table: "helper_kids.help_point_exchanged_achievement" */
-  updateHelperKidsHelpPointExchangedAchievementByPk?: Maybe<HelperKidsHelpPointExchangedAchievement>;
-  /** update multiples rows of table: "helper_kids.help_point_exchanged_achievement" */
-  updateHelperKidsHelpPointExchangedAchievementMany?: Maybe<
-    Array<Maybe<HelperKidsHelpPointExchangedAchievementMutationResponse>>
-  >;
-  /** update data of the table: "helper_kids.helper_kid" */
-  updateHelperKidsHelperKid?: Maybe<HelperKidsHelperKidMutationResponse>;
-  /** update single row of the table: "helper_kids.helper_kid" */
-  updateHelperKidsHelperKidByPk?: Maybe<HelperKidsHelperKid>;
-  /** update multiples rows of table: "helper_kids.helper_kid" */
-  updateHelperKidsHelperKidMany?: Maybe<
-    Array<Maybe<HelperKidsHelperKidMutationResponse>>
-  >;
-  /** update data of the table: "helper_kids.helper_kid_parent" */
-  updateHelperKidsHelperKidParent?: Maybe<HelperKidsHelperKidParentMutationResponse>;
-  /** update single row of the table: "helper_kids.helper_kid_parent" */
-  updateHelperKidsHelperKidParentByPk?: Maybe<HelperKidsHelperKidParent>;
-  /** update multiples rows of table: "helper_kids.helper_kid_parent" */
-  updateHelperKidsHelperKidParentMany?: Maybe<
-    Array<Maybe<HelperKidsHelperKidParentMutationResponse>>
-  >;
-  /** update data of the table: "helper_kids.helper_kid_point" */
-  updateHelperKidsHelperKidPoint?: Maybe<HelperKidsHelperKidPointMutationResponse>;
-  /** update single row of the table: "helper_kids.helper_kid_point" */
-  updateHelperKidsHelperKidPointByPk?: Maybe<HelperKidsHelperKidPoint>;
-  /** update multiples rows of table: "helper_kids.helper_kid_point" */
-  updateHelperKidsHelperKidPointMany?: Maybe<
-    Array<Maybe<HelperKidsHelperKidPointMutationResponse>>
-  >;
-  /** update data of the table: "import_file_history" */
-  updateImportFileHistory?: Maybe<ImportFileHistoryMutationResponse>;
-  /** update single row of the table: "import_file_history" */
-  updateImportFileHistoryByPk?: Maybe<ImportFileHistory>;
-  /** update multiples rows of table: "import_file_history" */
-  updateImportFileHistoryMany?: Maybe<
-    Array<Maybe<ImportFileHistoryMutationResponse>>
-  >;
-  /** update data of the table: "summary_category_by_group" */
-  updateSummaryCategoryByGroup?: Maybe<SummaryCategoryByGroupMutationResponse>;
-  /** update single row of the table: "summary_category_by_group" */
-  updateSummaryCategoryByGroupByPk?: Maybe<SummaryCategoryByGroup>;
-  /** update multiples rows of table: "summary_category_by_group" */
-  updateSummaryCategoryByGroupMany?: Maybe<
-    Array<Maybe<SummaryCategoryByGroupMutationResponse>>
-  >;
-  /** update data of the table: "transfer_category" */
-  updateTransferCategory?: Maybe<TransferCategoryMutationResponse>;
-  /** update single row of the table: "transfer_category" */
-  updateTransferCategoryByPk?: Maybe<TransferCategory>;
-  /** update multiples rows of table: "transfer_category" */
-  updateTransferCategoryMany?: Maybe<
-    Array<Maybe<TransferCategoryMutationResponse>>
-  >;
-  /** update data of the table: "user" */
-  updateUser?: Maybe<UserMutationResponse>;
-  /** update single row of the table: "user" */
-  updateUserByPk?: Maybe<User>;
-  /** update multiples rows of table: "user" */
-  updateUserMany?: Maybe<Array<Maybe<UserMutationResponse>>>;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteAccountArgs = {
-  where: AccountBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteAccountByPkArgs = {
-  accountId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteAffiliationArgs = {
-  where: AffiliationBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteAffiliationByPkArgs = {
-  affiliationId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteApplicationArgs = {
-  where: ApplicationBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteApplicationByPkArgs = {
-  applicationId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteCategoryArgs = {
-  where: CategoryBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteCategoryByPkArgs = {
-  categoryId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteCreditCardDetailArgs = {
-  where: CreditCardDetailBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteCreditCardDetailByPkArgs = {
-  id: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteCreditCardSummaryArgs = {
-  where: CreditCardSummaryBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteCreditCardSummaryByPkArgs = {
-  id: Scalars["uuid"];
 };
 
 /** mutation root */
@@ -9465,137 +5260,6 @@ export type Mutation_RootDeleteDailyDetailArgs = {
 
 /** mutation root */
 export type Mutation_RootDeleteDailyDetailByPkArgs = {
-  id: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteGenreArgs = {
-  where: GenreBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteGenreByPkArgs = {
-  genreId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteGroupArgs = {
-  where: GroupBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteGroupApplicationArgs = {
-  where: GroupApplicationBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteGroupApplicationByPkArgs = {
-  groupApplicationId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteGroupByPkArgs = {
-  groupId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteGroupRoleArgs = {
-  where: GroupRoleBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteGroupRoleByPkArgs = {
-  groupRoleId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsExchangeItemArgs = {
-  where: HelperKidsExchangeItemBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsExchangeItemByPkArgs = {
-  exchangeItemId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelpItemArgs = {
-  where: HelperKidsHelpItemBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelpItemByPkArgs = {
-  helpItemId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelpPointEarnedAchievementArgs = {
-  where: HelperKidsHelpPointEarnedAchievementBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelpPointEarnedAchievementByPkArgs = {
-  helpPointEarnedAchievementId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelpPointEarnedDetailArgs = {
-  where: HelperKidsHelpPointEarnedDetailBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelpPointEarnedDetailByPkArgs = {
-  helpPointEarnedDetailId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelpPointExchangedAchievementArgs = {
-  where: HelperKidsHelpPointExchangedAchievementBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelpPointExchangedAchievementByPkArgs =
-  {
-    helpPointExchangedAchievementId: Scalars["uuid"];
-  };
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelperKidArgs = {
-  where: HelperKidsHelperKidBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelperKidByPkArgs = {
-  helperKidId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelperKidParentArgs = {
-  where: HelperKidsHelperKidParentBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelperKidParentByPkArgs = {
-  helperKidParentId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelperKidPointArgs = {
-  where: HelperKidsHelperKidPointBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteHelperKidsHelperKidPointByPkArgs = {
-  helperKidId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteImportFileHistoryArgs = {
-  where: ImportFileHistoryBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteImportFileHistoryByPkArgs = {
   id: Scalars["uuid"];
 };
 
@@ -9610,26 +5274,6 @@ export type Mutation_RootDeleteSummaryCategoryByGroupByPkArgs = {
 };
 
 /** mutation root */
-export type Mutation_RootDeleteTransferCategoryArgs = {
-  where: TransferCategoryBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteTransferCategoryByPkArgs = {
-  groupId: Scalars["uuid"];
-};
-
-/** mutation root */
-export type Mutation_RootDeleteUserArgs = {
-  where: UserBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootDeleteUserByPkArgs = {
-  userId: Scalars["uuid"];
-};
-
-/** mutation root */
 export type Mutation_RootInsertAccountArgs = {
   objects: Array<AccountInsertInput>;
   onConflict?: InputMaybe<AccountOnConflict>;
@@ -9639,30 +5283,6 @@ export type Mutation_RootInsertAccountArgs = {
 export type Mutation_RootInsertAccountOneArgs = {
   object: AccountInsertInput;
   onConflict?: InputMaybe<AccountOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertAffiliationArgs = {
-  objects: Array<AffiliationInsertInput>;
-  onConflict?: InputMaybe<AffiliationOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertAffiliationOneArgs = {
-  object: AffiliationInsertInput;
-  onConflict?: InputMaybe<AffiliationOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertApplicationArgs = {
-  objects: Array<ApplicationInsertInput>;
-  onConflict?: InputMaybe<ApplicationOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertApplicationOneArgs = {
-  object: ApplicationInsertInput;
-  onConflict?: InputMaybe<ApplicationOnConflict>;
 };
 
 /** mutation root */
@@ -9726,66 +5346,6 @@ export type Mutation_RootInsertGenreOneArgs = {
 };
 
 /** mutation root */
-export type Mutation_RootInsertGroupArgs = {
-  objects: Array<GroupInsertInput>;
-  onConflict?: InputMaybe<GroupOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertGroupApplicationArgs = {
-  objects: Array<GroupApplicationInsertInput>;
-  onConflict?: InputMaybe<GroupApplicationOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertGroupApplicationOneArgs = {
-  object: GroupApplicationInsertInput;
-  onConflict?: InputMaybe<GroupApplicationOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertGroupOneArgs = {
-  object: GroupInsertInput;
-  onConflict?: InputMaybe<GroupOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertGroupRoleArgs = {
-  objects: Array<GroupRoleInsertInput>;
-  onConflict?: InputMaybe<GroupRoleOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertGroupRoleOneArgs = {
-  object: GroupRoleInsertInput;
-  onConflict?: InputMaybe<GroupRoleOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertHelperKidsExchangeItemArgs = {
-  objects: Array<HelperKidsExchangeItemInsertInput>;
-  onConflict?: InputMaybe<HelperKidsExchangeItemOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertHelperKidsExchangeItemOneArgs = {
-  object: HelperKidsExchangeItemInsertInput;
-  onConflict?: InputMaybe<HelperKidsExchangeItemOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertHelperKidsHelpItemArgs = {
-  objects: Array<HelperKidsHelpItemInsertInput>;
-  onConflict?: InputMaybe<HelperKidsHelpItemOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertHelperKidsHelpItemOneArgs = {
-  object: HelperKidsHelpItemInsertInput;
-  onConflict?: InputMaybe<HelperKidsHelpItemOnConflict>;
-};
-
-/** mutation root */
 export type Mutation_RootInsertHelperKidsHelpPointEarnedAchievementArgs = {
   objects: Array<HelperKidsHelpPointEarnedAchievementInsertInput>;
   onConflict?: InputMaybe<HelperKidsHelpPointEarnedAchievementOnConflict>;
@@ -9821,42 +5381,6 @@ export type Mutation_RootInsertHelperKidsHelpPointExchangedAchievementOneArgs =
     object: HelperKidsHelpPointExchangedAchievementInsertInput;
     onConflict?: InputMaybe<HelperKidsHelpPointExchangedAchievementOnConflict>;
   };
-
-/** mutation root */
-export type Mutation_RootInsertHelperKidsHelperKidArgs = {
-  objects: Array<HelperKidsHelperKidInsertInput>;
-  onConflict?: InputMaybe<HelperKidsHelperKidOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertHelperKidsHelperKidOneArgs = {
-  object: HelperKidsHelperKidInsertInput;
-  onConflict?: InputMaybe<HelperKidsHelperKidOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertHelperKidsHelperKidParentArgs = {
-  objects: Array<HelperKidsHelperKidParentInsertInput>;
-  onConflict?: InputMaybe<HelperKidsHelperKidParentOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertHelperKidsHelperKidParentOneArgs = {
-  object: HelperKidsHelperKidParentInsertInput;
-  onConflict?: InputMaybe<HelperKidsHelperKidParentOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertHelperKidsHelperKidPointArgs = {
-  objects: Array<HelperKidsHelperKidPointInsertInput>;
-  onConflict?: InputMaybe<HelperKidsHelperKidPointOnConflict>;
-};
-
-/** mutation root */
-export type Mutation_RootInsertHelperKidsHelperKidPointOneArgs = {
-  object: HelperKidsHelperKidPointInsertInput;
-  onConflict?: InputMaybe<HelperKidsHelperKidPointOnConflict>;
-};
 
 /** mutation root */
 export type Mutation_RootInsertImportFileHistoryArgs = {
@@ -9907,59 +5431,6 @@ export type Mutation_RootInsertUserOneArgs = {
 };
 
 /** mutation root */
-export type Mutation_RootUpdateAccountArgs = {
-  _inc?: InputMaybe<AccountIncInput>;
-  _set?: InputMaybe<AccountSetInput>;
-  where: AccountBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateAccountByPkArgs = {
-  _inc?: InputMaybe<AccountIncInput>;
-  _set?: InputMaybe<AccountSetInput>;
-  pkColumns: AccountPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateAccountManyArgs = {
-  updates: Array<AccountUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateAffiliationArgs = {
-  _set?: InputMaybe<AffiliationSetInput>;
-  where: AffiliationBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateAffiliationByPkArgs = {
-  _set?: InputMaybe<AffiliationSetInput>;
-  pkColumns: AffiliationPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateAffiliationManyArgs = {
-  updates: Array<AffiliationUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateApplicationArgs = {
-  _set?: InputMaybe<ApplicationSetInput>;
-  where: ApplicationBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateApplicationByPkArgs = {
-  _set?: InputMaybe<ApplicationSetInput>;
-  pkColumns: ApplicationPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateApplicationManyArgs = {
-  updates: Array<ApplicationUpdates>;
-};
-
-/** mutation root */
 export type Mutation_RootUpdateCategoryArgs = {
   _inc?: InputMaybe<CategoryIncInput>;
   _set?: InputMaybe<CategorySetInput>;
@@ -9995,25 +5466,6 @@ export type Mutation_RootUpdateCreditCardDetailByPkArgs = {
 /** mutation root */
 export type Mutation_RootUpdateCreditCardDetailManyArgs = {
   updates: Array<CreditCardDetailUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateCreditCardSummaryArgs = {
-  _inc?: InputMaybe<CreditCardSummaryIncInput>;
-  _set?: InputMaybe<CreditCardSummarySetInput>;
-  where: CreditCardSummaryBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateCreditCardSummaryByPkArgs = {
-  _inc?: InputMaybe<CreditCardSummaryIncInput>;
-  _set?: InputMaybe<CreditCardSummarySetInput>;
-  pkColumns: CreditCardSummaryPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateCreditCardSummaryManyArgs = {
-  updates: Array<CreditCardSummaryUpdates>;
 };
 
 /** mutation root */
@@ -10054,381 +5506,70 @@ export type Mutation_RootUpdateGenreManyArgs = {
   updates: Array<GenreUpdates>;
 };
 
-/** mutation root */
-export type Mutation_RootUpdateGroupArgs = {
-  _set?: InputMaybe<GroupSetInput>;
-  where: GroupBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateGroupApplicationArgs = {
-  _set?: InputMaybe<GroupApplicationSetInput>;
-  where: GroupApplicationBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateGroupApplicationByPkArgs = {
-  _set?: InputMaybe<GroupApplicationSetInput>;
-  pkColumns: GroupApplicationPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateGroupApplicationManyArgs = {
-  updates: Array<GroupApplicationUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateGroupByPkArgs = {
-  _set?: InputMaybe<GroupSetInput>;
-  pkColumns: GroupPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateGroupManyArgs = {
-  updates: Array<GroupUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateGroupRoleArgs = {
-  _set?: InputMaybe<GroupRoleSetInput>;
-  where: GroupRoleBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateGroupRoleByPkArgs = {
-  _set?: InputMaybe<GroupRoleSetInput>;
-  pkColumns: GroupRolePkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateGroupRoleManyArgs = {
-  updates: Array<GroupRoleUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsExchangeItemArgs = {
-  _inc?: InputMaybe<HelperKidsExchangeItemIncInput>;
-  _set?: InputMaybe<HelperKidsExchangeItemSetInput>;
-  where: HelperKidsExchangeItemBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsExchangeItemByPkArgs = {
-  _inc?: InputMaybe<HelperKidsExchangeItemIncInput>;
-  _set?: InputMaybe<HelperKidsExchangeItemSetInput>;
-  pkColumns: HelperKidsExchangeItemPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsExchangeItemManyArgs = {
-  updates: Array<HelperKidsExchangeItemUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpItemArgs = {
-  _inc?: InputMaybe<HelperKidsHelpItemIncInput>;
-  _set?: InputMaybe<HelperKidsHelpItemSetInput>;
-  where: HelperKidsHelpItemBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpItemByPkArgs = {
-  _inc?: InputMaybe<HelperKidsHelpItemIncInput>;
-  _set?: InputMaybe<HelperKidsHelpItemSetInput>;
-  pkColumns: HelperKidsHelpItemPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpItemManyArgs = {
-  updates: Array<HelperKidsHelpItemUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpPointEarnedAchievementArgs = {
-  _inc?: InputMaybe<HelperKidsHelpPointEarnedAchievementIncInput>;
-  _set?: InputMaybe<HelperKidsHelpPointEarnedAchievementSetInput>;
-  where: HelperKidsHelpPointEarnedAchievementBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpPointEarnedAchievementByPkArgs = {
-  _inc?: InputMaybe<HelperKidsHelpPointEarnedAchievementIncInput>;
-  _set?: InputMaybe<HelperKidsHelpPointEarnedAchievementSetInput>;
-  pkColumns: HelperKidsHelpPointEarnedAchievementPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpPointEarnedAchievementManyArgs = {
-  updates: Array<HelperKidsHelpPointEarnedAchievementUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpPointEarnedDetailArgs = {
-  _inc?: InputMaybe<HelperKidsHelpPointEarnedDetailIncInput>;
-  _set?: InputMaybe<HelperKidsHelpPointEarnedDetailSetInput>;
-  where: HelperKidsHelpPointEarnedDetailBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpPointEarnedDetailByPkArgs = {
-  _inc?: InputMaybe<HelperKidsHelpPointEarnedDetailIncInput>;
-  _set?: InputMaybe<HelperKidsHelpPointEarnedDetailSetInput>;
-  pkColumns: HelperKidsHelpPointEarnedDetailPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpPointEarnedDetailManyArgs = {
-  updates: Array<HelperKidsHelpPointEarnedDetailUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpPointExchangedAchievementArgs = {
-  _inc?: InputMaybe<HelperKidsHelpPointExchangedAchievementIncInput>;
-  _set?: InputMaybe<HelperKidsHelpPointExchangedAchievementSetInput>;
-  where: HelperKidsHelpPointExchangedAchievementBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpPointExchangedAchievementByPkArgs =
-  {
-    _inc?: InputMaybe<HelperKidsHelpPointExchangedAchievementIncInput>;
-    _set?: InputMaybe<HelperKidsHelpPointExchangedAchievementSetInput>;
-    pkColumns: HelperKidsHelpPointExchangedAchievementPkColumnsInput;
-  };
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelpPointExchangedAchievementManyArgs =
-  {
-    updates: Array<HelperKidsHelpPointExchangedAchievementUpdates>;
-  };
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelperKidArgs = {
-  _set?: InputMaybe<HelperKidsHelperKidSetInput>;
-  where: HelperKidsHelperKidBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelperKidByPkArgs = {
-  _set?: InputMaybe<HelperKidsHelperKidSetInput>;
-  pkColumns: HelperKidsHelperKidPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelperKidManyArgs = {
-  updates: Array<HelperKidsHelperKidUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelperKidParentArgs = {
-  _set?: InputMaybe<HelperKidsHelperKidParentSetInput>;
-  where: HelperKidsHelperKidParentBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelperKidParentByPkArgs = {
-  _set?: InputMaybe<HelperKidsHelperKidParentSetInput>;
-  pkColumns: HelperKidsHelperKidParentPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelperKidParentManyArgs = {
-  updates: Array<HelperKidsHelperKidParentUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelperKidPointArgs = {
-  _inc?: InputMaybe<HelperKidsHelperKidPointIncInput>;
-  _set?: InputMaybe<HelperKidsHelperKidPointSetInput>;
-  where: HelperKidsHelperKidPointBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelperKidPointByPkArgs = {
-  _inc?: InputMaybe<HelperKidsHelperKidPointIncInput>;
-  _set?: InputMaybe<HelperKidsHelperKidPointSetInput>;
-  pkColumns: HelperKidsHelperKidPointPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateHelperKidsHelperKidPointManyArgs = {
-  updates: Array<HelperKidsHelperKidPointUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateImportFileHistoryArgs = {
-  _set?: InputMaybe<ImportFileHistorySetInput>;
-  where: ImportFileHistoryBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateImportFileHistoryByPkArgs = {
-  _set?: InputMaybe<ImportFileHistorySetInput>;
-  pkColumns: ImportFileHistoryPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateImportFileHistoryManyArgs = {
-  updates: Array<ImportFileHistoryUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateSummaryCategoryByGroupArgs = {
-  _inc?: InputMaybe<SummaryCategoryByGroupIncInput>;
-  _set?: InputMaybe<SummaryCategoryByGroupSetInput>;
-  where: SummaryCategoryByGroupBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateSummaryCategoryByGroupByPkArgs = {
-  _inc?: InputMaybe<SummaryCategoryByGroupIncInput>;
-  _set?: InputMaybe<SummaryCategoryByGroupSetInput>;
-  pkColumns: SummaryCategoryByGroupPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateSummaryCategoryByGroupManyArgs = {
-  updates: Array<SummaryCategoryByGroupUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateTransferCategoryArgs = {
-  _set?: InputMaybe<TransferCategorySetInput>;
-  where: TransferCategoryBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateTransferCategoryByPkArgs = {
-  _set?: InputMaybe<TransferCategorySetInput>;
-  pkColumns: TransferCategoryPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateTransferCategoryManyArgs = {
-  updates: Array<TransferCategoryUpdates>;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateUserArgs = {
-  _inc?: InputMaybe<UserIncInput>;
-  _set?: InputMaybe<UserSetInput>;
-  where: UserBoolExp;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateUserByPkArgs = {
-  _inc?: InputMaybe<UserIncInput>;
-  _set?: InputMaybe<UserSetInput>;
-  pkColumns: UserPkColumnsInput;
-};
-
-/** mutation root */
-export type Mutation_RootUpdateUserManyArgs = {
-  updates: Array<UserUpdates>;
-};
-
 export type Query_Root = {
   __typename?: "query_root";
   /** fetch data from the table: "account" */
   account: Array<Account>;
-  /** fetch aggregated fields from the table: "account" */
-  accountAggregate: AccountAggregate;
   /** fetch data from the table: "account" using primary key columns */
   accountByPk?: Maybe<Account>;
   /** execute function "account_total" which returns "total_by_account_view" */
   accountTotal: Array<TotalByAccountView>;
-  /** execute function "account_total" and query aggregates on result of table type "total_by_account_view" */
-  accountTotalAggregate: TotalByAccountViewAggregate;
   /** fetch data from the table: "affiliation" */
   affiliation: Array<Affiliation>;
-  /** fetch aggregated fields from the table: "affiliation" */
-  affiliationAggregate: AffiliationAggregate;
   /** fetch data from the table: "affiliation" using primary key columns */
   affiliationByPk?: Maybe<Affiliation>;
   /** fetch data from the table: "application" */
   application: Array<Application>;
-  /** fetch aggregated fields from the table: "application" */
-  applicationAggregate: ApplicationAggregate;
   /** fetch data from the table: "application" using primary key columns */
   applicationByPk?: Maybe<Application>;
   /** fetch data from the table: "category" */
   category: Array<Category>;
-  /** fetch aggregated fields from the table: "category" */
-  categoryAggregate: CategoryAggregate;
   /** fetch data from the table: "category" using primary key columns */
   categoryByPk?: Maybe<Category>;
   /** execute function "category_total_by_month" which returns "total_by_category_view" */
   categoryTotalByMonth: Array<TotalByCategoryView>;
-  /** execute function "category_total_by_month" and query aggregates on result of table type "total_by_category_view" */
-  categoryTotalByMonthAggregate: TotalByCategoryViewAggregate;
   /** fetch data from the table: "credit_card_detail" */
   creditCardDetail: Array<CreditCardDetail>;
-  /** fetch aggregated fields from the table: "credit_card_detail" */
-  creditCardDetailAggregate: CreditCardDetailAggregate;
   /** fetch data from the table: "credit_card_detail" using primary key columns */
   creditCardDetailByPk?: Maybe<CreditCardDetail>;
   /** fetch data from the table: "credit_card_summary" */
   creditCardSummary: Array<CreditCardSummary>;
-  /** fetch aggregated fields from the table: "credit_card_summary" */
-  creditCardSummaryAggregate: CreditCardSummaryAggregate;
   /** fetch data from the table: "credit_card_summary" using primary key columns */
   creditCardSummaryByPk?: Maybe<CreditCardSummary>;
   /** fetch data from the table: "credit_card_summary_total_by_account_view" */
   creditCardSummaryTotalByAccountView: Array<CreditCardSummaryTotalByAccountView>;
-  /** fetch aggregated fields from the table: "credit_card_summary_total_by_account_view" */
-  creditCardSummaryTotalByAccountViewAggregate: CreditCardSummaryTotalByAccountViewAggregate;
   /** fetch data from the table: "daily_detail" */
   dailyDetail: Array<DailyDetail>;
-  /** fetch aggregated fields from the table: "daily_detail" */
-  dailyDetailAggregate: DailyDetailAggregate;
   /** execute function "daily_detail_by_date" which returns "daily_detail" */
   dailyDetailByDate: Array<DailyDetail>;
-  /** execute function "daily_detail_by_date" and query aggregates on result of table type "daily_detail" */
-  dailyDetailByDateAggregate: DailyDetailAggregate;
   /** fetch data from the table: "daily_detail" using primary key columns */
   dailyDetailByPk?: Maybe<DailyDetail>;
   /** fetch data from the table: "daily_total_view" */
   dailyTotalView: Array<DailyTotalView>;
-  /** fetch aggregated fields from the table: "daily_total_view" */
-  dailyTotalViewAggregate: DailyTotalViewAggregate;
   /** fetch data from the table: "genre" */
   genre: Array<Genre>;
-  /** fetch aggregated fields from the table: "genre" */
-  genreAggregate: GenreAggregate;
   /** fetch data from the table: "genre" using primary key columns */
   genreByPk?: Maybe<Genre>;
   /** execute function "genre_total_by_month" which returns "total_by_genre_view" */
   genreTotalByMonth: Array<TotalByGenreView>;
-  /** execute function "genre_total_by_month" and query aggregates on result of table type "total_by_genre_view" */
-  genreTotalByMonthAggregate: TotalByGenreViewAggregate;
   /** fetch data from the table: "group" */
   group: Array<Group>;
-  /** fetch aggregated fields from the table: "group" */
-  groupAggregate: GroupAggregate;
   /** fetch data from the table: "group_application" */
   groupApplication: Array<GroupApplication>;
-  /** fetch aggregated fields from the table: "group_application" */
-  groupApplicationAggregate: GroupApplicationAggregate;
   /** fetch data from the table: "group_application" using primary key columns */
   groupApplicationByPk?: Maybe<GroupApplication>;
   /** fetch data from the table: "group" using primary key columns */
   groupByPk?: Maybe<Group>;
   /** fetch data from the table: "group_role" */
   groupRole: Array<GroupRole>;
-  /** fetch aggregated fields from the table: "group_role" */
-  groupRoleAggregate: GroupRoleAggregate;
   /** fetch data from the table: "group_role" using primary key columns */
   groupRoleByPk?: Maybe<GroupRole>;
   /** fetch data from the table: "helper_kids.exchange_item" */
   helperKidsExchangeItem: Array<HelperKidsExchangeItem>;
-  /** fetch aggregated fields from the table: "helper_kids.exchange_item" */
-  helperKidsExchangeItemAggregate: HelperKidsExchangeItemAggregate;
   /** fetch data from the table: "helper_kids.exchange_item" using primary key columns */
   helperKidsExchangeItemByPk?: Maybe<HelperKidsExchangeItem>;
   /** fetch data from the table: "helper_kids.help_item" */
   helperKidsHelpItem: Array<HelperKidsHelpItem>;
-  /** fetch aggregated fields from the table: "helper_kids.help_item" */
-  helperKidsHelpItemAggregate: HelperKidsHelpItemAggregate;
   /** fetch data from the table: "helper_kids.help_item" using primary key columns */
   helperKidsHelpItemByPk?: Maybe<HelperKidsHelpItem>;
   /** fetch data from the table: "helper_kids.help_point_earned_achievement" */
@@ -10439,8 +5580,6 @@ export type Query_Root = {
   helperKidsHelpPointEarnedAchievementByPk?: Maybe<HelperKidsHelpPointEarnedAchievement>;
   /** fetch data from the table: "helper_kids.help_point_earned_detail" */
   helperKidsHelpPointEarnedDetail: Array<HelperKidsHelpPointEarnedDetail>;
-  /** fetch aggregated fields from the table: "helper_kids.help_point_earned_detail" */
-  helperKidsHelpPointEarnedDetailAggregate: HelperKidsHelpPointEarnedDetailAggregate;
   /** fetch data from the table: "helper_kids.help_point_earned_detail" using primary key columns */
   helperKidsHelpPointEarnedDetailByPk?: Maybe<HelperKidsHelpPointEarnedDetail>;
   /** fetch data from the table: "helper_kids.help_point_exchanged_achievement" */
@@ -10451,69 +5590,41 @@ export type Query_Root = {
   helperKidsHelpPointExchangedAchievementByPk?: Maybe<HelperKidsHelpPointExchangedAchievement>;
   /** fetch data from the table: "helper_kids.helper_kid" */
   helperKidsHelperKid: Array<HelperKidsHelperKid>;
-  /** fetch aggregated fields from the table: "helper_kids.helper_kid" */
-  helperKidsHelperKidAggregate: HelperKidsHelperKidAggregate;
   /** fetch data from the table: "helper_kids.helper_kid" using primary key columns */
   helperKidsHelperKidByPk?: Maybe<HelperKidsHelperKid>;
   /** fetch data from the table: "helper_kids.helper_kid_parent" */
   helperKidsHelperKidParent: Array<HelperKidsHelperKidParent>;
-  /** fetch aggregated fields from the table: "helper_kids.helper_kid_parent" */
-  helperKidsHelperKidParentAggregate: HelperKidsHelperKidParentAggregate;
   /** fetch data from the table: "helper_kids.helper_kid_parent" using primary key columns */
   helperKidsHelperKidParentByPk?: Maybe<HelperKidsHelperKidParent>;
   /** fetch data from the table: "helper_kids.helper_kid_point" */
   helperKidsHelperKidPoint: Array<HelperKidsHelperKidPoint>;
-  /** fetch aggregated fields from the table: "helper_kids.helper_kid_point" */
-  helperKidsHelperKidPointAggregate: HelperKidsHelperKidPointAggregate;
   /** fetch data from the table: "helper_kids.helper_kid_point" using primary key columns */
   helperKidsHelperKidPointByPk?: Maybe<HelperKidsHelperKidPoint>;
   /** fetch data from the table: "import_file_history" */
   importFileHistory: Array<ImportFileHistory>;
-  /** fetch aggregated fields from the table: "import_file_history" */
-  importFileHistoryAggregate: ImportFileHistoryAggregate;
   /** fetch data from the table: "import_file_history" using primary key columns */
   importFileHistoryByPk?: Maybe<ImportFileHistory>;
   /** fetch data from the table: "summary_category_by_group" */
   summaryCategoryByGroup: Array<SummaryCategoryByGroup>;
-  /** fetch aggregated fields from the table: "summary_category_by_group" */
-  summaryCategoryByGroupAggregate: SummaryCategoryByGroupAggregate;
   /** fetch data from the table: "summary_category_by_group" using primary key columns */
   summaryCategoryByGroupByPk?: Maybe<SummaryCategoryByGroup>;
   /** fetch data from the table: "total_by_account_view" */
   totalByAccountView: Array<TotalByAccountView>;
-  /** fetch aggregated fields from the table: "total_by_account_view" */
-  totalByAccountViewAggregate: TotalByAccountViewAggregate;
   /** fetch data from the table: "total_by_category_view" */
   totalByCategoryView: Array<TotalByCategoryView>;
-  /** fetch aggregated fields from the table: "total_by_category_view" */
-  totalByCategoryViewAggregate: TotalByCategoryViewAggregate;
   /** fetch data from the table: "total_by_genre_view" */
   totalByGenreView: Array<TotalByGenreView>;
-  /** fetch aggregated fields from the table: "total_by_genre_view" */
-  totalByGenreViewAggregate: TotalByGenreViewAggregate;
   /** fetch data from the table: "transfer_category" */
   transferCategory: Array<TransferCategory>;
-  /** fetch aggregated fields from the table: "transfer_category" */
-  transferCategoryAggregate: TransferCategoryAggregate;
   /** fetch data from the table: "transfer_category" using primary key columns */
   transferCategoryByPk?: Maybe<TransferCategory>;
   /** fetch data from the table: "user" */
   user: Array<User>;
-  /** fetch aggregated fields from the table: "user" */
-  userAggregate: UserAggregate;
   /** fetch data from the table: "user" using primary key columns */
   userByPk?: Maybe<User>;
 };
 
 export type Query_RootAccountArgs = {
-  distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<AccountOrderBy>>;
-  where?: InputMaybe<AccountBoolExp>;
-};
-
-export type Query_RootAccountAggregateArgs = {
   distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -10534,24 +5645,7 @@ export type Query_RootAccountTotalArgs = {
   where?: InputMaybe<TotalByAccountViewBoolExp>;
 };
 
-export type Query_RootAccountTotalAggregateArgs = {
-  args: AccountTotalArgs;
-  distinctOn?: InputMaybe<Array<TotalByAccountViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByAccountViewOrderBy>>;
-  where?: InputMaybe<TotalByAccountViewBoolExp>;
-};
-
 export type Query_RootAffiliationArgs = {
-  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
-  where?: InputMaybe<AffiliationBoolExp>;
-};
-
-export type Query_RootAffiliationAggregateArgs = {
   distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -10571,27 +5665,11 @@ export type Query_RootApplicationArgs = {
   where?: InputMaybe<ApplicationBoolExp>;
 };
 
-export type Query_RootApplicationAggregateArgs = {
-  distinctOn?: InputMaybe<Array<ApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<ApplicationOrderBy>>;
-  where?: InputMaybe<ApplicationBoolExp>;
-};
-
 export type Query_RootApplicationByPkArgs = {
   applicationId: Scalars["uuid"];
 };
 
 export type Query_RootCategoryArgs = {
-  distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CategoryOrderBy>>;
-  where?: InputMaybe<CategoryBoolExp>;
-};
-
-export type Query_RootCategoryAggregateArgs = {
   distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -10612,24 +5690,7 @@ export type Query_RootCategoryTotalByMonthArgs = {
   where?: InputMaybe<TotalByCategoryViewBoolExp>;
 };
 
-export type Query_RootCategoryTotalByMonthAggregateArgs = {
-  args: CategoryTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<TotalByCategoryViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<TotalByCategoryViewBoolExp>;
-};
-
 export type Query_RootCreditCardDetailArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
-  where?: InputMaybe<CreditCardDetailBoolExp>;
-};
-
-export type Query_RootCreditCardDetailAggregateArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -10642,14 +5703,6 @@ export type Query_RootCreditCardDetailByPkArgs = {
 };
 
 export type Query_RootCreditCardSummaryArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardSummaryOrderBy>>;
-  where?: InputMaybe<CreditCardSummaryBoolExp>;
-};
-
-export type Query_RootCreditCardSummaryAggregateArgs = {
   distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -10671,16 +5724,6 @@ export type Query_RootCreditCardSummaryTotalByAccountViewArgs = {
   where?: InputMaybe<CreditCardSummaryTotalByAccountViewBoolExp>;
 };
 
-export type Query_RootCreditCardSummaryTotalByAccountViewAggregateArgs = {
-  distinctOn?: InputMaybe<
-    Array<CreditCardSummaryTotalByAccountViewSelectColumn>
-  >;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewOrderBy>>;
-  where?: InputMaybe<CreditCardSummaryTotalByAccountViewBoolExp>;
-};
-
 export type Query_RootDailyDetailArgs = {
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -10689,24 +5732,7 @@ export type Query_RootDailyDetailArgs = {
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
-export type Query_RootDailyDetailAggregateArgs = {
-  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
-  where?: InputMaybe<DailyDetailBoolExp>;
-};
-
 export type Query_RootDailyDetailByDateArgs = {
-  args: DailyDetailByDateArgs;
-  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
-  where?: InputMaybe<DailyDetailBoolExp>;
-};
-
-export type Query_RootDailyDetailByDateAggregateArgs = {
   args: DailyDetailByDateArgs;
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -10727,23 +5753,7 @@ export type Query_RootDailyTotalViewArgs = {
   where?: InputMaybe<DailyTotalViewBoolExp>;
 };
 
-export type Query_RootDailyTotalViewAggregateArgs = {
-  distinctOn?: InputMaybe<Array<DailyTotalViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<DailyTotalViewOrderBy>>;
-  where?: InputMaybe<DailyTotalViewBoolExp>;
-};
-
 export type Query_RootGenreArgs = {
-  distinctOn?: InputMaybe<Array<GenreSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GenreOrderBy>>;
-  where?: InputMaybe<GenreBoolExp>;
-};
-
-export type Query_RootGenreAggregateArgs = {
   distinctOn?: InputMaybe<Array<GenreSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -10764,15 +5774,6 @@ export type Query_RootGenreTotalByMonthArgs = {
   where?: InputMaybe<TotalByGenreViewBoolExp>;
 };
 
-export type Query_RootGenreTotalByMonthAggregateArgs = {
-  args: GenreTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<TotalByGenreViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByGenreViewOrderBy>>;
-  where?: InputMaybe<TotalByGenreViewBoolExp>;
-};
-
 export type Query_RootGroupArgs = {
   distinctOn?: InputMaybe<Array<GroupSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -10781,23 +5782,7 @@ export type Query_RootGroupArgs = {
   where?: InputMaybe<GroupBoolExp>;
 };
 
-export type Query_RootGroupAggregateArgs = {
-  distinctOn?: InputMaybe<Array<GroupSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GroupOrderBy>>;
-  where?: InputMaybe<GroupBoolExp>;
-};
-
 export type Query_RootGroupApplicationArgs = {
-  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
-  where?: InputMaybe<GroupApplicationBoolExp>;
-};
-
-export type Query_RootGroupApplicationAggregateArgs = {
   distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -10821,14 +5806,6 @@ export type Query_RootGroupRoleArgs = {
   where?: InputMaybe<GroupRoleBoolExp>;
 };
 
-export type Query_RootGroupRoleAggregateArgs = {
-  distinctOn?: InputMaybe<Array<GroupRoleSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GroupRoleOrderBy>>;
-  where?: InputMaybe<GroupRoleBoolExp>;
-};
-
 export type Query_RootGroupRoleByPkArgs = {
   groupRoleId: Scalars["uuid"];
 };
@@ -10841,27 +5818,11 @@ export type Query_RootHelperKidsExchangeItemArgs = {
   where?: InputMaybe<HelperKidsExchangeItemBoolExp>;
 };
 
-export type Query_RootHelperKidsExchangeItemAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsExchangeItemSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsExchangeItemOrderBy>>;
-  where?: InputMaybe<HelperKidsExchangeItemBoolExp>;
-};
-
 export type Query_RootHelperKidsExchangeItemByPkArgs = {
   exchangeItemId: Scalars["uuid"];
 };
 
 export type Query_RootHelperKidsHelpItemArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelpItemOrderBy>>;
-  where?: InputMaybe<HelperKidsHelpItemBoolExp>;
-};
-
-export type Query_RootHelperKidsHelpItemAggregateArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -10905,14 +5866,6 @@ export type Query_RootHelperKidsHelpPointEarnedDetailArgs = {
   where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
 };
 
-export type Query_RootHelperKidsHelpPointEarnedDetailAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
-  where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
-};
-
 export type Query_RootHelperKidsHelpPointEarnedDetailByPkArgs = {
   helpPointEarnedDetailId: Scalars["uuid"];
 };
@@ -10949,27 +5902,11 @@ export type Query_RootHelperKidsHelperKidArgs = {
   where?: InputMaybe<HelperKidsHelperKidBoolExp>;
 };
 
-export type Query_RootHelperKidsHelperKidAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelperKidSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelperKidOrderBy>>;
-  where?: InputMaybe<HelperKidsHelperKidBoolExp>;
-};
-
 export type Query_RootHelperKidsHelperKidByPkArgs = {
   helperKidId: Scalars["uuid"];
 };
 
 export type Query_RootHelperKidsHelperKidParentArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelperKidParentOrderBy>>;
-  where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
-};
-
-export type Query_RootHelperKidsHelperKidParentAggregateArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -10989,27 +5926,11 @@ export type Query_RootHelperKidsHelperKidPointArgs = {
   where?: InputMaybe<HelperKidsHelperKidPointBoolExp>;
 };
 
-export type Query_RootHelperKidsHelperKidPointAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelperKidPointSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelperKidPointOrderBy>>;
-  where?: InputMaybe<HelperKidsHelperKidPointBoolExp>;
-};
-
 export type Query_RootHelperKidsHelperKidPointByPkArgs = {
   helperKidId: Scalars["uuid"];
 };
 
 export type Query_RootImportFileHistoryArgs = {
-  distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<ImportFileHistoryOrderBy>>;
-  where?: InputMaybe<ImportFileHistoryBoolExp>;
-};
-
-export type Query_RootImportFileHistoryAggregateArgs = {
   distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11029,27 +5950,11 @@ export type Query_RootSummaryCategoryByGroupArgs = {
   where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
 };
 
-export type Query_RootSummaryCategoryByGroupAggregateArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByGroupOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
-};
-
 export type Query_RootSummaryCategoryByGroupByPkArgs = {
   id: Scalars["uuid"];
 };
 
 export type Query_RootTotalByAccountViewArgs = {
-  distinctOn?: InputMaybe<Array<TotalByAccountViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByAccountViewOrderBy>>;
-  where?: InputMaybe<TotalByAccountViewBoolExp>;
-};
-
-export type Query_RootTotalByAccountViewAggregateArgs = {
   distinctOn?: InputMaybe<Array<TotalByAccountViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11065,14 +5970,6 @@ export type Query_RootTotalByCategoryViewArgs = {
   where?: InputMaybe<TotalByCategoryViewBoolExp>;
 };
 
-export type Query_RootTotalByCategoryViewAggregateArgs = {
-  distinctOn?: InputMaybe<Array<TotalByCategoryViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<TotalByCategoryViewBoolExp>;
-};
-
 export type Query_RootTotalByGenreViewArgs = {
   distinctOn?: InputMaybe<Array<TotalByGenreViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -11081,23 +5978,7 @@ export type Query_RootTotalByGenreViewArgs = {
   where?: InputMaybe<TotalByGenreViewBoolExp>;
 };
 
-export type Query_RootTotalByGenreViewAggregateArgs = {
-  distinctOn?: InputMaybe<Array<TotalByGenreViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByGenreViewOrderBy>>;
-  where?: InputMaybe<TotalByGenreViewBoolExp>;
-};
-
 export type Query_RootTransferCategoryArgs = {
-  distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
-  where?: InputMaybe<TransferCategoryBoolExp>;
-};
-
-export type Query_RootTransferCategoryAggregateArgs = {
   distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11117,14 +5998,6 @@ export type Query_RootUserArgs = {
   where?: InputMaybe<UserBoolExp>;
 };
 
-export type Query_RootUserAggregateArgs = {
-  distinctOn?: InputMaybe<Array<UserSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<UserOrderBy>>;
-  where?: InputMaybe<UserBoolExp>;
-};
-
 export type Query_RootUserByPkArgs = {
   userId: Scalars["uuid"];
 };
@@ -11133,104 +6006,72 @@ export type Subscription_Root = {
   __typename?: "subscription_root";
   /** fetch data from the table: "account" */
   account: Array<Account>;
-  /** fetch aggregated fields from the table: "account" */
-  accountAggregate: AccountAggregate;
   /** fetch data from the table: "account" using primary key columns */
   accountByPk?: Maybe<Account>;
   /** fetch data from the table in a streaming manner: "account" */
   accountStream: Array<Account>;
   /** execute function "account_total" which returns "total_by_account_view" */
   accountTotal: Array<TotalByAccountView>;
-  /** execute function "account_total" and query aggregates on result of table type "total_by_account_view" */
-  accountTotalAggregate: TotalByAccountViewAggregate;
   /** fetch data from the table: "affiliation" */
   affiliation: Array<Affiliation>;
-  /** fetch aggregated fields from the table: "affiliation" */
-  affiliationAggregate: AffiliationAggregate;
   /** fetch data from the table: "affiliation" using primary key columns */
   affiliationByPk?: Maybe<Affiliation>;
   /** fetch data from the table in a streaming manner: "affiliation" */
   affiliationStream: Array<Affiliation>;
   /** fetch data from the table: "application" */
   application: Array<Application>;
-  /** fetch aggregated fields from the table: "application" */
-  applicationAggregate: ApplicationAggregate;
   /** fetch data from the table: "application" using primary key columns */
   applicationByPk?: Maybe<Application>;
   /** fetch data from the table in a streaming manner: "application" */
   applicationStream: Array<Application>;
   /** fetch data from the table: "category" */
   category: Array<Category>;
-  /** fetch aggregated fields from the table: "category" */
-  categoryAggregate: CategoryAggregate;
   /** fetch data from the table: "category" using primary key columns */
   categoryByPk?: Maybe<Category>;
   /** fetch data from the table in a streaming manner: "category" */
   categoryStream: Array<Category>;
   /** execute function "category_total_by_month" which returns "total_by_category_view" */
   categoryTotalByMonth: Array<TotalByCategoryView>;
-  /** execute function "category_total_by_month" and query aggregates on result of table type "total_by_category_view" */
-  categoryTotalByMonthAggregate: TotalByCategoryViewAggregate;
   /** fetch data from the table: "credit_card_detail" */
   creditCardDetail: Array<CreditCardDetail>;
-  /** fetch aggregated fields from the table: "credit_card_detail" */
-  creditCardDetailAggregate: CreditCardDetailAggregate;
   /** fetch data from the table: "credit_card_detail" using primary key columns */
   creditCardDetailByPk?: Maybe<CreditCardDetail>;
   /** fetch data from the table in a streaming manner: "credit_card_detail" */
   creditCardDetailStream: Array<CreditCardDetail>;
   /** fetch data from the table: "credit_card_summary" */
   creditCardSummary: Array<CreditCardSummary>;
-  /** fetch aggregated fields from the table: "credit_card_summary" */
-  creditCardSummaryAggregate: CreditCardSummaryAggregate;
   /** fetch data from the table: "credit_card_summary" using primary key columns */
   creditCardSummaryByPk?: Maybe<CreditCardSummary>;
   /** fetch data from the table in a streaming manner: "credit_card_summary" */
   creditCardSummaryStream: Array<CreditCardSummary>;
   /** fetch data from the table: "credit_card_summary_total_by_account_view" */
   creditCardSummaryTotalByAccountView: Array<CreditCardSummaryTotalByAccountView>;
-  /** fetch aggregated fields from the table: "credit_card_summary_total_by_account_view" */
-  creditCardSummaryTotalByAccountViewAggregate: CreditCardSummaryTotalByAccountViewAggregate;
   /** fetch data from the table in a streaming manner: "credit_card_summary_total_by_account_view" */
   creditCardSummaryTotalByAccountViewStream: Array<CreditCardSummaryTotalByAccountView>;
   /** fetch data from the table: "daily_detail" */
   dailyDetail: Array<DailyDetail>;
-  /** fetch aggregated fields from the table: "daily_detail" */
-  dailyDetailAggregate: DailyDetailAggregate;
   /** execute function "daily_detail_by_date" which returns "daily_detail" */
   dailyDetailByDate: Array<DailyDetail>;
-  /** execute function "daily_detail_by_date" and query aggregates on result of table type "daily_detail" */
-  dailyDetailByDateAggregate: DailyDetailAggregate;
   /** fetch data from the table: "daily_detail" using primary key columns */
   dailyDetailByPk?: Maybe<DailyDetail>;
   /** fetch data from the table in a streaming manner: "daily_detail" */
   dailyDetailStream: Array<DailyDetail>;
   /** fetch data from the table: "daily_total_view" */
   dailyTotalView: Array<DailyTotalView>;
-  /** fetch aggregated fields from the table: "daily_total_view" */
-  dailyTotalViewAggregate: DailyTotalViewAggregate;
   /** fetch data from the table in a streaming manner: "daily_total_view" */
   dailyTotalViewStream: Array<DailyTotalView>;
   /** fetch data from the table: "genre" */
   genre: Array<Genre>;
-  /** fetch aggregated fields from the table: "genre" */
-  genreAggregate: GenreAggregate;
   /** fetch data from the table: "genre" using primary key columns */
   genreByPk?: Maybe<Genre>;
   /** fetch data from the table in a streaming manner: "genre" */
   genreStream: Array<Genre>;
   /** execute function "genre_total_by_month" which returns "total_by_genre_view" */
   genreTotalByMonth: Array<TotalByGenreView>;
-  /** execute function "genre_total_by_month" and query aggregates on result of table type "total_by_genre_view" */
-  genreTotalByMonthAggregate: TotalByGenreViewAggregate;
   /** fetch data from the table: "group" */
   group: Array<Group>;
-  /** fetch aggregated fields from the table: "group" */
-  groupAggregate: GroupAggregate;
   /** fetch data from the table: "group_application" */
   groupApplication: Array<GroupApplication>;
-  /** fetch aggregated fields from the table: "group_application" */
-  groupApplicationAggregate: GroupApplicationAggregate;
   /** fetch data from the table: "group_application" using primary key columns */
   groupApplicationByPk?: Maybe<GroupApplication>;
   /** fetch data from the table in a streaming manner: "group_application" */
@@ -11239,8 +6080,6 @@ export type Subscription_Root = {
   groupByPk?: Maybe<Group>;
   /** fetch data from the table: "group_role" */
   groupRole: Array<GroupRole>;
-  /** fetch aggregated fields from the table: "group_role" */
-  groupRoleAggregate: GroupRoleAggregate;
   /** fetch data from the table: "group_role" using primary key columns */
   groupRoleByPk?: Maybe<GroupRole>;
   /** fetch data from the table in a streaming manner: "group_role" */
@@ -11249,16 +6088,12 @@ export type Subscription_Root = {
   groupStream: Array<Group>;
   /** fetch data from the table: "helper_kids.exchange_item" */
   helperKidsExchangeItem: Array<HelperKidsExchangeItem>;
-  /** fetch aggregated fields from the table: "helper_kids.exchange_item" */
-  helperKidsExchangeItemAggregate: HelperKidsExchangeItemAggregate;
   /** fetch data from the table: "helper_kids.exchange_item" using primary key columns */
   helperKidsExchangeItemByPk?: Maybe<HelperKidsExchangeItem>;
   /** fetch data from the table in a streaming manner: "helper_kids.exchange_item" */
   helperKidsExchangeItemStream: Array<HelperKidsExchangeItem>;
   /** fetch data from the table: "helper_kids.help_item" */
   helperKidsHelpItem: Array<HelperKidsHelpItem>;
-  /** fetch aggregated fields from the table: "helper_kids.help_item" */
-  helperKidsHelpItemAggregate: HelperKidsHelpItemAggregate;
   /** fetch data from the table: "helper_kids.help_item" using primary key columns */
   helperKidsHelpItemByPk?: Maybe<HelperKidsHelpItem>;
   /** fetch data from the table in a streaming manner: "helper_kids.help_item" */
@@ -11273,8 +6108,6 @@ export type Subscription_Root = {
   helperKidsHelpPointEarnedAchievementStream: Array<HelperKidsHelpPointEarnedAchievement>;
   /** fetch data from the table: "helper_kids.help_point_earned_detail" */
   helperKidsHelpPointEarnedDetail: Array<HelperKidsHelpPointEarnedDetail>;
-  /** fetch aggregated fields from the table: "helper_kids.help_point_earned_detail" */
-  helperKidsHelpPointEarnedDetailAggregate: HelperKidsHelpPointEarnedDetailAggregate;
   /** fetch data from the table: "helper_kids.help_point_earned_detail" using primary key columns */
   helperKidsHelpPointEarnedDetailByPk?: Maybe<HelperKidsHelpPointEarnedDetail>;
   /** fetch data from the table in a streaming manner: "helper_kids.help_point_earned_detail" */
@@ -11289,22 +6122,16 @@ export type Subscription_Root = {
   helperKidsHelpPointExchangedAchievementStream: Array<HelperKidsHelpPointExchangedAchievement>;
   /** fetch data from the table: "helper_kids.helper_kid" */
   helperKidsHelperKid: Array<HelperKidsHelperKid>;
-  /** fetch aggregated fields from the table: "helper_kids.helper_kid" */
-  helperKidsHelperKidAggregate: HelperKidsHelperKidAggregate;
   /** fetch data from the table: "helper_kids.helper_kid" using primary key columns */
   helperKidsHelperKidByPk?: Maybe<HelperKidsHelperKid>;
   /** fetch data from the table: "helper_kids.helper_kid_parent" */
   helperKidsHelperKidParent: Array<HelperKidsHelperKidParent>;
-  /** fetch aggregated fields from the table: "helper_kids.helper_kid_parent" */
-  helperKidsHelperKidParentAggregate: HelperKidsHelperKidParentAggregate;
   /** fetch data from the table: "helper_kids.helper_kid_parent" using primary key columns */
   helperKidsHelperKidParentByPk?: Maybe<HelperKidsHelperKidParent>;
   /** fetch data from the table in a streaming manner: "helper_kids.helper_kid_parent" */
   helperKidsHelperKidParentStream: Array<HelperKidsHelperKidParent>;
   /** fetch data from the table: "helper_kids.helper_kid_point" */
   helperKidsHelperKidPoint: Array<HelperKidsHelperKidPoint>;
-  /** fetch aggregated fields from the table: "helper_kids.helper_kid_point" */
-  helperKidsHelperKidPointAggregate: HelperKidsHelperKidPointAggregate;
   /** fetch data from the table: "helper_kids.helper_kid_point" using primary key columns */
   helperKidsHelperKidPointByPk?: Maybe<HelperKidsHelperKidPoint>;
   /** fetch data from the table in a streaming manner: "helper_kids.helper_kid_point" */
@@ -11313,50 +6140,36 @@ export type Subscription_Root = {
   helperKidsHelperKidStream: Array<HelperKidsHelperKid>;
   /** fetch data from the table: "import_file_history" */
   importFileHistory: Array<ImportFileHistory>;
-  /** fetch aggregated fields from the table: "import_file_history" */
-  importFileHistoryAggregate: ImportFileHistoryAggregate;
   /** fetch data from the table: "import_file_history" using primary key columns */
   importFileHistoryByPk?: Maybe<ImportFileHistory>;
   /** fetch data from the table in a streaming manner: "import_file_history" */
   importFileHistoryStream: Array<ImportFileHistory>;
   /** fetch data from the table: "summary_category_by_group" */
   summaryCategoryByGroup: Array<SummaryCategoryByGroup>;
-  /** fetch aggregated fields from the table: "summary_category_by_group" */
-  summaryCategoryByGroupAggregate: SummaryCategoryByGroupAggregate;
   /** fetch data from the table: "summary_category_by_group" using primary key columns */
   summaryCategoryByGroupByPk?: Maybe<SummaryCategoryByGroup>;
   /** fetch data from the table in a streaming manner: "summary_category_by_group" */
   summaryCategoryByGroupStream: Array<SummaryCategoryByGroup>;
   /** fetch data from the table: "total_by_account_view" */
   totalByAccountView: Array<TotalByAccountView>;
-  /** fetch aggregated fields from the table: "total_by_account_view" */
-  totalByAccountViewAggregate: TotalByAccountViewAggregate;
   /** fetch data from the table in a streaming manner: "total_by_account_view" */
   totalByAccountViewStream: Array<TotalByAccountView>;
   /** fetch data from the table: "total_by_category_view" */
   totalByCategoryView: Array<TotalByCategoryView>;
-  /** fetch aggregated fields from the table: "total_by_category_view" */
-  totalByCategoryViewAggregate: TotalByCategoryViewAggregate;
   /** fetch data from the table in a streaming manner: "total_by_category_view" */
   totalByCategoryViewStream: Array<TotalByCategoryView>;
   /** fetch data from the table: "total_by_genre_view" */
   totalByGenreView: Array<TotalByGenreView>;
-  /** fetch aggregated fields from the table: "total_by_genre_view" */
-  totalByGenreViewAggregate: TotalByGenreViewAggregate;
   /** fetch data from the table in a streaming manner: "total_by_genre_view" */
   totalByGenreViewStream: Array<TotalByGenreView>;
   /** fetch data from the table: "transfer_category" */
   transferCategory: Array<TransferCategory>;
-  /** fetch aggregated fields from the table: "transfer_category" */
-  transferCategoryAggregate: TransferCategoryAggregate;
   /** fetch data from the table: "transfer_category" using primary key columns */
   transferCategoryByPk?: Maybe<TransferCategory>;
   /** fetch data from the table in a streaming manner: "transfer_category" */
   transferCategoryStream: Array<TransferCategory>;
   /** fetch data from the table: "user" */
   user: Array<User>;
-  /** fetch aggregated fields from the table: "user" */
-  userAggregate: UserAggregate;
   /** fetch data from the table: "user" using primary key columns */
   userByPk?: Maybe<User>;
   /** fetch data from the table in a streaming manner: "user" */
@@ -11364,14 +6177,6 @@ export type Subscription_Root = {
 };
 
 export type Subscription_RootAccountArgs = {
-  distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<AccountOrderBy>>;
-  where?: InputMaybe<AccountBoolExp>;
-};
-
-export type Subscription_RootAccountAggregateArgs = {
   distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11398,24 +6203,7 @@ export type Subscription_RootAccountTotalArgs = {
   where?: InputMaybe<TotalByAccountViewBoolExp>;
 };
 
-export type Subscription_RootAccountTotalAggregateArgs = {
-  args: AccountTotalArgs;
-  distinctOn?: InputMaybe<Array<TotalByAccountViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByAccountViewOrderBy>>;
-  where?: InputMaybe<TotalByAccountViewBoolExp>;
-};
-
 export type Subscription_RootAffiliationArgs = {
-  distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
-  where?: InputMaybe<AffiliationBoolExp>;
-};
-
-export type Subscription_RootAffiliationAggregateArgs = {
   distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11441,14 +6229,6 @@ export type Subscription_RootApplicationArgs = {
   where?: InputMaybe<ApplicationBoolExp>;
 };
 
-export type Subscription_RootApplicationAggregateArgs = {
-  distinctOn?: InputMaybe<Array<ApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<ApplicationOrderBy>>;
-  where?: InputMaybe<ApplicationBoolExp>;
-};
-
 export type Subscription_RootApplicationByPkArgs = {
   applicationId: Scalars["uuid"];
 };
@@ -11460,14 +6240,6 @@ export type Subscription_RootApplicationStreamArgs = {
 };
 
 export type Subscription_RootCategoryArgs = {
-  distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CategoryOrderBy>>;
-  where?: InputMaybe<CategoryBoolExp>;
-};
-
-export type Subscription_RootCategoryAggregateArgs = {
   distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11494,24 +6266,7 @@ export type Subscription_RootCategoryTotalByMonthArgs = {
   where?: InputMaybe<TotalByCategoryViewBoolExp>;
 };
 
-export type Subscription_RootCategoryTotalByMonthAggregateArgs = {
-  args: CategoryTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<TotalByCategoryViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<TotalByCategoryViewBoolExp>;
-};
-
 export type Subscription_RootCreditCardDetailArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
-  where?: InputMaybe<CreditCardDetailBoolExp>;
-};
-
-export type Subscription_RootCreditCardDetailAggregateArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11530,14 +6285,6 @@ export type Subscription_RootCreditCardDetailStreamArgs = {
 };
 
 export type Subscription_RootCreditCardSummaryArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<CreditCardSummaryOrderBy>>;
-  where?: InputMaybe<CreditCardSummaryBoolExp>;
-};
-
-export type Subscription_RootCreditCardSummaryAggregateArgs = {
   distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11565,17 +6312,6 @@ export type Subscription_RootCreditCardSummaryTotalByAccountViewArgs = {
   where?: InputMaybe<CreditCardSummaryTotalByAccountViewBoolExp>;
 };
 
-export type Subscription_RootCreditCardSummaryTotalByAccountViewAggregateArgs =
-  {
-    distinctOn?: InputMaybe<
-      Array<CreditCardSummaryTotalByAccountViewSelectColumn>
-    >;
-    limit?: InputMaybe<Scalars["Int"]>;
-    offset?: InputMaybe<Scalars["Int"]>;
-    orderBy?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewOrderBy>>;
-    where?: InputMaybe<CreditCardSummaryTotalByAccountViewBoolExp>;
-  };
-
 export type Subscription_RootCreditCardSummaryTotalByAccountViewStreamArgs = {
   batchSize: Scalars["Int"];
   cursor: Array<
@@ -11592,24 +6328,7 @@ export type Subscription_RootDailyDetailArgs = {
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
-export type Subscription_RootDailyDetailAggregateArgs = {
-  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
-  where?: InputMaybe<DailyDetailBoolExp>;
-};
-
 export type Subscription_RootDailyDetailByDateArgs = {
-  args: DailyDetailByDateArgs;
-  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
-  where?: InputMaybe<DailyDetailBoolExp>;
-};
-
-export type Subscription_RootDailyDetailByDateAggregateArgs = {
   args: DailyDetailByDateArgs;
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -11636,14 +6355,6 @@ export type Subscription_RootDailyTotalViewArgs = {
   where?: InputMaybe<DailyTotalViewBoolExp>;
 };
 
-export type Subscription_RootDailyTotalViewAggregateArgs = {
-  distinctOn?: InputMaybe<Array<DailyTotalViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<DailyTotalViewOrderBy>>;
-  where?: InputMaybe<DailyTotalViewBoolExp>;
-};
-
 export type Subscription_RootDailyTotalViewStreamArgs = {
   batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<DailyTotalViewStreamCursorInput>>;
@@ -11651,14 +6362,6 @@ export type Subscription_RootDailyTotalViewStreamArgs = {
 };
 
 export type Subscription_RootGenreArgs = {
-  distinctOn?: InputMaybe<Array<GenreSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GenreOrderBy>>;
-  where?: InputMaybe<GenreBoolExp>;
-};
-
-export type Subscription_RootGenreAggregateArgs = {
   distinctOn?: InputMaybe<Array<GenreSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11685,15 +6388,6 @@ export type Subscription_RootGenreTotalByMonthArgs = {
   where?: InputMaybe<TotalByGenreViewBoolExp>;
 };
 
-export type Subscription_RootGenreTotalByMonthAggregateArgs = {
-  args: GenreTotalByMonthArgs;
-  distinctOn?: InputMaybe<Array<TotalByGenreViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByGenreViewOrderBy>>;
-  where?: InputMaybe<TotalByGenreViewBoolExp>;
-};
-
 export type Subscription_RootGroupArgs = {
   distinctOn?: InputMaybe<Array<GroupSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
@@ -11702,23 +6396,7 @@ export type Subscription_RootGroupArgs = {
   where?: InputMaybe<GroupBoolExp>;
 };
 
-export type Subscription_RootGroupAggregateArgs = {
-  distinctOn?: InputMaybe<Array<GroupSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GroupOrderBy>>;
-  where?: InputMaybe<GroupBoolExp>;
-};
-
 export type Subscription_RootGroupApplicationArgs = {
-  distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
-  where?: InputMaybe<GroupApplicationBoolExp>;
-};
-
-export type Subscription_RootGroupApplicationAggregateArgs = {
   distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11741,14 +6419,6 @@ export type Subscription_RootGroupByPkArgs = {
 };
 
 export type Subscription_RootGroupRoleArgs = {
-  distinctOn?: InputMaybe<Array<GroupRoleSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<GroupRoleOrderBy>>;
-  where?: InputMaybe<GroupRoleBoolExp>;
-};
-
-export type Subscription_RootGroupRoleAggregateArgs = {
   distinctOn?: InputMaybe<Array<GroupRoleSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11780,14 +6450,6 @@ export type Subscription_RootHelperKidsExchangeItemArgs = {
   where?: InputMaybe<HelperKidsExchangeItemBoolExp>;
 };
 
-export type Subscription_RootHelperKidsExchangeItemAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsExchangeItemSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsExchangeItemOrderBy>>;
-  where?: InputMaybe<HelperKidsExchangeItemBoolExp>;
-};
-
 export type Subscription_RootHelperKidsExchangeItemByPkArgs = {
   exchangeItemId: Scalars["uuid"];
 };
@@ -11799,14 +6461,6 @@ export type Subscription_RootHelperKidsExchangeItemStreamArgs = {
 };
 
 export type Subscription_RootHelperKidsHelpItemArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelpItemOrderBy>>;
-  where?: InputMaybe<HelperKidsHelpItemBoolExp>;
-};
-
-export type Subscription_RootHelperKidsHelpItemAggregateArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11858,14 +6512,6 @@ export type Subscription_RootHelperKidsHelpPointEarnedAchievementStreamArgs = {
 };
 
 export type Subscription_RootHelperKidsHelpPointEarnedDetailArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
-  where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
-};
-
-export type Subscription_RootHelperKidsHelpPointEarnedDetailAggregateArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11925,27 +6571,11 @@ export type Subscription_RootHelperKidsHelperKidArgs = {
   where?: InputMaybe<HelperKidsHelperKidBoolExp>;
 };
 
-export type Subscription_RootHelperKidsHelperKidAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelperKidSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelperKidOrderBy>>;
-  where?: InputMaybe<HelperKidsHelperKidBoolExp>;
-};
-
 export type Subscription_RootHelperKidsHelperKidByPkArgs = {
   helperKidId: Scalars["uuid"];
 };
 
 export type Subscription_RootHelperKidsHelperKidParentArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelperKidParentOrderBy>>;
-  where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
-};
-
-export type Subscription_RootHelperKidsHelperKidParentAggregateArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -11964,14 +6594,6 @@ export type Subscription_RootHelperKidsHelperKidParentStreamArgs = {
 };
 
 export type Subscription_RootHelperKidsHelperKidPointArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelperKidPointSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<HelperKidsHelperKidPointOrderBy>>;
-  where?: InputMaybe<HelperKidsHelperKidPointBoolExp>;
-};
-
-export type Subscription_RootHelperKidsHelperKidPointAggregateArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidPointSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -12003,14 +6625,6 @@ export type Subscription_RootImportFileHistoryArgs = {
   where?: InputMaybe<ImportFileHistoryBoolExp>;
 };
 
-export type Subscription_RootImportFileHistoryAggregateArgs = {
-  distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<ImportFileHistoryOrderBy>>;
-  where?: InputMaybe<ImportFileHistoryBoolExp>;
-};
-
 export type Subscription_RootImportFileHistoryByPkArgs = {
   id: Scalars["uuid"];
 };
@@ -12022,14 +6636,6 @@ export type Subscription_RootImportFileHistoryStreamArgs = {
 };
 
 export type Subscription_RootSummaryCategoryByGroupArgs = {
-  distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<SummaryCategoryByGroupOrderBy>>;
-  where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
-};
-
-export type Subscription_RootSummaryCategoryByGroupAggregateArgs = {
   distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -12055,14 +6661,6 @@ export type Subscription_RootTotalByAccountViewArgs = {
   where?: InputMaybe<TotalByAccountViewBoolExp>;
 };
 
-export type Subscription_RootTotalByAccountViewAggregateArgs = {
-  distinctOn?: InputMaybe<Array<TotalByAccountViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByAccountViewOrderBy>>;
-  where?: InputMaybe<TotalByAccountViewBoolExp>;
-};
-
 export type Subscription_RootTotalByAccountViewStreamArgs = {
   batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<TotalByAccountViewStreamCursorInput>>;
@@ -12070,14 +6668,6 @@ export type Subscription_RootTotalByAccountViewStreamArgs = {
 };
 
 export type Subscription_RootTotalByCategoryViewArgs = {
-  distinctOn?: InputMaybe<Array<TotalByCategoryViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByCategoryViewOrderBy>>;
-  where?: InputMaybe<TotalByCategoryViewBoolExp>;
-};
-
-export type Subscription_RootTotalByCategoryViewAggregateArgs = {
   distinctOn?: InputMaybe<Array<TotalByCategoryViewSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -12099,14 +6689,6 @@ export type Subscription_RootTotalByGenreViewArgs = {
   where?: InputMaybe<TotalByGenreViewBoolExp>;
 };
 
-export type Subscription_RootTotalByGenreViewAggregateArgs = {
-  distinctOn?: InputMaybe<Array<TotalByGenreViewSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TotalByGenreViewOrderBy>>;
-  where?: InputMaybe<TotalByGenreViewBoolExp>;
-};
-
 export type Subscription_RootTotalByGenreViewStreamArgs = {
   batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<TotalByGenreViewStreamCursorInput>>;
@@ -12114,14 +6696,6 @@ export type Subscription_RootTotalByGenreViewStreamArgs = {
 };
 
 export type Subscription_RootTransferCategoryArgs = {
-  distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
-  where?: InputMaybe<TransferCategoryBoolExp>;
-};
-
-export type Subscription_RootTransferCategoryAggregateArgs = {
   distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -12147,14 +6721,6 @@ export type Subscription_RootUserArgs = {
   where?: InputMaybe<UserBoolExp>;
 };
 
-export type Subscription_RootUserAggregateArgs = {
-  distinctOn?: InputMaybe<Array<UserSelectColumn>>;
-  limit?: InputMaybe<Scalars["Int"]>;
-  offset?: InputMaybe<Scalars["Int"]>;
-  orderBy?: InputMaybe<Array<UserOrderBy>>;
-  where?: InputMaybe<UserBoolExp>;
-};
-
 export type Subscription_RootUserByPkArgs = {
   userId: Scalars["uuid"];
 };
@@ -12163,20 +6729,6 @@ export type Subscription_RootUserStreamArgs = {
   batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<UserStreamCursorInput>>;
   where?: InputMaybe<UserBoolExp>;
-};
-
-export type SummaryCategoryByGroupAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<SummaryCategoryByGroupBoolExp>;
-  predicate: IntComparisonExp;
-};
-
-export type TransferCategoryAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  distinct?: InputMaybe<Scalars["Boolean"]>;
-  filter?: InputMaybe<TransferCategoryBoolExp>;
-  predicate: IntComparisonExp;
 };
 
 export type CreateAccountMutationVariables = Exact<{
@@ -12197,6 +6749,8 @@ export type CreateAccountMutation = {
 export type CreateCreditCardDetailMutationVariables = Exact<{
   id: Scalars["uuid"];
   date: Scalars["date"];
+  genreId: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
   categoryId: Scalars["uuid"];
   amount: Scalars["numeric"];
   memo: Scalars["String"];
@@ -12234,6 +6788,8 @@ export type CreateCreditCardSummaryMutation = {
 export type CreateDailyDetailMutationVariables = Exact<{
   accountId: Scalars["uuid"];
   amount: Scalars["numeric"];
+  genreId: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
   categoryId: Scalars["uuid"];
   date: Scalars["date"];
   groupId: Scalars["uuid"];
@@ -12352,6 +6908,8 @@ export type UpdateCreditCardDetailByIdMutation = {
 export type UpdateDailyDetailByIdMutationVariables = Exact<{
   id: Scalars["uuid"];
   date: Scalars["date"];
+  genreId: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
   categoryId: Scalars["uuid"];
   accountId: Scalars["uuid"];
   amount: Scalars["numeric"];
@@ -12922,9 +7480,17 @@ export type GetTransferCategoryByQuery = {
   __typename?: "query_root";
   transferCategory?: {
     __typename?: "TransferCategory";
-    incomeCategoryId: any;
-    outcomeCategoryId: any;
     id: any;
+    incomeCategory: {
+      __typename?: "Category";
+      categoryId: any;
+      genre: { __typename?: "Genre"; genreId: any; iocomeType: any };
+    };
+    outcomeCategory: {
+      __typename?: "Category";
+      categoryId: any;
+      genre: { __typename?: "Genre"; genreId: any; iocomeType: any };
+    };
   } | null;
 };
 
@@ -13036,6 +7602,8 @@ export const CreateCreditCardDetailDocument = gql`
   mutation CreateCreditCardDetail(
     $id: uuid!
     $date: date!
+    $genreId: uuid!
+    $iocomeType: iocome_type!
     $categoryId: uuid!
     $amount: numeric!
     $memo: String!
@@ -13047,6 +7615,8 @@ export const CreateCreditCardDetailDocument = gql`
       objects: {
         id: $id
         date: $date
+        genreId: $genreId
+        iocomeType: $iocomeType
         categoryId: $categoryId
         amount: $amount
         summaryId: $summaryId
@@ -13106,6 +7676,8 @@ export const CreateDailyDetailDocument = gql`
   mutation CreateDailyDetail(
     $accountId: uuid!
     $amount: numeric!
+    $genreId: uuid!
+    $iocomeType: iocome_type!
     $categoryId: uuid!
     $date: date!
     $groupId: uuid!
@@ -13117,6 +7689,8 @@ export const CreateDailyDetailDocument = gql`
       objects: {
         id: $id
         date: $date
+        genreId: $genreId
+        iocomeType: $iocomeType
         categoryId: $categoryId
         accountId: $accountId
         userId: $userId
@@ -13309,6 +7883,8 @@ export const UpdateDailyDetailByIdDocument = gql`
   mutation UpdateDailyDetailById(
     $id: uuid!
     $date: date!
+    $genreId: uuid!
+    $iocomeType: iocome_type!
     $categoryId: uuid!
     $accountId: uuid!
     $amount: numeric!
@@ -13317,6 +7893,8 @@ export const UpdateDailyDetailByIdDocument = gql`
     updateDailyDetailByPk(
       _set: {
         date: $date
+        genreId: $genreId
+        iocomeType: $iocomeType
         categoryId: $categoryId
         accountId: $accountId
         amount: $amount
@@ -14139,8 +8717,20 @@ export const GetTransferCategoryByDocument = gql`
   query GetTransferCategoryBy($groupId: uuid!) {
     transferCategory: transferCategoryByPk(groupId: $groupId) {
       id: groupId
-      incomeCategoryId
-      outcomeCategoryId
+      incomeCategory: category {
+        categoryId
+        genre {
+          genreId
+          iocomeType
+        }
+      }
+      outcomeCategory: categoryByOutcomeCategoryId {
+        categoryId
+        genre {
+          genreId
+          iocomeType
+        }
+      }
     }
   }
 `;

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import {
   useGetDailyDetailByDateQuery,
   useGetTransferCategoryByQuery,
@@ -31,7 +35,7 @@ export const useGetDailyDetailByDate = (fromDate: Date, toDate: Date) => {
     .filter(
       (c) =>
         c!.categoryByCategoryId.categoryId !=
-        tcData?.transferCategory?.incomeCategoryId,
+        tcData?.transferCategory?.incomeCategory.categoryId,
     )
     .reduce((a, b) => a + Number(b!.amount!), 0);
 
@@ -44,7 +48,7 @@ export const useGetDailyDetailByDate = (fromDate: Date, toDate: Date) => {
     .filter(
       (c) =>
         c!.categoryByCategoryId.categoryId !=
-        tcData?.transferCategory?.outcomeCategoryId,
+        tcData?.transferCategory?.outcomeCategory.categoryId,
     )
     .reduce((a, b) => a + Number(b!.amount!), 0);
 

@@ -27,6 +27,8 @@ export const useCutDetail = ({
   const { updateHandler } = useUpdateDailyDetailBySerialNo({
     id: origin.initData.id!,
     date: origin.initData.date!,
+    genreId: origin.initData.genreId!,
+    iocomeType: origin.initData.iocomeType!,
     categoryId: origin.initData.categoryId!,
     accountId: origin.initData.accountId!,
     amount: origin.deductedAmount,
@@ -34,6 +36,8 @@ export const useCutDetail = ({
   });
   const { registerHandler } = useRegisterDailyDetail({
     date: newDetail.detailDate,
+    genreId: newDetail.genreId,
+    iocomeType: origin.initData.iocomeType!,
     categoryId: newDetail.categoryId,
     accountId: newDetail.accountId,
     amount: newDetail.amount,

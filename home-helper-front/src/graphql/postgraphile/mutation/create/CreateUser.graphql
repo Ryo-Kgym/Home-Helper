@@ -1,8 +1,0 @@
-mutation CreateUser($user_id: uuid!, $user_name: String!, $email: String!, $display_order: Int!) {
-    insert_user(objects: {user_id: $user_id, user_name: $user_name, email: $email, display_order: $display_order}) {
-        returning {
-            user_id
-            email
-        }
-    }
-}

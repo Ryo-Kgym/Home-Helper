@@ -1,6 +1,8 @@
 mutation UpdateDailyDetailById(
   $id: uuid!
   $date: date!
+  $genreId: uuid!
+  $iocomeType: iocome_type!
   $categoryId: uuid!
   $accountId: uuid!
   $amount: numeric!
@@ -9,6 +11,8 @@ mutation UpdateDailyDetailById(
   updateDailyDetailByPk(
     _set: {
       date: $date
+      genreId: $genreId
+      iocomeType: $iocomeType
       categoryId: $categoryId
       accountId: $accountId
       amount: $amount

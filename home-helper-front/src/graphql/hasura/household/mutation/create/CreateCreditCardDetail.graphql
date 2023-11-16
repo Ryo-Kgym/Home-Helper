@@ -1,17 +1,21 @@
 mutation CreateCreditCardDetail(
   $id: uuid!
   $date: date!
+  $genreId: uuid!
+  $iocomeType: iocome_type!
   $categoryId: uuid!
   $amount: numeric!
   $memo: String!
   $summaryId: uuid!
   $userId: uuid!
-    $groupId: uuid!
+  $groupId: uuid!
 ) {
   insertCreditCardDetail(
     objects: {
       id: $id
       date: $date
+      genreId: $genreId
+      iocomeType: $iocomeType
       categoryId: $categoryId
       amount: $amount
       summaryId: $summaryId

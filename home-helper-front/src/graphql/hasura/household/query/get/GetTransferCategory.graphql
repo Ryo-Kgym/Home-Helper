@@ -1,7 +1,19 @@
 query GetTransferCategoryBy($groupId: uuid!) {
   transferCategory: transferCategoryByPk(groupId: $groupId) {
     id: groupId
-    incomeCategoryId
-    outcomeCategoryId
+    incomeCategory: category {
+      categoryId
+      genre {
+        genreId
+        iocomeType
+      }
+    }
+    outcomeCategory: categoryByOutcomeCategoryId {
+      categoryId
+      genre {
+        genreId
+        iocomeType
+      }
+    }
   }
 }

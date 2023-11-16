@@ -81,7 +81,9 @@ export const useFetchSummaryCategoryAmount: InterfaceType = ({
     monthlyTotalByCategory
       .filter((d) => d.key.iocomeType === IocomeType.Income)
       .filter(
-        (d) => d.key.categoryId !== tcData?.transferCategory?.incomeCategoryId,
+        (d) =>
+          d.key.categoryId !==
+          tcData?.transferCategory?.incomeCategory.categoryId,
       )
       .reduce(
         (a, b) => ({
@@ -108,7 +110,9 @@ export const useFetchSummaryCategoryAmount: InterfaceType = ({
     monthlyTotalByCategory
       .filter((d) => d.key.iocomeType === IocomeType.Outcome)
       .filter(
-        (d) => d.key.categoryId !== tcData?.transferCategory?.outcomeCategoryId,
+        (d) =>
+          d.key.categoryId !==
+          tcData?.transferCategory?.outcomeCategory.categoryId,
       )
       .reduce(
         (a, b) => ({
