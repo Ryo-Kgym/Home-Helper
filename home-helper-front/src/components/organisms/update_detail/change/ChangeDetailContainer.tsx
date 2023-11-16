@@ -27,6 +27,8 @@ export const ChangeDetailContainer = ({
   const { updateHandler } = useUpdateDailyDetailBySerialNo({
     id: initData?.id!,
     date: date!,
+    genreId: genreId!,
+    iocomeType: iocomeType,
     categoryId: categoryId!,
     accountId: accountId!,
     amount: Number(amount),

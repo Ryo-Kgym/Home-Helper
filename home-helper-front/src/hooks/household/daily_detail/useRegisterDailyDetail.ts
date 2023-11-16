@@ -7,9 +7,12 @@ import { useDate } from "@hooks/date/useDate";
 import { useUser } from "@hooks/user/useUser";
 import { useUuid } from "@hooks/uuid/useUuid";
 import { useGroup } from "@hooks/group/useGroup";
+import { IocomeType } from "@domain/model/household/IocomeType";
 
 type DailyDetailForRegistration = {
   date: Date;
+  genreId: string;
+  iocomeType: IocomeType;
   categoryId: string;
   accountId: string;
   amount: number;
@@ -18,6 +21,8 @@ type DailyDetailForRegistration = {
 
 export const useRegisterDailyDetail = ({
   date,
+  genreId,
+  iocomeType,
   categoryId,
   accountId,
   amount,
@@ -34,6 +39,8 @@ export const useRegisterDailyDetail = ({
     accountId: accountId,
     amount: amount,
     categoryId: categoryId,
+    genreId,
+    iocomeType,
     date: convertToFull(date),
     groupId,
     id: get(),

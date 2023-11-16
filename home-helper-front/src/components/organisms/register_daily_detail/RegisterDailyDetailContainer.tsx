@@ -47,6 +47,8 @@ export const RegisterDailyDetailContainer = ({
 
   const { registerHandler } = useRegisterDailyDetail({
     date: registerDate,
+    genreId: genreId!!,
+    iocomeType: iocomeType,
     categoryId: categoryId!!,
     accountId: accountId!!,
     amount: amount as number,

@@ -51,6 +51,8 @@ export const useRegisterCreditCard = ({
   const detailVariableList = loadData.map((data, idx) => ({
     id: get(),
     date: data.date,
+    genreId: data.genreId!,
+    iocomeType: data.iocomeType!,
     categoryId: data.categoryId!,
     amount: data.price,
     memo: data.note,

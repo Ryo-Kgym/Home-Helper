@@ -27,6 +27,8 @@ export const useRegisterDailyDetails = ({
   const createDailyDetailVariableList = loadData.map((data, idx) => ({
     id: get(),
     date: data.date,
+    genreId: data.genreId!,
+    iocomeType: data.iocomeType!,
     categoryId: data.categoryId!,
     accountId: accountId,
     amount: data.price,
