@@ -1,6 +1,8 @@
 mutation CreateDailyDetail(
   $accountId: uuid!
   $amount: numeric!
+  $genreId: uuid!
+  $iocomeType: iocome_type!
   $categoryId: uuid!
   $date: date!
   $groupId: uuid!
@@ -12,6 +14,8 @@ mutation CreateDailyDetail(
     objects: {
       id: $id
       date: $date
+      genreId: $genreId
+      iocomeType: $iocomeType
       categoryId: $categoryId
       accountId: $accountId
       userId: $userId
