@@ -6908,6 +6908,8 @@ export type UpdateCreditCardDetailByIdMutation = {
 export type UpdateDailyDetailByIdMutationVariables = Exact<{
   id: Scalars["uuid"];
   date: Scalars["date"];
+  genreId: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
   categoryId: Scalars["uuid"];
   accountId: Scalars["uuid"];
   amount: Scalars["numeric"];
@@ -7873,6 +7875,8 @@ export const UpdateDailyDetailByIdDocument = gql`
   mutation UpdateDailyDetailById(
     $id: uuid!
     $date: date!
+    $genreId: uuid!
+    $iocomeType: iocome_type!
     $categoryId: uuid!
     $accountId: uuid!
     $amount: numeric!
@@ -7881,6 +7885,8 @@ export const UpdateDailyDetailByIdDocument = gql`
     updateDailyDetailByPk(
       _set: {
         date: $date
+        genreId: $genreId
+        iocomeType: $iocomeType
         categoryId: $categoryId
         accountId: $accountId
         amount: $amount
