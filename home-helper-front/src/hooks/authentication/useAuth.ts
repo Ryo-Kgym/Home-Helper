@@ -15,12 +15,12 @@ export const useAuth = () => {
   const { signOut, session } = useClerk();
   const { push } = useRouter();
 
-  const logout = () => {
+  const logout = async () => {
     saveUser({ id: "", name: "", email: "" });
     saveGroup({ id: "", name: "" });
     setMessage("ログアウトしました。");
 
-    signOut();
+    await signOut();
     push("/");
   };
 
