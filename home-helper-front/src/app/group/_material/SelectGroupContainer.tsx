@@ -21,7 +21,9 @@ export const SelectGroupContainer = () => {
       href: "/",
       label: "Logout",
       back: true,
-      handleClick: logout,
+      handleClick: () => {
+        logout();
+      },
     },
   ].concat(
     data.map(({ group }) => ({
