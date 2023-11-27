@@ -6945,10 +6945,10 @@ export type GetAccountBalanceListQuery = {
   __typename?: "query_root";
   accountTotal: Array<{
     __typename?: "TotalByAccountView";
-    accountId?: any | null;
     accountName?: string | null;
     total?: any | null;
     displayOrder?: number | null;
+    id?: any | null;
   }>;
 };
 
@@ -7952,7 +7952,7 @@ export const GetAccountBalanceListDocument = gql`
     accountTotal(
       args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
     ) {
-      accountId
+      id: accountId
       accountName
       total
       displayOrder

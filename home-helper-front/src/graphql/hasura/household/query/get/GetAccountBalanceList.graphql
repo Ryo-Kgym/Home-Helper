@@ -2,7 +2,7 @@ query GetAccountBalanceList($fromDate: date!, $toDate: date!, $groupId: uuid!) {
   accountTotal(
     args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
   ) {
-    accountId
+    id: accountId
     accountName
     total
     displayOrder

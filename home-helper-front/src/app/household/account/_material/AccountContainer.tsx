@@ -32,7 +32,7 @@ export const AccountContainer = () => {
           },
         ],
         onClick: () => {
-          setSelectedAccountId(account?.accountId!);
+          setSelectedAccountId(account?.id!);
         },
       };
     }) ?? [];
