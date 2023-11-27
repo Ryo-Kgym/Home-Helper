@@ -4,15 +4,17 @@
 
 "use client";
 
-import { AccountPresenter } from "@app/household/account/_material/AccountPresenter";
-import { TableProps } from "@components/atoms/Table/index";
+import { AccountPresenter } from "./AccountPresenter";
 import { useState } from "react";
 import { useGetAccountBalanceList } from "@hooks/household/account/useGetAccountBalanceList";
-import { DailyTableByAccount } from "@components/organisms/daily_table/account/index";
+import { DailyTableByAccount } from "@components/organisms/daily_table/account";
 import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
+import { TableProps } from "@components/ui";
+
+const FIRST_DATE = new Date("2019-01-01");
 
 export const AccountContainer = () => {
-  const [fromDate, setFromDate] = useState<Date | null>(new Date("2019-01-01"));
+  const [fromDate, setFromDate] = useState<Date | null>(FIRST_DATE);
   const [toDate, setToDate] = useState<Date | null>(new Date());
   const [selectedAccountId, setSelectedAccountId] = useState<string>("");
 
@@ -49,7 +51,7 @@ export const AccountContainer = () => {
       }
       second={
         <DailyTableByAccount
-          fromDate={fromDate ?? new Date("2019-01-01")}
+          fromDate={fromDate ?? FIRST_DATE}
           toDate={toDate!}
           accountId={selectedAccountId}
         />
