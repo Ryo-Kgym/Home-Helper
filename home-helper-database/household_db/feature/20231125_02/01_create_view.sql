@@ -26,3 +26,6 @@ SELECT cd.id,
 FROM credit_card_detail cd
          inner join credit_card_summary cs on cd.summary_id = cs.id
 order by date;
+
+drop function if exists account_total cascade;
+drop view if exists total_by_account_view cascade;
