@@ -18,6 +18,32 @@ directive @cached(
 type Account {
     accountId: uuid!
     accountName: String!
+    "An aggregate relationship"
+    allDetailViewsAggregate(
+        "distinct select on columns"
+        distinctOn: [AllDetailViewSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [AllDetailViewOrderBy!],
+        "filter the rows returned"
+        where: AllDetailViewBoolExp
+    ): AllDetailViewAggregate!
+    "An array relationship"
+    all_detail_views(
+        "distinct select on columns"
+        distinctOn: [AllDetailViewSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [AllDetailViewOrderBy!],
+        "filter the rows returned"
+        where: AllDetailViewBoolExp
+    ): [AllDetailView!]!
     "An array relationship"
     credit_card_summaries(
         "distinct select on columns"
@@ -51,12 +77,89 @@ type Account {
     validFlag: Boolean
 }
 
+"aggregated selection of \"account\""
+type AccountAggregate {
+    aggregate: AccountAggregateFields
+    nodes: [Account!]!
+}
+
+"aggregate fields of \"account\""
+type AccountAggregateFields {
+    avg: AccountAvgFields
+    count(columns: [AccountSelectColumn!], distinct: Boolean): Int!
+    max: AccountMaxFields
+    min: AccountMinFields
+    stddev: AccountStddevFields
+    stddevPop: AccountStddevPopFields
+    stddevSamp: AccountStddevSampFields
+    sum: AccountSumFields
+    varPop: AccountVarPopFields
+    varSamp: AccountVarSampFields
+    variance: AccountVarianceFields
+}
+
+"aggregate avg on columns"
+type AccountAvgFields {
+    displayOrder: Float
+}
+
+"aggregate max on columns"
+type AccountMaxFields {
+    accountId: uuid
+    accountName: String
+    displayOrder: Int
+    groupId: uuid
+}
+
+"aggregate min on columns"
+type AccountMinFields {
+    accountId: uuid
+    accountName: String
+    displayOrder: Int
+    groupId: uuid
+}
+
 "response of any mutation on the table \"account\""
 type AccountMutationResponse {
     "number of rows affected by the mutation"
     affectedRows: Int!
     "data from the rows affected by the mutation"
     returning: [Account!]!
+}
+
+"aggregate stddev on columns"
+type AccountStddevFields {
+    displayOrder: Float
+}
+
+"aggregate stddevPop on columns"
+type AccountStddevPopFields {
+    displayOrder: Float
+}
+
+"aggregate stddevSamp on columns"
+type AccountStddevSampFields {
+    displayOrder: Float
+}
+
+"aggregate sum on columns"
+type AccountSumFields {
+    displayOrder: Int
+}
+
+"aggregate varPop on columns"
+type AccountVarPopFields {
+    displayOrder: Float
+}
+
+"aggregate varSamp on columns"
+type AccountVarSampFields {
+    displayOrder: Float
+}
+
+"aggregate variance on columns"
+type AccountVarianceFields {
+    displayOrder: Float
 }
 
 "columns and relationships of \"affiliation\""
@@ -71,6 +174,117 @@ type Affiliation {
     "An object relationship"
     user: User!
     userId: uuid!
+}
+
+"columns and relationships of \"all_detail_view\""
+type AllDetailView {
+    accountId: uuid
+    categoryId: uuid
+    date: date
+    genreId: uuid
+    id: uuid
+    iocomeType: iocome_type
+    memo: String
+    originalAmount: numeric
+    signedAmount: numeric
+    type: String
+}
+
+"aggregated selection of \"all_detail_view\""
+type AllDetailViewAggregate {
+    aggregate: AllDetailViewAggregateFields
+    nodes: [AllDetailView!]!
+}
+
+"aggregate fields of \"all_detail_view\""
+type AllDetailViewAggregateFields {
+    avg: AllDetailViewAvgFields
+    count(columns: [AllDetailViewSelectColumn!], distinct: Boolean): Int!
+    max: AllDetailViewMaxFields
+    min: AllDetailViewMinFields
+    stddev: AllDetailViewStddevFields
+    stddevPop: AllDetailViewStddevPopFields
+    stddevSamp: AllDetailViewStddevSampFields
+    sum: AllDetailViewSumFields
+    varPop: AllDetailViewVarPopFields
+    varSamp: AllDetailViewVarSampFields
+    variance: AllDetailViewVarianceFields
+}
+
+"aggregate avg on columns"
+type AllDetailViewAvgFields {
+    originalAmount: Float
+    signedAmount: Float
+}
+
+"aggregate max on columns"
+type AllDetailViewMaxFields {
+    accountId: uuid
+    categoryId: uuid
+    date: date
+    genreId: uuid
+    id: uuid
+    iocomeType: iocome_type
+    memo: String
+    originalAmount: numeric
+    signedAmount: numeric
+    type: String
+}
+
+"aggregate min on columns"
+type AllDetailViewMinFields {
+    accountId: uuid
+    categoryId: uuid
+    date: date
+    genreId: uuid
+    id: uuid
+    iocomeType: iocome_type
+    memo: String
+    originalAmount: numeric
+    signedAmount: numeric
+    type: String
+}
+
+"aggregate stddev on columns"
+type AllDetailViewStddevFields {
+    originalAmount: Float
+    signedAmount: Float
+}
+
+"aggregate stddevPop on columns"
+type AllDetailViewStddevPopFields {
+    originalAmount: Float
+    signedAmount: Float
+}
+
+"aggregate stddevSamp on columns"
+type AllDetailViewStddevSampFields {
+    originalAmount: Float
+    signedAmount: Float
+}
+
+"aggregate sum on columns"
+type AllDetailViewSumFields {
+    originalAmount: numeric
+    signedAmount: numeric
+}
+
+"aggregate varPop on columns"
+type AllDetailViewVarPopFields {
+    originalAmount: Float
+    signedAmount: Float
+}
+
+"aggregate varSamp on columns"
+type AllDetailViewVarSampFields {
+    originalAmount: Float
+    signedAmount: Float
+}
+
+"aggregate variance on columns"
+type AllDetailViewVarianceFields {
+    originalAmount: Float
+    signedAmount: Float
 }
 
 "columns and relationships of \"application\""
@@ -377,6 +591,19 @@ type Group {
         "filter the rows returned"
         where: AccountBoolExp
     ): [Account!]!
+    "An aggregate relationship"
+    accountsAggregate(
+        "distinct select on columns"
+        distinctOn: [AccountSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [AccountOrderBy!],
+        "filter the rows returned"
+        where: AccountBoolExp
+    ): AccountAggregate!
     "An array relationship"
     affiliations(
         "distinct select on columns"
@@ -1612,6 +1839,19 @@ type query_root {
         "filter the rows returned"
         where: AccountBoolExp
     ): [Account!]!
+    "fetch aggregated fields from the table: \"account\""
+    accountAggregate(
+        "distinct select on columns"
+        distinctOn: [AccountSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [AccountOrderBy!],
+        "filter the rows returned"
+        where: AccountBoolExp
+    ): AccountAggregate!
     "fetch data from the table: \"account\" using primary key columns"
     accountByPk(accountId: uuid!): Account
     "execute function \"account_total\" which returns \"total_by_account_view\""
@@ -1644,6 +1884,32 @@ type query_root {
     ): [Affiliation!]!
     "fetch data from the table: \"affiliation\" using primary key columns"
     affiliationByPk(affiliationId: uuid!): Affiliation
+    "fetch data from the table: \"all_detail_view\""
+    allDetailView(
+        "distinct select on columns"
+        distinctOn: [AllDetailViewSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [AllDetailViewOrderBy!],
+        "filter the rows returned"
+        where: AllDetailViewBoolExp
+    ): [AllDetailView!]!
+    "fetch aggregated fields from the table: \"all_detail_view\""
+    allDetailViewAggregate(
+        "distinct select on columns"
+        distinctOn: [AllDetailViewSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [AllDetailViewOrderBy!],
+        "filter the rows returned"
+        where: AllDetailViewBoolExp
+    ): AllDetailViewAggregate!
     "fetch data from the table: \"application\""
     application(
         "distinct select on columns"
@@ -2135,6 +2401,19 @@ type subscription_root {
         "filter the rows returned"
         where: AccountBoolExp
     ): [Account!]!
+    "fetch aggregated fields from the table: \"account\""
+    accountAggregate(
+        "distinct select on columns"
+        distinctOn: [AccountSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [AccountOrderBy!],
+        "filter the rows returned"
+        where: AccountBoolExp
+    ): AccountAggregate!
     "fetch data from the table: \"account\" using primary key columns"
     accountByPk(accountId: uuid!): Account
     "fetch data from the table in a streaming manner: \"account\""
@@ -2185,6 +2464,41 @@ type subscription_root {
         "filter the rows returned"
         where: AffiliationBoolExp
     ): [Affiliation!]!
+    "fetch data from the table: \"all_detail_view\""
+    allDetailView(
+        "distinct select on columns"
+        distinctOn: [AllDetailViewSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [AllDetailViewOrderBy!],
+        "filter the rows returned"
+        where: AllDetailViewBoolExp
+    ): [AllDetailView!]!
+    "fetch aggregated fields from the table: \"all_detail_view\""
+    allDetailViewAggregate(
+        "distinct select on columns"
+        distinctOn: [AllDetailViewSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [AllDetailViewOrderBy!],
+        "filter the rows returned"
+        where: AllDetailViewBoolExp
+    ): AllDetailViewAggregate!
+    "fetch data from the table in a streaming manner: \"all_detail_view\""
+    allDetailViewStream(
+        "maximum number of rows returned in a single batch"
+        batchSize: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [AllDetailViewStreamCursorInput]!,
+        "filter the rows returned"
+        where: AllDetailViewBoolExp
+    ): [AllDetailView!]!
     "fetch data from the table: \"application\""
     application(
         "distinct select on columns"
@@ -2916,6 +3230,18 @@ enum AccountSelectColumn {
     validFlag
 }
 
+"select \"accountAggregateBoolExpBool_andArgumentsColumns\" columns of table \"account\""
+enum AccountSelectColumnAccountAggregateBoolExpBool_andArgumentsColumns {
+    "column name"
+    validFlag
+}
+
+"select \"accountAggregateBoolExpBool_orArgumentsColumns\" columns of table \"account\""
+enum AccountSelectColumnAccountAggregateBoolExpBool_orArgumentsColumns {
+    "column name"
+    validFlag
+}
+
 "placeholder for update columns of table \"account\" (current role has no relevant permissions)"
 enum AccountUpdateColumn {
     "placeholder (do not use)"
@@ -2932,6 +3258,30 @@ enum AffiliationSelectColumn {
     groupRoleId
     "column name"
     userId
+}
+
+"select columns of table \"all_detail_view\""
+enum AllDetailViewSelectColumn {
+    "column name"
+    accountId
+    "column name"
+    categoryId
+    "column name"
+    date
+    "column name"
+    genreId
+    "column name"
+    id
+    "column name"
+    iocomeType
+    "column name"
+    memo
+    "column name"
+    originalAmount
+    "column name"
+    signedAmount
+    "column name"
+    type
 }
 
 "select columns of table \"application\""
@@ -3554,6 +3904,12 @@ scalar timestamp
 
 scalar uuid
 
+input AccountAggregateBoolExp {
+    bool_and: accountAggregateBoolExpBool_and
+    bool_or: accountAggregateBoolExpBool_or
+    count: accountAggregateBoolExpCount
+}
+
 "order by aggregate values of table \"account\""
 input AccountAggregateOrderBy {
     avg: AccountAvgOrderBy
@@ -3581,6 +3937,8 @@ input AccountBoolExp {
     _or: [AccountBoolExp!]
     accountId: UuidComparisonExp
     accountName: StringComparisonExp
+    all_detail_views: AllDetailViewBoolExp
+    all_detail_viewsAggregate: AllDetailViewAggregateBoolExp
     credit_card_summaries: CreditCardSummaryBoolExp
     daily_details: DailyDetailBoolExp
     displayOrder: IntComparisonExp
@@ -3634,6 +3992,7 @@ input AccountOnConflict {
 input AccountOrderBy {
     accountId: OrderBy
     accountName: OrderBy
+    all_detail_viewsAggregate: AllDetailViewAggregateOrderBy
     credit_card_summariesAggregate: CreditCardSummaryAggregateOrderBy
     daily_detailsAggregate: DailyDetailAggregateOrderBy
     displayOrder: OrderBy
@@ -3756,6 +4115,154 @@ input AffiliationStreamCursorValueInput {
     groupId: uuid
     groupRoleId: uuid
     userId: uuid
+}
+
+input AllDetailViewAggregateBoolExp {
+    count: allDetailViewAggregateBoolExpCount
+}
+
+"order by aggregate values of table \"all_detail_view\""
+input AllDetailViewAggregateOrderBy {
+    avg: AllDetailViewAvgOrderBy
+    count: OrderBy
+    max: AllDetailViewMaxOrderBy
+    min: AllDetailViewMinOrderBy
+    stddev: AllDetailViewStddevOrderBy
+    stddevPop: AllDetailViewStddevPopOrderBy
+    stddevSamp: AllDetailViewStddevSampOrderBy
+    sum: AllDetailViewSumOrderBy
+    varPop: AllDetailViewVarPopOrderBy
+    varSamp: AllDetailViewVarSampOrderBy
+    variance: AllDetailViewVarianceOrderBy
+}
+
+"order by avg() on columns of table \"all_detail_view\""
+input AllDetailViewAvgOrderBy {
+    originalAmount: OrderBy
+    signedAmount: OrderBy
+}
+
+"Boolean expression to filter rows from the table \"all_detail_view\". All fields are combined with a logical 'AND'."
+input AllDetailViewBoolExp {
+    _and: [AllDetailViewBoolExp!]
+    _not: AllDetailViewBoolExp
+    _or: [AllDetailViewBoolExp!]
+    accountId: UuidComparisonExp
+    categoryId: UuidComparisonExp
+    date: DateComparisonExp
+    genreId: UuidComparisonExp
+    id: UuidComparisonExp
+    iocomeType: IocomeTypeComparisonExp
+    memo: StringComparisonExp
+    originalAmount: NumericComparisonExp
+    signedAmount: NumericComparisonExp
+    type: StringComparisonExp
+}
+
+"order by max() on columns of table \"all_detail_view\""
+input AllDetailViewMaxOrderBy {
+    accountId: OrderBy
+    categoryId: OrderBy
+    date: OrderBy
+    genreId: OrderBy
+    id: OrderBy
+    iocomeType: OrderBy
+    memo: OrderBy
+    originalAmount: OrderBy
+    signedAmount: OrderBy
+    type: OrderBy
+}
+
+"order by min() on columns of table \"all_detail_view\""
+input AllDetailViewMinOrderBy {
+    accountId: OrderBy
+    categoryId: OrderBy
+    date: OrderBy
+    genreId: OrderBy
+    id: OrderBy
+    iocomeType: OrderBy
+    memo: OrderBy
+    originalAmount: OrderBy
+    signedAmount: OrderBy
+    type: OrderBy
+}
+
+"Ordering options when selecting data from \"all_detail_view\"."
+input AllDetailViewOrderBy {
+    accountId: OrderBy
+    categoryId: OrderBy
+    date: OrderBy
+    genreId: OrderBy
+    id: OrderBy
+    iocomeType: OrderBy
+    memo: OrderBy
+    originalAmount: OrderBy
+    signedAmount: OrderBy
+    type: OrderBy
+}
+
+"order by stddev() on columns of table \"all_detail_view\""
+input AllDetailViewStddevOrderBy {
+    originalAmount: OrderBy
+    signedAmount: OrderBy
+}
+
+"order by stddevPop() on columns of table \"all_detail_view\""
+input AllDetailViewStddevPopOrderBy {
+    originalAmount: OrderBy
+    signedAmount: OrderBy
+}
+
+"order by stddevSamp() on columns of table \"all_detail_view\""
+input AllDetailViewStddevSampOrderBy {
+    originalAmount: OrderBy
+    signedAmount: OrderBy
+}
+
+"Streaming cursor of the table \"all_detail_view\""
+input AllDetailViewStreamCursorInput {
+    "Stream column input with initial value"
+    initialValue: AllDetailViewStreamCursorValueInput!
+    "cursor ordering"
+    ordering: CursorOrdering
+}
+
+"Initial value of the column from where the streaming should start"
+input AllDetailViewStreamCursorValueInput {
+    accountId: uuid
+    categoryId: uuid
+    date: date
+    genreId: uuid
+    id: uuid
+    iocomeType: iocome_type
+    memo: String
+    originalAmount: numeric
+    signedAmount: numeric
+    type: String
+}
+
+"order by sum() on columns of table \"all_detail_view\""
+input AllDetailViewSumOrderBy {
+    originalAmount: OrderBy
+    signedAmount: OrderBy
+}
+
+"order by varPop() on columns of table \"all_detail_view\""
+input AllDetailViewVarPopOrderBy {
+    originalAmount: OrderBy
+    signedAmount: OrderBy
+}
+
+"order by varSamp() on columns of table \"all_detail_view\""
+input AllDetailViewVarSampOrderBy {
+    originalAmount: OrderBy
+    signedAmount: OrderBy
+}
+
+"order by variance() on columns of table \"all_detail_view\""
+input AllDetailViewVarianceOrderBy {
+    originalAmount: OrderBy
+    signedAmount: OrderBy
 }
 
 "Boolean expression to filter rows from the table \"application\". All fields are combined with a logical 'AND'."
@@ -4949,6 +5456,7 @@ input GroupBoolExp {
     _not: GroupBoolExp
     _or: [GroupBoolExp!]
     accounts: AccountBoolExp
+    accountsAggregate: AccountAggregateBoolExp
     affiliations: AffiliationBoolExp
     categories: CategoryBoolExp
     creditCardDetails: CreditCardDetailBoolExp
@@ -6695,10 +7203,38 @@ input UuidComparisonExp {
     _nin: [uuid!]
 }
 
+input accountAggregateBoolExpBool_and {
+    arguments: AccountSelectColumnAccountAggregateBoolExpBool_andArgumentsColumns!
+    distinct: Boolean
+    filter: AccountBoolExp
+    predicate: BooleanComparisonExp!
+}
+
+input accountAggregateBoolExpBool_or {
+    arguments: AccountSelectColumnAccountAggregateBoolExpBool_orArgumentsColumns!
+    distinct: Boolean
+    filter: AccountBoolExp
+    predicate: BooleanComparisonExp!
+}
+
+input accountAggregateBoolExpCount {
+    arguments: [AccountSelectColumn!]
+    distinct: Boolean
+    filter: AccountBoolExp
+    predicate: IntComparisonExp!
+}
+
 input accountTotalArgs {
     from_date: date
     group_id: uuid
     to_date: date
+}
+
+input allDetailViewAggregateBoolExpCount {
+    arguments: [AllDetailViewSelectColumn!]
+    distinct: Boolean
+    filter: AllDetailViewBoolExp
+    predicate: IntComparisonExp!
 }
 
 input categoryTotalByMonthArgs {

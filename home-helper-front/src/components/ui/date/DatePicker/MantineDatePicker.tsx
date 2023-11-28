@@ -2,6 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import "dayjs/locale/ja";
 import { MantineSize } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 export const MantineDatePicker = ({
@@ -40,6 +41,7 @@ export const MantineDatePicker = ({
       firstDayOfWeek={0}
       error={error}
       disabled={disabled}
+      locale="ja"
     />
   );
 };

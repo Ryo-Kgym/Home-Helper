@@ -1,10 +1,15 @@
-query GetAccountBalanceList($fromDate: date!, $toDate: date!, $groupId: uuid!) {
-  accountTotal(
-    args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
-  ) {
-    accountId
+query GetAccountBalanceList($groupId: uuid!, $fromDate: date!, $toDate: date!) {
+  account(where: { _and: { groupId: { _eq: $groupId } } }) {
+    id: accountId
     accountName
-    total
-    displayOrder
+    allDetailViewsAggregate(
+      where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+    ) {
+      aggregate {
+        sum {
+          signedAmount
+        }
+      }
+    }
   }
 }

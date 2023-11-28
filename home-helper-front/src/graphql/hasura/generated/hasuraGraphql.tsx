@@ -32,6 +32,10 @@ export type Account = {
   __typename?: "Account";
   accountId: Scalars["uuid"];
   accountName: Scalars["String"];
+  /** An aggregate relationship */
+  allDetailViewsAggregate: AllDetailViewAggregate;
+  /** An array relationship */
+  all_detail_views: Array<AllDetailView>;
   /** An array relationship */
   credit_card_summaries: Array<CreditCardSummary>;
   /** An array relationship */
@@ -41,6 +45,24 @@ export type Account = {
   group: Group;
   groupId: Scalars["uuid"];
   validFlag?: Maybe<Scalars["Boolean"]>;
+};
+
+/** columns and relationships of "account" */
+export type AccountAllDetailViewsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
+  where?: InputMaybe<AllDetailViewBoolExp>;
+};
+
+/** columns and relationships of "account" */
+export type AccountAll_Detail_ViewsArgs = {
+  distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
+  where?: InputMaybe<AllDetailViewBoolExp>;
 };
 
 /** columns and relationships of "account" */
@@ -61,6 +83,41 @@ export type AccountDaily_DetailsArgs = {
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
+/** aggregated selection of "account" */
+export type AccountAggregate = {
+  __typename?: "AccountAggregate";
+  aggregate?: Maybe<AccountAggregateFields>;
+  nodes: Array<Account>;
+};
+
+export type AccountAggregateBoolExp = {
+  bool_and?: InputMaybe<AccountAggregateBoolExpBool_And>;
+  bool_or?: InputMaybe<AccountAggregateBoolExpBool_Or>;
+  count?: InputMaybe<AccountAggregateBoolExpCount>;
+};
+
+/** aggregate fields of "account" */
+export type AccountAggregateFields = {
+  __typename?: "AccountAggregateFields";
+  avg?: Maybe<AccountAvgFields>;
+  count: Scalars["Int"];
+  max?: Maybe<AccountMaxFields>;
+  min?: Maybe<AccountMinFields>;
+  stddev?: Maybe<AccountStddevFields>;
+  stddevPop?: Maybe<AccountStddevPopFields>;
+  stddevSamp?: Maybe<AccountStddevSampFields>;
+  sum?: Maybe<AccountSumFields>;
+  varPop?: Maybe<AccountVarPopFields>;
+  varSamp?: Maybe<AccountVarSampFields>;
+  variance?: Maybe<AccountVarianceFields>;
+};
+
+/** aggregate fields of "account" */
+export type AccountAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<AccountSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+};
+
 /** order by aggregate values of table "account" */
 export type AccountAggregateOrderBy = {
   avg?: InputMaybe<AccountAvgOrderBy>;
@@ -76,6 +133,12 @@ export type AccountAggregateOrderBy = {
   variance?: InputMaybe<AccountVarianceOrderBy>;
 };
 
+/** aggregate avg on columns */
+export type AccountAvgFields = {
+  __typename?: "AccountAvgFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
+};
+
 /** order by avg() on columns of table "account" */
 export type AccountAvgOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
@@ -88,6 +151,8 @@ export type AccountBoolExp = {
   _or?: InputMaybe<Array<AccountBoolExp>>;
   accountId?: InputMaybe<UuidComparisonExp>;
   accountName?: InputMaybe<StringComparisonExp>;
+  all_detail_views?: InputMaybe<AllDetailViewBoolExp>;
+  all_detail_viewsAggregate?: InputMaybe<AllDetailViewAggregateBoolExp>;
   credit_card_summaries?: InputMaybe<CreditCardSummaryBoolExp>;
   daily_details?: InputMaybe<DailyDetailBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
@@ -113,12 +178,30 @@ export type AccountInsertInput = {
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
+/** aggregate max on columns */
+export type AccountMaxFields = {
+  __typename?: "AccountMaxFields";
+  accountId?: Maybe<Scalars["uuid"]>;
+  accountName?: Maybe<Scalars["String"]>;
+  displayOrder?: Maybe<Scalars["Int"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
+};
+
 /** order by max() on columns of table "account" */
 export type AccountMaxOrderBy = {
   accountId?: InputMaybe<OrderBy>;
   accountName?: InputMaybe<OrderBy>;
   displayOrder?: InputMaybe<OrderBy>;
   groupId?: InputMaybe<OrderBy>;
+};
+
+/** aggregate min on columns */
+export type AccountMinFields = {
+  __typename?: "AccountMinFields";
+  accountId?: Maybe<Scalars["uuid"]>;
+  accountName?: Maybe<Scalars["String"]>;
+  displayOrder?: Maybe<Scalars["Int"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "account" */
@@ -156,6 +239,7 @@ export type AccountOnConflict = {
 export type AccountOrderBy = {
   accountId?: InputMaybe<OrderBy>;
   accountName?: InputMaybe<OrderBy>;
+  all_detail_viewsAggregate?: InputMaybe<AllDetailViewAggregateOrderBy>;
   credit_card_summariesAggregate?: InputMaybe<CreditCardSummaryAggregateOrderBy>;
   daily_detailsAggregate?: InputMaybe<DailyDetailAggregateOrderBy>;
   displayOrder?: InputMaybe<OrderBy>;
@@ -178,14 +262,44 @@ export enum AccountSelectColumn {
   ValidFlag = "validFlag",
 }
 
+/** select "accountAggregateBoolExpBool_andArgumentsColumns" columns of table "account" */
+export enum AccountSelectColumnAccountAggregateBoolExpBool_AndArgumentsColumns {
+  /** column name */
+  ValidFlag = "validFlag",
+}
+
+/** select "accountAggregateBoolExpBool_orArgumentsColumns" columns of table "account" */
+export enum AccountSelectColumnAccountAggregateBoolExpBool_OrArgumentsColumns {
+  /** column name */
+  ValidFlag = "validFlag",
+}
+
+/** aggregate stddev on columns */
+export type AccountStddevFields = {
+  __typename?: "AccountStddevFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
+};
+
 /** order by stddev() on columns of table "account" */
 export type AccountStddevOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
+/** aggregate stddevPop on columns */
+export type AccountStddevPopFields = {
+  __typename?: "AccountStddevPopFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
+};
+
 /** order by stddevPop() on columns of table "account" */
 export type AccountStddevPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
+};
+
+/** aggregate stddevSamp on columns */
+export type AccountStddevSampFields = {
+  __typename?: "AccountStddevSampFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "account" */
@@ -210,6 +324,12 @@ export type AccountStreamCursorValueInput = {
   validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
+/** aggregate sum on columns */
+export type AccountSumFields = {
+  __typename?: "AccountSumFields";
+  displayOrder?: Maybe<Scalars["Int"]>;
+};
+
 /** order by sum() on columns of table "account" */
 export type AccountSumOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
@@ -221,14 +341,32 @@ export enum AccountUpdateColumn {
   Placeholder = "_PLACEHOLDER",
 }
 
+/** aggregate varPop on columns */
+export type AccountVarPopFields = {
+  __typename?: "AccountVarPopFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
+};
+
 /** order by varPop() on columns of table "account" */
 export type AccountVarPopOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
 };
 
+/** aggregate varSamp on columns */
+export type AccountVarSampFields = {
+  __typename?: "AccountVarSampFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
+};
+
 /** order by varSamp() on columns of table "account" */
 export type AccountVarSampOrderBy = {
   displayOrder?: InputMaybe<OrderBy>;
+};
+
+/** aggregate variance on columns */
+export type AccountVarianceFields = {
+  __typename?: "AccountVarianceFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "account" */
@@ -325,6 +463,308 @@ export type AffiliationStreamCursorValueInput = {
   groupId?: InputMaybe<Scalars["uuid"]>;
   groupRoleId?: InputMaybe<Scalars["uuid"]>;
   userId?: InputMaybe<Scalars["uuid"]>;
+};
+
+/** columns and relationships of "all_detail_view" */
+export type AllDetailView = {
+  __typename?: "AllDetailView";
+  accountId?: Maybe<Scalars["uuid"]>;
+  categoryId?: Maybe<Scalars["uuid"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  memo?: Maybe<Scalars["String"]>;
+  originalAmount?: Maybe<Scalars["numeric"]>;
+  signedAmount?: Maybe<Scalars["numeric"]>;
+  type?: Maybe<Scalars["String"]>;
+};
+
+/** aggregated selection of "all_detail_view" */
+export type AllDetailViewAggregate = {
+  __typename?: "AllDetailViewAggregate";
+  aggregate?: Maybe<AllDetailViewAggregateFields>;
+  nodes: Array<AllDetailView>;
+};
+
+export type AllDetailViewAggregateBoolExp = {
+  count?: InputMaybe<AllDetailViewAggregateBoolExpCount>;
+};
+
+/** aggregate fields of "all_detail_view" */
+export type AllDetailViewAggregateFields = {
+  __typename?: "AllDetailViewAggregateFields";
+  avg?: Maybe<AllDetailViewAvgFields>;
+  count: Scalars["Int"];
+  max?: Maybe<AllDetailViewMaxFields>;
+  min?: Maybe<AllDetailViewMinFields>;
+  stddev?: Maybe<AllDetailViewStddevFields>;
+  stddevPop?: Maybe<AllDetailViewStddevPopFields>;
+  stddevSamp?: Maybe<AllDetailViewStddevSampFields>;
+  sum?: Maybe<AllDetailViewSumFields>;
+  varPop?: Maybe<AllDetailViewVarPopFields>;
+  varSamp?: Maybe<AllDetailViewVarSampFields>;
+  variance?: Maybe<AllDetailViewVarianceFields>;
+};
+
+/** aggregate fields of "all_detail_view" */
+export type AllDetailViewAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<AllDetailViewSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** order by aggregate values of table "all_detail_view" */
+export type AllDetailViewAggregateOrderBy = {
+  avg?: InputMaybe<AllDetailViewAvgOrderBy>;
+  count?: InputMaybe<OrderBy>;
+  max?: InputMaybe<AllDetailViewMaxOrderBy>;
+  min?: InputMaybe<AllDetailViewMinOrderBy>;
+  stddev?: InputMaybe<AllDetailViewStddevOrderBy>;
+  stddevPop?: InputMaybe<AllDetailViewStddevPopOrderBy>;
+  stddevSamp?: InputMaybe<AllDetailViewStddevSampOrderBy>;
+  sum?: InputMaybe<AllDetailViewSumOrderBy>;
+  varPop?: InputMaybe<AllDetailViewVarPopOrderBy>;
+  varSamp?: InputMaybe<AllDetailViewVarSampOrderBy>;
+  variance?: InputMaybe<AllDetailViewVarianceOrderBy>;
+};
+
+/** aggregate avg on columns */
+export type AllDetailViewAvgFields = {
+  __typename?: "AllDetailViewAvgFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
+};
+
+/** order by avg() on columns of table "all_detail_view" */
+export type AllDetailViewAvgOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
+
+/** Boolean expression to filter rows from the table "all_detail_view". All fields are combined with a logical 'AND'. */
+export type AllDetailViewBoolExp = {
+  _and?: InputMaybe<Array<AllDetailViewBoolExp>>;
+  _not?: InputMaybe<AllDetailViewBoolExp>;
+  _or?: InputMaybe<Array<AllDetailViewBoolExp>>;
+  accountId?: InputMaybe<UuidComparisonExp>;
+  categoryId?: InputMaybe<UuidComparisonExp>;
+  date?: InputMaybe<DateComparisonExp>;
+  genreId?: InputMaybe<UuidComparisonExp>;
+  id?: InputMaybe<UuidComparisonExp>;
+  iocomeType?: InputMaybe<IocomeTypeComparisonExp>;
+  memo?: InputMaybe<StringComparisonExp>;
+  originalAmount?: InputMaybe<NumericComparisonExp>;
+  signedAmount?: InputMaybe<NumericComparisonExp>;
+  type?: InputMaybe<StringComparisonExp>;
+};
+
+/** aggregate max on columns */
+export type AllDetailViewMaxFields = {
+  __typename?: "AllDetailViewMaxFields";
+  accountId?: Maybe<Scalars["uuid"]>;
+  categoryId?: Maybe<Scalars["uuid"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  memo?: Maybe<Scalars["String"]>;
+  originalAmount?: Maybe<Scalars["numeric"]>;
+  signedAmount?: Maybe<Scalars["numeric"]>;
+  type?: Maybe<Scalars["String"]>;
+};
+
+/** order by max() on columns of table "all_detail_view" */
+export type AllDetailViewMaxOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+};
+
+/** aggregate min on columns */
+export type AllDetailViewMinFields = {
+  __typename?: "AllDetailViewMinFields";
+  accountId?: Maybe<Scalars["uuid"]>;
+  categoryId?: Maybe<Scalars["uuid"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  memo?: Maybe<Scalars["String"]>;
+  originalAmount?: Maybe<Scalars["numeric"]>;
+  signedAmount?: Maybe<Scalars["numeric"]>;
+  type?: Maybe<Scalars["String"]>;
+};
+
+/** order by min() on columns of table "all_detail_view" */
+export type AllDetailViewMinOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+};
+
+/** Ordering options when selecting data from "all_detail_view". */
+export type AllDetailViewOrderBy = {
+  accountId?: InputMaybe<OrderBy>;
+  categoryId?: InputMaybe<OrderBy>;
+  date?: InputMaybe<OrderBy>;
+  genreId?: InputMaybe<OrderBy>;
+  id?: InputMaybe<OrderBy>;
+  iocomeType?: InputMaybe<OrderBy>;
+  memo?: InputMaybe<OrderBy>;
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+};
+
+/** select columns of table "all_detail_view" */
+export enum AllDetailViewSelectColumn {
+  /** column name */
+  AccountId = "accountId",
+  /** column name */
+  CategoryId = "categoryId",
+  /** column name */
+  Date = "date",
+  /** column name */
+  GenreId = "genreId",
+  /** column name */
+  Id = "id",
+  /** column name */
+  IocomeType = "iocomeType",
+  /** column name */
+  Memo = "memo",
+  /** column name */
+  OriginalAmount = "originalAmount",
+  /** column name */
+  SignedAmount = "signedAmount",
+  /** column name */
+  Type = "type",
+}
+
+/** aggregate stddev on columns */
+export type AllDetailViewStddevFields = {
+  __typename?: "AllDetailViewStddevFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
+};
+
+/** order by stddev() on columns of table "all_detail_view" */
+export type AllDetailViewStddevOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
+
+/** aggregate stddevPop on columns */
+export type AllDetailViewStddevPopFields = {
+  __typename?: "AllDetailViewStddevPopFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
+};
+
+/** order by stddevPop() on columns of table "all_detail_view" */
+export type AllDetailViewStddevPopOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
+
+/** aggregate stddevSamp on columns */
+export type AllDetailViewStddevSampFields = {
+  __typename?: "AllDetailViewStddevSampFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
+};
+
+/** order by stddevSamp() on columns of table "all_detail_view" */
+export type AllDetailViewStddevSampOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
+
+/** Streaming cursor of the table "all_detail_view" */
+export type AllDetailViewStreamCursorInput = {
+  /** Stream column input with initial value */
+  initialValue: AllDetailViewStreamCursorValueInput;
+  /** cursor ordering */
+  ordering?: InputMaybe<CursorOrdering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type AllDetailViewStreamCursorValueInput = {
+  accountId?: InputMaybe<Scalars["uuid"]>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  memo?: InputMaybe<Scalars["String"]>;
+  originalAmount?: InputMaybe<Scalars["numeric"]>;
+  signedAmount?: InputMaybe<Scalars["numeric"]>;
+  type?: InputMaybe<Scalars["String"]>;
+};
+
+/** aggregate sum on columns */
+export type AllDetailViewSumFields = {
+  __typename?: "AllDetailViewSumFields";
+  originalAmount?: Maybe<Scalars["numeric"]>;
+  signedAmount?: Maybe<Scalars["numeric"]>;
+};
+
+/** order by sum() on columns of table "all_detail_view" */
+export type AllDetailViewSumOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
+
+/** aggregate varPop on columns */
+export type AllDetailViewVarPopFields = {
+  __typename?: "AllDetailViewVarPopFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
+};
+
+/** order by varPop() on columns of table "all_detail_view" */
+export type AllDetailViewVarPopOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
+
+/** aggregate varSamp on columns */
+export type AllDetailViewVarSampFields = {
+  __typename?: "AllDetailViewVarSampFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
+};
+
+/** order by varSamp() on columns of table "all_detail_view" */
+export type AllDetailViewVarSampOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
+};
+
+/** aggregate variance on columns */
+export type AllDetailViewVarianceFields = {
+  __typename?: "AllDetailViewVarianceFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
+};
+
+/** order by variance() on columns of table "all_detail_view" */
+export type AllDetailViewVarianceOrderBy = {
+  originalAmount?: InputMaybe<OrderBy>;
+  signedAmount?: InputMaybe<OrderBy>;
 };
 
 /** columns and relationships of "application" */
@@ -2010,6 +2450,8 @@ export type Group = {
   __typename?: "Group";
   /** An array relationship */
   accounts: Array<Account>;
+  /** An aggregate relationship */
+  accountsAggregate: AccountAggregate;
   /** An array relationship */
   affiliations: Array<Affiliation>;
   /** An array relationship */
@@ -2052,6 +2494,15 @@ export type Group = {
 
 /** columns and relationships of "group" */
 export type GroupAccountsArgs = {
+  distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AccountOrderBy>>;
+  where?: InputMaybe<AccountBoolExp>;
+};
+
+/** columns and relationships of "group" */
+export type GroupAccountsAggregateArgs = {
   distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
   limit?: InputMaybe<Scalars["Int"]>;
   offset?: InputMaybe<Scalars["Int"]>;
@@ -2305,6 +2756,7 @@ export type GroupBoolExp = {
   _not?: InputMaybe<GroupBoolExp>;
   _or?: InputMaybe<Array<GroupBoolExp>>;
   accounts?: InputMaybe<AccountBoolExp>;
+  accountsAggregate?: InputMaybe<AccountAggregateBoolExp>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
   categories?: InputMaybe<CategoryBoolExp>;
   creditCardDetails?: InputMaybe<CreditCardDetailBoolExp>;
@@ -5120,10 +5572,38 @@ export type UuidComparisonExp = {
   _nin?: InputMaybe<Array<Scalars["uuid"]>>;
 };
 
+export type AccountAggregateBoolExpBool_And = {
+  arguments: AccountSelectColumnAccountAggregateBoolExpBool_AndArgumentsColumns;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<AccountBoolExp>;
+  predicate: BooleanComparisonExp;
+};
+
+export type AccountAggregateBoolExpBool_Or = {
+  arguments: AccountSelectColumnAccountAggregateBoolExpBool_OrArgumentsColumns;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<AccountBoolExp>;
+  predicate: BooleanComparisonExp;
+};
+
+export type AccountAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<AccountSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<AccountBoolExp>;
+  predicate: IntComparisonExp;
+};
+
 export type AccountTotalArgs = {
   from_date?: InputMaybe<Scalars["date"]>;
   group_id?: InputMaybe<Scalars["uuid"]>;
   to_date?: InputMaybe<Scalars["date"]>;
+};
+
+export type AllDetailViewAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<AllDetailViewSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<AllDetailViewBoolExp>;
+  predicate: IntComparisonExp;
 };
 
 export type CategoryTotalByMonthArgs = {
@@ -5510,6 +5990,8 @@ export type Query_Root = {
   __typename?: "query_root";
   /** fetch data from the table: "account" */
   account: Array<Account>;
+  /** fetch aggregated fields from the table: "account" */
+  accountAggregate: AccountAggregate;
   /** fetch data from the table: "account" using primary key columns */
   accountByPk?: Maybe<Account>;
   /** execute function "account_total" which returns "total_by_account_view" */
@@ -5518,6 +6000,10 @@ export type Query_Root = {
   affiliation: Array<Affiliation>;
   /** fetch data from the table: "affiliation" using primary key columns */
   affiliationByPk?: Maybe<Affiliation>;
+  /** fetch data from the table: "all_detail_view" */
+  allDetailView: Array<AllDetailView>;
+  /** fetch aggregated fields from the table: "all_detail_view" */
+  allDetailViewAggregate: AllDetailViewAggregate;
   /** fetch data from the table: "application" */
   application: Array<Application>;
   /** fetch data from the table: "application" using primary key columns */
@@ -5632,6 +6118,14 @@ export type Query_RootAccountArgs = {
   where?: InputMaybe<AccountBoolExp>;
 };
 
+export type Query_RootAccountAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AccountOrderBy>>;
+  where?: InputMaybe<AccountBoolExp>;
+};
+
 export type Query_RootAccountByPkArgs = {
   accountId: Scalars["uuid"];
 };
@@ -5655,6 +6149,22 @@ export type Query_RootAffiliationArgs = {
 
 export type Query_RootAffiliationByPkArgs = {
   affiliationId: Scalars["uuid"];
+};
+
+export type Query_RootAllDetailViewArgs = {
+  distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
+  where?: InputMaybe<AllDetailViewBoolExp>;
+};
+
+export type Query_RootAllDetailViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
+  where?: InputMaybe<AllDetailViewBoolExp>;
 };
 
 export type Query_RootApplicationArgs = {
@@ -6006,6 +6516,8 @@ export type Subscription_Root = {
   __typename?: "subscription_root";
   /** fetch data from the table: "account" */
   account: Array<Account>;
+  /** fetch aggregated fields from the table: "account" */
+  accountAggregate: AccountAggregate;
   /** fetch data from the table: "account" using primary key columns */
   accountByPk?: Maybe<Account>;
   /** fetch data from the table in a streaming manner: "account" */
@@ -6018,6 +6530,12 @@ export type Subscription_Root = {
   affiliationByPk?: Maybe<Affiliation>;
   /** fetch data from the table in a streaming manner: "affiliation" */
   affiliationStream: Array<Affiliation>;
+  /** fetch data from the table: "all_detail_view" */
+  allDetailView: Array<AllDetailView>;
+  /** fetch aggregated fields from the table: "all_detail_view" */
+  allDetailViewAggregate: AllDetailViewAggregate;
+  /** fetch data from the table in a streaming manner: "all_detail_view" */
+  allDetailViewStream: Array<AllDetailView>;
   /** fetch data from the table: "application" */
   application: Array<Application>;
   /** fetch data from the table: "application" using primary key columns */
@@ -6184,6 +6702,14 @@ export type Subscription_RootAccountArgs = {
   where?: InputMaybe<AccountBoolExp>;
 };
 
+export type Subscription_RootAccountAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AccountOrderBy>>;
+  where?: InputMaybe<AccountBoolExp>;
+};
+
 export type Subscription_RootAccountByPkArgs = {
   accountId: Scalars["uuid"];
 };
@@ -6219,6 +6745,28 @@ export type Subscription_RootAffiliationStreamArgs = {
   batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<AffiliationStreamCursorInput>>;
   where?: InputMaybe<AffiliationBoolExp>;
+};
+
+export type Subscription_RootAllDetailViewArgs = {
+  distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
+  where?: InputMaybe<AllDetailViewBoolExp>;
+};
+
+export type Subscription_RootAllDetailViewAggregateArgs = {
+  distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
+  where?: InputMaybe<AllDetailViewBoolExp>;
+};
+
+export type Subscription_RootAllDetailViewStreamArgs = {
+  batchSize: Scalars["Int"];
+  cursor: Array<InputMaybe<AllDetailViewStreamCursorInput>>;
+  where?: InputMaybe<AllDetailViewBoolExp>;
 };
 
 export type Subscription_RootApplicationArgs = {
@@ -6936,19 +7484,27 @@ export type UpdateGenreByIdMutation = {
 };
 
 export type GetAccountBalanceListQueryVariables = Exact<{
+  groupId: Scalars["uuid"];
   fromDate: Scalars["date"];
   toDate: Scalars["date"];
-  groupId: Scalars["uuid"];
 }>;
 
 export type GetAccountBalanceListQuery = {
   __typename?: "query_root";
-  accountTotal: Array<{
-    __typename?: "TotalByAccountView";
-    accountId?: any | null;
-    accountName?: string | null;
-    total?: any | null;
-    displayOrder?: number | null;
+  account: Array<{
+    __typename?: "Account";
+    accountName: string;
+    id: any;
+    allDetailViewsAggregate: {
+      __typename?: "AllDetailViewAggregate";
+      aggregate?: {
+        __typename?: "AllDetailViewAggregateFields";
+        sum?: {
+          __typename?: "AllDetailViewSumFields";
+          signedAmount?: any | null;
+        } | null;
+      } | null;
+    };
   }>;
 };
 
@@ -7945,17 +8501,22 @@ export function useUpdateGenreByIdMutation() {
 }
 export const GetAccountBalanceListDocument = gql`
   query GetAccountBalanceList(
+    $groupId: uuid!
     $fromDate: date!
     $toDate: date!
-    $groupId: uuid!
   ) {
-    accountTotal(
-      args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
-    ) {
-      accountId
+    account(where: { _and: { groupId: { _eq: $groupId } } }) {
+      id: accountId
       accountName
-      total
-      displayOrder
+      allDetailViewsAggregate(
+        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+      ) {
+        aggregate {
+          sum {
+            signedAmount
+          }
+        }
+      }
     }
   }
 `;
