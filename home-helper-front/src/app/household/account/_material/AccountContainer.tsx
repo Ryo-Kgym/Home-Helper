@@ -21,13 +21,15 @@ export const AccountContainer = () => {
   const { data, total } = useGetAccountBalanceList(fromDate, toDate!);
 
   const tableProps: TableProps[] =
-    data?.accountTotal?.map((account) => {
+    data?.account?.map((account) => {
       return {
         keyPrefix: "account",
         columns: [
           { value: account?.accountName, align: "left" },
           {
-            value: Number(account?.total).toLocaleString(),
+            value: Number(
+              account?.allDetailViewsAggregate.aggregate?.sum?.signedAmount,
+            ).toLocaleString(),
             align: "right",
           },
         ],
