@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/Home-Helper.iml" filepath="$PROJECT_DIR$/.idea/Home-Helper.iml" />
       <module fileurl="file://$PROJECT_DIR$/home-helper-core/home-helper-core.iml" filepath="$PROJECT_DIR$/home-helper-core/home-helper-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/home-helper-front.iml" filepath="$PROJECT_DIR$/home-helper-front.iml" />
-      <module fileurl="file://$PROJECT_DIR$/home-helper-migration/home-helper-migration.iml" filepath="$PROJECT_DIR$/home-helper-migration/home-helper-migration.iml" />
     </modules>
   </component>
 </project>
