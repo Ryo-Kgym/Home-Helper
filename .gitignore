@@ -81,3 +81,4 @@ fabric.properties
 /home-helper-front/src/graphql/hasura/graphql.config.yml
 /home-helper-front/hasura-codegen.yml
 /home-helper-front/hasura-helper-kids-codegen.yml
+/volume/

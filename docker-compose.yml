@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  home_helper_db_main:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: home_helper_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./home-helper-database/household_db/init:/docker-entrypoint-initdb.d
+      - ./volume/data/home_helper/main:/var/lib/postgresql/data
+
+volumes:
+  home_helper_db_main:
+    driver: local
