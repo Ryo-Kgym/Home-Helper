@@ -75,10 +75,11 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
-/home-helper-database/docker/data/
-/home-helper-database/volume/
-/home-helper-database/household_db/.to_uuid/
+/archive/home-helper-database/volume/
+/archive/home-helper-database/docker/data/
+/archive/home-helper-database/household_db/.to_uuid/
 /home-helper-front/src/graphql/hasura/graphql.config.yml
 /home-helper-front/hasura-codegen.yml
 /home-helper-front/hasura-helper-kids-codegen.yml
 /volume/
+/archive/home-helper-database/household_db/.miglation/

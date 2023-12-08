@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/archive/home-helper-database/household_db/.miglation/from.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/archive/home-helper-database/household_db/.miglation/to.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/archive/home-helper-database/household_db/.to_uuid/transfer.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/home-helper-database/ddl_dml/00_household_create_table.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/home-helper-database/ddl_dml/01_household_create_view.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/home-helper-database/ddl_dml/02_household_create_function.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/home-helper-database/ddl_dml/10_helperKids_create_table.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/home-helper-database/household_db/.miglation/from.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/home-helper-database/household_db/.miglation/to.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/home-helper-database/household_db/.to_uuid/transfer.sql" dialect="PostgreSQL" />
     <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>
