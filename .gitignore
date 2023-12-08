@@ -83,3 +83,4 @@ fabric.properties
 /home-helper-front/hasura-helper-kids-codegen.yml
 /volume/
 /archive/home-helper-database/household_db/.miglation/
+/.env

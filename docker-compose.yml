@@ -5,11 +5,11 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_DB: home_helper_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
     ports:
-      - 5432:5432
+      - ${DB_PORT}:5432
     volumes:
       - ./home-helper-database/ddl_dml:/docker-entrypoint-initdb.d
       - ./volume/data/home_helper/main:/var/lib/postgresql/data
