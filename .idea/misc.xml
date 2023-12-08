@@ -3,8 +3,8 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/home-helper-api" />
+    <file type="web" url="file://$PROJECT_DIR$/home-helper-batch" />
     <file type="web" url="file://$PROJECT_DIR$/home-helper-core" />
-    <file type="web" url="file://$PROJECT_DIR$/home-helper-migration" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
