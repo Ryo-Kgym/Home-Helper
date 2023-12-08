@@ -10,5 +10,11 @@
         <module name="home-helper-migration.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="home-helper-api" target="17" />
+      <module name="home-helper-api.home-helper-core" target="17" />
+      <module name="home-helper-batch" target="17" />
+      <module name="Home-Helper.home-helper-core" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
