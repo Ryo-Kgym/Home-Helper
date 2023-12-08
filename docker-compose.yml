@@ -11,7 +11,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./home-helper-database/household_db/init:/docker-entrypoint-initdb.d
+      - ./home-helper-database/ddl_dml:/docker-entrypoint-initdb.d
       - ./volume/data/home_helper/main:/var/lib/postgresql/data
 
 volumes:
