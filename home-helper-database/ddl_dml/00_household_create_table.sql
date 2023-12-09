@@ -171,3 +171,12 @@ comment on column public.transfer_category.group_id is 'グループID';
 comment on column public.transfer_category.income_category_id is '収入カテゴリID';
 comment on column public.transfer_category.outcome_category_id is '支出カテゴリID';
 
+create table public.deposit_category (
+    category_id uuid primary key not null, -- カテゴリID
+    group_id    uuid             not null, -- グループID
+    foreign key (category_id) references public.category (category_id) match simple on update cascade on delete cascade,
+    foreign key (group_id) references public."group" (group_id) match simple on update cascade on delete cascade
+);
+comment on table public.deposit_category is '預金カテゴリ';
+comment on column public.deposit_category.category_id is 'カテゴリID';
+comment on column public.deposit_category.group_id is 'グループID';
