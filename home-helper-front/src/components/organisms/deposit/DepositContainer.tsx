@@ -7,22 +7,31 @@ import { DepositPresenter } from "./DepositPresenter";
 import { useGetMonthlyDeposit } from "@hooks/household/deposit/useGetMonthlyDeposit";
 import { createMonthNames } from "@function/date/create-month-names";
 import { TableProps } from "@components/atoms/Table";
+import { useState } from "react";
 
 export const DepositContainer = () => {
   const thisYear = new Date().getFullYear();
-  const fromDate = new Date(thisYear, 0, 1);
-  const toDate = new Date(thisYear, 11, 31);
+
+  const [fromMonth, setFromMonth] = useState<Date | null>(
+    new Date(thisYear, 0, 1),
+  );
+  const [toMonth, setToMonth] = useState<Date | null>(
+    new Date(thisYear, 11, 31),
+  );
 
   const { monthlyDeposits, loading, error } = useGetMonthlyDeposit({
-    fromDate,
-    toDate,
+    fromDate: fromMonth!,
+    toDate: toMonth!,
   });
 
   let tablePropsList: TableProps[] = [];
 
   if (loading) return <div>loading...</div>;
 
-  const header: string[] = ["カテゴリ", ...createMonthNames(fromDate, toDate)];
+  const header: string[] = [
+    "カテゴリ",
+    ...createMonthNames(fromMonth!, toMonth!),
+  ];
 
   tablePropsList = monthlyDeposits.map((md) => ({
     keyPrefix: md.categoryId,
@@ -35,5 +44,14 @@ export const DepositContainer = () => {
     ],
   })) as TableProps[];
 
-  return <DepositPresenter header={header} tablePropsList={tablePropsList} />;
+  return (
+    <DepositPresenter
+      fromMonth={fromMonth}
+      changeFromMonth={setFromMonth}
+      toMonth={toMonth}
+      changeToMonth={setToMonth}
+      header={header}
+      tablePropsList={tablePropsList}
+    />
+  );
 };
