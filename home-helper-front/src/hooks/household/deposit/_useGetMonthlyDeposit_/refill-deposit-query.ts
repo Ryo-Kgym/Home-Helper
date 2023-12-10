@@ -23,7 +23,7 @@ export const refillDepositQuery = (
           ({
             detailId: d.id as string,
             type: "daily",
-            date: d.date as Date,
+            date: new Date(d.date),
             amount: d.amount as number,
             memo: d.memo as string,
           }) as Detail,
@@ -33,7 +33,7 @@ export const refillDepositQuery = (
           ({
             detailId: d.id as string,
             type: "credit",
-            date: d.date as Date,
+            date: new Date(d.date),
             amount: d.amount as number,
             memo: d.memo as string,
           }) as Detail,

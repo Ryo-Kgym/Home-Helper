@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { refillDepositQuery } from "./refill-deposit-query";
+import { refillDepositQuery as testTarget } from "./refill-deposit-query";
 import { CategoryDetail } from "./type";
 import { GetDepositQuery } from "@graphql/hasura/generated/hasuraGraphql";
 
@@ -62,12 +62,12 @@ describe("refillDepositQuery function", () => {
       },
     ];
 
-    const result = refillDepositQuery(mockData);
+    const result = testTarget(mockData);
     expect(result).toEqual(expectedResult);
   });
 
   it("should return an empty array when the provided data is undefined", () => {
-    const result = refillDepositQuery(undefined);
+    const result = testTarget(undefined);
     expect(result).toEqual([]);
   });
 });
