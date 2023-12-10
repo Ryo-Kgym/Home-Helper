@@ -13,7 +13,7 @@ query GetSummaryCategoryBetweenDate(
       genre {
         iocomeType
       }
-      daily: daily_details(
+      daily: dailyDetails(
         where: {
           groupId: { _eq: $groupId }
           _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
@@ -23,7 +23,7 @@ query GetSummaryCategoryBetweenDate(
         date
         amount
       }
-      creditCard: credit_card_details(
+      creditCard: creditCardDetails(
         where: {
           groupId: { _eq: $groupId }
           _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
