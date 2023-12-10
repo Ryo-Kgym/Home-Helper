@@ -3,7 +3,8 @@
  */
 
 import { groupMonthlyCategory as testTarget } from "./group-monthly-category";
-import { CategoryDetail, MonthlyCategory } from "./type";
+import { CategoryDetail } from "./type";
+import { MonthlyCategory } from "@hooks/household/deposit/monthlyDeposit";
 
 test("groupMonthlyCategory function should group category details by month", () => {
   const mockCategoryDetail: CategoryDetail = {

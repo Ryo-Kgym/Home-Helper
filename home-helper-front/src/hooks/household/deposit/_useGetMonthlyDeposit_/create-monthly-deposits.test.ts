@@ -3,7 +3,8 @@
  */
 
 import { createMonthlyDeposits as testTarget } from "./create-monthly-deposits";
-import { CategoryDetail, MonthlyDeposit } from "./type";
+import { CategoryDetail } from "./type";
+import { MonthlyDeposit } from "@hooks/household/deposit/monthlyDeposit";
 
 describe("createMonthlyDeposits", () => {
   it("should create monthly deposits based on category details and year months", () => {
