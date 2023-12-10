@@ -2,6 +2,13 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+/**
+ * Generates an array of month names between two given dates.
+ *
+ * @param {Date} fromMonth - The starting month.
+ * @param {Date} toMonth - The ending month.
+ * @returns {string[]} An array of month names in the format 'YYYY年MM月'.
+ */
 export const createMonthNames = (fromMonth: Date, toMonth: Date) => {
   let iterator = fromMonth;
   let prevYear = 0;
