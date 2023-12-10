@@ -292,6 +292,19 @@ type Application {
     application: String!
     applicationId: uuid!
     "An array relationship"
+    groupApplications(
+        "distinct select on columns"
+        distinctOn: [GroupApplicationSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [GroupApplicationOrderBy!],
+        "filter the rows returned"
+        where: GroupApplicationBoolExp
+    ): [GroupApplication!]!
+    "An array relationship"
     group_applications(
         "distinct select on columns"
         distinctOn: [GroupApplicationSelectColumn!],
@@ -313,7 +326,7 @@ type Category {
     categoryId: uuid!
     categoryName: String!
     "An array relationship"
-    credit_card_details(
+    creditCardDetails(
         "distinct select on columns"
         distinctOn: [CreditCardDetailSelectColumn!],
         "limit the number of rows returned"
@@ -326,7 +339,7 @@ type Category {
         where: CreditCardDetailBoolExp
     ): [CreditCardDetail!]!
     "An array relationship"
-    daily_details(
+    dailyDetails(
         "distinct select on columns"
         distinctOn: [DailyDetailSelectColumn!],
         "limit the number of rows returned"
@@ -338,6 +351,8 @@ type Category {
         "filter the rows returned"
         where: DailyDetailBoolExp
     ): [DailyDetail!]!
+    "An object relationship"
+    depositCategory: DepositCategory
     displayOrder: Int!
     "An object relationship"
     genre: Genre!
@@ -346,7 +361,7 @@ type Category {
     group: Group!
     groupId: uuid!
     "An array relationship"
-    summary_category_by_groups(
+    summaryCategories(
         "distinct select on columns"
         distinctOn: [SummaryCategoryByGroupSelectColumn!],
         "limit the number of rows returned"
@@ -359,7 +374,7 @@ type Category {
         where: SummaryCategoryByGroupBoolExp
     ): [SummaryCategoryByGroup!]!
     "An array relationship"
-    transfer_income_category(
+    transferIncomeCategory(
         "distinct select on columns"
         distinctOn: [TransferCategorySelectColumn!],
         "limit the number of rows returned"
@@ -372,7 +387,7 @@ type Category {
         where: TransferCategoryBoolExp
     ): [TransferCategory!]!
     "An array relationship"
-    transfer_outcome_category(
+    transferOutcomeCategory(
         "distinct select on columns"
         distinctOn: [TransferCategorySelectColumn!],
         "limit the number of rows returned"
@@ -435,6 +450,19 @@ type CreditCardSummary {
     count: Int!
     creditCard: String!
     "An array relationship"
+    creditCardDetails(
+        "distinct select on columns"
+        distinctOn: [CreditCardDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [CreditCardDetailOrderBy!],
+        "filter the rows returned"
+        where: CreditCardDetailBoolExp
+    ): [CreditCardDetail!]!
+    "An array relationship"
     credit_card_details(
         "distinct select on columns"
         distinctOn: [CreditCardDetailSelectColumn!],
@@ -451,6 +479,8 @@ type CreditCardSummary {
     group: Group!
     groupId: uuid!
     id: uuid!
+    "An object relationship"
+    importFileHistory: ImportFileHistory
     "An object relationship"
     import_file_history: ImportFileHistory!
     totalAmount: numeric!
@@ -514,6 +544,26 @@ type DailyTotalView {
     groupId: uuid
     iocomeType: iocome_type
     total: numeric
+}
+
+"預金カテゴリ"
+type DepositCategory {
+    "An object relationship"
+    category: Category!
+    "カテゴリID"
+    categoryId: uuid!
+    "An object relationship"
+    group: Group!
+    "グループID"
+    groupId: uuid!
+}
+
+"response of any mutation on the table \"deposit_category\""
+type DepositCategoryMutationResponse {
+    "number of rows affected by the mutation"
+    affectedRows: Int!
+    "data from the rows affected by the mutation"
+    returning: [DepositCategory!]!
 }
 
 "columns and relationships of \"genre\""
@@ -669,6 +719,19 @@ type Group {
         "filter the rows returned"
         where: DailyDetailBoolExp
     ): [DailyDetail!]!
+    "An array relationship"
+    depositCategories(
+        "distinct select on columns"
+        distinctOn: [DepositCategorySelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DepositCategoryOrderBy!],
+        "filter the rows returned"
+        where: DepositCategoryBoolExp
+    ): [DepositCategory!]!
     "An array relationship"
     exchangeItems(
         "distinct select on columns"
@@ -1399,17 +1462,6 @@ type SummaryCategoryByGroupMutationResponse {
     returning: [SummaryCategoryByGroup!]!
 }
 
-"columns and relationships of \"total_by_account_view\""
-type TotalByAccountView {
-    accountId: uuid
-    accountName: String
-    date: date
-    displayOrder: Int
-    groupId: uuid
-    iocomeType: iocome_type
-    total: numeric
-}
-
 "columns and relationships of \"total_by_category_view\""
 type TotalByCategoryView {
     categoryId: uuid
@@ -1623,6 +1675,20 @@ type mutation_root {
         "upsert condition"
         onConflict: DailyDetailOnConflict
     ): DailyDetail
+    "insert data into the table: \"deposit_category\""
+    insertDepositCategory(
+        "the rows to be inserted"
+        objects: [DepositCategoryInsertInput!]!,
+        "upsert condition"
+        onConflict: DepositCategoryOnConflict
+    ): DepositCategoryMutationResponse
+    "insert a single row into the table: \"deposit_category\""
+    insertDepositCategoryOne(
+        "the row to be inserted"
+        object: DepositCategoryInsertInput!,
+        "upsert condition"
+        onConflict: DepositCategoryOnConflict
+    ): DepositCategory
     "insert data into the table: \"genre\""
     insertGenre(
         "the rows to be inserted"
@@ -1854,21 +1920,6 @@ type query_root {
     ): AccountAggregate!
     "fetch data from the table: \"account\" using primary key columns"
     accountByPk(accountId: uuid!): Account
-    "execute function \"account_total\" which returns \"total_by_account_view\""
-    accountTotal(
-        "input parameters for function \"accountTotal\""
-        args: accountTotalArgs!,
-        "distinct select on columns"
-        distinctOn: [TotalByAccountViewSelectColumn!],
-        "limit the number of rows returned"
-        limit: Int,
-        "skip the first n rows. Use only with order_by"
-        offset: Int,
-        "sort the rows by one or more columns"
-        orderBy: [TotalByAccountViewOrderBy!],
-        "filter the rows returned"
-        where: TotalByAccountViewBoolExp
-    ): [TotalByAccountView!]!
     "fetch data from the table: \"affiliation\""
     affiliation(
         "distinct select on columns"
@@ -2041,6 +2092,24 @@ type query_root {
         "filter the rows returned"
         where: DailyTotalViewBoolExp
     ): [DailyTotalView!]!
+    "fetch data from the table: \"deposit_category\""
+    depositCategory(
+        "distinct select on columns"
+        distinctOn: [DepositCategorySelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DepositCategoryOrderBy!],
+        "filter the rows returned"
+        where: DepositCategoryBoolExp
+    ): [DepositCategory!]!
+    "fetch data from the table: \"deposit_category\" using primary key columns"
+    depositCategoryByPk(
+        "カテゴリID"
+        categoryId: uuid!
+    ): DepositCategory
     "fetch data from the table: \"genre\""
     genre(
         "distinct select on columns"
@@ -2313,19 +2382,6 @@ type query_root {
     ): [SummaryCategoryByGroup!]!
     "fetch data from the table: \"summary_category_by_group\" using primary key columns"
     summaryCategoryByGroupByPk(id: uuid!): SummaryCategoryByGroup
-    "fetch data from the table: \"total_by_account_view\""
-    totalByAccountView(
-        "distinct select on columns"
-        distinctOn: [TotalByAccountViewSelectColumn!],
-        "limit the number of rows returned"
-        limit: Int,
-        "skip the first n rows. Use only with order_by"
-        offset: Int,
-        "sort the rows by one or more columns"
-        orderBy: [TotalByAccountViewOrderBy!],
-        "filter the rows returned"
-        where: TotalByAccountViewBoolExp
-    ): [TotalByAccountView!]!
     "fetch data from the table: \"total_by_category_view\""
     totalByCategoryView(
         "distinct select on columns"
@@ -2425,21 +2481,6 @@ type subscription_root {
         "filter the rows returned"
         where: AccountBoolExp
     ): [Account!]!
-    "execute function \"account_total\" which returns \"total_by_account_view\""
-    accountTotal(
-        "input parameters for function \"accountTotal\""
-        args: accountTotalArgs!,
-        "distinct select on columns"
-        distinctOn: [TotalByAccountViewSelectColumn!],
-        "limit the number of rows returned"
-        limit: Int,
-        "skip the first n rows. Use only with order_by"
-        offset: Int,
-        "sort the rows by one or more columns"
-        orderBy: [TotalByAccountViewOrderBy!],
-        "filter the rows returned"
-        where: TotalByAccountViewBoolExp
-    ): [TotalByAccountView!]!
     "fetch data from the table: \"affiliation\""
     affiliation(
         "distinct select on columns"
@@ -2693,6 +2734,33 @@ type subscription_root {
         "filter the rows returned"
         where: DailyTotalViewBoolExp
     ): [DailyTotalView!]!
+    "fetch data from the table: \"deposit_category\""
+    depositCategory(
+        "distinct select on columns"
+        distinctOn: [DepositCategorySelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DepositCategoryOrderBy!],
+        "filter the rows returned"
+        where: DepositCategoryBoolExp
+    ): [DepositCategory!]!
+    "fetch data from the table: \"deposit_category\" using primary key columns"
+    depositCategoryByPk(
+        "カテゴリID"
+        categoryId: uuid!
+    ): DepositCategory
+    "fetch data from the table in a streaming manner: \"deposit_category\""
+    depositCategoryStream(
+        "maximum number of rows returned in a single batch"
+        batchSize: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [DepositCategoryStreamCursorInput]!,
+        "filter the rows returned"
+        where: DepositCategoryBoolExp
+    ): [DepositCategory!]!
     "fetch data from the table: \"genre\""
     genre(
         "distinct select on columns"
@@ -3091,28 +3159,6 @@ type subscription_root {
         "filter the rows returned"
         where: SummaryCategoryByGroupBoolExp
     ): [SummaryCategoryByGroup!]!
-    "fetch data from the table: \"total_by_account_view\""
-    totalByAccountView(
-        "distinct select on columns"
-        distinctOn: [TotalByAccountViewSelectColumn!],
-        "limit the number of rows returned"
-        limit: Int,
-        "skip the first n rows. Use only with order_by"
-        offset: Int,
-        "sort the rows by one or more columns"
-        orderBy: [TotalByAccountViewOrderBy!],
-        "filter the rows returned"
-        where: TotalByAccountViewBoolExp
-    ): [TotalByAccountView!]!
-    "fetch data from the table in a streaming manner: \"total_by_account_view\""
-    totalByAccountViewStream(
-        "maximum number of rows returned in a single batch"
-        batchSize: Int!,
-        "cursor to stream the results returned by the query"
-        cursor: [TotalByAccountViewStreamCursorInput]!,
-        "filter the rows returned"
-        where: TotalByAccountViewBoolExp
-    ): [TotalByAccountView!]!
     "fetch data from the table: \"total_by_category_view\""
     totalByCategoryView(
         "distinct select on columns"
@@ -3510,6 +3556,26 @@ enum DailyTotalViewSelectColumn {
     total
 }
 
+"unique or primary key constraints on table \"deposit_category\""
+enum DepositCategoryConstraint {
+    "unique or primary key constraint on columns \"category_id\""
+    deposit_category_pkey
+}
+
+"select columns of table \"deposit_category\""
+enum DepositCategorySelectColumn {
+    "column name"
+    categoryId
+    "column name"
+    groupId
+}
+
+"placeholder for update columns of table \"deposit_category\" (current role has no relevant permissions)"
+enum DepositCategoryUpdateColumn {
+    "placeholder (do not use)"
+    _PLACEHOLDER
+}
+
 "unique or primary key constraints on table \"genre\""
 enum GenreConstraint {
     "unique or primary key constraint on columns \"genre_id\""
@@ -3788,24 +3854,6 @@ enum SummaryCategoryByGroupSelectColumn {
 enum SummaryCategoryByGroupUpdateColumn {
     "placeholder (do not use)"
     _PLACEHOLDER
-}
-
-"select columns of table \"total_by_account_view\""
-enum TotalByAccountViewSelectColumn {
-    "column name"
-    accountId
-    "column name"
-    accountName
-    "column name"
-    date
-    "column name"
-    displayOrder
-    "column name"
-    groupId
-    "column name"
-    iocomeType
-    "column name"
-    total
 }
 
 "select columns of table \"total_by_category_view\""
@@ -4272,6 +4320,7 @@ input ApplicationBoolExp {
     _or: [ApplicationBoolExp!]
     application: StringComparisonExp
     applicationId: UuidComparisonExp
+    groupApplications: GroupApplicationBoolExp
     group_applications: GroupApplicationBoolExp
     topUrl: StringComparisonExp
     validFlag: BooleanComparisonExp
@@ -4281,6 +4330,7 @@ input ApplicationBoolExp {
 input ApplicationOrderBy {
     application: OrderBy
     applicationId: OrderBy
+    groupApplicationsAggregate: GroupApplicationAggregateOrderBy
     group_applicationsAggregate: GroupApplicationAggregateOrderBy
     topUrl: OrderBy
     validFlag: OrderBy
@@ -4349,16 +4399,17 @@ input CategoryBoolExp {
     _or: [CategoryBoolExp!]
     categoryId: UuidComparisonExp
     categoryName: StringComparisonExp
-    credit_card_details: CreditCardDetailBoolExp
-    daily_details: DailyDetailBoolExp
+    creditCardDetails: CreditCardDetailBoolExp
+    dailyDetails: DailyDetailBoolExp
+    depositCategory: DepositCategoryBoolExp
     displayOrder: IntComparisonExp
     genre: GenreBoolExp
     genreId: UuidComparisonExp
     group: GroupBoolExp
     groupId: UuidComparisonExp
-    summary_category_by_groups: SummaryCategoryByGroupBoolExp
-    transfer_income_category: TransferCategoryBoolExp
-    transfer_outcome_category: TransferCategoryBoolExp
+    summaryCategories: SummaryCategoryByGroupBoolExp
+    transferIncomeCategory: TransferCategoryBoolExp
+    transferOutcomeCategory: TransferCategoryBoolExp
     validFlag: BooleanComparisonExp
 }
 
@@ -4371,15 +4422,16 @@ input CategoryIncInput {
 input CategoryInsertInput {
     categoryId: uuid
     categoryName: String
-    credit_card_details: CreditCardDetailArrRelInsertInput
-    daily_details: DailyDetailArrRelInsertInput
+    creditCardDetails: CreditCardDetailArrRelInsertInput
+    dailyDetails: DailyDetailArrRelInsertInput
+    depositCategory: DepositCategoryObjRelInsertInput
     displayOrder: Int
     genre: GenreObjRelInsertInput
     genreId: uuid
     groupId: uuid
-    summary_category_by_groups: SummaryCategoryByGroupArrRelInsertInput
-    transfer_income_category: TransferCategoryArrRelInsertInput
-    transfer_outcome_category: TransferCategoryArrRelInsertInput
+    summaryCategories: SummaryCategoryByGroupArrRelInsertInput
+    transferIncomeCategory: TransferCategoryArrRelInsertInput
+    transferOutcomeCategory: TransferCategoryArrRelInsertInput
     validFlag: Boolean
 }
 
@@ -4419,16 +4471,17 @@ input CategoryOnConflict {
 input CategoryOrderBy {
     categoryId: OrderBy
     categoryName: OrderBy
-    credit_card_detailsAggregate: CreditCardDetailAggregateOrderBy
-    daily_detailsAggregate: DailyDetailAggregateOrderBy
+    creditCardDetailsAggregate: CreditCardDetailAggregateOrderBy
+    dailyDetailsAggregate: DailyDetailAggregateOrderBy
+    depositCategory: DepositCategoryOrderBy
     displayOrder: OrderBy
     genre: GenreOrderBy
     genreId: OrderBy
     group: GroupOrderBy
     groupId: OrderBy
-    summary_category_by_groupsAggregate: SummaryCategoryByGroupAggregateOrderBy
-    transfer_income_categoryAggregate: TransferCategoryAggregateOrderBy
-    transfer_outcome_categoryAggregate: TransferCategoryAggregateOrderBy
+    summaryCategoriesAggregate: SummaryCategoryByGroupAggregateOrderBy
+    transferIncomeCategoryAggregate: TransferCategoryAggregateOrderBy
+    transferOutcomeCategoryAggregate: TransferCategoryAggregateOrderBy
     validFlag: OrderBy
 }
 
@@ -4757,10 +4810,12 @@ input CreditCardSummaryBoolExp {
     accountId: UuidComparisonExp
     count: IntComparisonExp
     creditCard: StringComparisonExp
+    creditCardDetails: CreditCardDetailBoolExp
     credit_card_details: CreditCardDetailBoolExp
     group: GroupBoolExp
     groupId: UuidComparisonExp
     id: UuidComparisonExp
+    importFileHistory: ImportFileHistoryBoolExp
     import_file_history: ImportFileHistoryBoolExp
     totalAmount: NumericComparisonExp
     withdrawalDate: DateComparisonExp
@@ -4772,9 +4827,11 @@ input CreditCardSummaryInsertInput {
     accountId: uuid
     count: Int
     creditCard: String
+    creditCardDetails: CreditCardDetailArrRelInsertInput
     credit_card_details: CreditCardDetailArrRelInsertInput
     groupId: uuid
     id: uuid
+    importFileHistory: ImportFileHistoryObjRelInsertInput
     import_file_history: ImportFileHistoryObjRelInsertInput
     totalAmount: numeric
     withdrawalDate: date
@@ -4822,10 +4879,12 @@ input CreditCardSummaryOrderBy {
     accountId: OrderBy
     count: OrderBy
     creditCard: OrderBy
+    creditCardDetailsAggregate: CreditCardDetailAggregateOrderBy
     credit_card_detailsAggregate: CreditCardDetailAggregateOrderBy
     group: GroupOrderBy
     groupId: OrderBy
     id: OrderBy
+    importFileHistory: ImportFileHistoryOrderBy
     import_file_history: ImportFileHistoryOrderBy
     totalAmount: OrderBy
     withdrawalDate: OrderBy
@@ -5195,6 +5254,87 @@ input DateComparisonExp {
     _nin: [date!]
 }
 
+"order by aggregate values of table \"deposit_category\""
+input DepositCategoryAggregateOrderBy {
+    count: OrderBy
+    max: DepositCategoryMaxOrderBy
+    min: DepositCategoryMinOrderBy
+}
+
+"Boolean expression to filter rows from the table \"deposit_category\". All fields are combined with a logical 'AND'."
+input DepositCategoryBoolExp {
+    _and: [DepositCategoryBoolExp!]
+    _not: DepositCategoryBoolExp
+    _or: [DepositCategoryBoolExp!]
+    category: CategoryBoolExp
+    categoryId: UuidComparisonExp
+    group: GroupBoolExp
+    groupId: UuidComparisonExp
+}
+
+"input type for inserting data into table \"deposit_category\""
+input DepositCategoryInsertInput {
+    category: CategoryObjRelInsertInput
+    "カテゴリID"
+    categoryId: uuid
+    "グループID"
+    groupId: uuid
+}
+
+"order by max() on columns of table \"deposit_category\""
+input DepositCategoryMaxOrderBy {
+    "カテゴリID"
+    categoryId: OrderBy
+    "グループID"
+    groupId: OrderBy
+}
+
+"order by min() on columns of table \"deposit_category\""
+input DepositCategoryMinOrderBy {
+    "カテゴリID"
+    categoryId: OrderBy
+    "グループID"
+    groupId: OrderBy
+}
+
+"input type for inserting object relation for remote table \"deposit_category\""
+input DepositCategoryObjRelInsertInput {
+    data: DepositCategoryInsertInput!
+    "upsert condition"
+    onConflict: DepositCategoryOnConflict
+}
+
+"on_conflict condition type for table \"deposit_category\""
+input DepositCategoryOnConflict {
+    constraint: DepositCategoryConstraint!
+    updateColumns: [DepositCategoryUpdateColumn!]! = []
+    where: DepositCategoryBoolExp
+}
+
+"Ordering options when selecting data from \"deposit_category\"."
+input DepositCategoryOrderBy {
+    category: CategoryOrderBy
+    categoryId: OrderBy
+    group: GroupOrderBy
+    groupId: OrderBy
+}
+
+"Streaming cursor of the table \"deposit_category\""
+input DepositCategoryStreamCursorInput {
+    "Stream column input with initial value"
+    initialValue: DepositCategoryStreamCursorValueInput!
+    "cursor ordering"
+    ordering: CursorOrdering
+}
+
+"Initial value of the column from where the streaming should start"
+input DepositCategoryStreamCursorValueInput {
+    "カテゴリID"
+    categoryId: uuid
+    "グループID"
+    groupId: uuid
+}
+
 "order by aggregate values of table \"genre\""
 input GenreAggregateOrderBy {
     avg: GenreAvgOrderBy
@@ -5462,6 +5602,7 @@ input GroupBoolExp {
     creditCardDetails: CreditCardDetailBoolExp
     credit_card_summaries: CreditCardSummaryBoolExp
     daily_details: DailyDetailBoolExp
+    depositCategories: DepositCategoryBoolExp
     exchangeItems: HelperKidsExchangeItemBoolExp
     genres: GenreBoolExp
     groupId: UuidComparisonExp
@@ -5487,6 +5628,7 @@ input GroupOrderBy {
     creditCardDetailsAggregate: CreditCardDetailAggregateOrderBy
     credit_card_summariesAggregate: CreditCardSummaryAggregateOrderBy
     daily_detailsAggregate: DailyDetailAggregateOrderBy
+    depositCategoriesAggregate: DepositCategoryAggregateOrderBy
     exchangeItemsAggregate: HelperKidsExchangeItemAggregateOrderBy
     genresAggregate: GenreAggregateOrderBy
     groupId: OrderBy
@@ -6894,50 +7036,6 @@ input TimestampComparisonExp {
     _nin: [timestamp!]
 }
 
-"Boolean expression to filter rows from the table \"total_by_account_view\". All fields are combined with a logical 'AND'."
-input TotalByAccountViewBoolExp {
-    _and: [TotalByAccountViewBoolExp!]
-    _not: TotalByAccountViewBoolExp
-    _or: [TotalByAccountViewBoolExp!]
-    accountId: UuidComparisonExp
-    accountName: StringComparisonExp
-    date: DateComparisonExp
-    displayOrder: IntComparisonExp
-    groupId: UuidComparisonExp
-    iocomeType: IocomeTypeComparisonExp
-    total: NumericComparisonExp
-}
-
-"Ordering options when selecting data from \"total_by_account_view\"."
-input TotalByAccountViewOrderBy {
-    accountId: OrderBy
-    accountName: OrderBy
-    date: OrderBy
-    displayOrder: OrderBy
-    groupId: OrderBy
-    iocomeType: OrderBy
-    total: OrderBy
-}
-
-"Streaming cursor of the table \"total_by_account_view\""
-input TotalByAccountViewStreamCursorInput {
-    "Stream column input with initial value"
-    initialValue: TotalByAccountViewStreamCursorValueInput!
-    "cursor ordering"
-    ordering: CursorOrdering
-}
-
-"Initial value of the column from where the streaming should start"
-input TotalByAccountViewStreamCursorValueInput {
-    accountId: uuid
-    accountName: String
-    date: date
-    displayOrder: Int
-    groupId: uuid
-    iocomeType: iocome_type
-    total: numeric
-}
-
 "Boolean expression to filter rows from the table \"total_by_category_view\". All fields are combined with a logical 'AND'."
 input TotalByCategoryViewBoolExp {
     _and: [TotalByCategoryViewBoolExp!]
@@ -7222,12 +7320,6 @@ input accountAggregateBoolExpCount {
     distinct: Boolean
     filter: AccountBoolExp
     predicate: IntComparisonExp!
-}
-
-input accountTotalArgs {
-    from_date: date
-    group_id: uuid
-    to_date: date
 }
 
 input allDetailViewAggregateBoolExpCount {

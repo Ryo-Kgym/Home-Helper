@@ -5,7 +5,7 @@ query GetDailyDetailByDateGenreId(
   $groupId: uuid!
 ) {
   allCategoriesList: category(where: { genreId: { _eq: $genreId } }) {
-    dailyDetailsByCategoryIdList: daily_details(
+    dailyDetailsByCategoryIdList: dailyDetails(
       where: {
         date: { _gte: $fromDate }
         _and: { date: { _lte: $toDate }, _and: { groupId: { _eq: $groupId } } }
