@@ -11,6 +11,7 @@ import { SummaryCategory } from "@app/household/summary/@summaryCategory/index";
 import { useDate } from "@hooks/date/useDate";
 import { useFetchSummaryCategoryAmount } from "@hooks/household/summary_category/useFetchSummaryCategoryAmount";
 import { useState } from "react";
+import { createMonthNames } from "@function/date/create-month-names";
 
 export const SummaryContainer = () => {
   const { offsetDate } = useDate();
@@ -28,26 +29,6 @@ export const SummaryContainer = () => {
     toMonth: toMonth!,
   });
 
-  const createMonthNames = () => {
-    let iterator = fromMonth;
-    let prevYear = 0;
-    let monthNames: string[] = [];
-    while (iterator && iterator <= toMonth!) {
-      let year = "";
-      if (prevYear !== iterator.getFullYear()) {
-        prevYear = iterator.getFullYear();
-        year = `${iterator.getFullYear()}年`;
-      }
-      const month = iterator.toISOString().slice(5, 7);
-      monthNames.push(`${year}${month}月`);
-      iterator = offsetDate(
-        new Date(iterator.getFullYear(), iterator.getMonth() + 1, 1),
-      );
-    }
-
-    return monthNames;
-  };
-
   const tabProps: TabProps[] = [
     {
       value: "monthlyCategory",
@@ -57,7 +38,7 @@ export const SummaryContainer = () => {
           data={data}
           incomeTotal={incomeTotal}
           outcomeTotal={outcomeTotal}
-          monthNames={createMonthNames()}
+          monthNames={createMonthNames(fromMonth!, toMonth!)}
         />
       ),
     },

@@ -57,6 +57,19 @@ type Account {
         "filter the rows returned"
         where: CreditCardSummaryBoolExp
     ): [CreditCardSummary!]!
+    "An aggregate relationship"
+    dailyDetailsAggregate(
+        "distinct select on columns"
+        distinctOn: [DailyDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DailyDetailOrderBy!],
+        "filter the rows returned"
+        where: DailyDetailBoolExp
+    ): DailyDetailAggregate!
     "An array relationship"
     daily_details(
         "distinct select on columns"
@@ -338,6 +351,19 @@ type Category {
         "filter the rows returned"
         where: CreditCardDetailBoolExp
     ): [CreditCardDetail!]!
+    "An aggregate relationship"
+    creditCardDetailsAggregate(
+        "distinct select on columns"
+        distinctOn: [CreditCardDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [CreditCardDetailOrderBy!],
+        "filter the rows returned"
+        where: CreditCardDetailBoolExp
+    ): CreditCardDetailAggregate!
     "An array relationship"
     dailyDetails(
         "distinct select on columns"
@@ -351,6 +377,19 @@ type Category {
         "filter the rows returned"
         where: DailyDetailBoolExp
     ): [DailyDetail!]!
+    "An aggregate relationship"
+    dailyDetailsAggregate(
+        "distinct select on columns"
+        distinctOn: [DailyDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DailyDetailOrderBy!],
+        "filter the rows returned"
+        where: DailyDetailBoolExp
+    ): DailyDetailAggregate!
     "An object relationship"
     depositCategory: DepositCategory
     displayOrder: Int!
@@ -434,12 +473,101 @@ type CreditCardDetail {
     userId: uuid!
 }
 
+"aggregated selection of \"credit_card_detail\""
+type CreditCardDetailAggregate {
+    aggregate: CreditCardDetailAggregateFields
+    nodes: [CreditCardDetail!]!
+}
+
+"aggregate fields of \"credit_card_detail\""
+type CreditCardDetailAggregateFields {
+    avg: CreditCardDetailAvgFields
+    count(columns: [CreditCardDetailSelectColumn!], distinct: Boolean): Int!
+    max: CreditCardDetailMaxFields
+    min: CreditCardDetailMinFields
+    stddev: CreditCardDetailStddevFields
+    stddevPop: CreditCardDetailStddevPopFields
+    stddevSamp: CreditCardDetailStddevSampFields
+    sum: CreditCardDetailSumFields
+    varPop: CreditCardDetailVarPopFields
+    varSamp: CreditCardDetailVarSampFields
+    variance: CreditCardDetailVarianceFields
+}
+
+"aggregate avg on columns"
+type CreditCardDetailAvgFields {
+    amount: Float
+}
+
+"aggregate max on columns"
+type CreditCardDetailMaxFields {
+    amount: numeric
+    categoryId: uuid
+    date: date
+    genreId: uuid
+    groupId: uuid
+    id: uuid
+    iocomeType: iocome_type
+    memo: String
+    summaryId: uuid
+    userId: uuid
+}
+
+"aggregate min on columns"
+type CreditCardDetailMinFields {
+    amount: numeric
+    categoryId: uuid
+    date: date
+    genreId: uuid
+    groupId: uuid
+    id: uuid
+    iocomeType: iocome_type
+    memo: String
+    summaryId: uuid
+    userId: uuid
+}
+
 "response of any mutation on the table \"credit_card_detail\""
 type CreditCardDetailMutationResponse {
     "number of rows affected by the mutation"
     affectedRows: Int!
     "data from the rows affected by the mutation"
     returning: [CreditCardDetail!]!
+}
+
+"aggregate stddev on columns"
+type CreditCardDetailStddevFields {
+    amount: Float
+}
+
+"aggregate stddevPop on columns"
+type CreditCardDetailStddevPopFields {
+    amount: Float
+}
+
+"aggregate stddevSamp on columns"
+type CreditCardDetailStddevSampFields {
+    amount: Float
+}
+
+"aggregate sum on columns"
+type CreditCardDetailSumFields {
+    amount: numeric
+}
+
+"aggregate varPop on columns"
+type CreditCardDetailVarPopFields {
+    amount: Float
+}
+
+"aggregate varSamp on columns"
+type CreditCardDetailVarSampFields {
+    amount: Float
+}
+
+"aggregate variance on columns"
+type CreditCardDetailVarianceFields {
+    amount: Float
 }
 
 "columns and relationships of \"credit_card_summary\""
@@ -462,6 +590,19 @@ type CreditCardSummary {
         "filter the rows returned"
         where: CreditCardDetailBoolExp
     ): [CreditCardDetail!]!
+    "An aggregate relationship"
+    creditCardDetailsAggregate(
+        "distinct select on columns"
+        distinctOn: [CreditCardDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [CreditCardDetailOrderBy!],
+        "filter the rows returned"
+        where: CreditCardDetailBoolExp
+    ): CreditCardDetailAggregate!
     "An array relationship"
     credit_card_details(
         "distinct select on columns"
@@ -530,12 +671,101 @@ type DailyDetail {
     userId: uuid!
 }
 
+"aggregated selection of \"daily_detail\""
+type DailyDetailAggregate {
+    aggregate: DailyDetailAggregateFields
+    nodes: [DailyDetail!]!
+}
+
+"aggregate fields of \"daily_detail\""
+type DailyDetailAggregateFields {
+    avg: DailyDetailAvgFields
+    count(columns: [DailyDetailSelectColumn!], distinct: Boolean): Int!
+    max: DailyDetailMaxFields
+    min: DailyDetailMinFields
+    stddev: DailyDetailStddevFields
+    stddevPop: DailyDetailStddevPopFields
+    stddevSamp: DailyDetailStddevSampFields
+    sum: DailyDetailSumFields
+    varPop: DailyDetailVarPopFields
+    varSamp: DailyDetailVarSampFields
+    variance: DailyDetailVarianceFields
+}
+
+"aggregate avg on columns"
+type DailyDetailAvgFields {
+    amount: Float
+}
+
+"aggregate max on columns"
+type DailyDetailMaxFields {
+    accountId: uuid
+    amount: numeric
+    categoryId: uuid
+    date: date
+    genreId: uuid
+    groupId: uuid
+    id: uuid
+    iocomeType: iocome_type
+    memo: String
+    userId: uuid
+}
+
+"aggregate min on columns"
+type DailyDetailMinFields {
+    accountId: uuid
+    amount: numeric
+    categoryId: uuid
+    date: date
+    genreId: uuid
+    groupId: uuid
+    id: uuid
+    iocomeType: iocome_type
+    memo: String
+    userId: uuid
+}
+
 "response of any mutation on the table \"daily_detail\""
 type DailyDetailMutationResponse {
     "number of rows affected by the mutation"
     affectedRows: Int!
     "data from the rows affected by the mutation"
     returning: [DailyDetail!]!
+}
+
+"aggregate stddev on columns"
+type DailyDetailStddevFields {
+    amount: Float
+}
+
+"aggregate stddevPop on columns"
+type DailyDetailStddevPopFields {
+    amount: Float
+}
+
+"aggregate stddevSamp on columns"
+type DailyDetailStddevSampFields {
+    amount: Float
+}
+
+"aggregate sum on columns"
+type DailyDetailSumFields {
+    amount: numeric
+}
+
+"aggregate varPop on columns"
+type DailyDetailVarPopFields {
+    amount: Float
+}
+
+"aggregate varSamp on columns"
+type DailyDetailVarSampFields {
+    amount: Float
+}
+
+"aggregate variance on columns"
+type DailyDetailVarianceFields {
+    amount: Float
 }
 
 "columns and relationships of \"daily_total_view\""
@@ -594,6 +824,19 @@ type Genre {
         "filter the rows returned"
         where: CreditCardDetailBoolExp
     ): [CreditCardDetail!]!
+    "An aggregate relationship"
+    creditCardDetailsAggregate(
+        "distinct select on columns"
+        distinctOn: [CreditCardDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [CreditCardDetailOrderBy!],
+        "filter the rows returned"
+        where: CreditCardDetailBoolExp
+    ): CreditCardDetailAggregate!
     "An array relationship"
     dailyDetails(
         "distinct select on columns"
@@ -607,6 +850,19 @@ type Genre {
         "filter the rows returned"
         where: DailyDetailBoolExp
     ): [DailyDetail!]!
+    "An aggregate relationship"
+    dailyDetailsAggregate(
+        "distinct select on columns"
+        distinctOn: [DailyDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DailyDetailOrderBy!],
+        "filter the rows returned"
+        where: DailyDetailBoolExp
+    ): DailyDetailAggregate!
     displayOrder: Int!
     genreId: uuid!
     genreName: String!
@@ -693,6 +949,19 @@ type Group {
         "filter the rows returned"
         where: CreditCardDetailBoolExp
     ): [CreditCardDetail!]!
+    "An aggregate relationship"
+    creditCardDetailsAggregate(
+        "distinct select on columns"
+        distinctOn: [CreditCardDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [CreditCardDetailOrderBy!],
+        "filter the rows returned"
+        where: CreditCardDetailBoolExp
+    ): CreditCardDetailAggregate!
     "An array relationship"
     credit_card_summaries(
         "distinct select on columns"
@@ -706,6 +975,19 @@ type Group {
         "filter the rows returned"
         where: CreditCardSummaryBoolExp
     ): [CreditCardSummary!]!
+    "An aggregate relationship"
+    dailyDetailsAggregate(
+        "distinct select on columns"
+        distinctOn: [DailyDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DailyDetailOrderBy!],
+        "filter the rows returned"
+        where: DailyDetailBoolExp
+    ): DailyDetailAggregate!
     "An array relationship"
     daily_details(
         "distinct select on columns"
@@ -1523,6 +1805,19 @@ type User {
         "filter the rows returned"
         where: AffiliationBoolExp
     ): [Affiliation!]!
+    "An aggregate relationship"
+    creditCardDetailsAggregate(
+        "distinct select on columns"
+        distinctOn: [CreditCardDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [CreditCardDetailOrderBy!],
+        "filter the rows returned"
+        where: CreditCardDetailBoolExp
+    ): CreditCardDetailAggregate!
     "An array relationship"
     credit_card_details(
         "distinct select on columns"
@@ -1536,6 +1831,19 @@ type User {
         "filter the rows returned"
         where: CreditCardDetailBoolExp
     ): [CreditCardDetail!]!
+    "An aggregate relationship"
+    dailyDetailsAggregate(
+        "distinct select on columns"
+        distinctOn: [DailyDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DailyDetailOrderBy!],
+        "filter the rows returned"
+        where: DailyDetailBoolExp
+    ): DailyDetailAggregate!
     "An array relationship"
     daily_details(
         "distinct select on columns"
@@ -2019,6 +2327,19 @@ type query_root {
         "filter the rows returned"
         where: CreditCardDetailBoolExp
     ): [CreditCardDetail!]!
+    "fetch aggregated fields from the table: \"credit_card_detail\""
+    creditCardDetailAggregate(
+        "distinct select on columns"
+        distinctOn: [CreditCardDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [CreditCardDetailOrderBy!],
+        "filter the rows returned"
+        where: CreditCardDetailBoolExp
+    ): CreditCardDetailAggregate!
     "fetch data from the table: \"credit_card_detail\" using primary key columns"
     creditCardDetailByPk(id: uuid!): CreditCardDetail
     "fetch data from the table: \"credit_card_summary\""
@@ -2062,6 +2383,19 @@ type query_root {
         "filter the rows returned"
         where: DailyDetailBoolExp
     ): [DailyDetail!]!
+    "fetch aggregated fields from the table: \"daily_detail\""
+    dailyDetailAggregate(
+        "distinct select on columns"
+        distinctOn: [DailyDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DailyDetailOrderBy!],
+        "filter the rows returned"
+        where: DailyDetailBoolExp
+    ): DailyDetailAggregate!
     "execute function \"daily_detail_by_date\" which returns \"daily_detail\""
     dailyDetailByDate(
         "input parameters for function \"dailyDetailByDate\""
@@ -2077,6 +2411,21 @@ type query_root {
         "filter the rows returned"
         where: DailyDetailBoolExp
     ): [DailyDetail!]!
+    "execute function \"daily_detail_by_date\" and query aggregates on result of table type \"daily_detail\""
+    dailyDetailByDateAggregate(
+        "input parameters for function \"dailyDetailByDateAggregate\""
+        args: dailyDetailByDateArgs!,
+        "distinct select on columns"
+        distinctOn: [DailyDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DailyDetailOrderBy!],
+        "filter the rows returned"
+        where: DailyDetailBoolExp
+    ): DailyDetailAggregate!
     "fetch data from the table: \"daily_detail\" using primary key columns"
     dailyDetailByPk(id: uuid!): DailyDetail
     "fetch data from the table: \"daily_total_view\""
@@ -2616,6 +2965,19 @@ type subscription_root {
         "filter the rows returned"
         where: CreditCardDetailBoolExp
     ): [CreditCardDetail!]!
+    "fetch aggregated fields from the table: \"credit_card_detail\""
+    creditCardDetailAggregate(
+        "distinct select on columns"
+        distinctOn: [CreditCardDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [CreditCardDetailOrderBy!],
+        "filter the rows returned"
+        where: CreditCardDetailBoolExp
+    ): CreditCardDetailAggregate!
     "fetch data from the table: \"credit_card_detail\" using primary key columns"
     creditCardDetailByPk(id: uuid!): CreditCardDetail
     "fetch data from the table in a streaming manner: \"credit_card_detail\""
@@ -2686,6 +3048,19 @@ type subscription_root {
         "filter the rows returned"
         where: DailyDetailBoolExp
     ): [DailyDetail!]!
+    "fetch aggregated fields from the table: \"daily_detail\""
+    dailyDetailAggregate(
+        "distinct select on columns"
+        distinctOn: [DailyDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DailyDetailOrderBy!],
+        "filter the rows returned"
+        where: DailyDetailBoolExp
+    ): DailyDetailAggregate!
     "execute function \"daily_detail_by_date\" which returns \"daily_detail\""
     dailyDetailByDate(
         "input parameters for function \"dailyDetailByDate\""
@@ -2701,6 +3076,21 @@ type subscription_root {
         "filter the rows returned"
         where: DailyDetailBoolExp
     ): [DailyDetail!]!
+    "execute function \"daily_detail_by_date\" and query aggregates on result of table type \"daily_detail\""
+    dailyDetailByDateAggregate(
+        "input parameters for function \"dailyDetailByDateAggregate\""
+        args: dailyDetailByDateArgs!,
+        "distinct select on columns"
+        distinctOn: [DailyDetailSelectColumn!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        orderBy: [DailyDetailOrderBy!],
+        "filter the rows returned"
+        where: DailyDetailBoolExp
+    ): DailyDetailAggregate!
     "fetch data from the table: \"daily_detail\" using primary key columns"
     dailyDetailByPk(id: uuid!): DailyDetail
     "fetch data from the table in a streaming manner: \"daily_detail\""
@@ -3989,6 +4379,7 @@ input AccountBoolExp {
     all_detail_viewsAggregate: AllDetailViewAggregateBoolExp
     credit_card_summaries: CreditCardSummaryBoolExp
     daily_details: DailyDetailBoolExp
+    daily_detailsAggregate: DailyDetailAggregateBoolExp
     displayOrder: IntComparisonExp
     group: GroupBoolExp
     groupId: UuidComparisonExp
@@ -4400,7 +4791,9 @@ input CategoryBoolExp {
     categoryId: UuidComparisonExp
     categoryName: StringComparisonExp
     creditCardDetails: CreditCardDetailBoolExp
+    creditCardDetailsAggregate: CreditCardDetailAggregateBoolExp
     dailyDetails: DailyDetailBoolExp
+    dailyDetailsAggregate: DailyDetailAggregateBoolExp
     depositCategory: DepositCategoryBoolExp
     displayOrder: IntComparisonExp
     genre: GenreBoolExp
@@ -4560,6 +4953,10 @@ input CategoryVarSampOrderBy {
 "order by variance() on columns of table \"category\""
 input CategoryVarianceOrderBy {
     displayOrder: OrderBy
+}
+
+input CreditCardDetailAggregateBoolExp {
+    count: creditCardDetailAggregateBoolExpCount
 }
 
 "order by aggregate values of table \"credit_card_detail\""
@@ -4811,7 +5208,9 @@ input CreditCardSummaryBoolExp {
     count: IntComparisonExp
     creditCard: StringComparisonExp
     creditCardDetails: CreditCardDetailBoolExp
+    creditCardDetailsAggregate: CreditCardDetailAggregateBoolExp
     credit_card_details: CreditCardDetailBoolExp
+    credit_card_detailsAggregate: CreditCardDetailAggregateBoolExp
     group: GroupBoolExp
     groupId: UuidComparisonExp
     id: UuidComparisonExp
@@ -4993,6 +5392,10 @@ input CreditCardSummaryVarSampOrderBy {
 input CreditCardSummaryVarianceOrderBy {
     count: OrderBy
     totalAmount: OrderBy
+}
+
+input DailyDetailAggregateBoolExp {
+    count: dailyDetailAggregateBoolExpCount
 }
 
 "order by aggregate values of table \"daily_detail\""
@@ -5362,7 +5765,9 @@ input GenreBoolExp {
     _or: [GenreBoolExp!]
     categories: CategoryBoolExp
     creditCardDetails: CreditCardDetailBoolExp
+    creditCardDetailsAggregate: CreditCardDetailAggregateBoolExp
     dailyDetails: DailyDetailBoolExp
+    dailyDetailsAggregate: DailyDetailAggregateBoolExp
     displayOrder: IntComparisonExp
     genreId: UuidComparisonExp
     genreName: StringComparisonExp
@@ -5600,8 +6005,10 @@ input GroupBoolExp {
     affiliations: AffiliationBoolExp
     categories: CategoryBoolExp
     creditCardDetails: CreditCardDetailBoolExp
+    creditCardDetailsAggregate: CreditCardDetailAggregateBoolExp
     credit_card_summaries: CreditCardSummaryBoolExp
     daily_details: DailyDetailBoolExp
+    daily_detailsAggregate: DailyDetailAggregateBoolExp
     depositCategories: DepositCategoryBoolExp
     exchangeItems: HelperKidsExchangeItemBoolExp
     genres: GenreBoolExp
@@ -7225,7 +7632,9 @@ input UserBoolExp {
     _or: [UserBoolExp!]
     affiliations: AffiliationBoolExp
     credit_card_details: CreditCardDetailBoolExp
+    credit_card_detailsAggregate: CreditCardDetailAggregateBoolExp
     daily_details: DailyDetailBoolExp
+    daily_detailsAggregate: DailyDetailAggregateBoolExp
     displayOrder: IntComparisonExp
     email: StringComparisonExp
     helperKidParents: HelperKidsHelperKidParentBoolExp
@@ -7333,6 +7742,20 @@ input categoryTotalByMonthArgs {
     from_date: date
     group_id: uuid
     to_date: date
+}
+
+input creditCardDetailAggregateBoolExpCount {
+    arguments: [CreditCardDetailSelectColumn!]
+    distinct: Boolean
+    filter: CreditCardDetailBoolExp
+    predicate: IntComparisonExp!
+}
+
+input dailyDetailAggregateBoolExpCount {
+    arguments: [DailyDetailSelectColumn!]
+    distinct: Boolean
+    filter: DailyDetailBoolExp
+    predicate: IntComparisonExp!
 }
 
 input dailyDetailByDateArgs {

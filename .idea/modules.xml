@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Home-Helper.iml" filepath="$PROJECT_DIR$/.idea/Home-Helper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/home-helper-batch.main.iml" filepath="$PROJECT_DIR$/.idea/modules/home-helper-batch.main.iml" />
     </modules>
   </component>
 </project>
