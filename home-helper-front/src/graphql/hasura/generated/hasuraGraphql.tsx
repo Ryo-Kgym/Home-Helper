@@ -1,10 +1,20 @@
-import gql from 'graphql-tag';
-import * as Urql from 'urql';
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import gql from "graphql-tag";
+import * as Urql from "urql";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -23,67 +33,73 @@ export type Scalars = {
 
 /** columns and relationships of "account" */
 export type Account = {
-  __typename?: 'Account';
-  accountId: Scalars['uuid'];
-  accountName: Scalars['String'];
+  __typename?: "Account";
+  accountId: Scalars["uuid"];
+  accountName: Scalars["String"];
   /** An aggregate relationship */
   allDetailViewsAggregate: AllDetailViewAggregate;
   /** An array relationship */
   all_detail_views: Array<AllDetailView>;
   /** An array relationship */
   credit_card_summaries: Array<CreditCardSummary>;
+  /** An aggregate relationship */
+  dailyDetailsAggregate: DailyDetailAggregate;
   /** An array relationship */
   daily_details: Array<DailyDetail>;
-  displayOrder: Scalars['Int'];
+  displayOrder: Scalars["Int"];
   /** An object relationship */
   group: Group;
-  groupId: Scalars['uuid'];
-  validFlag?: Maybe<Scalars['Boolean']>;
+  groupId: Scalars["uuid"];
+  validFlag?: Maybe<Scalars["Boolean"]>;
 };
-
 
 /** columns and relationships of "account" */
 export type AccountAllDetailViewsAggregateArgs = {
   distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
   where?: InputMaybe<AllDetailViewBoolExp>;
 };
-
 
 /** columns and relationships of "account" */
 export type AccountAll_Detail_ViewsArgs = {
   distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
   where?: InputMaybe<AllDetailViewBoolExp>;
 };
 
-
 /** columns and relationships of "account" */
 export type AccountCredit_Card_SummariesArgs = {
   distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardSummaryOrderBy>>;
   where?: InputMaybe<CreditCardSummaryBoolExp>;
 };
-
+/** columns and relationships of "account" */
+export type AccountDailyDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
+  where?: InputMaybe<DailyDetailBoolExp>;
+};
 
 /** columns and relationships of "account" */
 export type AccountDaily_DetailsArgs = {
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
 /** aggregated selection of "account" */
 export type AccountAggregate = {
-  __typename?: 'AccountAggregate';
+  __typename?: "AccountAggregate";
   aggregate?: Maybe<AccountAggregateFields>;
   nodes: Array<Account>;
 };
@@ -96,9 +112,9 @@ export type AccountAggregateBoolExp = {
 
 /** aggregate fields of "account" */
 export type AccountAggregateFields = {
-  __typename?: 'AccountAggregateFields';
+  __typename?: "AccountAggregateFields";
   avg?: Maybe<AccountAvgFields>;
-  count: Scalars['Int'];
+  count: Scalars["Int"];
   max?: Maybe<AccountMaxFields>;
   min?: Maybe<AccountMinFields>;
   stddev?: Maybe<AccountStddevFields>;
@@ -110,11 +126,10 @@ export type AccountAggregateFields = {
   variance?: Maybe<AccountVarianceFields>;
 };
 
-
 /** aggregate fields of "account" */
 export type AccountAggregateFieldsCountArgs = {
   columns?: InputMaybe<Array<AccountSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "account" */
@@ -134,8 +149,8 @@ export type AccountAggregateOrderBy = {
 
 /** aggregate avg on columns */
 export type AccountAvgFields = {
-  __typename?: 'AccountAvgFields';
-  displayOrder?: Maybe<Scalars['Float']>;
+  __typename?: "AccountAvgFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by avg() on columns of table "account" */
@@ -154,6 +169,7 @@ export type AccountBoolExp = {
   all_detail_viewsAggregate?: InputMaybe<AllDetailViewAggregateBoolExp>;
   credit_card_summaries?: InputMaybe<CreditCardSummaryBoolExp>;
   daily_details?: InputMaybe<DailyDetailBoolExp>;
+  daily_detailsAggregate?: InputMaybe<DailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<UuidComparisonExp>;
@@ -163,27 +179,27 @@ export type AccountBoolExp = {
 /** unique or primary key constraints on table "account" */
 export enum AccountConstraint {
   /** unique or primary key constraint on columns "account_id" */
-  AccountPkey = 'account_pkey'
+  AccountPkey = "account_pkey",
 }
 
 /** input type for inserting data into table "account" */
 export type AccountInsertInput = {
-  accountId?: InputMaybe<Scalars['uuid']>;
-  accountName?: InputMaybe<Scalars['String']>;
+  accountId?: InputMaybe<Scalars["uuid"]>;
+  accountName?: InputMaybe<Scalars["String"]>;
   credit_card_summaries?: InputMaybe<CreditCardSummaryArrRelInsertInput>;
   daily_details?: InputMaybe<DailyDetailArrRelInsertInput>;
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  validFlag?: InputMaybe<Scalars['Boolean']>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** aggregate max on columns */
 export type AccountMaxFields = {
-  __typename?: 'AccountMaxFields';
-  accountId?: Maybe<Scalars['uuid']>;
-  accountName?: Maybe<Scalars['String']>;
-  displayOrder?: Maybe<Scalars['Int']>;
-  groupId?: Maybe<Scalars['uuid']>;
+  __typename?: "AccountMaxFields";
+  accountId?: Maybe<Scalars["uuid"]>;
+  accountName?: Maybe<Scalars["String"]>;
+  displayOrder?: Maybe<Scalars["Int"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "account" */
@@ -196,11 +212,11 @@ export type AccountMaxOrderBy = {
 
 /** aggregate min on columns */
 export type AccountMinFields = {
-  __typename?: 'AccountMinFields';
-  accountId?: Maybe<Scalars['uuid']>;
-  accountName?: Maybe<Scalars['String']>;
-  displayOrder?: Maybe<Scalars['Int']>;
-  groupId?: Maybe<Scalars['uuid']>;
+  __typename?: "AccountMinFields";
+  accountId?: Maybe<Scalars["uuid"]>;
+  accountName?: Maybe<Scalars["String"]>;
+  displayOrder?: Maybe<Scalars["Int"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "account" */
@@ -213,9 +229,9 @@ export type AccountMinOrderBy = {
 
 /** response of any mutation on the table "account" */
 export type AccountMutationResponse = {
-  __typename?: 'AccountMutationResponse';
+  __typename?: "AccountMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<Account>;
 };
@@ -250,33 +266,33 @@ export type AccountOrderBy = {
 /** select columns of table "account" */
 export enum AccountSelectColumn {
   /** column name */
-  AccountId = 'accountId',
+  AccountId = "accountId",
   /** column name */
-  AccountName = 'accountName',
+  AccountName = "accountName",
   /** column name */
-  DisplayOrder = 'displayOrder',
+  DisplayOrder = "displayOrder",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  ValidFlag = 'validFlag'
+  ValidFlag = "validFlag",
 }
 
 /** select "accountAggregateBoolExpBool_andArgumentsColumns" columns of table "account" */
 export enum AccountSelectColumnAccountAggregateBoolExpBool_AndArgumentsColumns {
   /** column name */
-  ValidFlag = 'validFlag'
+  ValidFlag = "validFlag",
 }
 
 /** select "accountAggregateBoolExpBool_orArgumentsColumns" columns of table "account" */
 export enum AccountSelectColumnAccountAggregateBoolExpBool_OrArgumentsColumns {
   /** column name */
-  ValidFlag = 'validFlag'
+  ValidFlag = "validFlag",
 }
 
 /** aggregate stddev on columns */
 export type AccountStddevFields = {
-  __typename?: 'AccountStddevFields';
-  displayOrder?: Maybe<Scalars['Float']>;
+  __typename?: "AccountStddevFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddev() on columns of table "account" */
@@ -286,8 +302,8 @@ export type AccountStddevOrderBy = {
 
 /** aggregate stddevPop on columns */
 export type AccountStddevPopFields = {
-  __typename?: 'AccountStddevPopFields';
-  displayOrder?: Maybe<Scalars['Float']>;
+  __typename?: "AccountStddevPopFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevPop() on columns of table "account" */
@@ -297,8 +313,8 @@ export type AccountStddevPopOrderBy = {
 
 /** aggregate stddevSamp on columns */
 export type AccountStddevSampFields = {
-  __typename?: 'AccountStddevSampFields';
-  displayOrder?: Maybe<Scalars['Float']>;
+  __typename?: "AccountStddevSampFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "account" */
@@ -316,17 +332,17 @@ export type AccountStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type AccountStreamCursorValueInput = {
-  accountId?: InputMaybe<Scalars['uuid']>;
-  accountName?: InputMaybe<Scalars['String']>;
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  validFlag?: InputMaybe<Scalars['Boolean']>;
+  accountId?: InputMaybe<Scalars["uuid"]>;
+  accountName?: InputMaybe<Scalars["String"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** aggregate sum on columns */
 export type AccountSumFields = {
-  __typename?: 'AccountSumFields';
-  displayOrder?: Maybe<Scalars['Int']>;
+  __typename?: "AccountSumFields";
+  displayOrder?: Maybe<Scalars["Int"]>;
 };
 
 /** order by sum() on columns of table "account" */
@@ -337,13 +353,13 @@ export type AccountSumOrderBy = {
 /** placeholder for update columns of table "account" (current role has no relevant permissions) */
 export enum AccountUpdateColumn {
   /** placeholder (do not use) */
-  Placeholder = '_PLACEHOLDER'
+  Placeholder = "_PLACEHOLDER",
 }
 
 /** aggregate varPop on columns */
 export type AccountVarPopFields = {
-  __typename?: 'AccountVarPopFields';
-  displayOrder?: Maybe<Scalars['Float']>;
+  __typename?: "AccountVarPopFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by varPop() on columns of table "account" */
@@ -353,8 +369,8 @@ export type AccountVarPopOrderBy = {
 
 /** aggregate varSamp on columns */
 export type AccountVarSampFields = {
-  __typename?: 'AccountVarSampFields';
-  displayOrder?: Maybe<Scalars['Float']>;
+  __typename?: "AccountVarSampFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by varSamp() on columns of table "account" */
@@ -364,8 +380,8 @@ export type AccountVarSampOrderBy = {
 
 /** aggregate variance on columns */
 export type AccountVarianceFields = {
-  __typename?: 'AccountVarianceFields';
-  displayOrder?: Maybe<Scalars['Float']>;
+  __typename?: "AccountVarianceFields";
+  displayOrder?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "account" */
@@ -375,17 +391,17 @@ export type AccountVarianceOrderBy = {
 
 /** columns and relationships of "affiliation" */
 export type Affiliation = {
-  __typename?: 'Affiliation';
-  affiliationId: Scalars['uuid'];
+  __typename?: "Affiliation";
+  affiliationId: Scalars["uuid"];
   /** An object relationship */
   group: Group;
-  groupId: Scalars['uuid'];
-  groupRoleId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
+  groupRoleId: Scalars["uuid"];
   /** An object relationship */
   group_role: GroupRole;
   /** An object relationship */
   user: User;
-  userId: Scalars['uuid'];
+  userId: Scalars["uuid"];
 };
 
 /** order by aggregate values of table "affiliation" */
@@ -439,13 +455,13 @@ export type AffiliationOrderBy = {
 /** select columns of table "affiliation" */
 export enum AffiliationSelectColumn {
   /** column name */
-  AffiliationId = 'affiliationId',
+  AffiliationId = "affiliationId",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  GroupRoleId = 'groupRoleId',
+  GroupRoleId = "groupRoleId",
   /** column name */
-  UserId = 'userId'
+  UserId = "userId",
 }
 
 /** Streaming cursor of the table "affiliation" */
@@ -458,30 +474,30 @@ export type AffiliationStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type AffiliationStreamCursorValueInput = {
-  affiliationId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  groupRoleId?: InputMaybe<Scalars['uuid']>;
-  userId?: InputMaybe<Scalars['uuid']>;
+  affiliationId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  groupRoleId?: InputMaybe<Scalars["uuid"]>;
+  userId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** columns and relationships of "all_detail_view" */
 export type AllDetailView = {
-  __typename?: 'AllDetailView';
-  accountId?: Maybe<Scalars['uuid']>;
-  categoryId?: Maybe<Scalars['uuid']>;
-  date?: Maybe<Scalars['date']>;
-  genreId?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  iocomeType?: Maybe<Scalars['iocome_type']>;
-  memo?: Maybe<Scalars['String']>;
-  originalAmount?: Maybe<Scalars['numeric']>;
-  signedAmount?: Maybe<Scalars['numeric']>;
-  type?: Maybe<Scalars['String']>;
+  __typename?: "AllDetailView";
+  accountId?: Maybe<Scalars["uuid"]>;
+  categoryId?: Maybe<Scalars["uuid"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  memo?: Maybe<Scalars["String"]>;
+  originalAmount?: Maybe<Scalars["numeric"]>;
+  signedAmount?: Maybe<Scalars["numeric"]>;
+  type?: Maybe<Scalars["String"]>;
 };
 
 /** aggregated selection of "all_detail_view" */
 export type AllDetailViewAggregate = {
-  __typename?: 'AllDetailViewAggregate';
+  __typename?: "AllDetailViewAggregate";
   aggregate?: Maybe<AllDetailViewAggregateFields>;
   nodes: Array<AllDetailView>;
 };
@@ -492,9 +508,9 @@ export type AllDetailViewAggregateBoolExp = {
 
 /** aggregate fields of "all_detail_view" */
 export type AllDetailViewAggregateFields = {
-  __typename?: 'AllDetailViewAggregateFields';
+  __typename?: "AllDetailViewAggregateFields";
   avg?: Maybe<AllDetailViewAvgFields>;
-  count: Scalars['Int'];
+  count: Scalars["Int"];
   max?: Maybe<AllDetailViewMaxFields>;
   min?: Maybe<AllDetailViewMinFields>;
   stddev?: Maybe<AllDetailViewStddevFields>;
@@ -506,11 +522,10 @@ export type AllDetailViewAggregateFields = {
   variance?: Maybe<AllDetailViewVarianceFields>;
 };
 
-
 /** aggregate fields of "all_detail_view" */
 export type AllDetailViewAggregateFieldsCountArgs = {
   columns?: InputMaybe<Array<AllDetailViewSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "all_detail_view" */
@@ -530,9 +545,9 @@ export type AllDetailViewAggregateOrderBy = {
 
 /** aggregate avg on columns */
 export type AllDetailViewAvgFields = {
-  __typename?: 'AllDetailViewAvgFields';
-  originalAmount?: Maybe<Scalars['Float']>;
-  signedAmount?: Maybe<Scalars['Float']>;
+  __typename?: "AllDetailViewAvgFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by avg() on columns of table "all_detail_view" */
@@ -560,17 +575,17 @@ export type AllDetailViewBoolExp = {
 
 /** aggregate max on columns */
 export type AllDetailViewMaxFields = {
-  __typename?: 'AllDetailViewMaxFields';
-  accountId?: Maybe<Scalars['uuid']>;
-  categoryId?: Maybe<Scalars['uuid']>;
-  date?: Maybe<Scalars['date']>;
-  genreId?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  iocomeType?: Maybe<Scalars['iocome_type']>;
-  memo?: Maybe<Scalars['String']>;
-  originalAmount?: Maybe<Scalars['numeric']>;
-  signedAmount?: Maybe<Scalars['numeric']>;
-  type?: Maybe<Scalars['String']>;
+  __typename?: "AllDetailViewMaxFields";
+  accountId?: Maybe<Scalars["uuid"]>;
+  categoryId?: Maybe<Scalars["uuid"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  memo?: Maybe<Scalars["String"]>;
+  originalAmount?: Maybe<Scalars["numeric"]>;
+  signedAmount?: Maybe<Scalars["numeric"]>;
+  type?: Maybe<Scalars["String"]>;
 };
 
 /** order by max() on columns of table "all_detail_view" */
@@ -589,17 +604,17 @@ export type AllDetailViewMaxOrderBy = {
 
 /** aggregate min on columns */
 export type AllDetailViewMinFields = {
-  __typename?: 'AllDetailViewMinFields';
-  accountId?: Maybe<Scalars['uuid']>;
-  categoryId?: Maybe<Scalars['uuid']>;
-  date?: Maybe<Scalars['date']>;
-  genreId?: Maybe<Scalars['uuid']>;
-  id?: Maybe<Scalars['uuid']>;
-  iocomeType?: Maybe<Scalars['iocome_type']>;
-  memo?: Maybe<Scalars['String']>;
-  originalAmount?: Maybe<Scalars['numeric']>;
-  signedAmount?: Maybe<Scalars['numeric']>;
-  type?: Maybe<Scalars['String']>;
+  __typename?: "AllDetailViewMinFields";
+  accountId?: Maybe<Scalars["uuid"]>;
+  categoryId?: Maybe<Scalars["uuid"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  memo?: Maybe<Scalars["String"]>;
+  originalAmount?: Maybe<Scalars["numeric"]>;
+  signedAmount?: Maybe<Scalars["numeric"]>;
+  type?: Maybe<Scalars["String"]>;
 };
 
 /** order by min() on columns of table "all_detail_view" */
@@ -633,32 +648,32 @@ export type AllDetailViewOrderBy = {
 /** select columns of table "all_detail_view" */
 export enum AllDetailViewSelectColumn {
   /** column name */
-  AccountId = 'accountId',
+  AccountId = "accountId",
   /** column name */
-  CategoryId = 'categoryId',
+  CategoryId = "categoryId",
   /** column name */
-  Date = 'date',
+  Date = "date",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  Id = 'id',
+  Id = "id",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  Memo = 'memo',
+  Memo = "memo",
   /** column name */
-  OriginalAmount = 'originalAmount',
+  OriginalAmount = "originalAmount",
   /** column name */
-  SignedAmount = 'signedAmount',
+  SignedAmount = "signedAmount",
   /** column name */
-  Type = 'type'
+  Type = "type",
 }
 
 /** aggregate stddev on columns */
 export type AllDetailViewStddevFields = {
-  __typename?: 'AllDetailViewStddevFields';
-  originalAmount?: Maybe<Scalars['Float']>;
-  signedAmount?: Maybe<Scalars['Float']>;
+  __typename?: "AllDetailViewStddevFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddev() on columns of table "all_detail_view" */
@@ -669,9 +684,9 @@ export type AllDetailViewStddevOrderBy = {
 
 /** aggregate stddevPop on columns */
 export type AllDetailViewStddevPopFields = {
-  __typename?: 'AllDetailViewStddevPopFields';
-  originalAmount?: Maybe<Scalars['Float']>;
-  signedAmount?: Maybe<Scalars['Float']>;
+  __typename?: "AllDetailViewStddevPopFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevPop() on columns of table "all_detail_view" */
@@ -682,9 +697,9 @@ export type AllDetailViewStddevPopOrderBy = {
 
 /** aggregate stddevSamp on columns */
 export type AllDetailViewStddevSampFields = {
-  __typename?: 'AllDetailViewStddevSampFields';
-  originalAmount?: Maybe<Scalars['Float']>;
-  signedAmount?: Maybe<Scalars['Float']>;
+  __typename?: "AllDetailViewStddevSampFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "all_detail_view" */
@@ -703,23 +718,23 @@ export type AllDetailViewStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type AllDetailViewStreamCursorValueInput = {
-  accountId?: InputMaybe<Scalars['uuid']>;
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  date?: InputMaybe<Scalars['date']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  memo?: InputMaybe<Scalars['String']>;
-  originalAmount?: InputMaybe<Scalars['numeric']>;
-  signedAmount?: InputMaybe<Scalars['numeric']>;
-  type?: InputMaybe<Scalars['String']>;
+  accountId?: InputMaybe<Scalars["uuid"]>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  memo?: InputMaybe<Scalars["String"]>;
+  originalAmount?: InputMaybe<Scalars["numeric"]>;
+  signedAmount?: InputMaybe<Scalars["numeric"]>;
+  type?: InputMaybe<Scalars["String"]>;
 };
 
 /** aggregate sum on columns */
 export type AllDetailViewSumFields = {
-  __typename?: 'AllDetailViewSumFields';
-  originalAmount?: Maybe<Scalars['numeric']>;
-  signedAmount?: Maybe<Scalars['numeric']>;
+  __typename?: "AllDetailViewSumFields";
+  originalAmount?: Maybe<Scalars["numeric"]>;
+  signedAmount?: Maybe<Scalars["numeric"]>;
 };
 
 /** order by sum() on columns of table "all_detail_view" */
@@ -730,9 +745,9 @@ export type AllDetailViewSumOrderBy = {
 
 /** aggregate varPop on columns */
 export type AllDetailViewVarPopFields = {
-  __typename?: 'AllDetailViewVarPopFields';
-  originalAmount?: Maybe<Scalars['Float']>;
-  signedAmount?: Maybe<Scalars['Float']>;
+  __typename?: "AllDetailViewVarPopFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by varPop() on columns of table "all_detail_view" */
@@ -743,9 +758,9 @@ export type AllDetailViewVarPopOrderBy = {
 
 /** aggregate varSamp on columns */
 export type AllDetailViewVarSampFields = {
-  __typename?: 'AllDetailViewVarSampFields';
-  originalAmount?: Maybe<Scalars['Float']>;
-  signedAmount?: Maybe<Scalars['Float']>;
+  __typename?: "AllDetailViewVarSampFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by varSamp() on columns of table "all_detail_view" */
@@ -756,9 +771,9 @@ export type AllDetailViewVarSampOrderBy = {
 
 /** aggregate variance on columns */
 export type AllDetailViewVarianceFields = {
-  __typename?: 'AllDetailViewVarianceFields';
-  originalAmount?: Maybe<Scalars['Float']>;
-  signedAmount?: Maybe<Scalars['Float']>;
+  __typename?: "AllDetailViewVarianceFields";
+  originalAmount?: Maybe<Scalars["Float"]>;
+  signedAmount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "all_detail_view" */
@@ -769,33 +784,31 @@ export type AllDetailViewVarianceOrderBy = {
 
 /** columns and relationships of "application" */
 export type Application = {
-  __typename?: 'Application';
-  application: Scalars['String'];
-  applicationId: Scalars['uuid'];
+  __typename?: "Application";
+  application: Scalars["String"];
+  applicationId: Scalars["uuid"];
   /** An array relationship */
   groupApplications: Array<GroupApplication>;
   /** An array relationship */
   group_applications: Array<GroupApplication>;
-  topUrl: Scalars['String'];
-  validFlag?: Maybe<Scalars['Boolean']>;
+  topUrl: Scalars["String"];
+  validFlag?: Maybe<Scalars["Boolean"]>;
 };
-
 
 /** columns and relationships of "application" */
 export type ApplicationGroupApplicationsArgs = {
   distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
   where?: InputMaybe<GroupApplicationBoolExp>;
 };
 
-
 /** columns and relationships of "application" */
 export type ApplicationGroup_ApplicationsArgs = {
   distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
   where?: InputMaybe<GroupApplicationBoolExp>;
 };
@@ -826,13 +839,13 @@ export type ApplicationOrderBy = {
 /** select columns of table "application" */
 export enum ApplicationSelectColumn {
   /** column name */
-  Application = 'application',
+  Application = "application",
   /** column name */
-  ApplicationId = 'applicationId',
+  ApplicationId = "applicationId",
   /** column name */
-  TopUrl = 'topUrl',
+  TopUrl = "topUrl",
   /** column name */
-  ValidFlag = 'validFlag'
+  ValidFlag = "validFlag",
 }
 
 /** Streaming cursor of the table "application" */
@@ -845,98 +858,115 @@ export type ApplicationStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ApplicationStreamCursorValueInput = {
-  application?: InputMaybe<Scalars['String']>;
-  applicationId?: InputMaybe<Scalars['uuid']>;
-  topUrl?: InputMaybe<Scalars['String']>;
-  validFlag?: InputMaybe<Scalars['Boolean']>;
+  application?: InputMaybe<Scalars["String"]>;
+  applicationId?: InputMaybe<Scalars["uuid"]>;
+  topUrl?: InputMaybe<Scalars["String"]>;
+  validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
 export type BooleanComparisonExp = {
-  _eq?: InputMaybe<Scalars['Boolean']>;
-  _gt?: InputMaybe<Scalars['Boolean']>;
-  _gte?: InputMaybe<Scalars['Boolean']>;
-  _in?: InputMaybe<Array<Scalars['Boolean']>>;
-  _isNull?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['Boolean']>;
-  _lte?: InputMaybe<Scalars['Boolean']>;
-  _neq?: InputMaybe<Scalars['Boolean']>;
-  _nin?: InputMaybe<Array<Scalars['Boolean']>>;
+  _eq?: InputMaybe<Scalars["Boolean"]>;
+  _gt?: InputMaybe<Scalars["Boolean"]>;
+  _gte?: InputMaybe<Scalars["Boolean"]>;
+  _in?: InputMaybe<Array<Scalars["Boolean"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["Boolean"]>;
+  _lte?: InputMaybe<Scalars["Boolean"]>;
+  _neq?: InputMaybe<Scalars["Boolean"]>;
+  _nin?: InputMaybe<Array<Scalars["Boolean"]>>;
 };
 
 /** columns and relationships of "category" */
 export type Category = {
-  __typename?: 'Category';
-  categoryId: Scalars['uuid'];
-  categoryName: Scalars['String'];
+  __typename?: "Category";
+  categoryId: Scalars["uuid"];
+  categoryName: Scalars["String"];
   /** An array relationship */
   creditCardDetails: Array<CreditCardDetail>;
+  /** An aggregate relationship */
+  creditCardDetailsAggregate: CreditCardDetailAggregate;
   /** An array relationship */
   dailyDetails: Array<DailyDetail>;
+  /** An aggregate relationship */
+  dailyDetailsAggregate: DailyDetailAggregate;
   /** An object relationship */
   depositCategory?: Maybe<DepositCategory>;
-  displayOrder: Scalars['Int'];
+  displayOrder: Scalars["Int"];
   /** An object relationship */
   genre: Genre;
-  genreId: Scalars['uuid'];
+  genreId: Scalars["uuid"];
   /** An object relationship */
   group: Group;
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
   /** An array relationship */
   summaryCategories: Array<SummaryCategoryByGroup>;
   /** An array relationship */
   transferIncomeCategory: Array<TransferCategory>;
   /** An array relationship */
   transferOutcomeCategory: Array<TransferCategory>;
-  validFlag?: Maybe<Scalars['Boolean']>;
+  validFlag?: Maybe<Scalars["Boolean"]>;
 };
-
 
 /** columns and relationships of "category" */
 export type CategoryCreditCardDetailsArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
+/** columns and relationships of "category" */
+export type CategoryCreditCardDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
+  where?: InputMaybe<CreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "category" */
 export type CategoryDailyDetailsArgs = {
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
+/** columns and relationships of "category" */
+export type CategoryDailyDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
+  where?: InputMaybe<DailyDetailBoolExp>;
+};
 
 /** columns and relationships of "category" */
 export type CategorySummaryCategoriesArgs = {
   distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<SummaryCategoryByGroupOrderBy>>;
   where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
 };
 
-
 /** columns and relationships of "category" */
 export type CategoryTransferIncomeCategoryArgs = {
   distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
   where?: InputMaybe<TransferCategoryBoolExp>;
 };
 
-
 /** columns and relationships of "category" */
 export type CategoryTransferOutcomeCategoryArgs = {
   distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
   where?: InputMaybe<TransferCategoryBoolExp>;
 };
@@ -976,7 +1006,9 @@ export type CategoryBoolExp = {
   categoryId?: InputMaybe<UuidComparisonExp>;
   categoryName?: InputMaybe<StringComparisonExp>;
   creditCardDetails?: InputMaybe<CreditCardDetailBoolExp>;
+  creditCardDetailsAggregate?: InputMaybe<CreditCardDetailAggregateBoolExp>;
   dailyDetails?: InputMaybe<DailyDetailBoolExp>;
+  dailyDetailsAggregate?: InputMaybe<DailyDetailAggregateBoolExp>;
   depositCategory?: InputMaybe<DepositCategoryBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   genre?: InputMaybe<GenreBoolExp>;
@@ -992,29 +1024,29 @@ export type CategoryBoolExp = {
 /** unique or primary key constraints on table "category" */
 export enum CategoryConstraint {
   /** unique or primary key constraint on columns "category_id" */
-  CategoryPkey = 'category_pkey'
+  CategoryPkey = "category_pkey",
 }
 
 /** input type for incrementing numeric columns in table "category" */
 export type CategoryIncInput = {
-  displayOrder?: InputMaybe<Scalars['Int']>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
 };
 
 /** input type for inserting data into table "category" */
 export type CategoryInsertInput = {
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  categoryName?: InputMaybe<Scalars['String']>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  categoryName?: InputMaybe<Scalars["String"]>;
   creditCardDetails?: InputMaybe<CreditCardDetailArrRelInsertInput>;
   dailyDetails?: InputMaybe<DailyDetailArrRelInsertInput>;
   depositCategory?: InputMaybe<DepositCategoryObjRelInsertInput>;
-  displayOrder?: InputMaybe<Scalars['Int']>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
   genre?: InputMaybe<GenreObjRelInsertInput>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   summaryCategories?: InputMaybe<SummaryCategoryByGroupArrRelInsertInput>;
   transferIncomeCategory?: InputMaybe<TransferCategoryArrRelInsertInput>;
   transferOutcomeCategory?: InputMaybe<TransferCategoryArrRelInsertInput>;
-  validFlag?: InputMaybe<Scalars['Boolean']>;
+  validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by max() on columns of table "category" */
@@ -1037,9 +1069,9 @@ export type CategoryMinOrderBy = {
 
 /** response of any mutation on the table "category" */
 export type CategoryMutationResponse = {
-  __typename?: 'CategoryMutationResponse';
+  __typename?: "CategoryMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<Category>;
 };
@@ -1078,33 +1110,33 @@ export type CategoryOrderBy = {
 
 /** primary key columns input for table: category */
 export type CategoryPkColumnsInput = {
-  categoryId: Scalars['uuid'];
+  categoryId: Scalars["uuid"];
 };
 
 /** select columns of table "category" */
 export enum CategorySelectColumn {
   /** column name */
-  CategoryId = 'categoryId',
+  CategoryId = "categoryId",
   /** column name */
-  CategoryName = 'categoryName',
+  CategoryName = "categoryName",
   /** column name */
-  DisplayOrder = 'displayOrder',
+  DisplayOrder = "displayOrder",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  ValidFlag = 'validFlag'
+  ValidFlag = "validFlag",
 }
 
 /** input type for updating data in table "category" */
 export type CategorySetInput = {
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  categoryName?: InputMaybe<Scalars['String']>;
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  validFlag?: InputMaybe<Scalars['Boolean']>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  categoryName?: InputMaybe<Scalars["String"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by stddev() on columns of table "category" */
@@ -1132,12 +1164,12 @@ export type CategoryStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type CategoryStreamCursorValueInput = {
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  categoryName?: InputMaybe<Scalars['String']>;
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  validFlag?: InputMaybe<Scalars['Boolean']>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  categoryName?: InputMaybe<Scalars["String"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by sum() on columns of table "category" */
@@ -1148,17 +1180,17 @@ export type CategorySumOrderBy = {
 /** update columns of table "category" */
 export enum CategoryUpdateColumn {
   /** column name */
-  CategoryId = 'categoryId',
+  CategoryId = "categoryId",
   /** column name */
-  CategoryName = 'categoryName',
+  CategoryName = "categoryName",
   /** column name */
-  DisplayOrder = 'displayOrder',
+  DisplayOrder = "displayOrder",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  ValidFlag = 'validFlag'
+  ValidFlag = "validFlag",
 }
 
 export type CategoryUpdates = {
@@ -1187,27 +1219,60 @@ export type CategoryVarianceOrderBy = {
 
 /** columns and relationships of "credit_card_detail" */
 export type CreditCardDetail = {
-  __typename?: 'CreditCardDetail';
-  amount: Scalars['numeric'];
+  __typename?: "CreditCardDetail";
+  amount: Scalars["numeric"];
   /** An object relationship */
   category: Category;
-  categoryId: Scalars['uuid'];
+  categoryId: Scalars["uuid"];
   /** An object relationship */
   credit_card_summary: CreditCardSummary;
-  date: Scalars['date'];
+  date: Scalars["date"];
   /** An object relationship */
   genre: Genre;
-  genreId: Scalars['uuid'];
+  genreId: Scalars["uuid"];
   /** An object relationship */
   group: Group;
-  groupId: Scalars['uuid'];
-  id: Scalars['uuid'];
-  iocomeType: Scalars['iocome_type'];
-  memo?: Maybe<Scalars['String']>;
-  summaryId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
+  id: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
+  memo?: Maybe<Scalars["String"]>;
+  summaryId: Scalars["uuid"];
   /** An object relationship */
   user: User;
-  userId: Scalars['uuid'];
+  userId: Scalars["uuid"];
+};
+
+/** aggregated selection of "credit_card_detail" */
+export type CreditCardDetailAggregate = {
+  __typename?: "CreditCardDetailAggregate";
+  aggregate?: Maybe<CreditCardDetailAggregateFields>;
+  nodes: Array<CreditCardDetail>;
+};
+
+export type CreditCardDetailAggregateBoolExp = {
+  count?: InputMaybe<CreditCardDetailAggregateBoolExpCount>;
+};
+
+/** aggregate fields of "credit_card_detail" */
+export type CreditCardDetailAggregateFields = {
+  __typename?: "CreditCardDetailAggregateFields";
+  avg?: Maybe<CreditCardDetailAvgFields>;
+  count: Scalars["Int"];
+  max?: Maybe<CreditCardDetailMaxFields>;
+  min?: Maybe<CreditCardDetailMinFields>;
+  stddev?: Maybe<CreditCardDetailStddevFields>;
+  stddevPop?: Maybe<CreditCardDetailStddevPopFields>;
+  stddevSamp?: Maybe<CreditCardDetailStddevSampFields>;
+  sum?: Maybe<CreditCardDetailSumFields>;
+  varPop?: Maybe<CreditCardDetailVarPopFields>;
+  varSamp?: Maybe<CreditCardDetailVarSampFields>;
+  variance?: Maybe<CreditCardDetailVarianceFields>;
+};
+
+/** aggregate fields of "credit_card_detail" */
+export type CreditCardDetailAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "credit_card_detail" */
@@ -1230,6 +1295,12 @@ export type CreditCardDetailArrRelInsertInput = {
   data: Array<CreditCardDetailInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<CreditCardDetailOnConflict>;
+};
+
+/** aggregate avg on columns */
+export type CreditCardDetailAvgFields = {
+  __typename?: "CreditCardDetailAvgFields";
+  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by avg() on columns of table "credit_card_detail" */
@@ -1262,30 +1333,45 @@ export type CreditCardDetailBoolExp = {
 /** unique or primary key constraints on table "credit_card_detail" */
 export enum CreditCardDetailConstraint {
   /** unique or primary key constraint on columns "id" */
-  CreditCardDetailPkey = 'credit_card_detail_pkey'
+  CreditCardDetailPkey = "credit_card_detail_pkey",
 }
 
 /** input type for incrementing numeric columns in table "credit_card_detail" */
 export type CreditCardDetailIncInput = {
-  amount?: InputMaybe<Scalars['numeric']>;
+  amount?: InputMaybe<Scalars["numeric"]>;
 };
 
 /** input type for inserting data into table "credit_card_detail" */
 export type CreditCardDetailInsertInput = {
-  amount?: InputMaybe<Scalars['numeric']>;
+  amount?: InputMaybe<Scalars["numeric"]>;
   category?: InputMaybe<CategoryObjRelInsertInput>;
-  categoryId?: InputMaybe<Scalars['uuid']>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
   credit_card_summary?: InputMaybe<CreditCardSummaryObjRelInsertInput>;
-  date?: InputMaybe<Scalars['date']>;
+  date?: InputMaybe<Scalars["date"]>;
   genre?: InputMaybe<GenreObjRelInsertInput>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  memo?: InputMaybe<Scalars['String']>;
-  summaryId?: InputMaybe<Scalars['uuid']>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  memo?: InputMaybe<Scalars["String"]>;
+  summaryId?: InputMaybe<Scalars["uuid"]>;
   user?: InputMaybe<UserObjRelInsertInput>;
-  userId?: InputMaybe<Scalars['uuid']>;
+  userId?: InputMaybe<Scalars["uuid"]>;
+};
+
+/** aggregate max on columns */
+export type CreditCardDetailMaxFields = {
+  __typename?: "CreditCardDetailMaxFields";
+  amount?: Maybe<Scalars["numeric"]>;
+  categoryId?: Maybe<Scalars["uuid"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  memo?: Maybe<Scalars["String"]>;
+  summaryId?: Maybe<Scalars["uuid"]>;
+  userId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "credit_card_detail" */
@@ -1300,6 +1386,21 @@ export type CreditCardDetailMaxOrderBy = {
   memo?: InputMaybe<OrderBy>;
   summaryId?: InputMaybe<OrderBy>;
   userId?: InputMaybe<OrderBy>;
+};
+
+/** aggregate min on columns */
+export type CreditCardDetailMinFields = {
+  __typename?: "CreditCardDetailMinFields";
+  amount?: Maybe<Scalars["numeric"]>;
+  categoryId?: Maybe<Scalars["uuid"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  memo?: Maybe<Scalars["String"]>;
+  summaryId?: Maybe<Scalars["uuid"]>;
+  userId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "credit_card_detail" */
@@ -1318,9 +1419,9 @@ export type CreditCardDetailMinOrderBy = {
 
 /** response of any mutation on the table "credit_card_detail" */
 export type CreditCardDetailMutationResponse = {
-  __typename?: 'CreditCardDetailMutationResponse';
+  __typename?: "CreditCardDetailMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<CreditCardDetail>;
 };
@@ -1353,45 +1454,51 @@ export type CreditCardDetailOrderBy = {
 
 /** primary key columns input for table: credit_card_detail */
 export type CreditCardDetailPkColumnsInput = {
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 };
 
 /** select columns of table "credit_card_detail" */
 export enum CreditCardDetailSelectColumn {
   /** column name */
-  Amount = 'amount',
+  Amount = "amount",
   /** column name */
-  CategoryId = 'categoryId',
+  CategoryId = "categoryId",
   /** column name */
-  Date = 'date',
+  Date = "date",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  Id = 'id',
+  Id = "id",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  Memo = 'memo',
+  Memo = "memo",
   /** column name */
-  SummaryId = 'summaryId',
+  SummaryId = "summaryId",
   /** column name */
-  UserId = 'userId'
+  UserId = "userId",
 }
 
 /** input type for updating data in table "credit_card_detail" */
 export type CreditCardDetailSetInput = {
-  amount?: InputMaybe<Scalars['numeric']>;
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  date?: InputMaybe<Scalars['date']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  memo?: InputMaybe<Scalars['String']>;
-  summaryId?: InputMaybe<Scalars['uuid']>;
-  userId?: InputMaybe<Scalars['uuid']>;
+  amount?: InputMaybe<Scalars["numeric"]>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  memo?: InputMaybe<Scalars["String"]>;
+  summaryId?: InputMaybe<Scalars["uuid"]>;
+  userId?: InputMaybe<Scalars["uuid"]>;
+};
+
+/** aggregate stddev on columns */
+export type CreditCardDetailStddevFields = {
+  __typename?: "CreditCardDetailStddevFields";
+  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddev() on columns of table "credit_card_detail" */
@@ -1399,9 +1506,21 @@ export type CreditCardDetailStddevOrderBy = {
   amount?: InputMaybe<OrderBy>;
 };
 
+/** aggregate stddevPop on columns */
+export type CreditCardDetailStddevPopFields = {
+  __typename?: "CreditCardDetailStddevPopFields";
+  amount?: Maybe<Scalars["Float"]>;
+};
+
 /** order by stddevPop() on columns of table "credit_card_detail" */
 export type CreditCardDetailStddevPopOrderBy = {
   amount?: InputMaybe<OrderBy>;
+};
+
+/** aggregate stddevSamp on columns */
+export type CreditCardDetailStddevSampFields = {
+  __typename?: "CreditCardDetailStddevSampFields";
+  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "credit_card_detail" */
@@ -1419,16 +1538,22 @@ export type CreditCardDetailStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type CreditCardDetailStreamCursorValueInput = {
-  amount?: InputMaybe<Scalars['numeric']>;
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  date?: InputMaybe<Scalars['date']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  memo?: InputMaybe<Scalars['String']>;
-  summaryId?: InputMaybe<Scalars['uuid']>;
-  userId?: InputMaybe<Scalars['uuid']>;
+  amount?: InputMaybe<Scalars["numeric"]>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  memo?: InputMaybe<Scalars["String"]>;
+  summaryId?: InputMaybe<Scalars["uuid"]>;
+  userId?: InputMaybe<Scalars["uuid"]>;
+};
+
+/** aggregate sum on columns */
+export type CreditCardDetailSumFields = {
+  __typename?: "CreditCardDetailSumFields";
+  amount?: Maybe<Scalars["numeric"]>;
 };
 
 /** order by sum() on columns of table "credit_card_detail" */
@@ -1439,25 +1564,25 @@ export type CreditCardDetailSumOrderBy = {
 /** update columns of table "credit_card_detail" */
 export enum CreditCardDetailUpdateColumn {
   /** column name */
-  Amount = 'amount',
+  Amount = "amount",
   /** column name */
-  CategoryId = 'categoryId',
+  CategoryId = "categoryId",
   /** column name */
-  Date = 'date',
+  Date = "date",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  Id = 'id',
+  Id = "id",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  Memo = 'memo',
+  Memo = "memo",
   /** column name */
-  SummaryId = 'summaryId',
+  SummaryId = "summaryId",
   /** column name */
-  UserId = 'userId'
+  UserId = "userId",
 }
 
 export type CreditCardDetailUpdates = {
@@ -1469,14 +1594,32 @@ export type CreditCardDetailUpdates = {
   where: CreditCardDetailBoolExp;
 };
 
+/** aggregate varPop on columns */
+export type CreditCardDetailVarPopFields = {
+  __typename?: "CreditCardDetailVarPopFields";
+  amount?: Maybe<Scalars["Float"]>;
+};
+
 /** order by varPop() on columns of table "credit_card_detail" */
 export type CreditCardDetailVarPopOrderBy = {
   amount?: InputMaybe<OrderBy>;
 };
 
+/** aggregate varSamp on columns */
+export type CreditCardDetailVarSampFields = {
+  __typename?: "CreditCardDetailVarSampFields";
+  amount?: Maybe<Scalars["Float"]>;
+};
+
 /** order by varSamp() on columns of table "credit_card_detail" */
 export type CreditCardDetailVarSampOrderBy = {
   amount?: InputMaybe<OrderBy>;
+};
+
+/** aggregate variance on columns */
+export type CreditCardDetailVarianceFields = {
+  __typename?: "CreditCardDetailVarianceFields";
+  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "credit_card_detail" */
@@ -1486,44 +1629,53 @@ export type CreditCardDetailVarianceOrderBy = {
 
 /** columns and relationships of "credit_card_summary" */
 export type CreditCardSummary = {
-  __typename?: 'CreditCardSummary';
+  __typename?: "CreditCardSummary";
   /** An object relationship */
   account: Account;
-  accountId: Scalars['uuid'];
-  count: Scalars['Int'];
-  creditCard: Scalars['String'];
+  accountId: Scalars["uuid"];
+  count: Scalars["Int"];
+  creditCard: Scalars["String"];
   /** An array relationship */
   creditCardDetails: Array<CreditCardDetail>;
+  /** An aggregate relationship */
+  creditCardDetailsAggregate: CreditCardDetailAggregate;
   /** An array relationship */
   credit_card_details: Array<CreditCardDetail>;
   /** An object relationship */
   group: Group;
-  groupId: Scalars['uuid'];
-  id: Scalars['uuid'];
+  groupId: Scalars["uuid"];
+  id: Scalars["uuid"];
   /** An object relationship */
   importFileHistory?: Maybe<ImportFileHistory>;
   /** An object relationship */
   import_file_history: ImportFileHistory;
-  totalAmount: Scalars['numeric'];
-  withdrawalDate: Scalars['date'];
+  totalAmount: Scalars["numeric"];
+  withdrawalDate: Scalars["date"];
 };
-
 
 /** columns and relationships of "credit_card_summary" */
 export type CreditCardSummaryCreditCardDetailsArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
+/** columns and relationships of "credit_card_summary" */
+export type CreditCardSummaryCreditCardDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
+  where?: InputMaybe<CreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "credit_card_summary" */
 export type CreditCardSummaryCredit_Card_DetailsArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
 };
@@ -1566,7 +1718,9 @@ export type CreditCardSummaryBoolExp = {
   count?: InputMaybe<IntComparisonExp>;
   creditCard?: InputMaybe<StringComparisonExp>;
   creditCardDetails?: InputMaybe<CreditCardDetailBoolExp>;
+  creditCardDetailsAggregate?: InputMaybe<CreditCardDetailAggregateBoolExp>;
   credit_card_details?: InputMaybe<CreditCardDetailBoolExp>;
+  credit_card_detailsAggregate?: InputMaybe<CreditCardDetailAggregateBoolExp>;
   group?: InputMaybe<GroupBoolExp>;
   groupId?: InputMaybe<UuidComparisonExp>;
   id?: InputMaybe<UuidComparisonExp>;
@@ -1579,23 +1733,23 @@ export type CreditCardSummaryBoolExp = {
 /** unique or primary key constraints on table "credit_card_summary" */
 export enum CreditCardSummaryConstraint {
   /** unique or primary key constraint on columns "id" */
-  CreditCardSummaryPkey = 'credit_card_summary_pkey'
+  CreditCardSummaryPkey = "credit_card_summary_pkey",
 }
 
 /** input type for inserting data into table "credit_card_summary" */
 export type CreditCardSummaryInsertInput = {
   account?: InputMaybe<AccountObjRelInsertInput>;
-  accountId?: InputMaybe<Scalars['uuid']>;
-  count?: InputMaybe<Scalars['Int']>;
-  creditCard?: InputMaybe<Scalars['String']>;
+  accountId?: InputMaybe<Scalars["uuid"]>;
+  count?: InputMaybe<Scalars["Int"]>;
+  creditCard?: InputMaybe<Scalars["String"]>;
   creditCardDetails?: InputMaybe<CreditCardDetailArrRelInsertInput>;
   credit_card_details?: InputMaybe<CreditCardDetailArrRelInsertInput>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
   importFileHistory?: InputMaybe<ImportFileHistoryObjRelInsertInput>;
   import_file_history?: InputMaybe<ImportFileHistoryObjRelInsertInput>;
-  totalAmount?: InputMaybe<Scalars['numeric']>;
-  withdrawalDate?: InputMaybe<Scalars['date']>;
+  totalAmount?: InputMaybe<Scalars["numeric"]>;
+  withdrawalDate?: InputMaybe<Scalars["date"]>;
 };
 
 /** order by max() on columns of table "credit_card_summary" */
@@ -1622,9 +1776,9 @@ export type CreditCardSummaryMinOrderBy = {
 
 /** response of any mutation on the table "credit_card_summary" */
 export type CreditCardSummaryMutationResponse = {
-  __typename?: 'CreditCardSummaryMutationResponse';
+  __typename?: "CreditCardSummaryMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<CreditCardSummary>;
 };
@@ -1663,19 +1817,19 @@ export type CreditCardSummaryOrderBy = {
 /** select columns of table "credit_card_summary" */
 export enum CreditCardSummarySelectColumn {
   /** column name */
-  AccountId = 'accountId',
+  AccountId = "accountId",
   /** column name */
-  Count = 'count',
+  Count = "count",
   /** column name */
-  CreditCard = 'creditCard',
+  CreditCard = "creditCard",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  Id = 'id',
+  Id = "id",
   /** column name */
-  TotalAmount = 'totalAmount',
+  TotalAmount = "totalAmount",
   /** column name */
-  WithdrawalDate = 'withdrawalDate'
+  WithdrawalDate = "withdrawalDate",
 }
 
 /** order by stddev() on columns of table "credit_card_summary" */
@@ -1706,13 +1860,13 @@ export type CreditCardSummaryStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type CreditCardSummaryStreamCursorValueInput = {
-  accountId?: InputMaybe<Scalars['uuid']>;
-  count?: InputMaybe<Scalars['Int']>;
-  creditCard?: InputMaybe<Scalars['String']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  totalAmount?: InputMaybe<Scalars['numeric']>;
-  withdrawalDate?: InputMaybe<Scalars['date']>;
+  accountId?: InputMaybe<Scalars["uuid"]>;
+  count?: InputMaybe<Scalars["Int"]>;
+  creditCard?: InputMaybe<Scalars["String"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  totalAmount?: InputMaybe<Scalars["numeric"]>;
+  withdrawalDate?: InputMaybe<Scalars["date"]>;
 };
 
 /** order by sum() on columns of table "credit_card_summary" */
@@ -1723,14 +1877,14 @@ export type CreditCardSummarySumOrderBy = {
 
 /** columns and relationships of "credit_card_summary_total_by_account_view" */
 export type CreditCardSummaryTotalByAccountView = {
-  __typename?: 'CreditCardSummaryTotalByAccountView';
-  accountId?: Maybe<Scalars['uuid']>;
-  accountName?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['date']>;
-  displayOrder?: Maybe<Scalars['Int']>;
-  groupId?: Maybe<Scalars['uuid']>;
-  iocomeType?: Maybe<Scalars['iocome_type']>;
-  total?: Maybe<Scalars['numeric']>;
+  __typename?: "CreditCardSummaryTotalByAccountView";
+  accountId?: Maybe<Scalars["uuid"]>;
+  accountName?: Maybe<Scalars["String"]>;
+  date?: Maybe<Scalars["date"]>;
+  displayOrder?: Maybe<Scalars["Int"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  total?: Maybe<Scalars["numeric"]>;
 };
 
 /** Boolean expression to filter rows from the table "credit_card_summary_total_by_account_view". All fields are combined with a logical 'AND'. */
@@ -1761,19 +1915,19 @@ export type CreditCardSummaryTotalByAccountViewOrderBy = {
 /** select columns of table "credit_card_summary_total_by_account_view" */
 export enum CreditCardSummaryTotalByAccountViewSelectColumn {
   /** column name */
-  AccountId = 'accountId',
+  AccountId = "accountId",
   /** column name */
-  AccountName = 'accountName',
+  AccountName = "accountName",
   /** column name */
-  Date = 'date',
+  Date = "date",
   /** column name */
-  DisplayOrder = 'displayOrder',
+  DisplayOrder = "displayOrder",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  Total = 'total'
+  Total = "total",
 }
 
 /** Streaming cursor of the table "credit_card_summary_total_by_account_view" */
@@ -1786,19 +1940,19 @@ export type CreditCardSummaryTotalByAccountViewStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type CreditCardSummaryTotalByAccountViewStreamCursorValueInput = {
-  accountId?: InputMaybe<Scalars['uuid']>;
-  accountName?: InputMaybe<Scalars['String']>;
-  date?: InputMaybe<Scalars['date']>;
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  total?: InputMaybe<Scalars['numeric']>;
+  accountId?: InputMaybe<Scalars["uuid"]>;
+  accountName?: InputMaybe<Scalars["String"]>;
+  date?: InputMaybe<Scalars["date"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  total?: InputMaybe<Scalars["numeric"]>;
 };
 
 /** placeholder for update columns of table "credit_card_summary" (current role has no relevant permissions) */
 export enum CreditCardSummaryUpdateColumn {
   /** placeholder (do not use) */
-  Placeholder = '_PLACEHOLDER'
+  Placeholder = "_PLACEHOLDER",
 }
 
 /** order by varPop() on columns of table "credit_card_summary" */
@@ -1822,34 +1976,67 @@ export type CreditCardSummaryVarianceOrderBy = {
 /** ordering argument of a cursor */
 export enum CursorOrdering {
   /** ascending ordering of the cursor */
-  Asc = 'ASC',
+  Asc = "ASC",
   /** descending ordering of the cursor */
-  Desc = 'DESC'
+  Desc = "DESC",
 }
 
 /** columns and relationships of "daily_detail" */
 export type DailyDetail = {
-  __typename?: 'DailyDetail';
+  __typename?: "DailyDetail";
   /** An object relationship */
   account: Account;
-  accountId: Scalars['uuid'];
-  amount: Scalars['numeric'];
+  accountId: Scalars["uuid"];
+  amount: Scalars["numeric"];
   /** An object relationship */
   category: Category;
-  categoryId: Scalars['uuid'];
-  date: Scalars['date'];
+  categoryId: Scalars["uuid"];
+  date: Scalars["date"];
   /** An object relationship */
   genre: Genre;
-  genreId: Scalars['uuid'];
+  genreId: Scalars["uuid"];
   /** An object relationship */
   group: Group;
-  groupId: Scalars['uuid'];
-  id: Scalars['uuid'];
-  iocomeType: Scalars['iocome_type'];
-  memo?: Maybe<Scalars['String']>;
+  groupId: Scalars["uuid"];
+  id: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
+  memo?: Maybe<Scalars["String"]>;
   /** An object relationship */
   user: User;
-  userId: Scalars['uuid'];
+  userId: Scalars["uuid"];
+};
+
+/** aggregated selection of "daily_detail" */
+export type DailyDetailAggregate = {
+  __typename?: "DailyDetailAggregate";
+  aggregate?: Maybe<DailyDetailAggregateFields>;
+  nodes: Array<DailyDetail>;
+};
+
+export type DailyDetailAggregateBoolExp = {
+  count?: InputMaybe<DailyDetailAggregateBoolExpCount>;
+};
+
+/** aggregate fields of "daily_detail" */
+export type DailyDetailAggregateFields = {
+  __typename?: "DailyDetailAggregateFields";
+  avg?: Maybe<DailyDetailAvgFields>;
+  count: Scalars["Int"];
+  max?: Maybe<DailyDetailMaxFields>;
+  min?: Maybe<DailyDetailMinFields>;
+  stddev?: Maybe<DailyDetailStddevFields>;
+  stddevPop?: Maybe<DailyDetailStddevPopFields>;
+  stddevSamp?: Maybe<DailyDetailStddevSampFields>;
+  sum?: Maybe<DailyDetailSumFields>;
+  varPop?: Maybe<DailyDetailVarPopFields>;
+  varSamp?: Maybe<DailyDetailVarSampFields>;
+  variance?: Maybe<DailyDetailVarianceFields>;
+};
+
+/** aggregate fields of "daily_detail" */
+export type DailyDetailAggregateFieldsCountArgs = {
+  columns?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "daily_detail" */
@@ -1872,6 +2059,12 @@ export type DailyDetailArrRelInsertInput = {
   data: Array<DailyDetailInsertInput>;
   /** upsert condition */
   onConflict?: InputMaybe<DailyDetailOnConflict>;
+};
+
+/** aggregate avg on columns */
+export type DailyDetailAvgFields = {
+  __typename?: "DailyDetailAvgFields";
+  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by avg() on columns of table "daily_detail" */
@@ -1904,30 +2097,45 @@ export type DailyDetailBoolExp = {
 /** unique or primary key constraints on table "daily_detail" */
 export enum DailyDetailConstraint {
   /** unique or primary key constraint on columns "id" */
-  DailyDetailPkey = 'daily_detail_pkey'
+  DailyDetailPkey = "daily_detail_pkey",
 }
 
 /** input type for incrementing numeric columns in table "daily_detail" */
 export type DailyDetailIncInput = {
-  amount?: InputMaybe<Scalars['numeric']>;
+  amount?: InputMaybe<Scalars["numeric"]>;
 };
 
 /** input type for inserting data into table "daily_detail" */
 export type DailyDetailInsertInput = {
   account?: InputMaybe<AccountObjRelInsertInput>;
-  accountId?: InputMaybe<Scalars['uuid']>;
-  amount?: InputMaybe<Scalars['numeric']>;
+  accountId?: InputMaybe<Scalars["uuid"]>;
+  amount?: InputMaybe<Scalars["numeric"]>;
   category?: InputMaybe<CategoryObjRelInsertInput>;
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  date?: InputMaybe<Scalars['date']>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  date?: InputMaybe<Scalars["date"]>;
   genre?: InputMaybe<GenreObjRelInsertInput>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  memo?: InputMaybe<Scalars['String']>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  memo?: InputMaybe<Scalars["String"]>;
   user?: InputMaybe<UserObjRelInsertInput>;
-  userId?: InputMaybe<Scalars['uuid']>;
+  userId?: InputMaybe<Scalars["uuid"]>;
+};
+
+/** aggregate max on columns */
+export type DailyDetailMaxFields = {
+  __typename?: "DailyDetailMaxFields";
+  accountId?: Maybe<Scalars["uuid"]>;
+  amount?: Maybe<Scalars["numeric"]>;
+  categoryId?: Maybe<Scalars["uuid"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  memo?: Maybe<Scalars["String"]>;
+  userId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "daily_detail" */
@@ -1942,6 +2150,21 @@ export type DailyDetailMaxOrderBy = {
   iocomeType?: InputMaybe<OrderBy>;
   memo?: InputMaybe<OrderBy>;
   userId?: InputMaybe<OrderBy>;
+};
+
+/** aggregate min on columns */
+export type DailyDetailMinFields = {
+  __typename?: "DailyDetailMinFields";
+  accountId?: Maybe<Scalars["uuid"]>;
+  amount?: Maybe<Scalars["numeric"]>;
+  categoryId?: Maybe<Scalars["uuid"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  memo?: Maybe<Scalars["String"]>;
+  userId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "daily_detail" */
@@ -1960,9 +2183,9 @@ export type DailyDetailMinOrderBy = {
 
 /** response of any mutation on the table "daily_detail" */
 export type DailyDetailMutationResponse = {
-  __typename?: 'DailyDetailMutationResponse';
+  __typename?: "DailyDetailMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<DailyDetail>;
 };
@@ -1995,45 +2218,51 @@ export type DailyDetailOrderBy = {
 
 /** primary key columns input for table: daily_detail */
 export type DailyDetailPkColumnsInput = {
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 };
 
 /** select columns of table "daily_detail" */
 export enum DailyDetailSelectColumn {
   /** column name */
-  AccountId = 'accountId',
+  AccountId = "accountId",
   /** column name */
-  Amount = 'amount',
+  Amount = "amount",
   /** column name */
-  CategoryId = 'categoryId',
+  CategoryId = "categoryId",
   /** column name */
-  Date = 'date',
+  Date = "date",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  Id = 'id',
+  Id = "id",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  Memo = 'memo',
+  Memo = "memo",
   /** column name */
-  UserId = 'userId'
+  UserId = "userId",
 }
 
 /** input type for updating data in table "daily_detail" */
 export type DailyDetailSetInput = {
-  accountId?: InputMaybe<Scalars['uuid']>;
-  amount?: InputMaybe<Scalars['numeric']>;
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  date?: InputMaybe<Scalars['date']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  memo?: InputMaybe<Scalars['String']>;
-  userId?: InputMaybe<Scalars['uuid']>;
+  accountId?: InputMaybe<Scalars["uuid"]>;
+  amount?: InputMaybe<Scalars["numeric"]>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  memo?: InputMaybe<Scalars["String"]>;
+  userId?: InputMaybe<Scalars["uuid"]>;
+};
+
+/** aggregate stddev on columns */
+export type DailyDetailStddevFields = {
+  __typename?: "DailyDetailStddevFields";
+  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddev() on columns of table "daily_detail" */
@@ -2041,9 +2270,21 @@ export type DailyDetailStddevOrderBy = {
   amount?: InputMaybe<OrderBy>;
 };
 
+/** aggregate stddevPop on columns */
+export type DailyDetailStddevPopFields = {
+  __typename?: "DailyDetailStddevPopFields";
+  amount?: Maybe<Scalars["Float"]>;
+};
+
 /** order by stddevPop() on columns of table "daily_detail" */
 export type DailyDetailStddevPopOrderBy = {
   amount?: InputMaybe<OrderBy>;
+};
+
+/** aggregate stddevSamp on columns */
+export type DailyDetailStddevSampFields = {
+  __typename?: "DailyDetailStddevSampFields";
+  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "daily_detail" */
@@ -2061,16 +2302,22 @@ export type DailyDetailStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type DailyDetailStreamCursorValueInput = {
-  accountId?: InputMaybe<Scalars['uuid']>;
-  amount?: InputMaybe<Scalars['numeric']>;
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  date?: InputMaybe<Scalars['date']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  memo?: InputMaybe<Scalars['String']>;
-  userId?: InputMaybe<Scalars['uuid']>;
+  accountId?: InputMaybe<Scalars["uuid"]>;
+  amount?: InputMaybe<Scalars["numeric"]>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  memo?: InputMaybe<Scalars["String"]>;
+  userId?: InputMaybe<Scalars["uuid"]>;
+};
+
+/** aggregate sum on columns */
+export type DailyDetailSumFields = {
+  __typename?: "DailyDetailSumFields";
+  amount?: Maybe<Scalars["numeric"]>;
 };
 
 /** order by sum() on columns of table "daily_detail" */
@@ -2081,25 +2328,25 @@ export type DailyDetailSumOrderBy = {
 /** update columns of table "daily_detail" */
 export enum DailyDetailUpdateColumn {
   /** column name */
-  AccountId = 'accountId',
+  AccountId = "accountId",
   /** column name */
-  Amount = 'amount',
+  Amount = "amount",
   /** column name */
-  CategoryId = 'categoryId',
+  CategoryId = "categoryId",
   /** column name */
-  Date = 'date',
+  Date = "date",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  Id = 'id',
+  Id = "id",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  Memo = 'memo',
+  Memo = "memo",
   /** column name */
-  UserId = 'userId'
+  UserId = "userId",
 }
 
 export type DailyDetailUpdates = {
@@ -2111,14 +2358,32 @@ export type DailyDetailUpdates = {
   where: DailyDetailBoolExp;
 };
 
+/** aggregate varPop on columns */
+export type DailyDetailVarPopFields = {
+  __typename?: "DailyDetailVarPopFields";
+  amount?: Maybe<Scalars["Float"]>;
+};
+
 /** order by varPop() on columns of table "daily_detail" */
 export type DailyDetailVarPopOrderBy = {
   amount?: InputMaybe<OrderBy>;
 };
 
+/** aggregate varSamp on columns */
+export type DailyDetailVarSampFields = {
+  __typename?: "DailyDetailVarSampFields";
+  amount?: Maybe<Scalars["Float"]>;
+};
+
 /** order by varSamp() on columns of table "daily_detail" */
 export type DailyDetailVarSampOrderBy = {
   amount?: InputMaybe<OrderBy>;
+};
+
+/** aggregate variance on columns */
+export type DailyDetailVarianceFields = {
+  __typename?: "DailyDetailVarianceFields";
+  amount?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "daily_detail" */
@@ -2128,11 +2393,11 @@ export type DailyDetailVarianceOrderBy = {
 
 /** columns and relationships of "daily_total_view" */
 export type DailyTotalView = {
-  __typename?: 'DailyTotalView';
-  date?: Maybe<Scalars['date']>;
-  groupId?: Maybe<Scalars['uuid']>;
-  iocomeType?: Maybe<Scalars['iocome_type']>;
-  total?: Maybe<Scalars['numeric']>;
+  __typename?: "DailyTotalView";
+  date?: Maybe<Scalars["date"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  total?: Maybe<Scalars["numeric"]>;
 };
 
 /** Boolean expression to filter rows from the table "daily_total_view". All fields are combined with a logical 'AND'. */
@@ -2157,13 +2422,13 @@ export type DailyTotalViewOrderBy = {
 /** select columns of table "daily_total_view" */
 export enum DailyTotalViewSelectColumn {
   /** column name */
-  Date = 'date',
+  Date = "date",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  Total = 'total'
+  Total = "total",
 }
 
 /** Streaming cursor of the table "daily_total_view" */
@@ -2176,36 +2441,36 @@ export type DailyTotalViewStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type DailyTotalViewStreamCursorValueInput = {
-  date?: InputMaybe<Scalars['date']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  total?: InputMaybe<Scalars['numeric']>;
+  date?: InputMaybe<Scalars["date"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  total?: InputMaybe<Scalars["numeric"]>;
 };
 
 /** Boolean expression to compare columns of type "date". All fields are combined with logical 'AND'. */
 export type DateComparisonExp = {
-  _eq?: InputMaybe<Scalars['date']>;
-  _gt?: InputMaybe<Scalars['date']>;
-  _gte?: InputMaybe<Scalars['date']>;
-  _in?: InputMaybe<Array<Scalars['date']>>;
-  _isNull?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['date']>;
-  _lte?: InputMaybe<Scalars['date']>;
-  _neq?: InputMaybe<Scalars['date']>;
-  _nin?: InputMaybe<Array<Scalars['date']>>;
+  _eq?: InputMaybe<Scalars["date"]>;
+  _gt?: InputMaybe<Scalars["date"]>;
+  _gte?: InputMaybe<Scalars["date"]>;
+  _in?: InputMaybe<Array<Scalars["date"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["date"]>;
+  _lte?: InputMaybe<Scalars["date"]>;
+  _neq?: InputMaybe<Scalars["date"]>;
+  _nin?: InputMaybe<Array<Scalars["date"]>>;
 };
 
 /** 預金カテゴリ */
 export type DepositCategory = {
-  __typename?: 'DepositCategory';
+  __typename?: "DepositCategory";
   /** An object relationship */
   category: Category;
   /** カテゴリID */
-  categoryId: Scalars['uuid'];
+  categoryId: Scalars["uuid"];
   /** An object relationship */
   group: Group;
   /** グループID */
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 };
 
 /** order by aggregate values of table "deposit_category" */
@@ -2229,16 +2494,16 @@ export type DepositCategoryBoolExp = {
 /** unique or primary key constraints on table "deposit_category" */
 export enum DepositCategoryConstraint {
   /** unique or primary key constraint on columns "category_id" */
-  DepositCategoryPkey = 'deposit_category_pkey'
+  DepositCategoryPkey = "deposit_category_pkey",
 }
 
 /** input type for inserting data into table "deposit_category" */
 export type DepositCategoryInsertInput = {
   category?: InputMaybe<CategoryObjRelInsertInput>;
   /** カテゴリID */
-  categoryId?: InputMaybe<Scalars['uuid']>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "deposit_category" */
@@ -2259,9 +2524,9 @@ export type DepositCategoryMinOrderBy = {
 
 /** response of any mutation on the table "deposit_category" */
 export type DepositCategoryMutationResponse = {
-  __typename?: 'DepositCategoryMutationResponse';
+  __typename?: "DepositCategoryMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<DepositCategory>;
 };
@@ -2291,9 +2556,9 @@ export type DepositCategoryOrderBy = {
 /** select columns of table "deposit_category" */
 export enum DepositCategorySelectColumn {
   /** column name */
-  CategoryId = 'categoryId',
+  CategoryId = "categoryId",
   /** column name */
-  GroupId = 'groupId'
+  GroupId = "groupId",
 }
 
 /** Streaming cursor of the table "deposit_category" */
@@ -2307,63 +2572,82 @@ export type DepositCategoryStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type DepositCategoryStreamCursorValueInput = {
   /** カテゴリID */
-  categoryId?: InputMaybe<Scalars['uuid']>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** placeholder for update columns of table "deposit_category" (current role has no relevant permissions) */
 export enum DepositCategoryUpdateColumn {
   /** placeholder (do not use) */
-  Placeholder = '_PLACEHOLDER'
+  Placeholder = "_PLACEHOLDER",
 }
 
 /** columns and relationships of "genre" */
 export type Genre = {
-  __typename?: 'Genre';
+  __typename?: "Genre";
   /** An array relationship */
   categories: Array<Category>;
   /** An array relationship */
   creditCardDetails: Array<CreditCardDetail>;
+  /** An aggregate relationship */
+  creditCardDetailsAggregate: CreditCardDetailAggregate;
   /** An array relationship */
   dailyDetails: Array<DailyDetail>;
-  displayOrder: Scalars['Int'];
-  genreId: Scalars['uuid'];
-  genreName: Scalars['String'];
-  genreType: Scalars['genre_type'];
+  /** An aggregate relationship */
+  dailyDetailsAggregate: DailyDetailAggregate;
+  displayOrder: Scalars["Int"];
+  genreId: Scalars["uuid"];
+  genreName: Scalars["String"];
+  genreType: Scalars["genre_type"];
   /** An object relationship */
   group: Group;
-  groupId: Scalars['uuid'];
-  iocomeType: Scalars['iocome_type'];
-  validFlag?: Maybe<Scalars['Boolean']>;
+  groupId: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
+  validFlag?: Maybe<Scalars["Boolean"]>;
 };
-
 
 /** columns and relationships of "genre" */
 export type GenreCategoriesArgs = {
   distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CategoryOrderBy>>;
   where?: InputMaybe<CategoryBoolExp>;
 };
 
-
 /** columns and relationships of "genre" */
 export type GenreCreditCardDetailsArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
+/** columns and relationships of "genre" */
+export type GenreCreditCardDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
+  where?: InputMaybe<CreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "genre" */
 export type GenreDailyDetailsArgs = {
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
+  where?: InputMaybe<DailyDetailBoolExp>;
+};
+
+/** columns and relationships of "genre" */
+export type GenreDailyDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
 };
@@ -2395,7 +2679,9 @@ export type GenreBoolExp = {
   _or?: InputMaybe<Array<GenreBoolExp>>;
   categories?: InputMaybe<CategoryBoolExp>;
   creditCardDetails?: InputMaybe<CreditCardDetailBoolExp>;
+  creditCardDetailsAggregate?: InputMaybe<CreditCardDetailAggregateBoolExp>;
   dailyDetails?: InputMaybe<DailyDetailBoolExp>;
+  dailyDetailsAggregate?: InputMaybe<DailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   genreId?: InputMaybe<UuidComparisonExp>;
   genreName?: InputMaybe<StringComparisonExp>;
@@ -2409,12 +2695,12 @@ export type GenreBoolExp = {
 /** unique or primary key constraints on table "genre" */
 export enum GenreConstraint {
   /** unique or primary key constraint on columns "genre_id" */
-  GenrePkey = 'genre_pkey'
+  GenrePkey = "genre_pkey",
 }
 
 /** input type for incrementing numeric columns in table "genre" */
 export type GenreIncInput = {
-  displayOrder?: InputMaybe<Scalars['Int']>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
 };
 
 /** input type for inserting data into table "genre" */
@@ -2422,13 +2708,13 @@ export type GenreInsertInput = {
   categories?: InputMaybe<CategoryArrRelInsertInput>;
   creditCardDetails?: InputMaybe<CreditCardDetailArrRelInsertInput>;
   dailyDetails?: InputMaybe<DailyDetailArrRelInsertInput>;
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  genreName?: InputMaybe<Scalars['String']>;
-  genreType?: InputMaybe<Scalars['genre_type']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  validFlag?: InputMaybe<Scalars['Boolean']>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  genreName?: InputMaybe<Scalars["String"]>;
+  genreType?: InputMaybe<Scalars["genre_type"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by max() on columns of table "genre" */
@@ -2453,9 +2739,9 @@ export type GenreMinOrderBy = {
 
 /** response of any mutation on the table "genre" */
 export type GenreMutationResponse = {
-  __typename?: 'GenreMutationResponse';
+  __typename?: "GenreMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<Genre>;
 };
@@ -2491,36 +2777,36 @@ export type GenreOrderBy = {
 
 /** primary key columns input for table: genre */
 export type GenrePkColumnsInput = {
-  genreId: Scalars['uuid'];
+  genreId: Scalars["uuid"];
 };
 
 /** select columns of table "genre" */
 export enum GenreSelectColumn {
   /** column name */
-  DisplayOrder = 'displayOrder',
+  DisplayOrder = "displayOrder",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  GenreName = 'genreName',
+  GenreName = "genreName",
   /** column name */
-  GenreType = 'genreType',
+  GenreType = "genreType",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  ValidFlag = 'validFlag'
+  ValidFlag = "validFlag",
 }
 
 /** input type for updating data in table "genre" */
 export type GenreSetInput = {
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  genreName?: InputMaybe<Scalars['String']>;
-  genreType?: InputMaybe<Scalars['genre_type']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  validFlag?: InputMaybe<Scalars['Boolean']>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  genreName?: InputMaybe<Scalars["String"]>;
+  genreType?: InputMaybe<Scalars["genre_type"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by stddev() on columns of table "genre" */
@@ -2548,13 +2834,13 @@ export type GenreStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type GenreStreamCursorValueInput = {
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  genreName?: InputMaybe<Scalars['String']>;
-  genreType?: InputMaybe<Scalars['genre_type']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  validFlag?: InputMaybe<Scalars['Boolean']>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  genreName?: InputMaybe<Scalars["String"]>;
+  genreType?: InputMaybe<Scalars["genre_type"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  validFlag?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by sum() on columns of table "genre" */
@@ -2564,33 +2850,33 @@ export type GenreSumOrderBy = {
 
 /** Boolean expression to compare columns of type "genre_type". All fields are combined with logical 'AND'. */
 export type GenreTypeComparisonExp = {
-  _eq?: InputMaybe<Scalars['genre_type']>;
-  _gt?: InputMaybe<Scalars['genre_type']>;
-  _gte?: InputMaybe<Scalars['genre_type']>;
-  _in?: InputMaybe<Array<Scalars['genre_type']>>;
-  _isNull?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['genre_type']>;
-  _lte?: InputMaybe<Scalars['genre_type']>;
-  _neq?: InputMaybe<Scalars['genre_type']>;
-  _nin?: InputMaybe<Array<Scalars['genre_type']>>;
+  _eq?: InputMaybe<Scalars["genre_type"]>;
+  _gt?: InputMaybe<Scalars["genre_type"]>;
+  _gte?: InputMaybe<Scalars["genre_type"]>;
+  _in?: InputMaybe<Array<Scalars["genre_type"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["genre_type"]>;
+  _lte?: InputMaybe<Scalars["genre_type"]>;
+  _neq?: InputMaybe<Scalars["genre_type"]>;
+  _nin?: InputMaybe<Array<Scalars["genre_type"]>>;
 };
 
 /** update columns of table "genre" */
 export enum GenreUpdateColumn {
   /** column name */
-  DisplayOrder = 'displayOrder',
+  DisplayOrder = "displayOrder",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  GenreName = 'genreName',
+  GenreName = "genreName",
   /** column name */
-  GenreType = 'genreType',
+  GenreType = "genreType",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  ValidFlag = 'validFlag'
+  ValidFlag = "validFlag",
 }
 
 export type GenreUpdates = {
@@ -2619,7 +2905,7 @@ export type GenreVarianceOrderBy = {
 
 /** columns and relationships of "group" */
 export type Group = {
-  __typename?: 'Group';
+  __typename?: "Group";
   /** An array relationship */
   accounts: Array<Account>;
   /** An aggregate relationship */
@@ -2630,8 +2916,12 @@ export type Group = {
   categories: Array<Category>;
   /** An array relationship */
   creditCardDetails: Array<CreditCardDetail>;
+  /** An aggregate relationship */
+  creditCardDetailsAggregate: CreditCardDetailAggregate;
   /** An array relationship */
   credit_card_summaries: Array<CreditCardSummary>;
+  /** An aggregate relationship */
+  dailyDetailsAggregate: DailyDetailAggregate;
   /** An array relationship */
   daily_details: Array<DailyDetail>;
   /** An array relationship */
@@ -2640,8 +2930,8 @@ export type Group = {
   exchangeItems: Array<HelperKidsExchangeItem>;
   /** An array relationship */
   genres: Array<Genre>;
-  groupId: Scalars['uuid'];
-  groupName: Scalars['String'];
+  groupId: Scalars["uuid"];
+  groupName: Scalars["String"];
   /** An array relationship */
   group_applications: Array<GroupApplication>;
   /** An array relationship */
@@ -2666,216 +2956,222 @@ export type Group = {
   transferCategory?: Maybe<TransferCategory>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupAccountsArgs = {
   distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AccountOrderBy>>;
   where?: InputMaybe<AccountBoolExp>;
 };
-
 
 /** columns and relationships of "group" */
 export type GroupAccountsAggregateArgs = {
   distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AccountOrderBy>>;
   where?: InputMaybe<AccountBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupAffiliationsArgs = {
   distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
   where?: InputMaybe<AffiliationBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupCategoriesArgs = {
   distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CategoryOrderBy>>;
   where?: InputMaybe<CategoryBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupCreditCardDetailsArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
+/** columns and relationships of "group" */
+export type GroupCreditCardDetailsAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
+  where?: InputMaybe<CreditCardDetailBoolExp>;
+};
 
 /** columns and relationships of "group" */
 export type GroupCredit_Card_SummariesArgs = {
   distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardSummaryOrderBy>>;
   where?: InputMaybe<CreditCardSummaryBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
-export type GroupDaily_DetailsArgs = {
+export type GroupDailyDetailsAggregateArgs = {
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
+/** columns and relationships of "group" */
+export type GroupDaily_DetailsArgs = {
+  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
+  where?: InputMaybe<DailyDetailBoolExp>;
+};
 
 /** columns and relationships of "group" */
 export type GroupDepositCategoriesArgs = {
   distinctOn?: InputMaybe<Array<DepositCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DepositCategoryOrderBy>>;
   where?: InputMaybe<DepositCategoryBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupExchangeItemsArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsExchangeItemSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsExchangeItemOrderBy>>;
   where?: InputMaybe<HelperKidsExchangeItemBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupGenresArgs = {
   distinctOn?: InputMaybe<Array<GenreSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GenreOrderBy>>;
   where?: InputMaybe<GenreBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupGroup_ApplicationsArgs = {
   distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
   where?: InputMaybe<GroupApplicationBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupHelpItemsArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpItemOrderBy>>;
   where?: InputMaybe<HelperKidsHelpItemBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupHelpPointEarnedAchievementsArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointEarnedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
 };
-
 
 /** columns and relationships of "group" */
 export type GroupHelpPointEarnedAchievementsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointEarnedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
 };
-
 
 /** columns and relationships of "group" */
 export type GroupHelpPointEarnedDetailsArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupHelpPointExchangedAchievementsArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
 };
-
 
 /** columns and relationships of "group" */
 export type GroupHelpPointExchangedAchievementsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
 };
-
 
 /** columns and relationships of "group" */
 export type GroupHelperKidsArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelperKidOrderBy>>;
   where?: InputMaybe<HelperKidsHelperKidBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupImport_File_HistoriesArgs = {
   distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ImportFileHistoryOrderBy>>;
   where?: InputMaybe<ImportFileHistoryBoolExp>;
 };
 
-
 /** columns and relationships of "group" */
 export type GroupSummary_Category_By_GroupsArgs = {
   distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<SummaryCategoryByGroupOrderBy>>;
   where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
 };
 
 /** columns and relationships of "group_application" */
 export type GroupApplication = {
-  __typename?: 'GroupApplication';
+  __typename?: "GroupApplication";
   /** An object relationship */
   application: Application;
-  applicationId: Scalars['uuid'];
+  applicationId: Scalars["uuid"];
   /** An object relationship */
   group: Group;
-  groupApplicationId: Scalars['uuid'];
-  groupId: Scalars['uuid'];
+  groupApplicationId: Scalars["uuid"];
+  groupId: Scalars["uuid"];
 };
 
 /** order by aggregate values of table "group_application" */
@@ -2923,11 +3219,11 @@ export type GroupApplicationOrderBy = {
 /** select columns of table "group_application" */
 export enum GroupApplicationSelectColumn {
   /** column name */
-  ApplicationId = 'applicationId',
+  ApplicationId = "applicationId",
   /** column name */
-  GroupApplicationId = 'groupApplicationId',
+  GroupApplicationId = "groupApplicationId",
   /** column name */
-  GroupId = 'groupId'
+  GroupId = "groupId",
 }
 
 /** Streaming cursor of the table "group_application" */
@@ -2940,9 +3236,9 @@ export type GroupApplicationStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type GroupApplicationStreamCursorValueInput = {
-  applicationId?: InputMaybe<Scalars['uuid']>;
-  groupApplicationId?: InputMaybe<Scalars['uuid']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
+  applicationId?: InputMaybe<Scalars["uuid"]>;
+  groupApplicationId?: InputMaybe<Scalars["uuid"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** Boolean expression to filter rows from the table "group". All fields are combined with a logical 'AND'. */
@@ -2955,8 +3251,10 @@ export type GroupBoolExp = {
   affiliations?: InputMaybe<AffiliationBoolExp>;
   categories?: InputMaybe<CategoryBoolExp>;
   creditCardDetails?: InputMaybe<CreditCardDetailBoolExp>;
+  creditCardDetailsAggregate?: InputMaybe<CreditCardDetailAggregateBoolExp>;
   credit_card_summaries?: InputMaybe<CreditCardSummaryBoolExp>;
   daily_details?: InputMaybe<DailyDetailBoolExp>;
+  daily_detailsAggregate?: InputMaybe<DailyDetailAggregateBoolExp>;
   depositCategories?: InputMaybe<DepositCategoryBoolExp>;
   exchangeItems?: InputMaybe<HelperKidsExchangeItemBoolExp>;
   genres?: InputMaybe<GenreBoolExp>;
@@ -3001,19 +3299,18 @@ export type GroupOrderBy = {
 
 /** columns and relationships of "group_role" */
 export type GroupRole = {
-  __typename?: 'GroupRole';
+  __typename?: "GroupRole";
   /** An array relationship */
   affiliations: Array<Affiliation>;
-  groupRoleId: Scalars['uuid'];
-  role: Scalars['String'];
+  groupRoleId: Scalars["uuid"];
+  role: Scalars["String"];
 };
-
 
 /** columns and relationships of "group_role" */
 export type GroupRoleAffiliationsArgs = {
   distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
   where?: InputMaybe<AffiliationBoolExp>;
 };
@@ -3038,9 +3335,9 @@ export type GroupRoleOrderBy = {
 /** select columns of table "group_role" */
 export enum GroupRoleSelectColumn {
   /** column name */
-  GroupRoleId = 'groupRoleId',
+  GroupRoleId = "groupRoleId",
   /** column name */
-  Role = 'role'
+  Role = "role",
 }
 
 /** Streaming cursor of the table "group_role" */
@@ -3053,16 +3350,16 @@ export type GroupRoleStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type GroupRoleStreamCursorValueInput = {
-  groupRoleId?: InputMaybe<Scalars['uuid']>;
-  role?: InputMaybe<Scalars['String']>;
+  groupRoleId?: InputMaybe<Scalars["uuid"]>;
+  role?: InputMaybe<Scalars["String"]>;
 };
 
 /** select columns of table "group" */
 export enum GroupSelectColumn {
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  GroupName = 'groupName'
+  GroupName = "groupName",
 }
 
 /** Streaming cursor of the table "group" */
@@ -3075,50 +3372,53 @@ export type GroupStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type GroupStreamCursorValueInput = {
-  groupId?: InputMaybe<Scalars['uuid']>;
-  groupName?: InputMaybe<Scalars['String']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  groupName?: InputMaybe<Scalars["String"]>;
 };
 
 /** 交換品マスタ */
 export type HelperKidsExchangeItem = {
-  __typename?: 'HelperKidsExchangeItem';
+  __typename?: "HelperKidsExchangeItem";
   /** ID */
-  exchangeItemId: Scalars['uuid'];
+  exchangeItemId: Scalars["uuid"];
   /** An object relationship */
   group: Group;
   /** グループID */
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
   /** An array relationship */
   helpPointExchangedAchievements: Array<HelperKidsHelpPointExchangedAchievement>;
   /** An aggregate relationship */
   helpPointExchangedAchievementsAggregate: HelperKidsHelpPointExchangedAchievementAggregate;
   /** メモ */
-  memo?: Maybe<Scalars['String']>;
+  memo?: Maybe<Scalars["String"]>;
   /** 品名 */
-  name: Scalars['String'];
+  name: Scalars["String"];
   /** 交換ポイント */
-  point: Scalars['Int'];
+  point: Scalars["Int"];
 };
-
 
 /** 交換品マスタ */
 export type HelperKidsExchangeItemHelpPointExchangedAchievementsArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
 };
-
 
 /** 交換品マスタ */
-export type HelperKidsExchangeItemHelpPointExchangedAchievementsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
-  where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
-};
+export type HelperKidsExchangeItemHelpPointExchangedAchievementsAggregateArgs =
+  {
+    distinctOn?: InputMaybe<
+      Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+    >;
+    limit?: InputMaybe<Scalars["Int"]>;
+    offset?: InputMaybe<Scalars["Int"]>;
+    orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
+    where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
+  };
 
 /** order by aggregate values of table "helper_kids.exchange_item" */
 export type HelperKidsExchangeItemAggregateOrderBy = {
@@ -3198,15 +3498,15 @@ export type HelperKidsExchangeItemOrderBy = {
 /** select columns of table "helper_kids.exchange_item" */
 export enum HelperKidsExchangeItemSelectColumn {
   /** column name */
-  ExchangeItemId = 'exchangeItemId',
+  ExchangeItemId = "exchangeItemId",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  Memo = 'memo',
+  Memo = "memo",
   /** column name */
-  Name = 'name',
+  Name = "name",
   /** column name */
-  Point = 'point'
+  Point = "point",
 }
 
 /** order by stddev() on columns of table "helper_kids.exchange_item" */
@@ -3238,15 +3538,15 @@ export type HelperKidsExchangeItemStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HelperKidsExchangeItemStreamCursorValueInput = {
   /** ID */
-  exchangeItemId?: InputMaybe<Scalars['uuid']>;
+  exchangeItemId?: InputMaybe<Scalars["uuid"]>;
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** メモ */
-  memo?: InputMaybe<Scalars['String']>;
+  memo?: InputMaybe<Scalars["String"]>;
   /** 品名 */
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars["String"]>;
   /** 交換ポイント */
-  point?: InputMaybe<Scalars['Int']>;
+  point?: InputMaybe<Scalars["Int"]>;
 };
 
 /** order by sum() on columns of table "helper_kids.exchange_item" */
@@ -3275,29 +3575,28 @@ export type HelperKidsExchangeItemVarianceOrderBy = {
 
 /** お手伝い項目マスタ */
 export type HelperKidsHelpItem = {
-  __typename?: 'HelperKidsHelpItem';
+  __typename?: "HelperKidsHelpItem";
   /** An object relationship */
   group: Group;
   /** グループID */
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
   /** ID */
-  helpItemId: Scalars['uuid'];
+  helpItemId: Scalars["uuid"];
   /** An array relationship */
   helpPointEarnedDetails: Array<HelperKidsHelpPointEarnedDetail>;
   /** メモ */
-  memo?: Maybe<Scalars['String']>;
+  memo?: Maybe<Scalars["String"]>;
   /** 項目名 */
-  name: Scalars['String'];
+  name: Scalars["String"];
   /** お手伝いポイント */
-  point: Scalars['Int'];
+  point: Scalars["Int"];
 };
-
 
 /** お手伝い項目マスタ */
 export type HelperKidsHelpItemHelpPointEarnedDetailsArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
 };
@@ -3379,15 +3678,15 @@ export type HelperKidsHelpItemOrderBy = {
 /** select columns of table "helper_kids.help_item" */
 export enum HelperKidsHelpItemSelectColumn {
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  HelpItemId = 'helpItemId',
+  HelpItemId = "helpItemId",
   /** column name */
-  Memo = 'memo',
+  Memo = "memo",
   /** column name */
-  Name = 'name',
+  Name = "name",
   /** column name */
-  Point = 'point'
+  Point = "point",
 }
 
 /** order by stddev() on columns of table "helper_kids.help_item" */
@@ -3419,15 +3718,15 @@ export type HelperKidsHelpItemStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HelperKidsHelpItemStreamCursorValueInput = {
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** ID */
-  helpItemId?: InputMaybe<Scalars['uuid']>;
+  helpItemId?: InputMaybe<Scalars["uuid"]>;
   /** メモ */
-  memo?: InputMaybe<Scalars['String']>;
+  memo?: InputMaybe<Scalars["String"]>;
   /** 項目名 */
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars["String"]>;
   /** お手伝いポイント */
-  point?: InputMaybe<Scalars['Int']>;
+  point?: InputMaybe<Scalars["Int"]>;
 };
 
 /** order by sum() on columns of table "helper_kids.help_item" */
@@ -3456,38 +3755,37 @@ export type HelperKidsHelpItemVarianceOrderBy = {
 
 /** お手伝いポイント獲得実績 */
 export type HelperKidsHelpPointEarnedAchievement = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievement';
+  __typename?: "HelperKidsHelpPointEarnedAchievement";
   /** 獲得日時 */
-  earnedDatetime: Scalars['timestamp'];
+  earnedDatetime: Scalars["timestamp"];
   /** 獲得ポイント */
-  earnedPoint: Scalars['Int'];
+  earnedPoint: Scalars["Int"];
   /** An object relationship */
   group: Group;
   /** グループID */
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
   /** ID */
-  helpPointEarnedAchievementId: Scalars['uuid'];
+  helpPointEarnedAchievementId: Scalars["uuid"];
   /** An array relationship */
   helpPointEarnedDetails: Array<HelperKidsHelpPointEarnedDetail>;
   /** An object relationship */
   helperKid: HelperKidsHelperKid;
   /** お手伝いキッズID */
-  helperKidId: Scalars['uuid'];
+  helperKidId: Scalars["uuid"];
 };
-
 
 /** お手伝いポイント獲得実績 */
 export type HelperKidsHelpPointEarnedAchievementHelpPointEarnedDetailsArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
 };
 
 /** aggregated selection of "helper_kids.help_point_earned_achievement" */
 export type HelperKidsHelpPointEarnedAchievementAggregate = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementAggregate';
+  __typename?: "HelperKidsHelpPointEarnedAchievementAggregate";
   aggregate?: Maybe<HelperKidsHelpPointEarnedAchievementAggregateFields>;
   nodes: Array<HelperKidsHelpPointEarnedAchievement>;
 };
@@ -3498,9 +3796,9 @@ export type HelperKidsHelpPointEarnedAchievementAggregateBoolExp = {
 
 /** aggregate fields of "helper_kids.help_point_earned_achievement" */
 export type HelperKidsHelpPointEarnedAchievementAggregateFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementAggregateFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementAggregateFields";
   avg?: Maybe<HelperKidsHelpPointEarnedAchievementAvgFields>;
-  count: Scalars['Int'];
+  count: Scalars["Int"];
   max?: Maybe<HelperKidsHelpPointEarnedAchievementMaxFields>;
   min?: Maybe<HelperKidsHelpPointEarnedAchievementMinFields>;
   stddev?: Maybe<HelperKidsHelpPointEarnedAchievementStddevFields>;
@@ -3512,11 +3810,10 @@ export type HelperKidsHelpPointEarnedAchievementAggregateFields = {
   variance?: Maybe<HelperKidsHelpPointEarnedAchievementVarianceFields>;
 };
 
-
 /** aggregate fields of "helper_kids.help_point_earned_achievement" */
 export type HelperKidsHelpPointEarnedAchievementAggregateFieldsCountArgs = {
   columns?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "helper_kids.help_point_earned_achievement" */
@@ -3536,9 +3833,9 @@ export type HelperKidsHelpPointEarnedAchievementAggregateOrderBy = {
 
 /** aggregate avg on columns */
 export type HelperKidsHelpPointEarnedAchievementAvgFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementAvgFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementAvgFields";
   /** 獲得ポイント */
-  earnedPoint?: Maybe<Scalars['Float']>;
+  earnedPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by avg() on columns of table "helper_kids.help_point_earned_achievement" */
@@ -3565,37 +3862,37 @@ export type HelperKidsHelpPointEarnedAchievementBoolExp = {
 /** unique or primary key constraints on table "helper_kids.help_point_earned_achievement" */
 export enum HelperKidsHelpPointEarnedAchievementConstraint {
   /** unique or primary key constraint on columns "help_point_earned_achievement_id" */
-  HelpPointEarnedAchievementPkey = 'help_point_earned_achievement_pkey'
+  HelpPointEarnedAchievementPkey = "help_point_earned_achievement_pkey",
 }
 
 /** input type for inserting data into table "helper_kids.help_point_earned_achievement" */
 export type HelperKidsHelpPointEarnedAchievementInsertInput = {
   /** 獲得日時 */
-  earnedDatetime?: InputMaybe<Scalars['timestamp']>;
+  earnedDatetime?: InputMaybe<Scalars["timestamp"]>;
   /** 獲得ポイント */
-  earnedPoint?: InputMaybe<Scalars['Int']>;
+  earnedPoint?: InputMaybe<Scalars["Int"]>;
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** ID */
-  helpPointEarnedAchievementId?: InputMaybe<Scalars['uuid']>;
+  helpPointEarnedAchievementId?: InputMaybe<Scalars["uuid"]>;
   helpPointEarnedDetails?: InputMaybe<HelperKidsHelpPointEarnedDetailArrRelInsertInput>;
   /** お手伝いキッズID */
-  helperKidId?: InputMaybe<Scalars['uuid']>;
+  helperKidId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** aggregate max on columns */
 export type HelperKidsHelpPointEarnedAchievementMaxFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementMaxFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementMaxFields";
   /** 獲得日時 */
-  earnedDatetime?: Maybe<Scalars['timestamp']>;
+  earnedDatetime?: Maybe<Scalars["timestamp"]>;
   /** 獲得ポイント */
-  earnedPoint?: Maybe<Scalars['Int']>;
+  earnedPoint?: Maybe<Scalars["Int"]>;
   /** グループID */
-  groupId?: Maybe<Scalars['uuid']>;
+  groupId?: Maybe<Scalars["uuid"]>;
   /** ID */
-  helpPointEarnedAchievementId?: Maybe<Scalars['uuid']>;
+  helpPointEarnedAchievementId?: Maybe<Scalars["uuid"]>;
   /** お手伝いキッズID */
-  helperKidId?: Maybe<Scalars['uuid']>;
+  helperKidId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "helper_kids.help_point_earned_achievement" */
@@ -3614,17 +3911,17 @@ export type HelperKidsHelpPointEarnedAchievementMaxOrderBy = {
 
 /** aggregate min on columns */
 export type HelperKidsHelpPointEarnedAchievementMinFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementMinFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementMinFields";
   /** 獲得日時 */
-  earnedDatetime?: Maybe<Scalars['timestamp']>;
+  earnedDatetime?: Maybe<Scalars["timestamp"]>;
   /** 獲得ポイント */
-  earnedPoint?: Maybe<Scalars['Int']>;
+  earnedPoint?: Maybe<Scalars["Int"]>;
   /** グループID */
-  groupId?: Maybe<Scalars['uuid']>;
+  groupId?: Maybe<Scalars["uuid"]>;
   /** ID */
-  helpPointEarnedAchievementId?: Maybe<Scalars['uuid']>;
+  helpPointEarnedAchievementId?: Maybe<Scalars["uuid"]>;
   /** お手伝いキッズID */
-  helperKidId?: Maybe<Scalars['uuid']>;
+  helperKidId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "helper_kids.help_point_earned_achievement" */
@@ -3643,9 +3940,9 @@ export type HelperKidsHelpPointEarnedAchievementMinOrderBy = {
 
 /** response of any mutation on the table "helper_kids.help_point_earned_achievement" */
 export type HelperKidsHelpPointEarnedAchievementMutationResponse = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementMutationResponse';
+  __typename?: "HelperKidsHelpPointEarnedAchievementMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<HelperKidsHelpPointEarnedAchievement>;
 };
@@ -3679,22 +3976,22 @@ export type HelperKidsHelpPointEarnedAchievementOrderBy = {
 /** select columns of table "helper_kids.help_point_earned_achievement" */
 export enum HelperKidsHelpPointEarnedAchievementSelectColumn {
   /** column name */
-  EarnedDatetime = 'earnedDatetime',
+  EarnedDatetime = "earnedDatetime",
   /** column name */
-  EarnedPoint = 'earnedPoint',
+  EarnedPoint = "earnedPoint",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  HelpPointEarnedAchievementId = 'helpPointEarnedAchievementId',
+  HelpPointEarnedAchievementId = "helpPointEarnedAchievementId",
   /** column name */
-  HelperKidId = 'helperKidId'
+  HelperKidId = "helperKidId",
 }
 
 /** aggregate stddev on columns */
 export type HelperKidsHelpPointEarnedAchievementStddevFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementStddevFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementStddevFields";
   /** 獲得ポイント */
-  earnedPoint?: Maybe<Scalars['Float']>;
+  earnedPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddev() on columns of table "helper_kids.help_point_earned_achievement" */
@@ -3705,9 +4002,9 @@ export type HelperKidsHelpPointEarnedAchievementStddevOrderBy = {
 
 /** aggregate stddevPop on columns */
 export type HelperKidsHelpPointEarnedAchievementStddevPopFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementStddevPopFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementStddevPopFields";
   /** 獲得ポイント */
-  earnedPoint?: Maybe<Scalars['Float']>;
+  earnedPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevPop() on columns of table "helper_kids.help_point_earned_achievement" */
@@ -3718,9 +4015,9 @@ export type HelperKidsHelpPointEarnedAchievementStddevPopOrderBy = {
 
 /** aggregate stddevSamp on columns */
 export type HelperKidsHelpPointEarnedAchievementStddevSampFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementStddevSampFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementStddevSampFields";
   /** 獲得ポイント */
-  earnedPoint?: Maybe<Scalars['Float']>;
+  earnedPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "helper_kids.help_point_earned_achievement" */
@@ -3740,22 +4037,22 @@ export type HelperKidsHelpPointEarnedAchievementStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HelperKidsHelpPointEarnedAchievementStreamCursorValueInput = {
   /** 獲得日時 */
-  earnedDatetime?: InputMaybe<Scalars['timestamp']>;
+  earnedDatetime?: InputMaybe<Scalars["timestamp"]>;
   /** 獲得ポイント */
-  earnedPoint?: InputMaybe<Scalars['Int']>;
+  earnedPoint?: InputMaybe<Scalars["Int"]>;
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** ID */
-  helpPointEarnedAchievementId?: InputMaybe<Scalars['uuid']>;
+  helpPointEarnedAchievementId?: InputMaybe<Scalars["uuid"]>;
   /** お手伝いキッズID */
-  helperKidId?: InputMaybe<Scalars['uuid']>;
+  helperKidId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** aggregate sum on columns */
 export type HelperKidsHelpPointEarnedAchievementSumFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementSumFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementSumFields";
   /** 獲得ポイント */
-  earnedPoint?: Maybe<Scalars['Int']>;
+  earnedPoint?: Maybe<Scalars["Int"]>;
 };
 
 /** order by sum() on columns of table "helper_kids.help_point_earned_achievement" */
@@ -3767,14 +4064,14 @@ export type HelperKidsHelpPointEarnedAchievementSumOrderBy = {
 /** placeholder for update columns of table "helper_kids.help_point_earned_achievement" (current role has no relevant permissions) */
 export enum HelperKidsHelpPointEarnedAchievementUpdateColumn {
   /** placeholder (do not use) */
-  Placeholder = '_PLACEHOLDER'
+  Placeholder = "_PLACEHOLDER",
 }
 
 /** aggregate varPop on columns */
 export type HelperKidsHelpPointEarnedAchievementVarPopFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementVarPopFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementVarPopFields";
   /** 獲得ポイント */
-  earnedPoint?: Maybe<Scalars['Float']>;
+  earnedPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by varPop() on columns of table "helper_kids.help_point_earned_achievement" */
@@ -3785,9 +4082,9 @@ export type HelperKidsHelpPointEarnedAchievementVarPopOrderBy = {
 
 /** aggregate varSamp on columns */
 export type HelperKidsHelpPointEarnedAchievementVarSampFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementVarSampFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementVarSampFields";
   /** 獲得ポイント */
-  earnedPoint?: Maybe<Scalars['Float']>;
+  earnedPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by varSamp() on columns of table "helper_kids.help_point_earned_achievement" */
@@ -3798,9 +4095,9 @@ export type HelperKidsHelpPointEarnedAchievementVarSampOrderBy = {
 
 /** aggregate variance on columns */
 export type HelperKidsHelpPointEarnedAchievementVarianceFields = {
-  __typename?: 'HelperKidsHelpPointEarnedAchievementVarianceFields';
+  __typename?: "HelperKidsHelpPointEarnedAchievementVarianceFields";
   /** 獲得ポイント */
-  earnedPoint?: Maybe<Scalars['Float']>;
+  earnedPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "helper_kids.help_point_earned_achievement" */
@@ -3811,25 +4108,25 @@ export type HelperKidsHelpPointEarnedAchievementVarianceOrderBy = {
 
 /** お手伝いポイント獲得明細 */
 export type HelperKidsHelpPointEarnedDetail = {
-  __typename?: 'HelperKidsHelpPointEarnedDetail';
+  __typename?: "HelperKidsHelpPointEarnedDetail";
   /** 獲得実績ID */
-  earnedAchievementId: Scalars['uuid'];
+  earnedAchievementId: Scalars["uuid"];
   /** An object relationship */
   group: Group;
   /** グループID */
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
   /** An object relationship */
   helpItem: HelperKidsHelpItem;
   /** お手伝い項目件数 */
-  helpItemCount: Scalars['Int'];
+  helpItemCount: Scalars["Int"];
   /** お手伝い項目ID */
-  helpItemId: Scalars['uuid'];
+  helpItemId: Scalars["uuid"];
   /** お手伝い項目合計ポイント */
-  helpItemTotalPoint: Scalars['Int'];
+  helpItemTotalPoint: Scalars["Int"];
   /** An object relationship */
   helpPointEarnedAchievement: HelperKidsHelpPointEarnedAchievement;
   /** ID */
-  helpPointEarnedDetailId: Scalars['uuid'];
+  helpPointEarnedDetailId: Scalars["uuid"];
 };
 
 /** order by aggregate values of table "helper_kids.help_point_earned_detail" */
@@ -3881,24 +4178,24 @@ export type HelperKidsHelpPointEarnedDetailBoolExp = {
 /** unique or primary key constraints on table "helper_kids.help_point_earned_detail" */
 export enum HelperKidsHelpPointEarnedDetailConstraint {
   /** unique or primary key constraint on columns "help_point_earned_detail_id" */
-  HelpPointEarnedDetailPkey = 'help_point_earned_detail_pkey'
+  HelpPointEarnedDetailPkey = "help_point_earned_detail_pkey",
 }
 
 /** input type for inserting data into table "helper_kids.help_point_earned_detail" */
 export type HelperKidsHelpPointEarnedDetailInsertInput = {
   /** 獲得実績ID */
-  earnedAchievementId?: InputMaybe<Scalars['uuid']>;
+  earnedAchievementId?: InputMaybe<Scalars["uuid"]>;
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** お手伝い項目件数 */
-  helpItemCount?: InputMaybe<Scalars['Int']>;
+  helpItemCount?: InputMaybe<Scalars["Int"]>;
   /** お手伝い項目ID */
-  helpItemId?: InputMaybe<Scalars['uuid']>;
+  helpItemId?: InputMaybe<Scalars["uuid"]>;
   /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: InputMaybe<Scalars['Int']>;
+  helpItemTotalPoint?: InputMaybe<Scalars["Int"]>;
   helpPointEarnedAchievement?: InputMaybe<HelperKidsHelpPointEarnedAchievementObjRelInsertInput>;
   /** ID */
-  helpPointEarnedDetailId?: InputMaybe<Scalars['uuid']>;
+  helpPointEarnedDetailId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "helper_kids.help_point_earned_detail" */
@@ -3935,9 +4232,9 @@ export type HelperKidsHelpPointEarnedDetailMinOrderBy = {
 
 /** response of any mutation on the table "helper_kids.help_point_earned_detail" */
 export type HelperKidsHelpPointEarnedDetailMutationResponse = {
-  __typename?: 'HelperKidsHelpPointEarnedDetailMutationResponse';
+  __typename?: "HelperKidsHelpPointEarnedDetailMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<HelperKidsHelpPointEarnedDetail>;
 };
@@ -3965,17 +4262,17 @@ export type HelperKidsHelpPointEarnedDetailOrderBy = {
 /** select columns of table "helper_kids.help_point_earned_detail" */
 export enum HelperKidsHelpPointEarnedDetailSelectColumn {
   /** column name */
-  EarnedAchievementId = 'earnedAchievementId',
+  EarnedAchievementId = "earnedAchievementId",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  HelpItemCount = 'helpItemCount',
+  HelpItemCount = "helpItemCount",
   /** column name */
-  HelpItemId = 'helpItemId',
+  HelpItemId = "helpItemId",
   /** column name */
-  HelpItemTotalPoint = 'helpItemTotalPoint',
+  HelpItemTotalPoint = "helpItemTotalPoint",
   /** column name */
-  HelpPointEarnedDetailId = 'helpPointEarnedDetailId'
+  HelpPointEarnedDetailId = "helpPointEarnedDetailId",
 }
 
 /** order by stddev() on columns of table "helper_kids.help_point_earned_detail" */
@@ -4013,17 +4310,17 @@ export type HelperKidsHelpPointEarnedDetailStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HelperKidsHelpPointEarnedDetailStreamCursorValueInput = {
   /** 獲得実績ID */
-  earnedAchievementId?: InputMaybe<Scalars['uuid']>;
+  earnedAchievementId?: InputMaybe<Scalars["uuid"]>;
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** お手伝い項目件数 */
-  helpItemCount?: InputMaybe<Scalars['Int']>;
+  helpItemCount?: InputMaybe<Scalars["Int"]>;
   /** お手伝い項目ID */
-  helpItemId?: InputMaybe<Scalars['uuid']>;
+  helpItemId?: InputMaybe<Scalars["uuid"]>;
   /** お手伝い項目合計ポイント */
-  helpItemTotalPoint?: InputMaybe<Scalars['Int']>;
+  helpItemTotalPoint?: InputMaybe<Scalars["Int"]>;
   /** ID */
-  helpPointEarnedDetailId?: InputMaybe<Scalars['uuid']>;
+  helpPointEarnedDetailId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** order by sum() on columns of table "helper_kids.help_point_earned_detail" */
@@ -4037,7 +4334,7 @@ export type HelperKidsHelpPointEarnedDetailSumOrderBy = {
 /** placeholder for update columns of table "helper_kids.help_point_earned_detail" (current role has no relevant permissions) */
 export enum HelperKidsHelpPointEarnedDetailUpdateColumn {
   /** placeholder (do not use) */
-  Placeholder = '_PLACEHOLDER'
+  Placeholder = "_PLACEHOLDER",
 }
 
 /** order by varPop() on columns of table "helper_kids.help_point_earned_detail" */
@@ -4066,32 +4363,32 @@ export type HelperKidsHelpPointEarnedDetailVarianceOrderBy = {
 
 /** お手伝いポイント交換実績 */
 export type HelperKidsHelpPointExchangedAchievement = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievement';
+  __typename?: "HelperKidsHelpPointExchangedAchievement";
   /** 交換件数 */
-  exchangeCount: Scalars['Int'];
+  exchangeCount: Scalars["Int"];
   /** An object relationship */
   exchangeItem: HelperKidsExchangeItem;
   /** 交換品ID */
-  exchangeItemId: Scalars['uuid'];
+  exchangeItemId: Scalars["uuid"];
   /** 交換合計ポイント */
-  exchangeTotalPoint: Scalars['Int'];
+  exchangeTotalPoint: Scalars["Int"];
   /** 交換日時 */
-  exchangedDatetime: Scalars['timestamp'];
+  exchangedDatetime: Scalars["timestamp"];
   /** An object relationship */
   group: Group;
   /** グループID */
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
   /** ID */
-  helpPointExchangedAchievementId: Scalars['uuid'];
+  helpPointExchangedAchievementId: Scalars["uuid"];
   /** An object relationship */
   helperKid: HelperKidsHelperKid;
   /** お手伝いキッズID */
-  helperKidId: Scalars['uuid'];
+  helperKidId: Scalars["uuid"];
 };
 
 /** aggregated selection of "helper_kids.help_point_exchanged_achievement" */
 export type HelperKidsHelpPointExchangedAchievementAggregate = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementAggregate';
+  __typename?: "HelperKidsHelpPointExchangedAchievementAggregate";
   aggregate?: Maybe<HelperKidsHelpPointExchangedAchievementAggregateFields>;
   nodes: Array<HelperKidsHelpPointExchangedAchievement>;
 };
@@ -4102,9 +4399,9 @@ export type HelperKidsHelpPointExchangedAchievementAggregateBoolExp = {
 
 /** aggregate fields of "helper_kids.help_point_exchanged_achievement" */
 export type HelperKidsHelpPointExchangedAchievementAggregateFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementAggregateFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementAggregateFields";
   avg?: Maybe<HelperKidsHelpPointExchangedAchievementAvgFields>;
-  count: Scalars['Int'];
+  count: Scalars["Int"];
   max?: Maybe<HelperKidsHelpPointExchangedAchievementMaxFields>;
   min?: Maybe<HelperKidsHelpPointExchangedAchievementMinFields>;
   stddev?: Maybe<HelperKidsHelpPointExchangedAchievementStddevFields>;
@@ -4116,11 +4413,12 @@ export type HelperKidsHelpPointExchangedAchievementAggregateFields = {
   variance?: Maybe<HelperKidsHelpPointExchangedAchievementVarianceFields>;
 };
 
-
 /** aggregate fields of "helper_kids.help_point_exchanged_achievement" */
 export type HelperKidsHelpPointExchangedAchievementAggregateFieldsCountArgs = {
-  columns?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  columns?: InputMaybe<
+    Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+  >;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** order by aggregate values of table "helper_kids.help_point_exchanged_achievement" */
@@ -4140,11 +4438,11 @@ export type HelperKidsHelpPointExchangedAchievementAggregateOrderBy = {
 
 /** aggregate avg on columns */
 export type HelperKidsHelpPointExchangedAchievementAvgFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementAvgFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementAvgFields";
   /** 交換件数 */
-  exchangeCount?: Maybe<Scalars['Float']>;
+  exchangeCount?: Maybe<Scalars["Float"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: Maybe<Scalars['Float']>;
+  exchangeTotalPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by avg() on columns of table "helper_kids.help_point_exchanged_achievement" */
@@ -4175,44 +4473,44 @@ export type HelperKidsHelpPointExchangedAchievementBoolExp = {
 /** unique or primary key constraints on table "helper_kids.help_point_exchanged_achievement" */
 export enum HelperKidsHelpPointExchangedAchievementConstraint {
   /** unique or primary key constraint on columns "help_point_exchanged_achievement_id" */
-  HelpPointExchangedAchievementPkey = 'help_point_exchanged_achievement_pkey'
+  HelpPointExchangedAchievementPkey = "help_point_exchanged_achievement_pkey",
 }
 
 /** input type for inserting data into table "helper_kids.help_point_exchanged_achievement" */
 export type HelperKidsHelpPointExchangedAchievementInsertInput = {
   /** 交換件数 */
-  exchangeCount?: InputMaybe<Scalars['Int']>;
+  exchangeCount?: InputMaybe<Scalars["Int"]>;
   /** 交換品ID */
-  exchangeItemId?: InputMaybe<Scalars['uuid']>;
+  exchangeItemId?: InputMaybe<Scalars["uuid"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: InputMaybe<Scalars['Int']>;
+  exchangeTotalPoint?: InputMaybe<Scalars["Int"]>;
   /** 交換日時 */
-  exchangedDatetime?: InputMaybe<Scalars['timestamp']>;
+  exchangedDatetime?: InputMaybe<Scalars["timestamp"]>;
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** ID */
-  helpPointExchangedAchievementId?: InputMaybe<Scalars['uuid']>;
+  helpPointExchangedAchievementId?: InputMaybe<Scalars["uuid"]>;
   /** お手伝いキッズID */
-  helperKidId?: InputMaybe<Scalars['uuid']>;
+  helperKidId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** aggregate max on columns */
 export type HelperKidsHelpPointExchangedAchievementMaxFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementMaxFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementMaxFields";
   /** 交換件数 */
-  exchangeCount?: Maybe<Scalars['Int']>;
+  exchangeCount?: Maybe<Scalars["Int"]>;
   /** 交換品ID */
-  exchangeItemId?: Maybe<Scalars['uuid']>;
+  exchangeItemId?: Maybe<Scalars["uuid"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: Maybe<Scalars['Int']>;
+  exchangeTotalPoint?: Maybe<Scalars["Int"]>;
   /** 交換日時 */
-  exchangedDatetime?: Maybe<Scalars['timestamp']>;
+  exchangedDatetime?: Maybe<Scalars["timestamp"]>;
   /** グループID */
-  groupId?: Maybe<Scalars['uuid']>;
+  groupId?: Maybe<Scalars["uuid"]>;
   /** ID */
-  helpPointExchangedAchievementId?: Maybe<Scalars['uuid']>;
+  helpPointExchangedAchievementId?: Maybe<Scalars["uuid"]>;
   /** お手伝いキッズID */
-  helperKidId?: Maybe<Scalars['uuid']>;
+  helperKidId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "helper_kids.help_point_exchanged_achievement" */
@@ -4235,21 +4533,21 @@ export type HelperKidsHelpPointExchangedAchievementMaxOrderBy = {
 
 /** aggregate min on columns */
 export type HelperKidsHelpPointExchangedAchievementMinFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementMinFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementMinFields";
   /** 交換件数 */
-  exchangeCount?: Maybe<Scalars['Int']>;
+  exchangeCount?: Maybe<Scalars["Int"]>;
   /** 交換品ID */
-  exchangeItemId?: Maybe<Scalars['uuid']>;
+  exchangeItemId?: Maybe<Scalars["uuid"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: Maybe<Scalars['Int']>;
+  exchangeTotalPoint?: Maybe<Scalars["Int"]>;
   /** 交換日時 */
-  exchangedDatetime?: Maybe<Scalars['timestamp']>;
+  exchangedDatetime?: Maybe<Scalars["timestamp"]>;
   /** グループID */
-  groupId?: Maybe<Scalars['uuid']>;
+  groupId?: Maybe<Scalars["uuid"]>;
   /** ID */
-  helpPointExchangedAchievementId?: Maybe<Scalars['uuid']>;
+  helpPointExchangedAchievementId?: Maybe<Scalars["uuid"]>;
   /** お手伝いキッズID */
-  helperKidId?: Maybe<Scalars['uuid']>;
+  helperKidId?: Maybe<Scalars["uuid"]>;
 };
 
 /** order by min() on columns of table "helper_kids.help_point_exchanged_achievement" */
@@ -4272,9 +4570,9 @@ export type HelperKidsHelpPointExchangedAchievementMinOrderBy = {
 
 /** response of any mutation on the table "helper_kids.help_point_exchanged_achievement" */
 export type HelperKidsHelpPointExchangedAchievementMutationResponse = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementMutationResponse';
+  __typename?: "HelperKidsHelpPointExchangedAchievementMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<HelperKidsHelpPointExchangedAchievement>;
 };
@@ -4303,28 +4601,28 @@ export type HelperKidsHelpPointExchangedAchievementOrderBy = {
 /** select columns of table "helper_kids.help_point_exchanged_achievement" */
 export enum HelperKidsHelpPointExchangedAchievementSelectColumn {
   /** column name */
-  ExchangeCount = 'exchangeCount',
+  ExchangeCount = "exchangeCount",
   /** column name */
-  ExchangeItemId = 'exchangeItemId',
+  ExchangeItemId = "exchangeItemId",
   /** column name */
-  ExchangeTotalPoint = 'exchangeTotalPoint',
+  ExchangeTotalPoint = "exchangeTotalPoint",
   /** column name */
-  ExchangedDatetime = 'exchangedDatetime',
+  ExchangedDatetime = "exchangedDatetime",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  HelpPointExchangedAchievementId = 'helpPointExchangedAchievementId',
+  HelpPointExchangedAchievementId = "helpPointExchangedAchievementId",
   /** column name */
-  HelperKidId = 'helperKidId'
+  HelperKidId = "helperKidId",
 }
 
 /** aggregate stddev on columns */
 export type HelperKidsHelpPointExchangedAchievementStddevFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementStddevFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementStddevFields";
   /** 交換件数 */
-  exchangeCount?: Maybe<Scalars['Float']>;
+  exchangeCount?: Maybe<Scalars["Float"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: Maybe<Scalars['Float']>;
+  exchangeTotalPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddev() on columns of table "helper_kids.help_point_exchanged_achievement" */
@@ -4337,11 +4635,11 @@ export type HelperKidsHelpPointExchangedAchievementStddevOrderBy = {
 
 /** aggregate stddevPop on columns */
 export type HelperKidsHelpPointExchangedAchievementStddevPopFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementStddevPopFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementStddevPopFields";
   /** 交換件数 */
-  exchangeCount?: Maybe<Scalars['Float']>;
+  exchangeCount?: Maybe<Scalars["Float"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: Maybe<Scalars['Float']>;
+  exchangeTotalPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevPop() on columns of table "helper_kids.help_point_exchanged_achievement" */
@@ -4354,11 +4652,11 @@ export type HelperKidsHelpPointExchangedAchievementStddevPopOrderBy = {
 
 /** aggregate stddevSamp on columns */
 export type HelperKidsHelpPointExchangedAchievementStddevSampFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementStddevSampFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementStddevSampFields";
   /** 交換件数 */
-  exchangeCount?: Maybe<Scalars['Float']>;
+  exchangeCount?: Maybe<Scalars["Float"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: Maybe<Scalars['Float']>;
+  exchangeTotalPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by stddevSamp() on columns of table "helper_kids.help_point_exchanged_achievement" */
@@ -4380,28 +4678,28 @@ export type HelperKidsHelpPointExchangedAchievementStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HelperKidsHelpPointExchangedAchievementStreamCursorValueInput = {
   /** 交換件数 */
-  exchangeCount?: InputMaybe<Scalars['Int']>;
+  exchangeCount?: InputMaybe<Scalars["Int"]>;
   /** 交換品ID */
-  exchangeItemId?: InputMaybe<Scalars['uuid']>;
+  exchangeItemId?: InputMaybe<Scalars["uuid"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: InputMaybe<Scalars['Int']>;
+  exchangeTotalPoint?: InputMaybe<Scalars["Int"]>;
   /** 交換日時 */
-  exchangedDatetime?: InputMaybe<Scalars['timestamp']>;
+  exchangedDatetime?: InputMaybe<Scalars["timestamp"]>;
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** ID */
-  helpPointExchangedAchievementId?: InputMaybe<Scalars['uuid']>;
+  helpPointExchangedAchievementId?: InputMaybe<Scalars["uuid"]>;
   /** お手伝いキッズID */
-  helperKidId?: InputMaybe<Scalars['uuid']>;
+  helperKidId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** aggregate sum on columns */
 export type HelperKidsHelpPointExchangedAchievementSumFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementSumFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementSumFields";
   /** 交換件数 */
-  exchangeCount?: Maybe<Scalars['Int']>;
+  exchangeCount?: Maybe<Scalars["Int"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: Maybe<Scalars['Int']>;
+  exchangeTotalPoint?: Maybe<Scalars["Int"]>;
 };
 
 /** order by sum() on columns of table "helper_kids.help_point_exchanged_achievement" */
@@ -4415,16 +4713,16 @@ export type HelperKidsHelpPointExchangedAchievementSumOrderBy = {
 /** placeholder for update columns of table "helper_kids.help_point_exchanged_achievement" (current role has no relevant permissions) */
 export enum HelperKidsHelpPointExchangedAchievementUpdateColumn {
   /** placeholder (do not use) */
-  Placeholder = '_PLACEHOLDER'
+  Placeholder = "_PLACEHOLDER",
 }
 
 /** aggregate varPop on columns */
 export type HelperKidsHelpPointExchangedAchievementVarPopFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementVarPopFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementVarPopFields";
   /** 交換件数 */
-  exchangeCount?: Maybe<Scalars['Float']>;
+  exchangeCount?: Maybe<Scalars["Float"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: Maybe<Scalars['Float']>;
+  exchangeTotalPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by varPop() on columns of table "helper_kids.help_point_exchanged_achievement" */
@@ -4437,11 +4735,11 @@ export type HelperKidsHelpPointExchangedAchievementVarPopOrderBy = {
 
 /** aggregate varSamp on columns */
 export type HelperKidsHelpPointExchangedAchievementVarSampFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementVarSampFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementVarSampFields";
   /** 交換件数 */
-  exchangeCount?: Maybe<Scalars['Float']>;
+  exchangeCount?: Maybe<Scalars["Float"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: Maybe<Scalars['Float']>;
+  exchangeTotalPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by varSamp() on columns of table "helper_kids.help_point_exchanged_achievement" */
@@ -4454,11 +4752,11 @@ export type HelperKidsHelpPointExchangedAchievementVarSampOrderBy = {
 
 /** aggregate variance on columns */
 export type HelperKidsHelpPointExchangedAchievementVarianceFields = {
-  __typename?: 'HelperKidsHelpPointExchangedAchievementVarianceFields';
+  __typename?: "HelperKidsHelpPointExchangedAchievementVarianceFields";
   /** 交換件数 */
-  exchangeCount?: Maybe<Scalars['Float']>;
+  exchangeCount?: Maybe<Scalars["Float"]>;
   /** 交換合計ポイント */
-  exchangeTotalPoint?: Maybe<Scalars['Float']>;
+  exchangeTotalPoint?: Maybe<Scalars["Float"]>;
 };
 
 /** order by variance() on columns of table "helper_kids.help_point_exchanged_achievement" */
@@ -4471,11 +4769,11 @@ export type HelperKidsHelpPointExchangedAchievementVarianceOrderBy = {
 
 /** お手伝いキッズマスタ */
 export type HelperKidsHelperKid = {
-  __typename?: 'HelperKidsHelperKid';
+  __typename?: "HelperKidsHelperKid";
   /** An object relationship */
   group: Group;
   /** グループID */
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
   /** An array relationship */
   helpPointEarnedAchievements: Array<HelperKidsHelpPointEarnedAchievement>;
   /** An aggregate relationship */
@@ -4485,63 +4783,66 @@ export type HelperKidsHelperKid = {
   /** An aggregate relationship */
   helpPointExchangedAchievementsAggregate: HelperKidsHelpPointExchangedAchievementAggregate;
   /** ID */
-  helperKidId: Scalars['uuid'];
+  helperKidId: Scalars["uuid"];
   /** An array relationship */
   helperKidParents: Array<HelperKidsHelperKidParent>;
   /** An object relationship */
   helperKidPoint?: Maybe<HelperKidsHelperKidPoint>;
   /** 氏名 */
-  name: Scalars['String'];
+  name: Scalars["String"];
   /** 名前 接尾辞 */
-  nameSuffix: Scalars['String'];
+  nameSuffix: Scalars["String"];
 };
-
 
 /** お手伝いキッズマスタ */
 export type HelperKidsHelperKidHelpPointEarnedAchievementsArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointEarnedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
 };
-
 
 /** お手伝いキッズマスタ */
 export type HelperKidsHelperKidHelpPointEarnedAchievementsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointEarnedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
 };
 
-
 /** お手伝いキッズマスタ */
 export type HelperKidsHelperKidHelpPointExchangedAchievementsArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
 };
-
 
 /** お手伝いキッズマスタ */
 export type HelperKidsHelperKidHelpPointExchangedAchievementsAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
 };
-
 
 /** お手伝いキッズマスタ */
 export type HelperKidsHelperKidHelperKidParentsArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelperKidParentOrderBy>>;
   where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
 };
@@ -4610,12 +4911,12 @@ export type HelperKidsHelperKidOrderBy = {
 
 /** columns and relationships of "helper_kids.helper_kid_parent" */
 export type HelperKidsHelperKidParent = {
-  __typename?: 'HelperKidsHelperKidParent';
+  __typename?: "HelperKidsHelperKidParent";
   /** An object relationship */
   helperKid: HelperKidsHelperKid;
-  helperKidId: Scalars['uuid'];
-  helperKidParentId: Scalars['uuid'];
-  parentUserId: Scalars['uuid'];
+  helperKidId: Scalars["uuid"];
+  helperKidParentId: Scalars["uuid"];
+  parentUserId: Scalars["uuid"];
   /** An object relationship */
   user: User;
 };
@@ -4665,11 +4966,11 @@ export type HelperKidsHelperKidParentOrderBy = {
 /** select columns of table "helper_kids.helper_kid_parent" */
 export enum HelperKidsHelperKidParentSelectColumn {
   /** column name */
-  HelperKidId = 'helperKidId',
+  HelperKidId = "helperKidId",
   /** column name */
-  HelperKidParentId = 'helperKidParentId',
+  HelperKidParentId = "helperKidParentId",
   /** column name */
-  ParentUserId = 'parentUserId'
+  ParentUserId = "parentUserId",
 }
 
 /** Streaming cursor of the table "helper_kids_helper_kid_parent" */
@@ -4682,22 +4983,22 @@ export type HelperKidsHelperKidParentStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type HelperKidsHelperKidParentStreamCursorValueInput = {
-  helperKidId?: InputMaybe<Scalars['uuid']>;
-  helperKidParentId?: InputMaybe<Scalars['uuid']>;
-  parentUserId?: InputMaybe<Scalars['uuid']>;
+  helperKidId?: InputMaybe<Scalars["uuid"]>;
+  helperKidParentId?: InputMaybe<Scalars["uuid"]>;
+  parentUserId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** お手伝いキッズポイント */
 export type HelperKidsHelperKidPoint = {
-  __typename?: 'HelperKidsHelperKidPoint';
+  __typename?: "HelperKidsHelperKidPoint";
   /** An object relationship */
   helperKid: HelperKidsHelperKid;
   /** お手伝いキッズID */
-  helperKidId: Scalars['uuid'];
+  helperKidId: Scalars["uuid"];
   /** 最後のお手伝い日時 */
-  lastHelpDatetime: Scalars['timestamp'];
+  lastHelpDatetime: Scalars["timestamp"];
   /** ポイント */
-  point: Scalars['Int'];
+  point: Scalars["Int"];
 };
 
 /** Boolean expression to filter rows from the table "helper_kids.helper_kid_point". All fields are combined with a logical 'AND'. */
@@ -4722,11 +5023,11 @@ export type HelperKidsHelperKidPointOrderBy = {
 /** select columns of table "helper_kids.helper_kid_point" */
 export enum HelperKidsHelperKidPointSelectColumn {
   /** column name */
-  HelperKidId = 'helperKidId',
+  HelperKidId = "helperKidId",
   /** column name */
-  LastHelpDatetime = 'lastHelpDatetime',
+  LastHelpDatetime = "lastHelpDatetime",
   /** column name */
-  Point = 'point'
+  Point = "point",
 }
 
 /** Streaming cursor of the table "helper_kids_helper_kid_point" */
@@ -4740,23 +5041,23 @@ export type HelperKidsHelperKidPointStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HelperKidsHelperKidPointStreamCursorValueInput = {
   /** お手伝いキッズID */
-  helperKidId?: InputMaybe<Scalars['uuid']>;
+  helperKidId?: InputMaybe<Scalars["uuid"]>;
   /** 最後のお手伝い日時 */
-  lastHelpDatetime?: InputMaybe<Scalars['timestamp']>;
+  lastHelpDatetime?: InputMaybe<Scalars["timestamp"]>;
   /** ポイント */
-  point?: InputMaybe<Scalars['Int']>;
+  point?: InputMaybe<Scalars["Int"]>;
 };
 
 /** select columns of table "helper_kids.helper_kid" */
 export enum HelperKidsHelperKidSelectColumn {
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  HelperKidId = 'helperKidId',
+  HelperKidId = "helperKidId",
   /** column name */
-  Name = 'name',
+  Name = "name",
   /** column name */
-  NameSuffix = 'nameSuffix'
+  NameSuffix = "nameSuffix",
 }
 
 /** Streaming cursor of the table "helper_kids_helper_kid" */
@@ -4770,28 +5071,28 @@ export type HelperKidsHelperKidStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type HelperKidsHelperKidStreamCursorValueInput = {
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** ID */
-  helperKidId?: InputMaybe<Scalars['uuid']>;
+  helperKidId?: InputMaybe<Scalars["uuid"]>;
   /** 氏名 */
-  name?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars["String"]>;
   /** 名前 接尾辞 */
-  nameSuffix?: InputMaybe<Scalars['String']>;
+  nameSuffix?: InputMaybe<Scalars["String"]>;
 };
 
 /** columns and relationships of "import_file_history" */
 export type ImportFileHistory = {
-  __typename?: 'ImportFileHistory';
+  __typename?: "ImportFileHistory";
   /** An object relationship */
   credit_card_summary?: Maybe<CreditCardSummary>;
-  fileName: Scalars['String'];
-  fileType: Scalars['String'];
+  fileName: Scalars["String"];
+  fileType: Scalars["String"];
   /** An object relationship */
   group: Group;
-  groupId: Scalars['uuid'];
-  id: Scalars['uuid'];
-  importDatetime: Scalars['timestamp'];
-  importUserId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
+  id: Scalars["uuid"];
+  importDatetime: Scalars["timestamp"];
+  importUserId: Scalars["uuid"];
   /** An object relationship */
   user: User;
 };
@@ -4829,18 +5130,18 @@ export type ImportFileHistoryBoolExp = {
 /** unique or primary key constraints on table "import_file_history" */
 export enum ImportFileHistoryConstraint {
   /** unique or primary key constraint on columns "id" */
-  ImportFileHistoryPkey = 'import_file_history_pkey'
+  ImportFileHistoryPkey = "import_file_history_pkey",
 }
 
 /** input type for inserting data into table "import_file_history" */
 export type ImportFileHistoryInsertInput = {
   credit_card_summary?: InputMaybe<CreditCardSummaryObjRelInsertInput>;
-  fileName?: InputMaybe<Scalars['String']>;
-  fileType?: InputMaybe<Scalars['String']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  importDatetime?: InputMaybe<Scalars['timestamp']>;
-  importUserId?: InputMaybe<Scalars['uuid']>;
+  fileName?: InputMaybe<Scalars["String"]>;
+  fileType?: InputMaybe<Scalars["String"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  importDatetime?: InputMaybe<Scalars["timestamp"]>;
+  importUserId?: InputMaybe<Scalars["uuid"]>;
   user?: InputMaybe<UserObjRelInsertInput>;
 };
 
@@ -4866,9 +5167,9 @@ export type ImportFileHistoryMinOrderBy = {
 
 /** response of any mutation on the table "import_file_history" */
 export type ImportFileHistoryMutationResponse = {
-  __typename?: 'ImportFileHistoryMutationResponse';
+  __typename?: "ImportFileHistoryMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<ImportFileHistory>;
 };
@@ -4903,17 +5204,17 @@ export type ImportFileHistoryOrderBy = {
 /** select columns of table "import_file_history" */
 export enum ImportFileHistorySelectColumn {
   /** column name */
-  FileName = 'fileName',
+  FileName = "fileName",
   /** column name */
-  FileType = 'fileType',
+  FileType = "fileType",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  Id = 'id',
+  Id = "id",
   /** column name */
-  ImportDatetime = 'importDatetime',
+  ImportDatetime = "importDatetime",
   /** column name */
-  ImportUserId = 'importUserId'
+  ImportUserId = "importUserId",
 }
 
 /** Streaming cursor of the table "import_file_history" */
@@ -4926,119 +5227,119 @@ export type ImportFileHistoryStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type ImportFileHistoryStreamCursorValueInput = {
-  fileName?: InputMaybe<Scalars['String']>;
-  fileType?: InputMaybe<Scalars['String']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  importDatetime?: InputMaybe<Scalars['timestamp']>;
-  importUserId?: InputMaybe<Scalars['uuid']>;
+  fileName?: InputMaybe<Scalars["String"]>;
+  fileType?: InputMaybe<Scalars["String"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
+  importDatetime?: InputMaybe<Scalars["timestamp"]>;
+  importUserId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** placeholder for update columns of table "import_file_history" (current role has no relevant permissions) */
 export enum ImportFileHistoryUpdateColumn {
   /** placeholder (do not use) */
-  Placeholder = '_PLACEHOLDER'
+  Placeholder = "_PLACEHOLDER",
 }
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type IntComparisonExp = {
-  _eq?: InputMaybe<Scalars['Int']>;
-  _gt?: InputMaybe<Scalars['Int']>;
-  _gte?: InputMaybe<Scalars['Int']>;
-  _in?: InputMaybe<Array<Scalars['Int']>>;
-  _isNull?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['Int']>;
-  _lte?: InputMaybe<Scalars['Int']>;
-  _neq?: InputMaybe<Scalars['Int']>;
-  _nin?: InputMaybe<Array<Scalars['Int']>>;
+  _eq?: InputMaybe<Scalars["Int"]>;
+  _gt?: InputMaybe<Scalars["Int"]>;
+  _gte?: InputMaybe<Scalars["Int"]>;
+  _in?: InputMaybe<Array<Scalars["Int"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["Int"]>;
+  _lte?: InputMaybe<Scalars["Int"]>;
+  _neq?: InputMaybe<Scalars["Int"]>;
+  _nin?: InputMaybe<Array<Scalars["Int"]>>;
 };
 
 /** Boolean expression to compare columns of type "iocome_type". All fields are combined with logical 'AND'. */
 export type IocomeTypeComparisonExp = {
-  _eq?: InputMaybe<Scalars['iocome_type']>;
-  _gt?: InputMaybe<Scalars['iocome_type']>;
-  _gte?: InputMaybe<Scalars['iocome_type']>;
-  _in?: InputMaybe<Array<Scalars['iocome_type']>>;
-  _isNull?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['iocome_type']>;
-  _lte?: InputMaybe<Scalars['iocome_type']>;
-  _neq?: InputMaybe<Scalars['iocome_type']>;
-  _nin?: InputMaybe<Array<Scalars['iocome_type']>>;
+  _eq?: InputMaybe<Scalars["iocome_type"]>;
+  _gt?: InputMaybe<Scalars["iocome_type"]>;
+  _gte?: InputMaybe<Scalars["iocome_type"]>;
+  _in?: InputMaybe<Array<Scalars["iocome_type"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["iocome_type"]>;
+  _lte?: InputMaybe<Scalars["iocome_type"]>;
+  _neq?: InputMaybe<Scalars["iocome_type"]>;
+  _nin?: InputMaybe<Array<Scalars["iocome_type"]>>;
 };
 
 /** Boolean expression to compare columns of type "numeric". All fields are combined with logical 'AND'. */
 export type NumericComparisonExp = {
-  _eq?: InputMaybe<Scalars['numeric']>;
-  _gt?: InputMaybe<Scalars['numeric']>;
-  _gte?: InputMaybe<Scalars['numeric']>;
-  _in?: InputMaybe<Array<Scalars['numeric']>>;
-  _isNull?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['numeric']>;
-  _lte?: InputMaybe<Scalars['numeric']>;
-  _neq?: InputMaybe<Scalars['numeric']>;
-  _nin?: InputMaybe<Array<Scalars['numeric']>>;
+  _eq?: InputMaybe<Scalars["numeric"]>;
+  _gt?: InputMaybe<Scalars["numeric"]>;
+  _gte?: InputMaybe<Scalars["numeric"]>;
+  _in?: InputMaybe<Array<Scalars["numeric"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["numeric"]>;
+  _lte?: InputMaybe<Scalars["numeric"]>;
+  _neq?: InputMaybe<Scalars["numeric"]>;
+  _nin?: InputMaybe<Array<Scalars["numeric"]>>;
 };
 
 /** column ordering options */
 export enum OrderBy {
   /** in ascending order, nulls last */
-  Asc = 'ASC',
+  Asc = "ASC",
   /** in ascending order, nulls first */
-  AscNullsFirst = 'ASC_NULLS_FIRST',
+  AscNullsFirst = "ASC_NULLS_FIRST",
   /** in ascending order, nulls last */
-  AscNullsLast = 'ASC_NULLS_LAST',
+  AscNullsLast = "ASC_NULLS_LAST",
   /** in descending order, nulls first */
-  Desc = 'DESC',
+  Desc = "DESC",
   /** in descending order, nulls first */
-  DescNullsFirst = 'DESC_NULLS_FIRST',
+  DescNullsFirst = "DESC_NULLS_FIRST",
   /** in descending order, nulls last */
-  DescNullsLast = 'DESC_NULLS_LAST'
+  DescNullsLast = "DESC_NULLS_LAST",
 }
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type StringComparisonExp = {
-  _eq?: InputMaybe<Scalars['String']>;
-  _gt?: InputMaybe<Scalars['String']>;
-  _gte?: InputMaybe<Scalars['String']>;
+  _eq?: InputMaybe<Scalars["String"]>;
+  _gt?: InputMaybe<Scalars["String"]>;
+  _gte?: InputMaybe<Scalars["String"]>;
   /** does the column match the given case-insensitive pattern */
-  _ilike?: InputMaybe<Scalars['String']>;
-  _in?: InputMaybe<Array<Scalars['String']>>;
+  _ilike?: InputMaybe<Scalars["String"]>;
+  _in?: InputMaybe<Array<Scalars["String"]>>;
   /** does the column match the given POSIX regular expression, case insensitive */
-  _iregex?: InputMaybe<Scalars['String']>;
-  _isNull?: InputMaybe<Scalars['Boolean']>;
+  _iregex?: InputMaybe<Scalars["String"]>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
   /** does the column match the given pattern */
-  _like?: InputMaybe<Scalars['String']>;
-  _lt?: InputMaybe<Scalars['String']>;
-  _lte?: InputMaybe<Scalars['String']>;
-  _neq?: InputMaybe<Scalars['String']>;
+  _like?: InputMaybe<Scalars["String"]>;
+  _lt?: InputMaybe<Scalars["String"]>;
+  _lte?: InputMaybe<Scalars["String"]>;
+  _neq?: InputMaybe<Scalars["String"]>;
   /** does the column NOT match the given case-insensitive pattern */
-  _nilike?: InputMaybe<Scalars['String']>;
-  _nin?: InputMaybe<Array<Scalars['String']>>;
+  _nilike?: InputMaybe<Scalars["String"]>;
+  _nin?: InputMaybe<Array<Scalars["String"]>>;
   /** does the column NOT match the given POSIX regular expression, case insensitive */
-  _niregex?: InputMaybe<Scalars['String']>;
+  _niregex?: InputMaybe<Scalars["String"]>;
   /** does the column NOT match the given pattern */
-  _nlike?: InputMaybe<Scalars['String']>;
+  _nlike?: InputMaybe<Scalars["String"]>;
   /** does the column NOT match the given POSIX regular expression, case sensitive */
-  _nregex?: InputMaybe<Scalars['String']>;
+  _nregex?: InputMaybe<Scalars["String"]>;
   /** does the column NOT match the given SQL regular expression */
-  _nsimilar?: InputMaybe<Scalars['String']>;
+  _nsimilar?: InputMaybe<Scalars["String"]>;
   /** does the column match the given POSIX regular expression, case sensitive */
-  _regex?: InputMaybe<Scalars['String']>;
+  _regex?: InputMaybe<Scalars["String"]>;
   /** does the column match the given SQL regular expression */
-  _similar?: InputMaybe<Scalars['String']>;
+  _similar?: InputMaybe<Scalars["String"]>;
 };
 
 /** columns and relationships of "summary_category_by_group" */
 export type SummaryCategoryByGroup = {
-  __typename?: 'SummaryCategoryByGroup';
+  __typename?: "SummaryCategoryByGroup";
   /** An object relationship */
   category: Category;
-  categoryId: Scalars['uuid'];
-  displayOrder: Scalars['Int'];
+  categoryId: Scalars["uuid"];
+  displayOrder: Scalars["Int"];
   /** An object relationship */
   group: Group;
-  groupId: Scalars['uuid'];
-  id: Scalars['uuid'];
+  groupId: Scalars["uuid"];
+  id: Scalars["uuid"];
 };
 
 /** order by aggregate values of table "summary_category_by_group" */
@@ -5084,16 +5385,16 @@ export type SummaryCategoryByGroupBoolExp = {
 /** unique or primary key constraints on table "summary_category_by_group" */
 export enum SummaryCategoryByGroupConstraint {
   /** unique or primary key constraint on columns "id" */
-  SummaryCategoryByGroupPkey = 'summary_category_by_group_pkey'
+  SummaryCategoryByGroupPkey = "summary_category_by_group_pkey",
 }
 
 /** input type for inserting data into table "summary_category_by_group" */
 export type SummaryCategoryByGroupInsertInput = {
   category?: InputMaybe<CategoryObjRelInsertInput>;
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "summary_category_by_group" */
@@ -5114,9 +5415,9 @@ export type SummaryCategoryByGroupMinOrderBy = {
 
 /** response of any mutation on the table "summary_category_by_group" */
 export type SummaryCategoryByGroupMutationResponse = {
-  __typename?: 'SummaryCategoryByGroupMutationResponse';
+  __typename?: "SummaryCategoryByGroupMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<SummaryCategoryByGroup>;
 };
@@ -5141,13 +5442,13 @@ export type SummaryCategoryByGroupOrderBy = {
 /** select columns of table "summary_category_by_group" */
 export enum SummaryCategoryByGroupSelectColumn {
   /** column name */
-  CategoryId = 'categoryId',
+  CategoryId = "categoryId",
   /** column name */
-  DisplayOrder = 'displayOrder',
+  DisplayOrder = "displayOrder",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  Id = 'id'
+  Id = "id",
 }
 
 /** order by stddev() on columns of table "summary_category_by_group" */
@@ -5175,10 +5476,10 @@ export type SummaryCategoryByGroupStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type SummaryCategoryByGroupStreamCursorValueInput = {
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  id?: InputMaybe<Scalars['uuid']>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  id?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** order by sum() on columns of table "summary_category_by_group" */
@@ -5189,7 +5490,7 @@ export type SummaryCategoryByGroupSumOrderBy = {
 /** placeholder for update columns of table "summary_category_by_group" (current role has no relevant permissions) */
 export enum SummaryCategoryByGroupUpdateColumn {
   /** placeholder (do not use) */
-  Placeholder = '_PLACEHOLDER'
+  Placeholder = "_PLACEHOLDER",
 }
 
 /** order by varPop() on columns of table "summary_category_by_group" */
@@ -5209,28 +5510,28 @@ export type SummaryCategoryByGroupVarianceOrderBy = {
 
 /** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
 export type TimestampComparisonExp = {
-  _eq?: InputMaybe<Scalars['timestamp']>;
-  _gt?: InputMaybe<Scalars['timestamp']>;
-  _gte?: InputMaybe<Scalars['timestamp']>;
-  _in?: InputMaybe<Array<Scalars['timestamp']>>;
-  _isNull?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['timestamp']>;
-  _lte?: InputMaybe<Scalars['timestamp']>;
-  _neq?: InputMaybe<Scalars['timestamp']>;
-  _nin?: InputMaybe<Array<Scalars['timestamp']>>;
+  _eq?: InputMaybe<Scalars["timestamp"]>;
+  _gt?: InputMaybe<Scalars["timestamp"]>;
+  _gte?: InputMaybe<Scalars["timestamp"]>;
+  _in?: InputMaybe<Array<Scalars["timestamp"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["timestamp"]>;
+  _lte?: InputMaybe<Scalars["timestamp"]>;
+  _neq?: InputMaybe<Scalars["timestamp"]>;
+  _nin?: InputMaybe<Array<Scalars["timestamp"]>>;
 };
 
 /** columns and relationships of "total_by_category_view" */
 export type TotalByCategoryView = {
-  __typename?: 'TotalByCategoryView';
-  categoryId?: Maybe<Scalars['uuid']>;
-  categoryName?: Maybe<Scalars['String']>;
-  date?: Maybe<Scalars['date']>;
-  genreId?: Maybe<Scalars['uuid']>;
-  genreName?: Maybe<Scalars['String']>;
-  groupId?: Maybe<Scalars['uuid']>;
-  iocomeType?: Maybe<Scalars['iocome_type']>;
-  total?: Maybe<Scalars['numeric']>;
+  __typename?: "TotalByCategoryView";
+  categoryId?: Maybe<Scalars["uuid"]>;
+  categoryName?: Maybe<Scalars["String"]>;
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  genreName?: Maybe<Scalars["String"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  total?: Maybe<Scalars["numeric"]>;
 };
 
 /** Boolean expression to filter rows from the table "total_by_category_view". All fields are combined with a logical 'AND'. */
@@ -5263,21 +5564,21 @@ export type TotalByCategoryViewOrderBy = {
 /** select columns of table "total_by_category_view" */
 export enum TotalByCategoryViewSelectColumn {
   /** column name */
-  CategoryId = 'categoryId',
+  CategoryId = "categoryId",
   /** column name */
-  CategoryName = 'categoryName',
+  CategoryName = "categoryName",
   /** column name */
-  Date = 'date',
+  Date = "date",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  GenreName = 'genreName',
+  GenreName = "genreName",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  Total = 'total'
+  Total = "total",
 }
 
 /** Streaming cursor of the table "total_by_category_view" */
@@ -5290,25 +5591,25 @@ export type TotalByCategoryViewStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type TotalByCategoryViewStreamCursorValueInput = {
-  categoryId?: InputMaybe<Scalars['uuid']>;
-  categoryName?: InputMaybe<Scalars['String']>;
-  date?: InputMaybe<Scalars['date']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  genreName?: InputMaybe<Scalars['String']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  total?: InputMaybe<Scalars['numeric']>;
+  categoryId?: InputMaybe<Scalars["uuid"]>;
+  categoryName?: InputMaybe<Scalars["String"]>;
+  date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  genreName?: InputMaybe<Scalars["String"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  total?: InputMaybe<Scalars["numeric"]>;
 };
 
 /** columns and relationships of "total_by_genre_view" */
 export type TotalByGenreView = {
-  __typename?: 'TotalByGenreView';
-  date?: Maybe<Scalars['date']>;
-  genreId?: Maybe<Scalars['uuid']>;
-  genreName?: Maybe<Scalars['String']>;
-  groupId?: Maybe<Scalars['uuid']>;
-  iocomeType?: Maybe<Scalars['iocome_type']>;
-  total?: Maybe<Scalars['numeric']>;
+  __typename?: "TotalByGenreView";
+  date?: Maybe<Scalars["date"]>;
+  genreId?: Maybe<Scalars["uuid"]>;
+  genreName?: Maybe<Scalars["String"]>;
+  groupId?: Maybe<Scalars["uuid"]>;
+  iocomeType?: Maybe<Scalars["iocome_type"]>;
+  total?: Maybe<Scalars["numeric"]>;
 };
 
 /** Boolean expression to filter rows from the table "total_by_genre_view". All fields are combined with a logical 'AND'. */
@@ -5337,17 +5638,17 @@ export type TotalByGenreViewOrderBy = {
 /** select columns of table "total_by_genre_view" */
 export enum TotalByGenreViewSelectColumn {
   /** column name */
-  Date = 'date',
+  Date = "date",
   /** column name */
-  GenreId = 'genreId',
+  GenreId = "genreId",
   /** column name */
-  GenreName = 'genreName',
+  GenreName = "genreName",
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  IocomeType = 'iocomeType',
+  IocomeType = "iocomeType",
   /** column name */
-  Total = 'total'
+  Total = "total",
 }
 
 /** Streaming cursor of the table "total_by_genre_view" */
@@ -5360,17 +5661,17 @@ export type TotalByGenreViewStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type TotalByGenreViewStreamCursorValueInput = {
-  date?: InputMaybe<Scalars['date']>;
-  genreId?: InputMaybe<Scalars['uuid']>;
-  genreName?: InputMaybe<Scalars['String']>;
-  groupId?: InputMaybe<Scalars['uuid']>;
-  iocomeType?: InputMaybe<Scalars['iocome_type']>;
-  total?: InputMaybe<Scalars['numeric']>;
+  date?: InputMaybe<Scalars["date"]>;
+  genreId?: InputMaybe<Scalars["uuid"]>;
+  genreName?: InputMaybe<Scalars["String"]>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
+  iocomeType?: InputMaybe<Scalars["iocome_type"]>;
+  total?: InputMaybe<Scalars["numeric"]>;
 };
 
 /** 振替カテゴリ */
 export type TransferCategory = {
-  __typename?: 'TransferCategory';
+  __typename?: "TransferCategory";
   /** An object relationship */
   category: Category;
   /** An object relationship */
@@ -5378,11 +5679,11 @@ export type TransferCategory = {
   /** An object relationship */
   group: Group;
   /** グループID */
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
   /** 収入カテゴリID */
-  incomeCategoryId: Scalars['uuid'];
+  incomeCategoryId: Scalars["uuid"];
   /** 支出カテゴリID */
-  outcomeCategoryId: Scalars['uuid'];
+  outcomeCategoryId: Scalars["uuid"];
 };
 
 /** order by aggregate values of table "transfer_category" */
@@ -5415,7 +5716,7 @@ export type TransferCategoryBoolExp = {
 /** unique or primary key constraints on table "transfer_category" */
 export enum TransferCategoryConstraint {
   /** unique or primary key constraint on columns "group_id" */
-  TransferCategoryPkey = 'transfer_category_pkey'
+  TransferCategoryPkey = "transfer_category_pkey",
 }
 
 /** input type for inserting data into table "transfer_category" */
@@ -5423,11 +5724,11 @@ export type TransferCategoryInsertInput = {
   category?: InputMaybe<CategoryObjRelInsertInput>;
   categoryByOutcomeCategoryId?: InputMaybe<CategoryObjRelInsertInput>;
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** 収入カテゴリID */
-  incomeCategoryId?: InputMaybe<Scalars['uuid']>;
+  incomeCategoryId?: InputMaybe<Scalars["uuid"]>;
   /** 支出カテゴリID */
-  outcomeCategoryId?: InputMaybe<Scalars['uuid']>;
+  outcomeCategoryId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** order by max() on columns of table "transfer_category" */
@@ -5452,9 +5753,9 @@ export type TransferCategoryMinOrderBy = {
 
 /** response of any mutation on the table "transfer_category" */
 export type TransferCategoryMutationResponse = {
-  __typename?: 'TransferCategoryMutationResponse';
+  __typename?: "TransferCategoryMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<TransferCategory>;
 };
@@ -5479,11 +5780,11 @@ export type TransferCategoryOrderBy = {
 /** select columns of table "transfer_category" */
 export enum TransferCategorySelectColumn {
   /** column name */
-  GroupId = 'groupId',
+  GroupId = "groupId",
   /** column name */
-  IncomeCategoryId = 'incomeCategoryId',
+  IncomeCategoryId = "incomeCategoryId",
   /** column name */
-  OutcomeCategoryId = 'outcomeCategoryId'
+  OutcomeCategoryId = "outcomeCategoryId",
 }
 
 /** Streaming cursor of the table "transfer_category" */
@@ -5497,84 +5798,101 @@ export type TransferCategoryStreamCursorInput = {
 /** Initial value of the column from where the streaming should start */
 export type TransferCategoryStreamCursorValueInput = {
   /** グループID */
-  groupId?: InputMaybe<Scalars['uuid']>;
+  groupId?: InputMaybe<Scalars["uuid"]>;
   /** 収入カテゴリID */
-  incomeCategoryId?: InputMaybe<Scalars['uuid']>;
+  incomeCategoryId?: InputMaybe<Scalars["uuid"]>;
   /** 支出カテゴリID */
-  outcomeCategoryId?: InputMaybe<Scalars['uuid']>;
+  outcomeCategoryId?: InputMaybe<Scalars["uuid"]>;
 };
 
 /** placeholder for update columns of table "transfer_category" (current role has no relevant permissions) */
 export enum TransferCategoryUpdateColumn {
   /** placeholder (do not use) */
-  Placeholder = '_PLACEHOLDER'
+  Placeholder = "_PLACEHOLDER",
 }
 
 /** ユーザ */
 export type User = {
-  __typename?: 'User';
+  __typename?: "User";
   /** An array relationship */
   affiliations: Array<Affiliation>;
+  /** An aggregate relationship */
+  creditCardDetailsAggregate: CreditCardDetailAggregate;
   /** An array relationship */
   credit_card_details: Array<CreditCardDetail>;
+  /** An aggregate relationship */
+  dailyDetailsAggregate: DailyDetailAggregate;
   /** An array relationship */
   daily_details: Array<DailyDetail>;
-  displayOrder?: Maybe<Scalars['Int']>;
-  email?: Maybe<Scalars['String']>;
+  displayOrder?: Maybe<Scalars["Int"]>;
+  email?: Maybe<Scalars["String"]>;
   /** An array relationship */
   helperKidParents: Array<HelperKidsHelperKidParent>;
   /** An array relationship */
   import_file_histories: Array<ImportFileHistory>;
-  userId: Scalars['uuid'];
-  userName?: Maybe<Scalars['String']>;
+  userId: Scalars["uuid"];
+  userName?: Maybe<Scalars["String"]>;
 };
-
 
 /** ユーザ */
 export type UserAffiliationsArgs = {
   distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
   where?: InputMaybe<AffiliationBoolExp>;
 };
 
-
 /** ユーザ */
-export type UserCredit_Card_DetailsArgs = {
+export type UserCreditCardDetailsAggregateArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
+/** ユーザ */
+export type UserCredit_Card_DetailsArgs = {
+  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
+  where?: InputMaybe<CreditCardDetailBoolExp>;
+};
 
 /** ユーザ */
-export type UserDaily_DetailsArgs = {
+export type UserDailyDetailsAggregateArgs = {
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
+/** ユーザ */
+export type UserDaily_DetailsArgs = {
+  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
+  where?: InputMaybe<DailyDetailBoolExp>;
+};
 
 /** ユーザ */
 export type UserHelperKidParentsArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelperKidParentOrderBy>>;
   where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
 };
 
-
 /** ユーザ */
 export type UserImport_File_HistoriesArgs = {
   distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ImportFileHistoryOrderBy>>;
   where?: InputMaybe<ImportFileHistoryBoolExp>;
 };
@@ -5586,7 +5904,9 @@ export type UserBoolExp = {
   _or?: InputMaybe<Array<UserBoolExp>>;
   affiliations?: InputMaybe<AffiliationBoolExp>;
   credit_card_details?: InputMaybe<CreditCardDetailBoolExp>;
+  credit_card_detailsAggregate?: InputMaybe<CreditCardDetailAggregateBoolExp>;
   daily_details?: InputMaybe<DailyDetailBoolExp>;
+  daily_detailsAggregate?: InputMaybe<DailyDetailAggregateBoolExp>;
   displayOrder?: InputMaybe<IntComparisonExp>;
   email?: InputMaybe<StringComparisonExp>;
   helperKidParents?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
@@ -5598,27 +5918,27 @@ export type UserBoolExp = {
 /** unique or primary key constraints on table "user" */
 export enum UserConstraint {
   /** unique or primary key constraint on columns "email" */
-  UserEmailKey = 'user_email_key',
+  UserEmailKey = "user_email_key",
   /** unique or primary key constraint on columns "user_id" */
-  UserPkey = 'user_pkey'
+  UserPkey = "user_pkey",
 }
 
 /** input type for inserting data into table "user" */
 export type UserInsertInput = {
   credit_card_details?: InputMaybe<CreditCardDetailArrRelInsertInput>;
   daily_details?: InputMaybe<DailyDetailArrRelInsertInput>;
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  email?: InputMaybe<Scalars['String']>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  email?: InputMaybe<Scalars["String"]>;
   import_file_histories?: InputMaybe<ImportFileHistoryArrRelInsertInput>;
-  userId?: InputMaybe<Scalars['uuid']>;
-  userName?: InputMaybe<Scalars['String']>;
+  userId?: InputMaybe<Scalars["uuid"]>;
+  userName?: InputMaybe<Scalars["String"]>;
 };
 
 /** response of any mutation on the table "user" */
 export type UserMutationResponse = {
-  __typename?: 'UserMutationResponse';
+  __typename?: "UserMutationResponse";
   /** number of rows affected by the mutation */
-  affectedRows: Scalars['Int'];
+  affectedRows: Scalars["Int"];
   /** data from the rows affected by the mutation */
   returning: Array<User>;
 };
@@ -5653,13 +5973,13 @@ export type UserOrderBy = {
 /** select columns of table "user" */
 export enum UserSelectColumn {
   /** column name */
-  DisplayOrder = 'displayOrder',
+  DisplayOrder = "displayOrder",
   /** column name */
-  Email = 'email',
+  Email = "email",
   /** column name */
-  UserId = 'userId',
+  UserId = "userId",
   /** column name */
-  UserName = 'userName'
+  UserName = "userName",
 }
 
 /** Streaming cursor of the table "user" */
@@ -5672,94 +5992,112 @@ export type UserStreamCursorInput = {
 
 /** Initial value of the column from where the streaming should start */
 export type UserStreamCursorValueInput = {
-  displayOrder?: InputMaybe<Scalars['Int']>;
-  email?: InputMaybe<Scalars['String']>;
-  userId?: InputMaybe<Scalars['uuid']>;
-  userName?: InputMaybe<Scalars['String']>;
+  displayOrder?: InputMaybe<Scalars["Int"]>;
+  email?: InputMaybe<Scalars["String"]>;
+  userId?: InputMaybe<Scalars["uuid"]>;
+  userName?: InputMaybe<Scalars["String"]>;
 };
 
 /** placeholder for update columns of table "user" (current role has no relevant permissions) */
 export enum UserUpdateColumn {
   /** placeholder (do not use) */
-  Placeholder = '_PLACEHOLDER'
+  Placeholder = "_PLACEHOLDER",
 }
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 export type UuidComparisonExp = {
-  _eq?: InputMaybe<Scalars['uuid']>;
-  _gt?: InputMaybe<Scalars['uuid']>;
-  _gte?: InputMaybe<Scalars['uuid']>;
-  _in?: InputMaybe<Array<Scalars['uuid']>>;
-  _isNull?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['uuid']>;
-  _lte?: InputMaybe<Scalars['uuid']>;
-  _neq?: InputMaybe<Scalars['uuid']>;
-  _nin?: InputMaybe<Array<Scalars['uuid']>>;
+  _eq?: InputMaybe<Scalars["uuid"]>;
+  _gt?: InputMaybe<Scalars["uuid"]>;
+  _gte?: InputMaybe<Scalars["uuid"]>;
+  _in?: InputMaybe<Array<Scalars["uuid"]>>;
+  _isNull?: InputMaybe<Scalars["Boolean"]>;
+  _lt?: InputMaybe<Scalars["uuid"]>;
+  _lte?: InputMaybe<Scalars["uuid"]>;
+  _neq?: InputMaybe<Scalars["uuid"]>;
+  _nin?: InputMaybe<Array<Scalars["uuid"]>>;
 };
 
 export type AccountAggregateBoolExpBool_And = {
   arguments: AccountSelectColumnAccountAggregateBoolExpBool_AndArgumentsColumns;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<AccountBoolExp>;
   predicate: BooleanComparisonExp;
 };
 
 export type AccountAggregateBoolExpBool_Or = {
   arguments: AccountSelectColumnAccountAggregateBoolExpBool_OrArgumentsColumns;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<AccountBoolExp>;
   predicate: BooleanComparisonExp;
 };
 
 export type AccountAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<AccountSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<AccountBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type AllDetailViewAggregateBoolExpCount = {
   arguments?: InputMaybe<Array<AllDetailViewSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<AllDetailViewBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type CategoryTotalByMonthArgs = {
-  from_date?: InputMaybe<Scalars['date']>;
-  group_id?: InputMaybe<Scalars['uuid']>;
-  to_date?: InputMaybe<Scalars['date']>;
+  from_date?: InputMaybe<Scalars["date"]>;
+  group_id?: InputMaybe<Scalars["uuid"]>;
+  to_date?: InputMaybe<Scalars["date"]>;
+};
+
+export type CreditCardDetailAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<CreditCardDetailBoolExp>;
+  predicate: IntComparisonExp;
+};
+
+export type DailyDetailAggregateBoolExpCount = {
+  arguments?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
+  filter?: InputMaybe<DailyDetailBoolExp>;
+  predicate: IntComparisonExp;
 };
 
 export type DailyDetailByDateArgs = {
-  from_date?: InputMaybe<Scalars['date']>;
-  group_id?: InputMaybe<Scalars['uuid']>;
-  to_date?: InputMaybe<Scalars['date']>;
+  from_date?: InputMaybe<Scalars["date"]>;
+  group_id?: InputMaybe<Scalars["uuid"]>;
+  to_date?: InputMaybe<Scalars["date"]>;
 };
 
 export type GenreTotalByMonthArgs = {
-  from_date?: InputMaybe<Scalars['date']>;
-  group_id?: InputMaybe<Scalars['uuid']>;
-  to_date?: InputMaybe<Scalars['date']>;
+  from_date?: InputMaybe<Scalars["date"]>;
+  group_id?: InputMaybe<Scalars["uuid"]>;
+  to_date?: InputMaybe<Scalars["date"]>;
 };
 
 export type HelperKidsHelpPointEarnedAchievementAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  arguments?: InputMaybe<
+    Array<HelperKidsHelpPointEarnedAchievementSelectColumn>
+  >;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
   predicate: IntComparisonExp;
 };
 
 export type HelperKidsHelpPointExchangedAchievementAggregateBoolExpCount = {
-  arguments?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  arguments?: InputMaybe<
+    Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+  >;
+  distinct?: InputMaybe<Scalars["Boolean"]>;
   filter?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
   predicate: IntComparisonExp;
 };
 
 /** mutation root */
 export type Mutation_Root = {
-  __typename?: 'mutation_root';
+  __typename?: "mutation_root";
   /** delete data from the table: "daily_detail" */
   deleteDailyDetail?: Maybe<DailyDetailMutationResponse>;
   /** delete single row from the table: "daily_detail" */
@@ -5835,7 +6173,9 @@ export type Mutation_Root = {
   /** update single row of the table: "credit_card_detail" */
   updateCreditCardDetailByPk?: Maybe<CreditCardDetail>;
   /** update multiples rows of table: "credit_card_detail" */
-  updateCreditCardDetailMany?: Maybe<Array<Maybe<CreditCardDetailMutationResponse>>>;
+  updateCreditCardDetailMany?: Maybe<
+    Array<Maybe<CreditCardDetailMutationResponse>>
+  >;
   /** update data of the table: "daily_detail" */
   updateDailyDetail?: Maybe<DailyDetailMutationResponse>;
   /** update single row of the table: "daily_detail" */
@@ -5850,30 +6190,25 @@ export type Mutation_Root = {
   updateGenreMany?: Maybe<Array<Maybe<GenreMutationResponse>>>;
 };
 
-
 /** mutation root */
 export type Mutation_RootDeleteDailyDetailArgs = {
   where: DailyDetailBoolExp;
 };
 
-
 /** mutation root */
 export type Mutation_RootDeleteDailyDetailByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 };
-
 
 /** mutation root */
 export type Mutation_RootDeleteSummaryCategoryByGroupArgs = {
   where: SummaryCategoryByGroupBoolExp;
 };
 
-
 /** mutation root */
 export type Mutation_RootDeleteSummaryCategoryByGroupByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertAccountArgs = {
@@ -5881,13 +6216,11 @@ export type Mutation_RootInsertAccountArgs = {
   onConflict?: InputMaybe<AccountOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertAccountOneArgs = {
   object: AccountInsertInput;
   onConflict?: InputMaybe<AccountOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertCategoryArgs = {
@@ -5895,13 +6228,11 @@ export type Mutation_RootInsertCategoryArgs = {
   onConflict?: InputMaybe<CategoryOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertCategoryOneArgs = {
   object: CategoryInsertInput;
   onConflict?: InputMaybe<CategoryOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertCreditCardDetailArgs = {
@@ -5909,13 +6240,11 @@ export type Mutation_RootInsertCreditCardDetailArgs = {
   onConflict?: InputMaybe<CreditCardDetailOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertCreditCardDetailOneArgs = {
   object: CreditCardDetailInsertInput;
   onConflict?: InputMaybe<CreditCardDetailOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertCreditCardSummaryArgs = {
@@ -5923,13 +6252,11 @@ export type Mutation_RootInsertCreditCardSummaryArgs = {
   onConflict?: InputMaybe<CreditCardSummaryOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertCreditCardSummaryOneArgs = {
   object: CreditCardSummaryInsertInput;
   onConflict?: InputMaybe<CreditCardSummaryOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertDailyDetailArgs = {
@@ -5937,13 +6264,11 @@ export type Mutation_RootInsertDailyDetailArgs = {
   onConflict?: InputMaybe<DailyDetailOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertDailyDetailOneArgs = {
   object: DailyDetailInsertInput;
   onConflict?: InputMaybe<DailyDetailOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertDepositCategoryArgs = {
@@ -5951,13 +6276,11 @@ export type Mutation_RootInsertDepositCategoryArgs = {
   onConflict?: InputMaybe<DepositCategoryOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertDepositCategoryOneArgs = {
   object: DepositCategoryInsertInput;
   onConflict?: InputMaybe<DepositCategoryOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertGenreArgs = {
@@ -5965,13 +6288,11 @@ export type Mutation_RootInsertGenreArgs = {
   onConflict?: InputMaybe<GenreOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertGenreOneArgs = {
   object: GenreInsertInput;
   onConflict?: InputMaybe<GenreOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertHelperKidsHelpPointEarnedAchievementArgs = {
@@ -5979,13 +6300,11 @@ export type Mutation_RootInsertHelperKidsHelpPointEarnedAchievementArgs = {
   onConflict?: InputMaybe<HelperKidsHelpPointEarnedAchievementOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertHelperKidsHelpPointEarnedAchievementOneArgs = {
   object: HelperKidsHelpPointEarnedAchievementInsertInput;
   onConflict?: InputMaybe<HelperKidsHelpPointEarnedAchievementOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertHelperKidsHelpPointEarnedDetailArgs = {
@@ -5993,13 +6312,11 @@ export type Mutation_RootInsertHelperKidsHelpPointEarnedDetailArgs = {
   onConflict?: InputMaybe<HelperKidsHelpPointEarnedDetailOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertHelperKidsHelpPointEarnedDetailOneArgs = {
   object: HelperKidsHelpPointEarnedDetailInsertInput;
   onConflict?: InputMaybe<HelperKidsHelpPointEarnedDetailOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertHelperKidsHelpPointExchangedAchievementArgs = {
@@ -6007,13 +6324,12 @@ export type Mutation_RootInsertHelperKidsHelpPointExchangedAchievementArgs = {
   onConflict?: InputMaybe<HelperKidsHelpPointExchangedAchievementOnConflict>;
 };
 
-
 /** mutation root */
-export type Mutation_RootInsertHelperKidsHelpPointExchangedAchievementOneArgs = {
-  object: HelperKidsHelpPointExchangedAchievementInsertInput;
-  onConflict?: InputMaybe<HelperKidsHelpPointExchangedAchievementOnConflict>;
-};
-
+export type Mutation_RootInsertHelperKidsHelpPointExchangedAchievementOneArgs =
+  {
+    object: HelperKidsHelpPointExchangedAchievementInsertInput;
+    onConflict?: InputMaybe<HelperKidsHelpPointExchangedAchievementOnConflict>;
+  };
 
 /** mutation root */
 export type Mutation_RootInsertImportFileHistoryArgs = {
@@ -6021,13 +6337,11 @@ export type Mutation_RootInsertImportFileHistoryArgs = {
   onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertImportFileHistoryOneArgs = {
   object: ImportFileHistoryInsertInput;
   onConflict?: InputMaybe<ImportFileHistoryOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertSummaryCategoryByGroupArgs = {
@@ -6035,13 +6349,11 @@ export type Mutation_RootInsertSummaryCategoryByGroupArgs = {
   onConflict?: InputMaybe<SummaryCategoryByGroupOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertSummaryCategoryByGroupOneArgs = {
   object: SummaryCategoryByGroupInsertInput;
   onConflict?: InputMaybe<SummaryCategoryByGroupOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertTransferCategoryArgs = {
@@ -6049,13 +6361,11 @@ export type Mutation_RootInsertTransferCategoryArgs = {
   onConflict?: InputMaybe<TransferCategoryOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertTransferCategoryOneArgs = {
   object: TransferCategoryInsertInput;
   onConflict?: InputMaybe<TransferCategoryOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootInsertUserArgs = {
@@ -6063,13 +6373,11 @@ export type Mutation_RootInsertUserArgs = {
   onConflict?: InputMaybe<UserOnConflict>;
 };
 
-
 /** mutation root */
 export type Mutation_RootInsertUserOneArgs = {
   object: UserInsertInput;
   onConflict?: InputMaybe<UserOnConflict>;
 };
-
 
 /** mutation root */
 export type Mutation_RootUpdateCategoryArgs = {
@@ -6078,7 +6386,6 @@ export type Mutation_RootUpdateCategoryArgs = {
   where: CategoryBoolExp;
 };
 
-
 /** mutation root */
 export type Mutation_RootUpdateCategoryByPkArgs = {
   _inc?: InputMaybe<CategoryIncInput>;
@@ -6086,12 +6393,10 @@ export type Mutation_RootUpdateCategoryByPkArgs = {
   pkColumns: CategoryPkColumnsInput;
 };
 
-
 /** mutation root */
 export type Mutation_RootUpdateCategoryManyArgs = {
   updates: Array<CategoryUpdates>;
 };
-
 
 /** mutation root */
 export type Mutation_RootUpdateCreditCardDetailArgs = {
@@ -6100,7 +6405,6 @@ export type Mutation_RootUpdateCreditCardDetailArgs = {
   where: CreditCardDetailBoolExp;
 };
 
-
 /** mutation root */
 export type Mutation_RootUpdateCreditCardDetailByPkArgs = {
   _inc?: InputMaybe<CreditCardDetailIncInput>;
@@ -6108,12 +6412,10 @@ export type Mutation_RootUpdateCreditCardDetailByPkArgs = {
   pkColumns: CreditCardDetailPkColumnsInput;
 };
 
-
 /** mutation root */
 export type Mutation_RootUpdateCreditCardDetailManyArgs = {
   updates: Array<CreditCardDetailUpdates>;
 };
-
 
 /** mutation root */
 export type Mutation_RootUpdateDailyDetailArgs = {
@@ -6122,7 +6424,6 @@ export type Mutation_RootUpdateDailyDetailArgs = {
   where: DailyDetailBoolExp;
 };
 
-
 /** mutation root */
 export type Mutation_RootUpdateDailyDetailByPkArgs = {
   _inc?: InputMaybe<DailyDetailIncInput>;
@@ -6130,12 +6431,10 @@ export type Mutation_RootUpdateDailyDetailByPkArgs = {
   pkColumns: DailyDetailPkColumnsInput;
 };
 
-
 /** mutation root */
 export type Mutation_RootUpdateDailyDetailManyArgs = {
   updates: Array<DailyDetailUpdates>;
 };
-
 
 /** mutation root */
 export type Mutation_RootUpdateGenreArgs = {
@@ -6144,7 +6443,6 @@ export type Mutation_RootUpdateGenreArgs = {
   where: GenreBoolExp;
 };
 
-
 /** mutation root */
 export type Mutation_RootUpdateGenreByPkArgs = {
   _inc?: InputMaybe<GenreIncInput>;
@@ -6152,14 +6450,13 @@ export type Mutation_RootUpdateGenreByPkArgs = {
   pkColumns: GenrePkColumnsInput;
 };
 
-
 /** mutation root */
 export type Mutation_RootUpdateGenreManyArgs = {
   updates: Array<GenreUpdates>;
 };
 
 export type Query_Root = {
-  __typename?: 'query_root';
+  __typename?: "query_root";
   /** fetch data from the table: "account" */
   account: Array<Account>;
   /** fetch aggregated fields from the table: "account" */
@@ -6186,6 +6483,8 @@ export type Query_Root = {
   categoryTotalByMonth: Array<TotalByCategoryView>;
   /** fetch data from the table: "credit_card_detail" */
   creditCardDetail: Array<CreditCardDetail>;
+  /** fetch aggregated fields from the table: "credit_card_detail" */
+  creditCardDetailAggregate: CreditCardDetailAggregate;
   /** fetch data from the table: "credit_card_detail" using primary key columns */
   creditCardDetailByPk?: Maybe<CreditCardDetail>;
   /** fetch data from the table: "credit_card_summary" */
@@ -6196,8 +6495,12 @@ export type Query_Root = {
   creditCardSummaryTotalByAccountView: Array<CreditCardSummaryTotalByAccountView>;
   /** fetch data from the table: "daily_detail" */
   dailyDetail: Array<DailyDetail>;
+  /** fetch aggregated fields from the table: "daily_detail" */
+  dailyDetailAggregate: DailyDetailAggregate;
   /** execute function "daily_detail_by_date" which returns "daily_detail" */
   dailyDetailByDate: Array<DailyDetail>;
+  /** execute function "daily_detail_by_date" and query aggregates on result of table type "daily_detail" */
+  dailyDetailByDateAggregate: DailyDetailAggregate;
   /** fetch data from the table: "daily_detail" using primary key columns */
   dailyDetailByPk?: Maybe<DailyDetail>;
   /** fetch data from the table: "daily_total_view" */
@@ -6282,455 +6585,430 @@ export type Query_Root = {
   userByPk?: Maybe<User>;
 };
 
-
 export type Query_RootAccountArgs = {
   distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AccountOrderBy>>;
   where?: InputMaybe<AccountBoolExp>;
 };
-
 
 export type Query_RootAccountAggregateArgs = {
   distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AccountOrderBy>>;
   where?: InputMaybe<AccountBoolExp>;
 };
 
-
 export type Query_RootAccountByPkArgs = {
-  accountId: Scalars['uuid'];
+  accountId: Scalars["uuid"];
 };
-
 
 export type Query_RootAffiliationArgs = {
   distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
   where?: InputMaybe<AffiliationBoolExp>;
 };
 
-
 export type Query_RootAffiliationByPkArgs = {
-  affiliationId: Scalars['uuid'];
+  affiliationId: Scalars["uuid"];
 };
-
 
 export type Query_RootAllDetailViewArgs = {
   distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
   where?: InputMaybe<AllDetailViewBoolExp>;
 };
-
 
 export type Query_RootAllDetailViewAggregateArgs = {
   distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
   where?: InputMaybe<AllDetailViewBoolExp>;
 };
 
-
 export type Query_RootApplicationArgs = {
   distinctOn?: InputMaybe<Array<ApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ApplicationOrderBy>>;
   where?: InputMaybe<ApplicationBoolExp>;
 };
 
-
 export type Query_RootApplicationByPkArgs = {
-  applicationId: Scalars['uuid'];
+  applicationId: Scalars["uuid"];
 };
-
 
 export type Query_RootCategoryArgs = {
   distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CategoryOrderBy>>;
   where?: InputMaybe<CategoryBoolExp>;
 };
 
-
 export type Query_RootCategoryByPkArgs = {
-  categoryId: Scalars['uuid'];
+  categoryId: Scalars["uuid"];
 };
-
 
 export type Query_RootCategoryTotalByMonthArgs = {
   args: CategoryTotalByMonthArgs;
   distinctOn?: InputMaybe<Array<TotalByCategoryViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TotalByCategoryViewOrderBy>>;
   where?: InputMaybe<TotalByCategoryViewBoolExp>;
 };
 
-
 export type Query_RootCreditCardDetailArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
-
-export type Query_RootCreditCardDetailByPkArgs = {
-  id: Scalars['uuid'];
+export type Query_RootCreditCardDetailAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
+  where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
+export type Query_RootCreditCardDetailByPkArgs = {
+  id: Scalars["uuid"];
+};
 
 export type Query_RootCreditCardSummaryArgs = {
   distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardSummaryOrderBy>>;
   where?: InputMaybe<CreditCardSummaryBoolExp>;
 };
 
-
 export type Query_RootCreditCardSummaryByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 };
 
-
 export type Query_RootCreditCardSummaryTotalByAccountViewArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<CreditCardSummaryTotalByAccountViewSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewOrderBy>>;
   where?: InputMaybe<CreditCardSummaryTotalByAccountViewBoolExp>;
 };
 
-
 export type Query_RootDailyDetailArgs = {
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
+export type Query_RootDailyDetailAggregateArgs = {
+  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
+  where?: InputMaybe<DailyDetailBoolExp>;
+};
 
 export type Query_RootDailyDetailByDateArgs = {
   args: DailyDetailByDateArgs;
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
-
-export type Query_RootDailyDetailByPkArgs = {
-  id: Scalars['uuid'];
+export type Query_RootDailyDetailByDateAggregateArgs = {
+  args: DailyDetailByDateArgs;
+  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
+  where?: InputMaybe<DailyDetailBoolExp>;
 };
 
+export type Query_RootDailyDetailByPkArgs = {
+  id: Scalars["uuid"];
+};
 
 export type Query_RootDailyTotalViewArgs = {
   distinctOn?: InputMaybe<Array<DailyTotalViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyTotalViewOrderBy>>;
   where?: InputMaybe<DailyTotalViewBoolExp>;
 };
 
-
 export type Query_RootDepositCategoryArgs = {
   distinctOn?: InputMaybe<Array<DepositCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DepositCategoryOrderBy>>;
   where?: InputMaybe<DepositCategoryBoolExp>;
 };
 
-
 export type Query_RootDepositCategoryByPkArgs = {
-  categoryId: Scalars['uuid'];
+  categoryId: Scalars["uuid"];
 };
-
 
 export type Query_RootGenreArgs = {
   distinctOn?: InputMaybe<Array<GenreSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GenreOrderBy>>;
   where?: InputMaybe<GenreBoolExp>;
 };
 
-
 export type Query_RootGenreByPkArgs = {
-  genreId: Scalars['uuid'];
+  genreId: Scalars["uuid"];
 };
-
 
 export type Query_RootGenreTotalByMonthArgs = {
   args: GenreTotalByMonthArgs;
   distinctOn?: InputMaybe<Array<TotalByGenreViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TotalByGenreViewOrderBy>>;
   where?: InputMaybe<TotalByGenreViewBoolExp>;
 };
 
-
 export type Query_RootGroupArgs = {
   distinctOn?: InputMaybe<Array<GroupSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GroupOrderBy>>;
   where?: InputMaybe<GroupBoolExp>;
 };
 
-
 export type Query_RootGroupApplicationArgs = {
   distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
   where?: InputMaybe<GroupApplicationBoolExp>;
 };
 
-
 export type Query_RootGroupApplicationByPkArgs = {
-  groupApplicationId: Scalars['uuid'];
+  groupApplicationId: Scalars["uuid"];
 };
-
 
 export type Query_RootGroupByPkArgs = {
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 };
-
 
 export type Query_RootGroupRoleArgs = {
   distinctOn?: InputMaybe<Array<GroupRoleSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GroupRoleOrderBy>>;
   where?: InputMaybe<GroupRoleBoolExp>;
 };
 
-
 export type Query_RootGroupRoleByPkArgs = {
-  groupRoleId: Scalars['uuid'];
+  groupRoleId: Scalars["uuid"];
 };
-
 
 export type Query_RootHelperKidsExchangeItemArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsExchangeItemSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsExchangeItemOrderBy>>;
   where?: InputMaybe<HelperKidsExchangeItemBoolExp>;
 };
 
-
 export type Query_RootHelperKidsExchangeItemByPkArgs = {
-  exchangeItemId: Scalars['uuid'];
+  exchangeItemId: Scalars["uuid"];
 };
-
 
 export type Query_RootHelperKidsHelpItemArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpItemOrderBy>>;
   where?: InputMaybe<HelperKidsHelpItemBoolExp>;
 };
 
-
 export type Query_RootHelperKidsHelpItemByPkArgs = {
-  helpItemId: Scalars['uuid'];
+  helpItemId: Scalars["uuid"];
 };
-
 
 export type Query_RootHelperKidsHelpPointEarnedAchievementArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointEarnedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
 };
-
 
 export type Query_RootHelperKidsHelpPointEarnedAchievementAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointEarnedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
 };
 
-
 export type Query_RootHelperKidsHelpPointEarnedAchievementByPkArgs = {
-  helpPointEarnedAchievementId: Scalars['uuid'];
+  helpPointEarnedAchievementId: Scalars["uuid"];
 };
-
 
 export type Query_RootHelperKidsHelpPointEarnedDetailArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
 };
 
-
 export type Query_RootHelperKidsHelpPointEarnedDetailByPkArgs = {
-  helpPointEarnedDetailId: Scalars['uuid'];
+  helpPointEarnedDetailId: Scalars["uuid"];
 };
-
 
 export type Query_RootHelperKidsHelpPointExchangedAchievementArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
 };
-
 
 export type Query_RootHelperKidsHelpPointExchangedAchievementAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
 };
 
-
 export type Query_RootHelperKidsHelpPointExchangedAchievementByPkArgs = {
-  helpPointExchangedAchievementId: Scalars['uuid'];
+  helpPointExchangedAchievementId: Scalars["uuid"];
 };
-
 
 export type Query_RootHelperKidsHelperKidArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelperKidOrderBy>>;
   where?: InputMaybe<HelperKidsHelperKidBoolExp>;
 };
 
-
 export type Query_RootHelperKidsHelperKidByPkArgs = {
-  helperKidId: Scalars['uuid'];
+  helperKidId: Scalars["uuid"];
 };
-
 
 export type Query_RootHelperKidsHelperKidParentArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelperKidParentOrderBy>>;
   where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
 };
 
-
 export type Query_RootHelperKidsHelperKidParentByPkArgs = {
-  helperKidParentId: Scalars['uuid'];
+  helperKidParentId: Scalars["uuid"];
 };
-
 
 export type Query_RootHelperKidsHelperKidPointArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidPointSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelperKidPointOrderBy>>;
   where?: InputMaybe<HelperKidsHelperKidPointBoolExp>;
 };
 
-
 export type Query_RootHelperKidsHelperKidPointByPkArgs = {
-  helperKidId: Scalars['uuid'];
+  helperKidId: Scalars["uuid"];
 };
-
 
 export type Query_RootImportFileHistoryArgs = {
   distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ImportFileHistoryOrderBy>>;
   where?: InputMaybe<ImportFileHistoryBoolExp>;
 };
 
-
 export type Query_RootImportFileHistoryByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 };
-
 
 export type Query_RootSummaryCategoryByGroupArgs = {
   distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<SummaryCategoryByGroupOrderBy>>;
   where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
 };
 
-
 export type Query_RootSummaryCategoryByGroupByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 };
-
 
 export type Query_RootTotalByCategoryViewArgs = {
   distinctOn?: InputMaybe<Array<TotalByCategoryViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TotalByCategoryViewOrderBy>>;
   where?: InputMaybe<TotalByCategoryViewBoolExp>;
 };
 
-
 export type Query_RootTotalByGenreViewArgs = {
   distinctOn?: InputMaybe<Array<TotalByGenreViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TotalByGenreViewOrderBy>>;
   where?: InputMaybe<TotalByGenreViewBoolExp>;
 };
 
-
 export type Query_RootTransferCategoryArgs = {
   distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
   where?: InputMaybe<TransferCategoryBoolExp>;
 };
 
-
 export type Query_RootTransferCategoryByPkArgs = {
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 };
-
 
 export type Query_RootUserArgs = {
   distinctOn?: InputMaybe<Array<UserSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<UserOrderBy>>;
   where?: InputMaybe<UserBoolExp>;
 };
 
-
 export type Query_RootUserByPkArgs = {
-  userId: Scalars['uuid'];
+  userId: Scalars["uuid"];
 };
 
 export type Subscription_Root = {
-  __typename?: 'subscription_root';
+  __typename?: "subscription_root";
   /** fetch data from the table: "account" */
   account: Array<Account>;
   /** fetch aggregated fields from the table: "account" */
@@ -6767,6 +7045,8 @@ export type Subscription_Root = {
   categoryTotalByMonth: Array<TotalByCategoryView>;
   /** fetch data from the table: "credit_card_detail" */
   creditCardDetail: Array<CreditCardDetail>;
+  /** fetch aggregated fields from the table: "credit_card_detail" */
+  creditCardDetailAggregate: CreditCardDetailAggregate;
   /** fetch data from the table: "credit_card_detail" using primary key columns */
   creditCardDetailByPk?: Maybe<CreditCardDetail>;
   /** fetch data from the table in a streaming manner: "credit_card_detail" */
@@ -6783,8 +7063,12 @@ export type Subscription_Root = {
   creditCardSummaryTotalByAccountViewStream: Array<CreditCardSummaryTotalByAccountView>;
   /** fetch data from the table: "daily_detail" */
   dailyDetail: Array<DailyDetail>;
+  /** fetch aggregated fields from the table: "daily_detail" */
+  dailyDetailAggregate: DailyDetailAggregate;
   /** execute function "daily_detail_by_date" which returns "daily_detail" */
   dailyDetailByDate: Array<DailyDetail>;
+  /** execute function "daily_detail_by_date" and query aggregates on result of table type "daily_detail" */
+  dailyDetailByDateAggregate: DailyDetailAggregate;
   /** fetch data from the table: "daily_detail" using primary key columns */
   dailyDetailByPk?: Maybe<DailyDetail>;
   /** fetch data from the table in a streaming manner: "daily_detail" */
@@ -6911,1401 +7195,2135 @@ export type Subscription_Root = {
   userStream: Array<User>;
 };
 
-
 export type Subscription_RootAccountArgs = {
   distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AccountOrderBy>>;
   where?: InputMaybe<AccountBoolExp>;
 };
-
 
 export type Subscription_RootAccountAggregateArgs = {
   distinctOn?: InputMaybe<Array<AccountSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AccountOrderBy>>;
   where?: InputMaybe<AccountBoolExp>;
 };
 
-
 export type Subscription_RootAccountByPkArgs = {
-  accountId: Scalars['uuid'];
+  accountId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootAccountStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<AccountStreamCursorInput>>;
   where?: InputMaybe<AccountBoolExp>;
 };
 
-
 export type Subscription_RootAffiliationArgs = {
   distinctOn?: InputMaybe<Array<AffiliationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AffiliationOrderBy>>;
   where?: InputMaybe<AffiliationBoolExp>;
 };
 
-
 export type Subscription_RootAffiliationByPkArgs = {
-  affiliationId: Scalars['uuid'];
+  affiliationId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootAffiliationStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<AffiliationStreamCursorInput>>;
   where?: InputMaybe<AffiliationBoolExp>;
 };
 
-
 export type Subscription_RootAllDetailViewArgs = {
   distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
   where?: InputMaybe<AllDetailViewBoolExp>;
 };
-
 
 export type Subscription_RootAllDetailViewAggregateArgs = {
   distinctOn?: InputMaybe<Array<AllDetailViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<AllDetailViewOrderBy>>;
   where?: InputMaybe<AllDetailViewBoolExp>;
 };
 
-
 export type Subscription_RootAllDetailViewStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<AllDetailViewStreamCursorInput>>;
   where?: InputMaybe<AllDetailViewBoolExp>;
 };
 
-
 export type Subscription_RootApplicationArgs = {
   distinctOn?: InputMaybe<Array<ApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ApplicationOrderBy>>;
   where?: InputMaybe<ApplicationBoolExp>;
 };
 
-
 export type Subscription_RootApplicationByPkArgs = {
-  applicationId: Scalars['uuid'];
+  applicationId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootApplicationStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<ApplicationStreamCursorInput>>;
   where?: InputMaybe<ApplicationBoolExp>;
 };
 
-
 export type Subscription_RootCategoryArgs = {
   distinctOn?: InputMaybe<Array<CategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CategoryOrderBy>>;
   where?: InputMaybe<CategoryBoolExp>;
 };
 
-
 export type Subscription_RootCategoryByPkArgs = {
-  categoryId: Scalars['uuid'];
+  categoryId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootCategoryStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<CategoryStreamCursorInput>>;
   where?: InputMaybe<CategoryBoolExp>;
 };
 
-
 export type Subscription_RootCategoryTotalByMonthArgs = {
   args: CategoryTotalByMonthArgs;
   distinctOn?: InputMaybe<Array<TotalByCategoryViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TotalByCategoryViewOrderBy>>;
   where?: InputMaybe<TotalByCategoryViewBoolExp>;
 };
 
-
 export type Subscription_RootCreditCardDetailArgs = {
   distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
-
-export type Subscription_RootCreditCardDetailByPkArgs = {
-  id: Scalars['uuid'];
+export type Subscription_RootCreditCardDetailAggregateArgs = {
+  distinctOn?: InputMaybe<Array<CreditCardDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<CreditCardDetailOrderBy>>;
+  where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
+export type Subscription_RootCreditCardDetailByPkArgs = {
+  id: Scalars["uuid"];
+};
 
 export type Subscription_RootCreditCardDetailStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<CreditCardDetailStreamCursorInput>>;
   where?: InputMaybe<CreditCardDetailBoolExp>;
 };
 
-
 export type Subscription_RootCreditCardSummaryArgs = {
   distinctOn?: InputMaybe<Array<CreditCardSummarySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardSummaryOrderBy>>;
   where?: InputMaybe<CreditCardSummaryBoolExp>;
 };
 
-
 export type Subscription_RootCreditCardSummaryByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 };
 
-
 export type Subscription_RootCreditCardSummaryStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<CreditCardSummaryStreamCursorInput>>;
   where?: InputMaybe<CreditCardSummaryBoolExp>;
 };
 
-
 export type Subscription_RootCreditCardSummaryTotalByAccountViewArgs = {
-  distinctOn?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<CreditCardSummaryTotalByAccountViewSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<CreditCardSummaryTotalByAccountViewOrderBy>>;
   where?: InputMaybe<CreditCardSummaryTotalByAccountViewBoolExp>;
 };
 
-
 export type Subscription_RootCreditCardSummaryTotalByAccountViewStreamArgs = {
-  batchSize: Scalars['Int'];
-  cursor: Array<InputMaybe<CreditCardSummaryTotalByAccountViewStreamCursorInput>>;
+  batchSize: Scalars["Int"];
+  cursor: Array<
+    InputMaybe<CreditCardSummaryTotalByAccountViewStreamCursorInput>
+  >;
   where?: InputMaybe<CreditCardSummaryTotalByAccountViewBoolExp>;
 };
 
-
 export type Subscription_RootDailyDetailArgs = {
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
+export type Subscription_RootDailyDetailAggregateArgs = {
+  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
+  where?: InputMaybe<DailyDetailBoolExp>;
+};
 
 export type Subscription_RootDailyDetailByDateArgs = {
   args: DailyDetailByDateArgs;
   distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
-
-export type Subscription_RootDailyDetailByPkArgs = {
-  id: Scalars['uuid'];
+export type Subscription_RootDailyDetailByDateAggregateArgs = {
+  args: DailyDetailByDateArgs;
+  distinctOn?: InputMaybe<Array<DailyDetailSelectColumn>>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
+  orderBy?: InputMaybe<Array<DailyDetailOrderBy>>;
+  where?: InputMaybe<DailyDetailBoolExp>;
 };
 
+export type Subscription_RootDailyDetailByPkArgs = {
+  id: Scalars["uuid"];
+};
 
 export type Subscription_RootDailyDetailStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<DailyDetailStreamCursorInput>>;
   where?: InputMaybe<DailyDetailBoolExp>;
 };
 
-
 export type Subscription_RootDailyTotalViewArgs = {
   distinctOn?: InputMaybe<Array<DailyTotalViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DailyTotalViewOrderBy>>;
   where?: InputMaybe<DailyTotalViewBoolExp>;
 };
 
-
 export type Subscription_RootDailyTotalViewStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<DailyTotalViewStreamCursorInput>>;
   where?: InputMaybe<DailyTotalViewBoolExp>;
 };
 
-
 export type Subscription_RootDepositCategoryArgs = {
   distinctOn?: InputMaybe<Array<DepositCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<DepositCategoryOrderBy>>;
   where?: InputMaybe<DepositCategoryBoolExp>;
 };
 
-
 export type Subscription_RootDepositCategoryByPkArgs = {
-  categoryId: Scalars['uuid'];
+  categoryId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootDepositCategoryStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<DepositCategoryStreamCursorInput>>;
   where?: InputMaybe<DepositCategoryBoolExp>;
 };
 
-
 export type Subscription_RootGenreArgs = {
   distinctOn?: InputMaybe<Array<GenreSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GenreOrderBy>>;
   where?: InputMaybe<GenreBoolExp>;
 };
 
-
 export type Subscription_RootGenreByPkArgs = {
-  genreId: Scalars['uuid'];
+  genreId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootGenreStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<GenreStreamCursorInput>>;
   where?: InputMaybe<GenreBoolExp>;
 };
 
-
 export type Subscription_RootGenreTotalByMonthArgs = {
   args: GenreTotalByMonthArgs;
   distinctOn?: InputMaybe<Array<TotalByGenreViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TotalByGenreViewOrderBy>>;
   where?: InputMaybe<TotalByGenreViewBoolExp>;
 };
 
-
 export type Subscription_RootGroupArgs = {
   distinctOn?: InputMaybe<Array<GroupSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GroupOrderBy>>;
   where?: InputMaybe<GroupBoolExp>;
 };
 
-
 export type Subscription_RootGroupApplicationArgs = {
   distinctOn?: InputMaybe<Array<GroupApplicationSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GroupApplicationOrderBy>>;
   where?: InputMaybe<GroupApplicationBoolExp>;
 };
 
-
 export type Subscription_RootGroupApplicationByPkArgs = {
-  groupApplicationId: Scalars['uuid'];
+  groupApplicationId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootGroupApplicationStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<GroupApplicationStreamCursorInput>>;
   where?: InputMaybe<GroupApplicationBoolExp>;
 };
 
-
 export type Subscription_RootGroupByPkArgs = {
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 };
-
 
 export type Subscription_RootGroupRoleArgs = {
   distinctOn?: InputMaybe<Array<GroupRoleSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<GroupRoleOrderBy>>;
   where?: InputMaybe<GroupRoleBoolExp>;
 };
 
-
 export type Subscription_RootGroupRoleByPkArgs = {
-  groupRoleId: Scalars['uuid'];
+  groupRoleId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootGroupRoleStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<GroupRoleStreamCursorInput>>;
   where?: InputMaybe<GroupRoleBoolExp>;
 };
 
-
 export type Subscription_RootGroupStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<GroupStreamCursorInput>>;
   where?: InputMaybe<GroupBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsExchangeItemArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsExchangeItemSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsExchangeItemOrderBy>>;
   where?: InputMaybe<HelperKidsExchangeItemBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsExchangeItemByPkArgs = {
-  exchangeItemId: Scalars['uuid'];
+  exchangeItemId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootHelperKidsExchangeItemStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<HelperKidsExchangeItemStreamCursorInput>>;
   where?: InputMaybe<HelperKidsExchangeItemBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsHelpItemArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpItemSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpItemOrderBy>>;
   where?: InputMaybe<HelperKidsHelpItemBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsHelpItemByPkArgs = {
-  helpItemId: Scalars['uuid'];
+  helpItemId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootHelperKidsHelpItemStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<HelperKidsHelpItemStreamCursorInput>>;
   where?: InputMaybe<HelperKidsHelpItemBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsHelpPointEarnedAchievementArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointEarnedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
 };
 
-
-export type Subscription_RootHelperKidsHelpPointEarnedAchievementAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementOrderBy>>;
-  where?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
-};
-
+export type Subscription_RootHelperKidsHelpPointEarnedAchievementAggregateArgs =
+  {
+    distinctOn?: InputMaybe<
+      Array<HelperKidsHelpPointEarnedAchievementSelectColumn>
+    >;
+    limit?: InputMaybe<Scalars["Int"]>;
+    offset?: InputMaybe<Scalars["Int"]>;
+    orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedAchievementOrderBy>>;
+    where?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
+  };
 
 export type Subscription_RootHelperKidsHelpPointEarnedAchievementByPkArgs = {
-  helpPointEarnedAchievementId: Scalars['uuid'];
+  helpPointEarnedAchievementId: Scalars["uuid"];
 };
-
 
 export type Subscription_RootHelperKidsHelpPointEarnedAchievementStreamArgs = {
-  batchSize: Scalars['Int'];
-  cursor: Array<InputMaybe<HelperKidsHelpPointEarnedAchievementStreamCursorInput>>;
+  batchSize: Scalars["Int"];
+  cursor: Array<
+    InputMaybe<HelperKidsHelpPointEarnedAchievementStreamCursorInput>
+  >;
   where?: InputMaybe<HelperKidsHelpPointEarnedAchievementBoolExp>;
 };
-
 
 export type Subscription_RootHelperKidsHelpPointEarnedDetailArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointEarnedDetailOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsHelpPointEarnedDetailByPkArgs = {
-  helpPointEarnedDetailId: Scalars['uuid'];
+  helpPointEarnedDetailId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootHelperKidsHelpPointEarnedDetailStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<HelperKidsHelpPointEarnedDetailStreamCursorInput>>;
   where?: InputMaybe<HelperKidsHelpPointEarnedDetailBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsHelpPointExchangedAchievementArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  distinctOn?: InputMaybe<
+    Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+  >;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
   where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
 };
 
-
-export type Subscription_RootHelperKidsHelpPointExchangedAchievementAggregateArgs = {
-  distinctOn?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
-  where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
-};
-
+export type Subscription_RootHelperKidsHelpPointExchangedAchievementAggregateArgs =
+  {
+    distinctOn?: InputMaybe<
+      Array<HelperKidsHelpPointExchangedAchievementSelectColumn>
+    >;
+    limit?: InputMaybe<Scalars["Int"]>;
+    offset?: InputMaybe<Scalars["Int"]>;
+    orderBy?: InputMaybe<Array<HelperKidsHelpPointExchangedAchievementOrderBy>>;
+    where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
+  };
 
 export type Subscription_RootHelperKidsHelpPointExchangedAchievementByPkArgs = {
-  helpPointExchangedAchievementId: Scalars['uuid'];
+  helpPointExchangedAchievementId: Scalars["uuid"];
 };
 
-
-export type Subscription_RootHelperKidsHelpPointExchangedAchievementStreamArgs = {
-  batchSize: Scalars['Int'];
-  cursor: Array<InputMaybe<HelperKidsHelpPointExchangedAchievementStreamCursorInput>>;
-  where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
-};
-
+export type Subscription_RootHelperKidsHelpPointExchangedAchievementStreamArgs =
+  {
+    batchSize: Scalars["Int"];
+    cursor: Array<
+      InputMaybe<HelperKidsHelpPointExchangedAchievementStreamCursorInput>
+    >;
+    where?: InputMaybe<HelperKidsHelpPointExchangedAchievementBoolExp>;
+  };
 
 export type Subscription_RootHelperKidsHelperKidArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelperKidOrderBy>>;
   where?: InputMaybe<HelperKidsHelperKidBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsHelperKidByPkArgs = {
-  helperKidId: Scalars['uuid'];
+  helperKidId: Scalars["uuid"];
 };
-
 
 export type Subscription_RootHelperKidsHelperKidParentArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidParentSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelperKidParentOrderBy>>;
   where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsHelperKidParentByPkArgs = {
-  helperKidParentId: Scalars['uuid'];
+  helperKidParentId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootHelperKidsHelperKidParentStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<HelperKidsHelperKidParentStreamCursorInput>>;
   where?: InputMaybe<HelperKidsHelperKidParentBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsHelperKidPointArgs = {
   distinctOn?: InputMaybe<Array<HelperKidsHelperKidPointSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<HelperKidsHelperKidPointOrderBy>>;
   where?: InputMaybe<HelperKidsHelperKidPointBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsHelperKidPointByPkArgs = {
-  helperKidId: Scalars['uuid'];
+  helperKidId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootHelperKidsHelperKidPointStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<HelperKidsHelperKidPointStreamCursorInput>>;
   where?: InputMaybe<HelperKidsHelperKidPointBoolExp>;
 };
 
-
 export type Subscription_RootHelperKidsHelperKidStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<HelperKidsHelperKidStreamCursorInput>>;
   where?: InputMaybe<HelperKidsHelperKidBoolExp>;
 };
 
-
 export type Subscription_RootImportFileHistoryArgs = {
   distinctOn?: InputMaybe<Array<ImportFileHistorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<ImportFileHistoryOrderBy>>;
   where?: InputMaybe<ImportFileHistoryBoolExp>;
 };
 
-
 export type Subscription_RootImportFileHistoryByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 };
 
-
 export type Subscription_RootImportFileHistoryStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<ImportFileHistoryStreamCursorInput>>;
   where?: InputMaybe<ImportFileHistoryBoolExp>;
 };
 
-
 export type Subscription_RootSummaryCategoryByGroupArgs = {
   distinctOn?: InputMaybe<Array<SummaryCategoryByGroupSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<SummaryCategoryByGroupOrderBy>>;
   where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
 };
 
-
 export type Subscription_RootSummaryCategoryByGroupByPkArgs = {
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 };
 
-
 export type Subscription_RootSummaryCategoryByGroupStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<SummaryCategoryByGroupStreamCursorInput>>;
   where?: InputMaybe<SummaryCategoryByGroupBoolExp>;
 };
 
-
 export type Subscription_RootTotalByCategoryViewArgs = {
   distinctOn?: InputMaybe<Array<TotalByCategoryViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TotalByCategoryViewOrderBy>>;
   where?: InputMaybe<TotalByCategoryViewBoolExp>;
 };
 
-
 export type Subscription_RootTotalByCategoryViewStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<TotalByCategoryViewStreamCursorInput>>;
   where?: InputMaybe<TotalByCategoryViewBoolExp>;
 };
 
-
 export type Subscription_RootTotalByGenreViewArgs = {
   distinctOn?: InputMaybe<Array<TotalByGenreViewSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TotalByGenreViewOrderBy>>;
   where?: InputMaybe<TotalByGenreViewBoolExp>;
 };
 
-
 export type Subscription_RootTotalByGenreViewStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<TotalByGenreViewStreamCursorInput>>;
   where?: InputMaybe<TotalByGenreViewBoolExp>;
 };
 
-
 export type Subscription_RootTransferCategoryArgs = {
   distinctOn?: InputMaybe<Array<TransferCategorySelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<TransferCategoryOrderBy>>;
   where?: InputMaybe<TransferCategoryBoolExp>;
 };
 
-
 export type Subscription_RootTransferCategoryByPkArgs = {
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootTransferCategoryStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<TransferCategoryStreamCursorInput>>;
   where?: InputMaybe<TransferCategoryBoolExp>;
 };
 
-
 export type Subscription_RootUserArgs = {
   distinctOn?: InputMaybe<Array<UserSelectColumn>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars["Int"]>;
+  offset?: InputMaybe<Scalars["Int"]>;
   orderBy?: InputMaybe<Array<UserOrderBy>>;
   where?: InputMaybe<UserBoolExp>;
 };
 
-
 export type Subscription_RootUserByPkArgs = {
-  userId: Scalars['uuid'];
+  userId: Scalars["uuid"];
 };
 
-
 export type Subscription_RootUserStreamArgs = {
-  batchSize: Scalars['Int'];
+  batchSize: Scalars["Int"];
   cursor: Array<InputMaybe<UserStreamCursorInput>>;
   where?: InputMaybe<UserBoolExp>;
 };
 
 export type CreateAccountMutationVariables = Exact<{
-  accountId: Scalars['uuid'];
-  accountName: Scalars['String'];
-  displayOrder: Scalars['Int'];
-  groupId: Scalars['uuid'];
+  accountId: Scalars["uuid"];
+  accountName: Scalars["String"];
+  displayOrder: Scalars["Int"];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type CreateAccountMutation = { __typename?: 'mutation_root', insertAccount?: { __typename?: 'AccountMutationResponse', returning: Array<{ __typename?: 'Account', accountId: any }> } | null };
+export type CreateAccountMutation = {
+  __typename?: "mutation_root";
+  insertAccount?: {
+    __typename?: "AccountMutationResponse";
+    returning: Array<{ __typename?: "Account"; accountId: any }>;
+  } | null;
+};
 
 export type CreateCreditCardDetailMutationVariables = Exact<{
-  id: Scalars['uuid'];
-  date: Scalars['date'];
-  genreId: Scalars['uuid'];
-  iocomeType: Scalars['iocome_type'];
-  categoryId: Scalars['uuid'];
-  amount: Scalars['numeric'];
-  memo: Scalars['String'];
-  summaryId: Scalars['uuid'];
-  userId: Scalars['uuid'];
-  groupId: Scalars['uuid'];
+  id: Scalars["uuid"];
+  date: Scalars["date"];
+  genreId: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
+  categoryId: Scalars["uuid"];
+  amount: Scalars["numeric"];
+  memo: Scalars["String"];
+  summaryId: Scalars["uuid"];
+  userId: Scalars["uuid"];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type CreateCreditCardDetailMutation = { __typename?: 'mutation_root', insertCreditCardDetail?: { __typename?: 'CreditCardDetailMutationResponse', returning: Array<{ __typename?: 'CreditCardDetail', id: any }> } | null };
+export type CreateCreditCardDetailMutation = {
+  __typename?: "mutation_root";
+  insertCreditCardDetail?: {
+    __typename?: "CreditCardDetailMutationResponse";
+    returning: Array<{ __typename?: "CreditCardDetail"; id: any }>;
+  } | null;
+};
 
 export type CreateCreditCardSummaryMutationVariables = Exact<{
-  accountId: Scalars['uuid'];
-  count: Scalars['Int'];
-  creditCard: Scalars['String'];
-  groupId: Scalars['uuid'];
-  id: Scalars['uuid'];
-  totalAmount: Scalars['numeric'];
-  withdrawalDate: Scalars['date'];
+  accountId: Scalars["uuid"];
+  count: Scalars["Int"];
+  creditCard: Scalars["String"];
+  groupId: Scalars["uuid"];
+  id: Scalars["uuid"];
+  totalAmount: Scalars["numeric"];
+  withdrawalDate: Scalars["date"];
 }>;
 
-
-export type CreateCreditCardSummaryMutation = { __typename?: 'mutation_root', insertCreditCardSummary?: { __typename?: 'CreditCardSummaryMutationResponse', returning: Array<{ __typename?: 'CreditCardSummary', id: any }> } | null };
+export type CreateCreditCardSummaryMutation = {
+  __typename?: "mutation_root";
+  insertCreditCardSummary?: {
+    __typename?: "CreditCardSummaryMutationResponse";
+    returning: Array<{ __typename?: "CreditCardSummary"; id: any }>;
+  } | null;
+};
 
 export type CreateDailyDetailMutationVariables = Exact<{
-  accountId: Scalars['uuid'];
-  amount: Scalars['numeric'];
-  genreId: Scalars['uuid'];
-  iocomeType: Scalars['iocome_type'];
-  categoryId: Scalars['uuid'];
-  date: Scalars['date'];
-  groupId: Scalars['uuid'];
-  id: Scalars['uuid'];
-  memo?: InputMaybe<Scalars['String']>;
-  userId: Scalars['uuid'];
+  accountId: Scalars["uuid"];
+  amount: Scalars["numeric"];
+  genreId: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
+  categoryId: Scalars["uuid"];
+  date: Scalars["date"];
+  groupId: Scalars["uuid"];
+  id: Scalars["uuid"];
+  memo?: InputMaybe<Scalars["String"]>;
+  userId: Scalars["uuid"];
 }>;
 
-
-export type CreateDailyDetailMutation = { __typename?: 'mutation_root', insertDailyDetail?: { __typename?: 'DailyDetailMutationResponse', returning: Array<{ __typename?: 'DailyDetail', id: any }> } | null };
+export type CreateDailyDetailMutation = {
+  __typename?: "mutation_root";
+  insertDailyDetail?: {
+    __typename?: "DailyDetailMutationResponse";
+    returning: Array<{ __typename?: "DailyDetail"; id: any }>;
+  } | null;
+};
 
 export type CreateImportFileHistoryMutationVariables = Exact<{
-  fileName: Scalars['String'];
-  fileType: Scalars['String'];
-  groupId: Scalars['uuid'];
-  id: Scalars['uuid'];
-  importDatetime: Scalars['timestamp'];
-  importUserId: Scalars['uuid'];
+  fileName: Scalars["String"];
+  fileType: Scalars["String"];
+  groupId: Scalars["uuid"];
+  id: Scalars["uuid"];
+  importDatetime: Scalars["timestamp"];
+  importUserId: Scalars["uuid"];
 }>;
 
-
-export type CreateImportFileHistoryMutation = { __typename?: 'mutation_root', insertImportFileHistory?: { __typename?: 'ImportFileHistoryMutationResponse', returning: Array<{ __typename?: 'ImportFileHistory', id: any }> } | null };
+export type CreateImportFileHistoryMutation = {
+  __typename?: "mutation_root";
+  insertImportFileHistory?: {
+    __typename?: "ImportFileHistoryMutationResponse";
+    returning: Array<{ __typename?: "ImportFileHistory"; id: any }>;
+  } | null;
+};
 
 export type CreateSummaryCategoryMutationVariables = Exact<{
-  id: Scalars['uuid'];
-  displayOrder: Scalars['Int'];
-  categoryId: Scalars['uuid'];
-  groupId: Scalars['uuid'];
+  id: Scalars["uuid"];
+  displayOrder: Scalars["Int"];
+  categoryId: Scalars["uuid"];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type CreateSummaryCategoryMutation = { __typename?: 'mutation_root', insertSummaryCategoryByGroup?: { __typename?: 'SummaryCategoryByGroupMutationResponse', returning: Array<{ __typename?: 'SummaryCategoryByGroup', id: any }> } | null };
+export type CreateSummaryCategoryMutation = {
+  __typename?: "mutation_root";
+  insertSummaryCategoryByGroup?: {
+    __typename?: "SummaryCategoryByGroupMutationResponse";
+    returning: Array<{ __typename?: "SummaryCategoryByGroup"; id: any }>;
+  } | null;
+};
 
 export type CreateUserMutationVariables = Exact<{
-  userId: Scalars['uuid'];
-  userName: Scalars['String'];
-  email: Scalars['String'];
-  displayOrder: Scalars['Int'];
+  userId: Scalars["uuid"];
+  userName: Scalars["String"];
+  email: Scalars["String"];
+  displayOrder: Scalars["Int"];
 }>;
 
-
-export type CreateUserMutation = { __typename?: 'mutation_root', insertUser?: { __typename?: 'UserMutationResponse', returning: Array<{ __typename?: 'User', userId: any, email?: string | null }> } | null };
+export type CreateUserMutation = {
+  __typename?: "mutation_root";
+  insertUser?: {
+    __typename?: "UserMutationResponse";
+    returning: Array<{
+      __typename?: "User";
+      userId: any;
+      email?: string | null;
+    }>;
+  } | null;
+};
 
 export type DeleteDailyDetailBySerialNoMutationVariables = Exact<{
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 }>;
 
-
-export type DeleteDailyDetailBySerialNoMutation = { __typename?: 'mutation_root', deleteDailyDetailByPk?: { __typename?: 'DailyDetail', id: any } | null };
+export type DeleteDailyDetailBySerialNoMutation = {
+  __typename?: "mutation_root";
+  deleteDailyDetailByPk?: { __typename?: "DailyDetail"; id: any } | null;
+};
 
 export type DeleteSummaryCategoryMutationVariables = Exact<{
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type DeleteSummaryCategoryMutation = { __typename?: 'mutation_root', deleteSummaryCategoryByGroup?: { __typename?: 'SummaryCategoryByGroupMutationResponse', returning: Array<{ __typename?: 'SummaryCategoryByGroup', id: any }> } | null };
+export type DeleteSummaryCategoryMutation = {
+  __typename?: "mutation_root";
+  deleteSummaryCategoryByGroup?: {
+    __typename?: "SummaryCategoryByGroupMutationResponse";
+    returning: Array<{ __typename?: "SummaryCategoryByGroup"; id: any }>;
+  } | null;
+};
 
 export type UpdateCategoryByIdMutationVariables = Exact<{
-  categoryId: Scalars['uuid'];
-  categoryName: Scalars['String'];
-  genreId: Scalars['uuid'];
-  displayOrder: Scalars['Int'];
-  validFlag: Scalars['Boolean'];
+  categoryId: Scalars["uuid"];
+  categoryName: Scalars["String"];
+  genreId: Scalars["uuid"];
+  displayOrder: Scalars["Int"];
+  validFlag: Scalars["Boolean"];
 }>;
 
-
-export type UpdateCategoryByIdMutation = { __typename?: 'mutation_root', updateCategoryByPk?: { __typename?: 'Category', id: any } | null };
+export type UpdateCategoryByIdMutation = {
+  __typename?: "mutation_root";
+  updateCategoryByPk?: { __typename?: "Category"; id: any } | null;
+};
 
 export type UpdateCreditCardDetailByIdMutationVariables = Exact<{
-  id: Scalars['uuid'];
-  categoryId: Scalars['uuid'];
-  memo?: InputMaybe<Scalars['String']>;
+  id: Scalars["uuid"];
+  categoryId: Scalars["uuid"];
+  memo?: InputMaybe<Scalars["String"]>;
 }>;
 
-
-export type UpdateCreditCardDetailByIdMutation = { __typename?: 'mutation_root', updateCreditCardDetailByPk?: { __typename?: 'CreditCardDetail', id: any } | null };
+export type UpdateCreditCardDetailByIdMutation = {
+  __typename?: "mutation_root";
+  updateCreditCardDetailByPk?: {
+    __typename?: "CreditCardDetail";
+    id: any;
+  } | null;
+};
 
 export type UpdateDailyDetailByIdMutationVariables = Exact<{
-  id: Scalars['uuid'];
-  date: Scalars['date'];
-  genreId: Scalars['uuid'];
-  iocomeType: Scalars['iocome_type'];
-  categoryId: Scalars['uuid'];
-  accountId: Scalars['uuid'];
-  amount: Scalars['numeric'];
-  memo?: InputMaybe<Scalars['String']>;
+  id: Scalars["uuid"];
+  date: Scalars["date"];
+  genreId: Scalars["uuid"];
+  iocomeType: Scalars["iocome_type"];
+  categoryId: Scalars["uuid"];
+  accountId: Scalars["uuid"];
+  amount: Scalars["numeric"];
+  memo?: InputMaybe<Scalars["String"]>;
 }>;
 
-
-export type UpdateDailyDetailByIdMutation = { __typename?: 'mutation_root', updateDailyDetailByPk?: { __typename?: 'DailyDetail', id: any } | null };
+export type UpdateDailyDetailByIdMutation = {
+  __typename?: "mutation_root";
+  updateDailyDetailByPk?: { __typename?: "DailyDetail"; id: any } | null;
+};
 
 export type UpdateGenreByIdMutationVariables = Exact<{
-  genreId: Scalars['uuid'];
-  validFlag: Scalars['Boolean'];
-  iocomeType: Scalars['iocome_type'];
-  genreType: Scalars['genre_type'];
-  genreName: Scalars['String'];
-  displayOrder: Scalars['Int'];
+  genreId: Scalars["uuid"];
+  validFlag: Scalars["Boolean"];
+  iocomeType: Scalars["iocome_type"];
+  genreType: Scalars["genre_type"];
+  genreName: Scalars["String"];
+  displayOrder: Scalars["Int"];
 }>;
 
-
-export type UpdateGenreByIdMutation = { __typename?: 'mutation_root', updateGenreByPk?: { __typename?: 'Genre', id: any } | null };
+export type UpdateGenreByIdMutation = {
+  __typename?: "mutation_root";
+  updateGenreByPk?: { __typename?: "Genre"; id: any } | null;
+};
 
 export type GetAccountBalanceListQueryVariables = Exact<{
-  groupId: Scalars['uuid'];
-  fromDate: Scalars['date'];
-  toDate: Scalars['date'];
+  groupId: Scalars["uuid"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
 }>;
 
-
-export type GetAccountBalanceListQuery = { __typename?: 'query_root', account: Array<{ __typename?: 'Account', accountName: string, id: any, allDetailViewsAggregate: { __typename?: 'AllDetailViewAggregate', aggregate?: { __typename?: 'AllDetailViewAggregateFields', sum?: { __typename?: 'AllDetailViewSumFields', signedAmount?: any | null } | null } | null } }> };
+export type GetAccountBalanceListQuery = {
+  __typename?: "query_root";
+  account: Array<{
+    __typename?: "Account";
+    accountName: string;
+    id: any;
+    allDetailViewsAggregate: {
+      __typename?: "AllDetailViewAggregate";
+      aggregate?: {
+        __typename?: "AllDetailViewAggregateFields";
+        sum?: {
+          __typename?: "AllDetailViewSumFields";
+          signedAmount?: any | null;
+        } | null;
+      } | null;
+    };
+  }>;
+};
 
 export type GetAllCategoriesQueryVariables = Exact<{
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetAllCategoriesQuery = { __typename?: 'query_root', categories: Array<{ __typename?: 'Category', categoryName: string, displayOrder: number, validFlag?: boolean | null, id: any, genre: { __typename?: 'Genre', genreId: any, genreName: string } }> };
+export type GetAllCategoriesQuery = {
+  __typename?: "query_root";
+  categories: Array<{
+    __typename?: "Category";
+    categoryName: string;
+    displayOrder: number;
+    validFlag?: boolean | null;
+    id: any;
+    genre: { __typename?: "Genre"; genreId: any; genreName: string };
+  }>;
+};
 
 export type GetAllCategoryListWithCriteriaQueryVariables = Exact<{
-  validCategoryIn?: InputMaybe<Array<Scalars['Boolean']> | Scalars['Boolean']>;
-  validGenreIn?: InputMaybe<Array<Scalars['Boolean']> | Scalars['Boolean']>;
-  iocomeTypeIn?: InputMaybe<Array<Scalars['iocome_type']> | Scalars['iocome_type']>;
-  categoryNotIn?: InputMaybe<Array<Scalars['uuid']> | Scalars['uuid']>;
+  validCategoryIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
+  validGenreIn?: InputMaybe<Array<Scalars["Boolean"]> | Scalars["Boolean"]>;
+  iocomeTypeIn?: InputMaybe<
+    Array<Scalars["iocome_type"]> | Scalars["iocome_type"]
+  >;
+  categoryNotIn?: InputMaybe<Array<Scalars["uuid"]> | Scalars["uuid"]>;
 }>;
 
-
-export type GetAllCategoryListWithCriteriaQuery = { __typename?: 'query_root', genres: Array<{ __typename?: 'Genre', iocomeType: any, validFlag?: boolean | null, displayOrder: number, id: any, name: string, type: any, categories: Array<{ __typename?: 'Category', validFlag?: boolean | null, displayOrder: number, id: any, name: string }> }> };
+export type GetAllCategoryListWithCriteriaQuery = {
+  __typename?: "query_root";
+  genres: Array<{
+    __typename?: "Genre";
+    iocomeType: any;
+    validFlag?: boolean | null;
+    displayOrder: number;
+    id: any;
+    name: string;
+    type: any;
+    categories: Array<{
+      __typename?: "Category";
+      validFlag?: boolean | null;
+      displayOrder: number;
+      id: any;
+      name: string;
+    }>;
+  }>;
+};
 
 export type GetAllGenreQueryVariables = Exact<{
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 }>;
 
+export type GetAllGenreQuery = {
+  __typename?: "query_root";
+  genre: Array<{
+    __typename?: "Genre";
+    genreName: string;
+    genreType: any;
+    iocomeType: any;
+    validFlag?: boolean | null;
+    displayOrder: number;
+    id: any;
+  }>;
+};
 
-export type GetAllGenreQuery = { __typename?: 'query_root', genre: Array<{ __typename?: 'Genre', genreName: string, genreType: any, iocomeType: any, validFlag?: boolean | null, displayOrder: number, id: any }> };
+export type GetAllUsersQueryVariables = Exact<{ [key: string]: never }>;
 
-export type GetAllUsersQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetAllUsersQuery = { __typename?: 'query_root', users: Array<{ __typename?: 'User', email?: string | null, id: any, name?: string | null, affiliation: Array<{ __typename?: 'Affiliation', group: { __typename?: 'Group', id: any, name: string } }> }> };
+export type GetAllUsersQuery = {
+  __typename?: "query_root";
+  users: Array<{
+    __typename?: "User";
+    email?: string | null;
+    id: any;
+    name?: string | null;
+    affiliation: Array<{
+      __typename?: "Affiliation";
+      group: { __typename?: "Group"; id: any; name: string };
+    }>;
+  }>;
+};
 
 export type GetApplicationByGroupIdQueryVariables = Exact<{
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetApplicationByGroupIdQuery = { __typename?: 'query_root', group: Array<{ __typename?: 'GroupApplication', app: { __typename?: 'Application', topUrl: string, id: any, name: string } }> };
+export type GetApplicationByGroupIdQuery = {
+  __typename?: "query_root";
+  group: Array<{
+    __typename?: "GroupApplication";
+    app: { __typename?: "Application"; topUrl: string; id: any; name: string };
+  }>;
+};
 
 export type GetCategoryByIdQueryVariables = Exact<{
-  categoryId: Scalars['uuid'];
+  categoryId: Scalars["uuid"];
 }>;
 
-
-export type GetCategoryByIdQuery = { __typename?: 'query_root', category?: { __typename?: 'Category', categoryName: string, validFlag?: boolean | null, displayOrder: number, genre: { __typename?: 'Genre', genreId: any, iocomeType: any } } | null };
+export type GetCategoryByIdQuery = {
+  __typename?: "query_root";
+  category?: {
+    __typename?: "Category";
+    categoryName: string;
+    validFlag?: boolean | null;
+    displayOrder: number;
+    genre: { __typename?: "Genre"; genreId: any; iocomeType: any };
+  } | null;
+};
 
 export type GetCategoryTotalByMonthQueryVariables = Exact<{
-  fromDate?: InputMaybe<Scalars['date']>;
-  toDate?: InputMaybe<Scalars['date']>;
-  groupId: Scalars['uuid'];
+  fromDate?: InputMaybe<Scalars["date"]>;
+  toDate?: InputMaybe<Scalars["date"]>;
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetCategoryTotalByMonthQuery = { __typename?: 'query_root', categoryTotalByMonth: Array<{ __typename?: 'TotalByCategoryView', date?: any | null, iocomeType?: any | null, genreId?: any | null, genreName?: string | null, categoryId?: any | null, categoryName?: string | null, total?: any | null }> };
+export type GetCategoryTotalByMonthQuery = {
+  __typename?: "query_root";
+  categoryTotalByMonth: Array<{
+    __typename?: "TotalByCategoryView";
+    date?: any | null;
+    iocomeType?: any | null;
+    genreId?: any | null;
+    genreName?: string | null;
+    categoryId?: any | null;
+    categoryName?: string | null;
+    total?: any | null;
+  }>;
+};
 
 export type GetCreditCardDetailByIdQueryVariables = Exact<{
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 }>;
 
-
-export type GetCreditCardDetailByIdQuery = { __typename?: 'query_root', creditCardDetailByPk?: { __typename?: 'CreditCardDetail', id: any, date: any, amount: any, memo?: string | null, summaryId: any, category: { __typename?: 'Category', categoryId: any, categoryName: string, genre: { __typename?: 'Genre', genreId: any, genreName: string, genreType: any, iocomeType: any } } } | null };
+export type GetCreditCardDetailByIdQuery = {
+  __typename?: "query_root";
+  creditCardDetailByPk?: {
+    __typename?: "CreditCardDetail";
+    id: any;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    summaryId: any;
+    category: {
+      __typename?: "Category";
+      categoryId: any;
+      categoryName: string;
+      genre: {
+        __typename?: "Genre";
+        genreId: any;
+        genreName: string;
+        genreType: any;
+        iocomeType: any;
+      };
+    };
+  } | null;
+};
 
 export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
-  id: Scalars['uuid'];
+  id: Scalars["uuid"];
 }>;
 
-
-export type GetCreditCardDetailBySummaryIdQuery = { __typename?: 'query_root', creditCardSummaryByPk?: { __typename?: 'CreditCardSummary', id: any, creditCardDetail: Array<{ __typename?: 'CreditCardDetail', id: any, date: any, memo?: string | null, amount: any, category: { __typename?: 'Category', categoryId: any, categoryName: string, genreByGenreId: { __typename?: 'Genre', genreId: any, genreName: string, genreType: any, iocomeType: any } } }> } | null };
+export type GetCreditCardDetailBySummaryIdQuery = {
+  __typename?: "query_root";
+  creditCardSummaryByPk?: {
+    __typename?: "CreditCardSummary";
+    id: any;
+    creditCardDetail: Array<{
+      __typename?: "CreditCardDetail";
+      id: any;
+      date: any;
+      memo?: string | null;
+      amount: any;
+      category: {
+        __typename?: "Category";
+        categoryId: any;
+        categoryName: string;
+        genreByGenreId: {
+          __typename?: "Genre";
+          genreId: any;
+          genreName: string;
+          genreType: any;
+          iocomeType: any;
+        };
+      };
+    }>;
+  } | null;
+};
 
 export type GetCreditCardListQueryVariables = Exact<{
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetCreditCardListQuery = { __typename?: 'query_root', allCreditCardSummariesList: Array<{ __typename?: 'CreditCardSummary', id: any, creditCard: string, count: number, withdrawalDate: any, totalAmount: any, account: { __typename?: 'Account', id: any, name: string } }> };
+export type GetCreditCardListQuery = {
+  __typename?: "query_root";
+  allCreditCardSummariesList: Array<{
+    __typename?: "CreditCardSummary";
+    id: any;
+    creditCard: string;
+    count: number;
+    withdrawalDate: any;
+    totalAmount: any;
+    account: { __typename?: "Account"; id: any; name: string };
+  }>;
+};
 
 export type GetCreditCardSummaryBetweenWithdrawalDateQueryVariables = Exact<{
-  fromDate: Scalars['date'];
-  toDate: Scalars['date'];
-  groupId: Scalars['uuid'];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetCreditCardSummaryBetweenWithdrawalDateQuery = { __typename?: 'query_root', allCreditCardSummariesList: Array<{ __typename?: 'CreditCardSummary', id: any, withdrawalDate: any, totalAmount: any, creditCard: string, accountByAccountId: { __typename?: 'Account', accountId: any, accountName: string } }> };
+export type GetCreditCardSummaryBetweenWithdrawalDateQuery = {
+  __typename?: "query_root";
+  allCreditCardSummariesList: Array<{
+    __typename?: "CreditCardSummary";
+    id: any;
+    withdrawalDate: any;
+    totalAmount: any;
+    creditCard: string;
+    accountByAccountId: {
+      __typename?: "Account";
+      accountId: any;
+      accountName: string;
+    };
+  }>;
+};
 
 export type GetCreditCardSummaryByAccountIdBetweenDateQueryVariables = Exact<{
-  fromDate: Scalars['date'];
-  toDate: Scalars['date'];
-  accountId: Scalars['uuid'];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  accountId: Scalars["uuid"];
 }>;
 
-
-export type GetCreditCardSummaryByAccountIdBetweenDateQuery = { __typename?: 'query_root', allCreditCardSummariesList: Array<{ __typename?: 'CreditCardSummary', id: any, withdrawalDate: any, totalAmount: any, creditCard: string, accountByAccountId: { __typename?: 'Account', accountId: any, accountName: string } }> };
+export type GetCreditCardSummaryByAccountIdBetweenDateQuery = {
+  __typename?: "query_root";
+  allCreditCardSummariesList: Array<{
+    __typename?: "CreditCardSummary";
+    id: any;
+    withdrawalDate: any;
+    totalAmount: any;
+    creditCard: string;
+    accountByAccountId: {
+      __typename?: "Account";
+      accountId: any;
+      accountName: string;
+    };
+  }>;
+};
 
 export type GetDailyDetailByDateQueryVariables = Exact<{
-  fromDate: Scalars['date'];
-  toDate: Scalars['date'];
-  groupId: Scalars['uuid'];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetDailyDetailByDateQuery = { __typename?: 'query_root', dailyDetailByDateList: Array<{ __typename?: 'DailyDetail', id: any, date: any, amount: any, memo?: string | null, categoryByCategoryId: { __typename?: 'Category', categoryId: any, categoryName: string, genreByGenreId: { __typename?: 'Genre', genreId: any, genreName: string, genreType: any, iocomeType: any } }, accountByAccountId: { __typename?: 'Account', accountId: any, accountName: string }, userByUserId: { __typename?: 'User', userId: any, userName?: string | null } }> };
+export type GetDailyDetailByDateQuery = {
+  __typename?: "query_root";
+  dailyDetailByDateList: Array<{
+    __typename?: "DailyDetail";
+    id: any;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    categoryByCategoryId: {
+      __typename?: "Category";
+      categoryId: any;
+      categoryName: string;
+      genreByGenreId: {
+        __typename?: "Genre";
+        genreId: any;
+        genreName: string;
+        genreType: any;
+        iocomeType: any;
+      };
+    };
+    accountByAccountId: {
+      __typename?: "Account";
+      accountId: any;
+      accountName: string;
+    };
+    userByUserId: {
+      __typename?: "User";
+      userId: any;
+      userName?: string | null;
+    };
+  }>;
+};
 
 export type GetDailyDetailByDateAccountIdQueryVariables = Exact<{
-  fromDate: Scalars['date'];
-  toDate: Scalars['date'];
-  accountId: Scalars['uuid'];
-  groupId: Scalars['uuid'];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  accountId: Scalars["uuid"];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetDailyDetailByDateAccountIdQuery = { __typename?: 'query_root', dailyDetailByDateList: Array<{ __typename?: 'DailyDetail', id: any, date: any, amount: any, memo?: string | null, categoryByCategoryId: { __typename?: 'Category', categoryId: any, categoryName: string, genreByGenreId: { __typename?: 'Genre', genreId: any, genreName: string, genreType: any, iocomeType: any } }, accountByAccountId: { __typename?: 'Account', accountId: any, accountName: string }, userByUserId: { __typename?: 'User', userId: any, userName?: string | null } }> };
+export type GetDailyDetailByDateAccountIdQuery = {
+  __typename?: "query_root";
+  dailyDetailByDateList: Array<{
+    __typename?: "DailyDetail";
+    id: any;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    categoryByCategoryId: {
+      __typename?: "Category";
+      categoryId: any;
+      categoryName: string;
+      genreByGenreId: {
+        __typename?: "Genre";
+        genreId: any;
+        genreName: string;
+        genreType: any;
+        iocomeType: any;
+      };
+    };
+    accountByAccountId: {
+      __typename?: "Account";
+      accountId: any;
+      accountName: string;
+    };
+    userByUserId: {
+      __typename?: "User";
+      userId: any;
+      userName?: string | null;
+    };
+  }>;
+};
 
 export type GetDailyDetailByDateCategoryIdQueryVariables = Exact<{
-  fromDate: Scalars['date'];
-  toDate: Scalars['date'];
-  groupId: Scalars['uuid'];
-  categoryId: Scalars['uuid'];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["uuid"];
+  categoryId: Scalars["uuid"];
 }>;
 
-
-export type GetDailyDetailByDateCategoryIdQuery = { __typename?: 'query_root', dailyDetailByDateList: Array<{ __typename?: 'DailyDetail', id: any, date: any, amount: any, memo?: string | null, categoryByCategoryId: { __typename?: 'Category', categoryId: any, categoryName: string, genreByGenreId: { __typename?: 'Genre', genreId: any, genreName: string, genreType: any, iocomeType: any } }, accountByAccountId: { __typename?: 'Account', accountId: any, accountName: string }, userByUserId: { __typename?: 'User', userId: any, userName?: string | null } }> };
+export type GetDailyDetailByDateCategoryIdQuery = {
+  __typename?: "query_root";
+  dailyDetailByDateList: Array<{
+    __typename?: "DailyDetail";
+    id: any;
+    date: any;
+    amount: any;
+    memo?: string | null;
+    categoryByCategoryId: {
+      __typename?: "Category";
+      categoryId: any;
+      categoryName: string;
+      genreByGenreId: {
+        __typename?: "Genre";
+        genreId: any;
+        genreName: string;
+        genreType: any;
+        iocomeType: any;
+      };
+    };
+    accountByAccountId: {
+      __typename?: "Account";
+      accountId: any;
+      accountName: string;
+    };
+    userByUserId: {
+      __typename?: "User";
+      userId: any;
+      userName?: string | null;
+    };
+  }>;
+};
 
 export type GetDailyDetailByDateGenreIdQueryVariables = Exact<{
-  genreId: Scalars['uuid'];
-  fromDate: Scalars['date'];
-  toDate: Scalars['date'];
-  groupId: Scalars['uuid'];
+  genreId: Scalars["uuid"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetDailyDetailByDateGenreIdQuery = { __typename?: 'query_root', allCategoriesList: Array<{ __typename?: 'Category', dailyDetailsByCategoryIdList: Array<{ __typename?: 'DailyDetail', id: any, date: any, amount: any, memo?: string | null, categoryByCategoryId: { __typename?: 'Category', categoryId: any, categoryName: string, genreByGenreId: { __typename?: 'Genre', genreId: any, genreName: string, genreType: any, iocomeType: any } }, accountByAccountId: { __typename?: 'Account', accountId: any, accountName: string }, userByUserId: { __typename?: 'User', userId: any, userName?: string | null } }> }> };
+export type GetDailyDetailByDateGenreIdQuery = {
+  __typename?: "query_root";
+  allCategoriesList: Array<{
+    __typename?: "Category";
+    dailyDetailsByCategoryIdList: Array<{
+      __typename?: "DailyDetail";
+      id: any;
+      date: any;
+      amount: any;
+      memo?: string | null;
+      categoryByCategoryId: {
+        __typename?: "Category";
+        categoryId: any;
+        categoryName: string;
+        genreByGenreId: {
+          __typename?: "Genre";
+          genreId: any;
+          genreName: string;
+          genreType: any;
+          iocomeType: any;
+        };
+      };
+      accountByAccountId: {
+        __typename?: "Account";
+        accountId: any;
+        accountName: string;
+      };
+      userByUserId: {
+        __typename?: "User";
+        userId: any;
+        userName?: string | null;
+      };
+    }>;
+  }>;
+};
 
 export type GetGenreByIdQueryVariables = Exact<{
-  genreId: Scalars['uuid'];
+  genreId: Scalars["uuid"];
 }>;
 
-
-export type GetGenreByIdQuery = { __typename?: 'query_root', genreById?: { __typename?: 'Genre', genreName: string, genreType: any, iocomeType: any, validFlag?: boolean | null, displayOrder: number, id: any, categories: Array<{ __typename?: 'Category', categoryId: any, categoryName: string }> } | null };
+export type GetGenreByIdQuery = {
+  __typename?: "query_root";
+  genreById?: {
+    __typename?: "Genre";
+    genreName: string;
+    genreType: any;
+    iocomeType: any;
+    validFlag?: boolean | null;
+    displayOrder: number;
+    id: any;
+    categories: Array<{
+      __typename?: "Category";
+      categoryId: any;
+      categoryName: string;
+    }>;
+  } | null;
+};
 
 export type GetGenreTotalByMonthQueryVariables = Exact<{
-  fromDate: Scalars['date'];
-  toDate: Scalars['date'];
-  groupId: Scalars['uuid'];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetGenreTotalByMonthQuery = { __typename?: 'query_root', genreTotalByMonthList: Array<{ __typename?: 'TotalByGenreView', date?: any | null, iocomeType?: any | null, genreId?: any | null, genreName?: string | null, total?: any | null }> };
+export type GetGenreTotalByMonthQuery = {
+  __typename?: "query_root";
+  genreTotalByMonthList: Array<{
+    __typename?: "TotalByGenreView";
+    date?: any | null;
+    iocomeType?: any | null;
+    genreId?: any | null;
+    genreName?: string | null;
+    total?: any | null;
+  }>;
+};
 
 export type GetSummaryCategoriesQueryVariables = Exact<{
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetSummaryCategoriesQuery = { __typename?: 'query_root', categories: Array<{ __typename?: 'SummaryCategoryByGroup', id: any, groupId: any, displayOrder: number, category: { __typename?: 'Category', id: any, name: string, genre: { __typename?: 'Genre', iocomeType: any, id: any, name: string, type: any } } }> };
+export type GetSummaryCategoriesQuery = {
+  __typename?: "query_root";
+  categories: Array<{
+    __typename?: "SummaryCategoryByGroup";
+    id: any;
+    groupId: any;
+    displayOrder: number;
+    category: {
+      __typename?: "Category";
+      id: any;
+      name: string;
+      genre: {
+        __typename?: "Genre";
+        iocomeType: any;
+        id: any;
+        name: string;
+        type: any;
+      };
+    };
+  }>;
+};
 
 export type GetSummaryCategoryBetweenDateQueryVariables = Exact<{
-  fromDate: Scalars['date'];
-  toDate: Scalars['date'];
-  groupId: Scalars['uuid'];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetSummaryCategoryBetweenDateQuery = { __typename?: 'query_root', summaryCategoryList: Array<{ __typename?: 'SummaryCategoryByGroup', category: { __typename?: 'Category', name: string, id: any, genre: { __typename?: 'Genre', iocomeType: any }, daily: Array<{ __typename?: 'DailyDetail', date: any, amount: any }>, creditCard: Array<{ __typename?: 'CreditCardDetail', date: any, amount: any }> } }> };
+export type GetSummaryCategoryBetweenDateQuery = {
+  __typename?: "query_root";
+  summaryCategoryList: Array<{
+    __typename?: "SummaryCategoryByGroup";
+    category: {
+      __typename?: "Category";
+      name: string;
+      id: any;
+      genre: { __typename?: "Genre"; iocomeType: any };
+      daily: Array<{ __typename?: "DailyDetail"; date: any; amount: any }>;
+      creditCard: Array<{
+        __typename?: "CreditCardDetail";
+        date: any;
+        amount: any;
+      }>;
+    };
+  }>;
+};
 
 export type GetTotalBetweenDateQueryVariables = Exact<{
-  fromDate: Scalars['date'];
-  toDate: Scalars['date'];
-  groupId: Scalars['uuid'];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetTotalBetweenDateQuery = { __typename?: 'query_root', incomeTotalByDate: Array<{ __typename?: 'DailyTotalView', date?: any | null, iocomeType?: any | null, total?: any | null }>, outcomeTotalByDate: Array<{ __typename?: 'DailyTotalView', date?: any | null, iocomeType?: any | null, total?: any | null }> };
+export type GetTotalBetweenDateQuery = {
+  __typename?: "query_root";
+  incomeTotalByDate: Array<{
+    __typename?: "DailyTotalView";
+    date?: any | null;
+    iocomeType?: any | null;
+    total?: any | null;
+  }>;
+  outcomeTotalByDate: Array<{
+    __typename?: "DailyTotalView";
+    date?: any | null;
+    iocomeType?: any | null;
+    total?: any | null;
+  }>;
+};
 
 export type GetTransferCategoryByQueryVariables = Exact<{
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetTransferCategoryByQuery = { __typename?: 'query_root', transferCategory?: { __typename?: 'TransferCategory', id: any, incomeCategory: { __typename?: 'Category', categoryId: any, genre: { __typename?: 'Genre', genreId: any, iocomeType: any } }, outcomeCategory: { __typename?: 'Category', categoryId: any, genre: { __typename?: 'Genre', genreId: any, iocomeType: any } } } | null };
+export type GetTransferCategoryByQuery = {
+  __typename?: "query_root";
+  transferCategory?: {
+    __typename?: "TransferCategory";
+    id: any;
+    incomeCategory: {
+      __typename?: "Category";
+      categoryId: any;
+      genre: { __typename?: "Genre"; genreId: any; iocomeType: any };
+    };
+    outcomeCategory: {
+      __typename?: "Category";
+      categoryId: any;
+      genre: { __typename?: "Genre"; genreId: any; iocomeType: any };
+    };
+  } | null;
+};
 
 export type GetUserByEmailQueryVariables = Exact<{
-  email: Scalars['String'];
+  email: Scalars["String"];
 }>;
 
-
-export type GetUserByEmailQuery = { __typename?: 'query_root', userByEmail: Array<{ __typename?: 'User', email?: string | null, id: any, name?: string | null, affiliation: Array<{ __typename?: 'Affiliation', group: { __typename?: 'Group', id: any, name: string }, groupRole: { __typename?: 'GroupRole', role: string, id: any } }> }> };
+export type GetUserByEmailQuery = {
+  __typename?: "query_root";
+  userByEmail: Array<{
+    __typename?: "User";
+    email?: string | null;
+    id: any;
+    name?: string | null;
+    affiliation: Array<{
+      __typename?: "Affiliation";
+      group: { __typename?: "Group"; id: any; name: string };
+      groupRole: { __typename?: "GroupRole"; role: string; id: any };
+    }>;
+  }>;
+};
 
 export type GetValidAccountsQueryVariables = Exact<{
-  groupId: Scalars['uuid'];
+  groupId: Scalars["uuid"];
 }>;
 
-
-export type GetValidAccountsQuery = { __typename?: 'query_root', allAccountsList: Array<{ __typename?: 'Account', accountId: any, accountName: string }> };
+export type GetValidAccountsQuery = {
+  __typename?: "query_root";
+  allAccountsList: Array<{
+    __typename?: "Account";
+    accountId: any;
+    accountName: string;
+  }>;
+};
 
 export type GetValidCategoryByGenreIdQueryVariables = Exact<{
-  groupId: Scalars['uuid'];
-  genreId?: InputMaybe<Scalars['uuid']>;
+  groupId: Scalars["uuid"];
+  genreId?: InputMaybe<Scalars["uuid"]>;
 }>;
 
-
-export type GetValidCategoryByGenreIdQuery = { __typename?: 'query_root', genreById: Array<{ __typename?: 'Genre', id: any, name: string, categories: Array<{ __typename?: 'Category', displayOrder: number, id: any, name: string }> }> };
+export type GetValidCategoryByGenreIdQuery = {
+  __typename?: "query_root";
+  genreById: Array<{
+    __typename?: "Genre";
+    id: any;
+    name: string;
+    categories: Array<{
+      __typename?: "Category";
+      displayOrder: number;
+      id: any;
+      name: string;
+    }>;
+  }>;
+};
 
 export type GetValidGenreListByIocomeTypeQueryVariables = Exact<{
-  iocomeType: Scalars['iocome_type'];
-  groupId: Scalars['uuid'];
+  iocomeType: Scalars["iocome_type"];
+  groupId: Scalars["uuid"];
 }>;
 
+export type GetValidGenreListByIocomeTypeQuery = {
+  __typename?: "query_root";
+  allGenresList: Array<{
+    __typename?: "Genre";
+    genreId: any;
+    genreName: string;
+    genreType: any;
+    iocomeType: any;
+    displayOrder: number;
+    categoriesByGenreIdList: Array<{
+      __typename?: "Category";
+      categoryId: any;
+      categoryName: string;
+      displayOrder: number;
+    }>;
+  }>;
+};
 
-export type GetValidGenreListByIocomeTypeQuery = { __typename?: 'query_root', allGenresList: Array<{ __typename?: 'Genre', genreId: any, genreName: string, genreType: any, iocomeType: any, displayOrder: number, categoriesByGenreIdList: Array<{ __typename?: 'Category', categoryId: any, categoryName: string, displayOrder: number }> }> };
+export type GetDepositQueryVariables = Exact<{
+  groupId: Scalars["uuid"];
+  fromDate: Scalars["date"];
+  toDate: Scalars["date"];
+}>;
 
+export type GetDepositQuery = {
+  __typename?: "query_root";
+  depositCategory: Array<{
+    __typename?: "DepositCategory";
+    category: {
+      __typename?: "Category";
+      categoryName: string;
+      id: any;
+      daily: {
+        __typename?: "DailyDetailAggregate";
+        aggregate?: {
+          __typename?: "DailyDetailAggregateFields";
+          count: number;
+          sum?: {
+            __typename?: "DailyDetailSumFields";
+            amount?: any | null;
+          } | null;
+          avg?: {
+            __typename?: "DailyDetailAvgFields";
+            amount?: number | null;
+          } | null;
+        } | null;
+        nodes: Array<{
+          __typename?: "DailyDetail";
+          id: any;
+          date: any;
+          amount: any;
+          memo?: string | null;
+        }>;
+      };
+      credit: {
+        __typename?: "CreditCardDetailAggregate";
+        aggregate?: {
+          __typename?: "CreditCardDetailAggregateFields";
+          count: number;
+          sum?: {
+            __typename?: "CreditCardDetailSumFields";
+            amount?: any | null;
+          } | null;
+          avg?: {
+            __typename?: "CreditCardDetailAvgFields";
+            amount?: number | null;
+          } | null;
+        } | null;
+        nodes: Array<{
+          __typename?: "CreditCardDetail";
+          id: any;
+          date: any;
+          amount: any;
+          memo?: string | null;
+        }>;
+      };
+    };
+  }>;
+};
 
 export const CreateAccountDocument = gql`
-    mutation CreateAccount($accountId: uuid!, $accountName: String!, $displayOrder: Int!, $groupId: uuid!) {
-  insertAccount(
-    objects: {accountId: $accountId, accountName: $accountName, displayOrder: $displayOrder, groupId: $groupId, validFlag: true}
+  mutation CreateAccount(
+    $accountId: uuid!
+    $accountName: String!
+    $displayOrder: Int!
+    $groupId: uuid!
   ) {
-    returning {
-      accountId
+    insertAccount(
+      objects: {
+        accountId: $accountId
+        accountName: $accountName
+        displayOrder: $displayOrder
+        groupId: $groupId
+        validFlag: true
+      }
+    ) {
+      returning {
+        accountId
+      }
     }
   }
-}
-    `;
+`;
 
 export function useCreateAccountMutation() {
-  return Urql.useMutation<CreateAccountMutation, CreateAccountMutationVariables>(CreateAccountDocument);
-};
+  return Urql.useMutation<
+    CreateAccountMutation,
+    CreateAccountMutationVariables
+  >(CreateAccountDocument);
+}
 export const CreateCreditCardDetailDocument = gql`
-    mutation CreateCreditCardDetail($id: uuid!, $date: date!, $genreId: uuid!, $iocomeType: iocome_type!, $categoryId: uuid!, $amount: numeric!, $memo: String!, $summaryId: uuid!, $userId: uuid!, $groupId: uuid!) {
-  insertCreditCardDetail(
-    objects: {id: $id, date: $date, genreId: $genreId, iocomeType: $iocomeType, categoryId: $categoryId, amount: $amount, summaryId: $summaryId, userId: $userId, memo: $memo, groupId: $groupId}
+  mutation CreateCreditCardDetail(
+    $id: uuid!
+    $date: date!
+    $genreId: uuid!
+    $iocomeType: iocome_type!
+    $categoryId: uuid!
+    $amount: numeric!
+    $memo: String!
+    $summaryId: uuid!
+    $userId: uuid!
+    $groupId: uuid!
   ) {
-    returning {
-      id
+    insertCreditCardDetail(
+      objects: {
+        id: $id
+        date: $date
+        genreId: $genreId
+        iocomeType: $iocomeType
+        categoryId: $categoryId
+        amount: $amount
+        summaryId: $summaryId
+        userId: $userId
+        memo: $memo
+        groupId: $groupId
+      }
+    ) {
+      returning {
+        id
+      }
     }
   }
-}
-    `;
+`;
 
 export function useCreateCreditCardDetailMutation() {
-  return Urql.useMutation<CreateCreditCardDetailMutation, CreateCreditCardDetailMutationVariables>(CreateCreditCardDetailDocument);
-};
+  return Urql.useMutation<
+    CreateCreditCardDetailMutation,
+    CreateCreditCardDetailMutationVariables
+  >(CreateCreditCardDetailDocument);
+}
 export const CreateCreditCardSummaryDocument = gql`
-    mutation CreateCreditCardSummary($accountId: uuid!, $count: Int!, $creditCard: String!, $groupId: uuid!, $id: uuid!, $totalAmount: numeric!, $withdrawalDate: date!) {
-  insertCreditCardSummary(
-    objects: {id: $id, creditCard: $creditCard, accountId: $accountId, totalAmount: $totalAmount, count: $count, withdrawalDate: $withdrawalDate, groupId: $groupId}
+  mutation CreateCreditCardSummary(
+    $accountId: uuid!
+    $count: Int!
+    $creditCard: String!
+    $groupId: uuid!
+    $id: uuid!
+    $totalAmount: numeric!
+    $withdrawalDate: date!
   ) {
-    returning {
-      id
+    insertCreditCardSummary(
+      objects: {
+        id: $id
+        creditCard: $creditCard
+        accountId: $accountId
+        totalAmount: $totalAmount
+        count: $count
+        withdrawalDate: $withdrawalDate
+        groupId: $groupId
+      }
+    ) {
+      returning {
+        id
+      }
     }
   }
-}
-    `;
+`;
 
 export function useCreateCreditCardSummaryMutation() {
-  return Urql.useMutation<CreateCreditCardSummaryMutation, CreateCreditCardSummaryMutationVariables>(CreateCreditCardSummaryDocument);
-};
+  return Urql.useMutation<
+    CreateCreditCardSummaryMutation,
+    CreateCreditCardSummaryMutationVariables
+  >(CreateCreditCardSummaryDocument);
+}
 export const CreateDailyDetailDocument = gql`
-    mutation CreateDailyDetail($accountId: uuid!, $amount: numeric!, $genreId: uuid!, $iocomeType: iocome_type!, $categoryId: uuid!, $date: date!, $groupId: uuid!, $id: uuid!, $memo: String, $userId: uuid!) {
-  insertDailyDetail(
-    objects: {id: $id, date: $date, genreId: $genreId, iocomeType: $iocomeType, categoryId: $categoryId, accountId: $accountId, userId: $userId, amount: $amount, memo: $memo, groupId: $groupId}
+  mutation CreateDailyDetail(
+    $accountId: uuid!
+    $amount: numeric!
+    $genreId: uuid!
+    $iocomeType: iocome_type!
+    $categoryId: uuid!
+    $date: date!
+    $groupId: uuid!
+    $id: uuid!
+    $memo: String
+    $userId: uuid!
   ) {
-    returning {
-      id
+    insertDailyDetail(
+      objects: {
+        id: $id
+        date: $date
+        genreId: $genreId
+        iocomeType: $iocomeType
+        categoryId: $categoryId
+        accountId: $accountId
+        userId: $userId
+        amount: $amount
+        memo: $memo
+        groupId: $groupId
+      }
+    ) {
+      returning {
+        id
+      }
     }
   }
-}
-    `;
+`;
 
 export function useCreateDailyDetailMutation() {
-  return Urql.useMutation<CreateDailyDetailMutation, CreateDailyDetailMutationVariables>(CreateDailyDetailDocument);
-};
+  return Urql.useMutation<
+    CreateDailyDetailMutation,
+    CreateDailyDetailMutationVariables
+  >(CreateDailyDetailDocument);
+}
 export const CreateImportFileHistoryDocument = gql`
-    mutation CreateImportFileHistory($fileName: String!, $fileType: String!, $groupId: uuid!, $id: uuid!, $importDatetime: timestamp!, $importUserId: uuid!) {
-  insertImportFileHistory(
-    objects: {id: $id, fileType: $fileType, fileName: $fileName, importUserId: $importUserId, importDatetime: $importDatetime, groupId: $groupId}
+  mutation CreateImportFileHistory(
+    $fileName: String!
+    $fileType: String!
+    $groupId: uuid!
+    $id: uuid!
+    $importDatetime: timestamp!
+    $importUserId: uuid!
   ) {
-    returning {
-      id
+    insertImportFileHistory(
+      objects: {
+        id: $id
+        fileType: $fileType
+        fileName: $fileName
+        importUserId: $importUserId
+        importDatetime: $importDatetime
+        groupId: $groupId
+      }
+    ) {
+      returning {
+        id
+      }
     }
   }
-}
-    `;
+`;
 
 export function useCreateImportFileHistoryMutation() {
-  return Urql.useMutation<CreateImportFileHistoryMutation, CreateImportFileHistoryMutationVariables>(CreateImportFileHistoryDocument);
-};
+  return Urql.useMutation<
+    CreateImportFileHistoryMutation,
+    CreateImportFileHistoryMutationVariables
+  >(CreateImportFileHistoryDocument);
+}
 export const CreateSummaryCategoryDocument = gql`
-    mutation CreateSummaryCategory($id: uuid!, $displayOrder: Int!, $categoryId: uuid!, $groupId: uuid!) {
-  insertSummaryCategoryByGroup(
-    objects: {id: $id, categoryId: $categoryId, groupId: $groupId, displayOrder: $displayOrder}
+  mutation CreateSummaryCategory(
+    $id: uuid!
+    $displayOrder: Int!
+    $categoryId: uuid!
+    $groupId: uuid!
   ) {
-    returning {
-      id
+    insertSummaryCategoryByGroup(
+      objects: {
+        id: $id
+        categoryId: $categoryId
+        groupId: $groupId
+        displayOrder: $displayOrder
+      }
+    ) {
+      returning {
+        id
+      }
     }
   }
-}
-    `;
+`;
 
 export function useCreateSummaryCategoryMutation() {
-  return Urql.useMutation<CreateSummaryCategoryMutation, CreateSummaryCategoryMutationVariables>(CreateSummaryCategoryDocument);
-};
+  return Urql.useMutation<
+    CreateSummaryCategoryMutation,
+    CreateSummaryCategoryMutationVariables
+  >(CreateSummaryCategoryDocument);
+}
 export const CreateUserDocument = gql`
-    mutation CreateUser($userId: uuid!, $userName: String!, $email: String!, $displayOrder: Int!) {
-  insertUser(
-    objects: {userId: $userId, userName: $userName, email: $email, displayOrder: $displayOrder}
+  mutation CreateUser(
+    $userId: uuid!
+    $userName: String!
+    $email: String!
+    $displayOrder: Int!
   ) {
-    returning {
-      userId
-      email
+    insertUser(
+      objects: {
+        userId: $userId
+        userName: $userName
+        email: $email
+        displayOrder: $displayOrder
+      }
+    ) {
+      returning {
+        userId
+        email
+      }
     }
   }
-}
-    `;
+`;
 
 export function useCreateUserMutation() {
-  return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(CreateUserDocument);
-};
-export const DeleteDailyDetailBySerialNoDocument = gql`
-    mutation DeleteDailyDetailBySerialNo($id: uuid!) {
-  deleteDailyDetailByPk(id: $id) {
-    id
-  }
+  return Urql.useMutation<CreateUserMutation, CreateUserMutationVariables>(
+    CreateUserDocument,
+  );
 }
-    `;
-
-export function useDeleteDailyDetailBySerialNoMutation() {
-  return Urql.useMutation<DeleteDailyDetailBySerialNoMutation, DeleteDailyDetailBySerialNoMutationVariables>(DeleteDailyDetailBySerialNoDocument);
-};
-export const DeleteSummaryCategoryDocument = gql`
-    mutation DeleteSummaryCategory($groupId: uuid!) {
-  deleteSummaryCategoryByGroup(where: {groupId: {_eq: $groupId}}) {
-    returning {
+export const DeleteDailyDetailBySerialNoDocument = gql`
+  mutation DeleteDailyDetailBySerialNo($id: uuid!) {
+    deleteDailyDetailByPk(id: $id) {
       id
     }
   }
+`;
+
+export function useDeleteDailyDetailBySerialNoMutation() {
+  return Urql.useMutation<
+    DeleteDailyDetailBySerialNoMutation,
+    DeleteDailyDetailBySerialNoMutationVariables
+  >(DeleteDailyDetailBySerialNoDocument);
 }
-    `;
+export const DeleteSummaryCategoryDocument = gql`
+  mutation DeleteSummaryCategory($groupId: uuid!) {
+    deleteSummaryCategoryByGroup(where: { groupId: { _eq: $groupId } }) {
+      returning {
+        id
+      }
+    }
+  }
+`;
 
 export function useDeleteSummaryCategoryMutation() {
-  return Urql.useMutation<DeleteSummaryCategoryMutation, DeleteSummaryCategoryMutationVariables>(DeleteSummaryCategoryDocument);
-};
-export const UpdateCategoryByIdDocument = gql`
-    mutation UpdateCategoryById($categoryId: uuid!, $categoryName: String!, $genreId: uuid!, $displayOrder: Int!, $validFlag: Boolean!) {
-  updateCategoryByPk(
-    pkColumns: {categoryId: $categoryId}
-    _set: {categoryName: $categoryName, genreId: $genreId, displayOrder: $displayOrder, validFlag: $validFlag}
-  ) {
-    id: categoryId
-  }
+  return Urql.useMutation<
+    DeleteSummaryCategoryMutation,
+    DeleteSummaryCategoryMutationVariables
+  >(DeleteSummaryCategoryDocument);
 }
-    `;
+export const UpdateCategoryByIdDocument = gql`
+  mutation UpdateCategoryById(
+    $categoryId: uuid!
+    $categoryName: String!
+    $genreId: uuid!
+    $displayOrder: Int!
+    $validFlag: Boolean!
+  ) {
+    updateCategoryByPk(
+      pkColumns: { categoryId: $categoryId }
+      _set: {
+        categoryName: $categoryName
+        genreId: $genreId
+        displayOrder: $displayOrder
+        validFlag: $validFlag
+      }
+    ) {
+      id: categoryId
+    }
+  }
+`;
 
 export function useUpdateCategoryByIdMutation() {
-  return Urql.useMutation<UpdateCategoryByIdMutation, UpdateCategoryByIdMutationVariables>(UpdateCategoryByIdDocument);
-};
-export const UpdateCreditCardDetailByIdDocument = gql`
-    mutation UpdateCreditCardDetailById($id: uuid!, $categoryId: uuid!, $memo: String) {
-  updateCreditCardDetailByPk(
-    pkColumns: {id: $id}
-    _set: {categoryId: $categoryId, memo: $memo}
-  ) {
-    id
-  }
+  return Urql.useMutation<
+    UpdateCategoryByIdMutation,
+    UpdateCategoryByIdMutationVariables
+  >(UpdateCategoryByIdDocument);
 }
-    `;
+export const UpdateCreditCardDetailByIdDocument = gql`
+  mutation UpdateCreditCardDetailById(
+    $id: uuid!
+    $categoryId: uuid!
+    $memo: String
+  ) {
+    updateCreditCardDetailByPk(
+      pkColumns: { id: $id }
+      _set: { categoryId: $categoryId, memo: $memo }
+    ) {
+      id
+    }
+  }
+`;
 
 export function useUpdateCreditCardDetailByIdMutation() {
-  return Urql.useMutation<UpdateCreditCardDetailByIdMutation, UpdateCreditCardDetailByIdMutationVariables>(UpdateCreditCardDetailByIdDocument);
-};
-export const UpdateDailyDetailByIdDocument = gql`
-    mutation UpdateDailyDetailById($id: uuid!, $date: date!, $genreId: uuid!, $iocomeType: iocome_type!, $categoryId: uuid!, $accountId: uuid!, $amount: numeric!, $memo: String) {
-  updateDailyDetailByPk(
-    _set: {date: $date, genreId: $genreId, iocomeType: $iocomeType, categoryId: $categoryId, accountId: $accountId, amount: $amount, memo: $memo}
-    pkColumns: {id: $id}
-  ) {
-    id
-  }
+  return Urql.useMutation<
+    UpdateCreditCardDetailByIdMutation,
+    UpdateCreditCardDetailByIdMutationVariables
+  >(UpdateCreditCardDetailByIdDocument);
 }
-    `;
+export const UpdateDailyDetailByIdDocument = gql`
+  mutation UpdateDailyDetailById(
+    $id: uuid!
+    $date: date!
+    $genreId: uuid!
+    $iocomeType: iocome_type!
+    $categoryId: uuid!
+    $accountId: uuid!
+    $amount: numeric!
+    $memo: String
+  ) {
+    updateDailyDetailByPk(
+      _set: {
+        date: $date
+        genreId: $genreId
+        iocomeType: $iocomeType
+        categoryId: $categoryId
+        accountId: $accountId
+        amount: $amount
+        memo: $memo
+      }
+      pkColumns: { id: $id }
+    ) {
+      id
+    }
+  }
+`;
 
 export function useUpdateDailyDetailByIdMutation() {
-  return Urql.useMutation<UpdateDailyDetailByIdMutation, UpdateDailyDetailByIdMutationVariables>(UpdateDailyDetailByIdDocument);
-};
-export const UpdateGenreByIdDocument = gql`
-    mutation UpdateGenreById($genreId: uuid!, $validFlag: Boolean!, $iocomeType: iocome_type!, $genreType: genre_type!, $genreName: String!, $displayOrder: Int!) {
-  updateGenreByPk(
-    pkColumns: {genreId: $genreId}
-    _set: {genreName: $genreName, genreType: $genreType, iocomeType: $iocomeType, validFlag: $validFlag, displayOrder: $displayOrder}
-  ) {
-    id: genreId
-  }
+  return Urql.useMutation<
+    UpdateDailyDetailByIdMutation,
+    UpdateDailyDetailByIdMutationVariables
+  >(UpdateDailyDetailByIdDocument);
 }
-    `;
+export const UpdateGenreByIdDocument = gql`
+  mutation UpdateGenreById(
+    $genreId: uuid!
+    $validFlag: Boolean!
+    $iocomeType: iocome_type!
+    $genreType: genre_type!
+    $genreName: String!
+    $displayOrder: Int!
+  ) {
+    updateGenreByPk(
+      pkColumns: { genreId: $genreId }
+      _set: {
+        genreName: $genreName
+        genreType: $genreType
+        iocomeType: $iocomeType
+        validFlag: $validFlag
+        displayOrder: $displayOrder
+      }
+    ) {
+      id: genreId
+    }
+  }
+`;
 
 export function useUpdateGenreByIdMutation() {
-  return Urql.useMutation<UpdateGenreByIdMutation, UpdateGenreByIdMutationVariables>(UpdateGenreByIdDocument);
-};
+  return Urql.useMutation<
+    UpdateGenreByIdMutation,
+    UpdateGenreByIdMutationVariables
+  >(UpdateGenreByIdDocument);
+}
 export const GetAccountBalanceListDocument = gql`
-    query GetAccountBalanceList($groupId: uuid!, $fromDate: date!, $toDate: date!) {
-  account(where: {_and: {groupId: {_eq: $groupId}}}) {
-    id: accountId
-    accountName
-    allDetailViewsAggregate(
-      where: {date: {_gte: $fromDate}, _and: {date: {_lte: $toDate}}}
-    ) {
-      aggregate {
-        sum {
-          signedAmount
+  query GetAccountBalanceList(
+    $groupId: uuid!
+    $fromDate: date!
+    $toDate: date!
+  ) {
+    account(where: { _and: { groupId: { _eq: $groupId } } }) {
+      id: accountId
+      accountName
+      allDetailViewsAggregate(
+        where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+      ) {
+        aggregate {
+          sum {
+            signedAmount
+          }
         }
       }
     }
   }
-}
-    `;
+`;
 
-export function useGetAccountBalanceListQuery(options: Omit<Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetAccountBalanceListQuery, GetAccountBalanceListQueryVariables>({ query: GetAccountBalanceListDocument, ...options });
-};
+export function useGetAccountBalanceListQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetAccountBalanceListQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetAccountBalanceListQuery,
+    GetAccountBalanceListQueryVariables
+  >({ query: GetAccountBalanceListDocument, ...options });
+}
 export const GetAllCategoriesDocument = gql`
-    query GetAllCategories($groupId: uuid!) {
-  categories: category(
-    where: {groupId: {_eq: $groupId}}
-    orderBy: [{genre: {displayOrder: ASC}}, {displayOrder: ASC}]
-  ) {
-    id: categoryId
-    categoryName
-    displayOrder
-    validFlag
-    genre {
-      genreId
-      genreName
-    }
-  }
-}
-    `;
-
-export function useGetAllCategoriesQuery(options: Omit<Urql.UseQueryArgs<GetAllCategoriesQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetAllCategoriesQuery, GetAllCategoriesQueryVariables>({ query: GetAllCategoriesDocument, ...options });
-};
-export const GetAllCategoryListWithCriteriaDocument = gql`
-    query GetAllCategoryListWithCriteria($validCategoryIn: [Boolean!] = [true, false], $validGenreIn: [Boolean!] = [true, false], $iocomeTypeIn: [iocome_type!] = [INCOME, OUTCOME], $categoryNotIn: [uuid!] = []) {
-  genres: genre(
-    where: {validFlag: {_in: $validCategoryIn}, _and: {iocomeType: {_in: $iocomeTypeIn}}}
-    orderBy: {displayOrder: ASC}
-  ) {
-    id: genreId
-    name: genreName
-    type: genreType
-    iocomeType
-    validFlag
-    displayOrder
-    categories(
-      where: {validFlag: {_in: $validGenreIn}, _and: {categoryId: {_nin: $categoryNotIn}}}
-      orderBy: {displayOrder: ASC}
+  query GetAllCategories($groupId: uuid!) {
+    categories: category(
+      where: { groupId: { _eq: $groupId } }
+      orderBy: [{ genre: { displayOrder: ASC } }, { displayOrder: ASC }]
     ) {
       id: categoryId
-      name: categoryName
+      categoryName
+      displayOrder
+      validFlag
+      genre {
+        genreId
+        genreName
+      }
+    }
+  }
+`;
+
+export function useGetAllCategoriesQuery(
+  options: Omit<Urql.UseQueryArgs<GetAllCategoriesQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetAllCategoriesQuery, GetAllCategoriesQueryVariables>({
+    query: GetAllCategoriesDocument,
+    ...options,
+  });
+}
+export const GetAllCategoryListWithCriteriaDocument = gql`
+  query GetAllCategoryListWithCriteria(
+    $validCategoryIn: [Boolean!] = [true, false]
+    $validGenreIn: [Boolean!] = [true, false]
+    $iocomeTypeIn: [iocome_type!] = [INCOME, OUTCOME]
+    $categoryNotIn: [uuid!] = []
+  ) {
+    genres: genre(
+      where: {
+        validFlag: { _in: $validCategoryIn }
+        _and: { iocomeType: { _in: $iocomeTypeIn } }
+      }
+      orderBy: { displayOrder: ASC }
+    ) {
+      id: genreId
+      name: genreName
+      type: genreType
+      iocomeType
+      validFlag
+      displayOrder
+      categories(
+        where: {
+          validFlag: { _in: $validGenreIn }
+          _and: { categoryId: { _nin: $categoryNotIn } }
+        }
+        orderBy: { displayOrder: ASC }
+      ) {
+        id: categoryId
+        name: categoryName
+        validFlag
+        displayOrder
+      }
+    }
+  }
+`;
+
+export function useGetAllCategoryListWithCriteriaQuery(
+  options?: Omit<
+    Urql.UseQueryArgs<GetAllCategoryListWithCriteriaQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetAllCategoryListWithCriteriaQuery,
+    GetAllCategoryListWithCriteriaQueryVariables
+  >({ query: GetAllCategoryListWithCriteriaDocument, ...options });
+}
+export const GetAllGenreDocument = gql`
+  query GetAllGenre($groupId: uuid!) @cached {
+    genre(
+      where: { groupId: { _eq: $groupId } }
+      orderBy: { displayOrder: ASC }
+    ) {
+      id: genreId
+      genreName
+      genreType
+      iocomeType
       validFlag
       displayOrder
     }
   }
-}
-    `;
+`;
 
-export function useGetAllCategoryListWithCriteriaQuery(options?: Omit<Urql.UseQueryArgs<GetAllCategoryListWithCriteriaQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetAllCategoryListWithCriteriaQuery, GetAllCategoryListWithCriteriaQueryVariables>({ query: GetAllCategoryListWithCriteriaDocument, ...options });
-};
-export const GetAllGenreDocument = gql`
-    query GetAllGenre($groupId: uuid!) @cached {
-  genre(where: {groupId: {_eq: $groupId}}, orderBy: {displayOrder: ASC}) {
-    id: genreId
-    genreName
-    genreType
-    iocomeType
-    validFlag
-    displayOrder
-  }
+export function useGetAllGenreQuery(
+  options: Omit<Urql.UseQueryArgs<GetAllGenreQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetAllGenreQuery, GetAllGenreQueryVariables>({
+    query: GetAllGenreDocument,
+    ...options,
+  });
 }
-    `;
-
-export function useGetAllGenreQuery(options: Omit<Urql.UseQueryArgs<GetAllGenreQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetAllGenreQuery, GetAllGenreQueryVariables>({ query: GetAllGenreDocument, ...options });
-};
 export const GetAllUsersDocument = gql`
-    query GetAllUsers {
-  users: user(orderBy: {displayOrder: ASC}) {
-    id: userId
-    name: userName
-    email
-    affiliation: affiliations {
-      group {
-        id: groupId
-        name: groupName
+  query GetAllUsers {
+    users: user(orderBy: { displayOrder: ASC }) {
+      id: userId
+      name: userName
+      email
+      affiliation: affiliations {
+        group {
+          id: groupId
+          name: groupName
+        }
       }
     }
   }
-}
-    `;
+`;
 
-export function useGetAllUsersQuery(options?: Omit<Urql.UseQueryArgs<GetAllUsersQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetAllUsersQuery, GetAllUsersQueryVariables>({ query: GetAllUsersDocument, ...options });
-};
+export function useGetAllUsersQuery(
+  options?: Omit<Urql.UseQueryArgs<GetAllUsersQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetAllUsersQuery, GetAllUsersQueryVariables>({
+    query: GetAllUsersDocument,
+    ...options,
+  });
+}
 export const GetApplicationByGroupIdDocument = gql`
-    query getApplicationByGroupId($groupId: uuid!) {
-  group: groupApplication(where: {groupId: {_eq: $groupId}}) {
-    app: application {
-      id: applicationId
-      name: application
-      topUrl
+  query getApplicationByGroupId($groupId: uuid!) {
+    group: groupApplication(where: { groupId: { _eq: $groupId } }) {
+      app: application {
+        id: applicationId
+        name: application
+        topUrl
+      }
     }
   }
-}
-    `;
+`;
 
-export function useGetApplicationByGroupIdQuery(options: Omit<Urql.UseQueryArgs<GetApplicationByGroupIdQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetApplicationByGroupIdQuery, GetApplicationByGroupIdQueryVariables>({ query: GetApplicationByGroupIdDocument, ...options });
-};
+export function useGetApplicationByGroupIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetApplicationByGroupIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetApplicationByGroupIdQuery,
+    GetApplicationByGroupIdQueryVariables
+  >({ query: GetApplicationByGroupIdDocument, ...options });
+}
 export const GetCategoryByIdDocument = gql`
-    query GetCategoryById($categoryId: uuid!) {
-  category: categoryByPk(categoryId: $categoryId) {
-    categoryName
-    validFlag
-    displayOrder
-    genre {
-      genreId
-      iocomeType
-    }
-  }
-}
-    `;
-
-export function useGetCategoryByIdQuery(options: Omit<Urql.UseQueryArgs<GetCategoryByIdQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetCategoryByIdQuery, GetCategoryByIdQueryVariables>({ query: GetCategoryByIdDocument, ...options });
-};
-export const GetCategoryTotalByMonthDocument = gql`
-    query GetCategoryTotalByMonth($fromDate: date, $toDate: date, $groupId: uuid!) {
-  categoryTotalByMonth(
-    args: {from_date: $fromDate, to_date: $toDate, group_id: $groupId}
-  ) {
-    date
-    iocomeType
-    genreId
-    genreName
-    categoryId
-    categoryName
-    total
-  }
-}
-    `;
-
-export function useGetCategoryTotalByMonthQuery(options: Omit<Urql.UseQueryArgs<GetCategoryTotalByMonthQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetCategoryTotalByMonthQuery, GetCategoryTotalByMonthQueryVariables>({ query: GetCategoryTotalByMonthDocument, ...options });
-};
-export const GetCreditCardDetailByIdDocument = gql`
-    query GetCreditCardDetailById($id: uuid!) {
-  creditCardDetailByPk(id: $id) {
-    id
-    date
-    amount
-    memo
-    summaryId
-    category {
-      categoryId
+  query GetCategoryById($categoryId: uuid!) {
+    category: categoryByPk(categoryId: $categoryId) {
       categoryName
+      validFlag
+      displayOrder
       genre {
         genreId
-        genreName
-        genreType
         iocomeType
       }
     }
   }
-}
-    `;
+`;
 
-export function useGetCreditCardDetailByIdQuery(options: Omit<Urql.UseQueryArgs<GetCreditCardDetailByIdQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetCreditCardDetailByIdQuery, GetCreditCardDetailByIdQueryVariables>({ query: GetCreditCardDetailByIdDocument, ...options });
-};
-export const GetCreditCardDetailBySummaryIdDocument = gql`
-    query GetCreditCardDetailBySummaryId($id: uuid!) {
-  creditCardSummaryByPk(id: $id) {
-    id
-    creditCardDetail: credit_card_details(orderBy: {date: ASC}) {
+export function useGetCategoryByIdQuery(
+  options: Omit<Urql.UseQueryArgs<GetCategoryByIdQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetCategoryByIdQuery, GetCategoryByIdQueryVariables>({
+    query: GetCategoryByIdDocument,
+    ...options,
+  });
+}
+export const GetCategoryTotalByMonthDocument = gql`
+  query GetCategoryTotalByMonth(
+    $fromDate: date
+    $toDate: date
+    $groupId: uuid!
+  ) {
+    categoryTotalByMonth(
+      args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
+    ) {
+      date
+      iocomeType
+      genreId
+      genreName
+      categoryId
+      categoryName
+      total
+    }
+  }
+`;
+
+export function useGetCategoryTotalByMonthQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCategoryTotalByMonthQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCategoryTotalByMonthQuery,
+    GetCategoryTotalByMonthQueryVariables
+  >({ query: GetCategoryTotalByMonthDocument, ...options });
+}
+export const GetCreditCardDetailByIdDocument = gql`
+  query GetCreditCardDetailById($id: uuid!) {
+    creditCardDetailByPk(id: $id) {
       id
       date
-      memo
       amount
+      memo
+      summaryId
       category {
         categoryId
         categoryName
-        genreByGenreId: genre {
+        genre {
           genreId
           genreName
           genreType
@@ -8314,185 +9332,166 @@ export const GetCreditCardDetailBySummaryIdDocument = gql`
       }
     }
   }
-}
-    `;
+`;
 
-export function useGetCreditCardDetailBySummaryIdQuery(options: Omit<Urql.UseQueryArgs<GetCreditCardDetailBySummaryIdQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetCreditCardDetailBySummaryIdQuery, GetCreditCardDetailBySummaryIdQueryVariables>({ query: GetCreditCardDetailBySummaryIdDocument, ...options });
-};
+export function useGetCreditCardDetailByIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailByIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailByIdQuery,
+    GetCreditCardDetailByIdQueryVariables
+  >({ query: GetCreditCardDetailByIdDocument, ...options });
+}
+export const GetCreditCardDetailBySummaryIdDocument = gql`
+  query GetCreditCardDetailBySummaryId($id: uuid!) {
+    creditCardSummaryByPk(id: $id) {
+      id
+      creditCardDetail: credit_card_details(orderBy: { date: ASC }) {
+        id
+        date
+        memo
+        amount
+        category {
+          categoryId
+          categoryName
+          genreByGenreId: genre {
+            genreId
+            genreName
+            genreType
+            iocomeType
+          }
+        }
+      }
+    }
+  }
+`;
+
+export function useGetCreditCardDetailBySummaryIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardDetailBySummaryIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardDetailBySummaryIdQuery,
+    GetCreditCardDetailBySummaryIdQueryVariables
+  >({ query: GetCreditCardDetailBySummaryIdDocument, ...options });
+}
 export const GetCreditCardListDocument = gql`
-    query GetCreditCardList($groupId: uuid!) {
-  allCreditCardSummariesList: creditCardSummary(
-    where: {groupId: {_eq: $groupId}}
-    orderBy: {withdrawalDate: DESC}
-  ) {
-    id
-    creditCard
-    account {
-      id: accountId
-      name: accountName
+  query GetCreditCardList($groupId: uuid!) {
+    allCreditCardSummariesList: creditCardSummary(
+      where: { groupId: { _eq: $groupId } }
+      orderBy: { withdrawalDate: DESC }
+    ) {
+      id
+      creditCard
+      account {
+        id: accountId
+        name: accountName
+      }
+      count
+      withdrawalDate
+      totalAmount
     }
-    count
-    withdrawalDate
-    totalAmount
   }
-}
-    `;
+`;
 
-export function useGetCreditCardListQuery(options: Omit<Urql.UseQueryArgs<GetCreditCardListQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetCreditCardListQuery, GetCreditCardListQueryVariables>({ query: GetCreditCardListDocument, ...options });
-};
+export function useGetCreditCardListQuery(
+  options: Omit<Urql.UseQueryArgs<GetCreditCardListQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetCreditCardListQuery, GetCreditCardListQueryVariables>(
+    { query: GetCreditCardListDocument, ...options },
+  );
+}
 export const GetCreditCardSummaryBetweenWithdrawalDateDocument = gql`
-    query GetCreditCardSummaryBetweenWithdrawalDate($fromDate: date!, $toDate: date!, $groupId: uuid!) {
-  allCreditCardSummariesList: creditCardSummary(
-    where: {withdrawalDate: {_gte: $fromDate}, _and: {withdrawalDate: {_lte: $toDate}, _and: {groupId: {_eq: $groupId}}}}
-    orderBy: {withdrawalDate: ASC}
+  query GetCreditCardSummaryBetweenWithdrawalDate(
+    $fromDate: date!
+    $toDate: date!
+    $groupId: uuid!
   ) {
-    id
-    withdrawalDate
-    totalAmount
-    creditCard
-    accountByAccountId: account {
-      accountId
-      accountName
+    allCreditCardSummariesList: creditCardSummary(
+      where: {
+        withdrawalDate: { _gte: $fromDate }
+        _and: {
+          withdrawalDate: { _lte: $toDate }
+          _and: { groupId: { _eq: $groupId } }
+        }
+      }
+      orderBy: { withdrawalDate: ASC }
+    ) {
+      id
+      withdrawalDate
+      totalAmount
+      creditCard
+      accountByAccountId: account {
+        accountId
+        accountName
+      }
     }
   }
-}
-    `;
+`;
 
-export function useGetCreditCardSummaryBetweenWithdrawalDateQuery(options: Omit<Urql.UseQueryArgs<GetCreditCardSummaryBetweenWithdrawalDateQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetCreditCardSummaryBetweenWithdrawalDateQuery, GetCreditCardSummaryBetweenWithdrawalDateQueryVariables>({ query: GetCreditCardSummaryBetweenWithdrawalDateDocument, ...options });
-};
+export function useGetCreditCardSummaryBetweenWithdrawalDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardSummaryBetweenWithdrawalDateQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardSummaryBetweenWithdrawalDateQuery,
+    GetCreditCardSummaryBetweenWithdrawalDateQueryVariables
+  >({ query: GetCreditCardSummaryBetweenWithdrawalDateDocument, ...options });
+}
 export const GetCreditCardSummaryByAccountIdBetweenDateDocument = gql`
-    query GetCreditCardSummaryByAccountIdBetweenDate($fromDate: date!, $toDate: date!, $accountId: uuid!) {
-  allCreditCardSummariesList: creditCardSummary(
-    where: {withdrawalDate: {_gte: $fromDate}, _and: {withdrawalDate: {_lte: $toDate}, _and: {accountId: {_eq: $accountId}}}}
-    orderBy: {withdrawalDate: ASC}
+  query GetCreditCardSummaryByAccountIdBetweenDate(
+    $fromDate: date!
+    $toDate: date!
+    $accountId: uuid!
   ) {
-    id
-    withdrawalDate
-    totalAmount
-    creditCard
-    accountByAccountId: account {
-      accountId
-      accountName
+    allCreditCardSummariesList: creditCardSummary(
+      where: {
+        withdrawalDate: { _gte: $fromDate }
+        _and: {
+          withdrawalDate: { _lte: $toDate }
+          _and: { accountId: { _eq: $accountId } }
+        }
+      }
+      orderBy: { withdrawalDate: ASC }
+    ) {
+      id
+      withdrawalDate
+      totalAmount
+      creditCard
+      accountByAccountId: account {
+        accountId
+        accountName
+      }
     }
   }
-}
-    `;
+`;
 
-export function useGetCreditCardSummaryByAccountIdBetweenDateQuery(options: Omit<Urql.UseQueryArgs<GetCreditCardSummaryByAccountIdBetweenDateQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetCreditCardSummaryByAccountIdBetweenDateQuery, GetCreditCardSummaryByAccountIdBetweenDateQueryVariables>({ query: GetCreditCardSummaryByAccountIdBetweenDateDocument, ...options });
-};
+export function useGetCreditCardSummaryByAccountIdBetweenDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetCreditCardSummaryByAccountIdBetweenDateQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetCreditCardSummaryByAccountIdBetweenDateQuery,
+    GetCreditCardSummaryByAccountIdBetweenDateQueryVariables
+  >({ query: GetCreditCardSummaryByAccountIdBetweenDateDocument, ...options });
+}
 export const GetDailyDetailByDateDocument = gql`
-    query GetDailyDetailByDate($fromDate: date!, $toDate: date!, $groupId: uuid!) {
-  dailyDetailByDateList: dailyDetailByDate(
-    args: {from_date: $fromDate, to_date: $toDate, group_id: $groupId}
+  query GetDailyDetailByDate(
+    $fromDate: date!
+    $toDate: date!
+    $groupId: uuid!
   ) {
-    id
-    date
-    amount
-    memo
-    categoryByCategoryId: category {
-      categoryId
-      categoryName
-      genreByGenreId: genre {
-        genreId
-        genreName
-        genreType
-        iocomeType
-      }
-    }
-    accountByAccountId: account {
-      accountId
-      accountName
-    }
-    userByUserId: user {
-      userId
-      userName
-    }
-  }
-}
-    `;
-
-export function useGetDailyDetailByDateQuery(options: Omit<Urql.UseQueryArgs<GetDailyDetailByDateQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetDailyDetailByDateQuery, GetDailyDetailByDateQueryVariables>({ query: GetDailyDetailByDateDocument, ...options });
-};
-export const GetDailyDetailByDateAccountIdDocument = gql`
-    query GetDailyDetailByDateAccountId($fromDate: date!, $toDate: date!, $accountId: uuid!, $groupId: uuid!) {
-  dailyDetailByDateList: dailyDetailByDate(
-    args: {group_id: $groupId, from_date: $fromDate, to_date: $toDate}
-    where: {accountId: {_eq: $accountId}}
-  ) {
-    id
-    date
-    amount
-    memo
-    categoryByCategoryId: category {
-      categoryId
-      categoryName
-      genreByGenreId: genre {
-        genreId
-        genreName
-        genreType
-        iocomeType
-      }
-    }
-    accountByAccountId: account {
-      accountId
-      accountName
-    }
-    userByUserId: user {
-      userId
-      userName
-    }
-  }
-}
-    `;
-
-export function useGetDailyDetailByDateAccountIdQuery(options: Omit<Urql.UseQueryArgs<GetDailyDetailByDateAccountIdQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetDailyDetailByDateAccountIdQuery, GetDailyDetailByDateAccountIdQueryVariables>({ query: GetDailyDetailByDateAccountIdDocument, ...options });
-};
-export const GetDailyDetailByDateCategoryIdDocument = gql`
-    query GetDailyDetailByDateCategoryId($fromDate: date!, $toDate: date!, $groupId: uuid!, $categoryId: uuid!) {
-  dailyDetailByDateList: dailyDetailByDate(
-    args: {from_date: $fromDate, to_date: $toDate, group_id: $groupId}
-    where: {categoryId: {_eq: $categoryId}}
-  ) {
-    id
-    date
-    amount
-    memo
-    categoryByCategoryId: category {
-      categoryId
-      categoryName
-      genreByGenreId: genre {
-        genreId
-        genreName
-        genreType
-        iocomeType
-      }
-    }
-    accountByAccountId: account {
-      accountId
-      accountName
-    }
-    userByUserId: user {
-      userId
-      userName
-    }
-  }
-}
-    `;
-
-export function useGetDailyDetailByDateCategoryIdQuery(options: Omit<Urql.UseQueryArgs<GetDailyDetailByDateCategoryIdQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetDailyDetailByDateCategoryIdQuery, GetDailyDetailByDateCategoryIdQueryVariables>({ query: GetDailyDetailByDateCategoryIdDocument, ...options });
-};
-export const GetDailyDetailByDateGenreIdDocument = gql`
-    query GetDailyDetailByDateGenreId($genreId: uuid!, $fromDate: date!, $toDate: date!, $groupId: uuid!) {
-  allCategoriesList: category(where: {genreId: {_eq: $genreId}}) {
-    dailyDetailsByCategoryIdList: dailyDetails(
-      where: {date: {_gte: $fromDate}, _and: {date: {_lte: $toDate}, _and: {groupId: {_eq: $groupId}}}}
+    dailyDetailByDateList: dailyDetailByDate(
+      args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
     ) {
       id
       date
@@ -8518,237 +9517,561 @@ export const GetDailyDetailByDateGenreIdDocument = gql`
       }
     }
   }
-}
-    `;
+`;
 
-export function useGetDailyDetailByDateGenreIdQuery(options: Omit<Urql.UseQueryArgs<GetDailyDetailByDateGenreIdQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetDailyDetailByDateGenreIdQuery, GetDailyDetailByDateGenreIdQueryVariables>({ query: GetDailyDetailByDateGenreIdDocument, ...options });
-};
-export const GetGenreByIdDocument = gql`
-    query GetGenreById($genreId: uuid!) {
-  genreById: genreByPk(genreId: $genreId) {
-    id: genreId
-    genreName
-    genreType
-    iocomeType
-    validFlag
-    displayOrder
-    categories(where: {validFlag: {_eq: true}}) {
-      categoryId
-      categoryName
-    }
-  }
+export function useGetDailyDetailByDateQuery(
+  options: Omit<Urql.UseQueryArgs<GetDailyDetailByDateQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetDailyDetailByDateQuery,
+    GetDailyDetailByDateQueryVariables
+  >({ query: GetDailyDetailByDateDocument, ...options });
 }
-    `;
-
-export function useGetGenreByIdQuery(options: Omit<Urql.UseQueryArgs<GetGenreByIdQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetGenreByIdQuery, GetGenreByIdQueryVariables>({ query: GetGenreByIdDocument, ...options });
-};
-export const GetGenreTotalByMonthDocument = gql`
-    query GetGenreTotalByMonth($fromDate: date!, $toDate: date!, $groupId: uuid!) {
-  genreTotalByMonthList: genreTotalByMonth(
-    args: {from_date: $fromDate, to_date: $toDate, group_id: $groupId}
+export const GetDailyDetailByDateAccountIdDocument = gql`
+  query GetDailyDetailByDateAccountId(
+    $fromDate: date!
+    $toDate: date!
+    $accountId: uuid!
+    $groupId: uuid!
   ) {
-    date
-    iocomeType
-    genreId
-    genreName
-    total
-  }
-}
-    `;
-
-export function useGetGenreTotalByMonthQuery(options: Omit<Urql.UseQueryArgs<GetGenreTotalByMonthQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetGenreTotalByMonthQuery, GetGenreTotalByMonthQueryVariables>({ query: GetGenreTotalByMonthDocument, ...options });
-};
-export const GetSummaryCategoriesDocument = gql`
-    query GetSummaryCategories($groupId: uuid!) {
-  categories: summaryCategoryByGroup(
-    where: {groupId: {_eq: $groupId}}
-    orderBy: {displayOrder: ASC}
-  ) {
-    id
-    groupId
-    displayOrder
-    category: category {
-      id: categoryId
-      name: categoryName
-      genre: genre {
-        id: genreId
-        name: genreName
-        type: genreType
-        iocomeType
-      }
-    }
-  }
-}
-    `;
-
-export function useGetSummaryCategoriesQuery(options: Omit<Urql.UseQueryArgs<GetSummaryCategoriesQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetSummaryCategoriesQuery, GetSummaryCategoriesQueryVariables>({ query: GetSummaryCategoriesDocument, ...options });
-};
-export const GetSummaryCategoryBetweenDateDocument = gql`
-    query GetSummaryCategoryBetweenDate($fromDate: date!, $toDate: date!, $groupId: uuid!) {
-  summaryCategoryList: summaryCategoryByGroup(
-    orderBy: {displayOrder: ASC}
-    where: {groupId: {_eq: $groupId}}
-  ) {
-    category {
-      name: categoryName
-      id: categoryId
-      genre {
-        iocomeType
-      }
-      daily: dailyDetails(
-        where: {groupId: {_eq: $groupId}, _and: {date: {_gte: $fromDate}, _and: {date: {_lte: $toDate}}}}
-        orderBy: {date: ASC}
-      ) {
-        date
-        amount
-      }
-      creditCard: creditCardDetails(
-        where: {groupId: {_eq: $groupId}, _and: {date: {_gte: $fromDate}, _and: {date: {_lte: $toDate}}}}
-        orderBy: {date: ASC}
-      ) {
-        date
-        amount
-      }
-    }
-  }
-}
-    `;
-
-export function useGetSummaryCategoryBetweenDateQuery(options: Omit<Urql.UseQueryArgs<GetSummaryCategoryBetweenDateQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetSummaryCategoryBetweenDateQuery, GetSummaryCategoryBetweenDateQueryVariables>({ query: GetSummaryCategoryBetweenDateDocument, ...options });
-};
-export const GetTotalBetweenDateDocument = gql`
-    query GetTotalBetweenDate($fromDate: date!, $toDate: date!, $groupId: uuid!) {
-  incomeTotalByDate: dailyTotalView(
-    where: {iocomeType: {_eq: INCOME}, _and: {groupId: {_eq: $groupId}, _and: {date: {_gte: $fromDate}, _and: {date: {_lte: $toDate}}}}}
-  ) {
-    date
-    iocomeType
-    total
-  }
-  outcomeTotalByDate: dailyTotalView(
-    where: {iocomeType: {_eq: OUTCOME}, _and: {groupId: {_eq: $groupId}, _and: {date: {_gte: $fromDate}, _and: {date: {_lte: $toDate}}}}}
-  ) {
-    date
-    iocomeType
-    total
-  }
-}
-    `;
-
-export function useGetTotalBetweenDateQuery(options: Omit<Urql.UseQueryArgs<GetTotalBetweenDateQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetTotalBetweenDateQuery, GetTotalBetweenDateQueryVariables>({ query: GetTotalBetweenDateDocument, ...options });
-};
-export const GetTransferCategoryByDocument = gql`
-    query GetTransferCategoryBy($groupId: uuid!) {
-  transferCategory: transferCategoryByPk(groupId: $groupId) {
-    id: groupId
-    incomeCategory: category {
-      categoryId
-      genre {
-        genreId
-        iocomeType
-      }
-    }
-    outcomeCategory: categoryByOutcomeCategoryId {
-      categoryId
-      genre {
-        genreId
-        iocomeType
-      }
-    }
-  }
-}
-    `;
-
-export function useGetTransferCategoryByQuery(options: Omit<Urql.UseQueryArgs<GetTransferCategoryByQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetTransferCategoryByQuery, GetTransferCategoryByQueryVariables>({ query: GetTransferCategoryByDocument, ...options });
-};
-export const GetUserByEmailDocument = gql`
-    query GetUserByEmail($email: String!) {
-  userByEmail: user(where: {email: {_eq: $email}}) {
-    email
-    id: userId
-    name: userName
-    affiliation: affiliations {
-      group: group {
-        id: groupId
-        name: groupName
-      }
-      groupRole: group_role {
-        id: groupRoleId
-        role
-      }
-    }
-  }
-}
-    `;
-
-export function useGetUserByEmailQuery(options: Omit<Urql.UseQueryArgs<GetUserByEmailQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetUserByEmailQuery, GetUserByEmailQueryVariables>({ query: GetUserByEmailDocument, ...options });
-};
-export const GetValidAccountsDocument = gql`
-    query GetValidAccounts($groupId: uuid!) {
-  allAccountsList: account(
-    where: {validFlag: {_eq: true}, _and: {groupId: {_eq: $groupId}}}
-    orderBy: {displayOrder: ASC}
-  ) {
-    accountId
-    accountName
-  }
-}
-    `;
-
-export function useGetValidAccountsQuery(options: Omit<Urql.UseQueryArgs<GetValidAccountsQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetValidAccountsQuery, GetValidAccountsQueryVariables>({ query: GetValidAccountsDocument, ...options });
-};
-export const GetValidCategoryByGenreIdDocument = gql`
-    query GetValidCategoryByGenreId($groupId: uuid!, $genreId: uuid) {
-  genreById: genre(
-    where: {groupId: {_eq: $groupId}, _and: {validFlag: {_eq: true}, _and: {genreId: {_eq: $genreId}}}}
-    orderBy: {displayOrder: ASC}
-  ) {
-    id: genreId
-    name: genreName
-    categories(where: {validFlag: {_eq: true}}) {
-      id: categoryId
-      name: categoryName
-      displayOrder
-    }
-  }
-}
-    `;
-
-export function useGetValidCategoryByGenreIdQuery(options: Omit<Urql.UseQueryArgs<GetValidCategoryByGenreIdQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetValidCategoryByGenreIdQuery, GetValidCategoryByGenreIdQueryVariables>({ query: GetValidCategoryByGenreIdDocument, ...options });
-};
-export const GetValidGenreListByIocomeTypeDocument = gql`
-    query GetValidGenreListByIocomeType($iocomeType: iocome_type!, $groupId: uuid!) {
-  allGenresList: genre(
-    where: {validFlag: {_eq: true}, iocomeType: {_eq: $iocomeType}, groupId: {_eq: $groupId}}
-    orderBy: {displayOrder: ASC}
-  ) {
-    genreId
-    genreName
-    genreType
-    iocomeType
-    displayOrder
-    categoriesByGenreIdList: categories(
-      orderBy: {displayOrder: ASC}
-      where: {validFlag: {_eq: true}}
+    dailyDetailByDateList: dailyDetailByDate(
+      args: { group_id: $groupId, from_date: $fromDate, to_date: $toDate }
+      where: { accountId: { _eq: $accountId } }
     ) {
-      categoryId
-      categoryName
-      displayOrder
+      id
+      date
+      amount
+      memo
+      categoryByCategoryId: category {
+        categoryId
+        categoryName
+        genreByGenreId: genre {
+          genreId
+          genreName
+          genreType
+          iocomeType
+        }
+      }
+      accountByAccountId: account {
+        accountId
+        accountName
+      }
+      userByUserId: user {
+        userId
+        userName
+      }
     }
   }
-}
-    `;
+`;
 
-export function useGetValidGenreListByIocomeTypeQuery(options: Omit<Urql.UseQueryArgs<GetValidGenreListByIocomeTypeQueryVariables>, 'query'>) {
-  return Urql.useQuery<GetValidGenreListByIocomeTypeQuery, GetValidGenreListByIocomeTypeQueryVariables>({ query: GetValidGenreListByIocomeTypeDocument, ...options });
-};
+export function useGetDailyDetailByDateAccountIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetDailyDetailByDateAccountIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetDailyDetailByDateAccountIdQuery,
+    GetDailyDetailByDateAccountIdQueryVariables
+  >({ query: GetDailyDetailByDateAccountIdDocument, ...options });
+}
+export const GetDailyDetailByDateCategoryIdDocument = gql`
+  query GetDailyDetailByDateCategoryId(
+    $fromDate: date!
+    $toDate: date!
+    $groupId: uuid!
+    $categoryId: uuid!
+  ) {
+    dailyDetailByDateList: dailyDetailByDate(
+      args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
+      where: { categoryId: { _eq: $categoryId } }
+    ) {
+      id
+      date
+      amount
+      memo
+      categoryByCategoryId: category {
+        categoryId
+        categoryName
+        genreByGenreId: genre {
+          genreId
+          genreName
+          genreType
+          iocomeType
+        }
+      }
+      accountByAccountId: account {
+        accountId
+        accountName
+      }
+      userByUserId: user {
+        userId
+        userName
+      }
+    }
+  }
+`;
+
+export function useGetDailyDetailByDateCategoryIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetDailyDetailByDateCategoryIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetDailyDetailByDateCategoryIdQuery,
+    GetDailyDetailByDateCategoryIdQueryVariables
+  >({ query: GetDailyDetailByDateCategoryIdDocument, ...options });
+}
+export const GetDailyDetailByDateGenreIdDocument = gql`
+  query GetDailyDetailByDateGenreId(
+    $genreId: uuid!
+    $fromDate: date!
+    $toDate: date!
+    $groupId: uuid!
+  ) {
+    allCategoriesList: category(where: { genreId: { _eq: $genreId } }) {
+      dailyDetailsByCategoryIdList: dailyDetails(
+        where: {
+          date: { _gte: $fromDate }
+          _and: {
+            date: { _lte: $toDate }
+            _and: { groupId: { _eq: $groupId } }
+          }
+        }
+      ) {
+        id
+        date
+        amount
+        memo
+        categoryByCategoryId: category {
+          categoryId
+          categoryName
+          genreByGenreId: genre {
+            genreId
+            genreName
+            genreType
+            iocomeType
+          }
+        }
+        accountByAccountId: account {
+          accountId
+          accountName
+        }
+        userByUserId: user {
+          userId
+          userName
+        }
+      }
+    }
+  }
+`;
+
+export function useGetDailyDetailByDateGenreIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetDailyDetailByDateGenreIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetDailyDetailByDateGenreIdQuery,
+    GetDailyDetailByDateGenreIdQueryVariables
+  >({ query: GetDailyDetailByDateGenreIdDocument, ...options });
+}
+export const GetGenreByIdDocument = gql`
+  query GetGenreById($genreId: uuid!) {
+    genreById: genreByPk(genreId: $genreId) {
+      id: genreId
+      genreName
+      genreType
+      iocomeType
+      validFlag
+      displayOrder
+      categories(where: { validFlag: { _eq: true } }) {
+        categoryId
+        categoryName
+      }
+    }
+  }
+`;
+
+export function useGetGenreByIdQuery(
+  options: Omit<Urql.UseQueryArgs<GetGenreByIdQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetGenreByIdQuery, GetGenreByIdQueryVariables>({
+    query: GetGenreByIdDocument,
+    ...options,
+  });
+}
+export const GetGenreTotalByMonthDocument = gql`
+  query GetGenreTotalByMonth(
+    $fromDate: date!
+    $toDate: date!
+    $groupId: uuid!
+  ) {
+    genreTotalByMonthList: genreTotalByMonth(
+      args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
+    ) {
+      date
+      iocomeType
+      genreId
+      genreName
+      total
+    }
+  }
+`;
+
+export function useGetGenreTotalByMonthQuery(
+  options: Omit<Urql.UseQueryArgs<GetGenreTotalByMonthQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetGenreTotalByMonthQuery,
+    GetGenreTotalByMonthQueryVariables
+  >({ query: GetGenreTotalByMonthDocument, ...options });
+}
+export const GetSummaryCategoriesDocument = gql`
+  query GetSummaryCategories($groupId: uuid!) {
+    categories: summaryCategoryByGroup(
+      where: { groupId: { _eq: $groupId } }
+      orderBy: { displayOrder: ASC }
+    ) {
+      id
+      groupId
+      displayOrder
+      category: category {
+        id: categoryId
+        name: categoryName
+        genre: genre {
+          id: genreId
+          name: genreName
+          type: genreType
+          iocomeType
+        }
+      }
+    }
+  }
+`;
+
+export function useGetSummaryCategoriesQuery(
+  options: Omit<Urql.UseQueryArgs<GetSummaryCategoriesQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetSummaryCategoriesQuery,
+    GetSummaryCategoriesQueryVariables
+  >({ query: GetSummaryCategoriesDocument, ...options });
+}
+export const GetSummaryCategoryBetweenDateDocument = gql`
+  query GetSummaryCategoryBetweenDate(
+    $fromDate: date!
+    $toDate: date!
+    $groupId: uuid!
+  ) {
+    summaryCategoryList: summaryCategoryByGroup(
+      orderBy: { displayOrder: ASC }
+      where: { groupId: { _eq: $groupId } }
+    ) {
+      category {
+        name: categoryName
+        id: categoryId
+        genre {
+          iocomeType
+        }
+        daily: dailyDetails(
+          where: {
+            groupId: { _eq: $groupId }
+            _and: {
+              date: { _gte: $fromDate }
+              _and: { date: { _lte: $toDate } }
+            }
+          }
+          orderBy: { date: ASC }
+        ) {
+          date
+          amount
+        }
+        creditCard: creditCardDetails(
+          where: {
+            groupId: { _eq: $groupId }
+            _and: {
+              date: { _gte: $fromDate }
+              _and: { date: { _lte: $toDate } }
+            }
+          }
+          orderBy: { date: ASC }
+        ) {
+          date
+          amount
+        }
+      }
+    }
+  }
+`;
+
+export function useGetSummaryCategoryBetweenDateQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetSummaryCategoryBetweenDateQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetSummaryCategoryBetweenDateQuery,
+    GetSummaryCategoryBetweenDateQueryVariables
+  >({ query: GetSummaryCategoryBetweenDateDocument, ...options });
+}
+export const GetTotalBetweenDateDocument = gql`
+  query GetTotalBetweenDate($fromDate: date!, $toDate: date!, $groupId: uuid!) {
+    incomeTotalByDate: dailyTotalView(
+      where: {
+        iocomeType: { _eq: INCOME }
+        _and: {
+          groupId: { _eq: $groupId }
+          _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+        }
+      }
+    ) {
+      date
+      iocomeType
+      total
+    }
+    outcomeTotalByDate: dailyTotalView(
+      where: {
+        iocomeType: { _eq: OUTCOME }
+        _and: {
+          groupId: { _eq: $groupId }
+          _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
+        }
+      }
+    ) {
+      date
+      iocomeType
+      total
+    }
+  }
+`;
+
+export function useGetTotalBetweenDateQuery(
+  options: Omit<Urql.UseQueryArgs<GetTotalBetweenDateQueryVariables>, "query">,
+) {
+  return Urql.useQuery<
+    GetTotalBetweenDateQuery,
+    GetTotalBetweenDateQueryVariables
+  >({ query: GetTotalBetweenDateDocument, ...options });
+}
+export const GetTransferCategoryByDocument = gql`
+  query GetTransferCategoryBy($groupId: uuid!) {
+    transferCategory: transferCategoryByPk(groupId: $groupId) {
+      id: groupId
+      incomeCategory: category {
+        categoryId
+        genre {
+          genreId
+          iocomeType
+        }
+      }
+      outcomeCategory: categoryByOutcomeCategoryId {
+        categoryId
+        genre {
+          genreId
+          iocomeType
+        }
+      }
+    }
+  }
+`;
+
+export function useGetTransferCategoryByQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetTransferCategoryByQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetTransferCategoryByQuery,
+    GetTransferCategoryByQueryVariables
+  >({ query: GetTransferCategoryByDocument, ...options });
+}
+export const GetUserByEmailDocument = gql`
+  query GetUserByEmail($email: String!) {
+    userByEmail: user(where: { email: { _eq: $email } }) {
+      email
+      id: userId
+      name: userName
+      affiliation: affiliations {
+        group: group {
+          id: groupId
+          name: groupName
+        }
+        groupRole: group_role {
+          id: groupRoleId
+          role
+        }
+      }
+    }
+  }
+`;
+
+export function useGetUserByEmailQuery(
+  options: Omit<Urql.UseQueryArgs<GetUserByEmailQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetUserByEmailQuery, GetUserByEmailQueryVariables>({
+    query: GetUserByEmailDocument,
+    ...options,
+  });
+}
+export const GetValidAccountsDocument = gql`
+  query GetValidAccounts($groupId: uuid!) {
+    allAccountsList: account(
+      where: { validFlag: { _eq: true }, _and: { groupId: { _eq: $groupId } } }
+      orderBy: { displayOrder: ASC }
+    ) {
+      accountId
+      accountName
+    }
+  }
+`;
+
+export function useGetValidAccountsQuery(
+  options: Omit<Urql.UseQueryArgs<GetValidAccountsQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetValidAccountsQuery, GetValidAccountsQueryVariables>({
+    query: GetValidAccountsDocument,
+    ...options,
+  });
+}
+export const GetValidCategoryByGenreIdDocument = gql`
+  query GetValidCategoryByGenreId($groupId: uuid!, $genreId: uuid) {
+    genreById: genre(
+      where: {
+        groupId: { _eq: $groupId }
+        _and: { validFlag: { _eq: true }, _and: { genreId: { _eq: $genreId } } }
+      }
+      orderBy: { displayOrder: ASC }
+    ) {
+      id: genreId
+      name: genreName
+      categories(where: { validFlag: { _eq: true } }) {
+        id: categoryId
+        name: categoryName
+        displayOrder
+      }
+    }
+  }
+`;
+
+export function useGetValidCategoryByGenreIdQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetValidCategoryByGenreIdQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetValidCategoryByGenreIdQuery,
+    GetValidCategoryByGenreIdQueryVariables
+  >({ query: GetValidCategoryByGenreIdDocument, ...options });
+}
+export const GetValidGenreListByIocomeTypeDocument = gql`
+  query GetValidGenreListByIocomeType(
+    $iocomeType: iocome_type!
+    $groupId: uuid!
+  ) {
+    allGenresList: genre(
+      where: {
+        validFlag: { _eq: true }
+        iocomeType: { _eq: $iocomeType }
+        groupId: { _eq: $groupId }
+      }
+      orderBy: { displayOrder: ASC }
+    ) {
+      genreId
+      genreName
+      genreType
+      iocomeType
+      displayOrder
+      categoriesByGenreIdList: categories(
+        orderBy: { displayOrder: ASC }
+        where: { validFlag: { _eq: true } }
+      ) {
+        categoryId
+        categoryName
+        displayOrder
+      }
+    }
+  }
+`;
+
+export function useGetValidGenreListByIocomeTypeQuery(
+  options: Omit<
+    Urql.UseQueryArgs<GetValidGenreListByIocomeTypeQueryVariables>,
+    "query"
+  >,
+) {
+  return Urql.useQuery<
+    GetValidGenreListByIocomeTypeQuery,
+    GetValidGenreListByIocomeTypeQueryVariables
+  >({ query: GetValidGenreListByIocomeTypeDocument, ...options });
+}
+export const GetDepositDocument = gql`
+  query getDeposit($groupId: uuid!, $fromDate: date!, $toDate: date!) {
+    depositCategory(where: { groupId: { _eq: $groupId } }) {
+      category {
+        id: categoryId
+        categoryName
+        daily: dailyDetailsAggregate(
+          orderBy: { date: ASC }
+          where: {
+            date: { _gte: $fromDate }
+            _and: { date: { _lte: $toDate } }
+          }
+        ) {
+          aggregate {
+            count
+            sum {
+              amount
+            }
+            avg {
+              amount
+            }
+          }
+          nodes {
+            id
+            date
+            amount
+            memo
+          }
+        }
+        credit: creditCardDetailsAggregate(
+          orderBy: { date: ASC }
+          where: {
+            date: { _gte: $fromDate }
+            _and: { date: { _lte: $toDate } }
+          }
+        ) {
+          aggregate {
+            count
+            sum {
+              amount
+            }
+            avg {
+              amount
+            }
+          }
+          nodes {
+            id
+            date
+            amount
+            memo
+          }
+        }
+      }
+    }
+  }
+`;
+
+export function useGetDepositQuery(
+  options: Omit<Urql.UseQueryArgs<GetDepositQueryVariables>, "query">,
+) {
+  return Urql.useQuery<GetDepositQuery, GetDepositQueryVariables>({
+    query: GetDepositDocument,
+    ...options,
+  });
+}
