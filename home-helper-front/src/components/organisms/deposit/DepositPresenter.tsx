@@ -2,7 +2,6 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { MonthlyDeposit } from "@hooks/household/deposit/monthlyDeposit";
 import { Table, TableProps } from "@components/atoms/Table";
 import { RangeMonthPicker } from "@components/molecules/RangeMonthPicker";
 
@@ -28,6 +27,6 @@ export const DepositPresenter = ({
       toMonth={toMonth}
       changeToMonth={changeToMonth}
     />
-    <Table header={header} tablePropsList={tablePropsList} />
+    <Table header={header} tablePropsList={tablePropsList} size={"sm"} />
   </div>
 );
