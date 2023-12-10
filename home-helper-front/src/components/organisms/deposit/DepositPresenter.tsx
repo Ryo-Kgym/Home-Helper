@@ -3,9 +3,16 @@
  */
 
 import { MonthlyDeposit } from "@hooks/household/deposit/monthlyDeposit";
+import { Table, TableProps } from "@components/atoms/Table";
 
 export const DepositPresenter = ({
-  monthlyCategories,
+  header,
+  tablePropsList,
 }: {
-  monthlyCategories: MonthlyDeposit[];
-}) => <div></div>;
+  header: string[];
+  tablePropsList: TableProps[];
+}) => (
+  <div>
+    <Table header={header} tablePropsList={tablePropsList} />
+  </div>
+);
