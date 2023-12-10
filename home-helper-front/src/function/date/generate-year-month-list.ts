@@ -2,6 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+import { convertToYyyyMm } from "./convert-to-yyyy-mm";
+
 /**
  * Generates a list of year-month string values between two given dates.
  *
@@ -14,10 +16,10 @@ export const generateYearMonthList = (fromDate: Date, toDate: Date) => {
     throw new Error("fromDate must be less than or equal to toDate");
   }
 
-  const yearMonths = [fromDate.toISOString().slice(0, 7)];
+  const yearMonths = [convertToYyyyMm(fromDate)];
   let yearMonthVariable = yearMonths[0];
 
-  while (yearMonthVariable !== toDate.toISOString().slice(0, 7)) {
+  while (yearMonthVariable !== convertToYyyyMm(toDate)) {
     const year = parseInt(yearMonthVariable.slice(0, 4));
     const month = parseInt(yearMonthVariable.slice(5, 7));
     if (month === 12) {
@@ -27,6 +29,5 @@ export const generateYearMonthList = (fromDate: Date, toDate: Date) => {
     }
     yearMonths.push(yearMonthVariable);
   }
-
   return yearMonths;
 };
