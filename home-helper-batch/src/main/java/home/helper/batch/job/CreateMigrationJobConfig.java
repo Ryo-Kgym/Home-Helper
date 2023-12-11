@@ -8,23 +8,21 @@ import home.helper.batch.persistence.migration.household.DbMigrationUser;
 import home.helper.batch.persistence.migration.household.SelectMigrationUserMapper;
 import home.helper.batch.support.ItemReaderFactory;
 import home.helper.batch.support.JobBuilderFactory;
+import home.helper.batch.support.StepBuilderFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.repository.JobRepository;
-import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @RequiredArgsConstructor
 public class CreateMigrationJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
-    private final JobRepository jobRepository;
+    private final StepBuilderFactory stepBuilderFactory;
     private final ItemReaderFactory itemReaderFactory;
 
     @Bean
@@ -36,15 +34,13 @@ public class CreateMigrationJobConfig {
     public Step userStep(
             ItemReader<DbMigrationUser> reader,
             ItemProcessor<DbMigrationUser, DbMigrationUser> processor,
-            ItemWriter<DbMigrationUser> writer,
-            PlatformTransactionManager txManager
+            ItemWriter<DbMigrationUser> writer
     ) {
-        return new StepBuilder("userStep", jobRepository)
-                .<DbMigrationUser, DbMigrationUser>chunk(100, txManager)
+        return stepBuilderFactory.
+                <DbMigrationUser, DbMigrationUser>create("userStep")
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)
-                .allowStartIfComplete(true)
                 .build();
     }
 
