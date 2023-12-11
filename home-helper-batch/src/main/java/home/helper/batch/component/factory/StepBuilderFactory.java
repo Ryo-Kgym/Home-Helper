@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-package home.helper.batch.support;
+package home.helper.batch.component.factory;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.repository.JobRepository;
