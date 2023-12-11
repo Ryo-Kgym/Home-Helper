@@ -26,42 +26,45 @@ public class CreateMigrationJobConfig {
     private final StepBuilderFactory stepBuilderFactory;
     private final ItemReaderFactory itemReaderFactory;
 
-    @Bean
-    public Job userJob(Step userStep,
-                       @Qualifier("userStep") Step userStep2,
-                       @Qualifier("userStep") Step userStep3) {
+    private final String JOB_NAME_PREFIX = "createMigrationTarget";
+    private final String STEP_NAME_PREFIX_1 = "createMigrationUser";
+
+    @Bean(name = JOB_NAME_PREFIX + "Job")
+    public Job job(@Qualifier(STEP_NAME_PREFIX_1 + "Step") Step userStep,
+                   @Qualifier(STEP_NAME_PREFIX_1 + "Step") Step userStep2,
+                   @Qualifier(STEP_NAME_PREFIX_1 + "Step") Step userStep3) {
         return jobBuilderFactory.create("userJob")
-                .start(userStep)
-                .next(userStep2)
-                .next(userStep3)
-                .build();
+            .start(userStep)
+            .next(userStep2)
+            .next(userStep3)
+            .build();
     }
 
-    @Bean
-    public Step userStep(
-            ItemReader<DbMigrationUser> reader,
-            ItemProcessor<DbMigrationUser, DbMigrationUser> processor,
-            ItemWriter<DbMigrationUser> writer
+    @Bean(name = STEP_NAME_PREFIX_1 + "Step")
+    public Step step1(
+        @Qualifier(STEP_NAME_PREFIX_1 + "ItemReader") ItemReader<DbMigrationUser> reader,
+        @Qualifier(STEP_NAME_PREFIX_1 + "ItemProcessor") ItemProcessor<DbMigrationUser, DbMigrationUser> processor,
+        @Qualifier(STEP_NAME_PREFIX_1 + "ItemWriter") ItemWriter<DbMigrationUser> writer
     ) {
         return stepBuilderFactory.
-                <DbMigrationUser, DbMigrationUser>create("userStep")
-                .reader(reader)
-                .processor(processor)
-                .writer(writer)
-                .build();
+            <DbMigrationUser, DbMigrationUser>create(STEP_NAME_PREFIX_1 + "Step")
+            .reader(reader)
+            .processor(processor)
+            .writer(writer)
+            .build();
     }
 
-    @Bean
+    @Bean(name = STEP_NAME_PREFIX_1 + "ItemReader")
     public ItemReader<DbMigrationUser> reader() {
         return itemReaderFactory.itemReader(SelectMigrationUserMapper.class, "selectMigrationUser");
     }
 
-    @Bean
+    @Bean(name = STEP_NAME_PREFIX_1 + "ItemProcessor")
     public ItemProcessor<DbMigrationUser, DbMigrationUser> processor() {
         return user -> user;
     }
 
-    @Bean
+    @Bean(name = STEP_NAME_PREFIX_1 + "ItemWriter")
     public ItemWriter<DbMigrationUser> writer() {
         return users -> users.forEach(System.out::println);
     }
