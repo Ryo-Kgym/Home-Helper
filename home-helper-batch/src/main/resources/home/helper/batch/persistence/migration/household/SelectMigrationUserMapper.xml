@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="home.helper.batch.persistence.migration.household.SelectMigrationUserMapper">
     <select id="selectMigrationUser" resultType="home.helper.batch.persistence.migration.household.DbMigrationUser">
         select
@@ -6,7 +10,7 @@
             display_order,
             email
         from
-            user
+            public.user
         order by
             display_order
     </select>
