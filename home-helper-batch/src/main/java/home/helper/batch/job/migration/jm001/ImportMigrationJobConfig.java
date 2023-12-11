@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-package home.helper.batch.job;
+package home.helper.batch.job.migration.jm001;
 
 import home.helper.batch.component.factory.*;
 import home.helper.batch.persistence.migration.household.DbMigrationUser;
@@ -19,13 +19,13 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class CreateMigrationJobConfig {
+public class ImportMigrationJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final ItemReaderFactory itemReaderFactory;
 
-    private final String JOB_PREFIX = "createMigrationTarget";
-    private final String STEP_PREFIX_1 = "createMigrationUser";
+    private final String JOB_PREFIX = "importMigration";
+    private final String STEP_PREFIX_1 = "importMigrationUser";
 
     @Bean(name = JOB_PREFIX + "Job")
     public Job job(@Qualifier(STEP_PREFIX_1 + "Step") Step userStep,
