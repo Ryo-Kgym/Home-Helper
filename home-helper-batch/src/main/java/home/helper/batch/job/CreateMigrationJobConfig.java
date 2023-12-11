@@ -5,9 +5,9 @@
 package home.helper.batch.job;
 
 import home.helper.batch.persistence.migration.household.DbMigrationUser;
+import home.helper.batch.persistence.migration.household.SelectMigrationUserMapper;
+import home.helper.batch.support.ItemReaderFactory;
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.batch.MyBatisCursorItemReader;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -25,7 +25,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @RequiredArgsConstructor
 public class CreateMigrationJobConfig {
     private final JobRepository jobRepository;
-    private final SqlSessionFactory sqlSessionFactory;
+    private final ItemReaderFactory itemReaderFactory;
 
     @Bean
     public Job userJob(Step userStep) {
@@ -53,10 +53,7 @@ public class CreateMigrationJobConfig {
 
     @Bean
     public ItemReader<DbMigrationUser> reader() {
-        MyBatisCursorItemReader<DbMigrationUser> reader = new MyBatisCursorItemReader<>();
-        reader.setQueryId("home.helper.batch.persistence.migration.household.SelectMigrationUserMapper.selectMigrationUser");
-        reader.setSqlSessionFactory(sqlSessionFactory);
-        return reader;
+        return itemReaderFactory.itemReader(SelectMigrationUserMapper.class, "selectMigrationUser");
     }
 
     @Bean
