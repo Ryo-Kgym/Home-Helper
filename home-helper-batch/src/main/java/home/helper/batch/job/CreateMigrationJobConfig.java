@@ -15,6 +15,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,8 +27,14 @@ public class CreateMigrationJobConfig {
     private final ItemReaderFactory itemReaderFactory;
 
     @Bean
-    public Job userJob(Step userStep) {
-        return jobBuilderFactory.create("userJob", userStep);
+    public Job userJob(Step userStep,
+                       @Qualifier("userStep") Step userStep2,
+                       @Qualifier("userStep") Step userStep3) {
+        return jobBuilderFactory.create("userJob")
+                .start(userStep)
+                .next(userStep2)
+                .next(userStep3)
+                .build();
     }
 
     @Bean
