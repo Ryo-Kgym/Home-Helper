@@ -7,11 +7,10 @@ package home.helper.batch.job;
 import home.helper.batch.persistence.migration.household.DbMigrationUser;
 import home.helper.batch.persistence.migration.household.SelectMigrationUserMapper;
 import home.helper.batch.support.ItemReaderFactory;
+import home.helper.batch.support.JobBuilderFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.job.builder.JobBuilder;
-import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemProcessor;
@@ -24,15 +23,13 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 @RequiredArgsConstructor
 public class CreateMigrationJobConfig {
+    private final JobBuilderFactory jobBuilderFactory;
     private final JobRepository jobRepository;
     private final ItemReaderFactory itemReaderFactory;
 
     @Bean
     public Job userJob(Step userStep) {
-        return new JobBuilder("userJob", jobRepository)
-                .start(userStep)
-                .incrementer(new RunIdIncrementer())
-                .build();
+        return jobBuilderFactory.create("userJob", userStep);
     }
 
     @Bean
