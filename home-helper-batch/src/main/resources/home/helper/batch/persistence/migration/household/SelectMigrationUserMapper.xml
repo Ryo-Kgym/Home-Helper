@@ -1,0 +1,13 @@
+<mapper namespace="home.helper.batch.persistence.migration.household.SelectMigrationUserMapper">
+    <select id="selectMigrationUser" resultType="home.helper.batch.persistence.migration.household.DbMigrationUser">
+        select
+            user_id,
+            user_name,
+            display_order,
+            email
+        from
+            user
+        order by
+            display_order
+    </select>
+</mapper>
