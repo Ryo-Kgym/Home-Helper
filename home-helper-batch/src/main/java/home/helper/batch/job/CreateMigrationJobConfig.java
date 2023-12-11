@@ -4,11 +4,12 @@
 
 package home.helper.batch.job;
 
-import home.helper.batch.persistence.migration.household.DbMigrationUser;
-import home.helper.batch.persistence.migration.household.SelectMigrationUserMapper;
+import home.helper.batch.component.factory.ItemProcessorBuilder;
 import home.helper.batch.component.factory.ItemReaderFactory;
 import home.helper.batch.component.factory.JobBuilderFactory;
 import home.helper.batch.component.factory.StepBuilderFactory;
+import home.helper.batch.persistence.migration.household.DbMigrationUser;
+import home.helper.batch.persistence.migration.household.SelectMigrationUserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -61,7 +62,9 @@ public class CreateMigrationJobConfig {
 
     @Bean(name = STEP_NAME_PREFIX_1 + "ItemProcessor")
     public ItemProcessor<DbMigrationUser, DbMigrationUser> processor() {
-        return user -> user;
+        return new ItemProcessorBuilder<DbMigrationUser, DbMigrationUser>()
+            .useCase(inputData -> inputData)
+            .build();
     }
 
     @Bean(name = STEP_NAME_PREFIX_1 + "ItemWriter")
