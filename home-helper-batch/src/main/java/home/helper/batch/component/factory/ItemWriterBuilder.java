@@ -4,20 +4,20 @@
 
 package home.helper.batch.component.factory;
 
-import home.helper.batch.gateway.SaveRepository;
+import home.helper.batch.gateway.SaveGateway;
 import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ItemWriter;
 
 public class ItemWriterBuilder<O> implements ItemWriter<O> {
-    private SaveRepository<O> saveRepository;
+    private SaveGateway<O> saveGateway;
 
     @Override
     public void write(Chunk<? extends O> chunk) throws Exception {
-        chunk.forEach(saveRepository::save);
+        chunk.forEach(saveGateway::save);
     }
 
-    public ItemWriterBuilder<O> writer(SaveRepository<O> repository) {
-        this.saveRepository = repository;
+    public ItemWriterBuilder<O> writer(SaveGateway<O> repository) {
+        this.saveGateway = repository;
         return this;
     }
 

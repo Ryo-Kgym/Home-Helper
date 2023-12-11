@@ -4,7 +4,7 @@
 
 package home.helper.batch.gateway;
 
-public interface SaveRepository<O> {
+public interface SaveGateway<O> {
 
     void save(O data);
 }
