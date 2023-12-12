@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-package home.helper.batch.persistence.migration.household;
+package home.helper.batch.persistence.migration.imports;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

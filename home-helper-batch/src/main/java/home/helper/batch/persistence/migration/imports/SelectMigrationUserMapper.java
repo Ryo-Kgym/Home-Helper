@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-package home.helper.batch.persistence.migration.household;
+package home.helper.batch.persistence.migration.imports;
 
 import org.apache.ibatis.annotations.Mapper;
 

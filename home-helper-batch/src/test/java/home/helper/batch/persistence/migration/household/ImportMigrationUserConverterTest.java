@@ -5,6 +5,8 @@
 package home.helper.batch.persistence.migration.household;
 
 import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
+import home.helper.batch.persistence.migration.imports.DbImportMigrationUser;
+import home.helper.batch.persistence.migration.imports.ImportMigrationUserConverter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
