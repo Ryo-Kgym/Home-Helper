@@ -3,11 +3,16 @@
     <ExternalSystemSettings>
       <option name="env">
         <map>
+          <entry key="DB_HOST" value="localhost" />
+          <entry key="DB_PORT" value="5432" />
           <entry key="DB_NAME" value="home_helper_db" />
           <entry key="DB_PASS" value="postgres" />
-          <entry key="DB_PORT" value="5432" />
           <entry key="DB_USER" value="postgres" />
-          <entry key="DB_HOST" value="localhost" />
+          <entry key="JOB_DB_HOST" value="localhost" />
+          <entry key="JOB_DB_PORT" value="5433" />
+          <entry key="JOB_DB_NAME" value="home_helper_job_db" />
+          <entry key="JOB_DB_USER" value="job_user" />
+          <entry key="JOB_DB_PASS" value="job_user" />
         </map>
       </option>
       <option name="executionName" />
