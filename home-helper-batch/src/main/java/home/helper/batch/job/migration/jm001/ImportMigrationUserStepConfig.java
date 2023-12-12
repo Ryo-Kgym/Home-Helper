@@ -11,6 +11,7 @@ import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
 import home.helper.batch.persistence.migration.imports.DbImportMigrationUser;
 import home.helper.batch.persistence.migration.imports.ImportMigrationUserConverter;
+import home.helper.batch.persistence.migration.imports.ImportMigrationUserSaveRepository;
 import home.helper.batch.persistence.migration.imports.SelectMigrationUserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Step;
@@ -57,9 +58,11 @@ public class ImportMigrationUserStepConfig {
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
-    public ItemWriter<ImportMigrationUserInput> writer() {
+    public ItemWriter<ImportMigrationUserInput> writer(
+        ImportMigrationUserSaveRepository saveGateway
+    ) {
         return new ItemWriterBuilder<ImportMigrationUserInput>()
-            .writer(System.out::println)
+            .writer(saveGateway)
             .build();
     }
 }
