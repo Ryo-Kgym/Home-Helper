@@ -4,7 +4,7 @@
 
 package home.helper.batch.job.migration.jm001;
 
-import home.helper.batch.component.factory.ItemProcessorBuilder;
+import home.helper.batch.component.factory.ConvertItemProcessorBuilder;
 import home.helper.batch.component.factory.ItemReaderFactory;
 import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
@@ -48,7 +48,8 @@ public class ImportMigrationUserStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemProcessor")
     public ItemProcessor<DbMigrationUser, DbMigrationUser> processor() {
-        return new ItemProcessorBuilder<DbMigrationUser, DbMigrationUser>()
+        return new ConvertItemProcessorBuilder<DbMigrationUser, DbMigrationUser, DbMigrationUser>()
+            .converter(inputData -> inputData)
             .useCase(inputData -> inputData)
             .build();
     }
