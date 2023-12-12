@@ -8,14 +8,14 @@ import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
 
 import java.util.function.Function;
 
-public class ImportMigrationUserConverter implements Function<DbMigrationUser, ImportMigrationUserInput> {
+public class ImportMigrationUserConverter implements Function<DbImportMigrationUser, ImportMigrationUserInput> {
     @Override
-    public ImportMigrationUserInput apply(DbMigrationUser dbMigrationUser) {
+    public ImportMigrationUserInput apply(DbImportMigrationUser dbImportMigrationUser) {
         return ImportMigrationUserInput.builder()
-            .userId(dbMigrationUser.getUserId())
-            .userName(dbMigrationUser.getUserName())
-            .displayOrder(dbMigrationUser.getDisplayOrder())
-            .email(dbMigrationUser.getEmail())
+            .userId(dbImportMigrationUser.getUserId())
+            .userName(dbImportMigrationUser.getUserName())
+            .displayOrder(dbImportMigrationUser.getDisplayOrder())
+            .email(dbImportMigrationUser.getEmail())
             .build();
     }
 }

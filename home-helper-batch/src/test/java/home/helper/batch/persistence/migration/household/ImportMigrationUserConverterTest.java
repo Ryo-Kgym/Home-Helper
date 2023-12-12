@@ -20,7 +20,7 @@ class ImportMigrationUserConverterTest {
 
     @Test
     public void testApply() {
-        var dbMigrationUser = DbMigrationUser.builder()
+        var dbMigrationUser = DbImportMigrationUser.builder()
             .userId("TestUser1")
             .userName("Test User 1")
             .displayOrder(1)

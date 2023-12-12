@@ -3,14 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="home.helper.batch.persistence.migration.household.SelectMigrationUserMapper">
-    <select id="selectMigrationUser" resultType="home.helper.batch.persistence.migration.household.DbMigrationUser">
+    <select id="selectMigrationUser"
+            resultType="home.helper.batch.persistence.migration.household.DbImportMigrationUser">
         select
             user_id,
             user_name,
             display_order,
             email
-        from
-            public.user
+        from public.user
         order by
             display_order
     </select>

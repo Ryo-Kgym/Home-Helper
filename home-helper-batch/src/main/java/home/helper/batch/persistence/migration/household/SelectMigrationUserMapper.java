@@ -9,5 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface SelectMigrationUserMapper {
 
-    DbMigrationUser selectMigrationUser();
+    DbImportMigrationUser selectMigrationUser();
 }

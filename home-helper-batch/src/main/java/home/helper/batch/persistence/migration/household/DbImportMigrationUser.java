@@ -13,7 +13,7 @@ import lombok.Value;
 @Value
 @NoArgsConstructor(force = true)
 @AllArgsConstructor
-public class DbMigrationUser {
+public class DbImportMigrationUser {
     private String userId;
     private String userName;
     private int displayOrder;
