@@ -14,11 +14,11 @@ import javax.sql.DataSource;
 
 @Configuration
 @RequiredArgsConstructor
-public class PrimaryDatasourceConfig {
-    private final DataSource dataSource;
+public class PlatformTransactionManagerConfig {
+    private final DataSource primaryDataSource;
 
     @Bean
-    public PlatformTransactionManager txManager() {
-        return new DataSourceTransactionManager(dataSource);
+    public PlatformTransactionManager primaryTxManager() {
+        return new DataSourceTransactionManager(primaryDataSource);
     }
 }
