@@ -1,0 +1,40 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+package home.helper.batch.persistence.migration.household;
+
+import home.helper.batch.dto.migration.imports.ImportMigrationUserInputData;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+@ExtendWith(MockitoExtension.class)
+class ImportMigrationUserConverterTest {
+    @InjectMocks
+    private ImportMigrationUserConverter testTarget;
+
+    @Test
+    public void testApply() {
+        var dbMigrationUser = DbMigrationUser.builder()
+            .userId("TestUser1")
+            .userName("Test User 1")
+            .displayOrder(1)
+            .email("testuser1@example.com")
+            .build();
+
+        var actual = testTarget.apply(dbMigrationUser);
+        var expected = ImportMigrationUserInputData.builder()
+            .userId("TestUser1")
+            .userName("Test User 1")
+            .displayOrder(1)
+            .email("testuser1@example.com")
+            .build();
+
+        assertThat(actual, is(expected));
+    }
+}

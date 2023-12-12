@@ -10,6 +10,7 @@ import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.migration.imports.ImportMigrationUserInputData;
 import home.helper.batch.persistence.migration.household.DbMigrationUser;
+import home.helper.batch.persistence.migration.household.ImportMigrationUserConverter;
 import home.helper.batch.persistence.migration.household.SelectMigrationUserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Step;
@@ -50,12 +51,7 @@ public class ImportMigrationUserStepConfig {
     @Bean(name = STEP_PREFIX + "ItemProcessor")
     public ItemProcessor<DbMigrationUser, ImportMigrationUserInputData> processor() {
         return new ConvertItemProcessorBuilder<DbMigrationUser, ImportMigrationUserInputData, ImportMigrationUserInputData>()
-            .converter(inputData -> ImportMigrationUserInputData.builder()
-                .userId(inputData.getUserId())
-                .userName(inputData.getUserName())
-                .displayOrder(inputData.getDisplayOrder())
-                .email(inputData.getEmail())
-                .build())
+            .converter(new ImportMigrationUserConverter())
             .useCase(inputData -> inputData)
             .build();
     }
