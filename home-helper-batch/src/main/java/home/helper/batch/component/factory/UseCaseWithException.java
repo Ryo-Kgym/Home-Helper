@@ -4,7 +4,7 @@
 
 package home.helper.batch.component.factory;
 
-import home.helper.core.error.HomeHelperBatchException;
+import home.helper.batch.error.HomeHelperBatchException;
 
 public interface UseCaseWithException<I, O> {
 
