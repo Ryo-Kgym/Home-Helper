@@ -4,7 +4,7 @@
 
 package home.helper.batch.persistence.migration.household;
 
-import home.helper.batch.dto.migration.imports.ImportMigrationUserInputData;
+import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,7 +28,7 @@ class ImportMigrationUserConverterTest {
             .build();
 
         var actual = testTarget.apply(dbMigrationUser);
-        var expected = ImportMigrationUserInputData.builder()
+        var expected = ImportMigrationUserInput.builder()
             .userId("TestUser1")
             .userName("Test User 1")
             .displayOrder(1)

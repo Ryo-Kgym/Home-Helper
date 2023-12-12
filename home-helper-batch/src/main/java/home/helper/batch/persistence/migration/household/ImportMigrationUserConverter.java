@@ -4,14 +4,14 @@
 
 package home.helper.batch.persistence.migration.household;
 
-import home.helper.batch.dto.migration.imports.ImportMigrationUserInputData;
+import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
 
 import java.util.function.Function;
 
-public class ImportMigrationUserConverter implements Function<DbMigrationUser, ImportMigrationUserInputData> {
+public class ImportMigrationUserConverter implements Function<DbMigrationUser, ImportMigrationUserInput> {
     @Override
-    public ImportMigrationUserInputData apply(DbMigrationUser dbMigrationUser) {
-        return ImportMigrationUserInputData.builder()
+    public ImportMigrationUserInput apply(DbMigrationUser dbMigrationUser) {
+        return ImportMigrationUserInput.builder()
             .userId(dbMigrationUser.getUserId())
             .userName(dbMigrationUser.getUserName())
             .displayOrder(dbMigrationUser.getDisplayOrder())

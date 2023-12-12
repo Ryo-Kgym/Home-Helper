@@ -8,7 +8,7 @@ import home.helper.batch.component.factory.ConvertItemProcessorBuilder;
 import home.helper.batch.component.factory.ItemReaderFactory;
 import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
-import home.helper.batch.dto.migration.imports.ImportMigrationUserInputData;
+import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
 import home.helper.batch.persistence.migration.household.DbMigrationUser;
 import home.helper.batch.persistence.migration.household.ImportMigrationUserConverter;
 import home.helper.batch.persistence.migration.household.SelectMigrationUserMapper;
@@ -32,11 +32,11 @@ public class ImportMigrationUserStepConfig {
     @Bean(name = STEP_PREFIX + "Step")
     public Step step1(
         @Qualifier(STEP_PREFIX + "ItemReader") ItemReader<DbMigrationUser> reader,
-        @Qualifier(STEP_PREFIX + "ItemProcessor") ItemProcessor<DbMigrationUser, ImportMigrationUserInputData> processor,
-        @Qualifier(STEP_PREFIX + "ItemWriter") ItemWriter<ImportMigrationUserInputData> writer
+        @Qualifier(STEP_PREFIX + "ItemProcessor") ItemProcessor<DbMigrationUser, ImportMigrationUserInput> processor,
+        @Qualifier(STEP_PREFIX + "ItemWriter") ItemWriter<ImportMigrationUserInput> writer
     ) {
         return stepBuilderFactory.
-            <DbMigrationUser, ImportMigrationUserInputData>create(STEP_PREFIX + "Step")
+            <DbMigrationUser, ImportMigrationUserInput>create(STEP_PREFIX + "Step")
             .reader(reader)
             .processor(processor)
             .writer(writer)
@@ -49,16 +49,16 @@ public class ImportMigrationUserStepConfig {
     }
 
     @Bean(name = STEP_PREFIX + "ItemProcessor")
-    public ItemProcessor<DbMigrationUser, ImportMigrationUserInputData> processor() {
-        return new ConvertItemProcessorBuilder<DbMigrationUser, ImportMigrationUserInputData, ImportMigrationUserInputData>()
+    public ItemProcessor<DbMigrationUser, ImportMigrationUserInput> processor() {
+        return new ConvertItemProcessorBuilder<DbMigrationUser, ImportMigrationUserInput, ImportMigrationUserInput>()
             .converter(new ImportMigrationUserConverter())
             .useCase(inputData -> inputData)
             .build();
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
-    public ItemWriter<ImportMigrationUserInputData> writer() {
-        return new ItemWriterBuilder<ImportMigrationUserInputData>()
+    public ItemWriter<ImportMigrationUserInput> writer() {
+        return new ItemWriterBuilder<ImportMigrationUserInput>()
             .writer(System.out::println)
             .build();
     }
