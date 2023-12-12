@@ -30,7 +30,7 @@ public class ImportMigrationUserStepConfig {
     private final String STEP_PREFIX = "importMigrationUser";
 
     @Bean(name = STEP_PREFIX + "Step")
-    public Step step1(
+    public Step step(
         @Qualifier(STEP_PREFIX + "ItemReader") ItemReader<DbMigrationUser> reader,
         @Qualifier(STEP_PREFIX + "ItemProcessor") ItemProcessor<DbMigrationUser, ImportMigrationUserInput> processor,
         @Qualifier(STEP_PREFIX + "ItemWriter") ItemWriter<ImportMigrationUserInput> writer
