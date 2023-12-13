@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="home.helper.batch.persistence.database.table.DbAccountMapper">
+  <resultMap id="BaseResultMap" type="home.helper.batch.persistence.database.table.DbAccount">
+    <id column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="valid_flag" jdbcType="BIT" property="validFlag" />
+    <result column="display_order" jdbcType="INTEGER" property="displayOrder" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    account_id, account_name, valid_flag, display_order, group_id
+  </sql>
+  <select id="selectByExample" parameterType="home.helper.batch.persistence.database.table.DbAccountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from public.account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public.account
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from public.account
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    insert into public.account (account_id, account_name, valid_flag, 
+      display_order, group_id)
+    values (#{accountId,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, #{validFlag,jdbcType=BIT}, 
+      #{displayOrder,jdbcType=INTEGER}, #{groupId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    insert into public.account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="validFlag != null">
+        valid_flag,
+      </if>
+      <if test="displayOrder != null">
+        display_order,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="validFlag != null">
+        #{validFlag,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null">
+        #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    update public.account
+    <set>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="validFlag != null">
+        valid_flag = #{validFlag,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null">
+        display_order = #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    update public.account
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      valid_flag = #{validFlag,jdbcType=BIT},
+      display_order = #{displayOrder,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=VARCHAR}
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="home.helper.batch.persistence.database.table.DbAccount">
+    <id column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="valid_flag" jdbcType="BIT" property="validFlag" />
+    <result column="display_order" jdbcType="INTEGER" property="displayOrder" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    account_id, account_name, valid_flag, display_order, group_id
+  </sql>
+  <select id="selectByExample" parameterType="home.helper.batch.persistence.database.table.DbAccountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from public.account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public.account
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from public.account
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    insert into public.account (account_id, account_name, valid_flag, 
+      display_order, group_id)
+    values (#{accountId,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, #{validFlag,jdbcType=BIT}, 
+      #{displayOrder,jdbcType=INTEGER}, #{groupId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    insert into public.account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="validFlag != null">
+        valid_flag,
+      </if>
+      <if test="displayOrder != null">
+        display_order,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="validFlag != null">
+        #{validFlag,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null">
+        #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    update public.account
+    <set>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="validFlag != null">
+        valid_flag = #{validFlag,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null">
+        display_order = #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    update public.account
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      valid_flag = #{validFlag,jdbcType=BIT},
+      display_order = #{displayOrder,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=VARCHAR}
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="home.helper.batch.persistence.database.table.DbAccount">
+    <id column="account_id" jdbcType="varchar" property="accountId" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="valid_flag" jdbcType="BIT" property="validFlag" />
+    <result column="display_order" jdbcType="INTEGER" property="displayOrder" />
+    <result column="group_id" jdbcType="varchar" property="groupId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    account_id, account_name, valid_flag, display_order, group_id
+  </sql>
+  <select id="selectByExample" parameterType="home.helper.batch.persistence.database.table.DbAccountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from public.account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public.account
+    where account_id = #{accountId,jdbcType=varchar}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from public.account
+    where account_id = #{accountId,jdbcType=varchar}
+  </delete>
+  <insert id="insert" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    insert into public.account (account_id, account_name, valid_flag, 
+      display_order, group_id)
+    values (#{accountId,jdbcType=varchar}, #{accountName,jdbcType=VARCHAR}, #{validFlag,jdbcType=BIT}, 
+      #{displayOrder,jdbcType=INTEGER}, #{groupId,jdbcType=varchar})
+  </insert>
+  <insert id="insertSelective" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    insert into public.account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="validFlag != null">
+        valid_flag,
+      </if>
+      <if test="displayOrder != null">
+        display_order,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=varchar},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="validFlag != null">
+        #{validFlag,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null">
+        #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=varchar},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    update public.account
+    <set>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="validFlag != null">
+        valid_flag = #{validFlag,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null">
+        display_order = #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=varchar},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=varchar}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    update public.account
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      valid_flag = #{validFlag,jdbcType=BIT},
+      display_order = #{displayOrder,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=varchar}
+    where account_id = #{accountId,jdbcType=varchar}
+  </update>
+  <resultMap id="BaseResultMap" type="home.helper.batch.persistence.database.table.DbAccount">
+    <id column="account_id" jdbcType="varchar" property="accountId" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="valid_flag" jdbcType="BIT" property="validFlag" />
+    <result column="display_order" jdbcType="INTEGER" property="displayOrder" />
+    <result column="group_id" jdbcType="OTHER" property="groupId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    account_id, account_name, valid_flag, display_order, group_id
+  </sql>
+  <select id="selectByExample" parameterType="home.helper.batch.persistence.database.table.DbAccountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from public.account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public.account
+    where account_id = #{accountId,jdbcType=varchar}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from public.account
+    where account_id = #{accountId,jdbcType=varchar}
+  </delete>
+  <insert id="insert" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    insert into public.account (account_id, account_name, valid_flag, 
+      display_order, group_id)
+    values (#{accountId,jdbcType=varchar}, #{accountName,jdbcType=VARCHAR}, #{validFlag,jdbcType=BIT}, 
+      #{displayOrder,jdbcType=INTEGER}, #{groupId,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    insert into public.account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="validFlag != null">
+        valid_flag,
+      </if>
+      <if test="displayOrder != null">
+        display_order,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=varchar},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="validFlag != null">
+        #{validFlag,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null">
+        #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    update public.account
+    <set>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="validFlag != null">
+        valid_flag = #{validFlag,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null">
+        display_order = #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=OTHER},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=varchar}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    update public.account
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      valid_flag = #{validFlag,jdbcType=BIT},
+      display_order = #{displayOrder,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=OTHER}
+    where account_id = #{accountId,jdbcType=varchar}
+  </update>
+  <resultMap id="BaseResultMap" type="home.helper.batch.persistence.database.table.DbAccount">
+    <id column="account_id" jdbcType="OTHER" property="accountId" />
+    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
+    <result column="valid_flag" jdbcType="BIT" property="validFlag" />
+    <result column="display_order" jdbcType="INTEGER" property="displayOrder" />
+    <result column="group_id" jdbcType="OTHER" property="groupId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    account_id, account_name, valid_flag, display_order, group_id
+  </sql>
+  <select id="selectByExample" parameterType="home.helper.batch.persistence.database.table.DbAccountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from public.account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Object" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from public.account
+    where account_id = #{accountId,jdbcType=OTHER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Object">
+    delete from public.account
+    where account_id = #{accountId,jdbcType=OTHER}
+  </delete>
+  <insert id="insert" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    insert into public.account (account_id, account_name, valid_flag, 
+      display_order, group_id)
+    values (#{accountId,jdbcType=OTHER}, #{accountName,jdbcType=VARCHAR}, #{validFlag,jdbcType=BIT}, 
+      #{displayOrder,jdbcType=INTEGER}, #{groupId,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    insert into public.account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="accountName != null">
+        account_name,
+      </if>
+      <if test="validFlag != null">
+        valid_flag,
+      </if>
+      <if test="displayOrder != null">
+        display_order,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=OTHER},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="validFlag != null">
+        #{validFlag,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null">
+        #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    update public.account
+    <set>
+      <if test="accountName != null">
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="validFlag != null">
+        valid_flag = #{validFlag,jdbcType=BIT},
+      </if>
+      <if test="displayOrder != null">
+        display_order = #{displayOrder,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=OTHER},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=OTHER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="home.helper.batch.persistence.database.table.DbAccount">
+    update public.account
+    set account_name = #{accountName,jdbcType=VARCHAR},
+      valid_flag = #{validFlag,jdbcType=BIT},
+      display_order = #{displayOrder,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=OTHER}
+    where account_id = #{accountId,jdbcType=OTHER}
+  </update>
+</mapper>

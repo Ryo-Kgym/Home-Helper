@@ -4,17 +4,21 @@
 
 package home.helper.batch.persistence.database.table;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface DbUserMapper {
-    int deleteByPrimaryKey(Object userId);
+    int deleteByPrimaryKey(String userId);
 
     int insert(DbUser record);
 
     int insertSelective(DbUser record);
 
-    DbUser selectByPrimaryKey(Object userId);
+    List<DbUser> selectByExample(DbUserExample example);
+
+    DbUser selectByPrimaryKey(String userId);
 
     int updateByPrimaryKeySelective(DbUser record);
 

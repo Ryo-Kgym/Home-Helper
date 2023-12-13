@@ -59,7 +59,15 @@
         </javaClientGenerator>
 
         <table schema="public" tableName="user" mapperName="DbUserMapper" domainObjectName="DbUser"
-               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false"/>
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
+               enableUpdateByExample="false">
+            <columnOverride column="user_id" property="userId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
+        <table schema="public" tableName="account" mapperName="DbAccountMapper" domainObjectName="DbAccount"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
+               enableUpdateByExample="false">
+            <columnOverride column="account_id" property="accountId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="group_id" property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
     </context>
 </generatorConfiguration>

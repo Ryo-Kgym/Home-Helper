@@ -9,12 +9,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @Builder
-public class DbUser {
-    private String userId;
+public class DbAccount {
+    private String accountId;
 
-    private String userName;
+    private String accountName;
+
+    private Boolean validFlag;
 
     private Integer displayOrder;
 
-    private String email;
+    private String groupId;
 }
