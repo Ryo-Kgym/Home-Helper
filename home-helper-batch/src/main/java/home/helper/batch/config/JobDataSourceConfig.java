@@ -4,7 +4,6 @@
 
 package home.helper.batch.config;
 
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -17,8 +16,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = {"home.helper.batch.persistence.**"},
-    sqlSessionFactoryRef = "jobSqlSessionFactory")
+@MapperScan(sqlSessionFactoryRef = "jobSqlSessionFactory")
 public class JobDataSourceConfig {
 
     @Bean
@@ -38,10 +36,10 @@ public class JobDataSourceConfig {
     }
 
     @Bean
-    public SqlSessionFactory jobSqlSessionFactory(DataSource jobDataSource)
+    public SqlSessionFactoryBean jobSqlSessionFactory(DataSource jobDataSource)
         throws Exception {
-        SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-        sqlSessionFactory.setDataSource(jobDataSource);
-        return sqlSessionFactory.getObject();
+        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        bean.setDataSource(jobDataSource);
+        return bean;
     }
 }

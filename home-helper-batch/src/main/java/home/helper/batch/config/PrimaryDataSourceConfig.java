@@ -4,7 +4,6 @@
 
 package home.helper.batch.config;
 
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -43,10 +42,10 @@ public class PrimaryDataSourceConfig {
 
     @Bean
     @Primary
-    public SqlSessionFactory primarySqlSessionFactory(DataSource primaryDataSource)
+    public SqlSessionFactoryBean primarySqlSessionFactory(DataSource primaryDataSource)
         throws Exception {
-        SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-        sqlSessionFactory.setDataSource(primaryDataSource);
-        return sqlSessionFactory.getObject();
+        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        bean.setDataSource(primaryDataSource);
+        return bean;
     }
 }
