@@ -4,16 +4,16 @@
 
 package home.helper.batch.persistence.migration.household;
 
-import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
-import home.helper.batch.persistence.migration.imports.DbImportMigrationUser;
-import home.helper.batch.persistence.migration.imports.ImportMigrationUserConverter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
+import home.helper.batch.persistence.database.migration.imports.DbImportMigrationUser;
+import home.helper.batch.persistence.database.migration.imports.ImportMigrationUserConverter;
 
 @ExtendWith(MockitoExtension.class)
 class ImportMigrationUserConverterTest {

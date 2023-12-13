@@ -18,10 +18,10 @@ import home.helper.batch.component.factory.ItemReaderFactory;
 import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
-import home.helper.batch.persistence.migration.imports.DbImportMigrationUser;
-import home.helper.batch.persistence.migration.imports.ImportMigrationUserConverter;
-import home.helper.batch.persistence.migration.imports.ImportMigrationUserSaveRepository;
-import home.helper.batch.persistence.migration.imports.SelectMigrationUserMapper;
+import home.helper.batch.persistence.database.migration.imports.DbImportMigrationUser;
+import home.helper.batch.persistence.database.migration.imports.ImportMigrationUserConverter;
+import home.helper.batch.persistence.database.migration.imports.ImportMigrationUserSaveRepository;
+import home.helper.batch.persistence.database.migration.imports.SelectMigrationUserMapper;
 
 @Configuration
 @RequiredArgsConstructor

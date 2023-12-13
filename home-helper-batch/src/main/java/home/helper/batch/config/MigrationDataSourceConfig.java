@@ -20,7 +20,7 @@ import org.springframework.transaction.PlatformTransactionManager;
  * マイグレーション用のデータソース設定クラス
  */
 @Configuration
-@MapperScan(basePackages = {"home.helper.batch.persistence.migration.**"},
+@MapperScan(basePackages = {"home.helper.batch.persistence.database.migration.**"},
     sqlSessionFactoryRef = "migrationSqlSessionFactory")
 public class MigrationDataSourceConfig {
 

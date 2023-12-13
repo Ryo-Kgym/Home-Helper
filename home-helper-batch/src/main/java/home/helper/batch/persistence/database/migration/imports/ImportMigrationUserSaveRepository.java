@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-package home.helper.batch.persistence.migration.imports;
+package home.helper.batch.persistence.database.migration.imports;
 
 import org.springframework.stereotype.Repository;
 
