@@ -1,6 +1,11 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:${DB_PORT}/${DB_NAME}
+    url: jdbc:postgresql://${JOB_DB_HOST}:${JOB_DB_PORT}/${JOB_DB_NAME}
+    username: ${JOB_DB_USER}
+    password: ${JOB_DB_PASS}
+    driver-class-name: org.postgresql.Driver
+  migration-datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
     username: ${DB_USER}
     password: ${DB_PASS}
     driver-class-name: org.postgresql.Driver
@@ -8,3 +13,13 @@ spring:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
+logging:
+  level:
+    org:
+      springframework: INFO
+    home:
+      helper:
+        batch:
+          persistence:
+            DEBUG
