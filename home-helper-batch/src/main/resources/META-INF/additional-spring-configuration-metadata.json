@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "spring.job-datasource.url",
+      "type": "java.lang.String",
+      "description": "Description for spring.job-datasource.url."
+    },
+    {
+      "name": "spring.job-datasource.username",
+      "type": "java.lang.String",
+      "description": "Description for spring.job-datasource.username."
+    },
+    {
+      "name": "spring.job-datasource.password",
+      "type": "java.lang.String",
+      "description": "Description for spring.job-datasource.password."
+    },
+    {
+      "name": "spring.job-datasource.driver-class-name",
+      "type": "java.lang.String",
+      "description": "Description for spring.job-datasource.driver-class-name."
+    }
+  ]
+}
