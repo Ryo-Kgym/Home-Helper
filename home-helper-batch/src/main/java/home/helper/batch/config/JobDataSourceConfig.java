@@ -6,43 +6,46 @@ package home.helper.batch.config;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = {"home.helper.batch.persistence.**"},
-    sqlSessionFactoryRef = "jobSqlSessionFactory")
+@MapperScan(
+    sqlSessionFactoryRef = "sqlSessionFactory")
 public class JobDataSourceConfig {
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.job-datasource")
-    public DataSourceProperties jobDataSourceProperties() {
+    @Primary
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSourceProperties dataSourceProperties() {
         return new DataSourceProperties();
     }
 
     @Bean
-    public DataSource jobDataSource(
-        @Qualifier("jobDataSourceProperties") DataSourceProperties jobDataSourceProperties) {
-        return jobDataSourceProperties.initializeDataSourceBuilder().build();
+    @Primary
+    public DataSource dataSource(DataSourceProperties dataSourceProperties) {
+        return dataSourceProperties.initializeDataSourceBuilder().build();
     }
 
     @Bean
-    public PlatformTransactionManager jobTxManager(@Qualifier("jobDataSource") DataSource jobDataSource) {
-        return new DataSourceTransactionManager(jobDataSource);
+    @Primary
+    public PlatformTransactionManager transactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean
-    public SqlSessionFactoryBean jobSqlSessionFactory(@Qualifier("jobDataSource") DataSource jobDataSource)
+    @Primary
+    public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource)
         throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(jobDataSource);
+        bean.setDataSource(dataSource);
         return bean;
     }
 }

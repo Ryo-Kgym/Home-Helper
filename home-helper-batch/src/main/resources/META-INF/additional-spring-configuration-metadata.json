@@ -1,22 +1,22 @@
 {
   "properties": [
     {
-      "name": "spring.job-datasource.url",
+      "name": "spring.migration-datasource.url",
       "type": "java.lang.String",
       "description": "Description for spring.job-datasource.url."
     },
     {
-      "name": "spring.job-datasource.username",
+      "name": "spring.migration-datasource.username",
       "type": "java.lang.String",
       "description": "Description for spring.job-datasource.username."
     },
     {
-      "name": "spring.job-datasource.password",
+      "name": "spring.migration-datasource.password",
       "type": "java.lang.String",
       "description": "Description for spring.job-datasource.password."
     },
     {
-      "name": "spring.job-datasource.driver-class-name",
+      "name": "spring.migration-datasource.driver-class-name",
       "type": "java.lang.String",
       "description": "Description for spring.job-datasource.driver-class-name."
     }
