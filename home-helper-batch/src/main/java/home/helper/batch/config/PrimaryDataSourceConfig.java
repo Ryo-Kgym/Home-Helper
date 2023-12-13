@@ -18,34 +18,34 @@ import javax.sql.DataSource;
 
 @Configuration
 @MapperScan(basePackages = {"home.helper.batch.persistence.**"},
-    sqlSessionFactoryRef = "primarySqlSessionFactory")
+    sqlSessionFactoryRef = "sqlSessionFactory")
 public class PrimaryDataSourceConfig {
 
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSourceProperties primaryDataSourceProperties() {
+    public DataSourceProperties dataSourceProperties() {
         return new DataSourceProperties();
     }
 
     @Bean
     @Primary
-    public DataSource primaryDataSource(DataSourceProperties primaryDataSourceProperties) {
-        return primaryDataSourceProperties.initializeDataSourceBuilder().build();
+    public DataSource dataSource(DataSourceProperties dataSourceProperties) {
+        return dataSourceProperties.initializeDataSourceBuilder().build();
     }
 
     @Bean
     @Primary
-    public PlatformTransactionManager primaryTxManager(DataSource primaryDataSource) {
-        return new DataSourceTransactionManager(primaryDataSource);
+    public PlatformTransactionManager transactionManager(DataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean
     @Primary
-    public SqlSessionFactoryBean primarySqlSessionFactory(DataSource primaryDataSource)
+    public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource)
         throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(primaryDataSource);
+        bean.setDataSource(dataSource);
         return bean;
     }
 }

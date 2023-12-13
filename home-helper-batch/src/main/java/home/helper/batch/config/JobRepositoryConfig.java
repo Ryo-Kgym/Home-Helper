@@ -4,6 +4,7 @@
 
 package home.helper.batch.config;
 
+import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.batch.item.database.support.DefaultDataFieldMaxValueIncrementerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,8 +18,8 @@ import javax.sql.DataSource;
 public class JobRepositoryConfig {
 
     @Bean
-    public JobRepositoryFactoryBean myJobRepository(@Qualifier("jobTxManager") PlatformTransactionManager jobTxManager,
-                                                    @Qualifier("jobDataSource") DataSource jobDataSource) throws Exception {
+    public JobRepository myJobRepository(@Qualifier("jobTxManager") PlatformTransactionManager jobTxManager,
+                                         @Qualifier("jobDataSource") DataSource jobDataSource) throws Exception {
         var factory = new JobRepositoryFactoryBean();
         factory.setIsolationLevelForCreate("ISOLATION_READ_COMMITTED");
         factory.setTablePrefix("BATCH_");
@@ -26,6 +27,6 @@ public class JobRepositoryConfig {
         factory.setTransactionManager(jobTxManager);
         factory.setIncrementerFactory(new DefaultDataFieldMaxValueIncrementerFactory(jobDataSource));
         factory.afterPropertiesSet();
-        return factory;
+        return factory.getObject();
     }
 }

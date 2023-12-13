@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class JobBuilderFactory {
-    private final JobRepository jobRepository;
+    private final JobRepository myJobRepository;
 
 
     public JobBuilder create(String jobName) {
-        return new JobBuilder(jobName, jobRepository)
-                .incrementer(new RunIdIncrementer());
+        return new JobBuilder(jobName, myJobRepository)
+            .incrementer(new RunIdIncrementer());
     }
 }
