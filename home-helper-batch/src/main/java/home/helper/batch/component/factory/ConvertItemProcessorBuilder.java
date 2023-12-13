@@ -9,6 +9,7 @@ import java.util.function.Function;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.lang.NonNull;
 
+import home.helper.batch.domain.usecase.UseCaseWithException;
 import home.helper.batch.error.HomeHelperBatchException;
 
 /**

@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-package home.helper.batch.component.factory;
+package home.helper.batch.domain.usecase;
 
 import home.helper.batch.error.HomeHelperBatchException;
 
