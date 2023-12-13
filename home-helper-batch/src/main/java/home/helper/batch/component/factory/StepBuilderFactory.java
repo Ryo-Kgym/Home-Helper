@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.SimpleStepBuilder;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -15,6 +16,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @RequiredArgsConstructor
 public class StepBuilderFactory {
     private final JobRepository myJobRepository;
+    @Qualifier("jobTxManager")
     private final PlatformTransactionManager primaryTxManager;
 
     public <I, O> SimpleStepBuilder<I, O> create(String stepName) {
