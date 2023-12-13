@@ -4,13 +4,14 @@
 
 package home.helper.batch.job.migration.jm001;
 
-import home.helper.batch.component.factory.JobBuilderFactory;
-import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import lombok.RequiredArgsConstructor;
+
+import home.helper.batch.component.factory.JobBuilderFactory;
 
 @Configuration
 @RequiredArgsConstructor

@@ -4,9 +4,9 @@
 
 package home.helper.batch.persistence.migration.imports;
 
-import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
-
 import java.util.function.Function;
+
+import home.helper.batch.dto.migration.imports.ImportMigrationUserInput;
 
 public class ImportMigrationUserConverter implements Function<DbImportMigrationUser, ImportMigrationUserInput> {
     @Override
