@@ -7,7 +7,6 @@ package home.helper.batch.config;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.batch.BatchDataSource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = {"home.helper.batch.persistence.**"},
+@MapperScan(basePackages = {"home.helper.batch.persistence.migration.**"},
     sqlSessionFactoryRef = "migrationSqlSessionFactory")
 public class MigrationDataSourceConfig {
 
@@ -29,7 +28,6 @@ public class MigrationDataSourceConfig {
     }
 
     @Bean
-    @BatchDataSource
     public DataSource migrationDataSource(
         @Qualifier("migrationDataSourceProperties") DataSourceProperties migrationDataSourceProperties) {
         return migrationDataSourceProperties.initializeDataSourceBuilder().build();

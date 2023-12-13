@@ -15,12 +15,12 @@ import org.springframework.transaction.PlatformTransactionManager;
 @RequiredArgsConstructor
 public class StepBuilderFactory {
     private final JobRepository myJobRepository;
-    private final PlatformTransactionManager transactionManager;
+    private final PlatformTransactionManager jobTransactionManager;
 
     public <I, O> SimpleStepBuilder<I, O> create(String stepName) {
         return new StepBuilder(stepName, myJobRepository)
             .allowStartIfComplete(true)
-            .chunk(100, transactionManager)
+            .chunk(100, jobTransactionManager)
             ;
     }
 }

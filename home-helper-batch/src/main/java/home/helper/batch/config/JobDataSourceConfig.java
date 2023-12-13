@@ -4,7 +4,6 @@
 
 package home.helper.batch.config;
 
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -35,14 +34,5 @@ public class JobDataSourceConfig {
     @Primary
     public PlatformTransactionManager jobTransactionManager(DataSource jobDataSource) {
         return new DataSourceTransactionManager(jobDataSource);
-    }
-
-    @Bean
-    @Primary
-    public SqlSessionFactoryBean jobSqlSessionFactory(DataSource jobDataSource)
-        throws Exception {
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(jobDataSource);
-        return bean;
     }
 }
