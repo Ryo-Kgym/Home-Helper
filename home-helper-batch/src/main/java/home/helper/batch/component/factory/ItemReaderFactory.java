@@ -8,11 +8,13 @@ import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.batch.MyBatisCursorItemReader;
 import org.springframework.batch.item.ItemReader;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
 public class ItemReaderFactory {
+    @Qualifier("jobSqlSessionFactory")
     private final SqlSessionFactory sqlSessionFactory;
 
     public <T, S> ItemReader<T> itemReader(Class<S> mapperClass, String methodName) {

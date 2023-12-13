@@ -17,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = {"home.helper.batch.persistence.**"},
+@MapperScan(
     sqlSessionFactoryRef = "sqlSessionFactory")
 public class PrimaryDataSourceConfig {
 

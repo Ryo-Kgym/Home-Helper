@@ -18,8 +18,8 @@ import javax.sql.DataSource;
 public class JobRepositoryConfig {
 
     @Bean
-    public JobRepository myJobRepository(@Qualifier("jobTxManager") PlatformTransactionManager jobTxManager,
-                                         @Qualifier("jobDataSource") DataSource jobDataSource) throws Exception {
+    public JobRepository myJobRepository(@Qualifier("transactionManager") PlatformTransactionManager jobTxManager,
+                                         @Qualifier("dataSource") DataSource jobDataSource) throws Exception {
         var factory = new JobRepositoryFactoryBean();
         factory.setIsolationLevelForCreate("ISOLATION_READ_COMMITTED");
         factory.setTablePrefix("BATCH_");

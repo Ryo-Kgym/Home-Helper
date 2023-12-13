@@ -6,6 +6,7 @@ package home.helper.batch.config;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +17,8 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(sqlSessionFactoryRef = "jobSqlSessionFactory")
+@MapperScan(basePackages = {"home.helper.batch.persistence.**"},
+    sqlSessionFactoryRef = "jobSqlSessionFactory")
 public class JobDataSourceConfig {
 
     @Bean
@@ -26,17 +28,18 @@ public class JobDataSourceConfig {
     }
 
     @Bean
-    public DataSource jobDataSource(DataSourceProperties jobDataSourceProperties) {
+    public DataSource jobDataSource(
+        @Qualifier("jobDataSourceProperties") DataSourceProperties jobDataSourceProperties) {
         return jobDataSourceProperties.initializeDataSourceBuilder().build();
     }
 
     @Bean
-    public PlatformTransactionManager jobTxManager(DataSource jobDataSource) {
+    public PlatformTransactionManager jobTxManager(@Qualifier("jobDataSource") DataSource jobDataSource) {
         return new DataSourceTransactionManager(jobDataSource);
     }
 
     @Bean
-    public SqlSessionFactoryBean jobSqlSessionFactory(DataSource jobDataSource)
+    public SqlSessionFactoryBean jobSqlSessionFactory(@Qualifier("jobDataSource") DataSource jobDataSource)
         throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(jobDataSource);
