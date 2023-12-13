@@ -23,7 +23,7 @@ public class ImportMigrationJobConfig {
     public Job job(@Qualifier("importMigrationUserStep") Step userStep,
                    @Qualifier("importMigrationUserStep") Step userStep2,
                    @Qualifier("importMigrationUserStep") Step userStep3) {
-        return jobBuilderFactory.create("userJob")
+        return jobBuilderFactory.create(JOB_PREFIX)
             .start(userStep)
             .next(userStep2)
             .next(userStep3)
