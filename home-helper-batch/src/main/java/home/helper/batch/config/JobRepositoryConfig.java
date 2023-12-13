@@ -4,6 +4,8 @@
 
 package home.helper.batch.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.repository.support.JobRepositoryFactoryBean;
 import org.springframework.batch.item.database.support.DefaultDataFieldMaxValueIncrementerFactory;
@@ -11,8 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import javax.sql.DataSource;
-
+/**
+ * JobRepository設定クラス
+ */
 @Configuration
 public class JobRepositoryConfig {
 
