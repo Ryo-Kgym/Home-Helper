@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class ItemReaderFactory {
-    @Qualifier("jobSqlSessionFactory")
+    @Qualifier("migrationSqlSessionFactory")
     private final SqlSessionFactory sqlSessionFactory;
 
     public <T, S> ItemReader<T> itemReader(Class<S> mapperClass, String methodName) {

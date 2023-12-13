@@ -7,6 +7,7 @@ package home.helper.batch.config;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.batch.BatchDataSource;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -18,31 +19,34 @@ import javax.sql.DataSource;
 
 @Configuration
 @MapperScan(basePackages = {"home.helper.batch.persistence.**"},
-    sqlSessionFactoryRef = "jobSqlSessionFactory")
+    sqlSessionFactoryRef = "migrationSqlSessionFactory")
 public class MigrationDataSourceConfig {
 
     @Bean
     @ConfigurationProperties(prefix = "spring.migration-datasource")
-    public DataSourceProperties jobDataSourceProperties() {
+    public DataSourceProperties migrationDataSourceProperties() {
         return new DataSourceProperties();
     }
 
     @Bean
-    public DataSource jobDataSource(
-        @Qualifier("jobDataSourceProperties") DataSourceProperties jobDataSourceProperties) {
-        return jobDataSourceProperties.initializeDataSourceBuilder().build();
+    @BatchDataSource
+    public DataSource migrationDataSource(
+        @Qualifier("migrationDataSourceProperties") DataSourceProperties migrationDataSourceProperties) {
+        return migrationDataSourceProperties.initializeDataSourceBuilder().build();
     }
 
     @Bean
-    public PlatformTransactionManager jobTxManager(@Qualifier("jobDataSource") DataSource jobDataSource) {
-        return new DataSourceTransactionManager(jobDataSource);
+    public PlatformTransactionManager migrationTxManager(
+        @Qualifier("migrationDataSource") DataSource migrationDataSource) {
+        return new DataSourceTransactionManager(migrationDataSource);
     }
 
     @Bean
-    public SqlSessionFactoryBean jobSqlSessionFactory(@Qualifier("jobDataSource") DataSource jobDataSource)
+    public SqlSessionFactoryBean migrationSqlSessionFactory(
+        @Qualifier("migrationDataSource") DataSource migrationDataSource)
         throws Exception {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(jobDataSource);
+        bean.setDataSource(migrationDataSource);
         return bean;
     }
 }
