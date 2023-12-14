@@ -24,13 +24,15 @@ public class ImportMigrationJobConfig {
         Step importMigrationUserStep,
         Step importMigrationAccountStep,
         Step importMigrationAffiliationStep,
-        Step importMigrationApplicationStep
+        Step importMigrationApplicationStep,
+        Step importMigrationCategoryStep
     ) {
         return jobBuilderFactory.create(JOB_PREFIX)
             .start(importMigrationUserStep)
             .next(importMigrationAccountStep)
             .next(importMigrationAffiliationStep)
             .next(importMigrationApplicationStep)
+            .next(importMigrationCategoryStep)
             .build();
     }
 }
