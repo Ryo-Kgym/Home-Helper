@@ -30,19 +30,21 @@ public class ImportMigrationJobConfig {
         Step importMigrationGroupStep,
         Step importMigrationGroupApplicationStep,
         Step importMigrationGroupRoleStep,
-        Step importMigrationSummaryCategoryByGroupStep
+        Step importMigrationSummaryCategoryByGroupStep,
+        Step importMigrationTransferCategoryStep
     ) {
         return jobBuilderFactory.create(JOB_PREFIX)
             .start(importMigrationUserStep)
-//            .next(importMigrationAccountStep)
-//            .next(importMigrationAffiliationStep)
-//            .next(importMigrationApplicationStep)
-//            .next(importMigrationCategoryStep)
-//            .next(importMigrationGenreStep)
-//            .next(importMigrationGroupStep)
-//            .next(importMigrationGroupApplicationStep)
-//            .next(importMigrationGroupRoleStep)
+            .next(importMigrationAccountStep)
+            .next(importMigrationAffiliationStep)
+            .next(importMigrationApplicationStep)
+            .next(importMigrationCategoryStep)
+            .next(importMigrationGenreStep)
+            .next(importMigrationGroupStep)
+            .next(importMigrationGroupApplicationStep)
+            .next(importMigrationGroupRoleStep)
             .next(importMigrationSummaryCategoryByGroupStep)
+            .next(importMigrationTransferCategoryStep)
             .build();
     }
 }

@@ -1,0 +1,54 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+package home.helper.batch.job.migration.jm001;
+
+import org.springframework.batch.core.Step;
+import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.ItemWriter;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import lombok.RequiredArgsConstructor;
+
+import home.helper.batch.component.factory.ItemReaderFactory;
+import home.helper.batch.component.factory.ItemWriterBuilder;
+import home.helper.batch.component.factory.StepBuilderFactory;
+import home.helper.batch.dto.migration.imports.ImportMigrationTransferCategoryOutput;
+import home.helper.batch.persistence.database.migration.imports.ImportMigrationTransferCategorySaveRepository;
+import home.helper.batch.persistence.database.migration.imports.SelectMigrationTransferCategoryMapper;
+
+@Configuration
+@RequiredArgsConstructor
+public class ImportMigrationTransferCategoryStepConfig {
+    private final StepBuilderFactory stepBuilderFactory;
+    private final ItemReaderFactory itemReaderFactory;
+
+    private final String STEP_PREFIX = "importMigrationTransferCategory";
+
+    @Bean(name = STEP_PREFIX + "Step")
+    public Step step(
+        @Qualifier(STEP_PREFIX + "ItemReader") ItemReader<ImportMigrationTransferCategoryOutput> reader,
+        @Qualifier(STEP_PREFIX + "ItemWriter") ItemWriter<ImportMigrationTransferCategoryOutput> writer
+    ) {
+        return stepBuilderFactory.
+            <ImportMigrationTransferCategoryOutput, ImportMigrationTransferCategoryOutput>create(STEP_PREFIX + "Step")
+            .reader(reader)
+            .writer(writer)
+            .build();
+    }
+
+    @Bean(name = STEP_PREFIX + "ItemReader")
+    public ItemReader<ImportMigrationTransferCategoryOutput> reader() {
+        return itemReaderFactory.itemReader(SelectMigrationTransferCategoryMapper.class, "selectMigrationTransferCategory");
+    }
+
+    @Bean(name = STEP_PREFIX + "ItemWriter")
+    public ItemWriter<ImportMigrationTransferCategoryOutput> writer(
+        ImportMigrationTransferCategorySaveRepository saveGateway) {
+        return new ItemWriterBuilder<ImportMigrationTransferCategoryOutput>()
+            .writer(saveGateway)
+            .build();
+    }
+}
