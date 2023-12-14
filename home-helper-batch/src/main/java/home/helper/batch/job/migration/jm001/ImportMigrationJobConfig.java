@@ -28,7 +28,8 @@ public class ImportMigrationJobConfig {
         Step importMigrationCategoryStep,
         Step importMigrationGenreStep,
         Step importMigrationGroupStep,
-        Step importMigrationGroupApplicationStep
+        Step importMigrationGroupApplicationStep,
+        Step importMigrationGroupRoleStep
     ) {
         return jobBuilderFactory.create(JOB_PREFIX)
             .start(importMigrationUserStep)
@@ -38,7 +39,8 @@ public class ImportMigrationJobConfig {
 //            .next(importMigrationCategoryStep)
 //            .next(importMigrationGenreStep)
 //            .next(importMigrationGroupStep)
-            .next(importMigrationGroupApplicationStep)
+//            .next(importMigrationGroupApplicationStep)
+            .next(importMigrationGroupRoleStep)
             .build();
     }
 }
