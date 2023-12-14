@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class ItemReaderFactory {
-    @Qualifier("migrationSqlSessionFactory")
+    @Qualifier("v1SqlSessionFactory")
     private final SqlSessionFactory sqlSessionFactory;
 
     /**
