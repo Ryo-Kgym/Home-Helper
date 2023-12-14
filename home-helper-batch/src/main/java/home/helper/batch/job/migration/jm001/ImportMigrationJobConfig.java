@@ -20,9 +20,11 @@ public class ImportMigrationJobConfig {
     private final String JOB_PREFIX = "importMigration";
 
     @Bean(name = JOB_PREFIX + "Job")
-    public Job job(Step importMigrationUserStep) {
+    public Job job(Step importMigrationUserStep,
+                   Step importMigrationAccountStep) {
         return jobBuilderFactory.create(JOB_PREFIX)
             .start(importMigrationUserStep)
+            .next(importMigrationAccountStep)
             .build();
     }
 }
