@@ -13,11 +13,11 @@ export DB_PORT=${DB_PORT}
 export DB_NAME=${DB_NAME}
 export DB_USER=${DB_USER}
 export DB_PASS=${DB_PASS}
-export JOB_DB_HOST=${JOB_DB_HOST}
-export JOB_DB_PORT=${JOB_DB_PORT}
-export JOB_DB_NAME=${JOB_DB_NAME}
-export JOB_DB_USER=${JOB_DB_USER}
-export JOB_DB_PASS=${JOB_DB_PASS}
+export WORK_DB_HOST=${WORK_DB_HOST}
+export WORK_DB_PORT=${WORK_DB_PORT}
+export WORK_DB_NAME=${WORK_DB_NAME}
+export WORK_DB_USER=${WORK_DB_USER}
+export WORK_DB_PASS=${WORK_DB_PASS}
 
 pushd ./home-helper-batch
 sh ./gradlew bootRun

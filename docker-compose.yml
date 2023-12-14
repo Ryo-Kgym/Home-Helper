@@ -12,23 +12,23 @@ services:
       - ${DB_PORT}:5432
     volumes:
       - ./home-helper-database/v1:/docker-entrypoint-initdb.d
-      - ./volume/data/home_helper/main:/var/lib/postgresql/data
+      - ./volume/data/home_helper/v1:/var/lib/postgresql/data
 
-  job_db:
+  work_db:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_USER: ${JOB_DB_USER}
-      POSTGRES_PASSWORD: ${JOB_DB_PASS}
-      POSTGRES_DB: ${JOB_DB_NAME}
+      POSTGRES_USER: ${WORK_DB_USER}
+      POSTGRES_PASSWORD: ${WORK_DB_PASS}
+      POSTGRES_DB: ${WORK_DB_NAME}
     ports:
-      - ${JOB_DB_PORT}:5432
+      - ${WORK_DB_PORT}:5432
     volumes:
-      - ./home-helper-database/job_repository:/docker-entrypoint-initdb.d
-      - ./volume/data/home_helper/job_main:/var/lib/postgresql/data
+      - ./home-helper-database/work_db:/docker-entrypoint-initdb.d
+      - ./volume/data/home_helper/work:/var/lib/postgresql/data
 
 volumes:
-  home_helper_db_main:
+  v1_db:
     driver: local
-  home_helper_job_db_main:
+  work_db:
     driver: local
