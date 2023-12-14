@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="home-helper@NeonDB" uuid="aaf5b38b-bae6-4e74-b6b7-47ef302651f8">
+    <data-source source="LOCAL" name="PRODUCTION:::home_helper_v1_db" uuid="aaf5b38b-bae6-4e74-b6b7-47ef302651f8">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
@@ -14,7 +14,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="home-helper-db-main@localhost" uuid="9fb9bf9c-493e-4d21-b0a8-854ca1ef216e">
+    <data-source source="LOCAL" name="LOCAL:::home_helper_v1_db" uuid="9fb9bf9c-493e-4d21-b0a8-854ca1ef216e">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
@@ -22,11 +22,12 @@
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.host.port" />
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+        <property name="com.intellij.clouds.kubernetes.db.resource.type" value="Deployment" />
         <property name="com.intellij.clouds.kubernetes.db.container.port" />
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="home-helper-db-job_main@localhost" uuid="5a6a4904-790f-45a5-b093-92fa295b15c4">
+    <data-source source="LOCAL" name="LOCAL:::home_helper_job_db" uuid="5a6a4904-790f-45a5-b093-92fa295b15c4">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
