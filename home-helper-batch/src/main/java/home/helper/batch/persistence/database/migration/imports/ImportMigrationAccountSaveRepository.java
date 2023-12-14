@@ -6,13 +6,13 @@ package home.helper.batch.persistence.database.migration.imports;
 
 import org.springframework.stereotype.Repository;
 
-import home.helper.batch.dto.migration.imports.ImportMigrationAccountInput;
+import home.helper.batch.dto.migration.imports.ImportMigrationAccountOutput;
 import home.helper.batch.gateway.SaveGateway;
 
 @Repository
-public class ImportMigrationAccountSaveRepository implements SaveGateway<ImportMigrationAccountInput> {
+public class ImportMigrationAccountSaveRepository implements SaveGateway<ImportMigrationAccountOutput> {
     @Override
-    public void save(ImportMigrationAccountInput data) {
+    public void save(ImportMigrationAccountOutput data) {
         System.out.println(data);
     }
 }

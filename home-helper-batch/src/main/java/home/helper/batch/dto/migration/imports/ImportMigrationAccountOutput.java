@@ -9,7 +9,7 @@ import lombok.Value;
 
 @Builder
 @Value
-public class ImportMigrationAccountInput {
+public class ImportMigrationAccountOutput {
     private String accountId;
     private String accountName;
     private boolean validFlag;

@@ -8,10 +8,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import home.helper.batch.dto.migration.imports.ImportMigrationAccountInput;
+import home.helper.batch.dto.migration.imports.ImportMigrationAccountOutput;
 
 @Mapper
 public interface SelectMigrationAccountMapper {
 
-    List<ImportMigrationAccountInput> selectMigrationAccount();
+    List<ImportMigrationAccountOutput> selectMigrationAccount();
 }

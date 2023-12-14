@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="home.helper.batch.persistence.database.migration.imports.SelectMigrationAccountMapper">
     <select id="selectMigrationAccount"
-            resultType="home.helper.batch.dto.migration.imports.ImportMigrationAccountInput">
+            resultType="home.helper.batch.dto.migration.imports.ImportMigrationAccountOutput">
         select *
         from public.account
         order by
