@@ -7,7 +7,7 @@ package home.helper.batch.dto.migration.imports;
 import lombok.Builder;
 
 @Builder
-public record ImportMigrationUserInput(
+public record ImportMigrationUserOutput(
     String userId,
     String userName,
     int displayOrder,
