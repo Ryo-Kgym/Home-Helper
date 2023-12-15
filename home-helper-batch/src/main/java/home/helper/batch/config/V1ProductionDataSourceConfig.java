@@ -20,7 +20,7 @@ import org.springframework.transaction.PlatformTransactionManager;
  * V1 本番用のデータソース設定クラス
  */
 @Configuration
-@MapperScan(basePackages = {"home.helper.batch.persistence.database.v1_production"},
+@MapperScan(basePackages = {"home.helper.batch.persistence.database.v1_production.**"},
     sqlSessionFactoryRef = "v1ProductionSqlSessionFactory")
 public class V1ProductionDataSourceConfig {
 
