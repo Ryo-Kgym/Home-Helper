@@ -26,10 +26,10 @@
         </commentGenerator>
 
         <jdbcConnection
-                connectionURL="jdbc:postgresql://localhost:5433/home_helper_work_db"
+                connectionURL="jdbc:postgresql://localhost:5432/home_helper_db"
                 driverClass="org.postgresql.Driver"
-                userId="work_user"
-                password="work_user"
+                userId="postgres"
+                password="postgres"
         />
 
         <javaTypeResolver>
@@ -58,7 +58,7 @@
             <property name="trimStrings" value="false"/>
         </javaClientGenerator>
 
-        <table schema="tmp_public" tableName="user" mapperName="DbV1UserMapper" domainObjectName="DbV1User"
+        <table schema="public" tableName="user" mapperName="DbV1UserMapper" domainObjectName="DbV1User"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" modelType="flat">
             <columnOverride column="user_id" property="userId" javaType="java.lang.String" jdbcType="VARCHAR"/>
