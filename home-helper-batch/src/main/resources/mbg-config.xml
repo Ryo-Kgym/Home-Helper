@@ -58,11 +58,48 @@
             <property name="trimStrings" value="false"/>
         </javaClientGenerator>
 
-        <table schema="public" tableName="account" mapperName="DbV1AccountMapper" domainObjectName="DbV1Account"
+        <!--        <table schema="public" tableName="account" mapperName="DbV1AccountMapper" domainObjectName="DbV1Account"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="account_id" property="accountId" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="group_id" property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
+        <table schema="public" tableName="affiliation" mapperName="DbV1AffiliationMapper"
+               domainObjectName="DbV1Affiliation"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" modelType="flat">
-            <columnOverride column="account_id" property="accountId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="affiliation_id" property="affiliationId" javaType="java.lang.String"
+                            jdbcType="VARCHAR"/>
+            <columnOverride column="user_id" property="userId" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <columnOverride column="group_id" property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="group_role_id" property="groupRoleId" javaType="java.lang.String"
+                            jdbcType="VARCHAR"/>
+        </table>
+        <table schema="public" tableName="application" mapperName="DbV1ApplicationMapper"
+               domainObjectName="DbV1Application"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" modelType="flat">
+            <columnOverride column="application_id" property="applicationId" javaType="java.lang.String"
+                            jdbcType="VARCHAR"/>
+        </table>
+        <table schema="public" tableName="category" mapperName="DbV1CategoryMapper" domainObjectName="DbV1Category"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" modelType="flat">
+            <columnOverride column="category_id" property="categoryId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="genre_id" property="genreId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="group_id" property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </table>
+        <table schema="public" tableName="credit_card_detail" mapperName="DbV1CreditCardDetailMapper"
+               domainObjectName="DbV1CreditCardDetail"
+               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               enableUpdateByExample="false" modelType="flat">
+            <columnOverride column="id" property="id" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="category_id" property="categoryId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="genre_id" property="genreId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="summary_id" property="summaryId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="user_id" property="userId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="group_id" property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="genre_id" property="genreId" javaType="java.lang.String" jdbcType="VARCHAR"/>
         </table>
         <!--        </table>-->
         <!--        <table schema="public" tableName="user" mapperName="DbV1UserMapper" domainObjectName="DbV1User"-->
