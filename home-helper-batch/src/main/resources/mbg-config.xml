@@ -157,10 +157,37 @@
         <!--            <columnOverride column="group_role_id" property="groupRoleId" javaType="java.lang.String"-->
         <!--                            jdbcType="VARCHAR"/>-->
         <!--        </table>-->
+        <!--        <table schema="public" tableName="import_file_history" mapperName="DbV1ImportFileHistoryMapper"-->
+        <!--               domainObjectName="DbV1ImportFileHistory"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="id" property="id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="import_user_id" property="importUserId" javaType="java.lang.String"-->
+        <!--                            jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="group_id" property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
+        <!--        <table schema="public" tableName="summary_category_by_group" mapperName="DbV1SummaryCategoryByGroupMapper"-->
+        <!--               domainObjectName="DbV1SummaryCategoryByGroup"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="id" property="id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="category_id" property="categoryId" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="group_id" property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
+        <!--        <table schema="public" tableName="transfer_category" mapperName="DbV1TransferCategoryMapper"-->
+        <!--               domainObjectName="DbV1TransferCategory"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="group_id" property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="income_category_id" property="incomeCategoryId" javaType="java.lang.String"-->
+        <!--                            jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="outcome_category_id" property="outcomeCategoryId" javaType="java.lang.String"-->
+        <!--                            jdbcType="VARCHAR"/>-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="user" mapperName="DbV1UserMapper" domainObjectName="DbV1User"-->
         <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--            <columnOverride column="user_id" property="userId" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
     </context>
 </generatorConfiguration>
