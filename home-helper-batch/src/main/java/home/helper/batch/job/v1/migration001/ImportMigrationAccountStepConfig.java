@@ -17,7 +17,7 @@ import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationAccountOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationAccountSaveRepository;
-import home.helper.batch.persistence.database.v1_production.imports.SelectMigrationAccountMapper;
+import home.helper.batch.persistence.database.v1production.imports.SelectMigrationAccountMapper;
 
 @Configuration
 @RequiredArgsConstructor
