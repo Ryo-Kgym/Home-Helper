@@ -58,10 +58,16 @@
             <property name="trimStrings" value="false"/>
         </javaClientGenerator>
 
-        <table schema="public" tableName="user" mapperName="DbV1UserMapper" domainObjectName="DbV1User"
+        <table schema="public" tableName="account" mapperName="DbV1AccountMapper" domainObjectName="DbV1Account"
                enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false" modelType="flat">
-            <columnOverride column="user_id" property="userId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="account_id" property="accountId" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <columnOverride column="group_id" property="groupId" javaType="java.lang.String" jdbcType="VARCHAR"/>
         </table>
+        <!--        </table>-->
+        <!--        <table schema="public" tableName="user" mapperName="DbV1UserMapper" domainObjectName="DbV1User"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="user_id" property="userId" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
     </context>
 </generatorConfiguration>
