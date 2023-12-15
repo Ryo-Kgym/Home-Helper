@@ -184,10 +184,68 @@
         <!--            <columnOverride column="outcome_category_id" property="outcomeCategoryId" javaType="java.lang.String"-->
         <!--                            jdbcType="VARCHAR"/>-->
         <!--        </table>-->
-        <!--        <table schema="public" tableName="user" mapperName="DbV1UserMapper" domainObjectName="DbV1User"-->
+        <!--        <table schema="helper_kids" tableName="exchange_item" mapperName="DbV1ExchangeItemMapper"-->
+        <!--               domainObjectName="DbV1ExchangeItem"-->
         <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
-        <!--            <columnOverride column="user_id" property="userId" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="exchange_item_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="group_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
+        <!--        <table schema="helper_kids" tableName="help_item" mapperName="DbV1HelperItemMapper"-->
+        <!--               domainObjectName="DbV1HelperItem"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="help_item_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="group_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
+        <!--        <table schema="helper_kids" tableName="help_point_earned_achievement"-->
+        <!--               mapperName="DbV1HelperPointEarnedAchievementMapper" domainObjectName="DbV1HelperPointEarnedAchievement"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="help_point_earned_achievement_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="helper_kid_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="group_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
+        <!--        <table schema="helper_kids" tableName="help_point_earned_detail" mapperName="DbV1HelperPointEarnedDetailMapper"-->
+        <!--               domainObjectName="DbV1HelperPointEarnedDetail"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="help_point_earned_detail_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="earned_achievement_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="help_item_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="group_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
+        <!--        <table schema="helper_kids" tableName="help_point_exchanged_achievement"-->
+        <!--               mapperName="DbV1HelperPointExchangedAchievementMapper"-->
+        <!--               domainObjectName="DbV1HelperPointExchangedAchievement"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="help_point_exchanged_achievement_id" javaType="java.lang.String"-->
+        <!--                            jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="helper_kid_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="exchange_item_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="group_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
+        <!--        <table schema="helper_kids" tableName="helper_kid" mapperName="DbV1HelperKidMapper"-->
+        <!--               domainObjectName="DbV1HelperKid"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="helper_kid_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="group_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
+        <!--        <table schema="helper_kids" tableName="helper_kid_parent" mapperName="DbV1HelperKidParentMapper"-->
+        <!--               domainObjectName="DbV1HelperKidParent"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="helper_kid_parent_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="helper_kid_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--            <columnOverride column="parent_user_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
+        <!--        </table>-->
+        <!--        <table schema="helper_kids" tableName="helper_kid_point" mapperName="DbV1HelperKidPointMapper"-->
+        <!--               domainObjectName="DbV1HelperKidPoint"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableUpdateByExample="false" modelType="flat">-->
+        <!--            <columnOverride column="helper_kid_id" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
         <!--        </table>-->
     </context>
 </generatorConfiguration>
