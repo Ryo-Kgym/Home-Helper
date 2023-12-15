@@ -35,16 +35,16 @@ public class ImportMigrationJobConfig {
     ) {
         return jobBuilderFactory.create(JOB_PREFIX)
             .start(importMigrationUserStep)
-            .next(importMigrationAccountStep)
-            .next(importMigrationAffiliationStep)
-            .next(importMigrationApplicationStep)
-            .next(importMigrationCategoryStep)
-            .next(importMigrationGenreStep)
-            .next(importMigrationGroupStep)
-            .next(importMigrationGroupApplicationStep)
-            .next(importMigrationGroupRoleStep)
-            .next(importMigrationSummaryCategoryByGroupStep)
-            .next(importMigrationTransferCategoryStep)
+//            .next(importMigrationAccountStep)
+//            .next(importMigrationAffiliationStep)
+//            .next(importMigrationApplicationStep)
+//            .next(importMigrationCategoryStep)
+//            .next(importMigrationGenreStep)
+//            .next(importMigrationGroupStep)
+//            .next(importMigrationGroupApplicationStep)
+//            .next(importMigrationGroupRoleStep)
+//            .next(importMigrationSummaryCategoryByGroupStep)
+//            .next(importMigrationTransferCategoryStep)
             .build();
     }
 }

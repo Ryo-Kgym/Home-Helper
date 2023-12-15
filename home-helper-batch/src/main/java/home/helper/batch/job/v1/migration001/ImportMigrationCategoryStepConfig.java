@@ -17,7 +17,7 @@ import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationCategoryOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationCategorySaveRepository;
-import home.helper.batch.persistence.database.v1.imports.SelectMigrationCategoryMapper;
+import home.helper.batch.persistence.database.v1_production.SelectMigrationCategoryMapper;
 
 @Configuration
 @RequiredArgsConstructor

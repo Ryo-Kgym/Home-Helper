@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="home.helper.batch.persistence.database.v1.imports.SelectMigrationAffiliationMapper">
+<mapper namespace="home.helper.batch.persistence.database.v1_production.SelectMigrationAffiliationMapper">
     <select id="selectMigrationAffiliation"
             resultType="home.helper.batch.dto.v1.imports.ImportMigrationAffiliationOutput">
         select *
