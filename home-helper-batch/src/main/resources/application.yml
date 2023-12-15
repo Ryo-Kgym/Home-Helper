@@ -1,9 +1,9 @@
 spring:
-  # JobRepositoryおよび退避用のテーブルを保持します。
+  # JobRepositoryのテーブルを保持します。
   datasource:
-    url: jdbc:postgresql://${WORK_DB_HOST}:${WORK_DB_PORT}/${WORK_DB_NAME}
-    username: ${WORK_DB_USER}
-    password: ${WORK_DB_PASS}
+    url: jdbc:postgresql://${JOB_DB_HOST}:${JOB_DB_PORT}/${JOB_DB_NAME}
+    username: ${JOB_DB_USER}
+    password: ${JOB_DB_PASS}
     driver-class-name: org.postgresql.Driver
   # version1 のデータベースを保持します。
   v1-datasource:

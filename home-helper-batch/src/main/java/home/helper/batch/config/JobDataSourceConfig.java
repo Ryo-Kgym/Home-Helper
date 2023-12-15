@@ -18,7 +18,7 @@ import org.springframework.transaction.PlatformTransactionManager;
  * Job用のデータソース設定クラス
  */
 @Configuration
-public class WorkDataSourceConfig {
+public class JobDataSourceConfig {
 
     @Bean
     @Primary
