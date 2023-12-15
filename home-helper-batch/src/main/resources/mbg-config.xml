@@ -21,7 +21,7 @@
 
         <commentGenerator>
             <!-- 生成される Java ファイルのコメントに日付を付与しない -->
-            <property name="suppressAllComments" value="true"/>
+            <property name="suppressAllComments" value="false"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
 
