@@ -4,6 +4,7 @@
 
 package home.helper.batch.persistence.database.v1.table;
 
+import home.helper.batch.persistence.database.v1.table.DbV1Affiliation;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
