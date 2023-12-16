@@ -1,5 +1,5 @@
 drop function if exists daily_detail_by_date cascade;
-create function daily_detail_by_date(group_id varchar(64), from_date date, to_date date) returns setof daily_detail as
+create function daily_detail_by_date(group_id uuid, from_date date, to_date date) returns setof daily_detail as
 $$
 select *
 from daily_detail
@@ -12,7 +12,7 @@ order by
 $$ language sql stable;
 
 drop function if exists category_total_by_month cascade;
-create function category_total_by_month(group_id varchar(64), from_date date, to_date date) returns setof total_by_category_view as
+create function category_total_by_month(group_id uuid, from_date date, to_date date) returns setof total_by_category_view as
 $$
 select
     current_date as date,
@@ -39,7 +39,7 @@ order by
 $$ language sql stable;
 
 drop function if exists genre_total_by_month cascade;
-create function genre_total_by_month(group_id varchar(64), from_date date, to_date date) returns setof total_by_genre_view as
+create function genre_total_by_month(group_id uuid, from_date date, to_date date) returns setof total_by_genre_view as
 $$
 select
     current_date as date,
