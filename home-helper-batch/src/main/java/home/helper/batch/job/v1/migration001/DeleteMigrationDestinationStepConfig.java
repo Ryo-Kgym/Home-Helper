@@ -17,7 +17,7 @@ import home.helper.batch.persistence.database.v1.imports.ImportMigrationDestinat
 
 @Configuration
 @RequiredArgsConstructor
-public class DeleteMigrationDestinationStep {
+public class DeleteMigrationDestinationStepConfig {
     private final StepBuilderFactory stepBuilderFactory;
     private final String STEP_PREFIX = "deleteMigrationDestination";
 

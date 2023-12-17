@@ -23,6 +23,5 @@ public class ImportMigrationGroupSaveRepository implements SaveGateway<ImportMig
             setGroupId(data.getGroupId());
             setGroupName(data.getGroupName());
         }});
-        System.out.println(data);
     }
 }

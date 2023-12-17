@@ -37,15 +37,15 @@ public class ImportMigrationJobConfig {
             .start(deleteMigrationDestinationStep)
             .next(importMigrationGroupStep)
             .next(importMigrationUserStep)
-            .next(importMigrationAffiliationStep)
             .next(importMigrationGroupRoleStep)
-            .next(importMigrationApplicationStep)
-            .next(importMigrationGroupApplicationStep)
-            .next(importMigrationGenreStep)
-            .next(importMigrationCategoryStep)
-            .next(importMigrationTransferCategoryStep)
-            .next(importMigrationSummaryCategoryByGroupStep)
-            .next(importMigrationAccountStep)
+            .next(importMigrationAffiliationStep)
+//            .next(importMigrationApplicationStep)
+//            .next(importMigrationGroupApplicationStep)
+//            .next(importMigrationGenreStep)
+//            .next(importMigrationCategoryStep)
+//            .next(importMigrationTransferCategoryStep)
+//            .next(importMigrationSummaryCategoryByGroupStep)
+//            .next(importMigrationAccountStep)
             .build();
     }
 }
