@@ -23,13 +23,13 @@ public class ImportMigrationJobConfig {
         Step deleteMigrationDestinationStep,
         Step importMigrationGroupStep,
         Step importMigrationUserStep,
+        Step importMigrationGroupRoleStep,
+        Step importMigrationAffiliationStep,
         Step importMigrationAccountStep,
         Step importMigrationApplicationStep,
         Step importMigrationGroupApplicationStep,
-        Step importMigrationAffiliationStep,
         Step importMigrationCategoryStep,
         Step importMigrationGenreStep,
-        Step importMigrationGroupRoleStep,
         Step importMigrationSummaryCategoryByGroupStep,
         Step importMigrationTransferCategoryStep
     ) {
