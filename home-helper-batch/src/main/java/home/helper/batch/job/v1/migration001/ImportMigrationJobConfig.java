@@ -16,31 +16,32 @@ import home.helper.batch.component.factory.JobBuilderFactory;
 @RequiredArgsConstructor
 public class ImportMigrationJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
-
     private final String JOB_PREFIX = "importMigration";
 
     @Bean(name = JOB_PREFIX + "Job")
     public Job job(
+        Step deleteMigrationDestinationStep,
+        Step importMigrationGroupStep,
         Step importMigrationUserStep,
         Step importMigrationAccountStep,
         Step importMigrationAffiliationStep,
         Step importMigrationApplicationStep,
         Step importMigrationCategoryStep,
         Step importMigrationGenreStep,
-        Step importMigrationGroupStep,
         Step importMigrationGroupApplicationStep,
         Step importMigrationGroupRoleStep,
         Step importMigrationSummaryCategoryByGroupStep,
         Step importMigrationTransferCategoryStep
     ) {
         return jobBuilderFactory.create(JOB_PREFIX)
-            .start(importMigrationUserStep)
-//            .next(importMigrationAccountStep)
+            .start(deleteMigrationDestinationStep)
+            .next(importMigrationGroupStep)
+            .next(importMigrationAccountStep)
+            .next(importMigrationUserStep)
 //            .next(importMigrationAffiliationStep)
 //            .next(importMigrationApplicationStep)
 //            .next(importMigrationCategoryStep)
 //            .next(importMigrationGenreStep)
-//            .next(importMigrationGroupStep)
 //            .next(importMigrationGroupApplicationStep)
 //            .next(importMigrationGroupRoleStep)
 //            .next(importMigrationSummaryCategoryByGroupStep)
