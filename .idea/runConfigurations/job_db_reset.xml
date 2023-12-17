@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="job db reset" type="DatabaseScript" editBeforeRun="true">
+    <script-file value="$PROJECT_DIR$/home-helper-database/job_db/00_schema-drop-postgresql.sql" />
+    <script-file value="$PROJECT_DIR$/home-helper-database/job_db/01_schema-postgresql.sql" />
+    <script-mode>FILE</script-mode>
+    <data-source id="5a6a4904-790f-45a5-b093-92fa295b15c4" namespace="database/&quot;home_helper_job_db&quot;" />
+    <method v="2" />
+  </configuration>
+</component>
