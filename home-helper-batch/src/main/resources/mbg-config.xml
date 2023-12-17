@@ -107,7 +107,7 @@
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="group_application" mapperName="DbV1GroupApplicationMapper"-->
-        <!--               domainObjectName="DbV1Group"-->
+        <!--               domainObjectName="DbV1GroupApplication"-->
         <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
