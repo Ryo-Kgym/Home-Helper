@@ -59,121 +59,121 @@
         </javaClientGenerator>
 
         <!--        <table schema="public" tableName="account" mapperName="DbV1AccountMapper" domainObjectName="DbV1Account"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="affiliation" mapperName="DbV1AffiliationMapper"-->
         <!--               domainObjectName="DbV1Affiliation"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="application" mapperName="DbV1ApplicationMapper"-->
         <!--               domainObjectName="DbV1Application"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="category" mapperName="DbV1CategoryMapper" domainObjectName="DbV1Category"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="credit_card_detail" mapperName="DbV1CreditCardDetailMapper"-->
         <!--               domainObjectName="DbV1CreditCardDetail"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="credit_card_summary" mapperName="DbV1CreditCardSummaryMapper"-->
         <!--               domainObjectName="DbV1CreditCardSummary"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="daily_detail" mapperName="DbV1DailyDetailMapper"-->
         <!--               domainObjectName="DbV1DailyDetail"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="deposit_category" mapperName="DbV1DepositCategoryMapper"-->
         <!--               domainObjectName="DbV1DepositCategory"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="genre" mapperName="DbV1GenreMapper"-->
         <!--               domainObjectName="DbV1Genre"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="group" mapperName="DbV1GroupMapper"-->
         <!--               domainObjectName="DbV1Group"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="group_application" mapperName="DbV1GroupApplicationMapper"-->
         <!--               domainObjectName="DbV1Group"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="group_role" mapperName="DbV1GroupRoleMapper"-->
         <!--               domainObjectName="DbV1GroupRole"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="import_file_history" mapperName="DbV1ImportFileHistoryMapper"-->
         <!--               domainObjectName="DbV1ImportFileHistory"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="summary_category_by_group" mapperName="DbV1SummaryCategoryByGroupMapper"-->
         <!--               domainObjectName="DbV1SummaryCategoryByGroup"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="transfer_category" mapperName="DbV1TransferCategoryMapper"-->
         <!--               domainObjectName="DbV1TransferCategory"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="public" tableName="user" mapperName="DbV1UserMapper" domainObjectName="DbV1User"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="helper_kids" tableName="exchange_item" mapperName="DbV1ExchangeItemMapper"-->
         <!--               domainObjectName="DbV1ExchangeItem"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="helper_kids" tableName="help_item" mapperName="DbV1HelperItemMapper"-->
         <!--               domainObjectName="DbV1HelperItem"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="helper_kids" tableName="help_point_earned_achievement"-->
         <!--               mapperName="DbV1HelperPointEarnedAchievementMapper" domainObjectName="DbV1HelperPointEarnedAchievement"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="helper_kids" tableName="help_point_earned_detail" mapperName="DbV1HelperPointEarnedDetailMapper"-->
         <!--               domainObjectName="DbV1HelperPointEarnedDetail"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="helper_kids" tableName="help_point_exchanged_achievement"-->
         <!--               mapperName="DbV1HelperPointExchangedAchievementMapper"-->
         <!--               domainObjectName="DbV1HelperPointExchangedAchievement"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="helper_kids" tableName="helper_kid" mapperName="DbV1HelperKidMapper"-->
         <!--               domainObjectName="DbV1HelperKid"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="helper_kids" tableName="helper_kid_parent" mapperName="DbV1HelperKidParentMapper"-->
         <!--               domainObjectName="DbV1HelperKidParent"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
         <!--        <table schema="helper_kids" tableName="helper_kid_point" mapperName="DbV1HelperKidPointMapper"-->
         <!--               domainObjectName="DbV1HelperKidPoint"-->
-        <!--               enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->
         <!--        </table>-->
     </context>

@@ -2,10 +2,6 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 package home.helper.batch.persistence.database.v1.table;
 
 import java.time.LocalDateTime;
