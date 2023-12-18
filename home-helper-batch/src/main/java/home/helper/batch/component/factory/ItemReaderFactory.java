@@ -7,18 +7,18 @@ package home.helper.batch.component.factory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.batch.MyBatisCursorItemReader;
 import org.springframework.batch.item.ItemReader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-import lombok.RequiredArgsConstructor;
 
 /**
  * ItemReaderを生成するクラスです。
  */
 @Component
-@RequiredArgsConstructor
 public class ItemReaderFactory {
-    @Qualifier("v1SqlSessionFactory")
-    private final SqlSessionFactory sqlSessionFactory;
+    @Autowired
+    @Qualifier("v1ProductionSqlSessionFactory")
+    private SqlSessionFactory sqlSessionFactory;
 
     /**
      * MyBatisCursorItemReaderを生成します。

@@ -17,7 +17,7 @@ import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationGroupApplicationOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationGroupApplicationSaveRepository;
-import home.helper.batch.persistence.database.v1.imports.SelectMigrationGroupApplicationMapper;
+import home.helper.batch.persistence.database.v1production.imports.SelectMigrationGroupApplicationMapper;
 
 @Configuration
 @RequiredArgsConstructor

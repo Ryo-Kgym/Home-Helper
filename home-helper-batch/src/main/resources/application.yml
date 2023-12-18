@@ -1,9 +1,17 @@
 spring:
+  # JobRepositoryのテーブルを保持します。
   datasource:
     url: jdbc:postgresql://${JOB_DB_HOST}:${JOB_DB_PORT}/${JOB_DB_NAME}
     username: ${JOB_DB_USER}
     password: ${JOB_DB_PASS}
     driver-class-name: org.postgresql.Driver
+  # V1 本番のデータベースを保持します。
+  v1-production-datasource:
+    url: jdbc:postgresql://${PRODUCTION_DB_HOST}:${PRODUCTION_DB_PORT}/${PRODUCTION_DB_NAME}
+    username: ${PRODUCTION_DB_USER}
+    password: ${PRODUCTION_DB_PASS}
+    driver-class-name: org.postgresql.Driver
+  # version1 のデータベースを保持します。
   v1-datasource:
     url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
     username: ${DB_USER}
@@ -22,4 +30,4 @@ logging:
       helper:
         batch:
           persistence:
-            DEBUG
+            INFO

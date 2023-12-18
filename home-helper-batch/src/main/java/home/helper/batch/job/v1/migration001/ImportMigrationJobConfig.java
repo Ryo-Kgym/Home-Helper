@@ -16,35 +16,62 @@ import home.helper.batch.component.factory.JobBuilderFactory;
 @RequiredArgsConstructor
 public class ImportMigrationJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
-
     private final String JOB_PREFIX = "importMigration";
 
     @Bean(name = JOB_PREFIX + "Job")
     public Job job(
+        Step deleteMigrationDestinationStep,
+        Step importMigrationGroupStep,
         Step importMigrationUserStep,
-        Step importMigrationAccountStep,
+        Step importMigrationGroupRoleStep,
         Step importMigrationAffiliationStep,
         Step importMigrationApplicationStep,
-        Step importMigrationCategoryStep,
-        Step importMigrationGenreStep,
-        Step importMigrationGroupStep,
         Step importMigrationGroupApplicationStep,
-        Step importMigrationGroupRoleStep,
+        Step importMigrationAccountStep,
+        Step importMigrationGenreStep,
+        Step importMigrationCategoryStep,
         Step importMigrationSummaryCategoryByGroupStep,
-        Step importMigrationTransferCategoryStep
+        Step importMigrationTransferCategoryStep,
+        Step importMigrationDepositCategoryStep,
+        Step importMigrationDailyDetailStep,
+        Step importMigrationImportFileHistoryStep,
+        Step importMigrationCreditCardSummaryStep,
+        Step importMigrationCreditCardDetailStep,
+        Step importMigrationHelpItemStep,
+        Step importMigrationExchangeItemStep,
+        Step importMigrationHelperKidStep,
+        Step importMigrationHelperKidParentStep,
+        Step importMigrationHelperKidPointStep,
+        Step importMigrationHelpPointEarnedAchievementStep,
+        Step importMigrationHelpPointEarnedDetailStep,
+        Step importMigrationHelpPointExchangedAchievementStep
     ) {
-        return jobBuilderFactory.create(JOB_PREFIX)
-            .start(importMigrationUserStep)
-            .next(importMigrationAccountStep)
+        return jobBuilderFactory.create(JOB_PREFIX + "Job")
+            .start(deleteMigrationDestinationStep)
+            .next(importMigrationGroupStep)
+            .next(importMigrationUserStep)
+            .next(importMigrationGroupRoleStep)
             .next(importMigrationAffiliationStep)
             .next(importMigrationApplicationStep)
-            .next(importMigrationCategoryStep)
-            .next(importMigrationGenreStep)
-            .next(importMigrationGroupStep)
             .next(importMigrationGroupApplicationStep)
-            .next(importMigrationGroupRoleStep)
-            .next(importMigrationSummaryCategoryByGroupStep)
+            .next(importMigrationAccountStep)
+            .next(importMigrationGenreStep)
+            .next(importMigrationCategoryStep)
             .next(importMigrationTransferCategoryStep)
+            .next(importMigrationSummaryCategoryByGroupStep)
+            .next(importMigrationDepositCategoryStep)
+            .next(importMigrationDailyDetailStep)
+            .next(importMigrationImportFileHistoryStep)
+            .next(importMigrationCreditCardSummaryStep)
+            .next(importMigrationCreditCardDetailStep)
+            .next(importMigrationHelpItemStep)
+            .next(importMigrationExchangeItemStep)
+            .next(importMigrationHelperKidStep)
+            .next(importMigrationHelperKidParentStep)
+            .next(importMigrationHelperKidPointStep)
+            .next(importMigrationHelpPointEarnedAchievementStep)
+            .next(importMigrationHelpPointEarnedDetailStep)
+            .next(importMigrationHelpPointExchangedAchievementStep)
             .build();
     }
 }

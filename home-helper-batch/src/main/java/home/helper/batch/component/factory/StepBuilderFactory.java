@@ -7,6 +7,8 @@ package home.helper.batch.component.factory;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.SimpleStepBuilder;
 import org.springframework.batch.core.step.builder.StepBuilder;
+import org.springframework.batch.core.step.builder.TaskletStepBuilder;
+import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import lombok.RequiredArgsConstructor;
@@ -34,4 +36,19 @@ public class StepBuilderFactory {
             .chunk(100, jobTransactionManager)
             ;
     }
+
+    /**
+     * TaskletStepBuilderを生成します。
+     *
+     * @param stepName ステップ名
+     * @param tasklet  タスクレット
+     * @return TaskletStepBuilder
+     */
+    public TaskletStepBuilder create(String stepName, Tasklet tasklet) {
+        return new StepBuilder(stepName, myJobRepository)
+            .allowStartIfComplete(true)
+            .tasklet(tasklet, jobTransactionManager)
+            ;
+    }
+
 }
