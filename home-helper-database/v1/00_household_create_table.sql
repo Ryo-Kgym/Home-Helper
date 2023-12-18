@@ -1,6 +1,3 @@
-create type genre_type as enum ('FIXED', 'FLUCTUATION');
-create type iocome_type as enum ('INCOME', 'OUTCOME');
-
 create table public."group" (
     group_id   varchar(64) primary key not null,
     group_name character varying(50)   not null
@@ -57,8 +54,8 @@ create table public.affiliation (
 create table public.genre (
     genre_id      varchar(64) primary key not null,
     genre_name    character varying(50)   not null,
-    genre_type    genre_type              not null,
-    iocome_type   iocome_type             not null,
+    genre_type    varchar(32)             not null,
+    iocome_type   varchar(32)             not null,
     valid_flag    boolean default true,
     display_order integer                 not null,
     group_id      varchar(64)             not null,
@@ -113,7 +110,7 @@ create table public.credit_card_detail (
     user_id     varchar(64)             not null,
     group_id    varchar(64)             not null,
     genre_id    varchar(64)             not null,
-    iocome_type iocome_type             not null,
+    iocome_type varchar(32)             not null,
     foreign key (category_id) references public.category (category_id) match simple on update no action on delete no action,
     foreign key (summary_id) references public.credit_card_summary (id) match simple on update no action on delete no action,
     foreign key (genre_id) references public.genre (genre_id) match simple on update no action on delete no action,
@@ -136,7 +133,7 @@ create table public.daily_detail (
     memo        character varying(64),
     group_id    varchar(64)             not null,
     genre_id    varchar(64)             not null,
-    iocome_type iocome_type             not null,
+    iocome_type varchar(32)             not null,
     foreign key (account_id) references public.account (account_id) match simple on update no action on delete no action,
     foreign key (category_id) references public.category (category_id) match simple on update no action on delete no action,
     foreign key (genre_id) references public.genre (genre_id) match simple on update no action on delete no action,
