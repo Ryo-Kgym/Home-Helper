@@ -87,3 +87,4 @@ fabric.properties
 /volume/
 /.env.production
 /.idea/dataSources.xml
+/home-helper-batch/src/main/resources/mbg-config-v2.xml
