@@ -36,9 +36,17 @@ public class ImportMigrationJobConfig {
         Step importMigrationDailyDetailStep,
         Step importMigrationImportFileHistoryStep,
         Step importMigrationCreditCardSummaryStep,
-        Step importMigrationCreditCardDetailStep
+        Step importMigrationCreditCardDetailStep,
+        Step importMigrationHelpItemStep,
+        Step importMigrationExchangeItemStep,
+        Step importMigrationHelperKidStep,
+        Step importMigrationHelperKidParentStep,
+        Step importMigrationHelperKidPointStep,
+        Step importMigrationHelpPointEarnedAchievementStep,
+        Step importMigrationHelpPointEarnedDetailStep,
+        Step importMigrationHelpPointExchangedAchievementStep
     ) {
-        return jobBuilderFactory.create(JOB_PREFIX)
+        return jobBuilderFactory.create(JOB_PREFIX + "Job")
             .start(deleteMigrationDestinationStep)
             .next(importMigrationGroupStep)
             .next(importMigrationUserStep)
@@ -56,6 +64,14 @@ public class ImportMigrationJobConfig {
             .next(importMigrationImportFileHistoryStep)
             .next(importMigrationCreditCardSummaryStep)
             .next(importMigrationCreditCardDetailStep)
+            .next(importMigrationHelpItemStep)
+            .next(importMigrationExchangeItemStep)
+            .next(importMigrationHelperKidStep)
+            .next(importMigrationHelperKidParentStep)
+            .next(importMigrationHelperKidPointStep)
+            .next(importMigrationHelpPointEarnedAchievementStep)
+            .next(importMigrationHelpPointEarnedDetailStep)
+            .next(importMigrationHelpPointExchangedAchievementStep)
             .build();
     }
 }

@@ -410,7 +410,7 @@ public class DbV1HelperKidPointExample {
      * @mbg.generated
      */
     public static class Criterion {
-        private String condition;
+        private final String condition;
 
         private Object value;
 
@@ -424,7 +424,7 @@ public class DbV1HelperKidPointExample {
 
         private boolean listValue;
 
-        private String typeHandler;
+        private final String typeHandler;
 
         protected Criterion(String condition) {
             super();

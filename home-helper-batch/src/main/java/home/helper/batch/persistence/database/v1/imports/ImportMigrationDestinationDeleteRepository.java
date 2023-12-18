@@ -24,6 +24,8 @@ import home.helper.batch.persistence.database.v1.table.DbV1DailyDetailExample;
 import home.helper.batch.persistence.database.v1.table.DbV1DailyDetailMapper;
 import home.helper.batch.persistence.database.v1.table.DbV1DepositCategoryExample;
 import home.helper.batch.persistence.database.v1.table.DbV1DepositCategoryMapper;
+import home.helper.batch.persistence.database.v1.table.DbV1ExchangeItemExample;
+import home.helper.batch.persistence.database.v1.table.DbV1ExchangeItemMapper;
 import home.helper.batch.persistence.database.v1.table.DbV1GenreExample;
 import home.helper.batch.persistence.database.v1.table.DbV1GenreMapper;
 import home.helper.batch.persistence.database.v1.table.DbV1GroupApplicationExample;
@@ -32,6 +34,20 @@ import home.helper.batch.persistence.database.v1.table.DbV1GroupExample;
 import home.helper.batch.persistence.database.v1.table.DbV1GroupMapper;
 import home.helper.batch.persistence.database.v1.table.DbV1GroupRoleExample;
 import home.helper.batch.persistence.database.v1.table.DbV1GroupRoleMapper;
+import home.helper.batch.persistence.database.v1.table.DbV1HelpItemExample;
+import home.helper.batch.persistence.database.v1.table.DbV1HelpItemMapper;
+import home.helper.batch.persistence.database.v1.table.DbV1HelpPointEarnedAchievementExample;
+import home.helper.batch.persistence.database.v1.table.DbV1HelpPointEarnedAchievementMapper;
+import home.helper.batch.persistence.database.v1.table.DbV1HelpPointEarnedDetailExample;
+import home.helper.batch.persistence.database.v1.table.DbV1HelpPointEarnedDetailMapper;
+import home.helper.batch.persistence.database.v1.table.DbV1HelpPointExchangedAchievementExample;
+import home.helper.batch.persistence.database.v1.table.DbV1HelpPointExchangedAchievementMapper;
+import home.helper.batch.persistence.database.v1.table.DbV1HelperKidExample;
+import home.helper.batch.persistence.database.v1.table.DbV1HelperKidMapper;
+import home.helper.batch.persistence.database.v1.table.DbV1HelperKidParentExample;
+import home.helper.batch.persistence.database.v1.table.DbV1HelperKidParentMapper;
+import home.helper.batch.persistence.database.v1.table.DbV1HelperKidPointExample;
+import home.helper.batch.persistence.database.v1.table.DbV1HelperKidPointMapper;
 import home.helper.batch.persistence.database.v1.table.DbV1ImportFileHistoryExample;
 import home.helper.batch.persistence.database.v1.table.DbV1ImportFileHistoryMapper;
 import home.helper.batch.persistence.database.v1.table.DbV1SummaryCategoryByGroupExample;
@@ -44,6 +60,15 @@ import home.helper.batch.persistence.database.v1.table.DbV1UserMapper;
 @Repository
 @RequiredArgsConstructor
 public class ImportMigrationDestinationDeleteRepository implements NoArgsSaveGateway {
+    private final DbV1HelpPointExchangedAchievementMapper dbV1HelperPointExchangedAchievementMapper;
+    private final DbV1HelpPointEarnedDetailMapper dbV1HelperPointEarnedDetailMapper;
+    private final DbV1HelpPointEarnedAchievementMapper dbV1HelperPointEarnedAchievementMapper;
+    private final DbV1HelperKidPointMapper dbV1HelperKidPointMapper;
+    private final DbV1HelperKidParentMapper dbV1HelperKidParentMapper;
+    private final DbV1HelperKidMapper dbV1HelperKidMapper;
+    private final DbV1HelpItemMapper dbV1HelperItemMapper;
+    private final DbV1ExchangeItemMapper dbV1ExchangeItemMapper;
+
     private final DbV1CreditCardDetailMapper dbV1CreditCardDetailMapper;
     private final DbV1CreditCardSummaryMapper dbV1CreditCardSummaryMapper;
     private final DbV1ImportFileHistoryMapper dbV1ImportFileHistoryMapper;
@@ -64,6 +89,15 @@ public class ImportMigrationDestinationDeleteRepository implements NoArgsSaveGat
 
     @Override
     public void save() {
+        dbV1HelperPointExchangedAchievementMapper.deleteByExample(new DbV1HelpPointExchangedAchievementExample());
+        dbV1HelperPointEarnedDetailMapper.deleteByExample(new DbV1HelpPointEarnedDetailExample());
+        dbV1HelperPointEarnedAchievementMapper.deleteByExample(new DbV1HelpPointEarnedAchievementExample());
+        dbV1HelperKidPointMapper.deleteByExample(new DbV1HelperKidPointExample());
+        dbV1HelperKidParentMapper.deleteByExample(new DbV1HelperKidParentExample());
+        dbV1HelperKidMapper.deleteByExample(new DbV1HelperKidExample());
+        dbV1HelperItemMapper.deleteByExample(new DbV1HelpItemExample());
+        dbV1ExchangeItemMapper.deleteByExample(new DbV1ExchangeItemExample());
+
         dbV1CreditCardDetailMapper.deleteByExample(new DbV1CreditCardDetailExample());
         dbV1CreditCardSummaryMapper.deleteByExample(new DbV1CreditCardSummaryExample());
         dbV1ImportFileHistoryMapper.deleteByExample(new DbV1ImportFileHistoryExample());
