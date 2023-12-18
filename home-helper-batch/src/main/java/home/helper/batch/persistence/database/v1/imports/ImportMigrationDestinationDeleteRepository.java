@@ -59,8 +59,8 @@ public class ImportMigrationDestinationDeleteRepository implements NoArgsSaveGat
         dbV1GenreMapper.deleteByExample(new DbV1GenreExample());
         dbV1GroupApplicationMapper.deleteByExample(new DbV1GroupApplicationExample());
         dbV1ApplicationMapper.deleteByExample(new DbV1ApplicationExample());
-        dbV1GroupRoleMapper.deleteByExample(new DbV1GroupRoleExample());
         dbV1AffiliationMapper.deleteByExample(new DbV1AffiliationExample());
+        dbV1GroupRoleMapper.deleteByExample(new DbV1GroupRoleExample());
         dbV1UserMapper.deleteByExample(new DbV1UserExample());
         dbV1GroupMapper.deleteByExample(new DbV1GroupExample());
     }

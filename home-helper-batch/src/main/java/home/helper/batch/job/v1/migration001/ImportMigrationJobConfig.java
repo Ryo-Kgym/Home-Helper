@@ -25,13 +25,14 @@ public class ImportMigrationJobConfig {
         Step importMigrationUserStep,
         Step importMigrationGroupRoleStep,
         Step importMigrationAffiliationStep,
-        Step importMigrationAccountStep,
         Step importMigrationApplicationStep,
         Step importMigrationGroupApplicationStep,
-        Step importMigrationCategoryStep,
+        Step importMigrationAccountStep,
         Step importMigrationGenreStep,
+        Step importMigrationCategoryStep,
         Step importMigrationSummaryCategoryByGroupStep,
-        Step importMigrationTransferCategoryStep
+        Step importMigrationTransferCategoryStep,
+        Step importMigrationDepositCategoryStep
     ) {
         return jobBuilderFactory.create(JOB_PREFIX)
             .start(deleteMigrationDestinationStep)
@@ -39,13 +40,14 @@ public class ImportMigrationJobConfig {
             .next(importMigrationUserStep)
             .next(importMigrationGroupRoleStep)
             .next(importMigrationAffiliationStep)
-//            .next(importMigrationApplicationStep)
-//            .next(importMigrationGroupApplicationStep)
-//            .next(importMigrationGenreStep)
-//            .next(importMigrationCategoryStep)
-//            .next(importMigrationTransferCategoryStep)
-//            .next(importMigrationSummaryCategoryByGroupStep)
-//            .next(importMigrationAccountStep)
+            .next(importMigrationApplicationStep)
+            .next(importMigrationGroupApplicationStep)
+            .next(importMigrationAccountStep)
+            .next(importMigrationGenreStep)
+            .next(importMigrationCategoryStep)
+            .next(importMigrationTransferCategoryStep)
+            .next(importMigrationSummaryCategoryByGroupStep)
+            .next(importMigrationDepositCategoryStep)
             .build();
     }
 }
