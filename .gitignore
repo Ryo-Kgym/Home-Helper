@@ -86,3 +86,4 @@ fabric.properties
 
 /volume/
 /.env.production
+/.idea/dataSources.xml
