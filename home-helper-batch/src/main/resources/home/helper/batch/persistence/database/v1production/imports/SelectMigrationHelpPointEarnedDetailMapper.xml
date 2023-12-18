@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="home.helper.batch.persistence.database.v1production.imports.SelectMigrationHelpPointEarnedDetailMapper">
+    <select id="selectMigrationHelpPointEarnedDetail"
+            resultType="home.helper.batch.dto.v1.imports.ImportMigrationHelpPointEarnedDetailOutput">
+        select *
+        from helper_kids.help_point_earned_detail
+        order by
+            earned_achievement_id,
+            help_point_earned_detail_id
+    </select>
+</mapper>
