@@ -32,7 +32,11 @@ public class ImportMigrationJobConfig {
         Step importMigrationCategoryStep,
         Step importMigrationSummaryCategoryByGroupStep,
         Step importMigrationTransferCategoryStep,
-        Step importMigrationDepositCategoryStep
+        Step importMigrationDepositCategoryStep,
+        Step importMigrationDailyDetailStep,
+        Step importMigrationImportFileHistoryStep,
+        Step importMigrationCreditCardSummaryStep,
+        Step importMigrationCreditCardDetailStep
     ) {
         return jobBuilderFactory.create(JOB_PREFIX)
             .start(deleteMigrationDestinationStep)
@@ -48,6 +52,10 @@ public class ImportMigrationJobConfig {
             .next(importMigrationTransferCategoryStep)
             .next(importMigrationSummaryCategoryByGroupStep)
             .next(importMigrationDepositCategoryStep)
+            .next(importMigrationDailyDetailStep)
+            .next(importMigrationImportFileHistoryStep)
+            .next(importMigrationCreditCardSummaryStep)
+            .next(importMigrationCreditCardDetailStep)
             .build();
     }
 }
