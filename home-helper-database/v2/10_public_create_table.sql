@@ -1,40 +1,34 @@
-drop schema if exists tmp_public cascade;
-create schema tmp_public;
+create schema if not exists public;
 
-create table tmp_public."group" (
-    group_id   uuid primary key      not null,
-    group_name character varying(50) not null
+create table public."group" (
+    id   varchar(26) primary key not null,
+    name varchar(50)             not null
 );
 
-create table tmp_public.group_role (
-    group_role_id uuid primary key      not null,
-    role          character varying(32) not null
-);
-
-create table tmp_public."user" (
-    user_id       uuid primary key not null,
-    user_name     character varying,
+create table public."user" (
+    id            varchar(26) primary key not null,
+    name          varchar(32),
     display_order integer,
-    email         character varying
-);
-create unique index user_email_key on tmp_public."user" using btree (email);
-
-create table tmp_public.application (
-    application_id uuid primary key       not null,
-    application    character varying(50)  not null,
-    valid_flag     boolean default true,
-    top_url        character varying(128) not null
+    email         varchar(64) unique      not null
 );
 
-create table tmp_public.group_application (
-    group_application_id uuid primary key not null,
-    group_id             uuid             not null,
-    application_id       uuid             not null
+create table public.affiliation (
+    id         varchar(26) primary key not null,
+    user_id    varchar(26)             not null references public."user" (id),
+    group_id   varchar(26)             not null references public."group" (id),
+    group_role varchar(16)             not null
+);
+create policy affiliation_group_role_policy on public.affiliation for select using (group_role in ('MEMBER', 'OWNER'));
+
+create table public.application (
+    id         varchar(26) primary key not null,
+    name       varchar(50)             not null,
+    valid_flag boolean default true,
+    top_url    varchar(128)            not null
 );
 
-create table tmp_public.affiliation (
-    affiliation_id uuid primary key not null,
-    user_id        uuid             not null,
-    group_id       uuid             not null,
-    group_role_id  uuid             not null
+create table public.group_application (
+    id             varchar(26) primary key not null,
+    group_id       varchar(26)             not null references public."group" (id),
+    application_id varchar(26)             not null references public.application (id)
 );
