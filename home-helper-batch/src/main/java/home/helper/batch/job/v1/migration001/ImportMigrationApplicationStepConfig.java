@@ -12,11 +12,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationApplicationOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationApplicationSaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationApplicationMapper;
 
 @Configuration
@@ -46,9 +47,12 @@ public class ImportMigrationApplicationStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationApplicationOutput> writer(
-        ImportMigrationApplicationSaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationApplicationOutput>()
-            .writer(saveGateway)
+        ImportMigrationApplicationSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationApplicationOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationApplicationOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }

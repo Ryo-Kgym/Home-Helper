@@ -12,11 +12,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationSummaryCategoryByGroupOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationSummaryCategoryByGroupSaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationSummaryCategoryByGroupMapper;
 
 @Configuration
@@ -46,9 +47,12 @@ public class ImportMigrationSummaryCategoryByGroupStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationSummaryCategoryByGroupOutput> writer(
-        ImportMigrationSummaryCategoryByGroupSaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationSummaryCategoryByGroupOutput>()
-            .writer(saveGateway)
+        ImportMigrationSummaryCategoryByGroupSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationSummaryCategoryByGroupOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationSummaryCategoryByGroupOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }

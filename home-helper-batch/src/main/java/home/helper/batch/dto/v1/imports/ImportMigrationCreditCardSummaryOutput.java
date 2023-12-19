@@ -9,6 +9,8 @@ import java.time.LocalDate;
 
 import lombok.Builder;
 
+import home.helper.batch.domain.model.id.CurrentId;
+
 @Builder
 public record ImportMigrationCreditCardSummaryOutput(
     String id,
@@ -18,5 +20,9 @@ public record ImportMigrationCreditCardSummaryOutput(
     BigDecimal totalAmount,
     Integer count,
     String groupId
-) {
+) implements CurrentId {
+    @Override
+    public String getCurrentId() {
+        return id;
+    }
 }

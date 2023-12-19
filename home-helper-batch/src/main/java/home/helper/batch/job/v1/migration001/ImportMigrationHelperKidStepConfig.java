@@ -12,11 +12,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationHelperKidOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationHelperKidSaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationHelperKidMapper;
 
 @Configuration
@@ -46,9 +47,12 @@ public class ImportMigrationHelperKidStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationHelperKidOutput> writer(
-        ImportMigrationHelperKidSaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationHelperKidOutput>()
-            .writer(saveGateway)
+        ImportMigrationHelperKidSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationHelperKidOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationHelperKidOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }
