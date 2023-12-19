@@ -17,7 +17,7 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASS}
     driver-class-name: org.postgresql.Driver
-  # V1 本番のデータベースを保持します。
+  # V2 本番のデータベースを保持します。
   v2-production-datasource:
     url: jdbc:postgresql://${PRODUCTION_V2_DB_HOST}:${PRODUCTION_V2_DB_PORT}/${PRODUCTION_V2_DB_NAME}
     username: ${PRODUCTION_V2_DB_USER}
@@ -36,4 +36,4 @@ logging:
       helper:
         batch:
           persistence:
-            INFO
+            DEBUG
