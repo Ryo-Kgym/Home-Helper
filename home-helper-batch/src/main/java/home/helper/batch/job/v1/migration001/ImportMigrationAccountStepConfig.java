@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
 import home.helper.batch.component.factory.ItemReaderFactory;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationAccountOutput;
-import home.helper.batch.gateway.migration.MigrationIdGateway;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationAccountSaveRepository;
-import home.helper.batch.persistence.database.v1.table.ConvIdMapper;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationAccountMapper;
 
 @Configuration
@@ -47,16 +47,12 @@ public class ImportMigrationAccountStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationAccountOutput> writer(
-        MigrationIdGateway migrationIdGateway,
-        ConvIdMapper convIdMapper,
-        ImportMigrationAccountSaveRepository saveGateway) {
-        return ImportMigrationIdGeneratorItemWriter.<ImportMigrationAccountOutput>builder()
-            .migrationIdGateway(migrationIdGateway)
-            .convIdMapper(convIdMapper)
-            .tableName("account")
-            .currentIdGetter(ImportMigrationAccountOutput::getAccountId)
-            .saveGateway(saveGateway::save)
-            .build()
+        ImportMigrationAccountSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationAccountOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationAccountOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }
