@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="home.helper.batch.persistence.database.v1.export.ExportPublicUserMapper">
+    <select id="fetchPublicUser"
+            resultType="home.helper.batch.dto.v2.export.ExportPublicUserInput">
+        select *
+        from public.user
+        order by
+            display_order
+    </select>
+</mapper>
