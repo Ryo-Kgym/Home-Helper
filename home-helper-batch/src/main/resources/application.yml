@@ -36,4 +36,4 @@ logging:
       helper:
         batch:
           persistence:
-            DEBUG
+            INFO
