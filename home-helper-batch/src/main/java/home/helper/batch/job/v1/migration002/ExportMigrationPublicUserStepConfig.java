@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 import home.helper.batch.component.factory.ItemReaderFactory;
 import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
-import home.helper.batch.dto.v2.export.ExportPublicUserInput;
+import home.helper.batch.dto.v1.export.ExportPublicUserInput;
 import home.helper.batch.persistence.database.v1.export.ExportMigrationPublicUserSaveRepository;
 import home.helper.batch.persistence.database.v1.export.ExportPublicUserMapper;
 

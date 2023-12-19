@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-package home.helper.batch.dto.v2.export;
+package home.helper.batch.dto.v1.export;
 
 import lombok.Builder;
 

@@ -7,7 +7,7 @@ package home.helper.batch.persistence.database.v1.export;
 import org.springframework.stereotype.Repository;
 import lombok.RequiredArgsConstructor;
 
-import home.helper.batch.dto.v2.export.ExportPublicUserInput;
+import home.helper.batch.dto.v1.export.ExportPublicUserInput;
 import home.helper.batch.gateway.SaveGateway;
 import home.helper.batch.persistence.database.v2.table.DbV2UserMapper;
 

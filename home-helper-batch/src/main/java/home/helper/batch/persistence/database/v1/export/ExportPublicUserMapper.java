@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import home.helper.batch.dto.v2.export.ExportPublicUserInput;
+import home.helper.batch.dto.v1.export.ExportPublicUserInput;
 
 @Mapper
 public interface ExportPublicUserMapper {
