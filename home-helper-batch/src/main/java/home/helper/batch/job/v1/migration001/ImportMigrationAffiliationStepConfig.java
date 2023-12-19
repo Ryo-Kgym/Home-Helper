@@ -12,11 +12,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationAffiliationOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationAffiliationSaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationAffiliationMapper;
 
 @Configuration
@@ -46,9 +47,11 @@ public class ImportMigrationAffiliationStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationAffiliationOutput> writer(
-        ImportMigrationAffiliationSaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationAffiliationOutput>()
-            .writer(saveGateway)
+        ImportMigrationAffiliationSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationAffiliationOutput> saveConvIdGateway) {
+        return new CompositeItemWriterBuilder<ImportMigrationAffiliationOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }
