@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import lombok.RequiredArgsConstructor;
 
 import home.helper.batch.gateway.NoArgsSaveGateway;
+import home.helper.batch.persistence.database.v1.table.ConvIdExample;
+import home.helper.batch.persistence.database.v1.table.ConvIdMapper;
 import home.helper.batch.persistence.database.v1.table.DbV1AccountExample;
 import home.helper.batch.persistence.database.v1.table.DbV1AccountMapper;
 import home.helper.batch.persistence.database.v1.table.DbV1AffiliationExample;
@@ -60,6 +62,7 @@ import home.helper.batch.persistence.database.v1.table.DbV1UserMapper;
 @Repository
 @RequiredArgsConstructor
 public class ImportMigrationDestinationDeleteRepository implements NoArgsSaveGateway {
+    private final ConvIdMapper convIdMapper;
     private final DbV1HelpPointExchangedAchievementMapper dbV1HelperPointExchangedAchievementMapper;
     private final DbV1HelpPointEarnedDetailMapper dbV1HelperPointEarnedDetailMapper;
     private final DbV1HelpPointEarnedAchievementMapper dbV1HelperPointEarnedAchievementMapper;
@@ -89,6 +92,8 @@ public class ImportMigrationDestinationDeleteRepository implements NoArgsSaveGat
 
     @Override
     public void save() {
+        convIdMapper.deleteByExample(new ConvIdExample());
+
         dbV1HelperPointExchangedAchievementMapper.deleteByExample(new DbV1HelpPointExchangedAchievementExample());
         dbV1HelperPointEarnedDetailMapper.deleteByExample(new DbV1HelpPointEarnedDetailExample());
         dbV1HelperPointEarnedAchievementMapper.deleteByExample(new DbV1HelpPointEarnedAchievementExample());

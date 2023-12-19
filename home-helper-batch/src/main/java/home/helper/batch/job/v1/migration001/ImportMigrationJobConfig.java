@@ -6,6 +6,7 @@ package home.helper.batch.job.v1.migration001;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
@@ -17,7 +18,7 @@ public class ImportMigrationJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final String JOB_PREFIX = "importMigration";
 
-    //    @Bean(name = JOB_PREFIX + "Job")
+    @Bean(name = JOB_PREFIX + "Job")
     public Job job(
         Step deleteMigrationDestinationStep,
         Step importMigrationGroupStep,

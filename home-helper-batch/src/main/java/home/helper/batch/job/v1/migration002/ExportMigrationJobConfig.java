@@ -6,7 +6,6 @@ package home.helper.batch.job.v1.migration002;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +17,7 @@ public class ExportMigrationJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final String JOB_PREFIX = "exportMigration";
 
-    @Bean(name = JOB_PREFIX + "Job")
+    //    @Bean(name = JOB_PREFIX + "Job")
     public Job job(
         Step exportMigrationPublicUserStep
     ) {
