@@ -41,7 +41,7 @@ public class ImportMigrationAffiliationStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationAffiliationOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationAffiliationMapper.class, "selectMigrationAffiliation");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationAffiliationMapper.class, "selectMigrationAffiliation");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

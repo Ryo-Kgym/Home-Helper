@@ -41,7 +41,7 @@ public class ImportMigrationHelpPointExchangedAchievementStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationHelpPointExchangedAchievementOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationHelpPointExchangedAchievementMapper.class, "selectMigrationHelpPointExchangedAchievement");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationHelpPointExchangedAchievementMapper.class, "selectMigrationHelpPointExchangedAchievement");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

@@ -41,7 +41,7 @@ public class ImportMigrationGroupRoleStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationGroupRoleOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationGroupRoleMapper.class, "selectMigrationGroupRole");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationGroupRoleMapper.class, "selectMigrationGroupRole");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

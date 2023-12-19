@@ -41,7 +41,7 @@ public class ImportMigrationHelpPointEarnedDetailStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationHelpPointEarnedDetailOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationHelpPointEarnedDetailMapper.class, "selectMigrationHelpPointEarnedDetail");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationHelpPointEarnedDetailMapper.class, "selectMigrationHelpPointEarnedDetail");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

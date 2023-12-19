@@ -41,7 +41,7 @@ public class ImportMigrationGenreStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationGenreOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationGenreMapper.class, "selectMigrationGenre");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationGenreMapper.class, "selectMigrationGenre");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

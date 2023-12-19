@@ -41,7 +41,7 @@ public class ImportMigrationHelpItemStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationHelpItemOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationHelpItemMapper.class, "selectMigrationHelpItem");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationHelpItemMapper.class, "selectMigrationHelpItem");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

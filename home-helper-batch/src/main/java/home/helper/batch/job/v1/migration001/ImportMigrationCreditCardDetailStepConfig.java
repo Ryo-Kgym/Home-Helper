@@ -41,7 +41,7 @@ public class ImportMigrationCreditCardDetailStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationCreditCardDetailOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationCreditCardDetailMapper.class, "selectMigrationCreditCardDetail");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationCreditCardDetailMapper.class, "selectMigrationCreditCardDetail");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

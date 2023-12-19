@@ -41,7 +41,7 @@ public class ImportMigrationDepositCategoryStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationDepositCategoryOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationDepositCategoryMapper.class, "selectMigrationDepositCategory");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationDepositCategoryMapper.class, "selectMigrationDepositCategory");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

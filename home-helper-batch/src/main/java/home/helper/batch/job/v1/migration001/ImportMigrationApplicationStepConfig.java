@@ -41,7 +41,7 @@ public class ImportMigrationApplicationStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationApplicationOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationApplicationMapper.class, "selectMigrationApplication");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationApplicationMapper.class, "selectMigrationApplication");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

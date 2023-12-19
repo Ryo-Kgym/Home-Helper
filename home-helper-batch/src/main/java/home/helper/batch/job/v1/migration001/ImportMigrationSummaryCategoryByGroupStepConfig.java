@@ -41,7 +41,7 @@ public class ImportMigrationSummaryCategoryByGroupStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationSummaryCategoryByGroupOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationSummaryCategoryByGroupMapper.class, "selectMigrationSummaryCategoryByGroup");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationSummaryCategoryByGroupMapper.class, "selectMigrationSummaryCategoryByGroup");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

@@ -41,7 +41,7 @@ public class ImportMigrationAccountStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationAccountOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationAccountMapper.class, "selectMigrationAccount");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationAccountMapper.class, "selectMigrationAccount");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

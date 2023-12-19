@@ -41,7 +41,7 @@ public class ImportMigrationImportFileHistoryStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationImportFileHistoryOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationImportFileHistoryMapper.class, "selectMigrationImportFileHistory");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationImportFileHistoryMapper.class, "selectMigrationImportFileHistory");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

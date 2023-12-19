@@ -29,7 +29,7 @@ public class ItemReaderFactory {
      * @param <S>         Mapperの型
      * @return MyBatisCursorItemReader
      */
-    public <T, S> ItemReader<T> itemReader(Class<S> mapperClass, String methodName) {
+    public <T, S> ItemReader<T> itemReaderV1Production(Class<S> mapperClass, String methodName) {
         MyBatisCursorItemReader<T> reader = new MyBatisCursorItemReader<>();
         reader.setQueryId(mapperClass.getName() + "." + methodName);
         reader.setSqlSessionFactory(sqlSessionFactory);

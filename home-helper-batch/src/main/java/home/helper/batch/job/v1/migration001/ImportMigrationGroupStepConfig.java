@@ -41,7 +41,7 @@ public class ImportMigrationGroupStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationGroupOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationGroupMapper.class, "selectMigrationGroup");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationGroupMapper.class, "selectMigrationGroup");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

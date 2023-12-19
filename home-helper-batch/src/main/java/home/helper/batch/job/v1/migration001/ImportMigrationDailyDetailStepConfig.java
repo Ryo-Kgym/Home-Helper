@@ -41,7 +41,7 @@ public class ImportMigrationDailyDetailStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationDailyDetailOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationDailyDetailMapper.class, "selectMigrationDailyDetail");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationDailyDetailMapper.class, "selectMigrationDailyDetail");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")

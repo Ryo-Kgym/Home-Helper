@@ -41,7 +41,7 @@ public class ImportMigrationHelperKidStepConfig {
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationHelperKidOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationHelperKidMapper.class, "selectMigrationHelperKid");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationHelperKidMapper.class, "selectMigrationHelperKid");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
