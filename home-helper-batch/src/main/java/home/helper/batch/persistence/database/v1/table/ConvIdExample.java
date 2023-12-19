@@ -338,73 +338,73 @@ public class ConvIdExample {
             return (Criteria) this;
         }
 
-        public Criteria andTableIsNull() {
-            addCriterion("table is null");
+        public Criteria andTableNameIsNull() {
+            addCriterion("table_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andTableIsNotNull() {
-            addCriterion("table is not null");
+        public Criteria andTableNameIsNotNull() {
+            addCriterion("table_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTableEqualTo(String value) {
-            addCriterion("table =", value, "table");
+        public Criteria andTableNameEqualTo(String value) {
+            addCriterion("table_name =", value, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableNotEqualTo(String value) {
-            addCriterion("table <>", value, "table");
+        public Criteria andTableNameNotEqualTo(String value) {
+            addCriterion("table_name <>", value, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableGreaterThan(String value) {
-            addCriterion("table >", value, "table");
+        public Criteria andTableNameGreaterThan(String value) {
+            addCriterion("table_name >", value, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableGreaterThanOrEqualTo(String value) {
-            addCriterion("table >=", value, "table");
+        public Criteria andTableNameGreaterThanOrEqualTo(String value) {
+            addCriterion("table_name >=", value, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableLessThan(String value) {
-            addCriterion("table <", value, "table");
+        public Criteria andTableNameLessThan(String value) {
+            addCriterion("table_name <", value, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableLessThanOrEqualTo(String value) {
-            addCriterion("table <=", value, "table");
+        public Criteria andTableNameLessThanOrEqualTo(String value) {
+            addCriterion("table_name <=", value, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableLike(String value) {
-            addCriterion("table like", value, "table");
+        public Criteria andTableNameLike(String value) {
+            addCriterion("table_name like", value, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableNotLike(String value) {
-            addCriterion("table not like", value, "table");
+        public Criteria andTableNameNotLike(String value) {
+            addCriterion("table_name not like", value, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableIn(List<String> values) {
-            addCriterion("table in", values, "table");
+        public Criteria andTableNameIn(List<String> values) {
+            addCriterion("table_name in", values, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableNotIn(List<String> values) {
-            addCriterion("table not in", values, "table");
+        public Criteria andTableNameNotIn(List<String> values) {
+            addCriterion("table_name not in", values, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableBetween(String value1, String value2) {
-            addCriterion("table between", value1, value2, "table");
+        public Criteria andTableNameBetween(String value1, String value2) {
+            addCriterion("table_name between", value1, value2, "tableName");
             return (Criteria) this;
         }
 
-        public Criteria andTableNotBetween(String value1, String value2) {
-            addCriterion("table not between", value1, value2, "table");
+        public Criteria andTableNameNotBetween(String value1, String value2) {
+            addCriterion("table_name not between", value1, value2, "tableName");
             return (Criteria) this;
         }
     }
