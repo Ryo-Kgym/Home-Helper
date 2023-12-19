@@ -58,6 +58,10 @@
             <property name="trimStrings" value="false"/>
         </javaClientGenerator>
 
+        <table schema="public" tableName="conv_id"
+               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"
+               enableUpdateByExample="false" modelType="flat">
+        </table>
         <!--        <table schema="public" tableName="account" mapperName="DbV1AccountMapper" domainObjectName="DbV1Account"-->
         <!--               enableCountByExample="false" enableDeleteByExample="true" enableSelectByExample="false"-->
         <!--               enableUpdateByExample="false" modelType="flat">-->

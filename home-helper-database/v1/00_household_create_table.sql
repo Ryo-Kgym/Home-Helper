@@ -1,4 +1,4 @@
-create table public.id_holder (
+create table public.conv_id (
     id         varchar(26) primary key not null,
     current_id varchar(64)             not null,
     "table"    varchar(128)            not null
