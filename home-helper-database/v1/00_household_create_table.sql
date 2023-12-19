@@ -1,7 +1,8 @@
 create table public.conv_id (
-    id         varchar(26) primary key not null,
-    current_id varchar(64)             not null,
-    table_name varchar(128)            not null
+    table_name character varying(128) not null,
+    current_id character varying(64)  not null,
+    id         character varying(26)  not null,
+    primary key (table_name, current_id)
 );
 
 create table public."group" (
