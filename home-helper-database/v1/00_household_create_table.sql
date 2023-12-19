@@ -1,3 +1,9 @@
+create table public.id_holder (
+    id         varchar(26) primary key not null,
+    current_id varchar(64)             not null,
+    "table"    varchar(128)            not null
+);
+
 create table public."group" (
     group_id   varchar(64) primary key not null,
     group_name character varying(50)   not null
