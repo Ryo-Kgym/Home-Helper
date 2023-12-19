@@ -901,21 +901,14 @@ public class DbV2CreditCardDetailExample {
      * @mbg.generated
      */
     public static class Criterion {
-        private String condition;
-
+        private final String condition;
+        private final String typeHandler;
         private Object value;
-
         private Object secondValue;
-
         private boolean noValue;
-
         private boolean singleValue;
-
         private boolean betweenValue;
-
         private boolean listValue;
-
-        private String typeHandler;
 
         protected Criterion(String condition) {
             super();

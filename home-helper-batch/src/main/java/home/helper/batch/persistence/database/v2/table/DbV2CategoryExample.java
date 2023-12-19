@@ -619,7 +619,7 @@ public class DbV2CategoryExample {
      * @mbg.generated
      */
     public static class Criterion {
-        private String condition;
+        private final String condition;
 
         private Object value;
 
@@ -633,7 +633,7 @@ public class DbV2CategoryExample {
 
         private boolean listValue;
 
-        private String typeHandler;
+        private final String typeHandler;
 
         protected Criterion(String condition) {
             super();

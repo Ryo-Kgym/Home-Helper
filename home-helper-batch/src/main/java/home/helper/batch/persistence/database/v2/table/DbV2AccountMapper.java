@@ -4,9 +4,6 @@
 
 package home.helper.batch.persistence.database.v2.table;
 
-import home.helper.batch.persistence.database.v2.table.DbV2Account;
-import home.helper.batch.persistence.database.v2.table.DbV2AccountExample;
-
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
