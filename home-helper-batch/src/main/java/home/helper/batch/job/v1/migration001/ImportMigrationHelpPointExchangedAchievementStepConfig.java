@@ -12,11 +12,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
+import home.helper.batch.component.builder.CountingStepListener;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationHelpPointExchangedAchievementOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationHelpPointExchangedAchievementSaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationHelpPointExchangedAchievementMapper;
 
 @Configuration
@@ -36,19 +38,23 @@ public class ImportMigrationHelpPointExchangedAchievementStepConfig {
             <ImportMigrationHelpPointExchangedAchievementOutput, ImportMigrationHelpPointExchangedAchievementOutput>create(STEP_PREFIX + "Step")
             .reader(reader)
             .writer(writer)
+            .listener(new CountingStepListener<>())
             .build();
     }
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationHelpPointExchangedAchievementOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationHelpPointExchangedAchievementMapper.class, "selectMigrationHelpPointExchangedAchievement");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationHelpPointExchangedAchievementMapper.class, "selectMigrationHelpPointExchangedAchievement");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationHelpPointExchangedAchievementOutput> writer(
-        ImportMigrationHelpPointExchangedAchievementSaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationHelpPointExchangedAchievementOutput>()
-            .writer(saveGateway)
+        ImportMigrationHelpPointExchangedAchievementSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationHelpPointExchangedAchievementOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationHelpPointExchangedAchievementOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }

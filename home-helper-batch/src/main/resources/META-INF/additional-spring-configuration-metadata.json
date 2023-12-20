@@ -1,24 +1,64 @@
 {
   "properties": [
     {
+      "name": "spring.v1-production-datasource.url",
+      "type": "java.lang.String",
+      "description": "Description for spring.v1-production-datasource.url."
+    },
+    {
+      "name": "spring.v1-production-datasource.username",
+      "type": "java.lang.String",
+      "description": "Description for spring.v1-production-datasource.username."
+    },
+    {
+      "name": "spring.v1-production-datasource.password",
+      "type": "java.lang.String",
+      "description": "Description for spring.v1-production-datasource.password."
+    },
+    {
+      "name": "spring.v1-production-datasource.driver-class-name",
+      "type": "java.lang.String",
+      "description": "Description for spring.v1-production-datasource.driver-class-name."
+    },
+    {
       "name": "spring.v1-datasource.url",
       "type": "java.lang.String",
-      "description": "Description for spring.job-datasource.url."
+      "description": "Description for spring.v1-datasource.url."
     },
     {
       "name": "spring.v1-datasource.username",
       "type": "java.lang.String",
-      "description": "Description for spring.job-datasource.username."
+      "description": "Description for spring.v1-datasource.username."
     },
     {
       "name": "spring.v1-datasource.password",
       "type": "java.lang.String",
-      "description": "Description for spring.job-datasource.password."
+      "description": "Description for spring.v1-datasource.password."
     },
     {
       "name": "spring.v1-datasource.driver-class-name",
       "type": "java.lang.String",
-      "description": "Description for spring.job-datasource.driver-class-name."
+      "description": "Description for spring.v1-datasource.driver-class-name."
+    },
+    {
+      "name": "spring.v2-production-datasource.url",
+      "type": "java.lang.String",
+      "description": "Description for spring.v2-production-datasource.url."
+    },
+    {
+      "name": "spring.v2-production-datasource.username",
+      "type": "java.lang.String",
+      "description": "Description for spring.v2-production-datasource.username."
+    },
+    {
+      "name": "spring.v2-production-datasource.password",
+      "type": "java.lang.String",
+      "description": "Description for spring.v2-production-datasource.password."
+    },
+    {
+      "name": "spring.v2-production-datasource.driver-class-name",
+      "type": "java.lang.String",
+      "description": "Description for spring.v2-production-datasource.driver-class-name."
     }
   ]
 }

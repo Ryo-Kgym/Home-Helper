@@ -17,6 +17,12 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASS}
     driver-class-name: org.postgresql.Driver
+  # V2 本番のデータベースを保持します。
+  v2-production-datasource:
+    url: jdbc:postgresql://${PRODUCTION_V2_DB_HOST}:${PRODUCTION_V2_DB_PORT}/${PRODUCTION_V2_DB_NAME}
+    username: ${PRODUCTION_V2_DB_USER}
+    password: ${PRODUCTION_V2_DB_PASS}
+    driver-class-name: org.postgresql.Driver
 
 mybatis:
   configuration:
@@ -25,7 +31,7 @@ mybatis:
 logging:
   level:
     org:
-      springframework: INFO
+      springframework: WARN
     home:
       helper:
         batch:

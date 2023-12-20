@@ -76,7 +76,7 @@ create table household.daily_detail (
 );
 create policy daily_detail_iocome_type_policy on household.daily_detail for select using (iocome_type in ('INCOME', 'OUTCOME'));
 
-create table household.summary_category_by_group (
+create table household.summary_category (
     id            varchar(26) primary key not null,
     category_id   varchar(26)             not null references household.category (id),
     display_order integer                 not null,

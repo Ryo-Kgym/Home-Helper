@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 
 import lombok.Builder;
 
+import home.helper.batch.domain.model.id.CurrentId;
+
 @Builder
 public record ImportMigrationImportFileHistoryOutput(
     String id,
@@ -16,5 +18,9 @@ public record ImportMigrationImportFileHistoryOutput(
     LocalDateTime importDatetime,
     String importUserId,
     String groupId
-) {
+) implements CurrentId {
+    @Override
+    public String getCurrentId() {
+        return id;
+    }
 }

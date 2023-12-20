@@ -12,11 +12,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
+import home.helper.batch.component.builder.CountingStepListener;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationSummaryCategoryByGroupOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationSummaryCategoryByGroupSaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationSummaryCategoryByGroupMapper;
 
 @Configuration
@@ -36,19 +38,23 @@ public class ImportMigrationSummaryCategoryByGroupStepConfig {
             <ImportMigrationSummaryCategoryByGroupOutput, ImportMigrationSummaryCategoryByGroupOutput>create(STEP_PREFIX + "Step")
             .reader(reader)
             .writer(writer)
+            .listener(new CountingStepListener<>())
             .build();
     }
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationSummaryCategoryByGroupOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationSummaryCategoryByGroupMapper.class, "selectMigrationSummaryCategoryByGroup");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationSummaryCategoryByGroupMapper.class, "selectMigrationSummaryCategoryByGroup");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationSummaryCategoryByGroupOutput> writer(
-        ImportMigrationSummaryCategoryByGroupSaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationSummaryCategoryByGroupOutput>()
-            .writer(saveGateway)
+        ImportMigrationSummaryCategoryByGroupSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationSummaryCategoryByGroupOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationSummaryCategoryByGroupOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }

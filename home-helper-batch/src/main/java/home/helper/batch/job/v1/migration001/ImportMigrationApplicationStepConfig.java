@@ -12,11 +12,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
+import home.helper.batch.component.builder.CountingStepListener;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationApplicationOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationApplicationSaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationApplicationMapper;
 
 @Configuration
@@ -36,19 +38,23 @@ public class ImportMigrationApplicationStepConfig {
             <ImportMigrationApplicationOutput, ImportMigrationApplicationOutput>create(STEP_PREFIX + "Step")
             .reader(reader)
             .writer(writer)
+            .listener(new CountingStepListener<>())
             .build();
     }
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationApplicationOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationApplicationMapper.class, "selectMigrationApplication");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationApplicationMapper.class, "selectMigrationApplication");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationApplicationOutput> writer(
-        ImportMigrationApplicationSaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationApplicationOutput>()
-            .writer(saveGateway)
+        ImportMigrationApplicationSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationApplicationOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationApplicationOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }

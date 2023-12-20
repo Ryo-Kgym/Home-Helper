@@ -12,11 +12,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
+import home.helper.batch.component.builder.CountingStepListener;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationGroupRoleOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationGroupRoleSaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationGroupRoleMapper;
 
 @Configuration
@@ -36,19 +38,23 @@ public class ImportMigrationGroupRoleStepConfig {
             <ImportMigrationGroupRoleOutput, ImportMigrationGroupRoleOutput>create(STEP_PREFIX + "Step")
             .reader(reader)
             .writer(writer)
+            .listener(new CountingStepListener<>())
             .build();
     }
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationGroupRoleOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationGroupRoleMapper.class, "selectMigrationGroupRole");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationGroupRoleMapper.class, "selectMigrationGroupRole");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationGroupRoleOutput> writer(
-        ImportMigrationGroupRoleSaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationGroupRoleOutput>()
-            .writer(saveGateway)
+        ImportMigrationGroupRoleSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationGroupRoleOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationGroupRoleOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }

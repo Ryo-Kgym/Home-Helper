@@ -1,3 +1,10 @@
+create table public.conv_id (
+    table_name character varying(128) not null,
+    current_id character varying(64)  not null,
+    id         character varying(26)  not null,
+    primary key (table_name, current_id)
+);
+
 create table public."group" (
     group_id   varchar(64) primary key not null,
     group_name character varying(50)   not null

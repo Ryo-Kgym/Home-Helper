@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CountingStepListener;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.component.factory.TaskletBuilder;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationDestinationDeleteRepository;
@@ -25,6 +26,7 @@ public class DeleteMigrationDestinationStepConfig {
     public Step step(@Qualifier(STEP_PREFIX + "Tasklet") Tasklet tasklet) {
         return stepBuilderFactory
             .create(STEP_PREFIX + "Step", tasklet)
+            .listener(new CountingStepListener<>())
             .build();
     }
 

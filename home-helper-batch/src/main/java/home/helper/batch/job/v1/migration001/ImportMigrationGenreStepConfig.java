@@ -12,11 +12,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
+import home.helper.batch.component.builder.CountingStepListener;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationGenreOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationGenreSaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationGenreMapper;
 
 @Configuration
@@ -36,19 +38,23 @@ public class ImportMigrationGenreStepConfig {
             <ImportMigrationGenreOutput, ImportMigrationGenreOutput>create(STEP_PREFIX + "Step")
             .reader(reader)
             .writer(writer)
+            .listener(new CountingStepListener<>())
             .build();
     }
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationGenreOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationGenreMapper.class, "selectMigrationGenre");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationGenreMapper.class, "selectMigrationGenre");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationGenreOutput> writer(
-        ImportMigrationGenreSaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationGenreOutput>()
-            .writer(saveGateway)
+        ImportMigrationGenreSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationGenreOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationGenreOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }

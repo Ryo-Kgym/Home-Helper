@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 
 import lombok.Builder;
 
+import home.helper.batch.domain.model.id.CurrentId;
+
 @Builder
 public record ImportMigrationHelpPointEarnedAchievementOutput(
     String helpPointEarnedAchievementId,
@@ -15,4 +17,9 @@ public record ImportMigrationHelpPointEarnedAchievementOutput(
     LocalDateTime earnedDatetime,
     Integer earnedPoint,
     String groupId
-) {}
+) implements CurrentId {
+    @Override
+    public String getCurrentId() {
+        return helpPointEarnedAchievementId;
+    }
+}

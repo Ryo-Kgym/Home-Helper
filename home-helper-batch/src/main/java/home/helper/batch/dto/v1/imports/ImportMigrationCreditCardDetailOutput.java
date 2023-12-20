@@ -9,6 +9,8 @@ import java.time.LocalDate;
 
 import lombok.Builder;
 
+import home.helper.batch.domain.model.id.CurrentId;
+
 @Builder
 public record ImportMigrationCreditCardDetailOutput(
     String id,
@@ -21,5 +23,9 @@ public record ImportMigrationCreditCardDetailOutput(
     String groupId,
     String genreId,
     String iocomeType
-) {
+) implements CurrentId {
+    @Override
+    public String getCurrentId() {
+        return id;
+    }
 }

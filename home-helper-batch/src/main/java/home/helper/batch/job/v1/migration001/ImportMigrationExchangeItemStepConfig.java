@@ -12,11 +12,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
+import home.helper.batch.component.builder.CountingStepListener;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationExchangeItemOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationExchangeItemSaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationExchangeItemMapper;
 
 @Configuration
@@ -36,19 +38,23 @@ public class ImportMigrationExchangeItemStepConfig {
             <ImportMigrationExchangeItemOutput, ImportMigrationExchangeItemOutput>create(STEP_PREFIX + "Step")
             .reader(reader)
             .writer(writer)
+            .listener(new CountingStepListener<>())
             .build();
     }
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationExchangeItemOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationExchangeItemMapper.class, "selectMigrationExchangeItem");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationExchangeItemMapper.class, "selectMigrationExchangeItem");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationExchangeItemOutput> writer(
-        ImportMigrationExchangeItemSaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationExchangeItemOutput>()
-            .writer(saveGateway)
+        ImportMigrationExchangeItemSaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationExchangeItemOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationExchangeItemOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }

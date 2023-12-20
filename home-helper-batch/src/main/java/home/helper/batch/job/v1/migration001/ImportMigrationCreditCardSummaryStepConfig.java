@@ -12,11 +12,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CompositeItemWriterBuilder;
+import home.helper.batch.component.builder.CountingStepListener;
 import home.helper.batch.component.factory.ItemReaderFactory;
-import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
 import home.helper.batch.dto.v1.imports.ImportMigrationCreditCardSummaryOutput;
 import home.helper.batch.persistence.database.v1.imports.ImportMigrationCreditCardSummarySaveRepository;
+import home.helper.batch.persistence.database.v1.imports.RegisterConvIdRepository;
 import home.helper.batch.persistence.database.v1production.imports.SelectMigrationCreditCardSummaryMapper;
 
 @Configuration
@@ -36,19 +38,23 @@ public class ImportMigrationCreditCardSummaryStepConfig {
             <ImportMigrationCreditCardSummaryOutput, ImportMigrationCreditCardSummaryOutput>create(STEP_PREFIX + "Step")
             .reader(reader)
             .writer(writer)
+            .listener(new CountingStepListener<>())
             .build();
     }
 
     @Bean(name = STEP_PREFIX + "ItemReader")
     public ItemReader<ImportMigrationCreditCardSummaryOutput> reader() {
-        return itemReaderFactory.itemReader(SelectMigrationCreditCardSummaryMapper.class, "selectMigrationCreditCardSummary");
+        return itemReaderFactory.itemReaderV1Production(SelectMigrationCreditCardSummaryMapper.class, "selectMigrationCreditCardSummary");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
     public ItemWriter<ImportMigrationCreditCardSummaryOutput> writer(
-        ImportMigrationCreditCardSummarySaveRepository saveGateway) {
-        return new ItemWriterBuilder<ImportMigrationCreditCardSummaryOutput>()
-            .writer(saveGateway)
+        ImportMigrationCreditCardSummarySaveRepository saveGateway,
+        RegisterConvIdRepository<ImportMigrationCreditCardSummaryOutput> saveConvIdGateway
+    ) {
+        return new CompositeItemWriterBuilder<ImportMigrationCreditCardSummaryOutput>()
+            .append(saveGateway::save)
+            .append(saveConvIdGateway::save)
             .build();
     }
 }

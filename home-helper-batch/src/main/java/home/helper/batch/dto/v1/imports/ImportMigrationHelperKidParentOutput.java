@@ -6,9 +6,16 @@ package home.helper.batch.dto.v1.imports;
 
 import lombok.Builder;
 
+import home.helper.batch.domain.model.id.CurrentId;
+
 @Builder
 public record ImportMigrationHelperKidParentOutput(
     String helperKidParentId,
     String helperKidId,
     String parentUserId
-) {}
+) implements CurrentId {
+    @Override
+    public String getCurrentId() {
+        return helperKidParentId;
+    }
+}
