@@ -31,7 +31,7 @@ mybatis:
 logging:
   level:
     org:
-      springframework: INFO
+      springframework: WARN
     home:
       helper:
         batch:
