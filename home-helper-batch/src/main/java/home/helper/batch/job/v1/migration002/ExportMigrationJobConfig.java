@@ -20,10 +20,12 @@ public class ExportMigrationJobConfig {
 
     @Bean(name = JOB_PREFIX + "Job")
     public Job job(
+        Step deleteMigrationV2ProductionStep,
         Step exportMigrationPublicUserStep
     ) {
         return jobBuilderFactory.create(JOB_PREFIX + "Job")
-            .start(exportMigrationPublicUserStep)
+            .start(deleteMigrationV2ProductionStep)
+            .next(exportMigrationPublicUserStep)
             .build();
     }
 }
