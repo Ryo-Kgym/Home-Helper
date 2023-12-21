@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 import home.helper.batch.dto.v1.export.ExportPublicUserInput;
 import home.helper.batch.gateway.SaveGateway;
+import home.helper.batch.persistence.database.v2.table.DbV2User;
 import home.helper.batch.persistence.database.v2.table.DbV2UserMapper;
 
 @Repository
@@ -18,7 +19,11 @@ public class ExportMigrationPublicUserSaveRepository implements SaveGateway<Expo
 
     @Override
     public void save(ExportPublicUserInput data) {
-        System.out.println(data);
-        dbV2UserMapper.selectByPrimaryKey(data.userId());
+        dbV2UserMapper.insert(new DbV2User() {{
+            setId(data.getId());
+            setName(data.getName());
+            setDisplayOrder(data.getDisplayOrder());
+            setEmail(data.getEmail());
+        }});
     }
 }

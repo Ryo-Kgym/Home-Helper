@@ -5,11 +5,13 @@
 package home.helper.batch.dto.v1.export;
 
 import lombok.Builder;
+import lombok.Value;
 
 @Builder
-public record ExportPublicUserInput(
-    String userId,
-    String userName,
-    Integer displayOrder,
-    String email
-) {}
+@Value
+public class ExportPublicUserInput {
+    private String id;
+    private String name;
+    private Integer displayOrder;
+    private String email;
+}

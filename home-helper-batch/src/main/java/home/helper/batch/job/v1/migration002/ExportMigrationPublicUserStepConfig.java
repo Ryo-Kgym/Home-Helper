@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import lombok.RequiredArgsConstructor;
 
+import home.helper.batch.component.builder.CountingStepListener;
 import home.helper.batch.component.factory.ItemReaderFactory;
 import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
@@ -36,6 +37,7 @@ public class ExportMigrationPublicUserStepConfig {
             <ExportPublicUserInput, ExportPublicUserInput>create(STEP_PREFIX + "Step")
             .reader(reader)
             .writer(writer)
+            .listener(new CountingStepListener<>())
             .build();
     }
 
