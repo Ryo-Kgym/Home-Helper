@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="home.helper.batch.persistence.database.v1.export.ExportPublicGroupApplicationMapper">
+    <select id="fetchPublicGroupApplication"
+            resultType="home.helper.batch.dto.v1.export.ExportPublicGroupApplicationInput">
+        select
+            ciga.id,
+            cig.id as group_id,
+            cia.id as application_id
+        from
+            public.group_application ga
+                left outer join public.conv_id ciga
+                    on ciga.table_name = 'groupapplication' and ciga.current_id = ga.group_application_id
+                left outer join public.conv_id cig
+                    on cig.table_name = 'group' and cig.current_id = ga.group_id
+                left outer join public.conv_id cia
+                    on cia.table_name = 'application' and cia.current_id = ga.application_id
+    </select>
+</mapper>
