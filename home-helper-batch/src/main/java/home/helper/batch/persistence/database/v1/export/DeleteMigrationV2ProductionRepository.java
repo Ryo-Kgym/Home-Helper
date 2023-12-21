@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 import home.helper.batch.gateway.NoArgsSaveGateway;
 import home.helper.batch.persistence.database.v2.table.DbV2AccountMapper;
+import home.helper.batch.persistence.database.v2.table.DbV2AffiliationExample;
 import home.helper.batch.persistence.database.v2.table.DbV2AffiliationMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2ApplicationMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2CategoryMapper;
@@ -19,6 +20,7 @@ import home.helper.batch.persistence.database.v2.table.DbV2DepositCategoryMapper
 import home.helper.batch.persistence.database.v2.table.DbV2ExchangeItemMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2GenreMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2GroupApplicationMapper;
+import home.helper.batch.persistence.database.v2.table.DbV2GroupExample;
 import home.helper.batch.persistence.database.v2.table.DbV2GroupMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2HelpItemMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2HelpPointEarnedAchievementMapper;
@@ -54,11 +56,12 @@ public class DeleteMigrationV2ProductionRepository implements NoArgsSaveGateway 
     private final DbV2SummaryCategoryMapper dbV2SummaryCategoryByGroupMapper;
     private final DbV2CategoryMapper dbV2CategoryMapper;
     private final DbV2GenreMapper dbV2GenreMapper;
-    private final DbV2UserMapper dbV2UserMapper;
-    private final DbV2GroupMapper dbV2GroupMapper;
-    private final DbV2AffiliationMapper dbV2AffiliationMapper;
     private final DbV2ApplicationMapper dbV2ApplicationMapper;
     private final DbV2GroupApplicationMapper dbV2GroupApplicationMapper;
+
+    private final DbV2AffiliationMapper dbV2AffiliationMapper;
+    private final DbV2GroupMapper dbV2GroupMapper;
+    private final DbV2UserMapper dbV2UserMapper;
 
     @Override
     public void save() {
@@ -83,9 +86,9 @@ public class DeleteMigrationV2ProductionRepository implements NoArgsSaveGateway 
 //        dbV2GenreMapper.deleteByExample(new DbV2GenreExample());
 //        dbV2GroupApplicationMapper.deleteByExample(new DbV2GroupApplicationExample());
 //        dbV2ApplicationMapper.deleteByExample(new DbV2ApplicationExample());
-//        dbV2AffiliationMapper.deleteByExample(new DbV2AffiliationExample());
-//        dbV2GroupMapper.deleteByExample(new DbV2GroupExample());
 
+        dbV2AffiliationMapper.deleteByExample(new DbV2AffiliationExample());
+        dbV2GroupMapper.deleteByExample(new DbV2GroupExample());
         dbV2UserMapper.deleteByExample(new DbV2UserExample());
     }
 }
