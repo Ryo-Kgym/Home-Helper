@@ -5,7 +5,7 @@
 import { useUser } from "@hooks/user/useUser";
 import { useGroup } from "@hooks/group/useGroup";
 import { useDate } from "@hooks/date/useDate";
-import { useGenerateId } from "@hooks/uuid/useGenerateId";
+import { useGenerateId } from "@hooks/useGenerateId";
 import {
   useCreateDailyDetailMutation,
   useGetTransferCategoryByQuery,

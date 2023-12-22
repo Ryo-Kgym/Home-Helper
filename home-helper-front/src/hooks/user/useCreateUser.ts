@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useGenerateId } from "@hooks/uuid/useGenerateId";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { useCreateUserMutation } from "@graphql/hasura/generated/hasuraGraphql";
 
 export const useCreateUser = () => {

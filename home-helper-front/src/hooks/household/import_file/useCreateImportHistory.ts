@@ -3,7 +3,7 @@
  */
 
 import { useCreateImportFileHistoryMutation } from "@graphql/hasura/generated/hasuraGraphql";
-import { useGenerateId } from "@hooks/uuid/useGenerateId";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { useUser } from "@hooks/user/useUser";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";

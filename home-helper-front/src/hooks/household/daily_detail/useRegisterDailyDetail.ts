@@ -5,7 +5,7 @@
 import { useCreateDailyDetailMutation } from "@graphql/hasura/generated/hasuraGraphql";
 import { useDate } from "@hooks/date/useDate";
 import { useUser } from "@hooks/user/useUser";
-import { useGenerateId } from "@hooks/uuid/useGenerateId";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { useGroup } from "@hooks/group/useGroup";
 import { IocomeType } from "@domain/model/household/IocomeType";
 

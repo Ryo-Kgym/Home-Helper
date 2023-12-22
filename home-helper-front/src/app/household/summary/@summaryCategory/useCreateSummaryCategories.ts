@@ -8,7 +8,7 @@ import {
   useDeleteSummaryCategoryMutation,
 } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
-import { useGenerateId } from "@hooks/uuid/useGenerateId";
+import { useGenerateId } from "@hooks/useGenerateId";
 
 export const useCreateSummaryCategories = () => {
   const { groupId } = useGroup();

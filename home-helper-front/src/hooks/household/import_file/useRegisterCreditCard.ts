@@ -8,7 +8,7 @@ import {
   useCreateCreditCardSummaryMutation,
 } from "@graphql/hasura/generated/hasuraGraphql";
 import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
-import { useGenerateId } from "@hooks/uuid/useGenerateId";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
 

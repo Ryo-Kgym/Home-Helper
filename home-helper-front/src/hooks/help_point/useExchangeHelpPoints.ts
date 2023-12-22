@@ -5,7 +5,7 @@
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
-import { useGenerateId } from "@hooks/uuid/useGenerateId";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { ExchangeItem } from "domain/model/helper_kids/ExchangeItem";
 import { useInsertExchangedAchievementMutation } from "graphql/hasura/generated/hasuraHelperKidsGraphql";
 

@@ -6,7 +6,7 @@ import { HelpItem } from "@domain/model/helper_kids/HelpItem";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
-import { useGenerateId } from "@hooks/uuid/useGenerateId";
+import { useGenerateId } from "@hooks/useGenerateId";
 import {
   useRegisterHelpPointEarnedAchievementMutation,
   useRegisterHelpPointEarnedDetailMutation,

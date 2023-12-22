@@ -2,7 +2,7 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { useGenerateId } from "@hooks/uuid/useGenerateId";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { useGroup } from "@hooks/group/useGroup";
 import { useCreateAccountMutation } from "@graphql/hasura/generated/hasuraGraphql";
 
