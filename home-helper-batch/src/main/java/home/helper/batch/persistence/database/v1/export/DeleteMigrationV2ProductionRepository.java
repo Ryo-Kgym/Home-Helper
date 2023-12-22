@@ -87,9 +87,9 @@ public class DeleteMigrationV2ProductionRepository implements NoArgsSaveGateway 
 //        dbV2DailyDetailMapper.deleteByExample(new DbV2DailyDetailExample());
 //
         dbV2AccountMapper.deleteByExample(new DbV2AccountExample());
+        dbV2TransferCategoryMapper.deleteByExample(new DbV2TransferCategoryExample());
         dbV2SummaryCategoryByGroupMapper.deleteByExample(new DbV2SummaryCategoryExample());
         dbV2DepositCategoryMapper.deleteByExample(new DbV2DepositCategoryExample());
-        dbV2TransferCategoryMapper.deleteByExample(new DbV2TransferCategoryExample());
         dbV2CategoryMapper.deleteByExample(new DbV2CategoryExample());
         dbV2GenreMapper.deleteByExample(new DbV2GenreExample());
 
