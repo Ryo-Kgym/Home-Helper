@@ -26,7 +26,6 @@ import home.helper.batch.persistence.database.v2.table.DbV2HelpPointEarnedDetail
 import home.helper.batch.persistence.database.v2.table.DbV2HelpPointExchangedAchievementMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2HelperKidMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2HelperKidParentMapper;
-import home.helper.batch.persistence.database.v2.table.DbV2ImportFileHistoryExample;
 import home.helper.batch.persistence.database.v2.table.DbV2ImportFileHistoryMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2SummaryCategoryMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2TransferCategoryMapper;
@@ -72,8 +71,9 @@ public class DeleteMigrationV2ProductionRepository implements NoArgsSaveGateway 
 //        dbV2ExchangeItemMapper.deleteByExample(new DbV2ExchangeItemExample());
 //
 //        dbV2CreditCardDetailMapper.deleteByExample(new DbV2CreditCardDetailExample());
+
 //        dbV2CreditCardSummaryMapper.deleteByExample(new DbV2CreditCardSummaryExample());
-        dbV2ImportFileHistoryMapper.deleteByExample(new DbV2ImportFileHistoryExample());
+//        dbV2ImportFileHistoryMapper.deleteByExample(new DbV2ImportFileHistoryExample());
 
 
 //        dbV2DailyDetailMapper.deleteByExample(new DbV2DailyDetailExample());
