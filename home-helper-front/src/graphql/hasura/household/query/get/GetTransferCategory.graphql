@@ -1,17 +1,17 @@
-query GetTransferCategoryBy($groupId: uuid!) {
-  transferCategory: transferCategoryByPk(groupId: $groupId) {
+query GetTransferCategoryBy($groupId: String!) {
+  transferCategory: householdTransferCategoryByPk(groupId: $groupId) {
     id: groupId
-    incomeCategory: category {
-      categoryId
+    incomeCategory: categoryByIncomeCategoryId {
+      categoryId: id
       genre {
-        genreId
+        genreId: id
         iocomeType
       }
     }
     outcomeCategory: categoryByOutcomeCategoryId {
-      categoryId
+      categoryId: id
       genre {
-        genreId
+        genreId: id
         iocomeType
       }
     }
