@@ -9,9 +9,12 @@ import lombok.Value;
 
 @Builder
 @Value
-public class ExportPublicUserInput {
+public class ExportHouseholdGenreInput {
     private String id;
     private String name;
+    private String genreType;
+    private String iocomeType;
+    private boolean validFlag;
     private Integer displayOrder;
-    private String email;
+    private String groupId;
 }

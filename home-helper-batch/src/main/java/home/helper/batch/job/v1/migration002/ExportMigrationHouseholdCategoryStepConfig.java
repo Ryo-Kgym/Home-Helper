@@ -16,25 +16,25 @@ import home.helper.batch.component.builder.CountingStepListener;
 import home.helper.batch.component.factory.ItemReaderFactory;
 import home.helper.batch.component.factory.ItemWriterBuilder;
 import home.helper.batch.component.factory.StepBuilderFactory;
-import home.helper.batch.dto.v1.export.ExportPublicUserInput;
-import home.helper.batch.persistence.database.v1.export.ExportMigrationPublicUserSaveRepository;
-import home.helper.batch.persistence.database.v1.export.ExportPublicUserMapper;
+import home.helper.batch.dto.v1.export.ExportHouseholdCategoryInput;
+import home.helper.batch.persistence.database.v1.export.ExportHouseholdCategoryMapper;
+import home.helper.batch.persistence.database.v1.export.ExportMigrationHouseholdCategorySaveRepository;
 
 @Configuration
 @RequiredArgsConstructor
-public class ExportMigrationPublicUserStepConfig {
+public class ExportMigrationHouseholdCategoryStepConfig {
     private final StepBuilderFactory stepBuilderFactory;
     private final ItemReaderFactory itemReaderFactory;
 
-    private final String STEP_PREFIX = "exportMigrationPublicUser";
+    private final String STEP_PREFIX = "exportMigrationHouseholdCategory";
 
     @Bean(name = STEP_PREFIX + "Step")
     public Step step(
-        @Qualifier(STEP_PREFIX + "ItemReader") ItemReader<ExportPublicUserInput> reader,
-        @Qualifier(STEP_PREFIX + "ItemWriter") ItemWriter<ExportPublicUserInput> writer
+        @Qualifier(STEP_PREFIX + "ItemReader") ItemReader<ExportHouseholdCategoryInput> reader,
+        @Qualifier(STEP_PREFIX + "ItemWriter") ItemWriter<ExportHouseholdCategoryInput> writer
     ) {
         return stepBuilderFactory.
-            <ExportPublicUserInput, ExportPublicUserInput>create(STEP_PREFIX + "Step")
+            <ExportHouseholdCategoryInput, ExportHouseholdCategoryInput>create(STEP_PREFIX + "Step")
             .reader(reader)
             .writer(writer)
             .listener(new CountingStepListener<>())
@@ -42,15 +42,15 @@ public class ExportMigrationPublicUserStepConfig {
     }
 
     @Bean(name = STEP_PREFIX + "ItemReader")
-    public ItemReader<ExportPublicUserInput> reader() {
-        return itemReaderFactory.itemReaderV1(ExportPublicUserMapper.class, "fetchPublicUser");
+    public ItemReader<ExportHouseholdCategoryInput> reader() {
+        return itemReaderFactory.itemReaderV1(ExportHouseholdCategoryMapper.class, "fetchHouseholdCategory");
     }
 
     @Bean(name = STEP_PREFIX + "ItemWriter")
-    public ItemWriter<ExportPublicUserInput> writer(
-        ExportMigrationPublicUserSaveRepository saveGateway
+    public ItemWriter<ExportHouseholdCategoryInput> writer(
+        ExportMigrationHouseholdCategorySaveRepository saveGateway
     ) {
-        return new ItemWriterBuilder<ExportPublicUserInput>()
+        return new ItemWriterBuilder<ExportHouseholdCategoryInput>()
             .writer(saveGateway)
             .build();
     }

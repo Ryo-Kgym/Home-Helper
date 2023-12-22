@@ -33,7 +33,7 @@ public class StepBuilderFactory {
     public <I, O> SimpleStepBuilder<I, O> create(String stepName) {
         return new StepBuilder(stepName, myJobRepository)
             .allowStartIfComplete(true)
-            .chunk(100, jobTransactionManager)
+            .chunk(300, jobTransactionManager)
             ;
     }
 

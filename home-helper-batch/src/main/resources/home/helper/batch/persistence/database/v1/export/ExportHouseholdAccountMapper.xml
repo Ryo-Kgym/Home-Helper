@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="home.helper.batch.persistence.database.v1.export.ExportHouseholdAccountMapper">
+    <select id="fetchHouseholdAccount"
+            resultType="home.helper.batch.dto.v1.export.ExportHouseholdAccountInput">
+        select
+            cia.id         as id,
+            c.account_name as name,
+            c.valid_flag,
+            c.display_order,
+            cigr.id        as group_id
+        from
+            public.account c
+                left outer join public.conv_id cia
+                    on cia.table_name = 'account' and cia.current_id = c.account_id
+                left outer join public.conv_id cigr
+                    on cigr.table_name = 'group' and cigr.current_id = c.group_id
+    </select>
+</mapper>

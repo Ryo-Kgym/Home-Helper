@@ -9,9 +9,9 @@ import lombok.Value;
 
 @Builder
 @Value
-public class ExportPublicUserInput {
+public class ExportPublicApplicationInput {
     private String id;
     private String name;
-    private Integer displayOrder;
-    private String email;
+    private boolean validFlag;
+    private String topUrl;
 }
