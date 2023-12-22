@@ -25,7 +25,8 @@ public class ExportMigrationJobConfig {
         Step exportMigrationPublicGroupStep,
         Step exportMigrationPublicAffiliationStep,
         Step exportMigrationPublicApplicationStep,
-        Step exportMigrationPublicGroupApplicationStep
+        Step exportMigrationPublicGroupApplicationStep,
+        Step exportMigrationHouseholdGenreStep
     ) {
         return jobBuilderFactory.create(JOB_PREFIX + "Job")
             .start(deleteMigrationV2ProductionStep)
@@ -34,6 +35,7 @@ public class ExportMigrationJobConfig {
             .next(exportMigrationPublicAffiliationStep)
             .next(exportMigrationPublicApplicationStep)
             .next(exportMigrationPublicGroupApplicationStep)
+            .next(exportMigrationHouseholdGenreStep)
             .build();
     }
 }

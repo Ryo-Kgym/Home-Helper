@@ -8,17 +8,21 @@ import org.springframework.stereotype.Repository;
 import lombok.RequiredArgsConstructor;
 
 import home.helper.batch.gateway.NoArgsSaveGateway;
+import home.helper.batch.persistence.database.v2.table.DbV2AccountExample;
 import home.helper.batch.persistence.database.v2.table.DbV2AccountMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2AffiliationExample;
 import home.helper.batch.persistence.database.v2.table.DbV2AffiliationMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2ApplicationExample;
 import home.helper.batch.persistence.database.v2.table.DbV2ApplicationMapper;
+import home.helper.batch.persistence.database.v2.table.DbV2CategoryExample;
 import home.helper.batch.persistence.database.v2.table.DbV2CategoryMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2CreditCardDetailMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2CreditCardSummaryMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2DailyDetailMapper;
+import home.helper.batch.persistence.database.v2.table.DbV2DepositCategoryExample;
 import home.helper.batch.persistence.database.v2.table.DbV2DepositCategoryMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2ExchangeItemMapper;
+import home.helper.batch.persistence.database.v2.table.DbV2GenreExample;
 import home.helper.batch.persistence.database.v2.table.DbV2GenreMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2GroupApplicationExample;
 import home.helper.batch.persistence.database.v2.table.DbV2GroupApplicationMapper;
@@ -31,7 +35,9 @@ import home.helper.batch.persistence.database.v2.table.DbV2HelpPointExchangedAch
 import home.helper.batch.persistence.database.v2.table.DbV2HelperKidMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2HelperKidParentMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2ImportFileHistoryMapper;
+import home.helper.batch.persistence.database.v2.table.DbV2SummaryCategoryExample;
 import home.helper.batch.persistence.database.v2.table.DbV2SummaryCategoryMapper;
+import home.helper.batch.persistence.database.v2.table.DbV2TransferCategoryExample;
 import home.helper.batch.persistence.database.v2.table.DbV2TransferCategoryMapper;
 import home.helper.batch.persistence.database.v2.table.DbV2UserExample;
 import home.helper.batch.persistence.database.v2.table.DbV2UserMapper;
@@ -80,12 +86,12 @@ public class DeleteMigrationV2ProductionRepository implements NoArgsSaveGateway 
 //        dbV2ImportFileHistoryMapper.deleteByExample(new DbV2ImportFileHistoryExample());
 //        dbV2DailyDetailMapper.deleteByExample(new DbV2DailyDetailExample());
 //
-//        dbV2AccountMapper.deleteByExample(new DbV2AccountExample());
-//        dbV2SummaryCategoryByGroupMapper.deleteByExample(new DbV2SummaryCategoryExample());
-//        dbV2DepositCategoryMapper.deleteByExample(new DbV2DepositCategoryExample());
-//        dbV2TransferCategoryMapper.deleteByExample(new DbV2TransferCategoryExample());
-//        dbV2CategoryMapper.deleteByExample(new DbV2CategoryExample());
-//        dbV2GenreMapper.deleteByExample(new DbV2GenreExample());
+        dbV2AccountMapper.deleteByExample(new DbV2AccountExample());
+        dbV2SummaryCategoryByGroupMapper.deleteByExample(new DbV2SummaryCategoryExample());
+        dbV2DepositCategoryMapper.deleteByExample(new DbV2DepositCategoryExample());
+        dbV2TransferCategoryMapper.deleteByExample(new DbV2TransferCategoryExample());
+        dbV2CategoryMapper.deleteByExample(new DbV2CategoryExample());
+        dbV2GenreMapper.deleteByExample(new DbV2GenreExample());
 
         dbV2GroupApplicationMapper.deleteByExample(new DbV2GroupApplicationExample());
         dbV2ApplicationMapper.deleteByExample(new DbV2ApplicationExample());
