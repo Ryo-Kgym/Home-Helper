@@ -8,11 +8,11 @@ import {
   useDeleteSummaryCategoryMutation,
 } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
-import { useUuid } from "@hooks/uuid/useUuid";
+import { useGenerateId } from "@hooks/uuid/useGenerateId";
 
 export const useCreateSummaryCategories = () => {
   const { groupId } = useGroup();
-  const { get } = useUuid();
+  const { generate } = useGenerateId();
   const [, deleteMutation] = useDeleteSummaryCategoryMutation();
   const [, createMutation] = useCreateSummaryCategoryMutation();
 
@@ -27,7 +27,7 @@ export const useCreateSummaryCategories = () => {
     selectedCategories.map(
       async (item, idx) =>
         await createMutation({
-          id: get(),
+          id: generate(),
           groupId,
           categoryId: item.value,
           displayOrder: idx,

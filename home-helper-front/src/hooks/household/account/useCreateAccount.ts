@@ -1,4 +1,8 @@
-import { useUuid } from "@hooks/uuid/useUuid";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { useGenerateId } from "@hooks/uuid/useGenerateId";
 import { useGroup } from "@hooks/group/useGroup";
 import { useCreateAccountMutation } from "@graphql/hasura/generated/hasuraGraphql";
 
@@ -11,14 +15,14 @@ export const useCreateAccount = ({
   accountName,
   displayOrder,
 }: CreateAccountArgs) => {
-  const { get } = useUuid();
+  const { generate } = useGenerateId();
   const { groupId } = useGroup();
 
   const [, mutation] = useCreateAccountMutation();
 
   const registerAccount = () => {
     return mutation({
-      accountId: get(),
+      accountId: generate(),
       accountName,
       displayOrder,
       groupId,

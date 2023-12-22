@@ -6,7 +6,7 @@ import { HelpItem } from "@domain/model/helper_kids/HelpItem";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
-import { useUuid } from "@hooks/uuid/useUuid";
+import { useGenerateId } from "@hooks/uuid/useGenerateId";
 import {
   useRegisterHelpPointEarnedAchievementMutation,
   useRegisterHelpPointEarnedDetailMutation,
@@ -20,8 +20,8 @@ type Args = {
 export const useRegisterHelpPoints = ({ helpItemMap, totalPoint }: Args) => {
   const { groupId } = useGroup();
   const { helperKidId } = useHelperKidHolder();
-  const { get } = useUuid();
-  const helpPointEarnedAchievementId = get();
+  const { generate } = useGenerateId();
+  const helpPointEarnedAchievementId = generate();
   const { getNow } = useDate();
 
   const [, detailMutation] = useRegisterHelpPointEarnedDetailMutation();
@@ -39,7 +39,7 @@ export const useRegisterHelpPoints = ({ helpItemMap, totalPoint }: Args) => {
 
   const _registerDetail = async ({ id, point, count }: HelpItem) =>
     await detailMutation({
-      helpPointEarnedDetailId: get(),
+      helpPointEarnedDetailId: generate(),
       earnedAchievementId: helpPointEarnedAchievementId,
       helpItemId: id,
       helpItemTotalPoint: point,

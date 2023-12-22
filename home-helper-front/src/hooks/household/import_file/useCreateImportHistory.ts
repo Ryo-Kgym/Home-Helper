@@ -3,7 +3,7 @@
  */
 
 import { useCreateImportFileHistoryMutation } from "@graphql/hasura/generated/hasuraGraphql";
-import { useUuid } from "@hooks/uuid/useUuid";
+import { useGenerateId } from "@hooks/uuid/useGenerateId";
 import { useUser } from "@hooks/user/useUser";
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
@@ -16,8 +16,8 @@ export const useCreateImportHistory = ({
   fileType: FileType;
   fileName: string;
 }) => {
-  const { get } = useUuid();
-  const fileImportId = get();
+  const { generate } = useGenerateId();
+  const fileImportId = generate();
   const { userId } = useUser();
   const { groupId } = useGroup();
   const { getNow } = useDate();

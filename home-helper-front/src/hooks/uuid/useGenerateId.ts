@@ -4,6 +4,6 @@
 
 import { ulid } from "ulid";
 
-export const useUuid = () => {
-  return { get: ulid };
+export const useGenerateId = () => {
+  return { generate: ulid };
 };

@@ -5,7 +5,7 @@
 import { useUser } from "@hooks/user/useUser";
 import { useGroup } from "@hooks/group/useGroup";
 import { useDate } from "@hooks/date/useDate";
-import { useUuid } from "@hooks/uuid/useUuid";
+import { useGenerateId } from "@hooks/uuid/useGenerateId";
 import {
   useCreateDailyDetailMutation,
   useGetTransferCategoryByQuery,
@@ -28,7 +28,7 @@ export const useRegisterTransfer = ({
   const { userId } = useUser();
   const { groupId } = useGroup();
   const { convertToFull } = useDate();
-  const { get } = useUuid();
+  const { generate } = useGenerateId();
 
   const [{ data }] = useGetTransferCategoryByQuery({
     variables: {
@@ -56,7 +56,7 @@ export const useRegisterTransfer = ({
       categoryId,
       date: convertToFull(date),
       groupId,
-      id: get(),
+      id: generate(),
       memo: memo,
       userId,
     });
