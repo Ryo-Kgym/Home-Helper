@@ -1,5 +1,5 @@
-query GetSummaryCategories($groupId: uuid!) {
-  categories: summaryCategoryByGroup(
+query GetSummaryCategories($groupId: String!) {
+  categories: householdSummaryCategory(
     where: { groupId: { _eq: $groupId } }
     orderBy: { displayOrder: ASC }
   ) {
@@ -7,11 +7,11 @@ query GetSummaryCategories($groupId: uuid!) {
     groupId
     displayOrder
     category: category {
-      id: categoryId
-      name: categoryName
+      id
+      name
       genre: genre {
-        id: genreId
-        name: genreName
+        id
+        name
         type: genreType
         iocomeType
       }
