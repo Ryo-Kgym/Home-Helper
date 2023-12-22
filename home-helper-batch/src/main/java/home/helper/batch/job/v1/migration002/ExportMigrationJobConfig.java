@@ -30,7 +30,8 @@ public class ExportMigrationJobConfig {
         Step exportMigrationHouseholdCategoryStep,
         Step exportMigrationHouseholdDepositCategoryStep,
         Step exportMigrationHouseholdSummaryCategoryStep,
-        Step exportMigrationHouseholdTransferCategoryStep
+        Step exportMigrationHouseholdTransferCategoryStep,
+        Step exportMigrationHouseholdAccountStep
     ) {
         return jobBuilderFactory.create(JOB_PREFIX + "Job")
             .start(deleteMigrationV2ProductionStep)
@@ -44,6 +45,7 @@ public class ExportMigrationJobConfig {
             .next(exportMigrationHouseholdDepositCategoryStep)
             .next(exportMigrationHouseholdSummaryCategoryStep)
             .next(exportMigrationHouseholdTransferCategoryStep)
+            .next(exportMigrationHouseholdAccountStep)
             .build();
     }
 }
