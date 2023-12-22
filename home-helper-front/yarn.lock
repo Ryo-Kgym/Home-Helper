@@ -6640,6 +6640,7 @@ __metadata:
     tailwindcss: "npm:^3.3.3"
     ts-jest: "npm:^29.1.0"
     typescript: "npm:5.1.6"
+    ulid: "npm:^2.3.0"
     urql: "npm:^3.0.3"
     uuid: "npm:^9.0.0"
   languageName: unknown
@@ -11105,6 +11106,15 @@ __metadata:
   version: 0.7.33
   resolution: "ua-parser-js@npm:0.7.33"
   checksum: d58bf54c91e3e80e6e086b6215fa15266791e23e6e403039179c020129940168634a5b931f65ce70c6550b05d0d62c7c944bf7378b6b42133cd4a7ccb07f1948
+  languageName: node
+  linkType: hard
+
+"ulid@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "ulid@npm:2.3.0"
+  bin:
+    ulid: ./bin/cli.js
+  checksum: 070d237502781085e59cf3d8ece752ff96cd3a0990cf1c1be57273f4550597daeb72e9a7db8e5a320de31102509bb3321d280b54bfc44e98025e4628a9629773
   languageName: node
   linkType: hard
 
