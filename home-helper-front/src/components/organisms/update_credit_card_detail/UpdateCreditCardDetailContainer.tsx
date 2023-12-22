@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { FC, useEffect, useMemo, useState } from "react";
 import { UpdateCreditCardDetailPresenter } from "./UpdateCreditCardDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
@@ -21,7 +25,7 @@ export const UpdateCreditCardDetailContainer: FC<
 
   const [{ data }] = useGetCreditCardDetailByIdQuery({
     variables: {
-      id: id == null ? Number.MIN_VALUE : id,
+      id: id == null ? Number.MIN_VALUE.toString() : id,
     },
   });
 
@@ -52,7 +56,7 @@ export const UpdateCreditCardDetailContainer: FC<
   );
 
   const resetClickHandler = () => {
-    setIocomeType(initData.iocomeType!);
+    setIocomeType(initData.iocomeType! as IocomeType);
     setGenreId(initData.genreId);
     setCategoryId(initData.categoryId);
     setMemo(initData.memo ?? null);

@@ -5,7 +5,7 @@
 import { useCreateDailyDetailMutation } from "@graphql/hasura/generated/hasuraGraphql";
 import { useDate } from "@hooks/date/useDate";
 import { useUser } from "@hooks/user/useUser";
-import { useUuid } from "@hooks/uuid/useUuid";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { useGroup } from "@hooks/group/useGroup";
 import { IocomeType } from "@domain/model/household/IocomeType";
 
@@ -31,7 +31,7 @@ export const useRegisterDailyDetail = ({
   const { userId } = useUser();
   const { groupId } = useGroup();
   const { convertToFull } = useDate();
-  const { get } = useUuid();
+  const { generate } = useGenerateId();
 
   const [, dailyRegistrationMutation] = useCreateDailyDetailMutation();
 
@@ -43,7 +43,7 @@ export const useRegisterDailyDetail = ({
     iocomeType,
     date: convertToFull(date),
     groupId,
-    id: get(),
+    id: generate(),
     memo: memo,
     userId,
   };

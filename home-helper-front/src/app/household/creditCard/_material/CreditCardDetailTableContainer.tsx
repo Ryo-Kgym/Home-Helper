@@ -7,6 +7,7 @@ import { FormatPrice } from "@components/molecules/FormatPrice/index";
 import { useGetCreditCardDetailBySummaryIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useState } from "react";
 import { CreditCardDetailTablePresenter } from "./CreditCardDetailTablePresenter";
+import { IocomeType } from "@domain/model/household/IocomeType";
 
 type CreditCardDetailTableContainerProps = {
   creditCardSummaryId: string;
@@ -24,7 +25,7 @@ export const CreditCardDetailTableContainer = ({
   });
 
   const tableProps: TableProps[] =
-    data?.creditCardSummaryByPk?.creditCardDetail.map((detail) => ({
+    data?.creditCardSummaryByPk?.creditCardDetails.map((detail) => ({
       keyPrefix: "creditCardDetail",
       columns: [
         { value: detail.date, align: "center" },
@@ -35,7 +36,9 @@ export const CreditCardDetailTableContainer = ({
         {
           value: (
             <FormatPrice
-              iocomeType={detail.category?.genreByGenreId?.iocomeType!}
+              iocomeType={
+                detail.category?.genreByGenreId?.iocomeType! as IocomeType
+              }
               price={detail.amount}
             />
           ),

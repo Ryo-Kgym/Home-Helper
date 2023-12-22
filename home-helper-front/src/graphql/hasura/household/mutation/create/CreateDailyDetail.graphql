@@ -1,16 +1,16 @@
 mutation CreateDailyDetail(
-  $accountId: uuid!
+  $accountId: String!
   $amount: numeric!
-  $genreId: uuid!
-  $iocomeType: iocome_type!
-  $categoryId: uuid!
+  $genreId: String!
+  $iocomeType: String!
+  $categoryId: String!
   $date: date!
-  $groupId: uuid!
-  $id: uuid!
+  $groupId: String!
+  $id: String!
   $memo: String
-  $userId: uuid!
+  $userId: String!
 ) {
-  insertDailyDetail(
+  insertDailyDetail: insertHouseholdDailyDetail(
     objects: {
       id: $id
       date: $date

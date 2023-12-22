@@ -5,7 +5,7 @@
 import { useDate } from "@hooks/date/useDate";
 import { useGroup } from "@hooks/group/useGroup";
 import { useHelperKidHolder } from "@hooks/user/useHelperKidHolder";
-import { useUuid } from "@hooks/uuid/useUuid";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { ExchangeItem } from "domain/model/helper_kids/ExchangeItem";
 import { useInsertExchangedAchievementMutation } from "graphql/hasura/generated/hasuraHelperKidsGraphql";
 
@@ -16,14 +16,14 @@ type Args = {
 export const useExchangeHelpPoints = ({ exchangeItemMap }: Args) => {
   const { groupId } = useGroup();
   const { helperKidId } = useHelperKidHolder();
-  const { get } = useUuid();
+  const { generate } = useGenerateId();
   const { getNow } = useDate();
 
   const [, achievementMutation] = useInsertExchangedAchievementMutation();
 
   const _insertAchievement = async ({ id, point, count }: ExchangeItem) =>
     await achievementMutation({
-      helpPointExchangedAchievementId: get(),
+      helpPointExchangedAchievementId: generate(),
       helperKidId,
       exchangeItemId: id,
       exchangeTotalPoint: point * count,

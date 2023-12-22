@@ -1,13 +1,13 @@
 mutation CreateCreditCardSummary(
-  $accountId: uuid!
+  $accountId: String!
   $count: Int!
   $creditCard: String!
-  $groupId: uuid!
-  $id: uuid!
+  $groupId: String!
+  $id: String!
   $totalAmount: numeric!
   $withdrawalDate: date!
 ) {
-  insertCreditCardSummary(
+  insertCreditCardSummary: insertHouseholdCreditCardSummary(
     objects: {
       id: $id
       creditCard: $creditCard

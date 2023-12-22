@@ -1,15 +1,15 @@
-query GetAllCategories($groupId: uuid!) {
-  categories: category(
+query GetAllCategories($groupId: String!) {
+  categories: householdCategory(
     where: { groupId: { _eq: $groupId } }
     orderBy: [{ genre: { displayOrder: ASC } }, { displayOrder: ASC }]
   ) {
-    id: categoryId
-    categoryName
+    id
+    categoryName: name
     displayOrder
     validFlag
     genre {
-      genreId
-      genreName
+      genreId: id
+      genreName: name
     }
   }
 }

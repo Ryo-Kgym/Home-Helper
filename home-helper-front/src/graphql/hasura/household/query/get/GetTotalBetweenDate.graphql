@@ -1,7 +1,7 @@
-query GetTotalBetweenDate($fromDate: date!, $toDate: date!, $groupId: uuid!) {
-  incomeTotalByDate: dailyTotalView(
+query GetTotalBetweenDate($fromDate: date!, $toDate: date!, $groupId: String!) {
+  incomeTotalByDate: householdDailyTotalView(
     where: {
-      iocomeType: { _eq: INCOME }
+      iocomeType: { _eq: "INCOME" }
       _and: {
         groupId: { _eq: $groupId }
         _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
@@ -12,9 +12,9 @@ query GetTotalBetweenDate($fromDate: date!, $toDate: date!, $groupId: uuid!) {
     iocomeType
     total
   }
-  outcomeTotalByDate: dailyTotalView(
+  outcomeTotalByDate: householdDailyTotalView(
     where: {
-      iocomeType: { _eq: OUTCOME }
+      iocomeType: { _eq: "OUTCOME" }
       _and: {
         groupId: { _eq: $groupId }
         _and: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }

@@ -1,21 +1,21 @@
 mutation UpdateGenreById(
-  $genreId: uuid!
+  $genreId: String!
   $validFlag: Boolean!
-  $iocomeType: iocome_type!
-  $genreType: genre_type!
+  $iocomeType: String!
+  $genreType: String!
   $genreName: String!
   $displayOrder: Int!
 ) {
-  updateGenreByPk(
-    pkColumns: { genreId: $genreId }
+  updateGenreByPk: updateHouseholdGenreByPk(
+    pkColumns: { id: $genreId }
     _set: {
-      genreName: $genreName
+      name: $genreName
       genreType: $genreType
       iocomeType: $iocomeType
       validFlag: $validFlag
       displayOrder: $displayOrder
     }
   ) {
-    id: genreId
+    id
   }
 }

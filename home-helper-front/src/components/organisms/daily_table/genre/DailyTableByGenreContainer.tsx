@@ -1,9 +1,14 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { FC } from "react";
 import { TableProps } from "@components/atoms/Table";
 import { DailyTableByGenrePresenter } from "./DailyTableByGenrePresenter";
 import { useGetDailyDetailByDateGenreId } from "@hooks/household/daily_detail/useGetDailyDetailByDateGenreId";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { useDate } from "@hooks/date/useDate";
+import { IocomeType } from "@domain/model/household/IocomeType";
 
 type DailyTableByGenreContainerProps = {
   fromMonth: Date;
@@ -54,7 +59,8 @@ export const DailyTableByGenreContainer: FC<
               <FormatPrice
                 price={dailyDetail.amount!}
                 iocomeType={
-                  dailyDetail.categoryByCategoryId?.genreByGenreId?.iocomeType!
+                  dailyDetail.categoryByCategoryId?.genreByGenreId
+                    ?.iocomeType! as IocomeType
                 }
               />
             ),

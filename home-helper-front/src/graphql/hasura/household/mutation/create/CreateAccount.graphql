@@ -1,20 +1,20 @@
 mutation CreateAccount(
-  $accountId: uuid!
+  $accountId: String!
   $accountName: String!
   $displayOrder: Int!
-  $groupId: uuid!
+  $groupId: String!
 ) {
-  insertAccount(
+  insertAccount: insertHouseholdAccount(
     objects: {
-      accountId: $accountId
-      accountName: $accountName
+      id: $accountId
+      name: $accountName
       displayOrder: $displayOrder
       groupId: $groupId
       validFlag: true
     }
   ) {
     returning {
-      accountId
+      accountId: id
     }
   }
 }

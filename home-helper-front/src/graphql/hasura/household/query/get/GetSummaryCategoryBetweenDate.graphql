@@ -1,15 +1,15 @@
 query GetSummaryCategoryBetweenDate(
   $fromDate: date!
   $toDate: date!
-  $groupId: uuid!
+  $groupId: String!
 ) {
-  summaryCategoryList: summaryCategoryByGroup(
+  summaryCategoryList: householdSummaryCategory(
     orderBy: { displayOrder: ASC }
     where: { groupId: { _eq: $groupId } }
   ) {
     category {
-      name: categoryName
-      id: categoryId
+      name
+      id
       genre {
         iocomeType
       }

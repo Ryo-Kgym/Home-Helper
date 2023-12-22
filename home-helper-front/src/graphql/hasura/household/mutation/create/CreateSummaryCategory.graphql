@@ -1,10 +1,10 @@
 mutation CreateSummaryCategory(
-  $id: uuid!
+  $id: String!
   $displayOrder: Int!
-  $categoryId: uuid!
-  $groupId: uuid!
+  $categoryId: String!
+  $groupId: String!
 ) {
-  insertSummaryCategoryByGroup(
+  insertSummaryCategoryByGroup: insertHouseholdSummaryCategory(
     objects: {
       id: $id
       categoryId: $categoryId

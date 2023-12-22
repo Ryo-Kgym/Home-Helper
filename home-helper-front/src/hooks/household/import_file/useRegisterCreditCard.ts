@@ -4,11 +4,11 @@
 
 import { FileType } from "@provider/file/FileType";
 import {
-  useCreateCreditCardSummaryMutation,
   useCreateCreditCardDetailMutation,
+  useCreateCreditCardSummaryMutation,
 } from "@graphql/hasura/generated/hasuraGraphql";
 import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
-import { useUuid } from "@hooks/uuid/useUuid";
+import { useGenerateId } from "@hooks/useGenerateId";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";
 
@@ -28,7 +28,7 @@ export const useRegisterCreditCard = ({
   withdrawalDate: Date;
   loadData: LoadFileProps[];
 }) => {
-  const { get } = useUuid();
+  const { generate } = useGenerateId();
   const { userId } = useUser();
   const { groupId } = useGroup();
 
@@ -49,7 +49,7 @@ export const useRegisterCreditCard = ({
   };
 
   const detailVariableList = loadData.map((data, idx) => ({
-    id: get(),
+    id: generate(),
     date: data.date,
     genreId: data.genreId!,
     iocomeType: data.iocomeType!,

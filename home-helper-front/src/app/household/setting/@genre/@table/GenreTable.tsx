@@ -7,8 +7,14 @@ import { Table } from "@components/atoms/Table";
 import { useGetAllGenreQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 import { useGenreHolder } from "@hooks/genre/useGenreHolder";
-import { getLabel as getGenreTypeLabel } from "@domain/model/household/GenreType";
-import { getLabel as getIocomeTypeLabel } from "@domain/model/household/IocomeType";
+import {
+  GenreType,
+  getLabel as getGenreTypeLabel,
+} from "@domain/model/household/GenreType";
+import {
+  getLabel as getIocomeTypeLabel,
+  IocomeType,
+} from "@domain/model/household/IocomeType";
 import { ValidityStatus } from "@components/atoms";
 
 export const GenreTable = () => {
@@ -45,10 +51,13 @@ export const GenreTable = () => {
             columns: [
               { value: genreName },
               {
-                value: getGenreTypeLabel(genreType),
+                value: getGenreTypeLabel(genreType as GenreType),
                 align: "center",
               },
-              { value: getIocomeTypeLabel(iocomeType), align: "center" },
+              {
+                value: getIocomeTypeLabel(iocomeType as IocomeType),
+                align: "center",
+              },
               {
                 value: <ValidityStatus value={validFlag ?? true} />,
                 align: "center",

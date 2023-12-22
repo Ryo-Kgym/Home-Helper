@@ -5,7 +5,7 @@
 import { useUser } from "@hooks/user/useUser";
 import { useGroup } from "@hooks/group/useGroup";
 import { useDate } from "@hooks/date/useDate";
-import { useUuid } from "@hooks/uuid/useUuid";
+import { useGenerateId } from "@hooks/useGenerateId";
 import {
   useCreateDailyDetailMutation,
   useGetTransferCategoryByQuery,
@@ -28,7 +28,7 @@ export const useRegisterTransfer = ({
   const { userId } = useUser();
   const { groupId } = useGroup();
   const { convertToFull } = useDate();
-  const { get } = useUuid();
+  const { generate } = useGenerateId();
 
   const [{ data }] = useGetTransferCategoryByQuery({
     variables: {
@@ -56,7 +56,7 @@ export const useRegisterTransfer = ({
       categoryId,
       date: convertToFull(date),
       groupId,
-      id: get(),
+      id: generate(),
       memo: memo,
       userId,
     });
@@ -65,15 +65,17 @@ export const useRegisterTransfer = ({
     try {
       await _registerDaily({
         accountId: sendAccountId,
-        genreId: data?.transferCategory?.outcomeCategory.genre.genreId,
-        iocomeType: data?.transferCategory?.outcomeCategory.genre.iocomeType,
-        categoryId: data?.transferCategory?.outcomeCategory.categoryId,
+        genreId: data?.transferCategory?.outcomeCategory.genre.genreId!,
+        iocomeType: data?.transferCategory?.outcomeCategory.genre
+          .iocomeType as IocomeType,
+        categoryId: data?.transferCategory?.outcomeCategory.categoryId!,
       });
       await _registerDaily({
         accountId: receiveAccountId,
-        genreId: data?.transferCategory?.incomeCategory.genre.genreId,
-        iocomeType: data?.transferCategory?.incomeCategory.genre.iocomeType,
-        categoryId: data?.transferCategory?.incomeCategory.categoryId,
+        genreId: data?.transferCategory?.incomeCategory.genre.genreId!,
+        iocomeType: data?.transferCategory?.incomeCategory.genre
+          .iocomeType as IocomeType,
+        categoryId: data?.transferCategory?.incomeCategory.categoryId!,
       });
     } catch (e) {
       throw e;

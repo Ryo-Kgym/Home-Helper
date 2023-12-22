@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { useGetDailyDetailByDateAccountIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useGroup } from "@hooks/group/useGroup";
@@ -6,7 +10,7 @@ import { DailyDetail } from "@domain/model/household/DailyDetail";
 export const useGetDailyDetailByDateAccountId = (
   accountId: string,
   fromDate: Date | null,
-  toDate: Date | null
+  toDate: Date | null,
 ) => {
   const { groupId } = useGroup();
 
@@ -23,7 +27,7 @@ export const useGetDailyDetailByDateAccountId = (
     ?.filter(
       (c) =>
         c!.categoryByCategoryId!.genreByGenreId!.iocomeType ===
-        IocomeType.Income
+        IocomeType.Income,
     )
     .reduce((a, b) => a + Number(b!.amount!), 0);
 
@@ -31,7 +35,7 @@ export const useGetDailyDetailByDateAccountId = (
     ?.filter(
       (c) =>
         c!.categoryByCategoryId!.genreByGenreId!.iocomeType ===
-        IocomeType.Outcome
+        IocomeType.Outcome,
     )
     .reduce((a, b) => a + Number(b!.amount!), 0);
 
@@ -43,7 +47,8 @@ export const useGetDailyDetailByDateAccountId = (
       date: new Date(dailyDetail?.date),
       amount: Number(dailyDetail?.amount) ?? "",
       iocomeType:
-        dailyDetail?.categoryByCategoryId?.genreByGenreId?.iocomeType ?? null,
+        (dailyDetail?.categoryByCategoryId?.genreByGenreId
+          ?.iocomeType as IocomeType) ?? null,
       genreId:
         dailyDetail?.categoryByCategoryId?.genreByGenreId?.genreId ?? null,
       categoryId: dailyDetail?.categoryByCategoryId?.categoryId ?? null,

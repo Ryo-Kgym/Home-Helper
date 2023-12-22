@@ -1,4 +1,8 @@
-query GetDailyDetailByDate($fromDate: date!, $toDate: date!, $groupId: uuid!) {
+query GetDailyDetailByDate(
+  $fromDate: date!
+  $toDate: date!
+  $groupId: String!
+) {
   dailyDetailByDateList: dailyDetailByDate(
     args: { from_date: $fromDate, to_date: $toDate, group_id: $groupId }
   ) {
@@ -7,22 +11,22 @@ query GetDailyDetailByDate($fromDate: date!, $toDate: date!, $groupId: uuid!) {
     amount
     memo
     categoryByCategoryId: category {
-      categoryId
-      categoryName
+      categoryId: id
+      categoryName: name
       genreByGenreId: genre {
-        genreId
-        genreName
+        genreId: id
+        genreName: name
         genreType
         iocomeType
       }
     }
     accountByAccountId: account {
-      accountId
-      accountName
+      accountId: id
+      accountName: name
     }
     userByUserId: user {
-      userId
-      userName
+      userId: id
+      userName: name
     }
   }
 }
