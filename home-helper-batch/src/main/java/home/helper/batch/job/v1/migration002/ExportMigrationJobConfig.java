@@ -31,21 +31,23 @@ public class ExportMigrationJobConfig {
         Step exportMigrationHouseholdDepositCategoryStep,
         Step exportMigrationHouseholdSummaryCategoryStep,
         Step exportMigrationHouseholdTransferCategoryStep,
-        Step exportMigrationHouseholdAccountStep
+        Step exportMigrationHouseholdAccountStep,
+        Step exportMigrationHouseholdDailyDetailStep
     ) {
         return jobBuilderFactory.create(JOB_PREFIX + "Job")
             .start(deleteMigrationV2ProductionStep)
-            .next(exportMigrationPublicUserStep)
-            .next(exportMigrationPublicGroupStep)
-            .next(exportMigrationPublicAffiliationStep)
-            .next(exportMigrationPublicApplicationStep)
-            .next(exportMigrationPublicGroupApplicationStep)
-            .next(exportMigrationHouseholdGenreStep)
-            .next(exportMigrationHouseholdCategoryStep)
-            .next(exportMigrationHouseholdDepositCategoryStep)
-            .next(exportMigrationHouseholdSummaryCategoryStep)
-            .next(exportMigrationHouseholdTransferCategoryStep)
-            .next(exportMigrationHouseholdAccountStep)
+//            .next(exportMigrationPublicUserStep)
+//            .next(exportMigrationPublicGroupStep)
+//            .next(exportMigrationPublicAffiliationStep)
+//            .next(exportMigrationPublicApplicationStep)
+//            .next(exportMigrationPublicGroupApplicationStep)
+//            .next(exportMigrationHouseholdGenreStep)
+//            .next(exportMigrationHouseholdCategoryStep)
+//            .next(exportMigrationHouseholdDepositCategoryStep)
+//            .next(exportMigrationHouseholdSummaryCategoryStep)
+//            .next(exportMigrationHouseholdTransferCategoryStep)
+//            .next(exportMigrationHouseholdAccountStep)
+//            .next(exportMigrationHouseholdDailyDetailStep)
             .build();
     }
 }
