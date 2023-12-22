@@ -1,20 +1,20 @@
 mutation CreateUser(
-    $userId: uuid!
-    $userName: String!
-    $email: String!
-    $displayOrder: Int!
+  $userId: String!
+  $userName: String!
+  $email: String!
+  $displayOrder: Int!
 ) {
-    insertUser(
-        objects: {
-            userId: $userId
-            userName: $userName
-            email: $email
-            displayOrder: $displayOrder
-        }
-    ) {
-        returning {
-            userId
-            email
-        }
+  insertUser: insertUser(
+    objects: {
+      id: $userId
+      name: $userName
+      email: $email
+      displayOrder: $displayOrder
     }
+  ) {
+    returning {
+      userId: id
+      email
+    }
+  }
 }

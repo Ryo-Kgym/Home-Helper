@@ -1,12 +1,12 @@
 mutation CreateImportFileHistory(
   $fileName: String!
   $fileType: String!
-  $groupId: uuid!
-  $id: uuid!
+  $groupId: String!
+  $id: String!
   $importDatetime: timestamp!
-  $importUserId: uuid!
+  $importUserId: String!
 ) {
-  insertImportFileHistory(
+  insertImportFileHistory: insertHouseholdImportFileHistory(
     objects: {
       id: $id
       fileType: $fileType
