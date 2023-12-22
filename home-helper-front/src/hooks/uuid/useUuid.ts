@@ -1,4 +1,9 @@
-import { v4 as uuidv4 } from "uuid";
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+import { ulid } from "ulid";
+
 export const useUuid = () => {
-  return { get: uuidv4 };
+  return { get: ulid };
 };
