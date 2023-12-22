@@ -51,7 +51,7 @@ export const useFetchSummaryCategoryAmount: InterfaceType = ({
       key: {
         categoryId: sc.category?.id!,
         categoryName: sc.category?.name!,
-        iocomeType: sc.category?.genre?.iocomeType!,
+        iocomeType: sc.category?.genre?.iocomeType! as IocomeType,
       },
       list: (
         sc.category?.daily.map((d) => ({

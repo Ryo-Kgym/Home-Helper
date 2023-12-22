@@ -40,7 +40,7 @@ export const GenreContainer = () => {
           {
             value: (
               <FormatPrice
-                iocomeType={genre?.iocomeType!}
+                iocomeType={genre?.iocomeType! as IocomeType}
                 price={genre?.total!}
               />
             ),

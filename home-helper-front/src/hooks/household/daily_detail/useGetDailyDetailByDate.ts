@@ -60,7 +60,8 @@ export const useGetDailyDetailByDate = (fromDate: Date, toDate: Date) => {
       date: new Date(dailyDetail?.date),
       amount: Number(dailyDetail?.amount) ?? "",
       iocomeType:
-        dailyDetail?.categoryByCategoryId?.genreByGenreId?.iocomeType ?? null,
+        (dailyDetail?.categoryByCategoryId?.genreByGenreId
+          ?.iocomeType as IocomeType) ?? null,
       genreId:
         dailyDetail?.categoryByCategoryId?.genreByGenreId?.genreId ?? null,
       categoryId: dailyDetail?.categoryByCategoryId?.categoryId ?? null,

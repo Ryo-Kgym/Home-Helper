@@ -65,15 +65,17 @@ export const useRegisterTransfer = ({
     try {
       await _registerDaily({
         accountId: sendAccountId,
-        genreId: data?.transferCategory?.outcomeCategory.genre.genreId,
-        iocomeType: data?.transferCategory?.outcomeCategory.genre.iocomeType,
-        categoryId: data?.transferCategory?.outcomeCategory.categoryId,
+        genreId: data?.transferCategory?.outcomeCategory.genre.genreId!,
+        iocomeType: data?.transferCategory?.outcomeCategory.genre
+          .iocomeType as IocomeType,
+        categoryId: data?.transferCategory?.outcomeCategory.categoryId!,
       });
       await _registerDaily({
         accountId: receiveAccountId,
-        genreId: data?.transferCategory?.incomeCategory.genre.genreId,
-        iocomeType: data?.transferCategory?.incomeCategory.genre.iocomeType,
-        categoryId: data?.transferCategory?.incomeCategory.categoryId,
+        genreId: data?.transferCategory?.incomeCategory.genre.genreId!,
+        iocomeType: data?.transferCategory?.incomeCategory.genre
+          .iocomeType as IocomeType,
+        categoryId: data?.transferCategory?.incomeCategory.categoryId!,
       });
     } catch (e) {
       throw e;
