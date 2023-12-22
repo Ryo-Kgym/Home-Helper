@@ -1,10 +1,13 @@
-query GetAllGenre($groupId: uuid!) @cached {
-    genre(where: {groupId: {_eq: $groupId}}, orderBy: {displayOrder: ASC}) {
-        id: genreId
-        genreName
-        genreType
-        iocomeType
-        validFlag
-        displayOrder
-    }
+query GetAllGenre($groupId: String!) @cached {
+  genre: householdGenre(
+    where: { groupId: { _eq: $groupId } }
+    orderBy: { displayOrder: ASC }
+  ) {
+    id
+    genreName: name
+    genreType
+    iocomeType
+    validFlag
+    displayOrder
+  }
 }

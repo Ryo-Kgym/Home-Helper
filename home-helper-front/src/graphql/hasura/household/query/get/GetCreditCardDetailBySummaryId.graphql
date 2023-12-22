@@ -1,17 +1,17 @@
-query GetCreditCardDetailBySummaryId($id: uuid!) {
-  creditCardSummaryByPk(id: $id) {
+query GetCreditCardDetailBySummaryId($id: String!) {
+  creditCardSummaryByPk: householdCreditCardSummaryByPk(id: $id) {
     id
-    creditCardDetail: credit_card_details(orderBy: { date: ASC }) {
+    creditCardDetails(orderBy: { date: ASC }) {
       id
       date
       memo
       amount
       category {
-        categoryId
-        categoryName
+        categoryId: id
+        categoryName: name
         genreByGenreId: genre {
-          genreId
-          genreName
+          genreId: id
+          genreName: name
           genreType
           iocomeType
         }

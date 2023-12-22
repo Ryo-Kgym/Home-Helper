@@ -1,10 +1,10 @@
-query GetCategoryById($categoryId: uuid!) {
-  category: categoryByPk(categoryId: $categoryId) {
-    categoryName
+query GetCategoryById($categoryId: String!) {
+  category: householdCategoryByPk(id: $categoryId) {
+    categoryName: name
     validFlag
     displayOrder
     genre {
-      genreId
+      genreId: id
       iocomeType
     }
   }

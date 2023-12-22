@@ -1,13 +1,13 @@
 query GetAllUsers {
-    users: user(orderBy: {displayOrder: ASC}) {
-        id: userId
-        name: userName
-        email
-        affiliation: affiliations {
-            group {
-                id: groupId
-                name: groupName
-            }
-        }
+  users: user(orderBy: { displayOrder: ASC }) {
+    id
+    name
+    email
+    affiliation: affiliations {
+      group {
+        id
+        name
+      }
     }
+  }
 }

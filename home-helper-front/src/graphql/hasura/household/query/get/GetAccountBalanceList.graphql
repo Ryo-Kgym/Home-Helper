@@ -1,7 +1,11 @@
-query GetAccountBalanceList($groupId: uuid!, $fromDate: date!, $toDate: date!) {
-  account(where: { _and: { groupId: { _eq: $groupId } } }) {
-    id: accountId
-    accountName
+query GetAccountBalanceList(
+  $groupId: String!
+  $fromDate: date!
+  $toDate: date!
+) {
+  account: householdAccount(where: { _and: { groupId: { _eq: $groupId } } }) {
+    id
+    accountName: name
     allDetailViewsAggregate(
       where: { date: { _gte: $fromDate }, _and: { date: { _lte: $toDate } } }
     ) {
