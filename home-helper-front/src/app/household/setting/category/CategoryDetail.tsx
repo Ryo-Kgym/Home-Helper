@@ -1,9 +1,10 @@
 /*
  * Copyright (c) 2023 Ryo-Kgym.
  */
+"use client";
 
 import { ReactNode, useEffect, useState } from "react";
-import { Button } from "components/ui";
+import { Button } from "@components/ui";
 import {
   useGetCategoryByIdQuery,
   useUpdateCategoryByIdMutation,

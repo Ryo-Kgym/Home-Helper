@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
+"use client";
+
 import { FC, ReactNode } from "react";
 import { TabNavigatorProps } from "@components/atoms/TabNavigator/index";
 import { CustomTabPresenter } from "@components/atoms/TabNavigator/CustomTabPresenter";

@@ -3,30 +3,26 @@
  */
 
 import { ReactNode } from "react";
-import { Tab } from "components/ui/Tabs";
+import { TabNavigator } from "@components/atoms/TabNavigator";
 
-const Layout = ({
-  genre,
-  category,
-}: {
-  genre: ReactNode;
-  category: ReactNode;
-}) => (
-  <Tab
-    defaultSelect={"genre"}
+const Layout = ({ children }: { children: ReactNode }) => (
+  <TabNavigator
+    selectValue={"genre"}
     tabPropsList={[
       {
         value: "genre",
         label: "ジャンル",
-        contents: genre,
+        url: "/household/setting/genre",
       },
       {
         value: "category",
         label: "カテゴリー",
-        contents: category,
+        url: "/household/setting/category",
       },
     ]}
-  />
+  >
+    {children}
+  </TabNavigator>
 );
 
 export default Layout;
