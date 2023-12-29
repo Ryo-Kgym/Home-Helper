@@ -2,8 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { TableProps } from "@components/atoms/Table/index";
-import { FormatPrice } from "@components/molecules/FormatPrice/index";
+import { TableProps } from "@components/atoms/Table";
+import { FormatPrice } from "@components/molecules/FormatPrice";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { GetCreditCardListQuery } from "@graphql/hasura/generated/hasuraGraphql";
 

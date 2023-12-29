@@ -2,9 +2,9 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { Modal } from "@components/atoms/Modal/index";
-import { Table, TableProps } from "@components/atoms/Table/index";
-import { UpdateCreditCardDetail } from "@components/organisms/update_credit_card_detail/index";
+import { Modal } from "@components/atoms/Modal";
+import { Table, TableProps } from "@components/atoms/Table";
+import { UpdateCreditCardDetail } from "@components/organisms/update_credit_card_detail";
 
 type CreditCardDetailTablePresenterProps = {
   tableProps: TableProps[];

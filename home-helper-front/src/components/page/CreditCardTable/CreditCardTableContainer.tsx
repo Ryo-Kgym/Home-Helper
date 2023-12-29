@@ -9,7 +9,7 @@ import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
 import { useGetCreditCardListQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
 import { useState } from "react";
-import { CreditCardDetailTable } from "./CreditCardDetailTable";
+import { CreditCardDetailTable } from "../CreditCardDetails";
 import { creditCardListConverter } from "./creditCardListConverter";
 import { CreditCardTablePresenter } from "./CreditCardTablePresenter";
 
