@@ -8,6 +8,7 @@ import { useGetCreditCardDetailBySummaryIdQuery } from "@graphql/hasura/generate
 import { useState } from "react";
 import { CreditCardDetailTablePresenter } from "./CreditCardDetailTablePresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
+import { useRouter } from "next/navigation";
 
 type CreditCardDetailTableContainerProps = {
   creditCardSummaryId: string;
@@ -17,6 +18,7 @@ export const CreditCardDetailTableContainer = ({
 }: CreditCardDetailTableContainerProps) => {
   const [isOpen, setOpened] = useState(false);
   const [detailId, setDetailId] = useState<string | null>(null);
+  const { push } = useRouter();
 
   const [{ data }] = useGetCreditCardDetailBySummaryIdQuery({
     variables: {
@@ -47,8 +49,9 @@ export const CreditCardDetailTableContainer = ({
         { value: detail.memo },
       ],
       onClick: () => {
-        setDetailId(detail.id);
-        setOpened(true);
+        // setDetailId(detail.id);
+        // setOpened(true);
+        push(`/household/creditCard/${detail.id}`);
       },
     })) ?? [];
 
