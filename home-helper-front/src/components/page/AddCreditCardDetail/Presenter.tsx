@@ -24,6 +24,7 @@ export const Presenter_ = ({
   setMemo,
   accountId,
   registerHandler,
+  registerable,
 }: {
   date: Date;
   setDate: (date: Date) => void;
@@ -37,6 +38,7 @@ export const Presenter_ = ({
   setMemo: (memo: string) => void;
   accountId: string;
   registerHandler: () => void;
+  registerable: boolean;
 }) => (
   <div className={"space-y-3"}>
     <DatePicker value={date} onChange={setDate} />
@@ -55,7 +57,11 @@ export const Presenter_ = ({
     <MemoTextArea memo={memo} setMemo={setMemo} />
 
     <div>
-      <Button colorType={"register"} onClick={registerHandler} />
+      <Button
+        colorType={"register"}
+        onClick={registerHandler}
+        disabled={!registerable}
+      />
     </div>
   </div>
 );
