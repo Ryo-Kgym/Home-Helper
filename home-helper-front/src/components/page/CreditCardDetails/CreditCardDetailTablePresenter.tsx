@@ -3,6 +3,7 @@
  */
 
 import { Table, TableProps } from "@components/atoms/Table";
+import { Button } from "@components/ui";
 
 export const CreditCardDetailTablePresenter = ({
   tableProps,
@@ -18,5 +19,8 @@ export const CreditCardDetailTablePresenter = ({
       height={"85vh"}
       defaultBottom={false}
     />
+    <div>
+      <Button colorType={"add"} onClick={() => {}} />
+    </div>
   </div>
 );

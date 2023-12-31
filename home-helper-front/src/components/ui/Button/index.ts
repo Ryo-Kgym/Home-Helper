@@ -16,6 +16,7 @@ export type ButtonColorType =
   | "default"
   | "register"
   | "update"
+  | "add"
   | "clear"
   | "reset"
   | "detail"
