@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 "use client";
 
@@ -23,6 +23,16 @@ export const CreditCardDetailTableContainer = ({
       id: creditCardSummaryId,
     },
   });
+
+  const summary = {
+    id: data?.creditCardSummary?.id ?? "",
+    creditCard: data?.creditCardSummary?.creditCard ?? "",
+    withdrawalDate:
+      new Date(data?.creditCardSummary?.withdrawalDate) ?? new Date(),
+    accountName: data?.creditCardSummary?.account.name ?? "",
+    totalAmount: data?.creditCardSummary?.totalAmount ?? 0,
+    count: data?.creditCardSummary?.creditCardDetails.length ?? 0,
+  };
 
   const tableProps: TableProps[] =
     data?.creditCardSummary?.creditCardDetails.map((detail) => ({
@@ -50,6 +60,7 @@ export const CreditCardDetailTableContainer = ({
 
   return (
     <CreditCardDetailTablePresenter
+      summary={summary}
       tableProps={tableProps}
       addHandler={() =>
         push(`/household/creditCard/${creditCardSummaryId}/add`)

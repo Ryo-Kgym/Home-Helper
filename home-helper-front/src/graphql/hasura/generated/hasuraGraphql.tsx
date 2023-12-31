@@ -1,10 +1,5 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import gql from "graphql-tag";
 import * as Urql from "urql";
-
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -7401,6 +7396,7 @@ export type GetCreditCardDetailBySummaryIdQuery = {
   creditCardSummary?: {
     __typename?: "HouseholdCreditCardSummary";
     id: string;
+    creditCard: string;
     withdrawalDate: any;
     count: number;
     totalAmount: any;
@@ -8598,6 +8594,7 @@ export const GetCreditCardDetailBySummaryIdDocument = gql`
   query GetCreditCardDetailBySummaryId($id: String!) {
     creditCardSummary: householdCreditCardSummaryByPk(id: $id) {
       id
+      creditCard
       withdrawalDate
       account {
         id
