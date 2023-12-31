@@ -1,5 +1,10 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import gql from "graphql-tag";
 import * as Urql from "urql";
+
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -2387,6 +2392,12 @@ export enum HouseholdCreditCardSummaryConstraint {
   CreditCardSummaryPkey = "credit_card_summary_pkey",
 }
 
+/** input type for incrementing numeric columns in table "household.credit_card_summary" */
+export type HouseholdCreditCardSummaryIncInput = {
+  count?: InputMaybe<Scalars["Int"]>;
+  totalAmount?: InputMaybe<Scalars["numeric"]>;
+};
+
 /** input type for inserting data into table "household.credit_card_summary" */
 export type HouseholdCreditCardSummaryInsertInput = {
   account?: InputMaybe<HouseholdAccountObjRelInsertInput>;
@@ -2483,6 +2494,11 @@ export type HouseholdCreditCardSummaryOrderBy = {
   withdrawalDate?: InputMaybe<OrderBy>;
 };
 
+/** primary key columns input for table: household.credit_card_summary */
+export type HouseholdCreditCardSummaryPkColumnsInput = {
+  id: Scalars["String"];
+};
+
 /** select columns of table "household.credit_card_summary" */
 export enum HouseholdCreditCardSummarySelectColumn {
   /** column name */
@@ -2500,6 +2516,17 @@ export enum HouseholdCreditCardSummarySelectColumn {
   /** column name */
   WithdrawalDate = "withdrawalDate",
 }
+
+/** input type for updating data in table "household.credit_card_summary" */
+export type HouseholdCreditCardSummarySetInput = {
+  accountId?: InputMaybe<Scalars["String"]>;
+  count?: InputMaybe<Scalars["Int"]>;
+  creditCard?: InputMaybe<Scalars["String"]>;
+  groupId?: InputMaybe<Scalars["String"]>;
+  id?: InputMaybe<Scalars["String"]>;
+  totalAmount?: InputMaybe<Scalars["numeric"]>;
+  withdrawalDate?: InputMaybe<Scalars["date"]>;
+};
 
 /** aggregate stddev on columns */
 export type HouseholdCreditCardSummaryStddevFields = {
@@ -2759,11 +2786,32 @@ export type HouseholdCreditCardSummaryTotalByAccountViewVarianceFields = {
   total?: Maybe<Scalars["Float"]>;
 };
 
-/** placeholder for update columns of table "household.credit_card_summary" (current role has no relevant permissions) */
+/** update columns of table "household.credit_card_summary" */
 export enum HouseholdCreditCardSummaryUpdateColumn {
-  /** placeholder (do not use) */
-  Placeholder = "_PLACEHOLDER",
+  /** column name */
+  AccountId = "accountId",
+  /** column name */
+  Count = "count",
+  /** column name */
+  CreditCard = "creditCard",
+  /** column name */
+  GroupId = "groupId",
+  /** column name */
+  Id = "id",
+  /** column name */
+  TotalAmount = "totalAmount",
+  /** column name */
+  WithdrawalDate = "withdrawalDate",
 }
+
+export type HouseholdCreditCardSummaryUpdates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<HouseholdCreditCardSummaryIncInput>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<HouseholdCreditCardSummarySetInput>;
+  /** filter the rows which have to be updated */
+  where: HouseholdCreditCardSummaryBoolExp;
+};
 
 /** aggregate varPop on columns */
 export type HouseholdCreditCardSummaryVarPopFields = {
@@ -5392,6 +5440,14 @@ export type Mutation_Root = {
   updateHouseholdCreditCardDetailMany?: Maybe<
     Array<Maybe<HouseholdCreditCardDetailMutationResponse>>
   >;
+  /** update data of the table: "household.credit_card_summary" */
+  updateHouseholdCreditCardSummary?: Maybe<HouseholdCreditCardSummaryMutationResponse>;
+  /** update single row of the table: "household.credit_card_summary" */
+  updateHouseholdCreditCardSummaryByPk?: Maybe<HouseholdCreditCardSummary>;
+  /** update multiples rows of table: "household.credit_card_summary" */
+  updateHouseholdCreditCardSummaryMany?: Maybe<
+    Array<Maybe<HouseholdCreditCardSummaryMutationResponse>>
+  >;
   /** update data of the table: "household.daily_detail" */
   updateHouseholdDailyDetail?: Maybe<HouseholdDailyDetailMutationResponse>;
   /** update single row of the table: "household.daily_detail" */
@@ -5586,6 +5642,25 @@ export type Mutation_RootUpdateHouseholdCreditCardDetailByPkArgs = {
 /** mutation root */
 export type Mutation_RootUpdateHouseholdCreditCardDetailManyArgs = {
   updates: Array<HouseholdCreditCardDetailUpdates>;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdCreditCardSummaryArgs = {
+  _inc?: InputMaybe<HouseholdCreditCardSummaryIncInput>;
+  _set?: InputMaybe<HouseholdCreditCardSummarySetInput>;
+  where: HouseholdCreditCardSummaryBoolExp;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdCreditCardSummaryByPkArgs = {
+  _inc?: InputMaybe<HouseholdCreditCardSummaryIncInput>;
+  _set?: InputMaybe<HouseholdCreditCardSummarySetInput>;
+  pkColumns: HouseholdCreditCardSummaryPkColumnsInput;
+};
+
+/** mutation root */
+export type Mutation_RootUpdateHouseholdCreditCardSummaryManyArgs = {
+  updates: Array<HouseholdCreditCardSummaryUpdates>;
 };
 
 /** mutation root */
@@ -7081,6 +7156,20 @@ export type UpdateCreditCardDetailByIdMutation = {
   } | null;
 };
 
+export type UpdateCreditCardSummaryTotalMutationVariables = Exact<{
+  id: Scalars["String"];
+  totalAmount: Scalars["numeric"];
+  count: Scalars["Int"];
+}>;
+
+export type UpdateCreditCardSummaryTotalMutation = {
+  __typename?: "mutation_root";
+  updateCreditCardSummary?: {
+    __typename?: "HouseholdCreditCardSummary";
+    id: string;
+  } | null;
+};
+
 export type UpdateDailyDetailByIdMutationVariables = Exact<{
   id: Scalars["String"];
   date: Scalars["date"];
@@ -8156,6 +8245,27 @@ export function useUpdateCreditCardDetailByIdMutation() {
     UpdateCreditCardDetailByIdMutation,
     UpdateCreditCardDetailByIdMutationVariables
   >(UpdateCreditCardDetailByIdDocument);
+}
+export const UpdateCreditCardSummaryTotalDocument = gql`
+  mutation UpdateCreditCardSummaryTotal(
+    $id: String!
+    $totalAmount: numeric!
+    $count: Int!
+  ) {
+    updateCreditCardSummary: updateHouseholdCreditCardSummaryByPk(
+      pkColumns: { id: $id }
+      _set: { totalAmount: $totalAmount, count: $count }
+    ) {
+      id
+    }
+  }
+`;
+
+export function useUpdateCreditCardSummaryTotalMutation() {
+  return Urql.useMutation<
+    UpdateCreditCardSummaryTotalMutation,
+    UpdateCreditCardSummaryTotalMutationVariables
+  >(UpdateCreditCardSummaryTotalDocument);
 }
 export const UpdateDailyDetailByIdDocument = gql`
   mutation UpdateDailyDetailById(
