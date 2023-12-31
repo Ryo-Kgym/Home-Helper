@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { UpdateCreditCardDetail } from "@components/organisms/update_credit_card_detail";
+import { EditCreditCardDetail } from "components/EditCreditCardDetail";
 import { BackModal } from "@components/ui";
 import { AddCreditCardDetail } from "@components/page/AddCreditCardDetail";
 
@@ -21,7 +21,7 @@ const Page = ({
 
   return (
     <BackModal>
-      <UpdateCreditCardDetail id={id} />
+      <EditCreditCardDetail id={id} />
     </BackModal>
   );
 };
