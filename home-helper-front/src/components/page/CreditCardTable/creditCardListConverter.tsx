@@ -7,14 +7,13 @@ import { FormatPrice } from "@components/molecules/FormatPrice";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { GetCreditCardListQuery } from "@graphql/hasura/generated/hasuraGraphql";
 
-type creditCardListConverterArgs = {
-  data: GetCreditCardListQuery | undefined;
-  setCreditCardSummaryId: (_: string) => void;
-};
 export const creditCardListConverter = ({
   data,
-  setCreditCardSummaryId,
-}: creditCardListConverterArgs): TableProps[] =>
+  showDetailPage,
+}: {
+  data: GetCreditCardListQuery | undefined;
+  showDetailPage: (_: string) => void;
+}): TableProps[] =>
   data?.allCreditCardSummariesList?.map((creditCard) => ({
     keyPrefix: "creditCard",
     columns: [
@@ -34,6 +33,6 @@ export const creditCardListConverter = ({
       },
     ],
     onClick: () => {
-      setCreditCardSummaryId(creditCard.id);
+      showDetailPage(creditCard.id);
     },
   })) ?? [];

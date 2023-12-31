@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2023 Ryo-Kgym.
  */
+"use client";
 
 import { TableProps } from "@components/atoms/Table";
 import { FormatPrice } from "@components/molecules/FormatPrice";
@@ -45,8 +46,17 @@ export const CreditCardDetailTableContainer = ({
         },
         { value: detail.memo },
       ],
-      onClick: () => push(`/household/creditCard/${detail.id}`),
+      onClick: () =>
+        push(`/household/creditCard/${creditCardSummaryId}/${detail.id}`),
     })) ?? [];
 
-  return <CreditCardDetailTablePresenter tableProps={tableProps} />;
+  return (
+    <CreditCardDetailTablePresenter
+      tableProps={tableProps}
+      addHandler={() =>
+        push(`/household/creditCard/${creditCardSummaryId}/add`)
+      }
+      backHandler={() => push(`/household/creditCard`)}
+    />
+  );
 };

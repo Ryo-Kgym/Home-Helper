@@ -5,31 +5,26 @@
 "use client";
 
 import { TableProps } from "@components/atoms/Table";
-import { ResponsiveSwitcher } from "@app/household/_layout/ResponsiveSwitcher";
 import { useGetCreditCardListQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
-import { useState } from "react";
-import { CreditCardDetailTable } from "../CreditCardDetails";
 import { creditCardListConverter } from "./creditCardListConverter";
 import { CreditCardTablePresenter } from "./CreditCardTablePresenter";
+import { useRouter } from "next/navigation";
 
 export const CreditCardTableContainer = () => {
   const { groupId } = useGroup();
-  const [creditCardSummaryId, setCreditCardSummaryId] = useState<string>("");
+  const { push } = useRouter();
 
   const [{ data }] = useGetCreditCardListQuery({ variables: { groupId } });
 
+  const showDetailPage = (summaryId: string) => {
+    push(`/household/creditCard/${summaryId}`);
+  };
+
   const tableProps: TableProps[] = creditCardListConverter({
     data,
-    setCreditCardSummaryId,
+    showDetailPage,
   });
 
-  return (
-    <ResponsiveSwitcher
-      first={<CreditCardTablePresenter tableProps={tableProps} />}
-      second={
-        <CreditCardDetailTable creditCardSummaryId={creditCardSummaryId} />
-      }
-    />
-  );
+  return <CreditCardTablePresenter tableProps={tableProps} />;
 };
