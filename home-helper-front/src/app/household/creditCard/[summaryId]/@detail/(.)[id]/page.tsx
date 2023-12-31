@@ -4,7 +4,7 @@
 
 import { UpdateCreditCardDetail } from "@components/organisms/update_credit_card_detail";
 import { BackModal } from "@components/ui";
-import { redirect } from "next/navigation";
+import { AddCreditCardDetail } from "@components/page/AddCreditCardDetail";
 
 const Page = ({
   params: { summaryId, id },
@@ -12,7 +12,11 @@ const Page = ({
   params: { summaryId: string; id: string };
 }) => {
   if (id === "add") {
-    return redirect(`/household/creditCard/${summaryId}/add`);
+    return (
+      <BackModal>
+        <AddCreditCardDetail summaryId={summaryId} />
+      </BackModal>
+    );
   }
 
   return (
