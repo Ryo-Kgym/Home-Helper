@@ -25,20 +25,18 @@ export const CreditCardDetailTableContainer = ({
   });
 
   const tableProps: TableProps[] =
-    data?.creditCardSummaryByPk?.creditCardDetails.map((detail) => ({
+    data?.creditCardSummary?.creditCardDetails.map((detail) => ({
       keyPrefix: "creditCardDetail",
       columns: [
         { value: detail.date, align: "center" },
         {
-          value: detail.category?.genreByGenreId?.genreName,
+          value: detail.category?.genre?.name,
         },
-        { value: detail.category?.categoryName },
+        { value: detail.category?.name },
         {
           value: (
             <FormatPrice
-              iocomeType={
-                detail.category?.genreByGenreId?.iocomeType! as IocomeType
-              }
+              iocomeType={detail.category?.genre?.iocomeType! as IocomeType}
               price={detail.amount}
             />
           ),

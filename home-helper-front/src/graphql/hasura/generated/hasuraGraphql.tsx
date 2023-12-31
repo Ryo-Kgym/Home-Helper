@@ -1,10 +1,5 @@
-/*
- * Copyright (c) 2023 Ryo-Kgym.
- */
-
 import gql from "graphql-tag";
 import * as Urql from "urql";
-
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -7314,9 +7309,13 @@ export type GetCreditCardDetailBySummaryIdQueryVariables = Exact<{
 
 export type GetCreditCardDetailBySummaryIdQuery = {
   __typename?: "query_root";
-  creditCardSummaryByPk?: {
+  creditCardSummary?: {
     __typename?: "HouseholdCreditCardSummary";
     id: string;
+    withdrawalDate: any;
+    count: number;
+    totalAmount: any;
+    account: { __typename?: "HouseholdAccount"; id: string; name: string };
     creditCardDetails: Array<{
       __typename?: "HouseholdCreditCardDetail";
       id: string;
@@ -7325,14 +7324,14 @@ export type GetCreditCardDetailBySummaryIdQuery = {
       amount: any;
       category: {
         __typename?: "HouseholdCategory";
-        categoryId: string;
-        categoryName: string;
-        genreByGenreId: {
+        id: string;
+        name: string;
+        genre: {
           __typename?: "HouseholdGenre";
+          id: string;
+          name: string;
           genreType: string;
           iocomeType: string;
-          genreId: string;
-          genreName: string;
         };
       };
     }>;
@@ -8487,19 +8486,26 @@ export function useGetCreditCardDetailByIdQuery(
 }
 export const GetCreditCardDetailBySummaryIdDocument = gql`
   query GetCreditCardDetailBySummaryId($id: String!) {
-    creditCardSummaryByPk: householdCreditCardSummaryByPk(id: $id) {
+    creditCardSummary: householdCreditCardSummaryByPk(id: $id) {
       id
+      withdrawalDate
+      account {
+        id
+        name
+      }
+      count
+      totalAmount
       creditCardDetails(orderBy: { date: ASC }) {
         id
         date
         memo
         amount
         category {
-          categoryId: id
-          categoryName: name
-          genreByGenreId: genre {
-            genreId: id
-            genreName: name
+          id
+          name
+          genre {
+            id
+            name
             genreType
             iocomeType
           }
