@@ -6,14 +6,8 @@ import { Table, TableProps } from "@components/atoms/Table";
 
 export const CreditCardDetailTablePresenter = ({
   tableProps,
-  opened,
-  onClose,
-  detailId,
 }: {
   tableProps: TableProps[];
-  opened: boolean;
-  onClose: () => void;
-  detailId: string | null;
 }) => (
   <div className={"grid col-span-1"}>
     <Table
@@ -24,8 +18,5 @@ export const CreditCardDetailTablePresenter = ({
       height={"85vh"}
       defaultBottom={false}
     />
-    {/*<Modal opened={opened} onClose={onClose}>*/}
-    {/*  <UpdateCreditCardDetail id={detailId} onClose={onClose} />*/}
-    {/*</Modal>*/}
   </div>
 );

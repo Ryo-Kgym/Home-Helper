@@ -5,7 +5,6 @@
 import { TableProps } from "@components/atoms/Table";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { useGetCreditCardDetailBySummaryIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
-import { useState } from "react";
 import { CreditCardDetailTablePresenter } from "./CreditCardDetailTablePresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useRouter } from "next/navigation";
@@ -16,8 +15,6 @@ type CreditCardDetailTableContainerProps = {
 export const CreditCardDetailTableContainer = ({
   creditCardSummaryId,
 }: CreditCardDetailTableContainerProps) => {
-  const [isOpen, setOpened] = useState(false);
-  const [detailId, setDetailId] = useState<string | null>(null);
   const { push } = useRouter();
 
   const [{ data }] = useGetCreditCardDetailBySummaryIdQuery({
@@ -48,21 +45,8 @@ export const CreditCardDetailTableContainer = ({
         },
         { value: detail.memo },
       ],
-      onClick: () => {
-        // setDetailId(detail.id);
-        // setOpened(true);
-        push(`/household/creditCard/${detail.id}`);
-      },
+      onClick: () => push(`/household/creditCard/${detail.id}`),
     })) ?? [];
 
-  return (
-    <CreditCardDetailTablePresenter
-      tableProps={tableProps}
-      opened={isOpen}
-      onClose={() => {
-        setOpened(false);
-      }}
-      detailId={detailId}
-    />
-  );
+  return <CreditCardDetailTablePresenter tableProps={tableProps} />;
 };
