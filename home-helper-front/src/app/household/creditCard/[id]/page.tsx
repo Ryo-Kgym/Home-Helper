@@ -3,12 +3,8 @@
  */
 "use client";
 
-import { UpdateCreditCardDetail } from "@components/organisms/update_credit_card_detail";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
-const Page = ({ params: { id } }: { params: { id: string } }) => {
-  const { back } = useRouter();
-  return <UpdateCreditCardDetail id={id} onClose={back} />;
-};
+const Page = () => redirect("/household/creditCard");
 
 export default Page;

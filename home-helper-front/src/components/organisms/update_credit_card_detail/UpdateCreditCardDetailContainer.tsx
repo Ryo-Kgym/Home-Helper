@@ -2,6 +2,8 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
+"use client";
+
 import { FC, useEffect, useMemo, useState } from "react";
 import { UpdateCreditCardDetailPresenter } from "./UpdateCreditCardDetailPresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
@@ -13,11 +15,10 @@ import { successPopup } from "@function/successPopup";
 
 type UpdateCreditCardDetailContainerProps = {
   id: string | null;
-  onClose: () => void;
 };
 export const UpdateCreditCardDetailContainer: FC<
   UpdateCreditCardDetailContainerProps
-> = ({ id, onClose }) => {
+> = ({ id }) => {
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
   const [genreId, setGenreId] = useState<string | null>(null);
   const [categoryId, setCategoryId] = useState<string | null>(null);
@@ -38,7 +39,6 @@ export const UpdateCreditCardDetailContainer: FC<
       memo: memo,
     });
     successPopup("更新しました。");
-    onClose();
   };
 
   const initData = useMemo(
