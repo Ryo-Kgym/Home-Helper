@@ -44,6 +44,7 @@ const PropMap = new Map<ButtonColorType, ButtonStyleProp>([
   ["register", { className: "m-2", size: "xl", color: "green" }],
   ["update", { className: "m-2", size: "xl", color: "indigo" }],
   ["add", { className: "m-2", size: "xl", color: "orange" }],
+  ["back", { className: "m-2", size: "xl", color: "gray" }],
   ["clear", { className: "m-2", size: "xl", color: "gray" }],
   ["reset", { className: "m-2", size: "xl", color: "gray" }],
   ["import", { className: "m-2", size: "xl", color: "blue" }],
