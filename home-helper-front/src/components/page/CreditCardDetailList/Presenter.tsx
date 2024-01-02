@@ -5,7 +5,7 @@
 import { Table, TableProps } from "@components/atoms/Table";
 import { Button } from "@components/ui";
 
-export const CreditCardDetailTablePresenter = ({
+export const Presenter_ = ({
   summary,
   tableProps,
   addHandler,

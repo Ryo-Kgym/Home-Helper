@@ -6,14 +6,14 @@
 import { TableProps } from "@components/atoms/Table";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { useGetCreditCardDetailBySummaryIdQuery } from "@graphql/hasura/generated/hasuraGraphql";
-import { CreditCardDetailTablePresenter } from "./CreditCardDetailTablePresenter";
+import { Presenter_ } from "./Presenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useRouter } from "next/navigation";
 
 type CreditCardDetailTableContainerProps = {
   creditCardSummaryId: string;
 };
-export const CreditCardDetailTableContainer = ({
+export const Container_ = ({
   creditCardSummaryId,
 }: CreditCardDetailTableContainerProps) => {
   const { push } = useRouter();
@@ -59,7 +59,7 @@ export const CreditCardDetailTableContainer = ({
     })) ?? [];
 
   return (
-    <CreditCardDetailTablePresenter
+    <Presenter_
       summary={summary}
       tableProps={tableProps}
       addHandler={() =>

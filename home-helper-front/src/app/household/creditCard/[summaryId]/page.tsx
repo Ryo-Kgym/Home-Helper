@@ -2,10 +2,10 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { CreditCardDetailTable } from "@components/page/CreditCardDetails";
+import { CreditCardDetailList } from "components/page/CreditCardDetailList";
 
 const Page = ({ params: { summaryId } }: { params: { summaryId: string } }) => (
-  <CreditCardDetailTable creditCardSummaryId={summaryId} />
+  <CreditCardDetailList creditCardSummaryId={summaryId} />
 );
 
 export default Page;
