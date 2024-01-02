@@ -6,14 +6,14 @@ import { ReactNode } from "react";
 
 const Layout = ({
   children,
-  edit,
+  modify,
 }: {
   children: ReactNode;
-  edit: ReactNode;
+  modify: ReactNode;
 }) => (
   <div>
     {children}
-    {edit}
+    {modify}
   </div>
 );
 
