@@ -3,11 +3,11 @@
  */
 
 import { BackModal } from "@components/ui";
-import { GenreDetail } from "@app/household/setting/genre/GenreDetail";
+import { GenreEdit } from "@components/page/GenreEdit";
 
 const Page = ({ params: { id } }: { params: { id: string } }) => (
   <BackModal>
-    <GenreDetail genreId={id} />
+    <GenreEdit genreId={id} />
   </BackModal>
 );
 
