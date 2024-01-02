@@ -4,8 +4,8 @@
 
 import { Table, TableProps } from "@components/atoms/Table";
 import { Modal } from "@components/atoms/Modal";
-import { SetProperties } from "components/page/FileImportSetProperties";
-import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
+import { SetProperties } from "@components/page/FileImportSetProperties";
+import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import { IocomeTotal } from "@components/molecules/Total";
 
 type FileImportTablePresenterProps = {

@@ -5,7 +5,7 @@
 import { SetPropertiesPresenter } from "@components/page/FileImportSetProperties/SetPropertiesPresenter";
 import { useState } from "react";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
+import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 
 type SetPropertiesContainerProps = {
   initialValues: LoadFileProps;
