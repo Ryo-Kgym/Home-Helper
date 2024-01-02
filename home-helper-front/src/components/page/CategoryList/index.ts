@@ -2,4 +2,4 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-export { CategoryTable as CategoryList } from "./CategoryTable";
+export { Container_ as CategoryList } from "./Container";
