@@ -4,7 +4,7 @@
 
 import { CreditCardDetailEdit } from "components/page/CreditCardDetailEdit";
 import { BackModal } from "@components/ui";
-import { AddCreditCardDetail } from "@components/page/AddCreditCardDetail";
+import { CreditCardDetailAdd } from "components/page/CreditCardDetailAdd";
 
 const Page = ({
   params: { summaryId, id },
@@ -14,7 +14,7 @@ const Page = ({
   if (id === "add") {
     return (
       <BackModal>
-        <AddCreditCardDetail summaryId={summaryId} />
+        <CreditCardDetailAdd summaryId={summaryId} />
       </BackModal>
     );
   }
