@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 "use client";
 
@@ -9,7 +9,6 @@ import {
   useGetGenreByIdQuery,
   useUpdateGenreByIdMutation,
 } from "@graphql/hasura/generated/hasuraGraphql";
-import { useGenreHolder } from "@hooks/genre/useGenreHolder";
 import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { IocomeType } from "@domain/model/household/IocomeType";
@@ -19,7 +18,7 @@ import { ValiditySegment } from "@components/molecules/CustomSegment/ValiditySeg
 import { GenreNameTextInput } from "@components/molecules/CustomTextInput";
 import { errorPopup, successPopup } from "@function/successPopup";
 
-export const GenreDetail = () => {
+export const GenreDetail = ({ genreId }: { genreId: string }) => {
   const [inputGenreName, setInputGenreName] = useState<string>("");
   const [inputGenreType, setInputGenreType] = useState<GenreType>(
     GenreType.FIXED,
@@ -28,9 +27,8 @@ export const GenreDetail = () => {
     IocomeType.Income,
   );
   const [inputIsValid, setInputIsValid] = useState<boolean>(true);
-  const [inputDisplayOrder, setInputDisplayOrder] = useState<number | "">(0);
 
-  const { genreId } = useGenreHolder();
+  const [inputDisplayOrder, setInputDisplayOrder] = useState<number | "">(0);
   const [{ data }] = useGetGenreByIdQuery({
     variables: {
       genreId,

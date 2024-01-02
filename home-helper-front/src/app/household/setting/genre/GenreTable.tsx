@@ -1,12 +1,11 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 "use client";
 
 import { Table } from "@components/atoms/Table";
 import { useGetAllGenreQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useGroup } from "@hooks/group/useGroup";
-import { useGenreHolder } from "@hooks/genre/useGenreHolder";
 import {
   GenreType,
   getLabel as getGenreTypeLabel,
@@ -16,9 +15,10 @@ import {
   IocomeType,
 } from "@domain/model/household/IocomeType";
 import { ValidityStatus } from "@components/atoms";
+import { useRouter } from "next/navigation";
 
 export const GenreTable = () => {
-  const { save } = useGenreHolder();
+  const { push } = useRouter();
   const { groupId } = useGroup();
   const [{ data, fetching }] = useGetAllGenreQuery({
     variables: {
@@ -65,7 +65,7 @@ export const GenreTable = () => {
               { value: displayOrder, align: "right" },
             ],
             onClick: () => {
-              save({ genreId });
+              push(`/household/setting/genre/edit/${genreId}`);
             },
           }),
         ) ?? []
