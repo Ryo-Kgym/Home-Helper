@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { ReactNode } from "react";
@@ -17,8 +17,13 @@ const Layout = ({ children }: { children: ReactNode }) => (
         },
         {
           value: "category",
-          label: "カテゴリー",
+          label: "カテゴリ",
           url: "/household/setting/category",
+        },
+        {
+          value: "categoryAdd",
+          label: "カテゴリ登録",
+          url: "/household/setting/category/add",
         },
       ]}
     />
