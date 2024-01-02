@@ -2,6 +2,6 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { GenreTable } from "./GenreTable";
+import { GenreList } from "@components/page/GenreList";
 
-export default GenreTable;
+export default GenreList;
