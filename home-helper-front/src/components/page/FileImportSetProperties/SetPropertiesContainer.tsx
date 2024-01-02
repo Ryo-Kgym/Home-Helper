@@ -1,4 +1,8 @@
-import { SetPropertiesPresenter } from "@components/organisms/file_import/SetProperties/SetPropertiesPresenter";
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
+import { SetPropertiesPresenter } from "@components/page/FileImportSetProperties/SetPropertiesPresenter";
 import { useState } from "react";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";

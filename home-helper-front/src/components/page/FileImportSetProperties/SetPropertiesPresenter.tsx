@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { ReactNode } from "react";
@@ -8,9 +8,9 @@ import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
 import { CategorySelect } from "@components/molecules/CustomSelect/Category";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
 import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
-import { Button } from "components/ui";
+import { Button } from "@components/ui";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { DatePicker } from "components/ui/date";
+import { DatePicker } from "@components/ui/date";
 
 type SetPropertiesPresenterProps = {
   date: Date;

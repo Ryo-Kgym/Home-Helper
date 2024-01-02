@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { Table, TableProps } from "@components/atoms/Table";
 import { Modal } from "@components/atoms/Modal";
-import { SetProperties } from "@components/organisms/file_import/SetProperties";
+import { SetProperties } from "components/page/FileImportSetProperties";
 import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
 import { IocomeTotal } from "@components/molecules/Total";
 
