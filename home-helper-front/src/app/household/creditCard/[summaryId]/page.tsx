@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { CreditCardDetailTable } from "@components/page/CreditCardDetails";
+import { CreditCardDetailList } from "components/page/CreditCardDetailList";
 
-const Page = ({ params: { summaryId } }: { params: { summaryId: string } }) => {
-  return <CreditCardDetailTable creditCardSummaryId={summaryId} />;
-};
+const Page = ({ params: { summaryId } }: { params: { summaryId: string } }) => (
+  <CreditCardDetailList creditCardSummaryId={summaryId} />
+);
 
 export default Page;

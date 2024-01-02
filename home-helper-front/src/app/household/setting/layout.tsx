@@ -1,32 +1,33 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { ReactNode } from "react";
-import { Tab } from "components/ui/Tabs";
+import { RoutingTabs } from "@components/ui";
 
-const Layout = ({
-  genre,
-  category,
-}: {
-  genre: ReactNode;
-  category: ReactNode;
-}) => (
-  <Tab
-    defaultSelect={"genre"}
-    tabPropsList={[
+const Layout = ({ children }: { children: ReactNode }) => (
+  <RoutingTabs
+    defaultValue={"genre"}
+    tabs={[
       {
         value: "genre",
         label: "ジャンル",
-        contents: genre,
+        url: "/household/setting/genre",
       },
       {
         value: "category",
-        label: "カテゴリー",
-        contents: category,
+        label: "カテゴリ",
+        url: "/household/setting/category",
+      },
+      {
+        value: "categoryAdd",
+        label: "カテゴリ登録",
+        url: "/household/setting/category/add",
       },
     ]}
-  />
+  >
+    {children}
+  </RoutingTabs>
 );
 
 export default Layout;
