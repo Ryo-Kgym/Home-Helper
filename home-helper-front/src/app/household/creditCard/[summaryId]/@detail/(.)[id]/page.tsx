@@ -2,7 +2,7 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { EditCreditCardDetail } from "components/EditCreditCardDetail";
+import { CreditCardDetailEdit } from "components/page/CreditCardDetailEdit";
 import { BackModal } from "@components/ui";
 import { AddCreditCardDetail } from "@components/page/AddCreditCardDetail";
 
@@ -21,7 +21,7 @@ const Page = ({
 
   return (
     <BackModal>
-      <EditCreditCardDetail id={id} />
+      <CreditCardDetailEdit id={id} />
     </BackModal>
   );
 };
