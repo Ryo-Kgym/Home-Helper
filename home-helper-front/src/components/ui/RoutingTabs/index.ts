@@ -1,6 +1,8 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
+
+import { ReactNode } from "react";
 
 export { MantineRoutingTabs as RoutingTabs } from "./MantineRoutingTabs";
 
@@ -11,4 +13,5 @@ export type RoutingTabsProps = {
     value: string;
     url: string;
   }[];
+  children: ReactNode | ReactNode[];
 };
