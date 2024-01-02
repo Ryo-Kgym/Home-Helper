@@ -40,7 +40,7 @@ export const CategoryContainer: FC = () => {
         {
           value: (
             <FormatPrice
-              iocomeType={category?.iocomeType!}
+              iocomeType={category?.iocomeType! as IocomeType}
               price={category?.total!}
             />
           ),

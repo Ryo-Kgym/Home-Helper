@@ -1,13 +1,13 @@
-query GetCreditCardList($groupId: uuid!) {
-  allCreditCardSummariesList: creditCardSummary(
-    where: { groupId: { _eq: $groupId}}
+query GetCreditCardList($groupId: String!) {
+  allCreditCardSummariesList: householdCreditCardSummary(
+    where: { groupId: { _eq: $groupId } }
     orderBy: { withdrawalDate: DESC }
   ) {
     id
     creditCard
     account {
-      id: accountId
-      name: accountName
+      id
+      name
     }
     count
     withdrawalDate

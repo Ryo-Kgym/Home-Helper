@@ -1,19 +1,19 @@
 mutation UpdateCategoryById(
-  $categoryId: uuid!
+  $categoryId: String!
   $categoryName: String!
-  $genreId: uuid!
+  $genreId: String!
   $displayOrder: Int!
   $validFlag: Boolean!
 ) {
-  updateCategoryByPk(
-    pkColumns: { categoryId: $categoryId }
+  updateCategoryByPk: updateHouseholdCategoryByPk(
+    pkColumns: { id: $categoryId }
     _set: {
-      categoryName: $categoryName
+      name: $categoryName
       genreId: $genreId
       displayOrder: $displayOrder
       validFlag: $validFlag
     }
   ) {
-    id: categoryId
+    id
   }
 }

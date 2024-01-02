@@ -69,11 +69,11 @@ export const GenreDetail = () => {
   }, [genreName]);
 
   useEffect(() => {
-    setInputGenreType(genreType ?? GenreType.FIXED);
+    setInputGenreType((genreType as GenreType) ?? GenreType.FIXED);
   }, [genreType]);
 
   useEffect(() => {
-    setInputIocomeType(iocomeType ?? IocomeType.Income);
+    setInputIocomeType((iocomeType as IocomeType) ?? IocomeType.Income);
   }, [iocomeType]);
 
   useEffect(() => {
@@ -86,47 +86,53 @@ export const GenreDetail = () => {
 
   return (
     <div className={"w-full p-2"}>
-      <Frame title={"ジャンル名"}>
+      <FrameDiv title={"ジャンル名"}>
         <GenreNameTextInput
           genreName={inputGenreName}
           setGenreName={setInputGenreName}
         />
-      </Frame>
-      <Frame title={"ジャンル区分"}>
+      </FrameDiv>
+      <FrameDiv title={"ジャンル区分"}>
         <GenreTypeSegment
           genreType={inputGenreType}
           setGenreType={setInputGenreType}
         />
-      </Frame>
-      <Frame title={"収支区分"}>
+      </FrameDiv>
+      <FrameDiv title={"収支区分"}>
         <IocomeTypeSegment
           iocomeType={inputIocomeType}
           setIocomeType={setInputIocomeType}
         />
-      </Frame>
-      <Frame title={"有効・無効"}>
+      </FrameDiv>
+      <FrameDiv title={"有効・無効"}>
         <ValiditySegment isValid={inputIsValid} setIsValid={setInputIsValid} />
-      </Frame>
-      <Frame title={"表示順"}>
+      </FrameDiv>
+      <FrameDiv title={"表示順"}>
         <DisplayOrderInput
           value={inputDisplayOrder}
           onChange={setInputDisplayOrder}
         />
-      </Frame>
-      <Frame title={"登録済みのカテゴリ"}>
+      </FrameDiv>
+      <FrameDiv title={"登録済みのカテゴリ"}>
         <div className={"grid grid-cols-3 text-gray-500"}>
           {categories.map((category) => (
             <div key={category?.categoryId}>{category?.categoryName}</div>
           ))}
         </div>
-      </Frame>
+      </FrameDiv>
 
       <Button onClick={updateHandler} colorType={"update"} />
     </div>
   );
 };
 
-const Frame = ({ title, children }: { title: string; children: ReactNode }) => (
+const FrameDiv = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) => (
   <div className={"bg-gray-100 p-4 my-4 rounded"}>
     <div className={"text-gray-500"}>{title}</div>
     <div className={"text-xl ml-[1em]"}>{children}</div>

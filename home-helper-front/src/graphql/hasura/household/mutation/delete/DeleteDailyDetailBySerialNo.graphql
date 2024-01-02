@@ -1,5 +1,5 @@
-mutation DeleteDailyDetailBySerialNo($id: uuid!) {
-  deleteDailyDetailByPk(id: $id) {
+mutation DeleteDailyDetailBySerialNo($id: String!) {
+  deleteDailyDetailByPk: deleteHouseholdDailyDetailByPk(id: $id) {
     id
   }
 }

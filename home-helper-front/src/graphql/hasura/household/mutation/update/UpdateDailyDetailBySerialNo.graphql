@@ -1,14 +1,14 @@
 mutation UpdateDailyDetailById(
-  $id: uuid!
+  $id: String!
   $date: date!
-  $genreId: uuid!
-  $iocomeType: iocome_type!
-  $categoryId: uuid!
-  $accountId: uuid!
+  $genreId: String!
+  $iocomeType: String!
+  $categoryId: String!
+  $accountId: String!
   $amount: numeric!
   $memo: String
 ) {
-  updateDailyDetailByPk(
+  updateDailyDetailByPk: updateHouseholdDailyDetailByPk(
     _set: {
       date: $date
       genreId: $genreId

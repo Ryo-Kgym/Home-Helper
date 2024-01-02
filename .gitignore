@@ -88,3 +88,6 @@ fabric.properties
 /.env.production
 /.idea/dataSources.xml
 /home-helper-batch/src/main/resources/mbg-config-v2.xml
+/home-helper-front/src/graphql/hasura/schema.graphql
+/home-helper-front/hasura-graphql.schema.json
+/home-helper-front/hasura-helper-kids-graphql.schema.json

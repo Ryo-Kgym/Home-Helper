@@ -52,7 +52,7 @@ export const CategoryDetail = () => {
       await mutation({
         categoryId,
         categoryName: inputCategoryName,
-        genreId: inputGenreId,
+        genreId: inputGenreId!,
         validFlag: inputIsValid,
         displayOrder: Number(inputDisplayOrder),
       });
@@ -68,7 +68,7 @@ export const CategoryDetail = () => {
   }, [categoryName]);
 
   useEffect(() => {
-    setInputIocomeType(iocomeType);
+    setInputIocomeType(iocomeType as IocomeType);
   }, [iocomeType]);
 
   useEffect(() => {

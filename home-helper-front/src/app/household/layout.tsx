@@ -4,6 +4,4 @@
 
 import { HouseholdLayout } from "./_layout/HouseholdLayout";
 
-const Layout = HouseholdLayout;
-
-export default Layout;
+export default HouseholdLayout;

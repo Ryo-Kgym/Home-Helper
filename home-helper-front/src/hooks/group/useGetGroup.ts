@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { useGetUserByEmailQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { useUser as clerkUseAuth } from "@clerk/nextjs";
 import { Group } from "@domain/model/Group";
@@ -26,8 +30,7 @@ export const useGetGroup = () => {
       group: {
         id: affiliation.group?.id as string,
         name: affiliation.group?.name! as string,
-        roleId: affiliation.groupRole?.id! as string,
-        role: affiliation.groupRole?.role! as string,
+        role: affiliation.groupRole as string,
       } as Group,
     })) ?? [];
 

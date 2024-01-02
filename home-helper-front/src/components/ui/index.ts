@@ -5,6 +5,7 @@
 export * from "./Button/index";
 export * from "./CheckableSelect";
 export * from "@components/atoms/Modal";
+export * from "./Modal/BackModal";
 export { RoutingTabs } from "@components/ui/RoutingTabs";
 export * from "./Select";
 export * from "./TransferList";

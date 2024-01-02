@@ -1,6 +1,11 @@
+/*
+ * Copyright (c) 2023 Ryo-Kgym.
+ */
+
 import { GetDailyDetailByDateQuery } from "@graphql/hasura/generated/hasuraGraphql";
 import { FormatPrice } from "@components/molecules/FormatPrice";
 import { TableProps } from "@components/atoms/Table/";
+import { IocomeType } from "@domain/model/household/IocomeType";
 
 type dailyDetailConverterArgs = {
   data: GetDailyDetailByDateQuery | undefined;
@@ -32,7 +37,8 @@ export const dailyDetailConverter = ({
               <FormatPrice
                 price={dailyDetail?.amount!}
                 iocomeType={
-                  dailyDetail?.categoryByCategoryId?.genreByGenreId?.iocomeType!
+                  dailyDetail?.categoryByCategoryId?.genreByGenreId
+                    ?.iocomeType! as IocomeType
                 }
               />
             ),

@@ -2,8 +2,6 @@
  * Copyright (c) 2023 Ryo-Kgym.
  */
 
-import { CreditCardTableContainer } from "./_material/CreditCardTableContainer";
+import { CreditCardTable } from "@components/page/CreditCardTable";
 
-const Page = () => <CreditCardTableContainer />;
-
-export default Page;
+export default CreditCardTable;

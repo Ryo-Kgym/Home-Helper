@@ -1,16 +1,16 @@
 mutation CreateCreditCardDetail(
-  $id: uuid!
+  $id: String!
   $date: date!
-  $genreId: uuid!
-  $iocomeType: iocome_type!
-  $categoryId: uuid!
+  $genreId: String!
+  $iocomeType: String!
+  $categoryId: String!
   $amount: numeric!
   $memo: String!
-  $summaryId: uuid!
-  $userId: uuid!
-  $groupId: uuid!
+  $summaryId: String!
+  $userId: String!
+  $groupId: String!
 ) {
-  insertCreditCardDetail(
+  insertCreditCardDetail: insertHouseholdCreditCardDetail(
     objects: {
       id: $id
       date: $date
