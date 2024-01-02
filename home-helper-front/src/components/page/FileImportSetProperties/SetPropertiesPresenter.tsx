@@ -80,11 +80,7 @@ export const SetPropertiesPresenter = ({
       />
     </Field>
     <Field>
-      <AmountInput
-        value={amount}
-        onChange={changeAmountHandler}
-        disabled={true}
-      />
+      <AmountInput value={amount} onChange={changeAmountHandler} />
     </Field>
     <Field>
       <MemoTextArea memo={memo} setMemo={changeMemoHandler} />
