@@ -55,7 +55,7 @@ export const CreditCardDetailTableContainer = ({
         { value: detail.memo },
       ],
       onClick: () =>
-        push(`/household/creditCard/${creditCardSummaryId}/${detail.id}`),
+        push(`/household/creditCard/${creditCardSummaryId}/edit/${detail.id}`),
     })) ?? [];
 
   return (

@@ -1,19 +1,19 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { ReactNode } from "react";
 
 const Layout = ({
   children,
-  detail,
+  modify,
 }: {
   children: ReactNode;
-  detail: ReactNode;
+  modify: ReactNode;
 }) => (
   <div>
     {children}
-    {detail}
+    {modify}
   </div>
 );
 
