@@ -1,17 +1,25 @@
 query GetCreditCardDetailBySummaryId($id: String!) {
-  creditCardSummaryByPk: householdCreditCardSummaryByPk(id: $id) {
+  creditCardSummary: householdCreditCardSummaryByPk(id: $id) {
     id
+    creditCard
+    withdrawalDate
+    account {
+      id
+      name
+    }
+    count
+    totalAmount
     creditCardDetails(orderBy: { date: ASC }) {
       id
       date
       memo
       amount
       category {
-        categoryId: id
-        categoryName: name
-        genreByGenreId: genre {
-          genreId: id
-          genreName: name
+        id
+        name
+        genre {
+          id
+          name
           genreType
           iocomeType
         }

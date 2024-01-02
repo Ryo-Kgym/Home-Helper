@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { Button } from "components/ui";
+import { Button } from "@components/ui";
 
 type FileImportPresenterProps = {
   importDisabled: boolean;

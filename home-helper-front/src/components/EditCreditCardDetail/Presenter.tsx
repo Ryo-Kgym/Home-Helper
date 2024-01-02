@@ -1,34 +1,18 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { FC, ReactNode } from "react";
+import { ReactNode } from "react";
 import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
 import { CategorySelect } from "@components/molecules/CustomSelect/Category";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { AmountInput } from "@components/molecules/CustomNumberInput/Amount";
 import { MemoTextArea } from "@components/molecules/CustomTextArea/Memo";
-import { Button } from "components/ui";
-import { DatePicker } from "components/ui/date";
+import { Button } from "@components/ui";
+import { DatePicker } from "@components/ui/date";
 
-type UpdateDailyDetailPresenterProps = {
-  date: Date | null;
-  iocomeType: IocomeType;
-  changeIocomeTypeHandler: (_: IocomeType) => void;
-  categoryId: string | null;
-  changeCategoryIdHandler: (_: string | null) => void;
-  genreId: string | null;
-  changeGenreIdHandler: (_: string | null) => void;
-  amount: number | "";
-  memo: string;
-  changeMemoHandler: (_: string) => void;
-  resetClickHandler: () => void;
-  updateClickHandler: () => void;
-};
-export const UpdateCreditCardDetailPresenter: FC<
-  UpdateDailyDetailPresenterProps
-> = ({
+export const Presenter_ = ({
   date,
   iocomeType,
   changeIocomeTypeHandler,
@@ -41,6 +25,19 @@ export const UpdateCreditCardDetailPresenter: FC<
   changeMemoHandler,
   resetClickHandler,
   updateClickHandler,
+}: {
+  date: Date | null;
+  iocomeType: IocomeType;
+  changeIocomeTypeHandler: (_: IocomeType) => void;
+  categoryId: string | null;
+  changeCategoryIdHandler: (_: string | null) => void;
+  genreId: string | null;
+  changeGenreIdHandler: (_: string | null) => void;
+  amount: number | "";
+  memo: string;
+  changeMemoHandler: (_: string) => void;
+  resetClickHandler: () => void;
+  updateClickHandler: () => void;
 }) => (
   <div className={"grid grid-cols-1 w-full"}>
     <Field>

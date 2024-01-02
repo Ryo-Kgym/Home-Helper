@@ -1,20 +1,20 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 "use client";
 
 import { TableProps } from "@components/atoms/Table";
 import { FormatPrice } from "@components/molecules/FormatPrice";
-import { FileImportButtonsPresenter } from "@components/organisms/file_import/FileImportButtonsPresenter";
-import { FileImportTablePresenter } from "@components/organisms/file_import/FileImportTablePresenter";
+import { FileImportButtonsPresenter } from "@components/page/FileImport/FileImportButtonsPresenter";
+import { FileImportTablePresenter } from "@components/page/FileImport/FileImportTablePresenter";
 import {
   calcTotalPrice,
   LoadFileProps,
   loadUploadFile,
-} from "@components/organisms/file_import/loadUploadFile";
+} from "@components/page/FileImport/loadUploadFile";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { successPopup, errorPopup } from "@function/successPopup";
+import { successPopup } from "@function/successPopup";
 import { useCreateImportFile } from "@hooks/household/import_file/useCreateImportFile";
 import { FileType } from "@provider/file/FileType";
 import { useState } from "react";

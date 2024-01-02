@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { useCreateDailyDetailMutation } from "@graphql/hasura/generated/hasuraGraphql";
-import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
+import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import { useGenerateId } from "@hooks/useGenerateId";
 import { useGroup } from "@hooks/group/useGroup";
 import { useUser } from "@hooks/user/useUser";

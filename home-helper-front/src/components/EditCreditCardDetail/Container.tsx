@@ -1,9 +1,11 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { FC, useEffect, useMemo, useState } from "react";
-import { UpdateCreditCardDetailPresenter } from "./UpdateCreditCardDetailPresenter";
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { Presenter_ } from "./Presenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import {
   useGetCreditCardDetailByIdQuery,
@@ -11,13 +13,7 @@ import {
 } from "@graphql/hasura/generated/hasuraGraphql";
 import { successPopup } from "@function/successPopup";
 
-type UpdateCreditCardDetailContainerProps = {
-  id: string | null;
-  onClose: () => void;
-};
-export const UpdateCreditCardDetailContainer: FC<
-  UpdateCreditCardDetailContainerProps
-> = ({ id, onClose }) => {
+export const Container_ = ({ id }: { id: string | null }) => {
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
   const [genreId, setGenreId] = useState<string | null>(null);
   const [categoryId, setCategoryId] = useState<string | null>(null);
@@ -38,7 +34,6 @@ export const UpdateCreditCardDetailContainer: FC<
       memo: memo,
     });
     successPopup("更新しました。");
-    onClose();
   };
 
   const initData = useMemo(
@@ -67,7 +62,7 @@ export const UpdateCreditCardDetailContainer: FC<
   if (data == null) return <div>No Data</div>;
 
   return (
-    <UpdateCreditCardDetailPresenter
+    <Presenter_
       date={initData.date}
       iocomeType={iocomeType}
       changeIocomeTypeHandler={(value: IocomeType) => {

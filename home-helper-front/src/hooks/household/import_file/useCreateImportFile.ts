@@ -1,12 +1,13 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { LoadFileProps } from "@components/organisms/file_import/loadUploadFile";
+import { LoadFileProps } from "@components/page/FileImport/loadUploadFile";
 import { useRegisterCreditCard } from "@hooks/household/import_file/useRegisterCreditCard";
 import { useRegisterDailyDetails } from "@hooks/household/import_file/useRegisterDailyDetails";
 import { FileType } from "@provider/file/FileType";
 import { useCreateImportHistory } from "@hooks/household/import_file/useCreateImportHistory";
+
 export const useCreateImportFile = ({
   fileType,
   fileName,
