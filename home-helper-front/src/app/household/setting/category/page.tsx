@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { ResponsiveSwitcher } from "../../_layout/ResponsiveSwitcher";
-import { CategoryTable } from "./CategoryTable";
-import { CategoryDetail } from "./CategoryDetail";
+import { CategoryList } from "@components/page/CategoryList";
+import { CategoryEdit } from "@components/page/CategoryEdit";
 
 const Page = () => (
-  <ResponsiveSwitcher first={<CategoryTable />} second={<CategoryDetail />} />
+  <ResponsiveSwitcher first={<CategoryList />} second={<CategoryEdit />} />
 );
 
 export default Page;
