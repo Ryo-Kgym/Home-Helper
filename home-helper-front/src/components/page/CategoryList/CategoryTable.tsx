@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 "use client";
 
@@ -8,8 +8,10 @@ import { useGetAllCategoriesQuery } from "@graphql/hasura/generated/hasuraGraphq
 import { useGroup } from "@hooks/group/useGroup";
 import { useCategoryHolder } from "@hooks/category/useCategoryHolder";
 import { ValidityStatus } from "@components/atoms";
+import { useRouter } from "next/navigation";
 
 export const CategoryTable = () => {
+  const { push } = useRouter();
   const { save } = useCategoryHolder();
   const { groupId } = useGroup();
   const [{ data, fetching }] = useGetAllCategoriesQuery({
@@ -43,7 +45,7 @@ export const CategoryTable = () => {
               { value: displayOrder, align: "right" },
             ],
             onClick: () => {
-              save({ categoryId });
+              push(`/household/setting/category/edit/${categoryId}`);
             },
           }),
         ) ?? []

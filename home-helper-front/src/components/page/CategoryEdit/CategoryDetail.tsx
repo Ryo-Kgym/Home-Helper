@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 "use client";
 
@@ -13,12 +13,11 @@ import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/Displ
 import { ValiditySegment } from "@components/molecules/CustomSegment/ValiditySegment";
 import { GenreNameTextInput } from "@components/molecules/CustomTextInput";
 import { errorPopup, successPopup } from "@function/successPopup";
-import { useCategoryHolder } from "@hooks/category/useCategoryHolder";
 import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
 
-export const CategoryDetail = () => {
+export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   const [inputCategoryName, setInputCategoryName] = useState<string>("");
   const [inputIocomeType, setInputIocomeType] = useState<IocomeType>(
     IocomeType.Income,
@@ -27,8 +26,7 @@ export const CategoryDetail = () => {
   const [inputIsValid, setInputIsValid] = useState<boolean>(true);
   const [inputDisplayOrder, setInputDisplayOrder] = useState<number | "">(0);
 
-  const { categoryId } = useCategoryHolder();
-  const [{ data }] = useGetCategoryByIdQuery({
+  const [{ data, fetching }] = useGetCategoryByIdQuery({
     variables: {
       categoryId,
     },
@@ -86,6 +84,8 @@ export const CategoryDetail = () => {
   useEffect(() => {
     setInputDisplayOrder(displayOrder);
   }, [displayOrder]);
+
+  if (fetching) return <div>Loading....</div>;
 
   return (
     <div className={"w-full p-2"}>
