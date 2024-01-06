@@ -20,21 +20,10 @@ export const SegmentPresenter = ({
 }: SegmentPresenterProps) => (
   <>
     <SegmentedControl
-      className={"max-sm:hidden"}
       color="lime"
       fullWidth
       size={size}
       radius={"xl"}
-      value={value}
-      onChange={onChange}
-      data={data}
-      disabled={disabled}
-    />
-    <SegmentedControl
-      className={"sm:hidden"}
-      color="lime"
-      fullWidth
-      size={"xs"}
       value={value}
       onChange={onChange}
       data={data}
