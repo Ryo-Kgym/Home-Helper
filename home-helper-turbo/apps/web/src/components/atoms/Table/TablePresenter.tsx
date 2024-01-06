@@ -1,9 +1,9 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { ReactElement, RefObject } from "react";
-import { ActionIcon, ScrollArea, Table, Button } from "@mantine/core";
+import { ActionIcon, Button, ScrollArea, Table } from "@mantine/core";
 import { IconArrowBarToDown } from "@tabler/icons-react";
 
 type TablePresenterProps = {
@@ -48,10 +48,10 @@ export const TablePresenter = ({
         verticalSpacing={verticalSpacing}
         withColumnBorders
         className={`bg-slate-100 sm:table-fixed text-[${fontSize}px]`}
+        stickyHeader
+        stickyHeaderOffset={0}
       >
-        <Table.Thead className={"sticky top-0 bg-white"}>
-          {headerTr}
-        </Table.Thead>
+        <Table.Thead className={"top-0 bg-white"}>{headerTr}</Table.Thead>
         <Table.Tbody>{tbody}</Table.Tbody>
         {tfoot && (
           <Table.Tfoot className={"sticky bottom-0 bg-white"}>
