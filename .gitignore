@@ -81,7 +81,7 @@ fabric.properties
 /archive/home-helper-database/household_db/.miglation/
 
 /home-helper-front/src/graphql/hasura/graphql.config.yml
-/home-helper-front/hasura-codegen.yml
+/home-helper-turbo/apps/web/hasura-codegen.yml
 /home-helper-front/hasura-helper-kids-codegen.yml
 
 /volume/
@@ -89,5 +89,5 @@ fabric.properties
 /.idea/dataSources.xml
 /home-helper-batch/src/main/resources/mbg-config-v2.xml
 /home-helper-front/src/graphql/hasura/schema.graphql
-/home-helper-front/hasura-graphql.schema.json
+/home-helper-turbo/apps/web/hasura-graphql.schema.json
 /home-helper-front/hasura-helper-kids-graphql.schema.json
