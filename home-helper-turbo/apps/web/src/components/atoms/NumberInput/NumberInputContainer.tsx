@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 import { NumberInputPresenter } from "@components/atoms/NumberInput/NumberInputPresenter";
 
 type NumberInputContainerProps = {
@@ -32,7 +36,13 @@ export const NumberInputContainer = ({
     <NumberInputPresenter
       label={label}
       value={value}
-      onChange={onChange}
+      onChange={(value) => {
+        if (typeof value === "string") {
+          onChange(Number(value));
+        } else {
+          onChange(value);
+        }
+      }}
       placeholder={placeholder}
       error={checkValue(value)}
       withAsterisk={withAsterisk}

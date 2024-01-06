@@ -1,15 +1,14 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { Modal } from "@mantine/core";
-import { ReactNode } from "react";
 import { useMediaQuery } from "@mantine/hooks";
 
 type ModalPresenterProps = {
   opened: boolean;
   onClose: () => void;
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
 export const MantineModal = ({

@@ -1,11 +1,14 @@
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 import { NavLink as MNavLink } from "@mantine/core";
-import { ReactNode } from "react";
 import { HomeHelperSize } from "@components/atoms";
 
 type Props = {
   label: string;
   size?: HomeHelperSize;
-  children?: ReactNode;
+  children?: React.ReactNode;
   onclick?: () => void;
   defaultOpened?: boolean;
   disabled?: boolean;

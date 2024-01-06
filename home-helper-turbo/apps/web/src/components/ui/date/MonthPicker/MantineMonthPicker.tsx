@@ -1,8 +1,7 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
 import { useDate } from "@hooks/date/useDate";
 import { MonthPickerInput } from "@mantine/dates";
 import { MantineMonthPickerProps } from "@components/ui/date/index";
@@ -73,7 +72,7 @@ const JumpIcon = ({
   children,
   onClick,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
   onClick: () => void;
 }) => (
   <button

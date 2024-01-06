@@ -1,5 +1,8 @@
-import { SegmentedControl } from "@mantine/core";
-import { MantineSize } from "@mantine/styles";
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
+import { MantineSize, SegmentedControl } from "@mantine/core";
 
 type SegmentPresenterProps = {
   value: string;

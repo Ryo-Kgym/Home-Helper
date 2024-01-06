@@ -1,12 +1,11 @@
-import { FC } from "react";
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
 
-type FormatPricePresenterProps = {
-  className: string;
-  priceStr: string;
-};
-export const FormatPricePresenter: FC<FormatPricePresenterProps> = ({
+export const FormatPricePresenter = ({
   className,
   priceStr,
-}) => {
-  return <div className={className}>{priceStr}</div>;
-};
+}: {
+  className: string;
+  priceStr: string;
+}) => <div className={className}>{priceStr}</div>;

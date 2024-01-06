@@ -1,17 +1,23 @@
-import { FC } from "react";
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 import { TableProps } from "@components/atoms/Table";
 import { DailySearchContainer } from "@components/organisms/daily_table/DailySearchContainer";
 
-type DailyTableByCategoryPresenterProps = {
+export const DailyTableByCategoryPresenter = ({
+  firstDay,
+  lastDay,
+  tableProps,
+  incomeTotal,
+  outcomeTotal,
+}: {
   firstDay: Date;
   lastDay: Date;
   tableProps: TableProps[];
   incomeTotal: number | undefined;
   outcomeTotal: number | undefined;
-};
-export const DailyTableByCategoryPresenter: FC<
-  DailyTableByCategoryPresenterProps
-> = ({ firstDay, lastDay, tableProps, incomeTotal, outcomeTotal }) => {
+}) => {
   return (
     <DailySearchContainer
       dailyDetail={tableProps}

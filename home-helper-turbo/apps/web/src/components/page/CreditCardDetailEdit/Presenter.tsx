@@ -2,7 +2,6 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
 import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
 import { CategorySelect } from "@components/molecules/CustomSelect/Category";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
@@ -80,7 +79,7 @@ export const Presenter_ = ({
   </div>
 );
 
-const Field = ({ children }: { children: ReactNode }) => (
+const Field = ({ children }: { children: React.ReactNode }) => (
   <>
     <div className={"py-2"}>{children}</div>
   </>

@@ -1,17 +1,16 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 "use client";
 
 import { Tab } from "@components/ui/Tabs/index";
-import { ReactNode } from "react";
 
 const Layout = ({
   charged,
   exchanged,
 }: {
-  charged: ReactNode;
-  exchanged: ReactNode;
+  charged: React.ReactNode;
+  exchanged: React.ReactNode;
 }) => (
   <>
     <Tab

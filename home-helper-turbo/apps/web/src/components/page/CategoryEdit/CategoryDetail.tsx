@@ -3,7 +3,7 @@
  */
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@components/ui";
 import {
   useGetCategoryByIdQuery,
@@ -123,7 +123,13 @@ export const CategoryDetail = ({ categoryId }: { categoryId: string }) => {
   );
 };
 
-const Frame = ({ title, children }: { title: string; children: ReactNode }) => (
+const Frame = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) => (
   <div className={"bg-gray-100 p-4 my-4 rounded"}>
     <div className={"text-gray-500"}>{title}</div>
     <div className={"text-xl ml-[1em]"}>{children}</div>

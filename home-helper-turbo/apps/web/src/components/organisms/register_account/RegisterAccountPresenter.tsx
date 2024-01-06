@@ -1,8 +1,7 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
 import { AccountNameInput } from "@components/molecules/CustomTextInput/AccountName";
 import { Button } from "components/ui";
 import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
@@ -38,6 +37,6 @@ export const RegisterAccountPresenter = ({
   </div>
 );
 
-const Field = ({ children }: { children: ReactNode }) => (
+const Field = ({ children }: { children: React.ReactNode }) => (
   <div className={"py-2"}>{children}</div>
 );

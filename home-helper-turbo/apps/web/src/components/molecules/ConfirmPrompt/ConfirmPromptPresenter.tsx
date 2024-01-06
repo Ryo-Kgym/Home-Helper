@@ -1,14 +1,14 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { Button } from "components/ui";
 import { Modal } from "@components/atoms/Modal";
 
 type ConfirmPromptPresenterProps = {
   title: string;
-  children: ReactNode;
+  children: React.ReactNode;
   opened: boolean;
   onClose: () => void;
   doneOnClickHandler: () => void;

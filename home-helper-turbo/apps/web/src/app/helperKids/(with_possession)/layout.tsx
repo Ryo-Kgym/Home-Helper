@@ -1,11 +1,10 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
 import { HelperPointCountUp } from "./_helperPointCountUp";
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className={"w-full"}>

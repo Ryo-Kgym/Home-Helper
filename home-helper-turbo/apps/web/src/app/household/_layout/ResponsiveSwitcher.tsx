@@ -1,17 +1,16 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { Split } from "@components/atoms/Split/index";
-import { ReactElement, ReactNode } from "react";
 import { MobileTabs } from "@components/ui";
 
 export const ResponsiveSwitcher = ({
   first: firstContents,
   second: originalSecond,
 }: {
-  first: ReactElement | ReactNode;
-  second: ReactElement | ReactNode;
+  first: React.ReactNode;
+  second: React.ReactNode;
 }) => {
   const First = () => <div className={"p-1 w-full"}>{firstContents}</div>;
   const Second = () => <div className={"p-1 w-full"}>{originalSecond}</div>;

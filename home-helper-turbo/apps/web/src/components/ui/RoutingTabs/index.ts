@@ -13,5 +13,5 @@ export type RoutingTabsProps = {
     value: string;
     url: string;
   }[];
-  children: ReactNode | ReactNode[];
+  children: React.ReactNode | ReactNode[];
 };

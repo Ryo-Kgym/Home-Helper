@@ -1,20 +1,17 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { ColumnProps, Table, TableProps } from "@components/atoms/Table/index";
-import { FC } from "react";
 
-type MonthlyCategoryPresenterProps = {
-  tablePropsList: TableProps[];
-  footer: ColumnProps[][];
-  monthNames: string[];
-};
-
-export const MonthlyCategoryPresenter: FC<MonthlyCategoryPresenterProps> = ({
+export const MonthlyCategoryPresenter = ({
   tablePropsList,
   footer,
   monthNames,
+}: {
+  tablePropsList: TableProps[];
+  footer: ColumnProps[][];
+  monthNames: string[];
 }) => (
   <div>
     <Table

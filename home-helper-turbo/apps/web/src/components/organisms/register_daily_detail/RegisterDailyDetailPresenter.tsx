@@ -1,8 +1,8 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
 import { CategorySelect } from "@components/molecules/CustomSelect/Category";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account";
@@ -99,7 +99,7 @@ export const RegisterDailyDetailPresenter: FC<
   </div>
 );
 
-const Field = ({ children }: { children: ReactNode }) => (
+const Field = ({ children }: { children: React.ReactNode }) => (
   <>
     <div className={"py-2 max-sm:py-1"}>{children}</div>
   </>

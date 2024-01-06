@@ -1,9 +1,8 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { MantineSize } from "@mantine/styles";
-import { Select } from "@mantine/core";
+import { MantineSize, Select } from "@mantine/core";
 import { SelectData } from "../Select";
 
 type MantineSelectProps = {

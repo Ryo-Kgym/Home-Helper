@@ -2,14 +2,12 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
-
 const Layout = ({
   children,
   modify,
 }: {
-  children: ReactNode;
-  modify: ReactNode;
+  children: React.ReactNode;
+  modify: React.ReactNode;
 }) => (
   <div>
     {children}

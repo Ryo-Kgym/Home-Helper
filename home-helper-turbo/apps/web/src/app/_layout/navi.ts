@@ -1,12 +1,10 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
-
-import { ReactNode } from "react";
 
 export type Navi = {
   label: string;
   url: string;
-  icon?: ReactNode;
+  icon?: React.ReactNode;
   visible?: boolean;
 };

@@ -1,8 +1,7 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
 import { GenreSelect } from "@components/molecules/CustomSelect/Genre/index";
 import { CategorySelect } from "@components/molecules/CustomSelect/Category/index";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account/index";
@@ -99,7 +98,7 @@ export const ChangeDetailPresenter = ({
   </div>
 );
 
-const Field = ({ children }: { children: ReactNode }) => (
+const Field = ({ children }: { children: React.ReactNode }) => (
   <>
     <div className={"py-2 max-sm:py-1"}>{children}</div>
   </>

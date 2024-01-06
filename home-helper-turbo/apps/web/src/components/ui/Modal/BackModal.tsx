@@ -1,13 +1,12 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 "use client";
 
 import { Modal } from "@components/atoms/Modal";
-import { ReactNode } from "react";
 import { useRouter } from "next/navigation";
 
-export const BackModal = ({ children }: { children: ReactNode }) => {
+export const BackModal = ({ children }: { children: React.ReactNode }) => {
   const { back } = useRouter();
 
   return (

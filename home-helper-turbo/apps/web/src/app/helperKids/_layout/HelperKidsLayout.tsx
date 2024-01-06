@@ -1,13 +1,16 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
 import { Navi } from "@app/_layout/navi";
 import { NavbarSection } from "@app/_layout/NavbarSection";
 
-export const HelperKidsLayout = ({ children }: { children: ReactNode }) => (
-  <NavbarSection header={"お手伝いアプリ"} navis={helperKidsNavis}>
+export const HelperKidsLayout = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
+  <NavbarSection header={"お手伝いアプリ"} naviArray={helperKidsNavis}>
     <div className={"flex flex-col items-center justify-center"}>
       {children}
     </div>

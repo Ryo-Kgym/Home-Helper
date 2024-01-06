@@ -1,14 +1,17 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { PropsWithChildren } from "react";
 import { NavbarSection } from "@app/_layout/NavbarSection";
 import { Navi } from "@app/_layout/navi";
 import { RegisterDailyButton } from "@components/molecules";
 
-export const HouseholdLayout = ({ children }: PropsWithChildren) => (
-  <NavbarSection header={"家計簿アプリ"} navis={householdNavis}>
+export const HouseholdLayout = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
+  <NavbarSection header={"家計簿アプリ"} naviArray={householdNavis}>
     {children}
     <div className={"z-100 absolute right-5 bottom-16"}>
       <RegisterDailyButton />

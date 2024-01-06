@@ -1,8 +1,7 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { FC } from "react";
 import { TableProps } from "@components/atoms/Table";
 import { DailyTableByGenrePresenter } from "./DailyTableByGenrePresenter";
 import { useGetDailyDetailByDateGenreId } from "@hooks/household/daily_detail/useGetDailyDetailByDateGenreId";
@@ -10,14 +9,15 @@ import { FormatPrice } from "@components/molecules/FormatPrice";
 import { useDate } from "@hooks/date/useDate";
 import { IocomeType } from "@domain/model/household/IocomeType";
 
-type DailyTableByGenreContainerProps = {
+export const DailyTableByGenreContainer = ({
+  fromMonth,
+  toMonth,
+  genreId,
+}: {
   fromMonth: Date;
   toMonth: Date;
   genreId: string;
-};
-export const DailyTableByGenreContainer: FC<
-  DailyTableByGenreContainerProps
-> = ({ fromMonth, toMonth, genreId }) => {
+}) => {
   const { offsetDate } = useDate();
   const firstDay = offsetDate(
     new Date(fromMonth.getFullYear(), fromMonth.getMonth(), 1),

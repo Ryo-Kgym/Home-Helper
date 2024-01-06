@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 "use client";
 
@@ -39,7 +39,7 @@ const CheckableRow = ({
   children,
   checkAfterHandler = () => {},
 }: {
-  children: ReactNode | ReactNode[];
+  children: React.ReactNode | ReactNode[];
   checkAfterHandler?: (value: boolean) => void;
 }) => {
   const [check, setCheck] = useState(false);

@@ -1,10 +1,11 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import "dayjs/locale/ja";
 import { MantineSize } from "@mantine/core";
-import { DateInput } from "@mantine/dates";
+import { DateInput, DateValue } from "@mantine/dates";
+
 export const MantineDatePicker = ({
   value,
   onChange,
@@ -26,10 +27,16 @@ export const MantineDatePicker = ({
 }) => {
   const error = required && value === null ? "Required" : "";
 
+  const onChangeHandler = (value: DateValue) => {
+    if (value instanceof Date) {
+      onChange(value);
+    }
+  };
+
   return (
     <DateInput
       value={new Date(value)}
-      onChange={onChange}
+      onChange={onChangeHandler}
       label={label}
       defaultValue={defaultValue}
       placeholder={placeholder}

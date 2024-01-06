@@ -1,17 +1,20 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 "use client";
 
-import { PropsWithChildren } from "react";
 import { RecoilRoot } from "recoil";
 import { datasource } from "@graphql/datasource";
 import { MantineProvider } from "@mantine/core";
 import { Toaster } from "react-hot-toast";
 import { Provider as UrqlProvider } from "urql";
 
-export const ClientsProviders = ({ children }: PropsWithChildren) => (
+export const ClientsProviders = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
   <RecoilRoot>
     <UrqlProvider value={datasource}>
       <MantineProvider>

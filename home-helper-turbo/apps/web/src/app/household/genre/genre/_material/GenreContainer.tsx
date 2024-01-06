@@ -1,10 +1,10 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 "use client";
 
-import { TableProps } from "@components/atoms/Table/index";
+import { TableProps } from "@components/atoms/Table";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { useState } from "react";
 import { FormatPrice } from "@components/molecules/FormatPrice/index";

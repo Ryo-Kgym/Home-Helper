@@ -2,10 +2,9 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
 import { RoutingTabs } from "@components/ui";
 
-const Layout = ({ children }: { children: ReactNode }) => (
+const Layout = ({ children }: { children: React.ReactNode }) => (
   <RoutingTabs
     defaultValue={"genre"}
     tabs={[

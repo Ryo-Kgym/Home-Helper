@@ -1,10 +1,9 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { Textarea } from "@mantine/core";
+import { MantineSize, Textarea } from "@mantine/core";
 import { ChangeEvent } from "react";
-import { MantineSize } from "@mantine/styles";
 
 export const MantineTextarea = ({
   label,

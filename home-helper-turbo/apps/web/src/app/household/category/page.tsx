@@ -1,5 +1,7 @@
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 import { CategoryContainer } from "@components/organisms/category/CategoryContainer";
 
-const Page = () => <CategoryContainer />;
-
-export default Page;
+export default CategoryContainer;

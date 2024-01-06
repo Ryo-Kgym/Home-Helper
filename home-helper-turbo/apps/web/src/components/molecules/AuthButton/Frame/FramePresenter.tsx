@@ -1,7 +1,11 @@
-import { FC, ReactNode } from "react";
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
+import { FC } from "react";
 
 type FramePresenterProps = {
-  children: ReactNode;
+  children: React.ReactNode;
   onClickHandler: () => void;
 };
 

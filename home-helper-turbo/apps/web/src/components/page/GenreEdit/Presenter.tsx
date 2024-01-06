@@ -2,7 +2,6 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
 import { Button } from "@components/ui";
 import { DisplayOrderInput } from "@components/molecules/CustomNumberInput/DisplayOrder";
 import { IocomeTypeSegment } from "@components/molecules/CustomSegment/IocomeType";
@@ -87,7 +86,7 @@ const FrameDiv = ({
   children,
 }: {
   title: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }) => (
   <div className={"bg-gray-100 p-4 my-4 rounded"}>
     <div className={"text-gray-500"}>{title}</div>

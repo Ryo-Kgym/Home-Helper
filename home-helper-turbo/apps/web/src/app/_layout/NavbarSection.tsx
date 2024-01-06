@@ -1,22 +1,22 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
+
 "use client";
 
 import { useDisclosure } from "@mantine/hooks";
 import { AppShell, Burger, Group, ScrollArea } from "@mantine/core";
-import { ReactNode } from "react";
 import { Navi } from "@app/_layout/navi";
 import Link from "next/link";
 
 export const NavbarSection = ({
   header,
-  navis,
+  naviArray,
   children,
 }: {
   header: string;
-  navis: Navi[];
-  children: ReactNode;
+  naviArray: Navi[];
+  children: React.ReactNode;
 }) => {
   const [opened, { toggle }] = useDisclosure();
 
@@ -38,10 +38,10 @@ export const NavbarSection = ({
 
       <AppShell.Navbar className={"bg-yellow-300"}>
         <AppShell.Section component={ScrollArea}>
-          {navis
+          {naviArray
             .filter(({ visible = true }) => visible)
-            .map((menu, index) => (
-              <Link key={`menu-${index}`} href={menu.url}>
+            .map((navi, index) => (
+              <Link key={`menu-${index}`} href={navi.url}>
                 <div
                   className={"p-3 my-1 hover:font-bold max-sm:text-center"}
                   onClick={() => {
@@ -49,8 +49,8 @@ export const NavbarSection = ({
                     if (window.innerWidth < 640) toggle();
                   }}
                 >
-                  {menu.icon && <div>{menu.icon}</div>}
-                  <div>{menu.label}</div>
+                  {navi.icon && <div>{navi.icon}</div>}
+                  <div>{navi.label}</div>
                 </div>
               </Link>
             ))}

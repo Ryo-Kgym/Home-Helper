@@ -1,8 +1,7 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactElement } from "react";
 import { Button } from "components/ui";
 import { Input } from "@components/atoms/Input";
 import { InputValidationMessage } from "@components/atoms/Input/InputValidator";
@@ -83,5 +82,5 @@ type ItemProps = {
 const ItemStyler = ({
   children,
 }: {
-  children: ReactElement | ReactElement[];
+  children: React.ReactNode | React.ReactNode[];
 }) => <div className={"px-8 py-8 border-b-2"}>{children}</div>;

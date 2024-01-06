@@ -1,27 +1,24 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { MonthlyCategoryPresenter } from "@app/household/summary/_material/MonthlyCategoryPresenter";
-import { ColumnProps, TableProps } from "@components/atoms/Table/index";
+import { ColumnProps, TableProps } from "@components/atoms/Table";
 import { FormatPrice } from "@components/molecules/FormatPrice/index";
 import { IocomeType } from "@domain/model/household/IocomeType";
 import { TotalAmountByMonthly } from "@function/monthly/totalAmountByMonthly";
 import { MonthlyCategoryKey } from "@hooks/household/summary_category/useFetchSummaryCategoryAmount";
-import { FC } from "react";
 
-type MonthlyCategoryContainerProps = {
-  data: TotalAmountByMonthly<MonthlyCategoryKey>[];
-  incomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>;
-  outcomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>;
-  monthNames: string[];
-};
-
-export const MonthlyCategoryContainer: FC<MonthlyCategoryContainerProps> = ({
+export const MonthlyCategoryContainer = ({
   data,
   incomeTotal,
   outcomeTotal,
   monthNames,
+}: {
+  data: TotalAmountByMonthly<MonthlyCategoryKey>[];
+  incomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>;
+  outcomeTotal: TotalAmountByMonthly<MonthlyCategoryKey>;
+  monthNames: string[];
 }) => {
   const tablePropsList: TableProps[] = data.map((d) => ({
     keyPrefix: d.key.categoryName,

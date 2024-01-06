@@ -1,13 +1,12 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TablePresenter } from "@components/atoms/Table/TablePresenter";
 import { ColumnProps, TableProps } from "@components/atoms/Table/index";
-import { MantineSize } from "@mantine/styles";
-import { Table } from "@mantine/core";
+import { MantineSize, Table } from "@mantine/core";
 
 type Props = {
   header: string[];

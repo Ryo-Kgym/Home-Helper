@@ -1,8 +1,7 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactNode } from "react";
 import { Modal } from "@components/atoms/Modal/index";
 import { RegisterDailyDetail } from "@components/organisms/register_daily_detail/index";
 
@@ -65,7 +64,7 @@ const DayLabel = ({
   children,
 }: {
   openClickHandler: () => void;
-  children: ReactNode;
+  children: React.ReactNode;
 }) => (
   <div
     className={

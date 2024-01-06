@@ -1,14 +1,16 @@
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 import { FormatPricePresenter } from "@components/molecules/FormatPrice/FormatPricePresenter";
 import { IocomeType } from "@domain/model/household/IocomeType";
-import { FC } from "react";
 
-type FormatPriceContainerProps = {
-  iocomeType: IocomeType;
-  price: number;
-};
-export const FormatPriceContainer: FC<FormatPriceContainerProps> = ({
+export const FormatPriceContainer = ({
   iocomeType,
   price,
+}: {
+  iocomeType: IocomeType;
+  price: number;
 }) => {
   const priceWithComma = Number(price).toLocaleString();
 

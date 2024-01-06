@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { LoginButton } from "@components/molecules/AuthButton";
@@ -23,7 +23,11 @@ const Title = () => (
   <h1 className="text-6xl font-bold">うちのアプリへ ようこそ！</h1>
 );
 
-const ButtonArea = ({ children }: { children: ReactNode | ReactNode[] }) => (
+const ButtonArea = ({
+  children,
+}: {
+  children: React.ReactNode | ReactNode[];
+}) => (
   <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
     {children}
   </div>

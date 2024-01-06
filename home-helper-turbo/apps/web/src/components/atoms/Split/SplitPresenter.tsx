@@ -1,17 +1,24 @@
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 "use client";
 
 import Split from "react-split";
-import { FC, ReactElement, ReactNode } from "react";
 
 type SplitPresenterProps = {
-  first: ReactElement | ReactNode;
-  second: ReactElement | ReactNode;
+  first: React.ReactNode;
+  second: React.ReactNode;
   size?: number;
 };
-export const SplitPresenter: FC<SplitPresenterProps> = ({
+export const SplitPresenter = ({
   first,
   second,
   size = 50,
+}: {
+  first: React.ReactNode;
+  second: React.ReactNode;
+  size?: number;
 }) => (
   <Split
     className="flex"
