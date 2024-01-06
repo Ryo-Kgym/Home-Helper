@@ -1,6 +1,10 @@
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable, useColorScheme } from 'react-native';
+import {Link, Tabs} from 'expo-router';
+import {Pressable, useColorScheme} from 'react-native';
 
 import Colors from '../../constants/Colors';
 
