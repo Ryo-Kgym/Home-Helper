@@ -1,14 +1,16 @@
-import { FC } from "react";
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 import { IconPlayerTrackNext } from "@tabler/icons";
 import { Icon } from "@components/atoms/Icon";
 
-type NextIconPresenterProps = {
-  onClickHandler: () => void;
-  iconSize?: number;
-};
-export const NextIconPresenter: FC<NextIconPresenterProps> = ({
+export const NextIconPresenter = ({
   onClickHandler,
   iconSize = 36,
+}: {
+  onClickHandler: () => void;
+  iconSize?: number;
 }) => (
   <Icon onClickHandler={onClickHandler}>
     <IconPlayerTrackNext size={iconSize} />

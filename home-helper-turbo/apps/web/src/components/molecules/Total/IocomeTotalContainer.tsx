@@ -1,9 +1,8 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { IocomeTotalPresenter } from "@components/molecules/Total/IocomeTotalPresenter";
-import { FC } from "react";
 
 export const IocomeTotalContainer = ({
   income = 0,

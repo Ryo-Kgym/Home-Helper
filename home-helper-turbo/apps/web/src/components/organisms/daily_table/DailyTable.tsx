@@ -1,16 +1,18 @@
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 import { Table, TableProps } from "@components/atoms/Table";
 import { IocomeTotal } from "@components/molecules/Total";
-import { FC } from "react";
 
-type DailyTableProps = {
-  tablePropsList: TableProps[];
-  incomeTotal: number | undefined;
-  outcomeTotal: number | undefined;
-};
-export const DailyTable: FC<DailyTableProps> = ({
+export const DailyTable = ({
   tablePropsList,
   incomeTotal,
   outcomeTotal,
+}: {
+  tablePropsList: TableProps[];
+  incomeTotal: number | undefined;
+  outcomeTotal: number | undefined;
 }) => (
   <>
     <div className={"max-sm:hidden"}>

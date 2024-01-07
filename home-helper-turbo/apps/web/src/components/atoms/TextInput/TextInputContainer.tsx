@@ -1,14 +1,9 @@
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 import { TextInputPresenter } from "@components/atoms/TextInput/TextInputPresenter";
 
-type NumberInputContainerProps = {
-  label: string;
-  value: string;
-  onChange: (_: string) => void;
-  placeholder?: string;
-  withAsterisk?: boolean;
-  disabled?: boolean;
-  maxLength?: number;
-};
 export const TextInputContainer = ({
   label,
   value,
@@ -17,7 +12,15 @@ export const TextInputContainer = ({
   withAsterisk,
   disabled = false,
   maxLength = 32,
-}: NumberInputContainerProps) => {
+}: {
+  label: string;
+  value: string;
+  onChange: (_: string) => void;
+  placeholder?: string;
+  withAsterisk?: boolean;
+  disabled?: boolean;
+  maxLength?: number;
+}) => {
   const checkValue = (value: string) => {
     if (value === "") {
       return "Required";

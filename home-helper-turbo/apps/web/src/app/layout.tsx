@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import "../styles/globals.css";
@@ -7,7 +7,6 @@ import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
-import { PropsWithChildren } from "react";
 import { Metadata } from "next";
 import { ClientsProviders } from "app/_provider/ClientsProviders";
 import { ColorSchemeScript } from "@mantine/core";
@@ -18,7 +17,7 @@ const metadata: Metadata = {
   description: "うちのアプリです",
 };
 
-const Layout = ({ children }: PropsWithChildren) => (
+const Layout = ({ children }: { children: React.ReactNode }) => (
   <html lang={"ja"}>
     <head>
       <ColorSchemeScript />

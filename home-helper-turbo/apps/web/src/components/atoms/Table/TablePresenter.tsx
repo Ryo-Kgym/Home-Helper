@@ -2,14 +2,14 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { ReactElement, RefObject } from "react";
+import { RefObject } from "react";
 import { ActionIcon, Button, ScrollArea, Table } from "@mantine/core";
 import { IconArrowBarToDown } from "@tabler/icons-react";
 
 type TablePresenterProps = {
-  headerTr: ReactElement;
-  tbody: ReactElement;
-  tfoot?: ReactElement;
+  headerTr: React.ReactNode;
+  tbody: React.ReactNode;
+  tfoot?: React.ReactNode;
   height: string;
   fontSize: number;
   horizontalSpacing: number;

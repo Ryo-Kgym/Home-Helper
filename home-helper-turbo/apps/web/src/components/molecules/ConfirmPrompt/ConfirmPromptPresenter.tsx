@@ -2,24 +2,21 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { FC } from "react";
 import { Button } from "components/ui";
 import { Modal } from "@components/atoms/Modal";
 
-type ConfirmPromptPresenterProps = {
-  title: string;
-  children: React.ReactNode;
-  opened: boolean;
-  onClose: () => void;
-  doneOnClickHandler: () => void;
-};
-
-export const ConfirmPromptPresenter: FC<ConfirmPromptPresenterProps> = ({
+export const ConfirmPromptPresenter = ({
   title,
   children,
   opened,
   onClose,
   doneOnClickHandler,
+}: {
+  title: string;
+  children: React.ReactNode;
+  opened: boolean;
+  onClose: () => void;
+  doneOnClickHandler: () => void;
 }) => (
   <Modal opened={opened} onClose={onClose}>
     <div className={"grid grid-cols-2 "}>
