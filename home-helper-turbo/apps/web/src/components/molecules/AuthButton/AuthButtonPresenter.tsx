@@ -1,14 +1,15 @@
-import { FC } from "react";
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
+
 import { Frame } from "./";
 
-type AuthButtonPresenterProps = {
-  onClickHandler: () => void;
-  label: string;
-};
-
-export const AuthButtonPresenter: FC<AuthButtonPresenterProps> = ({
+export const AuthButtonPresenter = ({
   onClickHandler,
   label,
+}: {
+  onClickHandler: () => void;
+  label: string;
 }) => (
   <Frame onClickHandler={onClickHandler}>
     <h3 className="text-2xl font-bold">{label} &rarr;</h3>

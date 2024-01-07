@@ -2,7 +2,6 @@
  * Copyright (c) 2024 Ryo-Kgym.
  */
 
-import { FC } from "react";
 import { GenreSelect } from "@components/molecules/CustomSelect/Genre";
 import { CategorySelect } from "@components/molecules/CustomSelect/Category";
 import { AccountSelect } from "@components/molecules/CustomSelect/Account";
@@ -31,9 +30,7 @@ type RegisterDailyDetailPresenterProps = {
   clearClickHandler: () => void;
   registerClickHandler: () => void;
 };
-export const RegisterDailyDetailPresenter: FC<
-  RegisterDailyDetailPresenterProps
-> = ({
+export const RegisterDailyDetailPresenter = ({
   date,
   setDate,
   iocomeType,
@@ -50,6 +47,23 @@ export const RegisterDailyDetailPresenter: FC<
   changeMemoHandler,
   clearClickHandler,
   registerClickHandler,
+}: {
+  date: Date;
+  setDate: (_: Date) => void;
+  iocomeType: IocomeType;
+  changeIocomeTypeHandler: (_: IocomeType) => void;
+  categoryId: string | null;
+  changeCategoryIdHandler: (_: string | null) => void;
+  genreId: string | null;
+  changeGenreIdHandler: (_: string | null) => void;
+  accountId: string | null;
+  changeAccountIdHandler: (_: string | null) => void;
+  amount: number | "";
+  changeAmountHandler: (_: number | "") => void;
+  memo: string;
+  changeMemoHandler: (_: string) => void;
+  clearClickHandler: () => void;
+  registerClickHandler: () => void;
 }) => (
   <div className={"grid grid-cols-1 w-full"}>
     <Field>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Ryo-Kgym.
+ * Copyright (c) 2024 Ryo-Kgym.
  */
 
 import { useState } from "react";
@@ -8,12 +8,7 @@ import { IocomeType } from "@domain/model/household/IocomeType";
 import { useRegisterDailyDetail } from "@hooks/household/daily_detail/useRegisterDailyDetail";
 import { errorPopup, successPopup } from "@function/successPopup";
 
-type RegisterDailyDetailContainerProps = {
-  date: Date;
-};
-export const RegisterDailyDetailContainer = ({
-  date,
-}: RegisterDailyDetailContainerProps) => {
+export const RegisterDailyDetailContainer = ({ date }: { date: Date }) => {
   const [registerDate, setRegisterDate] = useState<Date>(date);
   const [iocomeType, setIocomeType] = useState<IocomeType>(IocomeType.Income);
   const [categoryId, setCategoryId] = useState<string | null>(null);

@@ -4,7 +4,7 @@
 "use client";
 
 import { Checkbox } from "@mantine/core";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import { CheckableSelectProps } from "@components/ui";
 
 export const MantineCheckableSelect = <T extends { id: string }>({
@@ -39,7 +39,7 @@ const CheckableRow = ({
   children,
   checkAfterHandler = () => {},
 }: {
-  children: React.ReactNode | ReactNode[];
+  children: React.ReactNode | React.ReactNode[];
   checkAfterHandler?: (value: boolean) => void;
 }) => {
   const [check, setCheck] = useState(false);

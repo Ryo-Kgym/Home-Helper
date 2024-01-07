@@ -1,16 +1,11 @@
-import { TextInput } from "@mantine/core";
-import { ChangeEventHandler, FC } from "react";
+/*
+ * Copyright (c) 2024 Ryo-Kgym.
+ */
 
-type NumberInputPresenterProps = {
-  label: string;
-  value: string;
-  onChange: ChangeEventHandler<HTMLInputElement>;
-  placeholder?: string;
-  error: string;
-  withAsterisk?: boolean;
-  disabled: boolean;
-};
-export const TextInputPresenter: FC<NumberInputPresenterProps> = ({
+import { TextInput } from "@mantine/core";
+import { ChangeEventHandler } from "react";
+
+export const TextInputPresenter = ({
   label,
   value,
   onChange,
@@ -18,6 +13,14 @@ export const TextInputPresenter: FC<NumberInputPresenterProps> = ({
   error,
   withAsterisk,
   disabled,
+}: {
+  label: string;
+  value: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
+  error: string;
+  withAsterisk?: boolean;
+  disabled: boolean;
 }) => (
   <TextInput
     value={value}

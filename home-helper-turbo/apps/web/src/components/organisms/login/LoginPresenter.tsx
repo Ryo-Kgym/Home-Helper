@@ -3,13 +3,12 @@
  */
 
 import { LoginButton } from "@components/molecules/AuthButton";
-import { ReactNode } from "react";
 
-type LoginPresenterProps = {
+export const LoginPresenter = ({
+  message,
+}: {
   message: string | undefined;
-};
-
-export const LoginPresenter = ({ message }: LoginPresenterProps) => (
+}) => (
   <div className="flex flex-col items-center justify-center min-h-screen py-2">
     <Title />
     <ButtonArea>
@@ -26,7 +25,7 @@ const Title = () => (
 const ButtonArea = ({
   children,
 }: {
-  children: React.ReactNode | ReactNode[];
+  children: React.ReactNode | React.ReactNode[];
 }) => (
   <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
     {children}
